@@ -7,6 +7,8 @@
 })(typeof globalThis !== "undefined" ? globalThis : window, function createVocabExampleUtils() {
   "use strict";
 
+  const CLOUD_EXAMPLE_CACHE_VERSION = "v2-written-zh";
+
   function normalizeWord(value) {
     return String(value || "")
       .trim()
@@ -61,7 +63,8 @@
     const hintText = normalizeHints(hints)
       .map((hint) => [hint.pos, hint.type, hint.meaning].filter(Boolean).join(":"))
       .join("|");
-    return hintText ? `${normalizedWord}|${hintText}` : normalizedWord;
+    const baseKey = hintText ? `${normalizedWord}|${hintText}` : normalizedWord;
+    return `${CLOUD_EXAMPLE_CACHE_VERSION}|${baseKey}`;
   }
 
   function getLocalCacheKey(word, hints = []) {

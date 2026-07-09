@@ -104,7 +104,12 @@ assert.notStrictEqual(
 const prompt = helpers.buildGeminiExamplePrompt("have", haveFoodHints);
 assert.ok(prompt.includes("食 / 飲"));
 assert.ok(prompt.includes("Traditional Chinese"));
+assert.ok(prompt.includes("Hong Kong written Chinese"));
+assert.ok(prompt.includes("Do not use colloquial Cantonese"));
 assert.ok(prompt.includes("Return exactly 3 examples"));
+assert.ok(prompt.includes("vocabulary example sentences for Hong Kong English learners"));
+assert.ok(!prompt.includes("Cantonese-friendly"));
+assert.ok(helpers.makeVocabExamplesCacheKey("have", haveFoodHints).startsWith("v2-written-zh|"));
 
 const deepSeekPayload = helpers.buildDeepSeekChatPayload(prompt);
 assert.strictEqual(deepSeekPayload.model, "deepseek-v4-flash");
@@ -137,6 +142,8 @@ const teacherPrompt = helpers.buildTeacherExamplePrompt("macaroni", [
 assert.ok(teacherPrompt.includes("Proofread"));
 assert.ok(teacherPrompt.includes("通心粉"));
 assert.ok(teacherPrompt.includes("Traditional Chinese"));
+assert.ok(teacherPrompt.includes("Hong Kong written Chinese"));
+assert.ok(!teacherPrompt.includes("Cantonese-friendly"));
 
 const examples = helpers.normalizeGeminiExamples("have", {
   candidates: [{

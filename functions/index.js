@@ -36,6 +36,7 @@ const DEEPSEEK_EXAMPLE_MODEL = "deepseek-v4-flash";
 const DEEPSEEK_EXAMPLE_SOURCE = "deepseek-generated-examples";
 const TEACHER_EXAMPLE_SOURCE = "teacher-approved-examples";
 const TEMPLATE_EXAMPLE_SOURCE = "template-generated-examples";
+const VOCAB_EXAMPLE_CACHE_VERSION = "v2-written-zh";
 const GEMINI_EXAMPLE_LIMIT = 3;
 const TEACHER_EXAMPLE_LIMIT = 4;
 const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
@@ -672,7 +673,8 @@ function makeVocabExamplesCacheKey(word, hints = []) {
   const hintText = normalizeExampleHints(hints)
     .map((hint) => [hint.pos, hint.type, hint.meaning].filter(Boolean).join(":"))
     .join("|");
-  return hintText ? `${normalizedWord}|${hintText}` : normalizedWord;
+  const baseKey = hintText ? `${normalizedWord}|${hintText}` : normalizedWord;
+  return `${VOCAB_EXAMPLE_CACHE_VERSION}|${baseKey}`;
 }
 
 function makeVocabExampleId(word, hints = []) {
@@ -704,8 +706,8 @@ function buildGeminiExamplePrompt(word, hints = []) {
     A2: "A2: Hong Kong senior primary level. Use 5-9 words and simple school/home contexts.",
     B1: "B1: Hong Kong Secondary 1 level. Use 7-12 words and simple because/when/if clauses when natural.",
     B2: "B2: Hong Kong Secondary 2-3 level. Use 9-15 words, natural school or daily contexts.",
-    C1: "C1: Hong Kong DSE level. Use precise but still clear sentences; avoid obscure academic wording."
-  }[cefrLevel] || "Default: Hong Kong primary-friendly English. Keep sentences short and clear.";
+    C1: "C1: Hong Kong DSE level. Use 12-18 words, precise vocabulary, and clear academic or social contexts."
+  }[cefrLevel] || "Default: Hong Kong primary to junior-secondary friendly English. Use 5-10 words and keep the context clear.";
   const hintLines = normalizedHints
     .map((hint, index) => {
       const label = [hint.pos, hint.type].filter(Boolean).join(" / ");
@@ -715,7 +717,7 @@ function buildGeminiExamplePrompt(word, hints = []) {
     .join("\n");
 
   return [
-    "You are writing vocabulary example sentences for Hong Kong primary school students.",
+    "You are writing vocabulary example sentences for Hong Kong English learners.",
     "Create short, natural, safe English example sentences with matching Traditional Chinese translations.",
     "",
     `Vocabulary item: ${normalizedWord}`,
@@ -725,10 +727,11 @@ function buildGeminiExamplePrompt(word, hints = []) {
     "Rules:",
     "- Return JSON only. No markdown.",
     `- Return exactly ${GEMINI_EXAMPLE_LIMIT} examples.`,
-    "- Each English sentence must be 4 to 10 words, natural, and primary-level.",
+    "- Each English sentence must follow the difficulty guide above. Do not make higher-level words childish, but keep every sentence clear.",
     "- Each English sentence must include the vocabulary item or a natural inflected form of it.",
     "- The Traditional Chinese must match the English sentence closely.",
-    "- The Traditional Chinese translation must be natural Cantonese-friendly Traditional Chinese, not word-for-word machine translation.",
+    "- The Traditional Chinese translation must be natural Hong Kong written Chinese, not word-for-word machine translation.",
+    "- Do not use colloquial Cantonese wording or particles such as 佢, 啲, 咗, 嘅, 喺, or 係. Use 他/她/它, 的, 了, 在, and 是 in written translations.",
     "- Do not translate fixed chunks awkwardly. For example, translate 'talk about' as '談論', not '談論關於'.",
     "- Use Traditional Chinese, not Simplified Chinese.",
     "- Avoid strange, violent, adult, political, religious, or scary content.",
@@ -889,7 +892,8 @@ function buildTeacherExamplePrompt(word, hints = [], examples = []) {
   const hintLines = normalizedHints
     .map((hint, index) => {
       const label = [hint.pos, hint.type].filter(Boolean).join(" / ");
-      return `${index + 1}. ${label ? `${label}: ` : ""}${hint.meaning}`;
+      const level = hint.level ? ` [${hint.level}]` : "";
+      return `${index + 1}. ${label ? `${label}: ` : ""}${hint.meaning}${level}`;
     })
     .join("\n");
   const exampleLines = normalizeTeacherExampleInputs(examples)
@@ -912,7 +916,8 @@ function buildTeacherExamplePrompt(word, hints = [], examples = []) {
     "- Keep the vocabulary item or a natural inflected form in each English sentence.",
     "- Correct grammar, spelling, punctuation, and unnatural phrasing.",
     "- Preserve the teacher's intended classroom meaning.",
-    "- The Traditional Chinese translation must be natural, Cantonese-friendly Traditional Chinese.",
+    "- The Traditional Chinese translation must be natural Hong Kong written Chinese.",
+    "- Do not use colloquial Cantonese wording or particles such as 佢, 啲, 咗, 嘅, 喺, or 係. Use 他/她/它, 的, 了, 在, and 是 in written translations.",
     "- Use Traditional Chinese, not Simplified Chinese.",
     "- Avoid strange, violent, adult, political, religious, or scary content.",
     "",
