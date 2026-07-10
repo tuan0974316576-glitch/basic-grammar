@@ -36,6 +36,7 @@
     "vocab:import:oxford": "node scripts/import-oxford-cefr.js",
     "vocab:examples": "node scripts/generate-vocab-examples.js",
     "vocab:examples:audit": "node scripts/audit-vocab-example-coverage.js",
+    "vocab:examples:upload": "node scripts/upload-vocab-example-seed-cache.js",
     "vocab:sense:audit": "node scripts/audit-vocab-sense-cleanliness.js",
     "vocab:examples:curated": "node scripts/seed-curated-vocab-examples.js",
     "vocab:examples:phrases2": "node scripts/seed-phrases2-vocab-examples.js",

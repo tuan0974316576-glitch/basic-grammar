@@ -18,7 +18,6 @@ const SHARED_VOCAB_FILES = [
   "vocab_lookup.js",
   "vocab_audio.js",
   "vocab_example_utils.js",
-  "vocab_example_seed.js",
   "vocab_word_audio_manifest.js"
 ];
 

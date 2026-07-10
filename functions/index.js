@@ -35,6 +35,7 @@ const GEMINI_EXAMPLE_SOURCE = "gemini-generated-examples";
 const DEEPSEEK_EXAMPLE_MODEL = "deepseek-v4-flash";
 const DEEPSEEK_EXAMPLE_SOURCE = "deepseek-generated-examples";
 const TEACHER_EXAMPLE_SOURCE = "teacher-approved-examples";
+const LOCAL_SEED_EXAMPLE_SOURCE = "local-seed-gemini";
 const TEMPLATE_EXAMPLE_SOURCE = "template-generated-examples";
 const VOCAB_EXAMPLE_CACHE_VERSION = "v2-written-zh";
 const VOCAB_CEFR_LEVELS = new Set(["A1", "A2", "B1", "B2", "C1"]);
@@ -617,7 +618,10 @@ function normalizeExampleEntries(word, examples = [], source = "azure-dictionary
 
 function shouldReuseCachedExamples(cached = {}) {
   const source = String(cached.source || "").toLowerCase();
-  return source === DEEPSEEK_EXAMPLE_SOURCE || source === GEMINI_EXAMPLE_SOURCE || source === TEACHER_EXAMPLE_SOURCE;
+  return source === DEEPSEEK_EXAMPLE_SOURCE
+    || source === GEMINI_EXAMPLE_SOURCE
+    || source === TEACHER_EXAMPLE_SOURCE
+    || source === LOCAL_SEED_EXAMPLE_SOURCE;
 }
 
 function getPrimaryExampleMeaning(hints = []) {
