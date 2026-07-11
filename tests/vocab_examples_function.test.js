@@ -165,6 +165,8 @@ assert.ok(teacherPrompt.includes("Proofread"));
 assert.ok(teacherPrompt.includes("通心粉"));
 assert.ok(teacherPrompt.includes("Traditional Chinese"));
 assert.ok(teacherPrompt.includes("Hong Kong written Chinese"));
+assert.ok(teacherPrompt.includes("Return exactly 3 examples"));
+assert.ok(teacherPrompt.includes("If the teacher provides fewer than 3 examples"));
 assert.ok(!teacherPrompt.includes("Cantonese-friendly"));
 
 const examples = helpers.normalizeGeminiExamples("have", {
@@ -218,6 +220,11 @@ const teacherExamples = helpers.normalizeTeacherExamplesWithGemini("macaroni", {
 assert.strictEqual(teacherExamples.length, 1);
 assert.strictEqual(teacherExamples[0].provider, "teacher-approved-examples");
 assert.strictEqual(teacherExamples[0].meaning, "通心粉");
+const completedTeacherExamples = helpers.completeExamplesToLimit("macaroni", [
+  { meaning: "通心粉", pos: "noun" }
+], teacherExamples, "teacher-approved-examples");
+assert.strictEqual(completedTeacherExamples.length, 3);
+assert.strictEqual(completedTeacherExamples[0].source, "I eat macaroni for lunch.");
 
 const teacherExamplesFromDeepSeek = helpers.normalizeTeacherExamplesWithDeepSeek("macaroni", {
   choices: [{

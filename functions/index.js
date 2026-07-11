@@ -624,6 +624,10 @@ function shouldReuseCachedExamples(cached = {}) {
     || source === LOCAL_SEED_EXAMPLE_SOURCE;
 }
 
+function hasCompleteExampleSet(examples = []) {
+  return Array.isArray(examples) && examples.length >= GEMINI_EXAMPLE_LIMIT;
+}
+
 function getPrimaryExampleMeaning(hints = []) {
   const meaning = normalizeExampleHints(hints)[0]?.meaning || "";
   return String(meaning || "").split("/").map((part) => part.trim()).filter(Boolean)[0] || meaning;
@@ -653,6 +657,40 @@ function buildTemplateExamples(word, hints = [], source = TEMPLATE_EXAMPLE_SOURC
       sourceEntryId: "template-example-2"
     }
   ], source).slice(0, GEMINI_EXAMPLE_LIMIT);
+}
+
+function completeExamplesToLimit(word, hints = [], examples = [], preferredSource = DEEPSEEK_EXAMPLE_SOURCE) {
+  const normalizedWord = normalizeVocabWord(word);
+  const normalizedHints = normalizeExampleHints(hints);
+  const primaryMeaning = getPrimaryExampleMeaning(normalizedHints);
+  const merged = [];
+  const seen = new Set();
+
+  const addExample = (example = {}, source = preferredSource) => {
+    const [normalized] = normalizeExampleEntries(normalizedWord, [{
+      source: example.source,
+      target: example.target,
+      meaning: example.meaning || primaryMeaning,
+      sourceEntryId: example.sourceEntryId || ""
+    }], source);
+    if (!normalized) return;
+    const key = `${normalized.source}|${normalized.target}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    merged.push(normalized);
+  };
+
+  (Array.isArray(examples) ? examples : []).forEach((example) => {
+    addExample(example, example.provider || preferredSource);
+  });
+
+  if (merged.length < GEMINI_EXAMPLE_LIMIT) {
+    buildTemplateExamples(normalizedWord, normalizedHints).forEach((example) => {
+      addExample(example, example.provider || TEMPLATE_EXAMPLE_SOURCE);
+    });
+  }
+
+  return merged.slice(0, GEMINI_EXAMPLE_LIMIT);
 }
 
 function normalizeExampleHints(hints = []) {
@@ -1077,7 +1115,10 @@ function buildTeacherExamplePrompt(word, hints = [], examples = []) {
     "",
     "Rules:",
     "- Return JSON only. No markdown.",
-    `- Return one cleaned example for each teacher example, up to ${TEACHER_EXAMPLE_LIMIT} examples.`,
+    `- Return exactly ${GEMINI_EXAMPLE_LIMIT} examples for student display.`,
+    "- Use the teacher examples first: proofread them, keep the intended meaning, and provide matching translations.",
+    `- If the teacher provides fewer than ${GEMINI_EXAMPLE_LIMIT} examples, create extra natural examples for the same vocabulary item and meaning until there are exactly ${GEMINI_EXAMPLE_LIMIT}.`,
+    `- If the teacher provides more than ${GEMINI_EXAMPLE_LIMIT} examples, choose the best ${GEMINI_EXAMPLE_LIMIT} after proofreading.`,
     "- Keep the English natural, short, and suitable for Hong Kong primary or junior secondary students.",
     "- Keep the vocabulary item or a natural inflected form in each English sentence.",
     "- Correct grammar, spelling, punctuation, and unnatural phrasing.",
@@ -1687,10 +1728,12 @@ async function getOrCreateVocabExamples(word, hints = []) {
   const exampleId = makeVocabExampleId(normalizedWord, normalizedHints);
   const docRef = db.collection("vocabExampleCache").doc(exampleId);
   const cachedSnap = await docRef.get();
+  let cachedTeacherInputExamples = [];
+  let cachedUpdatedBy = "";
   if (cachedSnap.exists) {
     const cached = cachedSnap.data() || {};
     const examples = normalizeExampleEntries(normalizedWord, cached.examples || [], cached.source || "shared-cache");
-    if (shouldReuseCachedExamples(cached) && (examples.length || cached.status === "missing")) {
+    if (shouldReuseCachedExamples(cached) && (hasCompleteExampleSet(examples) || cached.status === "missing")) {
       return {
         exampleId,
         word: normalizedWord,
@@ -1700,6 +1743,17 @@ async function getOrCreateVocabExamples(word, hints = []) {
         status: cached.status || (examples.length ? "ready" : "missing")
       };
     }
+    cachedTeacherInputExamples = normalizeTeacherExampleInputs(cached.teacherInputExamples || []);
+    cachedUpdatedBy = String(cached.updatedBy || "");
+  }
+
+  if (cachedTeacherInputExamples.length) {
+    return prepareAndCacheTeacherVocabExamples(
+      normalizedWord,
+      normalizedHints,
+      cachedTeacherInputExamples,
+      cachedUpdatedBy
+    );
   }
 
   let examples = [];
@@ -1732,6 +1786,9 @@ async function getOrCreateVocabExamples(word, hints = []) {
       source = TEMPLATE_EXAMPLE_SOURCE;
       status = examples.length ? "ai-error" : "missing";
     }
+  }
+  if (examples.length) {
+    examples = completeExamplesToLimit(normalizedWord, normalizedHints, examples, source);
   }
 
   await docRef.set({
@@ -1805,6 +1862,9 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
       source = TEMPLATE_EXAMPLE_SOURCE;
       status = examples.length ? "ai-error" : "missing";
     }
+  }
+  if (examples.length) {
+    examples = completeExamplesToLimit(normalizedWord, normalizedHints, examples, source);
   }
 
   await db.collection("vocabExampleCache").doc(exampleId).set({
@@ -2212,6 +2272,7 @@ if (process.env.NODE_ENV === "test") {
     normalizeTeacherExamplesWithDeepSeek,
     normalizeTeacherExamplesWithGemini,
     buildTemplateExamples,
+    completeExamplesToLimit,
     getTeacherVocabWarmSignature,
     shouldWarmTeacherVocabEntry,
     parseGeminiJsonText,
