@@ -147,6 +147,8 @@ assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "template-generat
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-dictionary" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-translate-fallback" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "curated-cloud" }), true);
+assert.strictEqual(helpers.normalizeAudioText("vary from... to ..."), "vary from something to something");
+assert.strictEqual(helpers.normalizeAudioText("in ...'s regard"), "in someone's regard");
 
 const parsed = helpers.parseGeminiJsonText("```json\n{\"examples\":[{\"source\":\"I have lunch.\",\"target\":\"我吃午餐。\"}]}\n```");
 assert.strictEqual(parsed.examples[0].source, "I have lunch.");

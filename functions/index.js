@@ -238,6 +238,20 @@ function normalizeVocabWord(value) {
     .toLowerCase();
 }
 
+function normalizeSpeechPatternText(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[’‘]/g, "'")
+    .replace(/[“”]/g, "\"")
+    .replace(/[‐‑‒–—―]/g, "-")
+    .replace(/\s*(?:…|\.{2,})\s*'s\b/gi, " someone's")
+    .replace(/\s*(?:…|\.{2,})\s*/g, " something ")
+    .replace(/\s*[/／]\s*/g, " or ")
+    .replace(/[.,!?;:"()]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function getBattleshipAdminApp() {
   const appName = "battleship-auth-bridge";
   const existing = admin.apps.find((app) => app.name === appName);
@@ -331,7 +345,7 @@ function normalizeAudioText(value, kind = "word") {
     .replace(/[‐‑‒–—―]/g, "-")
     .replace(/\s+/g, " ")
     .slice(0, MAX_AUDIO_TEXT_LENGTH);
-  return kind === "example" ? text : normalizeVocabWord(text);
+  return kind === "example" ? text : normalizeVocabWord(normalizeSpeechPatternText(text));
 }
 
 function isLikelyAudioText(value, kind = "word") {
@@ -2258,6 +2272,7 @@ if (process.env.NODE_ENV === "test") {
     makeVocabMeaningId,
     makeVocabExamplesCacheKey,
     makeVocabExampleId,
+    normalizeAudioText,
     normalizeMeaningEntries,
     normalizeExampleHints,
     normalizeDeepSeekExamples,
