@@ -111,6 +111,19 @@ assert.ok(prompt.includes("vocabulary example sentences for Hong Kong English le
 assert.ok(!prompt.includes("Cantonese-friendly"));
 assert.ok(helpers.makeVocabExamplesCacheKey("have", haveFoodHints).startsWith("v2-written-zh|"));
 
+const idiomHints = helpers.normalizeExampleGenerationHints("jump through hoops", [
+  { meaning: "經歷磨難", pos: "noun", type: "phrase", level: "B2" }
+]);
+assert.deepStrictEqual(idiomHints, [
+  { meaning: "經歷磨難", pos: "verb", type: "phrase", level: "B2" }
+]);
+const idiomPrompt = helpers.buildGeminiExamplePrompt("jump through hoops", idiomHints);
+assert.ok(idiomPrompt.includes("figurative verb phrase 'jump through hoops'"));
+assert.ok(idiomPrompt.includes("do not describe literal sports, gym, circus, or physical hoops"));
+assert.ok(idiomPrompt.includes("經歷磨難"));
+const teacherIdiomPrompt = helpers.buildTeacherExamplePrompt("go through hoops", idiomHints, []);
+assert.ok(teacherIdiomPrompt.includes("meaning about facing difficult, annoying, or repeated procedures"));
+
 const deepSeekPayload = helpers.buildDeepSeekChatPayload(prompt);
 assert.strictEqual(deepSeekPayload.model, "deepseek-v4-flash");
 assert.deepStrictEqual(deepSeekPayload.response_format, { type: "json_object" });
@@ -226,7 +239,7 @@ assert.strictEqual(teacherExamples[0].meaning, "通心粉");
 const completedTeacherExamples = helpers.completeExamplesToLimit("macaroni", [
   { meaning: "通心粉", pos: "noun" }
 ], teacherExamples, "teacher-approved-examples");
-assert.strictEqual(completedTeacherExamples.length, 3);
+assert.strictEqual(completedTeacherExamples.length, 1);
 assert.strictEqual(completedTeacherExamples[0].source, "I eat macaroni for lunch.");
 
 const teacherExamplesFromDeepSeek = helpers.normalizeTeacherExamplesWithDeepSeek("macaroni", {
@@ -244,13 +257,55 @@ assert.strictEqual(teacherExamplesFromDeepSeek.length, 1);
 assert.strictEqual(teacherExamplesFromDeepSeek[0].provider, "teacher-approved-examples");
 assert.strictEqual(teacherExamplesFromDeepSeek[0].meaning, "通心粉");
 
-const templateExamples = helpers.buildTemplateExamples("macaroni", [
-  { meaning: "通心粉", pos: "noun", type: "word" }
+const curatedIdiomExamples = helpers.buildCuratedVocabExamples("go through hoops", [
+  { meaning: "經歷磨難", pos: "verb", type: "phrase", level: "B2" }
 ]);
-assert.strictEqual(templateExamples.length, 3);
-assert.strictEqual(templateExamples[0].provider, "template-generated-examples");
-assert.strictEqual(templateExamples[0].meaning, "通心粉");
-assert.ok(templateExamples[0].source.includes("macaroni"));
+assert.strictEqual(curatedIdiomExamples.length, 3);
+assert.strictEqual(curatedIdiomExamples[0].provider, "curated-vocab-examples");
+assert.strictEqual(curatedIdiomExamples[0].meaning, "經歷磨難");
+assert.ok(curatedIdiomExamples[0].source.includes("go through hoops"));
+
+const genericIdiomExamples = helpers.normalizeDeepSeekExamples("go through hoops", {
+  choices: [{
+    message: {
+      content: JSON.stringify({
+        examples: [
+          { source: "I learned \"go through hoops\" today.", target: "我今天學了「經歷磨難」。" },
+          { source: "Our teacher wrote \"go through hoops\" on the board.", target: "老師把「經歷磨難」寫在白板上。" },
+          { source: "Please use \"go through hoops\" in a sentence.", target: "請用「經歷磨難」造句。" }
+        ]
+      })
+    }
+  }]
+}, [{ meaning: "經歷磨難", pos: "verb", type: "phrase" }]);
+assert.deepStrictEqual(genericIdiomExamples, []);
+
+const invalidIdiomExamples = helpers.normalizeGeminiExamples("jump through hoops", {
+  candidates: [{
+    content: {
+      parts: [{
+        text: JSON.stringify({
+          examples: [
+            { source: "The gymnast jumped through hoops at the circus.", target: "體操運動員在馬戲團跳過圓環。" },
+            { source: "Jump through hoops.", target: "經歷磨難。" },
+            { source: "Applicants have to jump through hoops to get a visa.", target: "申請人必須經歷重重程序才能取得簽證。" }
+          ]
+        })
+      }]
+    }
+  }]
+}, [{ meaning: "經歷磨難", pos: "verb", type: "phrase" }]);
+assert.strictEqual(invalidIdiomExamples.length, 1);
+assert.ok(invalidIdiomExamples[0].source.includes("get a visa"));
+
+assert.strictEqual(helpers.isUsableVocabExample("macaroni", [], {
+  source: "I eat macaroni for lunch.",
+  target: "我午餐吃通心粉。"
+}), true);
+assert.strictEqual(helpers.isUsableVocabExample("macaroni", [], {
+  source: "Please use macaroni in a sentence.",
+  target: "請用通心粉造句。"
+}), false);
 
 assert.strictEqual(helpers.shouldWarmTeacherVocabEntry(null, {
   word: "macaroni",

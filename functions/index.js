@@ -5,7 +5,9 @@ const { HttpsError, onCall } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const { defineSecret } = require("firebase-functions/params");
 
-admin.initializeApp();
+const GRAMMAR_GAME_STORAGE_BUCKET = "enguistics-grammar-game.firebasestorage.app";
+
+admin.initializeApp({ storageBucket: GRAMMAR_GAME_STORAGE_BUCKET });
 setGlobalOptions({ region: "asia-east2" });
 
 const db = admin.firestore();
@@ -36,7 +38,9 @@ const DEEPSEEK_EXAMPLE_MODEL = "deepseek-v4-flash";
 const DEEPSEEK_EXAMPLE_SOURCE = "deepseek-generated-examples";
 const TEACHER_EXAMPLE_SOURCE = "teacher-approved-examples";
 const LOCAL_SEED_EXAMPLE_SOURCE = "local-seed-gemini";
-const TEMPLATE_EXAMPLE_SOURCE = "template-generated-examples";
+const CURATED_EXAMPLE_SOURCE = "curated-vocab-examples";
+const AI_ERROR_EXAMPLE_SOURCE = "ai-error";
+const EXAMPLE_QUALITY_VERSION = 2;
 const VOCAB_EXAMPLE_CACHE_VERSION = "v2-written-zh";
 const VOCAB_CEFR_LEVELS = new Set(["A1", "A2", "B1", "B2", "C1"]);
 const AUTO_VOCAB_LEVEL_SOURCES = new Set(["deepseek-level", "gemini-level", "heuristic-level"]);
@@ -635,7 +639,8 @@ function shouldReuseCachedExamples(cached = {}) {
   return source === DEEPSEEK_EXAMPLE_SOURCE
     || source === GEMINI_EXAMPLE_SOURCE
     || source === TEACHER_EXAMPLE_SOURCE
-    || source === LOCAL_SEED_EXAMPLE_SOURCE;
+    || source === LOCAL_SEED_EXAMPLE_SOURCE
+    || source === CURATED_EXAMPLE_SOURCE;
 }
 
 function hasCompleteExampleSet(examples = []) {
@@ -647,35 +652,182 @@ function getPrimaryExampleMeaning(hints = []) {
   return String(meaning || "").split("/").map((part) => part.trim()).filter(Boolean)[0] || meaning;
 }
 
-function buildTemplateExamples(word, hints = [], source = TEMPLATE_EXAMPLE_SOURCE) {
-  const normalizedWord = normalizeVocabWord(word);
-  const display = normalizeVocabExample(word) || normalizedWord;
-  const meaning = getPrimaryExampleMeaning(hints) || display;
-  return normalizeExampleEntries(normalizedWord, [
+const CURATED_VOCAB_EXAMPLES = new Map([
+  ["go through hoops", [
     {
-      source: `I learned "${display}" today.`,
-      target: `我今天學了「${meaning}」。`,
-      meaning,
-      sourceEntryId: "template-example-0"
+      source: "We had to go through hoops to get permission for the event.",
+      target: "我們必須經歷重重程序和困難，才能取得活動許可。"
     },
     {
-      source: `Our teacher wrote "${display}" on the board.`,
-      target: `老師把「${meaning}」寫在白板上。`,
-      meaning,
-      sourceEntryId: "template-example-1"
+      source: "She went through hoops to get her visa approved.",
+      target: "她經歷重重困難，才獲得簽證批准。"
     },
     {
-      source: `Please use "${display}" in a sentence.`,
-      target: `請用「${meaning}」造句。`,
-      meaning,
-      sourceEntryId: "template-example-2"
+      source: "Small businesses often go through hoops before receiving a licence.",
+      target: "小型企業往往要經歷重重程序，才能取得牌照。"
     }
-  ], source).slice(0, GEMINI_EXAMPLE_LIMIT);
+  ]],
+  ["jump through hoops", [
+    {
+      source: "Applicants often have to jump through hoops to get a work visa.",
+      target: "申請人往往要經過重重程序，才能取得工作簽證。"
+    },
+    {
+      source: "He had to jump through hoops before the bank approved his loan.",
+      target: "他要經歷重重程序，銀行才批准他的貸款。"
+    },
+    {
+      source: "The club should not make students jump through hoops to join.",
+      target: "這個社團不應要求學生經歷重重困難才可加入。"
+    }
+  ]]
+]);
+
+const PHRASE_EXAMPLE_GUIDANCE = new Map([
+  ["go through hoops", {
+    pos: "verb",
+    type: "phrase",
+    meaning: "經歷磨難",
+    usage: "This is the figurative verb phrase 'go through hoops', meaning to face difficult, annoying, or repeated procedures or obstacles."
+  }],
+  ["jump through hoops", {
+    pos: "verb",
+    type: "phrase",
+    meaning: "經歷磨難",
+    usage: "This is the figurative verb phrase 'jump through hoops', meaning to face difficult, annoying, or repeated procedures or obstacles."
+  }]
+]);
+
+function getPhraseExampleGuidance(word) {
+  return PHRASE_EXAMPLE_GUIDANCE.get(normalizeVocabWord(word)) || null;
+}
+
+function normalizeExampleGenerationHints(word, hints = []) {
+  const normalizedWord = normalizeVocabWord(word);
+  const normalizedHints = normalizeExampleHints(hints);
+  const guidance = getPhraseExampleGuidance(normalizedWord);
+  if (!guidance) return normalizedHints;
+  if (!normalizedHints.length) {
+    return [{
+      meaning: guidance.meaning,
+      pos: guidance.pos,
+      type: guidance.type,
+      level: ""
+    }];
+  }
+  return normalizedHints.map((hint) => ({
+    ...hint,
+    pos: guidance.pos,
+    type: guidance.type
+  }));
+}
+
+function escapeRegExp(value) {
+  return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function getExampleWordForms(word) {
+  const normalizedWord = normalizeVocabWord(word);
+  const irregularForms = {
+    be: ["be", "am", "is", "are", "was", "were", "been", "being"],
+    do: ["do", "does", "did", "done", "doing"],
+    go: ["go", "goes", "went", "gone", "going"],
+    have: ["have", "has", "had", "having"],
+    make: ["make", "makes", "made", "making"],
+    take: ["take", "takes", "took", "taken", "taking"],
+    get: ["get", "gets", "got", "gotten", "getting"]
+  };
+  if (irregularForms[normalizedWord]) return irregularForms[normalizedWord];
+  const forms = new Set([normalizedWord]);
+  if (normalizedWord.endsWith("y")) forms.add(`${normalizedWord.slice(0, -1)}ies`);
+  if (normalizedWord.endsWith("e")) forms.add(`${normalizedWord}d`);
+  forms.add(`${normalizedWord}s`);
+  forms.add(`${normalizedWord}es`);
+  forms.add(`${normalizedWord}ed`);
+  forms.add(`${normalizedWord}ing`);
+  return [...forms];
+}
+
+function containsVocabularyItem(word, source) {
+  const normalizedWord = normalizeVocabWord(word);
+  const normalizedSource = normalizeVocabExample(source).toLowerCase();
+  if (!normalizedWord || !normalizedSource) return false;
+  const wordTokens = normalizedWord.split(/\s+/).filter(Boolean);
+  if (wordTokens.length > 1) {
+    const firstTokenPattern = getExampleWordForms(wordTokens[0])
+      .map(escapeRegExp)
+      .join("|");
+    const remainingTokens = wordTokens.slice(1).map(escapeRegExp).join("\\s+");
+    return new RegExp(`\\b(?:${firstTokenPattern})\\s+${remainingTokens}\\b`, "i").test(normalizedSource);
+  }
+  const forms = getExampleWordForms(normalizedWord).map(escapeRegExp).join("|");
+  return new RegExp(`\\b(?:${forms})\\b`, "i").test(normalizedSource);
+}
+
+const GENERIC_EXAMPLE_SOURCE_PATTERNS = [
+  /\bi\s+learned\b/i,
+  /\bour\s+teacher\s+wrote\b/i,
+  /\bplease\s+use\b/i,
+  /\bin\s+a\s+sentence\b/i,
+  /\bon\s+the\s+board\b/i
+];
+
+const GENERIC_EXAMPLE_TARGET_PATTERN = /造句|白板|學了|學習了|請用.+句子/;
+
+function isUsableVocabExample(word, hints = [], example = {}) {
+  const source = normalizeVocabExample(example.source);
+  const target = normalizeVocabExample(example.target);
+  if (!source || !target || !containsVocabularyItem(word, source)) return false;
+  if (GENERIC_EXAMPLE_SOURCE_PATTERNS.some((pattern) => pattern.test(source))) return false;
+  if (GENERIC_EXAMPLE_TARGET_PATTERN.test(target)) return false;
+
+  const normalizedWord = normalizeVocabWord(word);
+  const wordTokenCount = normalizedWord.split(/\s+/).filter(Boolean).length;
+  const sourceTokenCount = source.split(/\s+/).filter(Boolean).length;
+  if (wordTokenCount > 1 && sourceTokenCount <= wordTokenCount + 1) return false;
+
+  const guidance = getPhraseExampleGuidance(normalizedWord);
+  if (!guidance) return true;
+
+  const phrasePattern = normalizedWord === "go through hoops"
+    ? /\b(?:go|goes|went|gone|going)\s+through\s+hoops\b/i
+    : /\b(?:jump|jumps|jumped|jumping)\s+through\s+hoops\b/i;
+  if (!phrasePattern.test(source)) return false;
+  if (/\b(?:basketball|football|soccer|gym|gymnast|gymnastics|circus|hula|trampoline|acrobat|athlete|ring|dunk)\b/i.test(source)) {
+    return false;
+  }
+  return /\b(?:to|before|until|so that|in order to|because|just to|must|need(?:s|ed)? to|have to|had to)\b/i.test(source);
+}
+
+function filterVocabExampleQuality(word, hints = [], examples = []) {
+  const seen = new Set();
+  return (Array.isArray(examples) ? examples : [])
+    .filter((example) => isUsableVocabExample(word, hints, example))
+    .filter((example) => {
+      const key = `${normalizeVocabExample(example.source).toLowerCase()}|${normalizeVocabExample(example.target)}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+}
+
+function buildCuratedVocabExamples(word, hints = []) {
+  const normalizedWord = normalizeVocabWord(word);
+  const entries = CURATED_VOCAB_EXAMPLES.get(normalizedWord) || [];
+  const meaning = getPrimaryExampleMeaning(normalizeExampleGenerationHints(normalizedWord, hints))
+    || getPhraseExampleGuidance(normalizedWord)?.meaning
+    || "";
+  const normalized = normalizeExampleEntries(normalizedWord, entries.map((example, index) => ({
+    ...example,
+    meaning,
+    sourceEntryId: `curated-example-${index}`
+  })), CURATED_EXAMPLE_SOURCE);
+  return filterVocabExampleQuality(normalizedWord, hints, normalized).slice(0, GEMINI_EXAMPLE_LIMIT);
 }
 
 function completeExamplesToLimit(word, hints = [], examples = [], preferredSource = DEEPSEEK_EXAMPLE_SOURCE) {
   const normalizedWord = normalizeVocabWord(word);
-  const normalizedHints = normalizeExampleHints(hints);
+  const normalizedHints = normalizeExampleGenerationHints(normalizedWord, hints);
   const primaryMeaning = getPrimaryExampleMeaning(normalizedHints);
   const merged = [];
   const seen = new Set();
@@ -687,7 +839,7 @@ function completeExamplesToLimit(word, hints = [], examples = [], preferredSourc
       meaning: example.meaning || primaryMeaning,
       sourceEntryId: example.sourceEntryId || ""
     }], source);
-    if (!normalized) return;
+    if (!normalized || !isUsableVocabExample(normalizedWord, normalizedHints, normalized)) return;
     const key = `${normalized.source}|${normalized.target}`;
     if (seen.has(key)) return;
     seen.add(key);
@@ -699,8 +851,8 @@ function completeExamplesToLimit(word, hints = [], examples = [], preferredSourc
   });
 
   if (merged.length < GEMINI_EXAMPLE_LIMIT) {
-    buildTemplateExamples(normalizedWord, normalizedHints).forEach((example) => {
-      addExample(example, example.provider || TEMPLATE_EXAMPLE_SOURCE);
+    buildCuratedVocabExamples(normalizedWord, normalizedHints).forEach((example) => {
+      addExample(example, example.provider || CURATED_EXAMPLE_SOURCE);
     });
   }
 
@@ -728,7 +880,7 @@ function normalizeExampleHints(hints = []) {
 
 function makeVocabExamplesCacheKey(word, hints = []) {
   const normalizedWord = normalizeVocabWord(word);
-  const hintText = normalizeExampleHints(hints)
+  const hintText = normalizeExampleGenerationHints(normalizedWord, hints)
     .map((hint) => [hint.pos, hint.type, hint.meaning].filter(Boolean).join(":"))
     .join("|");
   const baseKey = hintText ? `${normalizedWord}|${hintText}` : normalizedWord;
@@ -757,7 +909,7 @@ function getDeepSeekApiKey(value) {
 
 function buildGeminiExamplePrompt(word, hints = []) {
   const normalizedWord = normalizeVocabWord(word);
-  const normalizedHints = normalizeExampleHints(hints);
+  const normalizedHints = normalizeExampleGenerationHints(normalizedWord, hints);
   const cefrLevel = normalizedHints.find((hint) => hint.level)?.level || "";
   const levelGuide = {
     A1: "A1: Hong Kong junior primary level. Use 4-7 words, present simple, daily life only.",
@@ -795,6 +947,13 @@ function buildGeminiExamplePrompt(word, hints = []) {
     "- Avoid strange, violent, adult, political, religious, or scary content.",
     "- Avoid rare names and idioms unless the vocabulary item itself is a phrase.",
     "- If the vocabulary item is a phrase, keep the phrase together in the English sentence.",
+    "- Do not write meta classroom or dictionary instructions such as 'I learned ...', 'Our teacher wrote ...', or 'Please use ... in a sentence.'",
+    "- Every sentence must show a meaningful real-life use of the vocabulary item, not merely mention it as a label.",
+    ...(getPhraseExampleGuidance(normalizedWord) ? [
+      getPhraseExampleGuidance(normalizedWord).usage,
+      "- For this idiom, use the figurative meaning about facing difficult, annoying, or repeated procedures or obstacles; do not describe literal sports, gym, circus, or physical hoops.",
+      "- Use a clear context such as obtaining permission, a visa, a licence, a loan, or joining something, and keep the verb phrase natural."
+    ] : []),
     "",
     "JSON shape:",
     "{\"examples\":[{\"source\":\"English sentence.\",\"target\":\"繁體中文翻譯。\"}]}"
@@ -859,8 +1018,9 @@ function buildVocabLevelPrompt(entry = {}) {
   const word = normalizeVocabWord(entry.word || entry.display);
   const display = normalizeVocabExample(entry.display || entry.word || word) || word;
   const meaning = normalizeCloudMeaning(entry.meaning);
-  const pos = String(entry.pos || entry.type || "").trim().toLowerCase();
-  const type = String(entry.type || (word.includes(" ") ? "phrase" : "word")).trim().toLowerCase();
+  const phraseGuidance = getPhraseExampleGuidance(word);
+  const pos = phraseGuidance?.pos || String(entry.pos || entry.type || "").trim().toLowerCase();
+  const type = phraseGuidance?.type || String(entry.type || (word.includes(" ") ? "phrase" : "word")).trim().toLowerCase();
   return [
     "Classify this English vocabulary item for Hong Kong English learners.",
     "Choose exactly one CEFR-like level from A1, A2, B1, B2, C1.",
@@ -1005,8 +1165,9 @@ function normalizeDeepSeekExamples(word, body, hints = []) {
   const text = String(body?.choices?.[0]?.message?.content || "").trim();
   const parsed = parseGeminiJsonText(text);
   const examples = Array.isArray(parsed?.examples) ? parsed.examples : [];
-  const primaryMeaning = normalizeExampleHints(hints)[0]?.meaning || "";
-  return normalizeExampleEntries(
+  const normalizedHints = normalizeExampleGenerationHints(word, hints);
+  const primaryMeaning = normalizedHints[0]?.meaning || "";
+  return filterVocabExampleQuality(word, normalizedHints, normalizeExampleEntries(
     word,
     examples.map((example, index) => ({
       source: example.source || example.english || "",
@@ -1015,7 +1176,7 @@ function normalizeDeepSeekExamples(word, body, hints = []) {
       sourceEntryId: `deepseek-example-${index}`
     })),
     DEEPSEEK_EXAMPLE_SOURCE
-  ).slice(0, GEMINI_EXAMPLE_LIMIT);
+  )).slice(0, GEMINI_EXAMPLE_LIMIT);
 }
 
 function normalizeGeminiExamples(word, body, hints = []) {
@@ -1025,8 +1186,9 @@ function normalizeGeminiExamples(word, body, hints = []) {
     .trim();
   const parsed = parseGeminiJsonText(text);
   const examples = Array.isArray(parsed?.examples) ? parsed.examples : [];
-  const primaryMeaning = normalizeExampleHints(hints)[0]?.meaning || "";
-  return normalizeExampleEntries(
+  const normalizedHints = normalizeExampleGenerationHints(word, hints);
+  const primaryMeaning = normalizedHints[0]?.meaning || "";
+  return filterVocabExampleQuality(word, normalizedHints, normalizeExampleEntries(
     word,
     examples.map((example, index) => ({
       source: example.source || example.english || "",
@@ -1035,7 +1197,7 @@ function normalizeGeminiExamples(word, body, hints = []) {
       sourceEntryId: `gemini-example-${index}`
     })),
     GEMINI_EXAMPLE_SOURCE
-  ).slice(0, GEMINI_EXAMPLE_LIMIT);
+  )).slice(0, GEMINI_EXAMPLE_LIMIT);
 }
 
 async function postDeepSeekJson(prompt, apiKeyValue, options = {}) {
@@ -1106,7 +1268,7 @@ function normalizeTeacherExampleInputs(examples = []) {
 
 function buildTeacherExamplePrompt(word, hints = [], examples = []) {
   const normalizedWord = normalizeVocabWord(word);
-  const normalizedHints = normalizeExampleHints(hints);
+  const normalizedHints = normalizeExampleGenerationHints(normalizedWord, hints);
   const hintLines = normalizedHints
     .map((hint, index) => {
       const label = [hint.pos, hint.type].filter(Boolean).join(" / ");
@@ -1141,6 +1303,13 @@ function buildTeacherExamplePrompt(word, hints = [], examples = []) {
     "- Do not use colloquial Cantonese wording or particles such as 佢, 啲, 咗, 嘅, 喺, or 係. Use 他/她/它, 的, 了, 在, and 是 in written translations.",
     "- Use Traditional Chinese, not Simplified Chinese.",
     "- Avoid strange, violent, adult, political, religious, or scary content.",
+    "- Do not write meta classroom or dictionary instructions such as 'I learned ...', 'Our teacher wrote ...', or 'Please use ... in a sentence.'",
+    "- Every sentence must show a meaningful real-life use of the vocabulary item, not merely mention it as a label.",
+    ...(getPhraseExampleGuidance(normalizedWord) ? [
+      getPhraseExampleGuidance(normalizedWord).usage,
+      "- Use the figurative idiom meaning about facing difficult, annoying, or repeated procedures or obstacles; never use literal sports, gym, circus, or physical hoops.",
+      "- Use a clear real-life context such as obtaining permission, a visa, a licence, a loan, or joining something."
+    ] : []),
     "",
     "JSON shape:",
     "{\"examples\":[{\"source\":\"Clean English sentence.\",\"target\":\"繁體中文翻譯。\"}]}"
@@ -1154,8 +1323,9 @@ function normalizeTeacherExamplesWithGemini(word, body, hints = []) {
     .trim();
   const parsed = parseGeminiJsonText(text);
   const examples = Array.isArray(parsed?.examples) ? parsed.examples : [];
-  const primaryMeaning = normalizeExampleHints(hints)[0]?.meaning || "";
-  return normalizeExampleEntries(
+  const normalizedHints = normalizeExampleGenerationHints(word, hints);
+  const primaryMeaning = normalizedHints[0]?.meaning || "";
+  return filterVocabExampleQuality(word, normalizedHints, normalizeExampleEntries(
     word,
     examples.map((example, index) => ({
       source: example.source || example.english || "",
@@ -1164,15 +1334,16 @@ function normalizeTeacherExamplesWithGemini(word, body, hints = []) {
       sourceEntryId: `teacher-example-${index}`
     })),
     TEACHER_EXAMPLE_SOURCE
-  ).slice(0, TEACHER_EXAMPLE_LIMIT);
+  )).slice(0, TEACHER_EXAMPLE_LIMIT);
 }
 
 function normalizeTeacherExamplesWithDeepSeek(word, body, hints = []) {
   const text = String(body?.choices?.[0]?.message?.content || "").trim();
   const parsed = parseGeminiJsonText(text);
   const examples = Array.isArray(parsed?.examples) ? parsed.examples : [];
-  const primaryMeaning = normalizeExampleHints(hints)[0]?.meaning || "";
-  return normalizeExampleEntries(
+  const normalizedHints = normalizeExampleGenerationHints(word, hints);
+  const primaryMeaning = normalizedHints[0]?.meaning || "";
+  return filterVocabExampleQuality(word, normalizedHints, normalizeExampleEntries(
     word,
     examples.map((example, index) => ({
       source: example.source || example.english || "",
@@ -1181,7 +1352,7 @@ function normalizeTeacherExamplesWithDeepSeek(word, body, hints = []) {
       sourceEntryId: `teacher-example-${index}`
     })),
     TEACHER_EXAMPLE_SOURCE
-  ).slice(0, TEACHER_EXAMPLE_LIMIT);
+  )).slice(0, TEACHER_EXAMPLE_LIMIT);
 }
 
 async function prepareTeacherExamplesWithDeepSeek(word, hints = [], examples = [], apiKeyValue) {
@@ -1738,7 +1909,7 @@ exports.lookupVocabMeaning = onCall({
 
 async function getOrCreateVocabExamples(word, hints = []) {
   const normalizedWord = normalizeVocabWord(word);
-  const normalizedHints = normalizeExampleHints(hints);
+  const normalizedHints = normalizeExampleGenerationHints(normalizedWord, hints);
   const exampleId = makeVocabExampleId(normalizedWord, normalizedHints);
   const docRef = db.collection("vocabExampleCache").doc(exampleId);
   const cachedSnap = await docRef.get();
@@ -1746,7 +1917,11 @@ async function getOrCreateVocabExamples(word, hints = []) {
   let cachedUpdatedBy = "";
   if (cachedSnap.exists) {
     const cached = cachedSnap.data() || {};
-    const examples = normalizeExampleEntries(normalizedWord, cached.examples || [], cached.source || "shared-cache");
+    const examples = filterVocabExampleQuality(
+      normalizedWord,
+      normalizedHints,
+      normalizeExampleEntries(normalizedWord, cached.examples || [], cached.source || "shared-cache")
+    );
     if (shouldReuseCachedExamples(cached) && (hasCompleteExampleSet(examples) || cached.status === "missing")) {
       return {
         exampleId,
@@ -1796,9 +1971,9 @@ async function getOrCreateVocabExamples(word, hints = []) {
         word: normalizedWord,
         message: geminiError?.message || String(geminiError)
       });
-      examples = buildTemplateExamples(normalizedWord, normalizedHints);
-      source = TEMPLATE_EXAMPLE_SOURCE;
-      status = examples.length ? "ai-error" : "missing";
+      examples = buildCuratedVocabExamples(normalizedWord, normalizedHints);
+      source = examples.length ? CURATED_EXAMPLE_SOURCE : AI_ERROR_EXAMPLE_SOURCE;
+      status = examples.length ? "ready" : "ai-error";
     }
   }
   if (examples.length) {
@@ -1812,6 +1987,7 @@ async function getOrCreateVocabExamples(word, hints = []) {
     hints: normalizedHints,
     source,
     status,
+    exampleQualityVersion: EXAMPLE_QUALITY_VERSION,
     examples: examples.map((example) => ({
       source: example.source,
       target: example.target,
@@ -1834,7 +2010,7 @@ async function getOrCreateVocabExamples(word, hints = []) {
 
 async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInput = [], updatedBy = "") {
   const normalizedWord = normalizeVocabWord(word);
-  const normalizedHints = normalizeExampleHints(hints);
+  const normalizedHints = normalizeExampleGenerationHints(normalizedWord, hints);
   const cleanExamples = normalizeTeacherExampleInputs(examplesInput);
   const exampleId = makeVocabExampleId(normalizedWord, normalizedHints);
   let examples = [];
@@ -1872,9 +2048,9 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
         word: normalizedWord,
         message: geminiError?.message || String(geminiError)
       });
-      examples = buildTemplateExamples(normalizedWord, normalizedHints);
-      source = TEMPLATE_EXAMPLE_SOURCE;
-      status = examples.length ? "ai-error" : "missing";
+      examples = buildCuratedVocabExamples(normalizedWord, normalizedHints);
+      source = examples.length ? CURATED_EXAMPLE_SOURCE : AI_ERROR_EXAMPLE_SOURCE;
+      status = examples.length ? "ready" : "ai-error";
     }
   }
   if (examples.length) {
@@ -1888,6 +2064,7 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
     hints: normalizedHints,
     source,
     status,
+    exampleQualityVersion: EXAMPLE_QUALITY_VERSION,
     teacherInputExamples: cleanExamples,
     examples: examples.map((example) => ({
       source: example.source,
@@ -1931,7 +2108,7 @@ exports.prepareTeacherVocabExamples = onCall({
     throw new HttpsError("invalid-argument", "Please provide at least one example.");
   }
 
-  const hints = normalizeExampleHints(request.data?.meanings || request.data?.hints || []);
+  const hints = normalizeExampleGenerationHints(word, request.data?.meanings || request.data?.hints || []);
   return prepareAndCacheTeacherVocabExamples(word, hints, examplesInput, request.auth.uid);
 });
 
@@ -1943,7 +2120,8 @@ function getTeacherVocabWarmSignature(entry = {}, options = {}) {
     pos: String(entry.pos || "").trim().toLowerCase(),
     type: String(entry.type || "").trim().toLowerCase(),
     disabled: Boolean(entry.disabled),
-    teacherExamples: normalizeTeacherExampleInputs(entry.teacherExamples)
+    teacherExamples: normalizeTeacherExampleInputs(entry.teacherExamples),
+    exampleQualityVersion: Number(entry.exampleQualityVersion) || 0
   };
   if (options.includeLevel !== false) {
     signature.level = normalizeVocabCefrLevel(entry.level);
@@ -1977,13 +2155,13 @@ function shouldWarmTeacherVocabEntry(before = null, after = null) {
 
 function getTeacherVocabExampleHints(entry = {}, entryId = "") {
   const pos = String(entry.pos || entry.type || "").trim().toLowerCase();
-  return [{
+  return normalizeExampleGenerationHints(entry.word || entry.display, [{
     meaning: normalizeCloudMeaning(entry.meaning),
     pos,
     type: String(entry.type || (normalizeVocabWord(entry.word || entry.display).includes(" ") ? "phrase" : "word")).trim().toLowerCase(),
     level: String(entry.level || "").trim().toUpperCase(),
     sourceEntryId: entryId || String(entry.sourceEntryId || entry.id || "")
-  }];
+  }]);
 }
 
 async function warmTeacherVocabEntryAssets(entry = {}, entryId = "") {
@@ -2076,7 +2254,7 @@ exports.lookupVocabExamples = onCall({
     throw new HttpsError("invalid-argument", "Invalid vocabulary word.");
   }
 
-  const hints = normalizeExampleHints(request.data?.meanings || request.data?.hints || []);
+  const hints = normalizeExampleGenerationHints(word, request.data?.meanings || request.data?.hints || []);
   const result = await getOrCreateVocabExamples(word, hints);
   return {
     status: result.status || "ready",
@@ -2286,7 +2464,11 @@ if (process.env.NODE_ENV === "test") {
     buildTeacherExamplePrompt,
     normalizeTeacherExamplesWithDeepSeek,
     normalizeTeacherExamplesWithGemini,
-    buildTemplateExamples,
+    buildCuratedVocabExamples,
+    normalizeExampleGenerationHints,
+    containsVocabularyItem,
+    isUsableVocabExample,
+    filterVocabExampleQuality,
     completeExamplesToLimit,
     getTeacherVocabWarmSignature,
     shouldWarmTeacherVocabEntry,
