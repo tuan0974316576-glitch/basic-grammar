@@ -1,12 +1,14 @@
 (function attachVocabData(root, factory) {
   const scheduler = root.VocabScheduler
     || (typeof require === "function" ? require("./vocab_scheduler.js") : null);
-  const data = factory(scheduler);
+  const vocabText = root.VocabText
+    || (typeof require === "function" ? require("./vocab_text.js") : null);
+  const data = factory(scheduler, vocabText);
   if (typeof module !== "undefined" && module.exports) {
     module.exports = data;
   }
   root.VocabData = data;
-})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabData(VocabScheduler) {
+})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabData(VocabScheduler, VocabText) {
   "use strict";
 
   const MAX_WORD_LENGTH = 42;
@@ -364,6 +366,7 @@
   const VALID_MEANING_TYPES = new Set(["word", "phrase", "pattern"]);
 
   function normalizeWord(value) {
+    if (VocabText?.normalizeHeadword) return VocabText.normalizeHeadword(value).slice(0, MAX_WORD_LENGTH);
     return String(value || "")
       .trim()
       .replace(/[’‘]/g, "'")
@@ -531,7 +534,8 @@
 
   function normalizeItem(item = {}, options = {}) {
     const normalizedWord = normalizeWord(item.word);
-    const displayWord = String(item.word || "").trim().replace(/\s+/g, " ");
+    const displayWord = VocabText?.canonicalizeHeadword?.(item.word)
+      || String(item.word || "").trim().replace(/\+/g, " ").replace(/\s+/g, " ");
     const meanings = normalizeMeaningEntries(item);
     const meaning = summarizeMeaning(meanings);
     if (!normalizedWord || !meaning) return null;

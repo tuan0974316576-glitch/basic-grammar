@@ -10188,7 +10188,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("remember ving")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["remember + V-ing:pattern:verb:記得做過:curated-sense-bank"]
+    ["remember ving:pattern:verb:記得做過:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
@@ -10203,7 +10203,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("so adj that")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["so + adjective + that:pattern:conjunction:如此...以致:curated-sense-bank"]
+    ["so adjective that:pattern:conjunction:如此...以致:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
@@ -10233,7 +10233,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("as + 句子")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["as + clause:pattern:conjunction:因為 / 正如 / 當 / 隨著:curated-sense-bank"]
+    ["as clause:pattern:conjunction:因為 / 正如 / 當 / 隨著:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(

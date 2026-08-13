@@ -4707,7 +4707,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("worth + ving").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["worth + V-ing:pattern:adjective:值得..."]
+  ["worth ving:pattern:adjective:值得..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("well-known for").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4747,7 +4747,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("adj + as + subj + be").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["adj + as + subject + be:pattern:conjunction:雖然"]
+  ["adj as subject be:pattern:conjunction:雖然"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("adverse effects").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4755,7 +4755,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("be+pp").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["be + pp:pattern:auxiliary:被（被動語態）"]
+  ["be pp:pattern:auxiliary:被（被動語態）"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("between...and...").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4763,7 +4763,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("can't help ving").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["can't help + V-ing:pattern:verb:忍不住做某事"]
+  ["can't help ving:pattern:verb:忍不住做某事"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("chance only favors prepared minds").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4807,11 +4807,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("find it adj").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["find it + adjective:pattern:verb:覺得...是..."]
+  ["find it adjective:pattern:verb:覺得...是..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("for+時間").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["for + time:pattern:preposition:持續一段時間"]
+  ["for time:pattern:preposition:持續一段時間"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("from...to...").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4835,11 +4835,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("happen to + v").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["happen to + verb:pattern:verb:碰巧..."]
+  ["happen to verb:pattern:verb:碰巧..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("has pp").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["has + pp:pattern:auxiliary:已經... / ...過"]
+  ["has pp:pattern:auxiliary:已經... / ...過"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("have to bite to eat").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4851,7 +4851,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("however + adj").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["however + adjective:pattern:conjunction:無論多麼..."]
+  ["however adjective:pattern:conjunction:無論多麼..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("illicit").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -4871,7 +4871,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("is being pp").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["is being + pp:pattern:auxiliary:正在被..."]
+  ["is being pp:pattern:auxiliary:正在被..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("ivy league").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4943,11 +4943,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("one of the 名詞s").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["one of the + plural noun:pattern:determiner:其中一個..."]
+  ["one of the plural noun:pattern:determiner:其中一個..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("over + 時間").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["over + time:pattern:preposition:在...期間"]
+  ["over time:pattern:preposition:在...期間"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("overheads").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
@@ -4983,7 +4983,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("remember ving").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["remember + V-ing:pattern:verb:記得做過"]
+  ["remember ving:pattern:verb:記得做過"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("reservations").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
@@ -5053,7 +5053,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("so adj that").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["so + adjective + that:pattern:conjunction:如此...以致"]
+  ["so adjective that:pattern:conjunction:如此...以致"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("strike a work-life balance").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -5136,11 +5136,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("名詞+free").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["noun + free:pattern:adjective:沒有...的"]
+  ["noun free:pattern:adjective:沒有...的"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("行為+with").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["verb + with:pattern:preposition:用...來..."]
+  ["verb with:pattern:preposition:用...來..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("tantalize our taste buds").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -5156,7 +5156,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("the ... industry").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["the + industry:pattern:noun:...行業"]
+  ["the industry:pattern:noun:...行業"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("the amount of").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -5172,7 +5172,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("the 名詞 concerned").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["the + noun + concerned:pattern:adjective:有關的..."]
+  ["the noun concerned:pattern:adjective:有關的..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("there's no doubt that").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -5204,15 +5204,15 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("about +數字").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["about + number:pattern:adverb:大約 + 數字"]
+  ["about number:pattern:adverb:大約數字"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("as + 句子").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["as + clause:pattern:conjunction:因為 / 正如 / 當 / 隨著"]
+  ["as clause:pattern:conjunction:因為 / 正如 / 當 / 隨著"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("as + 名詞").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["as + noun:pattern:preposition:作為"]
+  ["as noun:pattern:preposition:作為"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("as far as ... be concerned").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -5511,11 +5511,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("have been adj/n").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["have been + noun/adjective:pattern:auxiliary:一直是 / 已經是"]
+  ["have been noun/adjective:pattern:auxiliary:一直是 / 已經是"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("have pp").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["have + pp:pattern:auxiliary:已經... / ...過"]
+  ["have pp:pattern:auxiliary:已經... / ...過"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("have you ever wondered").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -5587,7 +5587,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("no matter + 假問句").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["no matter + question word:pattern:conjunction:無論..."]
+  ["no matter question word:pattern:conjunction:無論..."]
 );
 assert.deepStrictEqual(
   senseBank.lookup("not bother to").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),

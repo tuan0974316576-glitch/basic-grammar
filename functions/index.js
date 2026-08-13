@@ -2477,3 +2477,6 @@ if (process.env.NODE_ENV === "test") {
     shouldReuseCachedExamples
   };
 }
+    .replace(/\bM\s*\+\s*Museum\b/gi, "M Plus Museum")
+    .replace(/\+/g, " ")
+    .replace(/\bV-ing\b/gi, "ving")

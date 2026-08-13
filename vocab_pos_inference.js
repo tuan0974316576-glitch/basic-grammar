@@ -1,10 +1,12 @@
 (function attachVocabPosInference(root, factory) {
-  const api = factory();
+  const vocabText = root.VocabText
+    || (typeof require === "function" ? require("./vocab_text.js") : null);
+  const api = factory(vocabText);
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   }
   root.VocabPosInference = api;
-})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabPosInference() {
+})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabPosInference(VocabText) {
   "use strict";
 
   const POS_ALIASES = {
@@ -193,13 +195,8 @@
   ]);
 
   function normalizeWord(value) {
-    return String(value || "")
-      .trim()
-      .replace(/[’‘]/g, "'")
-      .replace(/[“”]/g, "\"")
-      .replace(/[‐‑‒–—―]/g, "-")
-      .replace(/\s+/g, " ")
-      .toLowerCase();
+    if (VocabText?.normalizeHeadword) return VocabText.normalizeHeadword(value);
+    return String(value || "").trim().replace(/\+/g, " ").replace(/\s+/g, " ").toLowerCase();
   }
 
   function normalizeMeaning(value) {

@@ -1,12 +1,14 @@
 (function attachTeacherLiveVocab(root, factory) {
   const posInference = root.VocabPosInference
     || (typeof require === "function" ? require("./vocab_pos_inference.js") : null);
-  const api = factory(posInference);
+  const vocabText = root.VocabText
+    || (typeof require === "function" ? require("./vocab_text.js") : null);
+  const api = factory(posInference, vocabText);
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   }
   root.TeacherLiveVocab = api;
-})(typeof globalThis !== "undefined" ? globalThis : window, function createTeacherLiveVocab(VocabPosInference) {
+})(typeof globalThis !== "undefined" ? globalThis : window, function createTeacherLiveVocab(VocabPosInference, VocabText) {
   "use strict";
 
   const BATCH_NOUN_PHRASE_HINT = /(?:仔|撻|餅|糕|茶|飯|麵|粉|湯|包|果|糖|癌|病|帶|機|車|站|店|街|路|區|角|灣|山|河|湖|島|國|城|市|村|鎮|場|館|中心|機場|餐廳|公園|市場|學校|公司|節|術|器|具|物|品|人|者|員|師)$/;
@@ -14,6 +16,7 @@
   const DEFAULT_STUDENT_READY_LEVEL = "B1";
 
   function normalizeWord(value) {
+    if (VocabText?.normalizeHeadword) return VocabText.normalizeHeadword(value);
     if (VocabPosInference?.normalizeWord) return VocabPosInference.normalizeWord(value);
     return String(value || "")
       .trim()
@@ -218,7 +221,8 @@
   }
 
   function normalizeEntry(raw = {}, options = {}) {
-    const word = normalizeWord(raw.word || raw.display);
+    const rawWord = raw.word || raw.display;
+    const word = normalizeWord(rawWord);
     const meaning = normalizeMeaning(raw.meaning);
     if (!word || !meaning) return null;
     const pos = normalizePos(raw.pos);
@@ -227,7 +231,9 @@
     return {
       id,
       word,
-      display: String(raw.display || raw.word || word).trim() || word,
+      display: VocabText?.canonicalizeHeadword?.(raw.display || rawWord || word)
+        || String(raw.display || rawWord || word).trim().replace(/\+/g, " ").replace(/\s+/g, " ")
+        || word,
       meaning,
       pos,
       type,

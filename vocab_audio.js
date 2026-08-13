@@ -1,6 +1,7 @@
 (function attachVocabAudio(root, factory) {
   const api = factory(root.VOCAB_WORD_AUDIO_MANIFEST || {}, {
-    getFirebaseBundle: () => root.grammarFirebase || null
+    getFirebaseBundle: () => root.grammarFirebase || null,
+    vocabText: root.VocabText || (typeof require === "function" ? require("./vocab_text.js") : null)
   });
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
@@ -29,6 +30,7 @@
   let sharedAudioCallableBundle = null;
 
   function normalizeWord(value) {
+    if (options.vocabText?.normalizeHeadword) return options.vocabText.normalizeHeadword(value);
     return String(value || "")
       .trim()
       .replace(/[’‘]/g, "'")

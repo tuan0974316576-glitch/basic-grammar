@@ -1,13 +1,16 @@
 (function attachVocabLookup(root, factory) {
-  const api = factory();
+  const vocabText = root.VocabText
+    || (typeof require === "function" ? require("./vocab_text.js") : null);
+  const api = factory(vocabText);
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   }
   root.VocabLookup = api;
-})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabLookup() {
+})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabLookup(VocabText) {
   "use strict";
 
   function normalizeText(value) {
+    if (VocabText?.normalizeHeadword) return VocabText.normalizeHeadword(value);
     return String(value || "").trim().replace(/\s+/g, " ").toLowerCase();
   }
 

@@ -1,15 +1,18 @@
 (function attachVocabExampleUtils(root, factory) {
-  const utils = factory();
+  const vocabText = root.VocabText
+    || (typeof require === "function" ? require("./vocab_text.js") : null);
+  const utils = factory(vocabText);
   if (typeof module !== "undefined" && module.exports) {
     module.exports = utils;
   }
   root.VocabExampleUtils = utils;
-})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabExampleUtils() {
+})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabExampleUtils(VocabText) {
   "use strict";
 
   const CLOUD_EXAMPLE_CACHE_VERSION = "v2-written-zh";
 
   function normalizeWord(value) {
+    if (VocabText?.normalizeHeadword) return VocabText.normalizeHeadword(value);
     return String(value || "")
       .trim()
       .replace(/[’‘]/g, "'")

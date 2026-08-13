@@ -254,7 +254,7 @@ function getBundledEntries() {
   if (state.bundledEntries) return state.bundledEntries;
   const teacherEntries = Array.isArray(window.TeacherVocab?.entries) ? window.TeacherVocab.entries : [];
   const curatedEntries = Array.isArray(window.VocabSenseBank?.cleanEntries)
-    ? window.VocabSenseBank.cleanEntries
+    ? window.VocabSenseBank.cleanEntries.filter((entry) => !entry.hidden)
     : Array.isArray(window.VocabSenseBank?.entries) ? window.VocabSenseBank.entries : [];
   const supplementEntries = Array.isArray(window.CcCedictSupplement?.entries) ? window.CcCedictSupplement.entries : [];
   state.bundledEntries = dedupeEntries([
@@ -279,7 +279,7 @@ function searchEntries(query = "") {
 
   const localLookup = [
     ...(window.TeacherVocab?.lookupStudentReady?.(q, { exactOnly: true, limit: 16 }) || []),
-    ...(window.VocabSenseBank?.lookup?.(q, { limit: 16, includeHidden: true }) || []),
+    ...(window.VocabSenseBank?.lookup?.(q, { limit: 16 }) || []),
     ...(window.CcCedictSupplement?.lookup?.(q, { limit: 16 }) || [])
   ];
 
@@ -291,7 +291,16 @@ function searchEntries(query = "") {
       return right.score - left.score;
     });
 
-  const localWithoutLiveDuplicates = localScored.filter((item) => (
+  const curatedOverridesForQuery = (window.VocabSenseBank?.lookup?.(q, { limit: 24 }) || [])
+    .filter((entry) => entry.overrideTeacher && !entry.hidden && isExactEntry(entry, q));
+  const reviewedLocalScored = curatedOverridesForQuery.length
+    ? localScored.filter((item) => (
+      item.entry.source !== "teacher"
+      || !isExactEntry(item.entry, q)
+    ))
+    : localScored;
+
+  const localWithoutLiveDuplicates = reviewedLocalScored.filter((item) => (
     !liveScored.some((liveItem) => getEntryKey(liveItem.entry) === getEntryKey(item.entry))
   ));
 

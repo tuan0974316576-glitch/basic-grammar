@@ -9,6 +9,7 @@ const DEFAULT_TARGET = "/Users/macbook/battleship-1";
 
 const SHARED_VOCAB_FILES = [
   "vocab_scheduler.js",
+  "vocab_text.js",
   "vocab_pos_inference.js",
   "teacher_vocab_bank.js",
   "teacher_vocab.js",
@@ -17,6 +18,7 @@ const SHARED_VOCAB_FILES = [
   "cc_cedict_supplement.js",
   "vocab_lookup.js",
   "vocab_audio.js",
+  "vocab_canonical_example_seed.js",
   "vocab_example_utils.js",
   "vocab_word_audio_manifest.js"
 ];

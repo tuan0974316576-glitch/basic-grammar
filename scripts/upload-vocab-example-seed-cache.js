@@ -8,6 +8,7 @@ const os = require("os");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const VocabExampleUtils = require("../vocab_example_utils.js");
+const VocabCanonicalExamples = require("../vocab_canonical_example_seed.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_SEED = path.join(ROOT_DIR, "vocab_example_seed.js");
@@ -25,6 +26,7 @@ function usage() {
     "",
     "Options:",
     "  --dry-run          Count upload documents without writing.",
+    "  --canonical-only   Upload only the canonical no-plus example entries.",
     "  --seed <file>      Seed JS file. Defaults to vocab_example_seed.js.",
     "  --project <id>     Firebase project. Defaults to enguistics-grammar-game.",
     "  --limit <n>        Upload only the first n unique cache documents.",
@@ -38,6 +40,7 @@ function usage() {
 function parseArgs(argv) {
   const options = {
     dryRun: false,
+    canonicalOnly: false,
     limit: 0,
     offset: 0,
     project: DEFAULT_PROJECT,
@@ -51,6 +54,10 @@ function parseArgs(argv) {
     }
     if (arg === "--dry-run") {
       options.dryRun = true;
+      continue;
+    }
+    if (arg === "--canonical-only") {
+      options.canonicalOnly = true;
       continue;
     }
     if (arg === "--limit") {
@@ -318,7 +325,8 @@ async function uploadDocuments(documents, options) {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const seed = loadSeed(options.seed);
+  const seed = options.canonicalOnly ? { entries: {} } : loadSeed(options.seed);
+  VocabCanonicalExamples.apply(seed, VocabExampleUtils);
   const result = buildUploadDocuments(seed);
   const selected = result.documents.slice(options.offset, options.limit ? options.offset + options.limit : undefined);
   const summary = {

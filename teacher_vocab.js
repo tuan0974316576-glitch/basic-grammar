@@ -3,12 +3,14 @@
     || (typeof require === "function" ? require("./teacher_vocab_bank.js") : null);
   const posInference = root.VocabPosInference
     || (typeof require === "function" ? require("./vocab_pos_inference.js") : null);
-  const api = factory(bank, posInference);
+  const vocabText = root.VocabText
+    || (typeof require === "function" ? require("./vocab_text.js") : null);
+  const api = factory(bank, posInference, vocabText);
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   }
   root.TeacherVocab = api;
-})(typeof globalThis !== "undefined" ? globalThis : window, function createTeacherVocab(rawBank, VocabPosInference) {
+})(typeof globalThis !== "undefined" ? globalThis : window, function createTeacherVocab(rawBank, VocabPosInference, VocabText) {
   "use strict";
 
   const bank = rawBank || {};
@@ -79,6 +81,7 @@
   const DEFAULT_STUDENT_READY_LEVEL = "B1";
 
   function normalizeWord(value) {
+    if (VocabText?.normalizeHeadword) return VocabText.normalizeHeadword(value);
     return String(value || "")
       .trim()
       .replace(/[’‘]/g, "'")
@@ -226,13 +229,18 @@
     ));
   }
 
-  const entries = Array.isArray(bank.entries) ? bank.entries : [];
+  const rawEntries = Array.isArray(bank.entries) ? bank.entries : [];
+  const entries = [];
   const byWord = new Map();
 
-  entries.forEach((entry) => {
+  rawEntries.forEach((entry) => {
+    const rawWord = entry.word || entry.english || entry.display;
+    const rawDisplay = entry.display || rawWord;
     const normalized = {
       ...entry,
-      word: normalizeWord(entry.word || entry.english || entry.display),
+      word: normalizeWord(rawWord),
+      display: VocabText?.canonicalizeHeadword?.(rawDisplay)
+        || String(rawDisplay || "").replace(/\+/g, " ").replace(/\s+/g, " ").trim(),
       meaning: normalizeMeaning(entry.meaning),
       pos: normalizePos(entry.pos),
       inferredPos: normalizePos(entry.inferredPos),
@@ -240,6 +248,7 @@
       aliases: normalizeAliases(entry.aliases || entry.alias)
     };
     if (!entrySearchKey(normalized) || !normalized.meaning) return;
+    entries.push(normalized);
     entrySearchKeys(normalized).forEach((key) => {
       if (!byWord.has(key)) byWord.set(key, []);
       byWord.get(key).push(normalized);
