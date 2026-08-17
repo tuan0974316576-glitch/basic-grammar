@@ -417,6 +417,64 @@ body.settings-open .menu-settings-btn img {
   display: none;
 }
 
+.vocab-meaning-suggestions.is-word-suggestions {
+  background: #f4fbf7;
+  border-color: #8ecfb8;
+}
+
+.vocab-word-suggestions {
+  display: grid;
+  gap: 7px;
+}
+
+.vocab-word-suggestions-label {
+  color: #447565;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.vocab-word-suggestion-list {
+  display: grid;
+  gap: 7px;
+}
+
+.vocab-word-suggestion-chip {
+  min-height: 46px;
+  display: grid;
+  grid-template-columns: minmax(92px, 0.8fr) minmax(0, 1.2fr);
+  gap: 9px;
+  align-items: center;
+  padding: 7px 11px;
+  color: #5d4037;
+  text-align: left;
+  cursor: pointer;
+  background: #fffef8;
+  border: 2px solid #cfe7dc;
+  border-radius: 13px;
+  box-shadow: 0 3px 0 #b7d8ca;
+}
+
+.vocab-word-suggestion-chip:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #b7d8ca;
+}
+
+.vocab-word-suggestion-chip strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--primary-dark);
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.vocab-word-suggestion-chip span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #6f625b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .vocab-lookup-loading {
   min-height: 36px;
   display: grid;
@@ -4225,6 +4283,11 @@ body.teacher-vocab-open {
 
   .vocab-meaning-suggestions {
     max-height: clamp(86px, 17svh, 132px);
+  }
+
+  .vocab-word-suggestion-chip {
+    grid-template-columns: minmax(82px, 0.72fr) minmax(0, 1.28fr);
+    padding-inline: 9px;
   }
 
   .vocab-add-btn {

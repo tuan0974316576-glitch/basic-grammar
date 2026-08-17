@@ -19,6 +19,7 @@ const CC_CEDICT_SUPPLEMENT = window.CcCedictSupplement || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
 const TEACHER_LIVE_VOCAB = window.TeacherLiveVocab || null;
 const VOCAB_LOOKUP = window.VocabLookup || null;
+const VOCAB_SUGGESTIONS = window.VocabSuggestions || null;
 const VOCAB_POS_INFERENCE = window.VocabPosInference || null;
 const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
 const VOCAB_EXAMPLE_SEED = window.VOCAB_EXAMPLE_SEED || null;
@@ -249,10 +250,14 @@ let activeTextEntryTarget = "";
 let vocabEntryLookupState = {
   word: "",
   matches: [],
+  suggestions: [],
   filterKey: "",
   selectedEntryIds: []
 };
 let vocabLookupRequestId = 0;
+let vocabSuggestionStaticIndex = null;
+let vocabSuggestionLiveIndex = null;
+let vocabSuggestionWarmupQueued = false;
 let expandedVocabItemId = "";
 const vocabExampleCache = getSavedVocabExamplesCache();
 const vocabExampleRequests = new Map();
@@ -2306,6 +2311,7 @@ async function syncTeacherLiveVocab(options = {}) {
       }))
       .filter((entry) => entry && !entry.disabled);
     state.teacherLiveVocab = entries;
+    invalidateVocabLiveSuggestionIndex();
     teacherLiveVocabLastSyncAt = Date.now();
     saveTeacherLiveVocabEntries(entries);
     if (vocabEntryLookupState.word) {
@@ -2335,6 +2341,7 @@ function mergeTeacherLiveVocabEntries(entries = []) {
   });
   state.teacherLiveVocab = Array.from(byId.values())
     .sort((left, right) => (Number(right.updatedAt) || 0) - (Number(left.updatedAt) || 0));
+  invalidateVocabLiveSuggestionIndex();
   saveTeacherLiveVocabEntries(state.teacherLiveVocab);
   return state.teacherLiveVocab;
 }
@@ -2473,6 +2480,7 @@ async function saveTeacherLiveVocabEntry(rawEntry = {}) {
       return itemId !== entryId && !disableIds.includes(itemId);
     })
   ].filter(Boolean);
+  invalidateVocabLiveSuggestionIndex();
   saveTeacherLiveVocabEntries(state.teacherLiveVocab);
   teacherLiveVocabLastSyncAt = Date.now();
   return localEntry;
@@ -2500,6 +2508,7 @@ async function disableTeacherLiveVocabEntry(rawEntry = {}) {
 
     state.teacherLiveVocab = (state.teacherLiveVocab || [])
       .filter((item) => item.id !== entryId && item.sourceEntryId !== entryId);
+    invalidateVocabLiveSuggestionIndex();
     saveTeacherLiveVocabEntries(state.teacherLiveVocab);
     teacherLiveVocabLastSyncAt = Date.now();
     renderTeacherLiveVocabRecentList();
@@ -3071,10 +3080,144 @@ async function buildVocabLookupMatches(word) {
   });
 }
 
+function collapseVocabSuggestionEntries(entries = []) {
+  const byWord = new Map();
+  entries.forEach((entry) => {
+    const word = normalizeVocabWord(entry?.word || entry?.display);
+    if (!word || !entry?.meaning) return;
+    const aliases = Array.isArray(entry.aliases) ? entry.aliases : [];
+    const existing = byWord.get(word);
+    if (!existing) {
+      byWord.set(word, {
+        ...entry,
+        aliases: Array.from(new Set(aliases.map(normalizeVocabWord).filter(Boolean)))
+      });
+      return;
+    }
+    existing.aliases = Array.from(new Set([
+      ...(existing.aliases || []),
+      ...aliases.map(normalizeVocabWord)
+    ].filter(Boolean)));
+  });
+  return Array.from(byWord.values());
+}
+
+function getStaticVocabSuggestionEntries() {
+  const teacherEntries = (TEACHER_VOCAB?.entries || [])
+    .map((entry) => (
+      TEACHER_VOCAB?.normalizeStudentReadyEntry
+        ? TEACHER_VOCAB.normalizeStudentReadyEntry(entry)
+        : entry
+    ))
+    .filter(Boolean)
+    .map((entry) => ({
+      ...entry,
+      source: entry.source || "teacher",
+      storageSource: "teacher"
+    }));
+  const curatedEntries = (VOCAB_SENSE_BANK?.cleanEntries || [])
+    .filter((entry) => entry && !entry.hidden && !entry.disabled && !entry.needsReview)
+    .map((entry) => ({
+      ...entry,
+      source: entry.source || "curated-sense-bank",
+      storageSource: "curated-sense-bank"
+    }));
+  const supplementEntries = (CC_CEDICT_SUPPLEMENT?.entries || [])
+    .filter(Boolean)
+    .map((entry) => ({
+      ...entry,
+      source: entry.source || "cc-cedict-supplement",
+      storageSource: "cc-cedict-supplement"
+    }));
+  return collapseVocabSuggestionEntries([
+    ...teacherEntries,
+    ...curatedEntries,
+    ...supplementEntries
+  ]);
+}
+
+function getLiveVocabSuggestionEntries() {
+  return collapseVocabSuggestionEntries((state.teacherLiveVocab || [])
+    .map((entry) => (
+      TEACHER_LIVE_VOCAB?.normalizeStudentReadyEntry
+        ? TEACHER_LIVE_VOCAB.normalizeStudentReadyEntry(entry)
+        : entry
+    ))
+    .filter(Boolean)
+    .map((entry) => ({
+      ...entry,
+      source: "teacher-live",
+      storageSource: "teacher-live"
+    })));
+}
+
+function invalidateVocabLiveSuggestionIndex() {
+  vocabSuggestionLiveIndex = null;
+}
+
+function ensureVocabSuggestionIndexes() {
+  if (!VOCAB_SUGGESTIONS?.buildIndex) return [];
+  if (!vocabSuggestionStaticIndex) {
+    vocabSuggestionStaticIndex = VOCAB_SUGGESTIONS.buildIndex(getStaticVocabSuggestionEntries());
+  }
+  if (!vocabSuggestionLiveIndex) {
+    vocabSuggestionLiveIndex = VOCAB_SUGGESTIONS.buildIndex(getLiveVocabSuggestionEntries());
+  }
+  return [vocabSuggestionLiveIndex, vocabSuggestionStaticIndex];
+}
+
+function queueVocabSuggestionIndexWarmup() {
+  if (!VOCAB_SUGGESTIONS?.buildIndex || vocabSuggestionWarmupQueued) return;
+  if (vocabSuggestionStaticIndex && vocabSuggestionLiveIndex) return;
+  vocabSuggestionWarmupQueued = true;
+  const warmIndex = () => {
+    vocabSuggestionWarmupQueued = false;
+    try {
+      ensureVocabSuggestionIndexes();
+    } catch (error) {
+      console.warn("Vocab suggestion index warmup failed:", error);
+    }
+  };
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(warmIndex, { timeout: 1200 });
+  } else {
+    window.setTimeout(warmIndex, 80);
+  }
+}
+
+function getVocabWordSuggestions(word, matches = []) {
+  if (!VOCAB_SUGGESTIONS?.suggest || matches.length) return [];
+  const suggestionsByWord = new Map();
+  ensureVocabSuggestionIndexes().forEach((index) => {
+    VOCAB_SUGGESTIONS.suggest(index, word, { matches, limit: 5 }).forEach((suggestion) => {
+      const key = normalizeVocabWord(suggestion.word || suggestion.display);
+      const current = suggestionsByWord.get(key);
+      if (
+        !current
+        || Number(suggestion.score) > Number(current.score)
+        || (
+          Number(suggestion.score) === Number(current.score)
+          && Number(suggestion.sourceRank) > Number(current.sourceRank)
+        )
+      ) {
+        suggestionsByWord.set(key, suggestion);
+      }
+    });
+  });
+  return Array.from(suggestionsByWord.values())
+    .sort((left, right) => (
+      Number(right.score) - Number(left.score)
+      || Number(right.sourceRank) - Number(left.sourceRank)
+      || String(left.display || left.word).localeCompare(String(right.display || right.word))
+    ))
+    .slice(0, 5);
+}
+
 function clearVocabMeaningSuggestions() {
   vocabEntryLookupState = {
     word: "",
     matches: [],
+    suggestions: [],
     filterKey: "",
     selectedEntryIds: []
   };
@@ -3197,14 +3340,68 @@ function selectVocabMeaningSuggestion(entry) {
   playUiSound("click");
 }
 
+function selectVocabWordSuggestion(suggestion) {
+  const word = String(suggestion?.display || suggestion?.word || "").trim();
+  if (!word) return;
+  setTextEntryValue(el.vocabWordInput, word);
+  vocabEntryLookupState = {
+    word: "",
+    matches: [],
+    suggestions: [],
+    filterKey: "",
+    selectedEntryIds: []
+  };
+  void refreshVocabTeacherLookup({ force: true });
+  updateVocabEntryState();
+  playUiSound("click");
+}
+
+function renderVocabWordSuggestions(suggestions = []) {
+  const section = document.createElement("div");
+  section.className = "vocab-word-suggestions";
+
+  const label = document.createElement("div");
+  label.className = "vocab-word-suggestions-label";
+  label.textContent = "可能想輸入";
+
+  const list = document.createElement("div");
+  list.className = "vocab-word-suggestion-list";
+  suggestions.forEach((suggestion) => {
+    const button = document.createElement("button");
+    button.className = "vocab-word-suggestion-chip";
+    button.type = "button";
+
+    const word = document.createElement("strong");
+    word.textContent = suggestion.display || suggestion.word;
+    const meaning = document.createElement("span");
+    meaning.textContent = formatVocabMeaningLine(suggestion.primaryEntry || {});
+    button.append(word, meaning);
+    button.addEventListener("click", () => selectVocabWordSuggestion(suggestion));
+    list.append(button);
+  });
+
+  section.append(label, list);
+  el.vocabMeaningSuggestions.replaceChildren(section);
+  el.vocabMeaningSuggestions.classList.add("is-word-suggestions");
+  el.vocabMeaningSuggestions.classList.remove("hidden");
+}
+
 function renderVocabMeaningSuggestions() {
   if (!el.vocabMeaningSuggestions) return;
   const matches = vocabEntryLookupState.matches || [];
+  const suggestions = vocabEntryLookupState.suggestions || [];
   if (!matches.length) {
+    if (suggestions.length) {
+      renderVocabWordSuggestions(suggestions);
+      return;
+    }
     el.vocabMeaningSuggestions.replaceChildren();
+    el.vocabMeaningSuggestions.classList.remove("is-word-suggestions");
     el.vocabMeaningSuggestions.classList.add("hidden");
     return;
   }
+
+  el.vocabMeaningSuggestions.classList.remove("is-word-suggestions");
 
   const filterKeys = Array.from(new Set(matches.map(getVocabEntryFilterKey)))
     .filter((filterKey) => getVocabEntryFilterLabel(filterKey));
@@ -3260,9 +3457,11 @@ async function refreshVocabTeacherLookup(options = {}) {
 
   const matches = await buildVocabLookupMatches(word);
   if (requestId !== vocabLookupRequestId) return;
+  const suggestions = matches.length ? [] : getVocabWordSuggestions(word, matches);
   vocabEntryLookupState = {
     word,
     matches,
+    suggestions,
     filterKey: "",
     selectedEntryIds: []
   };
@@ -4156,6 +4355,7 @@ function switchAppTab(tabName) {
   setVerbTableKeyboardDocked(false);
   closeVerbTableReference();
   showScreen(getScreenForTab(tabName), { activeTab: tabName });
+  if (tabName === "vocab") queueVocabSuggestionIndexWarmup();
   playUiSound("next");
 }
 
