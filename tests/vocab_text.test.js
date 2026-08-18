@@ -40,6 +40,19 @@ assert.strictEqual(savedEntry.word, "have been ving");
 const oldSpellingMatches = vocabSenseBank.lookup("have been + V-ing");
 assert.ok(oldSpellingMatches.some((entry) => entry.word === "have been ving"));
 
+const haveBeenPpMatches = teacherVocab.lookupStudentReady("have been + pp", {
+  exactOnly: true,
+  limit: 10
+});
+assert.strictEqual(haveBeenPpMatches.length, 1);
+assert.strictEqual(haveBeenPpMatches[0].pos, "verb");
+assert.strictEqual(haveBeenPpMatches[0].type, "pattern");
+assert.strictEqual(
+  teacherVocab.getEntryLabel(haveBeenPpMatches[0]),
+  "v. 一直被 / 已經被"
+);
+assert.deepStrictEqual(vocabSenseBank.lookup("have been pp", { includeHidden: true }), []);
+
 const visibleEntries = [
   ...teacherVocab.entries,
   ...vocabSenseBank.cleanEntries.filter((entry) => !entry.hidden)

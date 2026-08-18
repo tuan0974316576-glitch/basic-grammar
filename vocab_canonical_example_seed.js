@@ -76,7 +76,7 @@
       ]
     },
     {
-      word: "have been pp", pos: "auxiliary", type: "pattern", meaning: "一直被 / 已經被", level: "A2",
+      word: "have been pp", pos: "verb", type: "pattern", meaning: "一直被 / 已經被", level: "A2",
       examples: [
         ["The windows have been cleaned.", "窗戶已經被清潔乾淨。"],
         ["These trees have been protected for years.", "這些樹木多年來一直受到保護。"],

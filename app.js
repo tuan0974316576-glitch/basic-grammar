@@ -3267,7 +3267,9 @@ function inferVocabPosFromMeaning(word, meaning) {
 }
 
 function getVocabEntryPos(entry = {}) {
-  if (entry.type === "pattern") return "";
+  if (entry.type === "pattern") {
+    return normalizeVocabPos(entry.pos) === "verb" ? "verb" : "";
+  }
   return normalizeVocabPos(entry.pos)
     || normalizeVocabPos(entry.inferredPos)
     || inferVocabPosFromMeaning(entry.word, entry.meaning);

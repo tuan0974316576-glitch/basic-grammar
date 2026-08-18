@@ -2365,7 +2365,7 @@
     { "word": "objective", "meaning": "客觀的", "pos": "adjective", "type": "word", "replaceType": true, "notes": "codex-review 1400: keep adjective sense separate from noun objective" },
     { "word": "廣泛 the widespread of use of", "type": "phrase", "replaceType": true, "suppress": true, "notes": "codex-review 1500: suppress broken or unnatural classroom-note key" },
     { "word": "have been + n/adj", "meaning": "一直是 / 已經是", "pos": "pattern", "type": "pattern", "replaceType": true, "notes": "codex-review 1500: cleaned POS / meaning and merged duplicate / noisy senses" },
-    { "word": "have been pp", "meaning": "一直被 / 已經被", "pos": "pattern", "type": "pattern", "replaceType": true, "notes": "codex-review 1500: cleaned POS / meaning and merged duplicate / noisy senses" },
+    { "word": "have been pp", "meaning": "一直被 / 已經被", "pos": "verb", "type": "pattern", "replaceType": true, "notes": "codex-review 1500: keep the grammar pattern as v.; remove duplicate auxiliary label" },
     { "word": "have pp", "meaning": "已經... / ...過", "pos": "pattern", "type": "pattern", "replaceType": true, "notes": "codex-review 1500: cleaned POS / meaning and merged duplicate / noisy senses" },
     { "word": "a bargain", "meaning": "便宜貨", "pos": "noun", "type": "phrase", "replaceType": true, "notes": "codex-review 1500: cleaned POS / meaning and merged duplicate / noisy senses" },
     { "word": "a barrage of", "meaning": "一連串 / 大量（負面）", "pos": "phrase", "type": "phrase", "replaceType": true, "notes": "codex-review 1500: cleaned POS / meaning and merged duplicate / noisy senses" },

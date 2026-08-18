@@ -29348,7 +29348,7 @@
       "word": "have been pp",
       "display": "have been pp",
       "meaning": "一直被 / 已經被",
-      "pos": "pattern",
+      "pos": "verb",
       "type": "pattern",
       "needsReview": false,
       "sourceCount": 1
