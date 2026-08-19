@@ -14,6 +14,7 @@
     "build:web": "node scripts/build-web.js",
     "flutter:export-grammar": "node scripts/export-flutter-grammar-data.js",
     "flutter:generate-sfx": "node scripts/generate-flutter-sfx.js",
+    "flutter:export-vocab": "node scripts/export-flutter-vocab-data.js",
     "vocab:import": "node scripts/import-teacher-vocab.js",
     "vocab:audit": "node scripts/audit-teacher-vocab.js",
     "vocab:audit-core": "node scripts/audit-core-vocab-senses.js",

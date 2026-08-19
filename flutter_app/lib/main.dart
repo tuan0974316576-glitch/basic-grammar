@@ -10,6 +10,7 @@ import 'core/widgets/stationery_frame.dart';
 import 'features/grammar/lesson_01/lesson_01_screen.dart';
 import 'features/grammar/lesson_02/lesson_02_screen.dart';
 import 'features/grammar/quiz_01/quiz_01_screen.dart';
+import 'features/vocabulary/vocab_screen.dart';
 
 const _ink = AppPalette.background;
 const _text = AppPalette.ink;
@@ -71,7 +72,13 @@ class AppShell extends StatefulWidget {
 }
 
 class _AppShellState extends State<AppShell> {
-  int _selectedTab = 0;
+  static const _configuredInitialTab = int.fromEnvironment(
+    'DOPE_INITIAL_TAB',
+    defaultValue: 0,
+  );
+  int _selectedTab = _configuredInitialTab >= 0 && _configuredInitialTab <= 3
+      ? _configuredInitialTab
+      : 0;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +87,7 @@ class _AppShellState extends State<AppShell> {
         index: _selectedTab,
         children: const [
           RoadmapPage(),
-          VocabularyPage(),
+          VocabularyScreen(),
           AchievementsPage(),
           ProfilePage(),
         ],
@@ -731,21 +738,6 @@ class LessonNode {
 }
 
 enum LessonState { complete, current, locked }
-
-class VocabularyPage extends StatelessWidget {
-  const VocabularyPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SectionPlaceholder(
-      title: 'Vocabulary',
-      chineseTitle: '詞彙',
-      icon: Icons.fitness_center_rounded,
-      accent: _yellow,
-      message: '詞彙列表和溫習模式會在下一階段接入現有字庫。',
-    );
-  }
-}
 
 class AchievementsPage extends StatelessWidget {
   const AchievementsPage({super.key});

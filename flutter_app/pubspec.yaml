@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   audioplayers: ^6.5.1
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
@@ -22,7 +23,9 @@ flutter:
     - assets/data/lesson_01.json
     - assets/data/lesson_02.json
     - assets/data/quiz_01.json
+    - assets/data/vocab/
     - assets/audio/sfx/
+    - assets/audio/vocab_words/v1/
     - assets/fonts/OFL-ChironGoRoundTC.txt
   fonts:
     - family: ChironGoRoundTC
