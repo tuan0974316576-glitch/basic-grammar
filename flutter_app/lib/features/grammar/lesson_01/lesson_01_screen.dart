@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
+import '../../../core/widgets/stationery_frame.dart';
 import 'lesson_01_controller.dart';
 import 'lesson_01_question.dart';
 import 'lesson_01_repository.dart';
@@ -345,42 +346,45 @@ class _QuestionPrompt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          instruction,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: _softText,
-            fontSize: 15,
-            fontWeight: FontWeight.w800,
-          ),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(2, 2, 2, compact ? 9 : 12),
+      child: StationeryFrame(
+        padding: EdgeInsets.symmetric(
+          horizontal: compact ? 14 : 20,
+          vertical: compact ? 12 : 18,
         ),
-        SizedBox(height: compact ? 10 : 18),
-        Text(
-          question.zh,
-          key: const Key('lesson-01-chinese-prompt'),
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: _text,
-            fontSize: compact ? 23 : 27,
-            height: 1.25,
-            fontWeight: FontWeight.w900,
-          ),
+        radius: 24,
+        ringWidth: 4,
+        shadowDepth: 5,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              instruction,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: _softText,
+                fontSize: 15,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            SizedBox(height: compact ? 9 : 14),
+            Text(
+              question.zh,
+              key: const Key('lesson-01-chinese-prompt'),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: _text,
+                fontSize: compact ? 23 : 27,
+                height: 1.25,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ],
         ),
-        SizedBox(height: compact ? 12 : 20),
-        Container(
-          width: math.min(240, MediaQuery.sizeOf(context).width * 0.58),
-          height: 3,
-          decoration: BoxDecoration(
-            color: AppPalette.border,
-            borderRadius: BorderRadius.circular(3),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

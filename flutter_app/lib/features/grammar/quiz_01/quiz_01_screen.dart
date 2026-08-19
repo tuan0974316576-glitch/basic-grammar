@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
+import '../../../core/widgets/stationery_frame.dart';
 import 'quiz_01_controller.dart';
 import 'quiz_01_question.dart';
 import 'quiz_01_repository.dart';
@@ -295,18 +296,27 @@ class _ActiveQuestion extends StatelessWidget {
           children: [
             SizedBox(
               height: compact ? 66 : 84,
-              child: Center(
-                child: Text(
-                  controller.currentQuestion.zh,
-                  key: const Key('quiz-01-chinese-prompt'),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: _text,
-                    fontSize: compact ? 23 : 27,
-                    height: 1.2,
-                    fontWeight: FontWeight.w900,
+              child: StationeryFrame(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: compact ? 7 : 10,
+                ),
+                radius: 20,
+                ringWidth: 3,
+                shadowDepth: 4,
+                child: Center(
+                  child: Text(
+                    controller.currentQuestion.zh,
+                    key: const Key('quiz-01-chinese-prompt'),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: _text,
+                      fontSize: compact ? 21 : 25,
+                      height: 1.2,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
               ),

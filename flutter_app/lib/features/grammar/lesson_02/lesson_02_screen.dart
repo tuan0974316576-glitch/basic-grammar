@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
 import '../../../core/widgets/game_keyboard.dart';
+import '../../../core/widgets/stationery_frame.dart';
 import 'lesson_02_controller.dart';
 import 'lesson_02_question.dart';
 import 'lesson_02_repository.dart';
@@ -340,47 +341,67 @@ class _SentencePrompt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        if (instruction.isNotEmpty) ...[
-          Text(
-            instruction,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: _softText,
-              fontSize: 15,
-              fontWeight: FontWeight.w800,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(2, 2, 2, compact ? 9 : 12),
+      child: StationeryFrame(
+        padding: EdgeInsets.symmetric(
+          horizontal: compact ? 13 : 20,
+          vertical: compact ? 9 : 16,
+        ),
+        radius: 24,
+        ringWidth: 4,
+        shadowDepth: 5,
+        child: LayoutBuilder(
+          builder: (context, constraints) => FittedBox(
+            fit: BoxFit.scaleDown,
+            child: SizedBox(
+              width: constraints.maxWidth,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (instruction.isNotEmpty) ...[
+                    Text(
+                      instruction,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: _softText,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    SizedBox(height: compact ? 7 : 11),
+                  ],
+                  Text(
+                    question.sentence,
+                    key: const Key('lesson-02-english-prompt'),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: _text,
+                      fontSize: compact ? 23 : 28,
+                      height: 1.2,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  SizedBox(height: compact ? 6 : 9),
+                  Text(
+                    question.zh,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: _blueDark,
+                      fontSize: compact ? 15 : 17,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          SizedBox(height: compact ? 9 : 14),
-        ],
-        Text(
-          question.sentence,
-          key: const Key('lesson-02-english-prompt'),
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: _text,
-            fontSize: compact ? 23 : 28,
-            height: 1.2,
-            fontWeight: FontWeight.w900,
-          ),
         ),
-        SizedBox(height: compact ? 7 : 11),
-        Text(
-          question.zh,
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: _blueDark,
-            fontSize: compact ? 15 : 17,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -677,7 +698,8 @@ class _CorrectionStage extends StatelessWidget {
               SizedBox(height: compact ? 7 : 10),
             ],
             _AnswerField(value: controller.typedCorrection),
-            SizedBox(height: compact ? 8 : 12),
+            const Spacer(),
+            SizedBox(height: compact ? 6 : 10),
             SizedBox(
               height: keyboardHeight,
               child: GameKeyboard(
@@ -701,36 +723,35 @@ class _AnswerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      key: const Key('lesson-02-answer-field'),
+    return SizedBox(
       width: double.infinity,
-      constraints: const BoxConstraints(minHeight: 56),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF8FBFA),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: _blue, width: 3),
-      ),
-      alignment: Alignment.centerLeft,
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              value.isEmpty ? 'Type the correct sentence' : value,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: value.isEmpty
-                    ? const Color(0xFF8FA1A5)
-                    : const Color(0xFF172B31),
-                fontSize: 18,
-                height: 1.2,
-                fontWeight: value.isEmpty ? FontWeight.w600 : FontWeight.w900,
+      height: 61,
+      child: StationeryFrame(
+        key: const Key('lesson-02-answer-field'),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        radius: 18,
+        ringWidth: 2,
+        shadowDepth: 4,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                value.isEmpty ? 'Type the correct sentence' : value,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: value.isEmpty
+                      ? const Color(0xFF8FA1A5)
+                      : const Color(0xFF172B31),
+                  fontSize: 18,
+                  height: 1.2,
+                  fontWeight: value.isEmpty ? FontWeight.w600 : FontWeight.w900,
+                ),
               ),
             ),
-          ),
-          Container(width: 2, height: 24, color: _blue),
-        ],
+            Container(width: 2, height: 24, color: _blue),
+          ],
+        ),
       ),
     );
   }

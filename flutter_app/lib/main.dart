@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'core/app_palette.dart';
 import 'core/app_sfx.dart';
+import 'core/widgets/stationery_frame.dart';
 import 'features/grammar/lesson_01/lesson_01_screen.dart';
 import 'features/grammar/lesson_02/lesson_02_screen.dart';
 import 'features/grammar/quiz_01/quiz_01_screen.dart';
@@ -325,20 +326,12 @@ class UnitBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: _panel,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: _blue, width: 3),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0xFFBDE0E1),
-            offset: Offset(0, 5),
-            blurRadius: 0,
-          ),
-        ],
-      ),
+    return StationeryFrame(
+      padding: EdgeInsets.zero,
+      backgroundColor: _panel,
+      radius: 22,
+      ringWidth: 4,
+      shadowDepth: 5,
       child: IntrinsicHeight(
         child: Row(
           children: [
