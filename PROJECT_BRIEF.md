@@ -209,6 +209,10 @@ implementation merely because its Flutter equivalent has started.
 Migration rules:
 
 - Flutter owns the new mobile UI and native lesson flow.
+- Keep the Flutter app in the established light Japanese stationery / sticker
+  style: white paper background, dark brown-grey text, mint `#4ECDC4`, yellow
+  `#FFE66D`, and soft pastel panels. Keep the native roadmap structure, but do
+  not bring back the dark navy/slate theme.
 - Existing JavaScript grammar banks remain the content source of truth during
   migration. Run `npm run flutter:export-grammar` after changing exported
   grammar data.

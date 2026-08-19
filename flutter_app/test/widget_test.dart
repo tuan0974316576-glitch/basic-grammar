@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:dope_english/core/app_palette.dart';
 import 'package:dope_english/main.dart';
 
 void main() {
@@ -10,6 +11,18 @@ void main() {
     expect(find.text('English Grammar Basics'), findsOneWidget);
     expect(find.byIcon(Icons.menu_book_rounded), findsWidgets);
     expect(find.byIcon(Icons.fitness_center_rounded), findsWidgets);
+  });
+
+  testWidgets('uses the light stationery palette', (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+
+    final context = tester.element(find.text('English Grammar Basics'));
+    final navigation = tester.widget<NavigationBar>(find.byType(NavigationBar));
+
+    expect(Theme.of(context).brightness, Brightness.light);
+    expect(Theme.of(context).scaffoldBackgroundColor, AppPalette.background);
+    expect(navigation.backgroundColor, AppPalette.paper);
+    expect(navigation.indicatorColor, AppPalette.softPrimary);
   });
 
   testWidgets('opens lesson details from a roadmap node',

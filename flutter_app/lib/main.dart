@@ -2,18 +2,20 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'core/app_palette.dart';
 import 'core/app_sfx.dart';
 import 'features/grammar/lesson_01/lesson_01_screen.dart';
 import 'features/grammar/lesson_02/lesson_02_screen.dart';
 import 'features/grammar/quiz_01/quiz_01_screen.dart';
 
-const _ink = Color(0xFF101C20);
-const _blue = Color(0xFF25B4F3);
-const _blueDark = Color(0xFF1178A9);
-const _mutedBlue = Color(0xFF3E7187);
-const _pink = Color(0xFFF58BC9);
-const _yellow = Color(0xFFFFC928);
-const _panel = Color(0xFF17262B);
+const _ink = AppPalette.background;
+const _text = AppPalette.ink;
+const _blue = AppPalette.primary;
+const _blueDark = AppPalette.primaryDark;
+const _mutedBlue = AppPalette.border;
+const _pink = AppPalette.pink;
+const _yellow = AppPalette.secondary;
+const _panel = AppPalette.softPrimary;
 
 void main() {
   runApp(const DopeEnglishApp());
@@ -28,11 +30,21 @@ class DopeEnglishApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'DOPE ENGLISH',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         scaffoldBackgroundColor: _ink,
         colorScheme: ColorScheme.fromSeed(
           seedColor: _blue,
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
+          surface: AppPalette.paper,
+        ),
+        textTheme: ThemeData.light().textTheme.apply(
+              bodyColor: _text,
+              displayColor: _text,
+            ),
+        navigationBarTheme: const NavigationBarThemeData(
+          labelTextStyle: WidgetStatePropertyAll(
+            TextStyle(color: _text, fontWeight: FontWeight.w800),
+          ),
         ),
         useMaterial3: true,
       ),
@@ -69,23 +81,31 @@ class _AppShellState extends State<AppShell> {
           AppSfx.instance.play(SfxCue.click);
           setState(() => _selectedTab = index);
         },
-        backgroundColor: _ink,
-        indicatorColor: const Color(0xFF203A45),
+        backgroundColor: AppPalette.paper,
+        indicatorColor: _panel,
+        shadowColor: AppPalette.border,
+        elevation: 8,
         height: 76,
         destinations: const [
           NavigationDestination(
-            icon: Icon(Icons.home_outlined, color: _blue),
-            selectedIcon: Icon(Icons.home_rounded, color: _blue),
+            icon: Icon(Icons.home_outlined, color: _blueDark),
+            selectedIcon: Icon(Icons.home_rounded, color: _blueDark),
             label: 'Grammar',
           ),
           NavigationDestination(
-            icon: Icon(Icons.fitness_center_outlined, color: _yellow),
-            selectedIcon: Icon(Icons.fitness_center_rounded, color: _yellow),
+            icon: Icon(
+              Icons.fitness_center_outlined,
+              color: AppPalette.secondaryDark,
+            ),
+            selectedIcon: Icon(
+              Icons.fitness_center_rounded,
+              color: AppPalette.secondaryDark,
+            ),
             label: 'Vocabulary',
           ),
           NavigationDestination(
-            icon: Icon(Icons.emoji_events_outlined, color: _blue),
-            selectedIcon: Icon(Icons.emoji_events_rounded, color: _blue),
+            icon: Icon(Icons.emoji_events_outlined, color: _blueDark),
+            selectedIcon: Icon(Icons.emoji_events_rounded, color: _blueDark),
             label: 'Awards',
           ),
           NavigationDestination(
@@ -145,7 +165,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
   void _showLessonSheet(BuildContext context, LessonNode node) {
     showModalBottomSheet<void>(
       context: context,
-      backgroundColor: const Color(0xFFF4FAFA),
+      backgroundColor: AppPalette.paper,
       isScrollControlled: true,
       showDragHandle: true,
       builder: (context) {
@@ -159,7 +179,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
                 Text(
                   node.subtitle,
                   style: const TextStyle(
-                    color: Color(0xFF377B8D),
+                    color: _blueDark,
                     fontWeight: FontWeight.w800,
                     fontSize: 13,
                     letterSpacing: 0.4,
@@ -169,7 +189,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
                 Text(
                   node.title,
                   style: const TextStyle(
-                    color: Color(0xFF152B31),
+                    color: _text,
                     fontWeight: FontWeight.w900,
                     fontSize: 23,
                   ),
@@ -178,7 +198,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
                 Text(
                   node.description,
                   style: const TextStyle(
-                    color: Color(0xFF476169),
+                    color: AppPalette.muted,
                     fontSize: 15,
                     height: 1.35,
                   ),
@@ -237,7 +257,7 @@ class ProgressBar extends StatelessWidget {
         ),
         StatItem(
           icon: Icons.local_fire_department_rounded,
-          iconColor: Color(0xFF385362),
+          iconColor: Color(0xFFFF9F1C),
           value: '4',
         ),
         StatItem(
@@ -290,9 +310,7 @@ class StatItem extends StatelessWidget {
         Text(
           value,
           style: TextStyle(
-            color: iconColor == const Color(0xFF385362)
-                ? const Color(0xFF71848B)
-                : iconColor,
+            color: iconColor,
             fontSize: 20,
             fontWeight: FontWeight.w900,
           ),
@@ -310,12 +328,13 @@ class UnitBanner extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: _blue,
+        color: _panel,
         borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: _blue, width: 3),
         boxShadow: const [
           BoxShadow(
-            color: _blueDark,
-            offset: Offset(0, 7),
+            color: Color(0xFFBDE0E1),
+            offset: Offset(0, 5),
             blurRadius: 0,
           ),
         ],
@@ -332,7 +351,7 @@ class UnitBanner extends StatelessWidget {
                     Text(
                       'SECTION 1, UNIT 1',
                       style: TextStyle(
-                        color: Color(0xFFD6F4FF),
+                        color: _blueDark,
                         fontSize: 13,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 0.5,
@@ -344,7 +363,7 @@ class UnitBanner extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: _text,
                         fontSize: 22,
                         height: 1.08,
                         fontWeight: FontWeight.w900,
@@ -358,12 +377,11 @@ class UnitBanner extends StatelessWidget {
               width: 76,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
-                border: Border(
-                    left: BorderSide(color: Color(0x5584DFFF), width: 2)),
+                border: Border(left: BorderSide(color: _blue, width: 2)),
               ),
               child: const Icon(
                 Icons.format_list_bulleted_rounded,
-                color: Colors.white,
+                color: _blueDark,
                 size: 37,
               ),
             ),
@@ -541,14 +559,14 @@ class RoadmapPainter extends CustomPainter {
     }
 
     final underlay = Paint()
-      ..color = const Color(0xFF24414A)
+      ..color = const Color(0xFFD6EEEC)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 12
       ..strokeCap = StrokeCap.round;
     canvas.drawPath(path, underlay);
 
     final route = Paint()
-      ..color = const Color(0xFF3A8CA3)
+      ..color = AppPalette.primary
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5
       ..strokeCap = StrokeCap.round;
@@ -581,7 +599,7 @@ class LessonNodeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final enabled = node.state != LessonState.locked;
-    final background = enabled ? _blue : const Color(0xFF34505A);
+    final background = enabled ? _blue : const Color(0xFFF1F3F4);
     return Semantics(
       button: true,
       label: '${node.subtitle} ${node.title}',
@@ -590,9 +608,15 @@ class LessonNodeButton extends StatelessWidget {
         height: 94,
         child: Material(
           color: background,
-          shape: const CircleBorder(),
+          shape: CircleBorder(
+            side: BorderSide(
+              color: enabled ? _blueDark : AppPalette.border,
+              width: 3,
+            ),
+          ),
           elevation: isActive ? 8 : 3,
-          shadowColor: Colors.black.withValues(alpha: 0.6),
+          shadowColor:
+              enabled ? _blueDark.withValues(alpha: 0.45) : AppPalette.border,
           child: InkWell(
             customBorder: const CircleBorder(),
             onTap: enabled ? onTap : null,
@@ -601,7 +625,7 @@ class LessonNodeButton extends StatelessWidget {
               children: [
                 Icon(
                   node.icon,
-                  color: enabled ? Colors.white : const Color(0xFF718990),
+                  color: enabled ? Colors.white : const Color(0xFF9AA7AA),
                   size: 46,
                 ),
                 if (node.state == LessonState.complete)
@@ -625,7 +649,7 @@ class LessonNodeButton extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                              color: const Color(0x88D8F7FF), width: 3),
+                              color: const Color(0xCCFFFFFF), width: 3),
                         ),
                       ),
                     ),
@@ -653,9 +677,15 @@ class CharacterMarker extends StatelessWidget {
           width: 74,
           height: 74,
           decoration: BoxDecoration(
-            color: const Color(0xFF3A3A3D),
+            color: AppPalette.softSecondary,
             shape: BoxShape.circle,
-            border: Border.all(color: const Color(0xFF26363B), width: 6),
+            border: Border.all(color: AppPalette.secondaryDark, width: 5),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x55FFB703),
+                offset: Offset(0, 5),
+              ),
+            ],
           ),
           alignment: Alignment.center,
           child: Icon(icon, color: color, size: 42),
@@ -667,8 +697,11 @@ class CharacterMarker extends StatelessWidget {
             3,
             (index) => const Padding(
               padding: EdgeInsets.symmetric(horizontal: 2),
-              child:
-                  Icon(Icons.star_rounded, color: Color(0xFF354C55), size: 16),
+              child: Icon(
+                Icons.star_rounded,
+                color: AppPalette.secondaryDark,
+                size: 16,
+              ),
             ),
           ),
         ),
@@ -771,16 +804,14 @@ class SectionPlaceholder extends StatelessWidget {
               title,
               style: const TextStyle(
                   fontSize: 15,
-                  color: Color(0xFF7D9CA6),
+                  color: AppPalette.primaryDark,
                   fontWeight: FontWeight.w800),
             ),
             const SizedBox(height: 4),
             Text(
               chineseTitle,
               style: const TextStyle(
-                  fontSize: 32,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900),
+                  fontSize: 32, color: _text, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 28),
             Container(
@@ -788,8 +819,10 @@ class SectionPlaceholder extends StatelessWidget {
               decoration: BoxDecoration(
                 color: _panel,
                 borderRadius: BorderRadius.circular(22),
-                border:
-                    Border.all(color: accent.withValues(alpha: 0.45), width: 2),
+                border: Border.all(color: accent, width: 2),
+                boxShadow: const [
+                  BoxShadow(color: AppPalette.border, offset: Offset(0, 4)),
+                ],
               ),
               child: Row(
                 children: [
@@ -799,7 +832,7 @@ class SectionPlaceholder extends StatelessWidget {
                     child: Text(
                       message,
                       style: const TextStyle(
-                          color: Color(0xFFD7E7EA), fontSize: 16, height: 1.4),
+                          color: _text, fontSize: 16, height: 1.4),
                     ),
                   ),
                 ],

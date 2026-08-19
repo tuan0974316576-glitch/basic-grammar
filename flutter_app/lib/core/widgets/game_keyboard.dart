@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../app_palette.dart';
+
 class GameKeyboard extends StatelessWidget {
   const GameKeyboard({
     required this.onCharacter,
@@ -150,7 +152,7 @@ class _TextKey extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: isSpace ? const Color(0xFFF9F4E8) : const Color(0xFFFFFFFF),
+      color: isSpace ? AppPalette.softSecondary : AppPalette.paper,
       borderRadius: BorderRadius.circular(9),
       child: InkWell(
         onTap: onTap,
@@ -159,9 +161,12 @@ class _TextKey extends StatelessWidget {
           constraints: const BoxConstraints(minWidth: 34),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(9),
-            border: Border.all(color: const Color(0xFFD4DEE0), width: 2),
+            border: Border.all(color: AppPalette.border, width: 2),
             boxShadow: const [
-              BoxShadow(color: Color(0xFF7B939A), offset: Offset(0, 3)),
+              BoxShadow(
+                color: AppPalette.border,
+                offset: Offset(0, 3),
+              ),
             ],
           ),
           alignment: Alignment.center,
@@ -170,7 +175,7 @@ class _TextKey extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-                color: const Color(0xFF23373D),
+                color: AppPalette.ink,
                 fontSize: isSpace ? 13 : 17,
                 fontWeight: FontWeight.w900,
               ),
@@ -198,13 +203,13 @@ class _ActionKey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isSubmit ? const Color(0xFF25B4F3) : const Color(0xFFFFD768);
+    final color = isSubmit ? AppPalette.primary : AppPalette.secondary;
     return Expanded(
       flex: 2,
       child: Tooltip(
         message: tooltip,
         child: Material(
-          color: onTap == null ? const Color(0xFF52666C) : color,
+          color: onTap == null ? const Color(0xFFE4E8EA) : color,
           borderRadius: BorderRadius.circular(9),
           child: InkWell(
             onTap: onTap,
@@ -217,10 +222,10 @@ class _ActionKey extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: onTap == null
-                        ? const Color(0xFF39494E)
+                        ? AppPalette.border
                         : isSubmit
-                            ? const Color(0xFF1178A9)
-                            : const Color(0xFFB58B22),
+                            ? AppPalette.primaryDark
+                            : AppPalette.secondaryDark,
                     offset: const Offset(0, 3),
                   ),
                 ],
@@ -228,9 +233,7 @@ class _ActionKey extends StatelessWidget {
               alignment: Alignment.center,
               child: Icon(
                 icon,
-                color: onTap == null
-                    ? const Color(0xFF8CA0A6)
-                    : const Color(0xFF20343A),
+                color: onTap == null ? const Color(0xFF9AA5A8) : AppPalette.ink,
                 size: 23,
               ),
             ),

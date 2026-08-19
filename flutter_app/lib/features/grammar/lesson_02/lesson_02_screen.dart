@@ -3,20 +3,22 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
 import '../../../core/widgets/game_keyboard.dart';
 import 'lesson_02_controller.dart';
 import 'lesson_02_question.dart';
 import 'lesson_02_repository.dart';
 
-const _ink = Color(0xFF101C20);
-const _panel = Color(0xFF17262B);
-const _blue = Color(0xFF25B4F3);
-const _blueDark = Color(0xFF1178A9);
-const _green = Color(0xFF4BC67A);
-const _red = Color(0xFFFF6272);
-const _yellow = Color(0xFFFFC928);
-const _softText = Color(0xFFAFC4C9);
+const _ink = AppPalette.background;
+const _text = AppPalette.ink;
+const _panel = AppPalette.softPrimary;
+const _blue = AppPalette.primary;
+const _blueDark = AppPalette.primaryDark;
+const _green = AppPalette.correctDark;
+const _red = AppPalette.danger;
+const _yellow = AppPalette.secondary;
+const _softText = AppPalette.muted;
 
 class Lesson02Screen extends StatefulWidget {
   const Lesson02Screen({
@@ -251,7 +253,7 @@ class _ProgressHeader extends StatelessWidget {
                   value: progress,
                   minHeight: 14,
                   color: _blue,
-                  backgroundColor: const Color(0xFF2A3B40),
+                  backgroundColor: AppPalette.border,
                 ),
               ),
             ),
@@ -260,7 +262,7 @@ class _ProgressHeader extends StatelessWidget {
           Text(
             '${controller.index + 1}/${controller.total}',
             style: const TextStyle(
-              color: Colors.white,
+              color: _text,
               fontSize: 16,
               fontWeight: FontWeight.w900,
             ),
@@ -360,7 +362,7 @@ class _SentencePrompt extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: Colors.white,
+            color: _text,
             fontSize: compact ? 23 : 28,
             height: 1.2,
             fontWeight: FontWeight.w900,
@@ -373,7 +375,7 @@ class _SentencePrompt extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: const Color(0xFF83D9F7),
+            color: _blueDark,
             fontSize: compact ? 15 : 17,
             fontWeight: FontWeight.w700,
           ),
@@ -544,7 +546,7 @@ class _VerbCountChoices extends StatelessWidget {
                   child: Text(
                     '$count',
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: _text,
                       fontSize: 34,
                       fontWeight: FontWeight.w900,
                     ),
@@ -628,16 +630,18 @@ class _TokenButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(11),
             border: Border.all(
-              color:
-                  selected ? const Color(0xFFA7E7FF) : const Color(0xFF49616A),
+              color: selected ? Colors.white : AppPalette.primary,
               width: 2,
             ),
           ),
           alignment: Alignment.center,
           child: Text(
             token,
-            style: const TextStyle(
-                color: Colors.white, fontSize: 17, fontWeight: FontWeight.w900),
+            style: TextStyle(
+              color: selected ? Colors.white : _text,
+              fontSize: 17,
+              fontWeight: FontWeight.w900,
+            ),
           ),
         ),
       ),
@@ -832,7 +836,7 @@ class _ResolvedQuestion extends StatelessWidget {
                           Text(
                             feedback.reason,
                             style: const TextStyle(
-                              color: Color(0xFFE8F0F1),
+                              color: _text,
                               fontSize: 17,
                               height: 1.4,
                               fontWeight: FontWeight.w700,
@@ -894,7 +898,8 @@ class _PrimaryButton extends StatelessWidget {
         style: FilledButton.styleFrom(
           minimumSize: const Size.fromHeight(54),
           backgroundColor: _blueDark,
-          disabledBackgroundColor: const Color(0xFF31454C),
+          disabledBackgroundColor: AppPalette.border,
+          disabledForegroundColor: AppPalette.muted,
           foregroundColor: Colors.white,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -952,7 +957,7 @@ class _LessonResult extends StatelessWidget {
             controller.isReviewMode ? '錯題重練完成！' : 'Lesson 02 完成！',
             textAlign: TextAlign.center,
             style: const TextStyle(
-                color: Colors.white, fontSize: 28, fontWeight: FontWeight.w900),
+                color: _text, fontSize: 28, fontWeight: FontWeight.w900),
           ),
           const SizedBox(height: 10),
           Text(
@@ -986,8 +991,11 @@ class _LessonResult extends StatelessWidget {
               label: Text('重練 ${controller.missedQuestions.length} 條錯題'),
               style: OutlinedButton.styleFrom(
                 minimumSize: const Size.fromHeight(54),
-                foregroundColor: _yellow,
-                side: const BorderSide(color: _yellow, width: 2),
+                foregroundColor: AppPalette.secondaryDark,
+                side: const BorderSide(
+                  color: AppPalette.secondaryDark,
+                  width: 2,
+                ),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14)),
                 textStyle:
@@ -1078,9 +1086,7 @@ class _LoadErrorScreen extends StatelessWidget {
                   '未能載入 Lesson 02 題庫。',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900),
+                      color: _text, fontSize: 20, fontWeight: FontWeight.w900),
                 ),
                 const SizedBox(height: 18),
                 _PrimaryButton(

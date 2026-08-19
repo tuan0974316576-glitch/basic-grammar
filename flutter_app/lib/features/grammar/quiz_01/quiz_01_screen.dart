@@ -3,20 +3,22 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
 import 'quiz_01_controller.dart';
 import 'quiz_01_question.dart';
 import 'quiz_01_repository.dart';
 
-const _ink = Color(0xFF101C20);
-const _panel = Color(0xFF17262B);
-const _blue = Color(0xFF25B4F3);
-const _blueDark = Color(0xFF1178A9);
-const _green = Color(0xFF4BC67A);
-const _red = Color(0xFFFF6272);
-const _yellow = Color(0xFFFFC928);
-const _pink = Color(0xFFF58BC9);
-const _softText = Color(0xFFAFC4C9);
+const _ink = AppPalette.background;
+const _text = AppPalette.ink;
+const _panel = AppPalette.softPrimary;
+const _blue = AppPalette.primary;
+const _blueDark = AppPalette.primaryDark;
+const _green = AppPalette.correctDark;
+const _red = AppPalette.danger;
+const _yellow = AppPalette.secondary;
+const _pink = AppPalette.pink;
+const _softText = AppPalette.muted;
 
 class Quiz01Screen extends StatefulWidget {
   const Quiz01Screen({
@@ -254,7 +256,7 @@ class _QuizProgressHeader extends StatelessWidget {
                   value: progress,
                   minHeight: 14,
                   color: _pink,
-                  backgroundColor: const Color(0xFF2A3B40),
+                  backgroundColor: AppPalette.border,
                 ),
               ),
             ),
@@ -263,7 +265,7 @@ class _QuizProgressHeader extends StatelessWidget {
           Text(
             '${controller.index + 1}/${controller.total}',
             style: const TextStyle(
-              color: Colors.white,
+              color: _text,
               fontSize: 16,
               fontWeight: FontWeight.w900,
             ),
@@ -301,7 +303,7 @@ class _ActiveQuestion extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: _text,
                     fontSize: compact ? 23 : 27,
                     height: 1.2,
                     fontWeight: FontWeight.w900,
@@ -510,7 +512,7 @@ class _ResolvedQuestion extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: _text,
                     fontSize: compact ? 22 : 26,
                     fontWeight: FontWeight.w900,
                   ),
@@ -567,7 +569,7 @@ class _ResolvedQuestion extends StatelessWidget {
                             Text(
                               '你的答案：${feedback.picked}',
                               style: const TextStyle(
-                                color: Color(0xFFE8F0F1),
+                                color: _text,
                                 fontSize: 17,
                                 height: 1.4,
                                 fontWeight: FontWeight.w700,
@@ -631,8 +633,8 @@ class _PrimaryButton extends StatelessWidget {
         style: FilledButton.styleFrom(
           minimumSize: const Size.fromHeight(56),
           backgroundColor: _blueDark,
-          disabledBackgroundColor: const Color(0xFF31454C),
-          disabledForegroundColor: const Color(0xFF738990),
+          disabledBackgroundColor: AppPalette.border,
+          disabledForegroundColor: AppPalette.muted,
           foregroundColor: Colors.white,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -684,7 +686,7 @@ class _QuizResult extends StatelessWidget {
             ),
             child: const Icon(
               Icons.auto_awesome_rounded,
-              color: Colors.white,
+              color: _text,
               size: 60,
             ),
           ),
@@ -693,7 +695,7 @@ class _QuizResult extends StatelessWidget {
             controller.isReviewMode ? '錯題重練完成！' : 'Quiz 01 完成！',
             textAlign: TextAlign.center,
             style: const TextStyle(
-              color: Colors.white,
+              color: _text,
               fontSize: 28,
               fontWeight: FontWeight.w900,
             ),
@@ -735,8 +737,11 @@ class _QuizResult extends StatelessWidget {
               label: Text('重練 ${controller.missedQuestions.length} 條錯題'),
               style: OutlinedButton.styleFrom(
                 minimumSize: const Size.fromHeight(54),
-                foregroundColor: _yellow,
-                side: const BorderSide(color: _yellow, width: 2),
+                foregroundColor: AppPalette.secondaryDark,
+                side: const BorderSide(
+                  color: AppPalette.secondaryDark,
+                  width: 2,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),
@@ -839,7 +844,7 @@ class _LoadErrorScreen extends StatelessWidget {
                   '未能載入 Quiz 01 題庫。',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: _text,
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
                   ),
