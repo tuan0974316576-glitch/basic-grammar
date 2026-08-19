@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'core/app_sfx.dart';
 import 'features/grammar/lesson_01/lesson_01_screen.dart';
+import 'features/grammar/lesson_02/lesson_02_screen.dart';
 
 const _ink = Color(0xFF101C20);
 const _blue = Color(0xFF25B4F3);
@@ -202,12 +203,17 @@ class _RoadmapPageState extends State<RoadmapPage> {
 
   void _startLesson(BuildContext sheetContext, LessonNode node) {
     Navigator.of(sheetContext).pop();
-    if (node.index != 0) return;
+    final lessonScreen = switch (node.index) {
+      0 => const Lesson01Screen(),
+      1 => const Lesson02Screen(),
+      _ => null,
+    };
+    if (lessonScreen == null) return;
     AppSfx.instance.play(SfxCue.start);
     Future<void>.delayed(Duration.zero, () {
       if (!mounted) return;
       Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (_) => const Lesson01Screen()),
+        MaterialPageRoute<void>(builder: (_) => lessonScreen),
       );
     });
   }

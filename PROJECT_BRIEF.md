@@ -216,10 +216,13 @@ Migration rules:
   moved behind reusable repositories rather than copied into screen widgets.
 - Keep lesson rules in controllers and repositories so iOS and Android use the
   same tested behaviour.
-- Current native milestone: roadmap shell and Lesson 01 are migrated. Lesson 01
-  includes its 100-question bank, weighted 20-question rounds, multi-step
-  answers, first-try scoring, locked wrong answers, explanations, mistake
-  review, bundled SFX, and celebration effects.
+- Current native milestone: roadmap shell, Lesson 01, and Lesson 02 are migrated.
+  Lesson 01 includes its 100-question bank, weighted 20-question rounds,
+  multi-step answers, first-try scoring, locked wrong answers, explanations,
+  mistake review, bundled SFX, and celebration effects. Lesson 02 includes its
+  100-question bank with balanced 0 / 1 / 2-verb rounds, correct-or-wrong
+  judgment, verb counting, verb selection, sentence correction with the native
+  game keyboard, locked wrong answers, explanations, and mistake review.
 
 ## Content Principles
 

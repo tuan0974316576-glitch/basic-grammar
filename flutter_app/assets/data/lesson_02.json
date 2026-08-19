@@ -1,0 +1,1433 @@
+[
+  {
+    "id": "vc001",
+    "sentence": "I eat breakfast.",
+    "zh": "我吃早餐。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "eat 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 eat。"
+  },
+  {
+    "id": "vc002",
+    "sentence": "You go home.",
+    "zh": "你回家。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "go 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 go。"
+  },
+  {
+    "id": "vc003",
+    "sentence": "He plays football.",
+    "zh": "他踢足球。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "plays 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 plays。"
+  },
+  {
+    "id": "vc004",
+    "sentence": "She reads books.",
+    "zh": "她看書。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "reads 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 reads。"
+  },
+  {
+    "id": "vc005",
+    "sentence": "We sing songs.",
+    "zh": "我們唱歌。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "sing 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 sing。"
+  },
+  {
+    "id": "vc006",
+    "sentence": "They run fast.",
+    "zh": "他們跑得快。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "run 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 run。"
+  },
+  {
+    "id": "vc007",
+    "sentence": "Tom cooks dinner.",
+    "zh": "Tom 煮晚餐。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "cooks 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 cooks。"
+  },
+  {
+    "id": "vc008",
+    "sentence": "Mary writes words.",
+    "zh": "Mary 寫字。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "writes 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 writes。"
+  },
+  {
+    "id": "vc009",
+    "sentence": "Dad drives slowly.",
+    "zh": "爸爸慢慢開車。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "drives 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 drives。"
+  },
+  {
+    "id": "vc010",
+    "sentence": "Mum washes dishes.",
+    "zh": "媽媽洗碗。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "washes 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 washes。"
+  },
+  {
+    "id": "vc011",
+    "sentence": "The dog sleeps.",
+    "zh": "狗睡覺。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      2
+    ],
+    "explanation": "sleeps 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 sleeps。"
+  },
+  {
+    "id": "vc012",
+    "sentence": "The cat jumps.",
+    "zh": "貓跳。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      2
+    ],
+    "explanation": "jumps 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 jumps。"
+  },
+  {
+    "id": "vc013",
+    "sentence": "I am happy.",
+    "zh": "我很開心。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "am 是 be 動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 am。"
+  },
+  {
+    "id": "vc014",
+    "sentence": "You are late.",
+    "zh": "你遲到了。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "are 是 be 動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 are。"
+  },
+  {
+    "id": "vc015",
+    "sentence": "He is tired.",
+    "zh": "他很累。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "is 是 be 動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 is。"
+  },
+  {
+    "id": "vc016",
+    "sentence": "She is ready.",
+    "zh": "她準備好了。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "is 是 be 動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 is。"
+  },
+  {
+    "id": "vc017",
+    "sentence": "They are kind.",
+    "zh": "他們很友善。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "are 是 be 動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 are。"
+  },
+  {
+    "id": "vc018",
+    "sentence": "We are at school.",
+    "zh": "我們在學校。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "are 是 be 動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 are。"
+  },
+  {
+    "id": "vc019",
+    "sentence": "Apples are red.",
+    "zh": "蘋果是紅色的。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "are 是 be 動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 are。"
+  },
+  {
+    "id": "vc020",
+    "sentence": "The boys are noisy.",
+    "zh": "男孩們很嘈。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      2
+    ],
+    "explanation": "are 是 be 動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 are。"
+  },
+  {
+    "id": "vc021",
+    "sentence": "I like apples.",
+    "zh": "我喜歡蘋果。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "like 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 like。"
+  },
+  {
+    "id": "vc022",
+    "sentence": "You drink water.",
+    "zh": "你喝水。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "drink 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 drink。"
+  },
+  {
+    "id": "vc023",
+    "sentence": "He eats lunch.",
+    "zh": "他吃午餐。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "eats 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 eats。"
+  },
+  {
+    "id": "vc024",
+    "sentence": "She draws stars.",
+    "zh": "她畫星星。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "draws 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 draws。"
+  },
+  {
+    "id": "vc025",
+    "sentence": "We read English.",
+    "zh": "我們讀英文。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "read 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 read。"
+  },
+  {
+    "id": "vc026",
+    "sentence": "They watch TV.",
+    "zh": "他們看電視。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "watch 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 watch。"
+  },
+  {
+    "id": "vc027",
+    "sentence": "Tom opens the window.",
+    "zh": "Tom 打開窗。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "opens 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 opens。"
+  },
+  {
+    "id": "vc028",
+    "sentence": "Mary closes the door.",
+    "zh": "Mary 關門。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "closes 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 closes。"
+  },
+  {
+    "id": "vc029",
+    "sentence": "Dad buys bread.",
+    "zh": "爸爸買麵包。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "buys 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 buys。"
+  },
+  {
+    "id": "vc030",
+    "sentence": "Mum makes tea.",
+    "zh": "媽媽泡茶。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      1
+    ],
+    "explanation": "makes 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 makes。"
+  },
+  {
+    "id": "vc031",
+    "sentence": "The baby cries.",
+    "zh": "寶寶哭。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      2
+    ],
+    "explanation": "cries 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 cries。"
+  },
+  {
+    "id": "vc032",
+    "sentence": "The birds fly.",
+    "zh": "鳥兒飛。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      2
+    ],
+    "explanation": "fly 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 fly。"
+  },
+  {
+    "id": "vc033",
+    "sentence": "The children play outside.",
+    "zh": "小朋友們在外面玩。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      2
+    ],
+    "explanation": "play 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 play。"
+  },
+  {
+    "id": "vc034",
+    "sentence": "The teacher speaks English.",
+    "zh": "老師說英文。",
+    "isCorrect": true,
+    "verbCount": 1,
+    "verbIndexes": [
+      2
+    ],
+    "explanation": "speaks 是現在式動詞，所以句子有 1 個動詞。",
+    "correction": "句子正確，不用改。動詞是 speaks。"
+  },
+  {
+    "id": "vc035",
+    "sentence": "I happy.",
+    "zh": "我很開心。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "happy 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：I am happy.",
+    "correctSentence": "I am happy.",
+    "acceptedAnswers": [
+      "I am happy."
+    ]
+  },
+  {
+    "id": "vc036",
+    "sentence": "You late.",
+    "zh": "你遲到了。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "late 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：You are late.",
+    "correctSentence": "You are late.",
+    "acceptedAnswers": [
+      "You are late."
+    ]
+  },
+  {
+    "id": "vc037",
+    "sentence": "He tired.",
+    "zh": "他很累。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "tired 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：He is tired.",
+    "correctSentence": "He is tired.",
+    "acceptedAnswers": [
+      "He is tired."
+    ]
+  },
+  {
+    "id": "vc038",
+    "sentence": "She ready.",
+    "zh": "她準備好了。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "ready 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：She is ready.",
+    "correctSentence": "She is ready.",
+    "acceptedAnswers": [
+      "She is ready."
+    ]
+  },
+  {
+    "id": "vc039",
+    "sentence": "They kind.",
+    "zh": "他們很友善。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "kind 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：They are kind.",
+    "correctSentence": "They are kind.",
+    "acceptedAnswers": [
+      "They are kind."
+    ]
+  },
+  {
+    "id": "vc040",
+    "sentence": "We at school.",
+    "zh": "我們在學校。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "at school 不是動詞，所以句子沒有動詞。",
+    "correction": "正確寫法：We are at school.",
+    "correctSentence": "We are at school.",
+    "acceptedAnswers": [
+      "We are at school."
+    ]
+  },
+  {
+    "id": "vc041",
+    "sentence": "Apples red.",
+    "zh": "蘋果是紅色的。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "red 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：Apples are red.",
+    "correctSentence": "Apples are red.",
+    "acceptedAnswers": [
+      "Apples are red."
+    ]
+  },
+  {
+    "id": "vc042",
+    "sentence": "The apples sweet.",
+    "zh": "蘋果很甜。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "sweet 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The apples are sweet.",
+    "correctSentence": "The apples are sweet.",
+    "acceptedAnswers": [
+      "The apples are sweet."
+    ]
+  },
+  {
+    "id": "vc043",
+    "sentence": "We very happy.",
+    "zh": "我們很開心。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "very happy 是形容詞短語，所以句子沒有動詞。",
+    "correction": "正確寫法：We are very happy.",
+    "correctSentence": "We are very happy.",
+    "acceptedAnswers": [
+      "We are very happy."
+    ]
+  },
+  {
+    "id": "vc044",
+    "sentence": "I hungry.",
+    "zh": "我很肚餓。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "hungry 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：I am hungry.",
+    "correctSentence": "I am hungry.",
+    "acceptedAnswers": [
+      "I am hungry."
+    ]
+  },
+  {
+    "id": "vc045",
+    "sentence": "You at home.",
+    "zh": "你在家。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "at home 不是動詞，所以句子沒有動詞。",
+    "correction": "正確寫法：You are at home.",
+    "correctSentence": "You are at home.",
+    "acceptedAnswers": [
+      "You are at home."
+    ]
+  },
+  {
+    "id": "vc046",
+    "sentence": "He very tall.",
+    "zh": "他很高。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "very tall 是形容詞短語，所以句子沒有動詞。",
+    "correction": "正確寫法：He is very tall.",
+    "correctSentence": "He is very tall.",
+    "acceptedAnswers": [
+      "He is very tall."
+    ]
+  },
+  {
+    "id": "vc047",
+    "sentence": "She in the classroom.",
+    "zh": "她在課室。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "in the classroom 不是動詞，所以句子沒有動詞。",
+    "correction": "正確寫法：She is in the classroom.",
+    "correctSentence": "She is in the classroom.",
+    "acceptedAnswers": [
+      "She is in the classroom."
+    ]
+  },
+  {
+    "id": "vc048",
+    "sentence": "We ready.",
+    "zh": "我們準備好了。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "ready 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：We are ready.",
+    "correctSentence": "We are ready.",
+    "acceptedAnswers": [
+      "We are ready."
+    ]
+  },
+  {
+    "id": "vc049",
+    "sentence": "They quiet.",
+    "zh": "他們很安靜。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "quiet 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：They are quiet.",
+    "correctSentence": "They are quiet.",
+    "acceptedAnswers": [
+      "They are quiet."
+    ]
+  },
+  {
+    "id": "vc050",
+    "sentence": "Tom afraid.",
+    "zh": "Tom 很害怕。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "afraid 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：Tom is afraid.",
+    "correctSentence": "Tom is afraid.",
+    "acceptedAnswers": [
+      "Tom is afraid."
+    ]
+  },
+  {
+    "id": "vc051",
+    "sentence": "Mary excited.",
+    "zh": "Mary 很興奮。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "excited 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：Mary is excited.",
+    "correctSentence": "Mary is excited.",
+    "acceptedAnswers": [
+      "Mary is excited."
+    ]
+  },
+  {
+    "id": "vc052",
+    "sentence": "Dad at work.",
+    "zh": "爸爸在上班。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "at work 不是動詞，所以句子沒有動詞。",
+    "correction": "正確寫法：Dad is at work.",
+    "correctSentence": "Dad is at work.",
+    "acceptedAnswers": [
+      "Dad is at work."
+    ]
+  },
+  {
+    "id": "vc053",
+    "sentence": "Mum in the kitchen.",
+    "zh": "媽媽在廚房。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "in the kitchen 不是動詞，所以句子沒有動詞。",
+    "correction": "正確寫法：Mum is in the kitchen.",
+    "correctSentence": "Mum is in the kitchen.",
+    "acceptedAnswers": [
+      "Mum is in the kitchen."
+    ]
+  },
+  {
+    "id": "vc054",
+    "sentence": "The baby sleepy.",
+    "zh": "寶寶很睏。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "sleepy 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The baby is sleepy.",
+    "correctSentence": "The baby is sleepy.",
+    "acceptedAnswers": [
+      "The baby is sleepy."
+    ]
+  },
+  {
+    "id": "vc055",
+    "sentence": "The birds in the tree.",
+    "zh": "鳥兒在樹上。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "in the tree 不是動詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The birds are in the tree.",
+    "correctSentence": "The birds are in the tree.",
+    "acceptedAnswers": [
+      "The birds are in the tree."
+    ]
+  },
+  {
+    "id": "vc056",
+    "sentence": "The children outside.",
+    "zh": "小朋友們在外面。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "outside 不是動詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The children are outside.",
+    "correctSentence": "The children are outside.",
+    "acceptedAnswers": [
+      "The children are outside."
+    ]
+  },
+  {
+    "id": "vc057",
+    "sentence": "The teacher busy.",
+    "zh": "老師很忙。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "busy 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The teacher is busy.",
+    "correctSentence": "The teacher is busy.",
+    "acceptedAnswers": [
+      "The teacher is busy."
+    ]
+  },
+  {
+    "id": "vc058",
+    "sentence": "My bag heavy.",
+    "zh": "我的書包很重。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "heavy 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：My bag is heavy.",
+    "correctSentence": "My bag is heavy.",
+    "acceptedAnswers": [
+      "My bag is heavy."
+    ]
+  },
+  {
+    "id": "vc059",
+    "sentence": "Your book interesting.",
+    "zh": "你的書很有趣。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "interesting 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：Your book is interesting.",
+    "correctSentence": "Your book is interesting.",
+    "acceptedAnswers": [
+      "Your book is interesting."
+    ]
+  },
+  {
+    "id": "vc060",
+    "sentence": "The water cold.",
+    "zh": "水很冷。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "cold 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The water is cold.",
+    "correctSentence": "The water is cold.",
+    "acceptedAnswers": [
+      "The water is cold."
+    ]
+  },
+  {
+    "id": "vc061",
+    "sentence": "The soup hot.",
+    "zh": "湯很熱。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "hot 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The soup is hot.",
+    "correctSentence": "The soup is hot.",
+    "acceptedAnswers": [
+      "The soup is hot."
+    ]
+  },
+  {
+    "id": "vc062",
+    "sentence": "The room clean.",
+    "zh": "房間很乾淨。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "clean 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The room is clean.",
+    "correctSentence": "The room is clean.",
+    "acceptedAnswers": [
+      "The room is clean."
+    ]
+  },
+  {
+    "id": "vc063",
+    "sentence": "The door open.",
+    "zh": "門是打開的。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "open 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The door is open.",
+    "correctSentence": "The door is open.",
+    "acceptedAnswers": [
+      "The door is open."
+    ]
+  },
+  {
+    "id": "vc064",
+    "sentence": "The windows closed.",
+    "zh": "窗戶是關上的。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "closed 在這句是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The windows are closed.",
+    "correctSentence": "The windows are closed.",
+    "acceptedAnswers": [
+      "The windows are closed."
+    ]
+  },
+  {
+    "id": "vc065",
+    "sentence": "The boys noisy.",
+    "zh": "男孩們很嘈。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "noisy 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The boys are noisy.",
+    "correctSentence": "The boys are noisy.",
+    "acceptedAnswers": [
+      "The boys are noisy."
+    ]
+  },
+  {
+    "id": "vc066",
+    "sentence": "The girls happy.",
+    "zh": "女孩們很開心。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "happy 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：The girls are happy.",
+    "correctSentence": "The girls are happy.",
+    "acceptedAnswers": [
+      "The girls are happy."
+    ]
+  },
+  {
+    "id": "vc067",
+    "sentence": "Our school big.",
+    "zh": "我們的學校很大。",
+    "isCorrect": false,
+    "verbCount": 0,
+    "verbIndexes": [],
+    "explanation": "big 是形容詞，所以句子沒有動詞。",
+    "correction": "正確寫法：Our school is big.",
+    "correctSentence": "Our school is big.",
+    "acceptedAnswers": [
+      "Our school is big."
+    ]
+  },
+  {
+    "id": "vc068",
+    "sentence": "I am eat breakfast.",
+    "zh": "我吃早餐。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "am 是 be 動詞，eat 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "am 是多餘的，應寫 I eat breakfast.",
+    "correctSentence": "I eat breakfast.",
+    "acceptedAnswers": [
+      "I eat breakfast."
+    ]
+  },
+  {
+    "id": "vc069",
+    "sentence": "You are go home.",
+    "zh": "你回家。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，go 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 You go home.",
+    "correctSentence": "You go home.",
+    "acceptedAnswers": [
+      "You go home."
+    ]
+  },
+  {
+    "id": "vc070",
+    "sentence": "He is plays football.",
+    "zh": "他踢足球。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，plays 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 He plays football.",
+    "correctSentence": "He plays football.",
+    "acceptedAnswers": [
+      "He plays football."
+    ]
+  },
+  {
+    "id": "vc071",
+    "sentence": "She is reads books.",
+    "zh": "她看書。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，reads 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 She reads books.",
+    "correctSentence": "She reads books.",
+    "acceptedAnswers": [
+      "She reads books."
+    ]
+  },
+  {
+    "id": "vc072",
+    "sentence": "We are sing songs.",
+    "zh": "我們唱歌。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，sing 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 We sing songs.",
+    "correctSentence": "We sing songs.",
+    "acceptedAnswers": [
+      "We sing songs."
+    ]
+  },
+  {
+    "id": "vc073",
+    "sentence": "They are run fast.",
+    "zh": "他們跑得快。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，run 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 They run fast.",
+    "correctSentence": "They run fast.",
+    "acceptedAnswers": [
+      "They run fast."
+    ]
+  },
+  {
+    "id": "vc074",
+    "sentence": "Tom is cooks dinner.",
+    "zh": "Tom 煮晚餐。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，cooks 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 Tom cooks dinner.",
+    "correctSentence": "Tom cooks dinner.",
+    "acceptedAnswers": [
+      "Tom cooks dinner."
+    ]
+  },
+  {
+    "id": "vc075",
+    "sentence": "Mary is writes words.",
+    "zh": "Mary 寫字。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，writes 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 Mary writes words.",
+    "correctSentence": "Mary writes words.",
+    "acceptedAnswers": [
+      "Mary writes words."
+    ]
+  },
+  {
+    "id": "vc076",
+    "sentence": "Dad is drives slowly.",
+    "zh": "爸爸慢慢開車。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，drives 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 Dad drives slowly.",
+    "correctSentence": "Dad drives slowly.",
+    "acceptedAnswers": [
+      "Dad drives slowly."
+    ]
+  },
+  {
+    "id": "vc077",
+    "sentence": "Mum is washes dishes.",
+    "zh": "媽媽洗碗。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，washes 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 Mum washes dishes.",
+    "correctSentence": "Mum washes dishes.",
+    "acceptedAnswers": [
+      "Mum washes dishes."
+    ]
+  },
+  {
+    "id": "vc078",
+    "sentence": "The dog is sleeps.",
+    "zh": "狗睡覺。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      2,
+      3
+    ],
+    "explanation": "is 是 be 動詞，sleeps 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 The dog sleeps.",
+    "correctSentence": "The dog sleeps.",
+    "acceptedAnswers": [
+      "The dog sleeps."
+    ]
+  },
+  {
+    "id": "vc079",
+    "sentence": "The cat is jumps.",
+    "zh": "貓跳。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      2,
+      3
+    ],
+    "explanation": "is 是 be 動詞，jumps 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 The cat jumps.",
+    "correctSentence": "The cat jumps.",
+    "acceptedAnswers": [
+      "The cat jumps."
+    ]
+  },
+  {
+    "id": "vc080",
+    "sentence": "I am read books.",
+    "zh": "我看書。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "am 是 be 動詞，read 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "am 是多餘的，應寫 I read books.",
+    "correctSentence": "I read books.",
+    "acceptedAnswers": [
+      "I read books."
+    ]
+  },
+  {
+    "id": "vc081",
+    "sentence": "You are eat noodles.",
+    "zh": "你吃麵。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，eat 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 You eat noodles.",
+    "correctSentence": "You eat noodles.",
+    "acceptedAnswers": [
+      "You eat noodles."
+    ]
+  },
+  {
+    "id": "vc082",
+    "sentence": "He is runs home.",
+    "zh": "他跑回家。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，runs 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 He runs home.",
+    "correctSentence": "He runs home.",
+    "acceptedAnswers": [
+      "He runs home."
+    ]
+  },
+  {
+    "id": "vc083",
+    "sentence": "She is jumps high.",
+    "zh": "她跳得高。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，jumps 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 She jumps high.",
+    "correctSentence": "She jumps high.",
+    "acceptedAnswers": [
+      "She jumps high."
+    ]
+  },
+  {
+    "id": "vc084",
+    "sentence": "We are play games.",
+    "zh": "我們玩遊戲。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，play 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 We play games.",
+    "correctSentence": "We play games.",
+    "acceptedAnswers": [
+      "We play games."
+    ]
+  },
+  {
+    "id": "vc085",
+    "sentence": "They are watch TV.",
+    "zh": "他們看電視。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，watch 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 They watch TV.",
+    "correctSentence": "They watch TV.",
+    "acceptedAnswers": [
+      "They watch TV."
+    ]
+  },
+  {
+    "id": "vc086",
+    "sentence": "Tom is opens the window.",
+    "zh": "Tom 打開窗。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，opens 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 Tom opens the window.",
+    "correctSentence": "Tom opens the window.",
+    "acceptedAnswers": [
+      "Tom opens the window."
+    ]
+  },
+  {
+    "id": "vc087",
+    "sentence": "Mary is closes the door.",
+    "zh": "Mary 關門。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，closes 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 Mary closes the door.",
+    "correctSentence": "Mary closes the door.",
+    "acceptedAnswers": [
+      "Mary closes the door."
+    ]
+  },
+  {
+    "id": "vc088",
+    "sentence": "Dad is buys bread.",
+    "zh": "爸爸買麵包。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，buys 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 Dad buys bread.",
+    "correctSentence": "Dad buys bread.",
+    "acceptedAnswers": [
+      "Dad buys bread."
+    ]
+  },
+  {
+    "id": "vc089",
+    "sentence": "Mum is makes tea.",
+    "zh": "媽媽泡茶。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，makes 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 Mum makes tea.",
+    "correctSentence": "Mum makes tea.",
+    "acceptedAnswers": [
+      "Mum makes tea."
+    ]
+  },
+  {
+    "id": "vc090",
+    "sentence": "The baby is cries.",
+    "zh": "寶寶哭。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      2,
+      3
+    ],
+    "explanation": "is 是 be 動詞，cries 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 The baby cries.",
+    "correctSentence": "The baby cries.",
+    "acceptedAnswers": [
+      "The baby cries."
+    ]
+  },
+  {
+    "id": "vc091",
+    "sentence": "The birds are fly.",
+    "zh": "鳥飛。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      2,
+      3
+    ],
+    "explanation": "are 是 be 動詞，fly 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 The birds fly.",
+    "correctSentence": "The birds fly.",
+    "acceptedAnswers": [
+      "The birds fly."
+    ]
+  },
+  {
+    "id": "vc092",
+    "sentence": "The children are play outside.",
+    "zh": "小朋友們在外面玩。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      2,
+      3
+    ],
+    "explanation": "are 是 be 動詞，play 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 The children play outside.",
+    "correctSentence": "The children play outside.",
+    "acceptedAnswers": [
+      "The children play outside."
+    ]
+  },
+  {
+    "id": "vc093",
+    "sentence": "The teacher is teaches English.",
+    "zh": "老師教英文。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      2,
+      3
+    ],
+    "explanation": "is 是 be 動詞，teaches 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 The teacher teaches English.",
+    "correctSentence": "The teacher teaches English.",
+    "acceptedAnswers": [
+      "The teacher teaches English."
+    ]
+  },
+  {
+    "id": "vc094",
+    "sentence": "The student is writes words.",
+    "zh": "學生寫字。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      2,
+      3
+    ],
+    "explanation": "is 是 be 動詞，writes 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 The student writes words.",
+    "correctSentence": "The student writes words.",
+    "acceptedAnswers": [
+      "The student writes words."
+    ]
+  },
+  {
+    "id": "vc095",
+    "sentence": "I am like apples.",
+    "zh": "我喜歡蘋果。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "am 是 be 動詞，like 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "am 是多餘的，應寫 I like apples.",
+    "correctSentence": "I like apples.",
+    "acceptedAnswers": [
+      "I like apples."
+    ]
+  },
+  {
+    "id": "vc096",
+    "sentence": "You are drink water.",
+    "zh": "你喝水。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，drink 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 You drink water.",
+    "correctSentence": "You drink water.",
+    "acceptedAnswers": [
+      "You drink water."
+    ]
+  },
+  {
+    "id": "vc097",
+    "sentence": "He is eats lunch.",
+    "zh": "他吃午餐。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，eats 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 He eats lunch.",
+    "correctSentence": "He eats lunch.",
+    "acceptedAnswers": [
+      "He eats lunch."
+    ]
+  },
+  {
+    "id": "vc098",
+    "sentence": "She is draws stars.",
+    "zh": "她畫星星。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "is 是 be 動詞，draws 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "is 是多餘的，應寫 She draws stars.",
+    "correctSentence": "She draws stars.",
+    "acceptedAnswers": [
+      "She draws stars."
+    ]
+  },
+  {
+    "id": "vc099",
+    "sentence": "We are read English.",
+    "zh": "我們讀英文。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，read 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 We read English.",
+    "correctSentence": "We read English.",
+    "acceptedAnswers": [
+      "We read English."
+    ]
+  },
+  {
+    "id": "vc100",
+    "sentence": "They are clean the room.",
+    "zh": "他們清潔房間。",
+    "isCorrect": false,
+    "verbCount": 2,
+    "verbIndexes": [
+      1,
+      2
+    ],
+    "explanation": "are 是 be 動詞，clean 是現在式動詞，所以句子有 2 個動詞。",
+    "correction": "are 是多餘的，應寫 They clean the room.",
+    "correctSentence": "They clean the room.",
+    "acceptedAnswers": [
+      "They clean the room."
+    ]
+  }
+]

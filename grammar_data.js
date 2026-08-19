@@ -129,7 +129,11 @@ function makeVerbCountQuestion(sentence, zh, isCorrect, verbCount, verbIndexes, 
 }
 
 function verbKindText(kind) {
-  return kind === "be" ? "be 動詞" : "動詞";
+  return kind === "be" ? "be 動詞" : `${kind}動詞`;
+}
+
+function describeVerb(verb, kind) {
+  return `${verb} 是${kind === "be" ? " " : ""}${verbKindText(kind)}`;
 }
 
 function oneVerb(sentence, zh, verbIndex, verb, kind = "現在式") {
@@ -139,7 +143,7 @@ function oneVerb(sentence, zh, verbIndex, verb, kind = "現在式") {
     true,
     1,
     [verbIndex],
-    `${verb} 是${verbKindText(kind)}，所以句子有 1 個動詞。`,
+    `${describeVerb(verb, kind)}，所以句子有 1 個動詞。`,
     `句子正確，不用改。動詞是 ${verb}。`
   );
 }
@@ -166,7 +170,7 @@ function twoVerbs(sentence, zh, verbIndexes, beVerb, mainVerb, kind, correctionS
     false,
     2,
     verbIndexes,
-    `${beVerb} 是 be 動詞，${mainVerb} 是${verbKindText(kind)}，所以句子有 2 個動詞。`,
+    `${describeVerb(beVerb, "be")}，${describeVerb(mainVerb, kind)}，所以句子有 2 個動詞。`,
     `${beVerb} 是多餘的，應寫 ${correctionSentence}`
   );
   question.correctSentence = correctionSentence;
@@ -193,8 +197,22 @@ const VERB_COUNT_QUESTIONS = [
   oneVerb("She is ready.", "她準備好了。", 1, "is", "be"),
   oneVerb("They are kind.", "他們很友善。", 1, "are", "be"),
   oneVerb("We are at school.", "我們在學校。", 1, "are", "be"),
-  oneVerb("The apple is red.", "蘋果是紅色的。", 2, "is", "be"),
+  oneVerb("Apples are red.", "蘋果是紅色的。", 1, "are", "be"),
   oneVerb("The boys are noisy.", "男孩們很嘈。", 2, "are", "be"),
+  oneVerb("I like apples.", "我喜歡蘋果。", 1, "like"),
+  oneVerb("You drink water.", "你喝水。", 1, "drink"),
+  oneVerb("He eats lunch.", "他吃午餐。", 1, "eats"),
+  oneVerb("She draws stars.", "她畫星星。", 1, "draws"),
+  oneVerb("We read English.", "我們讀英文。", 1, "read"),
+  oneVerb("They watch TV.", "他們看電視。", 1, "watch"),
+  oneVerb("Tom opens the window.", "Tom 打開窗。", 1, "opens"),
+  oneVerb("Mary closes the door.", "Mary 關門。", 1, "closes"),
+  oneVerb("Dad buys bread.", "爸爸買麵包。", 1, "buys"),
+  oneVerb("Mum makes tea.", "媽媽泡茶。", 1, "makes"),
+  oneVerb("The baby cries.", "寶寶哭。", 2, "cries"),
+  oneVerb("The birds fly.", "鳥兒飛。", 2, "fly"),
+  oneVerb("The children play outside.", "小朋友們在外面玩。", 2, "play"),
+  oneVerb("The teacher speaks English.", "老師說英文。", 2, "speaks"),
 
   zeroVerb("I happy.", "我很開心。", "happy 是形容詞", "正確寫法：I am happy."),
   zeroVerb("You late.", "你遲到了。", "late 是形容詞", "正確寫法：You are late."),
@@ -202,9 +220,33 @@ const VERB_COUNT_QUESTIONS = [
   zeroVerb("She ready.", "她準備好了。", "ready 是形容詞", "正確寫法：She is ready."),
   zeroVerb("They kind.", "他們很友善。", "kind 是形容詞", "正確寫法：They are kind."),
   zeroVerb("We at school.", "我們在學校。", "at school 不是動詞", "正確寫法：We are at school."),
-  zeroVerb("The apple red.", "蘋果是紅色的。", "red 是形容詞", "正確寫法：The apple is red."),
-  zeroVerb("The boys noisy.", "男孩們很嘈。", "noisy 是形容詞", "正確寫法：The boys are noisy."),
+  zeroVerb("Apples red.", "蘋果是紅色的。", "red 是形容詞", "正確寫法：Apples are red."),
+  zeroVerb("The apples sweet.", "蘋果很甜。", "sweet 是形容詞", "正確寫法：The apples are sweet."),
   zeroVerb("We very happy.", "我們很開心。", "very happy 是形容詞短語", "正確寫法：We are very happy."),
+  zeroVerb("I hungry.", "我很肚餓。", "hungry 是形容詞", "正確寫法：I am hungry."),
+  zeroVerb("You at home.", "你在家。", "at home 不是動詞", "正確寫法：You are at home."),
+  zeroVerb("He very tall.", "他很高。", "very tall 是形容詞短語", "正確寫法：He is very tall."),
+  zeroVerb("She in the classroom.", "她在課室。", "in the classroom 不是動詞", "正確寫法：She is in the classroom."),
+  zeroVerb("We ready.", "我們準備好了。", "ready 是形容詞", "正確寫法：We are ready."),
+  zeroVerb("They quiet.", "他們很安靜。", "quiet 是形容詞", "正確寫法：They are quiet."),
+  zeroVerb("Tom afraid.", "Tom 很害怕。", "afraid 是形容詞", "正確寫法：Tom is afraid."),
+  zeroVerb("Mary excited.", "Mary 很興奮。", "excited 是形容詞", "正確寫法：Mary is excited."),
+  zeroVerb("Dad at work.", "爸爸在上班。", "at work 不是動詞", "正確寫法：Dad is at work."),
+  zeroVerb("Mum in the kitchen.", "媽媽在廚房。", "in the kitchen 不是動詞", "正確寫法：Mum is in the kitchen."),
+  zeroVerb("The baby sleepy.", "寶寶很睏。", "sleepy 是形容詞", "正確寫法：The baby is sleepy."),
+  zeroVerb("The birds in the tree.", "鳥兒在樹上。", "in the tree 不是動詞", "正確寫法：The birds are in the tree."),
+  zeroVerb("The children outside.", "小朋友們在外面。", "outside 不是動詞", "正確寫法：The children are outside."),
+  zeroVerb("The teacher busy.", "老師很忙。", "busy 是形容詞", "正確寫法：The teacher is busy."),
+  zeroVerb("My bag heavy.", "我的書包很重。", "heavy 是形容詞", "正確寫法：My bag is heavy."),
+  zeroVerb("Your book interesting.", "你的書很有趣。", "interesting 是形容詞", "正確寫法：Your book is interesting."),
+  zeroVerb("The water cold.", "水很冷。", "cold 是形容詞", "正確寫法：The water is cold."),
+  zeroVerb("The soup hot.", "湯很熱。", "hot 是形容詞", "正確寫法：The soup is hot."),
+  zeroVerb("The room clean.", "房間很乾淨。", "clean 是形容詞", "正確寫法：The room is clean."),
+  zeroVerb("The door open.", "門是打開的。", "open 是形容詞", "正確寫法：The door is open."),
+  zeroVerb("The windows closed.", "窗戶是關上的。", "closed 在這句是形容詞", "正確寫法：The windows are closed."),
+  zeroVerb("The boys noisy.", "男孩們很嘈。", "noisy 是形容詞", "正確寫法：The boys are noisy."),
+  zeroVerb("The girls happy.", "女孩們很開心。", "happy 是形容詞", "正確寫法：The girls are happy."),
+  zeroVerb("Our school big.", "我們的學校很大。", "big 是形容詞", "正確寫法：Our school is big."),
 
   twoVerbs("I am eat breakfast.", "我吃早餐。", [1, 2], "am", "eat", "現在式", "I eat breakfast."),
   twoVerbs("You are go home.", "你回家。", [1, 2], "are", "go", "現在式", "You go home."),
@@ -232,7 +274,13 @@ const VERB_COUNT_QUESTIONS = [
   twoVerbs("The birds are fly.", "鳥飛。", [2, 3], "are", "fly", "現在式", "The birds fly."),
   twoVerbs("The children are play outside.", "小朋友們在外面玩。", [2, 3], "are", "play", "現在式", "The children play outside."),
   twoVerbs("The teacher is teaches English.", "老師教英文。", [2, 3], "is", "teaches", "現在式", "The teacher teaches English."),
-  twoVerbs("The student is writes words.", "學生寫字。", [2, 3], "is", "writes", "現在式", "The student writes words.")
+  twoVerbs("The student is writes words.", "學生寫字。", [2, 3], "is", "writes", "現在式", "The student writes words."),
+  twoVerbs("I am like apples.", "我喜歡蘋果。", [1, 2], "am", "like", "現在式", "I like apples."),
+  twoVerbs("You are drink water.", "你喝水。", [1, 2], "are", "drink", "現在式", "You drink water."),
+  twoVerbs("He is eats lunch.", "他吃午餐。", [1, 2], "is", "eats", "現在式", "He eats lunch."),
+  twoVerbs("She is draws stars.", "她畫星星。", [1, 2], "is", "draws", "現在式", "She draws stars."),
+  twoVerbs("We are read English.", "我們讀英文。", [1, 2], "are", "read", "現在式", "We read English."),
+  twoVerbs("They are clean the room.", "他們清潔房間。", [1, 2], "are", "clean", "現在式", "They clean the room.")
 ];
 
 const SENTENCE_BUILD_QUESTIONS = [

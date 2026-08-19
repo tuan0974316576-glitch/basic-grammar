@@ -35,6 +35,14 @@ assert.strictEqual(data.LESSONS.tenses.kicker, "Lesson 11");
 assert.strictEqual(data.LESSONS["verb-table"].kicker, "Lesson 12");
 assert.strictEqual(data.LESSONS["have-usage"].kicker, "Lesson 13");
 
+assert.strictEqual(data.VERB_COUNT_QUESTIONS.length, 100);
+assert.strictEqual(data.VERB_COUNT_QUESTIONS.filter((question) => question.verbCount === 0).length, 33);
+assert.strictEqual(data.VERB_COUNT_QUESTIONS.filter((question) => question.verbCount === 1).length, 34);
+assert.strictEqual(data.VERB_COUNT_QUESTIONS.filter((question) => question.verbCount === 2).length, 33);
+assert.ok(data.VERB_COUNT_QUESTIONS.some((question) => question.explanation.includes("eat 是現在式動詞")));
+assert.ok(data.VERB_COUNT_QUESTIONS.some((question) => question.explanation.includes("are 是 be 動詞")));
+assert.strictEqual(data.VERB_COUNT_QUESTIONS.some((question) => question.explanation.includes("是 現在式動詞")), false);
+
 const lesson2Text = data.VERB_COUNT_QUESTIONS
   .map((question) => [question.sentence, question.zh, question.explanation, question.correction].join("\n"))
   .join("\n");
