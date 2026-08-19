@@ -37,6 +37,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   final FocusNode _focusNode = FocusNode();
   bool _keyboardVisible = false;
   bool _pulseInFlight = false;
+  String? _speakingExample;
 
   bool get _usesSystemKeyboard {
     if (kIsWeb) return true;
@@ -205,15 +206,22 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   }
 
   Future<void> _speakExample(String sentence) async {
-    final played = await _audio.speakExample(sentence);
-    if (!played && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('暫時未能播放這句例句。'),
-          duration: Duration(milliseconds: 1200),
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+    if (_speakingExample != null) return;
+    unawaited(AppSfx.instance.play(SfxCue.click));
+    setState(() => _speakingExample = sentence);
+    try {
+      final played = await _audio.speakExample(sentence);
+      if (!played && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('暫時未能播放這句例句，請檢查網絡後再試。'),
+            duration: Duration(milliseconds: 1600),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _speakingExample = null);
     }
   }
 
@@ -296,6 +304,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
               Expanded(
                 child: _VocabList(
                   controller: _controller,
+                  speakingExample: _speakingExample,
                   onSpeakWord: _speakWord,
                   onSpeakExample: _speakExample,
                   onDelete: _deleteWord,
@@ -639,12 +648,14 @@ class _VocabEntryPanel extends StatelessWidget {
 class _VocabList extends StatelessWidget {
   const _VocabList({
     required this.controller,
+    required this.speakingExample,
     required this.onSpeakWord,
     required this.onSpeakExample,
     required this.onDelete,
   });
 
   final VocabController controller;
+  final String? speakingExample;
   final ValueChanged<String> onSpeakWord;
   final ValueChanged<String> onSpeakExample;
   final ValueChanged<VocabItem> onDelete;
@@ -678,6 +689,7 @@ class _VocabList extends StatelessWidget {
               expanded: controller.expandedItemId == item.id,
               examplesLoading: controller.examplesAreLoading(item.id),
               exampleSections: controller.examplesFor(item.id),
+              speakingExample: speakingExample,
               onSpeakWord: () => onSpeakWord(item.word),
               onSpeakExample: onSpeakExample,
               onToggleExamples: () {
@@ -741,6 +753,7 @@ class _VocabRow extends StatelessWidget {
     required this.expanded,
     required this.examplesLoading,
     required this.exampleSections,
+    required this.speakingExample,
     required this.onSpeakWord,
     required this.onSpeakExample,
     required this.onToggleExamples,
@@ -751,6 +764,7 @@ class _VocabRow extends StatelessWidget {
   final bool expanded;
   final bool examplesLoading;
   final List<VocabExampleSection>? exampleSections;
+  final String? speakingExample;
   final VoidCallback onSpeakWord;
   final ValueChanged<String> onSpeakExample;
   final VoidCallback onToggleExamples;
@@ -838,6 +852,7 @@ class _VocabRow extends StatelessWidget {
                     child: _ExamplePanel(
                       loading: examplesLoading,
                       sections: exampleSections,
+                      speakingExample: speakingExample,
                       onSpeakExample: onSpeakExample,
                     ),
                   )
@@ -898,11 +913,13 @@ class _ExamplePanel extends StatelessWidget {
   const _ExamplePanel({
     required this.loading,
     required this.sections,
+    required this.speakingExample,
     required this.onSpeakExample,
   });
 
   final bool loading;
   final List<VocabExampleSection>? sections;
+  final String? speakingExample;
   final ValueChanged<String> onSpeakExample;
 
   @override
@@ -960,13 +977,21 @@ class _ExamplePanel extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.only(top: 2, right: 5),
-                              child: Icon(
-                                Icons.volume_up_rounded,
-                                color: AppPalette.secondaryDark,
-                                size: 16,
-                              ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2, right: 5),
+                              child: speakingExample == example.english
+                                  ? const SizedBox.square(
+                                      dimension: 16,
+                                      child: CircularProgressIndicator(
+                                        color: AppPalette.secondaryDark,
+                                        strokeWidth: 2.2,
+                                      ),
+                                    )
+                                  : const Icon(
+                                      Icons.volume_up_rounded,
+                                      color: AppPalette.secondaryDark,
+                                      size: 16,
+                                    ),
                             ),
                             Expanded(
                               child: Text(

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -7,9 +8,12 @@ import 'package:flutter/services.dart';
 import 'core/app_palette.dart';
 import 'core/app_sfx.dart';
 import 'core/widgets/stationery_frame.dart';
+import 'features/auth/student_auth_controller.dart';
+import 'features/auth/student_login_screen.dart';
 import 'features/grammar/lesson_01/lesson_01_screen.dart';
 import 'features/grammar/lesson_02/lesson_02_screen.dart';
 import 'features/grammar/quiz_01/quiz_01_screen.dart';
+import 'features/vocabulary/vocab_audio_repository.dart';
 import 'features/vocabulary/vocab_screen.dart';
 
 const _ink = AppPalette.background;
@@ -22,17 +26,35 @@ const _yellow = AppPalette.secondary;
 const _panel = AppPalette.softPrimary;
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString(
-      'assets/fonts/OFL-ChironGoRoundTC.txt',
+      'assets/fonts/OFL-jf-openhuninn.txt',
     );
-    yield LicenseEntryWithLineBreaks(['Chiron GoRound TC'], license);
+    yield LicenseEntryWithLineBreaks(['jf open huninn'], license);
   });
-  runApp(const DopeEnglishApp());
+  final authController = StudentAuthController();
+  final audioRepository = AssetVocabAudioRepository(
+    cloudClient: FirebaseVocabAudioCloudClient(),
+  );
+  runApp(
+    DopeEnglishApp(
+      authController: authController,
+      audioRepository: audioRepository,
+    ),
+  );
+  unawaited(authController.initialize());
 }
 
 class DopeEnglishApp extends StatelessWidget {
-  const DopeEnglishApp({super.key});
+  const DopeEnglishApp({
+    this.authController,
+    this.audioRepository,
+    super.key,
+  });
+
+  final StudentAuthController? authController;
+  final VocabAudioRepository? audioRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +63,7 @@ class DopeEnglishApp extends StatelessWidget {
       title: 'DOPE ENGLISH',
       theme: ThemeData(
         brightness: Brightness.light,
-        fontFamily: 'ChironGoRoundTC',
+        fontFamily: 'JfOpenHuninn',
         scaffoldBackgroundColor: _ink,
         colorScheme: ColorScheme.fromSeed(
           seedColor: _blue,
@@ -59,13 +81,75 @@ class DopeEnglishApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const AppShell(),
+      home: authController == null
+          ? AppShell(vocabAudioRepository: audioRepository)
+          : AnimatedBuilder(
+              animation: authController!,
+              builder: (context, _) {
+                return switch (authController!.status) {
+                  StudentAuthStatus.initializing => const _AppLoadingScreen(),
+                  StudentAuthStatus.authenticated => AppShell(
+                      authController: authController,
+                      vocabAudioRepository: audioRepository,
+                    ),
+                  StudentAuthStatus.signedOut ||
+                  StudentAuthStatus.unavailable =>
+                    StudentLoginScreen(controller: authController!),
+                };
+              },
+            ),
+    );
+  }
+}
+
+class _AppLoadingScreen extends StatelessWidget {
+  const _AppLoadingScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: AppPalette.background,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.menu_book_rounded,
+                color: AppPalette.primaryDark,
+                size: 58,
+              ),
+              SizedBox(height: 14),
+              Text(
+                'DOPE ENGLISH',
+                style: TextStyle(
+                  color: AppPalette.primaryDark,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              SizedBox(height: 18),
+              CircularProgressIndicator(
+                color: AppPalette.secondaryDark,
+                strokeWidth: 4,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
 class AppShell extends StatefulWidget {
-  const AppShell({super.key});
+  const AppShell({
+    this.authController,
+    this.vocabAudioRepository,
+    super.key,
+  });
+
+  final StudentAuthController? authController;
+  final VocabAudioRepository? vocabAudioRepository;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -85,11 +169,11 @@ class _AppShellState extends State<AppShell> {
     return Scaffold(
       body: IndexedStack(
         index: _selectedTab,
-        children: const [
-          RoadmapPage(),
-          VocabularyScreen(),
-          AchievementsPage(),
-          ProfilePage(),
+        children: [
+          const RoadmapPage(),
+          VocabularyScreen(audioRepository: widget.vocabAudioRepository),
+          const AchievementsPage(),
+          ProfilePage(authController: widget.authController),
         ],
       ),
       bottomNavigationBar: NavigationBar(
@@ -755,16 +839,28 @@ class AchievementsPage extends StatelessWidget {
 }
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({this.authController, super.key});
+
+  final StudentAuthController? authController;
 
   @override
   Widget build(BuildContext context) {
-    return const SectionPlaceholder(
+    final profile = authController?.profile;
+    return SectionPlaceholder(
       title: 'Profile',
       chineseTitle: '帳戶',
       icon: Icons.person_rounded,
       accent: _pink,
-      message: '登入、Firebase 紀錄和設定會在 native data layer 接入。',
+      message: profile == null
+          ? '目前使用本機測試模式。'
+          : '${profile.displayName} (${profile.studentId})\n學習紀錄及讀音已連接 Firebase。',
+      actionLabel: authController == null ? null : '登出',
+      onAction: authController == null
+          ? null
+          : () {
+              AppSfx.instance.play(SfxCue.click);
+              authController!.logout();
+            },
     );
   }
 }
@@ -776,6 +872,8 @@ class SectionPlaceholder extends StatelessWidget {
     required this.icon,
     required this.accent,
     required this.message,
+    this.actionLabel,
+    this.onAction,
     super.key,
   });
 
@@ -784,6 +882,8 @@ class SectionPlaceholder extends StatelessWidget {
   final IconData icon;
   final Color accent;
   final String message;
+  final String? actionLabel;
+  final VoidCallback? onAction;
 
   @override
   Widget build(BuildContext context) {
@@ -832,6 +932,19 @@ class SectionPlaceholder extends StatelessWidget {
                 ],
               ),
             ),
+            if (actionLabel != null && onAction != null) ...[
+              const SizedBox(height: 18),
+              FilledButton.icon(
+                onPressed: onAction,
+                icon: const Icon(Icons.logout_rounded),
+                label: Text(actionLabel!),
+                style: FilledButton.styleFrom(
+                  backgroundColor: AppPalette.danger,
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(130, 48),
+                ),
+              ),
+            ],
           ],
         ),
       ),

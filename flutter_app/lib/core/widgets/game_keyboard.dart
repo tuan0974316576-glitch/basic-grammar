@@ -8,6 +8,12 @@ class GameKeyboard extends StatelessWidget {
     required this.onBackspace,
     required this.onSubmit,
     this.submitEnabled = true,
+    this.showSubmit = true,
+    this.showNumberRow = false,
+    this.numericOnly = false,
+    this.showSpace = true,
+    this.showApostrophe = true,
+    this.showUnderscore = false,
     super.key,
   });
 
@@ -15,6 +21,12 @@ class GameKeyboard extends StatelessWidget {
   final VoidCallback onBackspace;
   final VoidCallback onSubmit;
   final bool submitEnabled;
+  final bool showSubmit;
+  final bool showNumberRow;
+  final bool numericOnly;
+  final bool showSpace;
+  final bool showApostrophe;
+  final bool showUnderscore;
 
   static const _topRow = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
   static const _middleRow = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
@@ -35,7 +47,7 @@ class GameKeyboard extends StatelessWidget {
       builder: (context, constraints) {
         final compact =
             constraints.maxWidth < 430 || constraints.maxHeight < 230;
-        final keyHeight = compact ? 43.0 : 54.0;
+        final keyHeight = compact ? 42.0 : 54.0;
         final gap = compact ? 5.0 : 7.0;
         return Align(
           alignment: Alignment.bottomCenter,
@@ -44,78 +56,141 @@ class GameKeyboard extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _LetterRow(
-                  letters: _topRow,
-                  keyHeight: keyHeight,
-                  gap: gap,
-                  toneOffset: 0,
-                  onCharacter: onCharacter,
-                ),
-                SizedBox(height: gap),
-                FractionallySizedBox(
-                  widthFactor: 0.92,
-                  child: _LetterRow(
-                    letters: _middleRow,
+                if (numericOnly) ...[
+                  FractionallySizedBox(
+                    widthFactor: 0.72,
+                    child: _LetterRow(
+                      letters: const ['1', '2', '3', '4', '5'],
+                      keyHeight: keyHeight,
+                      gap: gap,
+                      toneOffset: 0,
+                      onCharacter: onCharacter,
+                    ),
+                  ),
+                  SizedBox(height: gap),
+                  FractionallySizedBox(
+                    widthFactor: 0.72,
+                    child: _LetterRow(
+                      letters: const ['6', '7', '8', '9', '0'],
+                      keyHeight: keyHeight,
+                      gap: gap,
+                      toneOffset: 5,
+                      onCharacter: onCharacter,
+                    ),
+                  ),
+                ] else ...[
+                  if (showNumberRow) ...[
+                    _LetterRow(
+                      letters: const [
+                        '1',
+                        '2',
+                        '3',
+                        '4',
+                        '5',
+                        '6',
+                        '7',
+                        '8',
+                        '9',
+                        '0',
+                      ],
+                      keyHeight: keyHeight,
+                      gap: gap,
+                      toneOffset: 0,
+                      onCharacter: onCharacter,
+                    ),
+                    SizedBox(height: gap),
+                  ],
+                  _LetterRow(
+                    letters: _topRow,
                     keyHeight: keyHeight,
                     gap: gap,
-                    toneOffset: 10,
+                    toneOffset: 0,
                     onCharacter: onCharacter,
                   ),
-                ),
-                SizedBox(height: gap),
-                FractionallySizedBox(
-                  widthFactor: 0.78,
-                  child: _LetterRow(
-                    letters: _bottomRow,
-                    keyHeight: keyHeight,
-                    gap: gap,
-                    toneOffset: 19,
-                    onCharacter: onCharacter,
+                  SizedBox(height: gap),
+                  FractionallySizedBox(
+                    widthFactor: 0.92,
+                    child: _LetterRow(
+                      letters: _middleRow,
+                      keyHeight: keyHeight,
+                      gap: gap,
+                      toneOffset: 10,
+                      onCharacter: onCharacter,
+                    ),
                   ),
-                ),
+                  SizedBox(height: gap),
+                  FractionallySizedBox(
+                    widthFactor: 0.78,
+                    child: _LetterRow(
+                      letters: _bottomRow,
+                      keyHeight: keyHeight,
+                      gap: gap,
+                      toneOffset: 19,
+                      onCharacter: onCharacter,
+                    ),
+                  ),
+                ],
                 SizedBox(height: gap),
                 SizedBox(
                   height: keyHeight,
                   child: Row(
                     children: [
+                      if (numericOnly) const Spacer(flex: 4),
                       _ActionKey(
                         tooltip: '刪除',
                         icon: Icons.backspace_rounded,
                         onTap: onBackspace,
                       ),
-                      SizedBox(width: gap),
-                      _TextKey(
-                        label: '-',
-                        tone: _keyTones[2],
-                        onTap: () => onCharacter('-'),
-                      ),
-                      SizedBox(width: gap),
-                      Expanded(
-                        flex: 5,
-                        child: _TextKey(
-                          label: 'SPACE',
-                          tone: const _KeyTone(
-                            Color(0xFFFFF9E6),
-                            Color(0xFFF6D26F),
-                          ),
-                          onTap: () => onCharacter(' '),
-                          isSpace: true,
+                      if (numericOnly) const Spacer(flex: 4),
+                      if (!numericOnly) ...[
+                        SizedBox(width: gap),
+                        _TextKey(
+                          label: '-',
+                          tone: _keyTones[2],
+                          onTap: () => onCharacter('-'),
                         ),
-                      ),
-                      SizedBox(width: gap),
-                      _TextKey(
-                        label: "'",
-                        tone: _keyTones[5],
-                        onTap: () => onCharacter("'"),
-                      ),
-                      SizedBox(width: gap),
-                      _ActionKey(
-                        key: const Key('game-keyboard-submit'),
-                        tooltip: '確認',
-                        icon: Icons.check_rounded,
-                        onTap: submitEnabled ? onSubmit : null,
-                        isSubmit: true,
-                      ),
+                        if (showUnderscore) ...[
+                          SizedBox(width: gap),
+                          _TextKey(
+                            label: '_',
+                            tone: _keyTones[3],
+                            onTap: () => onCharacter('_'),
+                          ),
+                        ],
+                        if (showSpace) ...[
+                          SizedBox(width: gap),
+                          Expanded(
+                            flex: 5,
+                            child: _TextKey(
+                              label: 'SPACE',
+                              tone: const _KeyTone(
+                                Color(0xFFFFF9E6),
+                                Color(0xFFF6D26F),
+                              ),
+                              onTap: () => onCharacter(' '),
+                              isSpace: true,
+                            ),
+                          ),
+                        ],
+                        if (showApostrophe) ...[
+                          SizedBox(width: gap),
+                          _TextKey(
+                            label: "'",
+                            tone: _keyTones[5],
+                            onTap: () => onCharacter("'"),
+                          ),
+                        ],
+                      ],
+                      if (showSubmit) ...[
+                        SizedBox(width: gap),
+                        _ActionKey(
+                          key: const Key('game-keyboard-submit'),
+                          tooltip: '確認',
+                          icon: Icons.check_rounded,
+                          onTap: submitEnabled ? onSubmit : null,
+                          isSubmit: true,
+                        ),
+                      ],
                     ],
                   ),
                 ),
