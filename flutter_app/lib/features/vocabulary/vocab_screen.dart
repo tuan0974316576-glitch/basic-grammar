@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
-import '../../core/widgets/game_keyboard.dart';
 import '../../core/widgets/stationery_frame.dart';
 import 'vocab_audio_repository.dart';
 import 'vocab_controller.dart';
@@ -35,20 +33,8 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   late final AnimationController _pulseController;
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  bool _keyboardVisible = false;
   bool _pulseInFlight = false;
   String? _speakingExample;
-
-  bool get _usesSystemKeyboard {
-    if (kIsWeb) return true;
-    return switch (defaultTargetPlatform) {
-      TargetPlatform.macOS ||
-      TargetPlatform.windows ||
-      TargetPlatform.linux =>
-        true,
-      _ => false,
-    };
-  }
 
   @override
   void initState() {
@@ -117,56 +103,10 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     super.dispose();
   }
 
-  void _handleInputTap() {
-    if (_usesSystemKeyboard) return;
-    setState(() => _keyboardVisible = !_keyboardVisible);
-    if (_keyboardVisible) {
-      _focusNode.requestFocus();
-    } else {
-      _focusNode.unfocus();
-    }
-    unawaited(AppSfx.instance.play(SfxCue.click));
-  }
-
-  void _insertText(String text) {
-    final value = _textController.value;
-    final selection = value.selection.isValid
-        ? value.selection
-        : TextSelection.collapsed(offset: value.text.length);
-    final start = selection.start.clamp(0, value.text.length);
-    final end = selection.end.clamp(0, value.text.length);
-    final updated = value.text.replaceRange(start, end, text);
-    _textController.value = TextEditingValue(
-      text: updated,
-      selection: TextSelection.collapsed(offset: start + text.length),
-    );
-    unawaited(_controller.updateQuery(updated));
-    unawaited(AppSfx.instance.play(SfxCue.step));
-  }
-
-  void _backspace() {
-    final value = _textController.value;
-    if (value.text.isEmpty) return;
-    final selection = value.selection.isValid
-        ? value.selection
-        : TextSelection.collapsed(offset: value.text.length);
-    var start = selection.start.clamp(0, value.text.length);
-    final end = selection.end.clamp(0, value.text.length);
-    if (start == end && start > 0) start -= 1;
-    final updated = value.text.replaceRange(start, end, '');
-    _textController.value = TextEditingValue(
-      text: updated,
-      selection: TextSelection.collapsed(offset: start),
-    );
-    unawaited(_controller.updateQuery(updated));
-    unawaited(AppSfx.instance.play(SfxCue.click));
-  }
-
   Future<void> _addWord() async {
     final result = await _controller.addSelected();
     if (!mounted) return;
     if (result == VocabAddResult.added) {
-      setState(() => _keyboardVisible = false);
       _focusNode.unfocus();
       unawaited(AppSfx.instance.play(SfxCue.correct));
       ScaffoldMessenger.of(context).showSnackBar(
@@ -247,6 +187,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
 
   @override
   Widget build(BuildContext context) {
+    final keyboardIsOpen = MediaQuery.viewInsetsOf(context).bottom > 0;
     return SafeArea(
       child: Column(
         children: [
@@ -270,18 +211,18 @@ class _VocabularyScreenState extends State<VocabularyScreen>
               ),
             )
           else ...[
-            if (_keyboardVisible && !_usesSystemKeyboard)
+            if (keyboardIsOpen)
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(14, 4, 14, 8),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     child: _VocabEntryPanel(
                       controller: _controller,
                       textController: _textController,
                       focusNode: _focusNode,
-                      usesSystemKeyboard: _usesSystemKeyboard,
-                      onInputTap: _handleInputTap,
                       onChanged: _controller.updateQuery,
                       onAdd: _addWord,
                     ),
@@ -295,8 +236,6 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                   controller: _controller,
                   textController: _textController,
                   focusNode: _focusNode,
-                  usesSystemKeyboard: _usesSystemKeyboard,
-                  onInputTap: _handleInputTap,
                   onChanged: _controller.updateQuery,
                   onAdd: _addWord,
                 ),
@@ -311,19 +250,6 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                 ),
               ),
             ],
-            if (_keyboardVisible && !_usesSystemKeyboard)
-              Container(
-                key: const Key('vocab-game-keyboard'),
-                width: double.infinity,
-                color: AppPalette.background,
-                padding: const EdgeInsets.fromLTRB(6, 5, 6, 10),
-                child: GameKeyboard(
-                  onCharacter: _insertText,
-                  onBackspace: _backspace,
-                  onSubmit: _addWord,
-                  submitEnabled: _controller.canAdd,
-                ),
-              ),
           ],
         ],
       ),
@@ -446,8 +372,6 @@ class _VocabEntryPanel extends StatelessWidget {
     required this.controller,
     required this.textController,
     required this.focusNode,
-    required this.usesSystemKeyboard,
-    required this.onInputTap,
     required this.onChanged,
     required this.onAdd,
   });
@@ -455,8 +379,6 @@ class _VocabEntryPanel extends StatelessWidget {
   final VocabController controller;
   final TextEditingController textController;
   final FocusNode focusNode;
-  final bool usesSystemKeyboard;
-  final VoidCallback onInputTap;
   final ValueChanged<String> onChanged;
   final VoidCallback onAdd;
 
@@ -484,15 +406,14 @@ class _VocabEntryPanel extends StatelessWidget {
             key: const Key('vocab-word-input'),
             controller: textController,
             focusNode: focusNode,
-            readOnly: !usesSystemKeyboard,
             showCursor: true,
-            enableInteractiveSelection: usesSystemKeyboard,
+            enableInteractiveSelection: true,
             autocorrect: false,
+            enableSuggestions: false,
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.done,
-            onTap: onInputTap,
             onChanged: onChanged,
-            onSubmitted: (_) => onAdd(),
+            onSubmitted: (_) => focusNode.unfocus(),
             decoration: InputDecoration(
               hintText: '輸入英文生字或詞語',
               filled: true,

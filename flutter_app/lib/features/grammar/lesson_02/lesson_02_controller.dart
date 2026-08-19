@@ -192,6 +192,19 @@ class Lesson02Controller extends ChangeNotifier {
     return Lesson02Event.inputChanged;
   }
 
+  Lesson02Event updateCorrection(String value) {
+    if (_stage != Lesson02Stage.correction) return Lesson02Event.ignored;
+    var next = value.length > 80 ? value.substring(0, 80) : value;
+    if (next.isNotEmpty && RegExp(r'^[a-z]').hasMatch(next)) {
+      next = '${next[0].toUpperCase()}${next.substring(1)}';
+    }
+    if (next == _typedCorrection) return Lesson02Event.ignored;
+    _typedCorrection = next;
+    _feedback = null;
+    notifyListeners();
+    return Lesson02Event.inputChanged;
+  }
+
   Lesson02Event submitCorrection() {
     if (_stage != Lesson02Stage.correction) return Lesson02Event.ignored;
     if (_typedCorrection.trim().isEmpty) {

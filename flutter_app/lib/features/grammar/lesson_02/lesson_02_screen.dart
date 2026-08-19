@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
-import '../../../core/widgets/game_keyboard.dart';
 import '../../../core/widgets/stationery_frame.dart';
 import 'lesson_02_controller.dart';
 import 'lesson_02_question.dart';
@@ -670,46 +670,99 @@ class _TokenButton extends StatelessWidget {
   }
 }
 
-class _CorrectionStage extends StatelessWidget {
+class _CorrectionStage extends StatefulWidget {
   const _CorrectionStage({required this.controller, required this.onEvent});
 
   final Lesson02Controller controller;
   final ValueChanged<Lesson02Event> onEvent;
 
   @override
+  State<_CorrectionStage> createState() => _CorrectionStageState();
+}
+
+class _CorrectionStageState extends State<_CorrectionStage> {
+  late final TextEditingController _textController;
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _textController = TextEditingController(
+      text: widget.controller.typedCorrection,
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _focusNode.requestFocus();
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant _CorrectionStage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _syncText();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  void _syncText() {
+    final expected = widget.controller.typedCorrection;
+    if (_textController.text == expected) return;
+    final offset = _textController.selection.baseOffset.clamp(
+      0,
+      expected.length,
+    );
+    _textController.value = TextEditingValue(
+      text: expected,
+      selection: TextSelection.collapsed(offset: offset),
+    );
+  }
+
+  void _handleChanged(String value) {
+    widget.onEvent(widget.controller.updateCorrection(value));
+    _syncText();
+  }
+
+  void _submit() {
+    _focusNode.unfocus();
+    widget.onEvent(widget.controller.submitCorrection());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final compact = constraints.maxHeight < 620;
-        final keyboardHeight =
-            compact ? 190.0 : math.min(238.0, constraints.maxHeight * 0.42);
-        return Column(
-          children: [
-            SizedBox(
-              height: compact ? 82 : 104,
-              child: _SentencePrompt(
-                question: controller.currentQuestion,
-                instruction: '',
-                compact: true,
-              ),
+        return SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: compact ? 82 : 104,
+                  child: _SentencePrompt(
+                    question: widget.controller.currentQuestion,
+                    instruction: '',
+                    compact: true,
+                  ),
+                ),
+                if (widget.controller.feedback case final feedback?) ...[
+                  _CompactFeedback(feedback: feedback),
+                  SizedBox(height: compact ? 7 : 10),
+                ],
+                _AnswerField(
+                  controller: _textController,
+                  focusNode: _focusNode,
+                  onChanged: _handleChanged,
+                  onSubmitted: _submit,
+                ),
+              ],
             ),
-            if (controller.feedback case final feedback?) ...[
-              _CompactFeedback(feedback: feedback),
-              SizedBox(height: compact ? 7 : 10),
-            ],
-            _AnswerField(value: controller.typedCorrection),
-            const Spacer(),
-            SizedBox(height: compact ? 6 : 10),
-            SizedBox(
-              height: keyboardHeight,
-              child: GameKeyboard(
-                onCharacter: (character) =>
-                    onEvent(controller.appendCharacter(character)),
-                onBackspace: () => onEvent(controller.backspace()),
-                onSubmit: () => onEvent(controller.submitCorrection()),
-              ),
-            ),
-          ],
+          ),
         );
       },
     );
@@ -717,40 +770,57 @@ class _CorrectionStage extends StatelessWidget {
 }
 
 class _AnswerField extends StatelessWidget {
-  const _AnswerField({required this.value});
+  const _AnswerField({
+    required this.controller,
+    required this.focusNode,
+    required this.onChanged,
+    required this.onSubmitted,
+  });
 
-  final String value;
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final ValueChanged<String> onChanged;
+  final VoidCallback onSubmitted;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 61,
       child: StationeryFrame(
         key: const Key('lesson-02-answer-field'),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        padding: EdgeInsets.zero,
         radius: 18,
         ringWidth: 2,
         shadowDepth: 4,
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                value.isEmpty ? 'Type the correct sentence' : value,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: value.isEmpty
-                      ? const Color(0xFF8FA1A5)
-                      : const Color(0xFF172B31),
-                  fontSize: 18,
-                  height: 1.2,
-                  fontWeight: value.isEmpty ? FontWeight.w600 : FontWeight.w900,
-                ),
-              ),
-            ),
-            Container(width: 2, height: 24, color: _blue),
+        child: TextField(
+          key: const Key('lesson-02-correction-input'),
+          controller: controller,
+          focusNode: focusNode,
+          autofocus: true,
+          maxLength: 80,
+          maxLines: 2,
+          minLines: 1,
+          autocorrect: false,
+          enableSuggestions: false,
+          textCapitalization: TextCapitalization.sentences,
+          textInputAction: TextInputAction.done,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z '\-.,!?]")),
           ],
+          onChanged: onChanged,
+          onSubmitted: (_) => onSubmitted(),
+          decoration: const InputDecoration(
+            hintText: 'Type the correct sentence',
+            counterText: '',
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 15),
+          ),
+          style: const TextStyle(
+            color: Color(0xFF172B31),
+            fontSize: 18,
+            height: 1.2,
+            fontWeight: FontWeight.w900,
+          ),
         ),
       ),
     );

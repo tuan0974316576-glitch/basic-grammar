@@ -1,14 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
-import '../../core/widgets/game_keyboard.dart';
 import 'student_auth_controller.dart';
-
-enum _LoginField { studentId, pin }
 
 class StudentLoginScreen extends StatefulWidget {
   const StudentLoginScreen({required this.controller, super.key});
@@ -22,18 +19,8 @@ class StudentLoginScreen extends StatefulWidget {
 class _StudentLoginScreenState extends State<StudentLoginScreen> {
   final _studentIdController = TextEditingController();
   final _pinController = TextEditingController();
-  _LoginField _activeField = _LoginField.studentId;
-
-  bool get _usesSystemKeyboard {
-    if (kIsWeb) return true;
-    return switch (defaultTargetPlatform) {
-      TargetPlatform.macOS ||
-      TargetPlatform.windows ||
-      TargetPlatform.linux =>
-        true,
-      _ => false,
-    };
-  }
+  final _studentIdFocusNode = FocusNode();
+  final _pinFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -46,48 +33,13 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
     widget.controller.removeListener(_refresh);
     _studentIdController.dispose();
     _pinController.dispose();
+    _studentIdFocusNode.dispose();
+    _pinFocusNode.dispose();
     super.dispose();
   }
 
   void _refresh() {
     if (mounted) setState(() {});
-  }
-
-  void _activate(_LoginField field) {
-    if (_activeField == field) return;
-    unawaited(AppSfx.instance.play(SfxCue.click));
-    setState(() => _activeField = field);
-  }
-
-  void _typeCharacter(String character) {
-    final controller = _activeField == _LoginField.studentId
-        ? _studentIdController
-        : _pinController;
-    final limit = _activeField == _LoginField.studentId ? 16 : 8;
-    if (controller.text.length >= limit) return;
-    final next = _activeField == _LoginField.studentId
-        ? '${controller.text}$character'.toUpperCase()
-        : '${controller.text}$character';
-    controller.value = TextEditingValue(
-      text: next,
-      selection: TextSelection.collapsed(offset: next.length),
-    );
-    unawaited(AppSfx.instance.play(SfxCue.click));
-    setState(() {});
-  }
-
-  void _backspace() {
-    final controller = _activeField == _LoginField.studentId
-        ? _studentIdController
-        : _pinController;
-    if (controller.text.isEmpty) return;
-    final next = controller.text.substring(0, controller.text.length - 1);
-    controller.value = TextEditingValue(
-      text: next,
-      selection: TextSelection.collapsed(offset: next.length),
-    );
-    unawaited(AppSfx.instance.play(SfxCue.click));
-    setState(() {});
   }
 
   Future<void> _login() async {
@@ -100,7 +52,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
     unawaited(AppSfx.instance.play(success ? SfxCue.correct : SfxCue.wrong));
     if (!success) {
       _pinController.clear();
-      setState(() => _activeField = _LoginField.pin);
+      _pinFocusNode.requestFocus();
     }
   }
 
@@ -108,109 +60,70 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppPalette.background,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: const EdgeInsets.fromLTRB(18, 14, 18, 12),
-          child: Column(
-            children: [
-              const _LoginHeader(),
-              const SizedBox(height: 12),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 560),
-                child: Column(
-                  children: [
-                    _LoginStatus(
-                      message: widget.controller.message,
-                      isError: widget.controller.status ==
-                              StudentAuthStatus.unavailable ||
-                          widget.controller.message.contains('不正確') ||
-                          widget.controller.message.contains('未能') ||
-                          widget.controller.message.contains('請輸入正確'),
-                    ),
-                    const SizedBox(height: 10),
-                    if (_usesSystemKeyboard)
-                      _DesktopLoginFields(
-                        studentIdController: _studentIdController,
-                        pinController: _pinController,
-                        onSubmit: _login,
-                      )
-                    else ...[
-                      _GameLoginField(
-                        key: const Key('student-id-field'),
-                        label: '學號',
-                        value: _studentIdController.text,
-                        placeholder: '例如 S001',
-                        active: _activeField == _LoginField.studentId,
-                        onTap: () => _activate(_LoginField.studentId),
-                      ),
-                      const SizedBox(height: 9),
-                      _GameLoginField(
-                        key: const Key('student-pin-field'),
-                        label: 'PIN',
-                        value: _pinController.text,
-                        placeholder: '4 至 8 位數字',
-                        active: _activeField == _LoginField.pin,
-                        obscure: true,
-                        onTap: () => _activate(_LoginField.pin),
-                      ),
-                    ],
-                    const SizedBox(height: 12),
-                    FilledButton(
-                      key: const Key('student-login-button'),
-                      onPressed: widget.controller.isSubmitting ? null : _login,
-                      style: FilledButton.styleFrom(
-                        minimumSize: const Size.fromHeight(52),
-                        backgroundColor: AppPalette.secondary,
-                        foregroundColor: const Color(0xFF594512),
-                        disabledBackgroundColor: AppPalette.border,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          side: const BorderSide(
-                            color: AppPalette.secondaryDark,
-                            width: 2,
-                          ),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 560),
+              child: Column(
+                children: [
+                  const _LoginHeader(),
+                  const SizedBox(height: 12),
+                  _LoginStatus(
+                    message: widget.controller.message,
+                    isError: widget.controller.status ==
+                            StudentAuthStatus.unavailable ||
+                        widget.controller.message.contains('不正確') ||
+                        widget.controller.message.contains('未能') ||
+                        widget.controller.message.contains('請輸入正確'),
+                  ),
+                  const SizedBox(height: 10),
+                  _LoginFields(
+                    studentIdController: _studentIdController,
+                    pinController: _pinController,
+                    studentIdFocusNode: _studentIdFocusNode,
+                    pinFocusNode: _pinFocusNode,
+                    onSubmit: _login,
+                  ),
+                  const SizedBox(height: 12),
+                  FilledButton(
+                    key: const Key('student-login-button'),
+                    onPressed: widget.controller.isSubmitting ? null : _login,
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size.fromHeight(52),
+                      backgroundColor: AppPalette.secondary,
+                      foregroundColor: const Color(0xFF594512),
+                      disabledBackgroundColor: AppPalette.border,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        side: const BorderSide(
+                          color: AppPalette.secondaryDark,
+                          width: 2,
                         ),
                       ),
-                      child: widget.controller.isSubmitting
-                          ? const SizedBox.square(
-                              dimension: 22,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 3,
-                                color: AppPalette.primaryDark,
-                              ),
-                            )
-                          : const Text(
-                              '登入',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w900,
-                              ),
+                    ),
+                    child: widget.controller.isSubmitting
+                        ? const SizedBox.square(
+                            dimension: 22,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 3,
+                              color: AppPalette.primaryDark,
                             ),
-                    ),
-                  ],
-                ),
-              ),
-              if (!_usesSystemKeyboard) ...[
-                const SizedBox(height: 12),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: GameKeyboard(
-                      key: const Key('student-login-game-keyboard'),
-                      onCharacter: _typeCharacter,
-                      onBackspace: _backspace,
-                      onSubmit: _login,
-                      showSubmit: false,
-                      showNumberRow: _activeField == _LoginField.studentId,
-                      numericOnly: _activeField == _LoginField.pin,
-                      showSpace: false,
-                      showApostrophe: false,
-                      showUnderscore: _activeField == _LoginField.studentId,
-                    ),
+                          )
+                        : const Text(
+                            '登入',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
                   ),
-                ),
-              ],
-            ],
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -305,89 +218,19 @@ class _LoginStatus extends StatelessWidget {
   }
 }
 
-class _GameLoginField extends StatelessWidget {
-  const _GameLoginField({
-    required this.label,
-    required this.value,
-    required this.placeholder,
-    required this.active,
-    required this.onTap,
-    this.obscure = false,
-    super.key,
-  });
-
-  final String label;
-  final String value;
-  final String placeholder;
-  final bool active;
-  final bool obscure;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      label: label,
-      textField: true,
-      child: Material(
-        color: AppPalette.paper,
-        borderRadius: BorderRadius.circular(12),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            height: 56,
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: active ? AppPalette.primaryDark : AppPalette.border,
-                width: active ? 2.5 : 2,
-              ),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 52,
-                  child: Text(
-                    label,
-                    style: const TextStyle(
-                      color: AppPalette.primaryDark,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    value.isEmpty
-                        ? placeholder
-                        : obscure
-                            ? '●' * value.length
-                            : value,
-                    style: TextStyle(
-                      color: value.isEmpty ? AppPalette.muted : AppPalette.ink,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _DesktopLoginFields extends StatelessWidget {
-  const _DesktopLoginFields({
+class _LoginFields extends StatelessWidget {
+  const _LoginFields({
     required this.studentIdController,
     required this.pinController,
+    required this.studentIdFocusNode,
+    required this.pinFocusNode,
     required this.onSubmit,
   });
 
   final TextEditingController studentIdController;
   final TextEditingController pinController;
+  final FocusNode studentIdFocusNode;
+  final FocusNode pinFocusNode;
   final VoidCallback onSubmit;
 
   @override
@@ -399,26 +242,46 @@ class _DesktopLoginFields extends StatelessWidget {
     return Column(
       children: [
         TextField(
+          key: const Key('student-id-field'),
           controller: studentIdController,
+          focusNode: studentIdFocusNode,
           textCapitalization: TextCapitalization.characters,
-          maxLength: 16,
+          textInputAction: TextInputAction.next,
+          autocorrect: false,
+          enableSuggestions: false,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_-]')),
+            LengthLimitingTextInputFormatter(16),
+            TextInputFormatter.withFunction((oldValue, newValue) {
+              return newValue.copyWith(
+                text: newValue.text.toUpperCase(),
+                composing: TextRange.empty,
+              );
+            }),
+          ],
+          onSubmitted: (_) => pinFocusNode.requestFocus(),
           decoration: const InputDecoration(
             labelText: '學號',
             hintText: '例如 S001',
-            counterText: '',
             border: border,
           ),
         ),
         const SizedBox(height: 9),
         TextField(
+          key: const Key('student-pin-field'),
           controller: pinController,
+          focusNode: pinFocusNode,
           obscureText: true,
+          obscuringCharacter: '●',
           keyboardType: TextInputType.number,
-          maxLength: 8,
+          textInputAction: TextInputAction.done,
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(8),
+          ],
           onSubmitted: (_) => onSubmit(),
           decoration: const InputDecoration(
             labelText: 'PIN',
-            counterText: '',
             border: border,
           ),
         ),

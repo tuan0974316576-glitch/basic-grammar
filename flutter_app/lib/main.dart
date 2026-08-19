@@ -29,9 +29,9 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString(
-      'assets/fonts/OFL-jf-openhuninn.txt',
+      'assets/fonts/OFL-Chiron-GoRound-TC.md',
     );
-    yield LicenseEntryWithLineBreaks(['jf open huninn'], license);
+    yield LicenseEntryWithLineBreaks(['Chiron GoRound TC'], license);
   });
   final authController = StudentAuthController();
   final audioRepository = AssetVocabAudioRepository(
@@ -63,7 +63,7 @@ class DopeEnglishApp extends StatelessWidget {
       title: 'DOPE ENGLISH',
       theme: ThemeData(
         brightness: Brightness.light,
-        fontFamily: 'JfOpenHuninn',
+        fontFamily: 'ChironGoRoundTC',
         scaffoldBackgroundColor: _ink,
         colorScheme: ColorScheme.fromSeed(
           seedColor: _blue,
@@ -71,6 +71,7 @@ class DopeEnglishApp extends StatelessWidget {
           surface: AppPalette.paper,
         ),
         textTheme: ThemeData.light().textTheme.apply(
+              fontFamily: 'ChironGoRoundTC',
               bodyColor: _text,
               displayColor: _text,
             ),

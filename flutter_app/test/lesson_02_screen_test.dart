@@ -60,7 +60,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('game keyboard is docked and has one confirm key',
+  testWidgets('correction uses the native keyboard and Done submits',
       (tester) async {
     await setCompactPhoneSize(tester);
     final controller = Lesson02Controller.forQuestions([_zeroVerbQuestion]);
@@ -70,8 +70,22 @@ void main() {
     await tester.pumpWidget(appFor(controller));
 
     expect(find.byKey(const Key('lesson-02-answer-field')), findsOneWidget);
-    expect(find.byKey(const Key('game-keyboard-submit')), findsOneWidget);
-    expect(find.byIcon(Icons.backspace_rounded), findsOneWidget);
+    final input = tester.widget<TextField>(
+      find.byKey(const Key('lesson-02-correction-input')),
+    );
+    expect(input.readOnly, isFalse);
+    expect(input.textInputAction, TextInputAction.done);
+
+    await tester.enterText(
+      find.byKey(const Key('lesson-02-correction-input')),
+      'i am happy',
+    );
+    await tester.pump();
+    expect(controller.typedCorrection, 'I am happy');
+
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('lesson-02-next')), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 

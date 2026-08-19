@@ -20,6 +20,8 @@ void main() {
     final navigation = tester.widget<NavigationBar>(find.byType(NavigationBar));
 
     expect(Theme.of(context).brightness, Brightness.light);
+    expect(
+        Theme.of(context).textTheme.bodyMedium?.fontFamily, 'ChironGoRoundTC');
     expect(Theme.of(context).scaffoldBackgroundColor, AppPalette.background);
     expect(navigation.backgroundColor, AppPalette.paper);
     expect(navigation.indicatorColor, AppPalette.softPrimary);

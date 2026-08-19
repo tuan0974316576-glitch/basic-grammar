@@ -33,16 +33,22 @@ void main() {
     );
   }
 
-  testWidgets('mobile input toggles the game keyboard', (tester) async {
+  testWidgets('mobile input uses the native editable text field',
+      (tester) async {
     await tester.pumpWidget(app());
 
     await tester.tap(find.byKey(const Key('vocab-word-input')));
     await tester.pump();
-    expect(find.byKey(const Key('vocab-game-keyboard')), findsOneWidget);
-
-    await tester.tap(find.byKey(const Key('vocab-word-input')));
-    await tester.pump();
+    final input = tester.widget<TextField>(
+      find.byKey(const Key('vocab-word-input')),
+    );
+    expect(input.readOnly, isFalse);
+    expect(input.textInputAction, TextInputAction.done);
     expect(find.byKey(const Key('vocab-game-keyboard')), findsNothing);
+
+    await tester.enterText(find.byKey(const Key('vocab-word-input')), 'have');
+    await tester.pump();
+    expect(controller.query, 'have');
   });
 
   testWidgets('adds one row containing two selected meanings', (tester) async {
