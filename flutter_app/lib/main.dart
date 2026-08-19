@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'core/app_sfx.dart';
 import 'features/grammar/lesson_01/lesson_01_screen.dart';
 import 'features/grammar/lesson_02/lesson_02_screen.dart';
+import 'features/grammar/quiz_01/quiz_01_screen.dart';
 
 const _ink = Color(0xFF101C20);
 const _blue = Color(0xFF25B4F3);
@@ -206,6 +207,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
     final lessonScreen = switch (node.index) {
       0 => const Lesson01Screen(),
       1 => const Lesson02Screen(),
+      2 => const Quiz01Screen(),
       _ => null,
     };
     if (lessonScreen == null) return;

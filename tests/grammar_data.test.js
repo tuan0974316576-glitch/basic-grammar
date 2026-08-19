@@ -43,6 +43,13 @@ assert.ok(data.VERB_COUNT_QUESTIONS.some((question) => question.explanation.incl
 assert.ok(data.VERB_COUNT_QUESTIONS.some((question) => question.explanation.includes("are 是 be 動詞")));
 assert.strictEqual(data.VERB_COUNT_QUESTIONS.some((question) => question.explanation.includes("是 現在式動詞")), false);
 
+assert.strictEqual(data.SENTENCE_BUILD_QUESTIONS.length, 50);
+assert.strictEqual(new Set(data.SENTENCE_BUILD_QUESTIONS.map((question) => question.id)).size, 50);
+assert.ok(data.SENTENCE_BUILD_QUESTIONS.every((question) => question.distractors.length >= 2));
+assert.ok(data.SENTENCE_BUILD_QUESTIONS.some((question) => (
+  question.zh === "我的書很新。" && question.answer.join(" ") === "My book is new."
+)));
+
 const lesson2Text = data.VERB_COUNT_QUESTIONS
   .map((question) => [question.sentence, question.zh, question.explanation, question.correction].join("\n"))
   .join("\n");

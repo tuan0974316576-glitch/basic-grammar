@@ -21,4 +21,19 @@ void main() {
     expect(find.text('分辨句子是否有主動動詞。'), findsOneWidget);
     expect(find.text('開始課堂'), findsOneWidget);
   });
+
+  testWidgets('starts Quiz 01 from the third roadmap node',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+    await tester.tap(find.byIcon(Icons.videocam_rounded).first);
+    await tester.pumpAndSettle();
+
+    expect(find.text('重組句子'), findsOneWidget);
+    await tester.tap(find.text('開始課堂'));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('quiz-01-answer-line')), findsOneWidget);
+    expect(find.byKey(const Key('quiz-01-word-bank')), findsOneWidget);
+    expect(find.text('1/10'), findsOneWidget);
+  });
 }

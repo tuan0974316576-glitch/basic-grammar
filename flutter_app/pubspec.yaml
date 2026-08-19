@@ -21,4 +21,5 @@ flutter:
   assets:
     - assets/data/lesson_01.json
     - assets/data/lesson_02.json
+    - assets/data/quiz_01.json
     - assets/audio/sfx/
