@@ -1,0 +1,752 @@
+[
+  {
+    "id": "ps001",
+    "type": "pronoun-sentence",
+    "sentence": "___ is a doctor.",
+    "zh": "他是一名醫生。",
+    "answer": "He",
+    "choices": [
+      "He",
+      "him",
+      "We",
+      "His"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 is 前面，是主語位置，所以要用主語代名詞 He。"
+  },
+  {
+    "id": "ps002",
+    "type": "pronoun-sentence",
+    "sentence": "___ am happy today.",
+    "zh": "我今天很開心。",
+    "answer": "I",
+    "choices": [
+      "I",
+      "me",
+      "my",
+      "mine"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 am 前面，是主語位置，所以要用主語代名詞 I。"
+  },
+  {
+    "id": "ps003",
+    "type": "pronoun-sentence",
+    "sentence": "___ are my classmates.",
+    "zh": "他們是我的同學。",
+    "answer": "They",
+    "choices": [
+      "They",
+      "them",
+      "their",
+      "theirs"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 are 前面，是主語位置，所以要用主語代名詞 They。"
+  },
+  {
+    "id": "ps004",
+    "type": "pronoun-sentence",
+    "sentence": "___ are in the classroom.",
+    "zh": "我們在課室裏。",
+    "answer": "We",
+    "choices": [
+      "We",
+      "us",
+      "our",
+      "ours"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 are 前面，是主語位置，所以要用主語代名詞 We。"
+  },
+  {
+    "id": "ps005",
+    "type": "pronoun-sentence",
+    "sentence": "___ is under the chair.",
+    "zh": "它在椅子下。",
+    "answer": "It",
+    "choices": [
+      "It",
+      "it",
+      "its",
+      "They"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 is 前面，是主語位置，所以要用主語代名詞 It。"
+  },
+  {
+    "id": "ps006",
+    "type": "pronoun-sentence",
+    "sentence": "___ is my sister.",
+    "zh": "她是我的姐姐。",
+    "answer": "She",
+    "choices": [
+      "She",
+      "her",
+      "hers",
+      "their"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 is 前面，是主語位置，所以要用主語代名詞 She。"
+  },
+  {
+    "id": "ps007",
+    "type": "pronoun-sentence",
+    "sentence": "___ are very kind.",
+    "zh": "你很友善。",
+    "answer": "You",
+    "choices": [
+      "You",
+      "your",
+      "yours",
+      "us"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 are 前面，是主語位置，所以要用主語代名詞 You。"
+  },
+  {
+    "id": "ps008",
+    "type": "pronoun-sentence",
+    "sentence": "___ can swim well.",
+    "zh": "我們很會游泳。",
+    "answer": "We",
+    "choices": [
+      "We",
+      "us",
+      "our",
+      "ours"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 can 前面，是主語位置，所以要用主語代名詞 We。"
+  },
+  {
+    "id": "ps009",
+    "type": "pronoun-sentence",
+    "sentence": "___ has a red bag.",
+    "zh": "他有一個紅色書包。",
+    "answer": "He",
+    "choices": [
+      "He",
+      "him",
+      "his",
+      "they"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 has 前面，是主語位置，所以要用主語代名詞 He。"
+  },
+  {
+    "id": "ps010",
+    "type": "pronoun-sentence",
+    "sentence": "___ like English.",
+    "zh": "他們喜歡英文。",
+    "answer": "They",
+    "choices": [
+      "They",
+      "them",
+      "their",
+      "theirs"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 like 前面，是主語位置，所以要用主語代名詞 They。"
+  },
+  {
+    "id": "ps011",
+    "type": "pronoun-sentence",
+    "sentence": "___ goes to school by bus.",
+    "zh": "她坐巴士上學。",
+    "answer": "She",
+    "choices": [
+      "She",
+      "her",
+      "hers",
+      "we"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 goes 前面，是主語位置，所以要用主語代名詞 She。"
+  },
+  {
+    "id": "ps012",
+    "type": "pronoun-sentence",
+    "sentence": "___ are ready now.",
+    "zh": "你們現在準備好了。",
+    "answer": "You",
+    "choices": [
+      "You",
+      "your",
+      "yours",
+      "me"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 are 前面，是主語位置，所以要用主語代名詞 You。"
+  },
+  {
+    "id": "ps013",
+    "type": "pronoun-sentence",
+    "sentence": "___ is a small cat.",
+    "zh": "牠是一隻小貓。",
+    "answer": "It",
+    "choices": [
+      "It",
+      "it",
+      "its",
+      "them"
+    ],
+    "slotType": "subject",
+    "explanation": "空格在 is 前面，是主語位置，所以要用主語代名詞 It。"
+  },
+  {
+    "id": "ps014",
+    "type": "pronoun-sentence",
+    "sentence": "Tom is talking to ___.",
+    "zh": "Tom 正在和她說話。",
+    "answer": "her",
+    "choices": [
+      "she",
+      "her",
+      "their",
+      "We"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 to 後面，是非主語位置，所以要用非主語代名詞 her。"
+  },
+  {
+    "id": "ps015",
+    "type": "pronoun-sentence",
+    "sentence": "Mary is helping ___.",
+    "zh": "Mary 正在幫他。",
+    "answer": "him",
+    "choices": [
+      "he",
+      "him",
+      "their",
+      "They"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 helping 後面，是非主語位置，所以要用非主語代名詞 him。"
+  },
+  {
+    "id": "ps016",
+    "type": "pronoun-sentence",
+    "sentence": "The teacher is helping ___.",
+    "zh": "老師正在幫我們。",
+    "answer": "us",
+    "choices": [
+      "We",
+      "us",
+      "our",
+      "They"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 helping 後面，是非主語位置，所以要用非主語代名詞 us。"
+  },
+  {
+    "id": "ps017",
+    "type": "pronoun-sentence",
+    "sentence": "This gift is for ___.",
+    "zh": "這份禮物是給你的。",
+    "answer": "you",
+    "choices": [
+      "you",
+      "your",
+      "we",
+      "They"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 for 後面，是非主語位置，所以要用非主語代名詞 you。"
+  },
+  {
+    "id": "ps018",
+    "type": "pronoun-sentence",
+    "sentence": "Mum is looking at ___.",
+    "zh": "媽媽正在看我。",
+    "answer": "me",
+    "choices": [
+      "I",
+      "me",
+      "my",
+      "We"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 at 後面，是非主語位置，所以要用非主語代名詞 me。"
+  },
+  {
+    "id": "ps019",
+    "type": "pronoun-sentence",
+    "sentence": "Dad is calling ___.",
+    "zh": "爸爸正在叫他們。",
+    "answer": "them",
+    "choices": [
+      "They",
+      "them",
+      "their",
+      "We"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 calling 後面，是非主語位置，所以要用非主語代名詞 them。"
+  },
+  {
+    "id": "ps020",
+    "type": "pronoun-sentence",
+    "sentence": "I am sitting with ___.",
+    "zh": "我正和他坐在一起。",
+    "answer": "him",
+    "choices": [
+      "he",
+      "him",
+      "their",
+      "They"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 with 後面，是非主語位置，所以要用非主語代名詞 him。"
+  },
+  {
+    "id": "ps021",
+    "type": "pronoun-sentence",
+    "sentence": "Please listen to ___.",
+    "zh": "請聽我說。",
+    "answer": "me",
+    "choices": [
+      "I",
+      "me",
+      "my",
+      "We"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 to 後面，是非主語位置，所以要用非主語代名詞 me。"
+  },
+  {
+    "id": "ps022",
+    "type": "pronoun-sentence",
+    "sentence": "The coach is watching ___.",
+    "zh": "教練正在看我們。",
+    "answer": "us",
+    "choices": [
+      "We",
+      "us",
+      "our",
+      "They"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 watching 後面，是非主語位置，所以要用非主語代名詞 us。"
+  },
+  {
+    "id": "ps023",
+    "type": "pronoun-sentence",
+    "sentence": "He is waiting for ___.",
+    "zh": "他正在等她。",
+    "answer": "her",
+    "choices": [
+      "she",
+      "her",
+      "their",
+      "We"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 for 後面，是非主語位置，所以要用非主語代名詞 her。"
+  },
+  {
+    "id": "ps024",
+    "type": "pronoun-sentence",
+    "sentence": "Anna is playing with ___.",
+    "zh": "Anna 正在和他們玩。",
+    "answer": "them",
+    "choices": [
+      "They",
+      "them",
+      "their",
+      "We"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 with 後面，是非主語位置，所以要用非主語代名詞 them。"
+  },
+  {
+    "id": "ps025",
+    "type": "pronoun-sentence",
+    "sentence": "The loud noise scares ___.",
+    "zh": "巨響嚇到我。",
+    "answer": "me",
+    "choices": [
+      "I",
+      "me",
+      "my",
+      "We"
+    ],
+    "slotType": "object",
+    "explanation": "空格在 scares 後面，是非主語位置，所以要用非主語代名詞 me。"
+  },
+  {
+    "id": "ps026",
+    "type": "pronoun-sentence",
+    "sentence": "This is ___ book.",
+    "zh": "這是我的書。",
+    "answer": "my",
+    "choices": [
+      "I",
+      "me",
+      "my",
+      "mine"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 book，表示「我的」，所以要用 my。"
+  },
+  {
+    "id": "ps027",
+    "type": "pronoun-sentence",
+    "sentence": "That is ___ pencil.",
+    "zh": "那是你的鉛筆。",
+    "answer": "your",
+    "choices": [
+      "you",
+      "your",
+      "yours",
+      "we"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 pencil，表示「你的」，所以要用 your。"
+  },
+  {
+    "id": "ps028",
+    "type": "pronoun-sentence",
+    "sentence": "He is ___ brother.",
+    "zh": "他是她的哥哥。",
+    "answer": "her",
+    "choices": [
+      "she",
+      "her",
+      "hers",
+      "him"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 brother，表示「她的」，所以要用 her。"
+  },
+  {
+    "id": "ps029",
+    "type": "pronoun-sentence",
+    "sentence": "This is ___ sister.",
+    "zh": "這是你的姐姐。",
+    "answer": "your",
+    "choices": [
+      "theirs",
+      "it",
+      "we",
+      "your"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 sister，表示「你的」，所以要用 your。"
+  },
+  {
+    "id": "ps030",
+    "type": "pronoun-sentence",
+    "sentence": "They love ___ school.",
+    "zh": "他們喜歡他們的學校。",
+    "answer": "their",
+    "choices": [
+      "They",
+      "them",
+      "their",
+      "theirs"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 school，表示「他們的」，所以要用 their。"
+  },
+  {
+    "id": "ps031",
+    "type": "pronoun-sentence",
+    "sentence": "We clean ___ classroom.",
+    "zh": "我們打掃我們的課室。",
+    "answer": "our",
+    "choices": [
+      "We",
+      "us",
+      "our",
+      "ours"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 classroom，表示「我們的」，所以要用 our。"
+  },
+  {
+    "id": "ps032",
+    "type": "pronoun-sentence",
+    "sentence": "The cat is eating ___ food.",
+    "zh": "貓正在吃牠的食物。",
+    "answer": "its",
+    "choices": [
+      "It",
+      "it",
+      "its",
+      "they"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 food，表示「牠的」，所以要用 its。"
+  },
+  {
+    "id": "ps033",
+    "type": "pronoun-sentence",
+    "sentence": "Tom is carrying ___ bag.",
+    "zh": "Tom 正拿著他的書包。",
+    "answer": "his",
+    "choices": [
+      "he",
+      "him",
+      "his",
+      "hers"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 bag，表示「他的」，所以要用 his。"
+  },
+  {
+    "id": "ps034",
+    "type": "pronoun-sentence",
+    "sentence": "Mary is opening ___ lunch box.",
+    "zh": "Mary 正打開她的飯盒。",
+    "answer": "her",
+    "choices": [
+      "she",
+      "her",
+      "hers",
+      "him"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 lunch box，表示「她的」，所以要用 her。"
+  },
+  {
+    "id": "ps035",
+    "type": "pronoun-sentence",
+    "sentence": "I like ___ new shoes.",
+    "zh": "我喜歡你的新鞋。",
+    "answer": "your",
+    "choices": [
+      "you",
+      "your",
+      "yours",
+      "them"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 shoes，表示「你的」，所以要用 your。"
+  },
+  {
+    "id": "ps036",
+    "type": "pronoun-sentence",
+    "sentence": "She is reading ___ book.",
+    "zh": "她正在讀她的書。",
+    "answer": "her",
+    "choices": [
+      "she",
+      "her",
+      "hers",
+      "they"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 book，表示「她的」，所以要用 her。"
+  },
+  {
+    "id": "ps037",
+    "type": "pronoun-sentence",
+    "sentence": "We are visiting ___ grandparents.",
+    "zh": "我們正在探望我們的祖父母。",
+    "answer": "our",
+    "choices": [
+      "We",
+      "us",
+      "our",
+      "ours"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 grandparents，表示「我們的」，所以要用 our。"
+  },
+  {
+    "id": "ps038",
+    "type": "pronoun-sentence",
+    "sentence": "The students are raising ___ hands.",
+    "zh": "學生們正在舉手。",
+    "answer": "their",
+    "choices": [
+      "They",
+      "them",
+      "their",
+      "theirs"
+    ],
+    "slotType": "possessiveAdjective",
+    "explanation": "空格後面有名詞 hands，表示「他們的」，所以要用 their。"
+  },
+  {
+    "id": "ps039",
+    "type": "pronoun-sentence",
+    "sentence": "This book is ___.",
+    "zh": "這本書是我的。",
+    "answer": "mine",
+    "choices": [
+      "I",
+      "me",
+      "my",
+      "mine"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「我的東西」，所以要用 mine。"
+  },
+  {
+    "id": "ps040",
+    "type": "pronoun-sentence",
+    "sentence": "The blue pen is ___.",
+    "zh": "這支藍色筆是你的。",
+    "answer": "yours",
+    "choices": [
+      "you",
+      "your",
+      "yours",
+      "we"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「你的東西」，所以要用 yours。"
+  },
+  {
+    "id": "ps041",
+    "type": "pronoun-sentence",
+    "sentence": "The red bag is ___.",
+    "zh": "這個紅色書包是他的。",
+    "answer": "his",
+    "choices": [
+      "he",
+      "him",
+      "his",
+      "her"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「他的東西」，所以要用 his。"
+  },
+  {
+    "id": "ps042",
+    "type": "pronoun-sentence",
+    "sentence": "The pink ruler is ___.",
+    "zh": "這把粉紅色間尺是她的。",
+    "answer": "hers",
+    "choices": [
+      "she",
+      "her",
+      "hers",
+      "him"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「她的東西」，所以要用 hers。"
+  },
+  {
+    "id": "ps043",
+    "type": "pronoun-sentence",
+    "sentence": "This classroom is ___.",
+    "zh": "這間課室是我們的。",
+    "answer": "ours",
+    "choices": [
+      "We",
+      "us",
+      "our",
+      "ours"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「我們的東西」，所以要用 ours。"
+  },
+  {
+    "id": "ps044",
+    "type": "pronoun-sentence",
+    "sentence": "Those toys are ___.",
+    "zh": "那些玩具是他們的。",
+    "answer": "theirs",
+    "choices": [
+      "They",
+      "them",
+      "their",
+      "theirs"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「他們的東西」，所以要用 theirs。"
+  },
+  {
+    "id": "ps045",
+    "type": "pronoun-sentence",
+    "sentence": "This seat is ___.",
+    "zh": "這個座位是我的。",
+    "answer": "mine",
+    "choices": [
+      "I",
+      "me",
+      "my",
+      "mine"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「我的東西」，所以要用 mine。"
+  },
+  {
+    "id": "ps046",
+    "type": "pronoun-sentence",
+    "sentence": "The lunch is ___.",
+    "zh": "這份午餐是你的。",
+    "answer": "yours",
+    "choices": [
+      "you",
+      "your",
+      "yours",
+      "we"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「你的東西」，所以要用 yours。"
+  },
+  {
+    "id": "ps047",
+    "type": "pronoun-sentence",
+    "sentence": "The football is ___.",
+    "zh": "這個足球是我們的。",
+    "answer": "ours",
+    "choices": [
+      "We",
+      "us",
+      "our",
+      "ours"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「我們的東西」，所以要用 ours。"
+  },
+  {
+    "id": "ps048",
+    "type": "pronoun-sentence",
+    "sentence": "The pencils are ___.",
+    "zh": "這些鉛筆是他們的。",
+    "answer": "theirs",
+    "choices": [
+      "They",
+      "them",
+      "their",
+      "theirs"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「他們的東西」，所以要用 theirs。"
+  },
+  {
+    "id": "ps049",
+    "type": "pronoun-sentence",
+    "sentence": "The desk is ___.",
+    "zh": "這張書桌是他的。",
+    "answer": "his",
+    "choices": [
+      "he",
+      "him",
+      "his",
+      "her"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「他的東西」，所以要用 his。"
+  },
+  {
+    "id": "ps050",
+    "type": "pronoun-sentence",
+    "sentence": "The umbrella is ___.",
+    "zh": "這把傘是她的。",
+    "answer": "hers",
+    "choices": [
+      "she",
+      "her",
+      "hers",
+      "him"
+    ],
+    "slotType": "possessivePronoun",
+    "explanation": "空格後面沒有名詞，表示「她的東西」，所以要用 hers。"
+  }
+]

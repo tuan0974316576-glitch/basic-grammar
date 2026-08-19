@@ -1,0 +1,526 @@
+[
+  {
+    "id": "su001",
+    "text": "China is a good country. I love it.",
+    "segments": [
+      [
+        "China",
+        "is",
+        "a",
+        "good",
+        "country."
+      ],
+      [
+        "I",
+        "love",
+        "it."
+      ]
+    ]
+  },
+  {
+    "id": "su002",
+    "text": "Tom is tired. He wants to sleep.",
+    "segments": [
+      [
+        "Tom",
+        "is",
+        "tired."
+      ],
+      [
+        "He",
+        "wants",
+        "to",
+        "sleep."
+      ]
+    ]
+  },
+  {
+    "id": "su003",
+    "text": "I like English. It is fun.",
+    "segments": [
+      [
+        "I",
+        "like",
+        "English."
+      ],
+      [
+        "It",
+        "is",
+        "fun."
+      ]
+    ]
+  },
+  {
+    "id": "su004",
+    "text": "My mum cooks dinner. We eat rice.",
+    "segments": [
+      [
+        "My",
+        "mum",
+        "cooks",
+        "dinner."
+      ],
+      [
+        "We",
+        "eat",
+        "rice."
+      ]
+    ]
+  },
+  {
+    "id": "su005",
+    "text": "The weather is hot. I drink water.",
+    "segments": [
+      [
+        "The",
+        "weather",
+        "is",
+        "hot."
+      ],
+      [
+        "I",
+        "drink",
+        "water."
+      ]
+    ]
+  },
+  {
+    "id": "su006",
+    "text": "I think you are right.",
+    "segments": [
+      [
+        "I",
+        "think"
+      ],
+      [
+        "you",
+        "are",
+        "right."
+      ]
+    ]
+  },
+  {
+    "id": "su007",
+    "text": "She thinks Tom is kind.",
+    "segments": [
+      [
+        "She",
+        "thinks"
+      ],
+      [
+        "Tom",
+        "is",
+        "kind."
+      ]
+    ]
+  },
+  {
+    "id": "su008",
+    "text": "We believe they can win.",
+    "segments": [
+      [
+        "We",
+        "believe"
+      ],
+      [
+        "they",
+        "can",
+        "win."
+      ]
+    ]
+  },
+  {
+    "id": "su009",
+    "text": "Tom said Mary is late.",
+    "segments": [
+      [
+        "Tom",
+        "said"
+      ],
+      [
+        "Mary",
+        "is",
+        "late."
+      ]
+    ]
+  },
+  {
+    "id": "su010",
+    "text": "Mum said I can go.",
+    "segments": [
+      [
+        "Mum",
+        "said"
+      ],
+      [
+        "I",
+        "can",
+        "go."
+      ]
+    ]
+  },
+  {
+    "id": "su011",
+    "text": "I am happy that you can come.",
+    "segments": [
+      [
+        "I",
+        "am",
+        "happy",
+        "that"
+      ],
+      [
+        "you",
+        "can",
+        "come."
+      ]
+    ]
+  },
+  {
+    "id": "su012",
+    "text": "She is sad that Tom cannot play.",
+    "segments": [
+      [
+        "She",
+        "is",
+        "sad",
+        "that"
+      ],
+      [
+        "Tom",
+        "cannot",
+        "play."
+      ]
+    ]
+  },
+  {
+    "id": "su013",
+    "text": "He told me that he is busy.",
+    "segments": [
+      [
+        "He",
+        "told",
+        "me",
+        "that"
+      ],
+      [
+        "he",
+        "is",
+        "busy."
+      ]
+    ]
+  },
+  {
+    "id": "su014",
+    "text": "We know that they like English.",
+    "segments": [
+      [
+        "We",
+        "know",
+        "that"
+      ],
+      [
+        "they",
+        "like",
+        "English."
+      ]
+    ]
+  },
+  {
+    "id": "su015",
+    "text": "I hope that you are ready.",
+    "segments": [
+      [
+        "I",
+        "hope",
+        "that"
+      ],
+      [
+        "you",
+        "are",
+        "ready."
+      ]
+    ]
+  },
+  {
+    "id": "su016",
+    "text": "I like tea and Mary likes coffee.",
+    "segments": [
+      [
+        "I",
+        "like",
+        "tea",
+        "and"
+      ],
+      [
+        "Mary",
+        "likes",
+        "coffee."
+      ]
+    ]
+  },
+  {
+    "id": "su017",
+    "text": "Tom is tired but he keeps working.",
+    "segments": [
+      [
+        "Tom",
+        "is",
+        "tired",
+        "but"
+      ],
+      [
+        "he",
+        "keeps",
+        "working."
+      ]
+    ]
+  },
+  {
+    "id": "su018",
+    "text": "You should hurry or you will be late.",
+    "segments": [
+      [
+        "You",
+        "should",
+        "hurry",
+        "or"
+      ],
+      [
+        "you",
+        "will",
+        "be",
+        "late."
+      ]
+    ]
+  },
+  {
+    "id": "su019",
+    "text": "It is raining so we stay home.",
+    "segments": [
+      [
+        "It",
+        "is",
+        "raining",
+        "so"
+      ],
+      [
+        "we",
+        "stay",
+        "home."
+      ]
+    ]
+  },
+  {
+    "id": "su020",
+    "text": "I can sing and you can dance.",
+    "segments": [
+      [
+        "I",
+        "can",
+        "sing",
+        "and"
+      ],
+      [
+        "you",
+        "can",
+        "dance."
+      ]
+    ]
+  },
+  {
+    "id": "su021",
+    "text": "She likes dogs but Tom likes cats.",
+    "segments": [
+      [
+        "She",
+        "likes",
+        "dogs",
+        "but"
+      ],
+      [
+        "Tom",
+        "likes",
+        "cats."
+      ]
+    ]
+  },
+  {
+    "id": "su022",
+    "text": "You should give me the password or you may lose all the money.",
+    "segments": [
+      [
+        "You",
+        "should",
+        "give",
+        "me",
+        "the",
+        "password",
+        "or"
+      ],
+      [
+        "you",
+        "may",
+        "lose",
+        "all",
+        "the",
+        "money."
+      ]
+    ]
+  },
+  {
+    "id": "su023",
+    "text": "I think you are smart and you can help me.",
+    "segments": [
+      [
+        "I",
+        "think"
+      ],
+      [
+        "you",
+        "are",
+        "smart",
+        "and"
+      ],
+      [
+        "you",
+        "can",
+        "help",
+        "me."
+      ]
+    ]
+  },
+  {
+    "id": "su024",
+    "text": "Tom said Mary is happy but he is sad.",
+    "segments": [
+      [
+        "Tom",
+        "said"
+      ],
+      [
+        "Mary",
+        "is",
+        "happy",
+        "but"
+      ],
+      [
+        "he",
+        "is",
+        "sad."
+      ]
+    ]
+  },
+  {
+    "id": "su025",
+    "text": "I am glad that you are here and we can start.",
+    "segments": [
+      [
+        "I",
+        "am",
+        "glad",
+        "that"
+      ],
+      [
+        "you",
+        "are",
+        "here",
+        "and"
+      ],
+      [
+        "we",
+        "can",
+        "start."
+      ]
+    ]
+  },
+  {
+    "id": "su026",
+    "text": "She believes I am right but you disagree.",
+    "segments": [
+      [
+        "She",
+        "believes"
+      ],
+      [
+        "I",
+        "am",
+        "right",
+        "but"
+      ],
+      [
+        "you",
+        "disagree."
+      ]
+    ]
+  },
+  {
+    "id": "su027",
+    "text": "I know that he likes music.",
+    "segments": [
+      [
+        "I",
+        "know",
+        "that"
+      ],
+      [
+        "he",
+        "likes",
+        "music."
+      ]
+    ]
+  },
+  {
+    "id": "su028",
+    "text": "They said we are early.",
+    "segments": [
+      [
+        "They",
+        "said"
+      ],
+      [
+        "we",
+        "are",
+        "early."
+      ]
+    ]
+  },
+  {
+    "id": "su029",
+    "text": "I love Hong Kong. It is my home.",
+    "segments": [
+      [
+        "I",
+        "love",
+        "Hong",
+        "Kong."
+      ],
+      [
+        "It",
+        "is",
+        "my",
+        "home."
+      ]
+    ]
+  },
+  {
+    "id": "su030",
+    "text": "You can take the bus or you can walk home.",
+    "segments": [
+      [
+        "You",
+        "can",
+        "take",
+        "the",
+        "bus",
+        "or"
+      ],
+      [
+        "you",
+        "can",
+        "walk",
+        "home."
+      ]
+    ]
+  }
+]

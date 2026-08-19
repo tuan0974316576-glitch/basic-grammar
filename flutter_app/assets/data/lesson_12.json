@@ -1,0 +1,1302 @@
+[
+  {
+    "id": "vt001",
+    "type": "verb-table",
+    "zh": "成為；變成",
+    "forms": {
+      "present": "become",
+      "past": "became",
+      "pp": "become",
+      "ing": "becoming"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/become-became-become-becoming-6de84cd57d.png",
+    "audioAsset": "audio/verb_table/v1/become-became-become-becoming-76963bfc34a7a20a.mp3"
+  },
+  {
+    "id": "vt002",
+    "type": "verb-table",
+    "zh": "開始",
+    "forms": {
+      "present": "begin",
+      "past": "began",
+      "pp": "begun",
+      "ing": "beginning"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/begin-began-begun-beginning-c6ede69742.png",
+    "audioAsset": "audio/verb_table/v1/begin-began-begun-beginning-3f0234ecba410456.mp3"
+  },
+  {
+    "id": "vt003",
+    "type": "verb-table",
+    "zh": "咬",
+    "forms": {
+      "present": "bite",
+      "past": "bit",
+      "pp": "bitten",
+      "ing": "biting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/bite-bit-bitten-biting-b667ecdae9.png",
+    "audioAsset": "audio/verb_table/v1/bite-bit-bitten-biting-ed3243022cbdf745.mp3"
+  },
+  {
+    "id": "vt004",
+    "type": "verb-table",
+    "zh": "吹",
+    "forms": {
+      "present": "blow",
+      "past": "blew",
+      "pp": "blown",
+      "ing": "blowing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/blow-blew-blown-blowing-285d5552ad.png",
+    "audioAsset": "audio/verb_table/v1/blow-blew-blown-blowing-f900f8d979c04c58.mp3"
+  },
+  {
+    "id": "vt005",
+    "type": "verb-table",
+    "zh": "打破",
+    "forms": {
+      "present": "break",
+      "past": "broke",
+      "pp": "broken",
+      "ing": "breaking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/break-broke-broken-breaking-acf1ecd62a.png",
+    "audioAsset": "audio/verb_table/v1/break-broke-broken-breaking-b361d066f9e9d3ff.mp3"
+  },
+  {
+    "id": "vt006",
+    "type": "verb-table",
+    "zh": "帶來",
+    "forms": {
+      "present": "bring",
+      "past": "brought",
+      "pp": "brought",
+      "ing": "bringing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/bring-brought-brought-bringing-620255f8c5.png",
+    "audioAsset": "audio/verb_table/v1/bring-brought-brought-bringing-f522b19636f86efd.mp3"
+  },
+  {
+    "id": "vt007",
+    "type": "verb-table",
+    "zh": "建造",
+    "forms": {
+      "present": "build",
+      "past": "built",
+      "pp": "built",
+      "ing": "building"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/build-built-built-building-82d3b047e1.png",
+    "audioAsset": "audio/verb_table/v1/build-built-built-building-28ed5320dba6e6c0.mp3"
+  },
+  {
+    "id": "vt008",
+    "type": "verb-table",
+    "zh": "買",
+    "forms": {
+      "present": "buy",
+      "past": "bought",
+      "pp": "bought",
+      "ing": "buying"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/buy-bought-bought-buying-58747ab6e5.png",
+    "audioAsset": "audio/verb_table/v1/buy-bought-bought-buying-9e5cec1d89bba979.mp3"
+  },
+  {
+    "id": "vt009",
+    "type": "verb-table",
+    "zh": "捉住；趕上",
+    "forms": {
+      "present": "catch",
+      "past": "caught",
+      "pp": "caught",
+      "ing": "catching"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/catch-caught-caught-catching-eb371df0c3.png",
+    "audioAsset": "audio/verb_table/v1/catch-caught-caught-catching-879916adb5e8533e.mp3"
+  },
+  {
+    "id": "vt010",
+    "type": "verb-table",
+    "zh": "選擇",
+    "forms": {
+      "present": "choose",
+      "past": "chose",
+      "pp": "chosen",
+      "ing": "choosing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/choose-chose-chosen-choosing-2135575c56.png",
+    "audioAsset": "audio/verb_table/v1/choose-chose-chosen-choosing-0a3f15027e34fb51.mp3"
+  },
+  {
+    "id": "vt011",
+    "type": "verb-table",
+    "zh": "來",
+    "forms": {
+      "present": "come",
+      "past": "came",
+      "pp": "come",
+      "ing": "coming"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/come-came-come-coming-65fd18df27.png",
+    "audioAsset": "audio/verb_table/v1/come-came-come-coming-cec7281ddca075dd.mp3"
+  },
+  {
+    "id": "vt012",
+    "type": "verb-table",
+    "zh": "切",
+    "forms": {
+      "present": "cut",
+      "past": "cut",
+      "pp": "cut",
+      "ing": "cutting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/cut-cut-cut-cutting-2c1d14d39d.png",
+    "audioAsset": "audio/verb_table/v1/cut-cut-cut-cutting-6a966b330d87ce2d.mp3"
+  },
+  {
+    "id": "vt013",
+    "type": "verb-table",
+    "zh": "做",
+    "forms": {
+      "present": "do",
+      "past": "did",
+      "pp": "done",
+      "ing": "doing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/do-did-done-doing-2aa085b750.png",
+    "audioAsset": "audio/verb_table/v1/do-did-done-doing-8e524e1912e33930.mp3"
+  },
+  {
+    "id": "vt014",
+    "type": "verb-table",
+    "zh": "畫",
+    "forms": {
+      "present": "draw",
+      "past": "drew",
+      "pp": "drawn",
+      "ing": "drawing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/draw-drew-drawn-drawing-96f19ab6bc.png",
+    "audioAsset": "audio/verb_table/v1/draw-drew-drawn-drawing-c28297225362c0c9.mp3"
+  },
+  {
+    "id": "vt015",
+    "type": "verb-table",
+    "zh": "喝",
+    "forms": {
+      "present": "drink",
+      "past": "drank",
+      "pp": "drunk",
+      "ing": "drinking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/drink-drank-drunk-drinking-3b00a2ebf3.png",
+    "audioAsset": "audio/verb_table/v1/drink-drank-drunk-drinking-8f384bb2c22ee97c.mp3"
+  },
+  {
+    "id": "vt016",
+    "type": "verb-table",
+    "zh": "駕駛",
+    "forms": {
+      "present": "drive",
+      "past": "drove",
+      "pp": "driven",
+      "ing": "driving"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/drive-drove-driven-driving-f24aaaea58.png",
+    "audioAsset": "audio/verb_table/v1/drive-drove-driven-driving-5e98a68e18c4cefd.mp3"
+  },
+  {
+    "id": "vt017",
+    "type": "verb-table",
+    "zh": "吃",
+    "forms": {
+      "present": "eat",
+      "past": "ate",
+      "pp": "eaten",
+      "ing": "eating"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/eat-ate-eaten-eating-6c8bf81e50.png",
+    "audioAsset": "audio/verb_table/v1/eat-ate-eaten-eating-0594d3d079e31243.mp3"
+  },
+  {
+    "id": "vt018",
+    "type": "verb-table",
+    "zh": "跌下；落下",
+    "forms": {
+      "present": "fall",
+      "past": "fell",
+      "pp": "fallen",
+      "ing": "falling"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/fall-fell-fallen-falling-99f860e8b3.png",
+    "audioAsset": "audio/verb_table/v1/fall-fell-fallen-falling-8d0d8ba0119c9282.mp3"
+  },
+  {
+    "id": "vt019",
+    "type": "verb-table",
+    "zh": "餵",
+    "forms": {
+      "present": "feed",
+      "past": "fed",
+      "pp": "fed",
+      "ing": "feeding"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/feed-fed-fed-feeding-33369e39d0.png",
+    "audioAsset": "audio/verb_table/v1/feed-fed-fed-feeding-53a12b4fc249b116.mp3"
+  },
+  {
+    "id": "vt020",
+    "type": "verb-table",
+    "zh": "感覺",
+    "forms": {
+      "present": "feel",
+      "past": "felt",
+      "pp": "felt",
+      "ing": "feeling"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/feel-felt-felt-feeling-216848a38d.png",
+    "audioAsset": "audio/verb_table/v1/feel-felt-felt-feeling-e6144103abe2be92.mp3"
+  },
+  {
+    "id": "vt021",
+    "type": "verb-table",
+    "zh": "找到",
+    "forms": {
+      "present": "find",
+      "past": "found",
+      "pp": "found",
+      "ing": "finding"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/find-found-found-finding-ed332a36a8.png",
+    "audioAsset": "audio/verb_table/v1/find-found-found-finding-72057478985775aa.mp3"
+  },
+  {
+    "id": "vt022",
+    "type": "verb-table",
+    "zh": "飛",
+    "forms": {
+      "present": "fly",
+      "past": "flew",
+      "pp": "flown",
+      "ing": "flying"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/fly-flew-flown-flying-363efa4dad.png",
+    "audioAsset": "audio/verb_table/v1/fly-flew-flown-flying-da0abd19074030d9.mp3"
+  },
+  {
+    "id": "vt023",
+    "type": "verb-table",
+    "zh": "忘記",
+    "forms": {
+      "present": "forget",
+      "past": "forgot",
+      "pp": "forgotten",
+      "ing": "forgetting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/forget-forgot-forgotten-forgetting-9f2c455b92.png",
+    "audioAsset": "audio/verb_table/v1/forget-forgot-forgotten-forgetting-f569635202bb4eef.mp3"
+  },
+  {
+    "id": "vt024",
+    "type": "verb-table",
+    "zh": "得到",
+    "forms": {
+      "present": "get",
+      "past": "got",
+      "pp": "got",
+      "ing": "getting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/get-got-got-getting-bad7eaf246.png",
+    "audioAsset": "audio/verb_table/v1/get-got-got-getting-da4fa88e99e66c45.mp3"
+  },
+  {
+    "id": "vt025",
+    "type": "verb-table",
+    "zh": "給",
+    "forms": {
+      "present": "give",
+      "past": "gave",
+      "pp": "given",
+      "ing": "giving"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/give-gave-given-giving-8b7824e3fe.png",
+    "audioAsset": "audio/verb_table/v1/give-gave-given-giving-be025638d5d27467.mp3"
+  },
+  {
+    "id": "vt026",
+    "type": "verb-table",
+    "zh": "去",
+    "forms": {
+      "present": "go",
+      "past": "went",
+      "pp": "gone",
+      "ing": "going"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/go-went-gone-going-554dcbfc21.png",
+    "audioAsset": "audio/verb_table/v1/go-went-gone-going-2265516ebed952e6.mp3"
+  },
+  {
+    "id": "vt027",
+    "type": "verb-table",
+    "zh": "生長",
+    "forms": {
+      "present": "grow",
+      "past": "grew",
+      "pp": "grown",
+      "ing": "growing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/grow-grew-grown-growing-a5510dd9a8.png",
+    "audioAsset": "audio/verb_table/v1/grow-grew-grown-growing-9dae71de29073656.mp3"
+  },
+  {
+    "id": "vt028",
+    "type": "verb-table",
+    "zh": "有；吃",
+    "forms": {
+      "present": "have",
+      "past": "had",
+      "pp": "had",
+      "ing": "having"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/have-had-had-having-6d2f9f656d.png",
+    "audioAsset": "audio/verb_table/v1/have-had-had-having-bf0f2c41a878df80.mp3"
+  },
+  {
+    "id": "vt029",
+    "type": "verb-table",
+    "zh": "聽見",
+    "forms": {
+      "present": "hear",
+      "past": "heard",
+      "pp": "heard",
+      "ing": "hearing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/hear-heard-heard-hearing-4d7e4206aa.png",
+    "audioAsset": "audio/verb_table/v1/hear-heard-heard-hearing-9dc49f181759afa6.mp3"
+  },
+  {
+    "id": "vt030",
+    "type": "verb-table",
+    "zh": "隱藏",
+    "forms": {
+      "present": "hide",
+      "past": "hid",
+      "pp": "hidden",
+      "ing": "hiding"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/hide-hid-hidden-hiding-c40fe15e81.png",
+    "audioAsset": "audio/verb_table/v1/hide-hid-hidden-hiding-4e66b5c470cf13ed.mp3"
+  },
+  {
+    "id": "vt031",
+    "type": "verb-table",
+    "zh": "打；擊中",
+    "forms": {
+      "present": "hit",
+      "past": "hit",
+      "pp": "hit",
+      "ing": "hitting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/hit-hit-hit-hitting-0630c6dad8.png",
+    "audioAsset": "audio/verb_table/v1/hit-hit-hit-hitting-e410b357f707bbe7.mp3"
+  },
+  {
+    "id": "vt032",
+    "type": "verb-table",
+    "zh": "握住",
+    "forms": {
+      "present": "hold",
+      "past": "held",
+      "pp": "held",
+      "ing": "holding"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/hold-held-held-holding-018a4935f5.png",
+    "audioAsset": "audio/verb_table/v1/hold-held-held-holding-97735672f98ec77b.mp3"
+  },
+  {
+    "id": "vt033",
+    "type": "verb-table",
+    "zh": "受傷",
+    "forms": {
+      "present": "hurt",
+      "past": "hurt",
+      "pp": "hurt",
+      "ing": "hurting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/hurt-hurt-hurt-hurting-f475fffdc6.png",
+    "audioAsset": "audio/verb_table/v1/hurt-hurt-hurt-hurting-1ba08545460f32cb.mp3"
+  },
+  {
+    "id": "vt034",
+    "type": "verb-table",
+    "zh": "保持",
+    "forms": {
+      "present": "keep",
+      "past": "kept",
+      "pp": "kept",
+      "ing": "keeping"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/keep-kept-kept-keeping-b2e8ee99b6.png",
+    "audioAsset": "audio/verb_table/v1/keep-kept-kept-keeping-c522524dd9bd7b9a.mp3"
+  },
+  {
+    "id": "vt035",
+    "type": "verb-table",
+    "zh": "知道",
+    "forms": {
+      "present": "know",
+      "past": "knew",
+      "pp": "known",
+      "ing": "knowing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/know-knew-known-knowing-dcd83000f0.png",
+    "audioAsset": "audio/verb_table/v1/know-knew-known-knowing-57ab1ed78b21c87f.mp3"
+  },
+  {
+    "id": "vt036",
+    "type": "verb-table",
+    "zh": "離開",
+    "forms": {
+      "present": "leave",
+      "past": "left",
+      "pp": "left",
+      "ing": "leaving"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/leave-left-left-leaving-685f33e7a3.png",
+    "audioAsset": "audio/verb_table/v1/leave-left-left-leaving-6d85ee0e5217b391.mp3"
+  },
+  {
+    "id": "vt037",
+    "type": "verb-table",
+    "zh": "借出",
+    "forms": {
+      "present": "lend",
+      "past": "lent",
+      "pp": "lent",
+      "ing": "lending"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/lend-lent-lent-lending-a1663068da.png",
+    "audioAsset": "audio/verb_table/v1/lend-lent-lent-lending-92acb08d06a6d702.mp3"
+  },
+  {
+    "id": "vt038",
+    "type": "verb-table",
+    "zh": "讓",
+    "forms": {
+      "present": "let",
+      "past": "let",
+      "pp": "let",
+      "ing": "letting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/let-let-let-letting-c4dd4064ff.png",
+    "audioAsset": "audio/verb_table/v1/let-let-let-letting-047b96eb68616641.mp3"
+  },
+  {
+    "id": "vt039",
+    "type": "verb-table",
+    "zh": "失去",
+    "forms": {
+      "present": "lose",
+      "past": "lost",
+      "pp": "lost",
+      "ing": "losing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/lose-lost-lost-losing-784f3fd1e4.png",
+    "audioAsset": "audio/verb_table/v1/lose-lost-lost-losing-1efa3c9cfbc67c4e.mp3"
+  },
+  {
+    "id": "vt040",
+    "type": "verb-table",
+    "zh": "製造；做",
+    "forms": {
+      "present": "make",
+      "past": "made",
+      "pp": "made",
+      "ing": "making"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/make-made-made-making-8c0d2e90bd.png",
+    "audioAsset": "audio/verb_table/v1/make-made-made-making-3727cca96a4bdb08.mp3"
+  },
+  {
+    "id": "vt041",
+    "type": "verb-table",
+    "zh": "意思是",
+    "forms": {
+      "present": "mean",
+      "past": "meant",
+      "pp": "meant",
+      "ing": "meaning"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/mean-meant-meant-meaning-49c103650a.png",
+    "audioAsset": "audio/verb_table/v1/mean-meant-meant-meaning-78a985b0d70b14e3.mp3"
+  },
+  {
+    "id": "vt042",
+    "type": "verb-table",
+    "zh": "遇見",
+    "forms": {
+      "present": "meet",
+      "past": "met",
+      "pp": "met",
+      "ing": "meeting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/meet-met-met-meeting-80e16da4e6.png",
+    "audioAsset": "audio/verb_table/v1/meet-met-met-meeting-f070ff1940c63b95.mp3"
+  },
+  {
+    "id": "vt043",
+    "type": "verb-table",
+    "zh": "付款",
+    "forms": {
+      "present": "pay",
+      "past": "paid",
+      "pp": "paid",
+      "ing": "paying"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/pay-paid-paid-paying-b3402c5109.png",
+    "audioAsset": "audio/verb_table/v1/pay-paid-paid-paying-22d42cd276904701.mp3"
+  },
+  {
+    "id": "vt044",
+    "type": "verb-table",
+    "zh": "放",
+    "forms": {
+      "present": "put",
+      "past": "put",
+      "pp": "put",
+      "ing": "putting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/put-put-put-putting-9a563d3c32.png",
+    "audioAsset": "audio/verb_table/v1/put-put-put-putting-d5e7aeaf91bd09ee.mp3"
+  },
+  {
+    "id": "vt045",
+    "type": "verb-table",
+    "zh": "閱讀",
+    "forms": {
+      "present": "read",
+      "past": "read",
+      "pp": "read",
+      "ing": "reading"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/read-read-read-reading-f5a1aa82c9.png",
+    "audioAsset": "audio/verb_table/v1/read-read-read-reading-3193a38f6af0c8ba.mp3"
+  },
+  {
+    "id": "vt046",
+    "type": "verb-table",
+    "zh": "騎",
+    "forms": {
+      "present": "ride",
+      "past": "rode",
+      "pp": "ridden",
+      "ing": "riding"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/ride-rode-ridden-riding-bd17efb09b.png",
+    "audioAsset": "audio/verb_table/v1/ride-rode-ridden-riding-6c225e883bfc8cd5.mp3"
+  },
+  {
+    "id": "vt047",
+    "type": "verb-table",
+    "zh": "響鈴；打電話",
+    "forms": {
+      "present": "ring",
+      "past": "rang",
+      "pp": "rung",
+      "ing": "ringing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/ring-rang-rung-ringing-fbe21d58b2.png",
+    "audioAsset": "audio/verb_table/v1/ring-rang-rung-ringing-dccccee4fe90834d.mp3"
+  },
+  {
+    "id": "vt048",
+    "type": "verb-table",
+    "zh": "跑",
+    "forms": {
+      "present": "run",
+      "past": "ran",
+      "pp": "run",
+      "ing": "running"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/run-ran-run-running-3fa33ca917.png",
+    "audioAsset": "audio/verb_table/v1/run-ran-run-running-c528fc980fd5be97.mp3"
+  },
+  {
+    "id": "vt049",
+    "type": "verb-table",
+    "zh": "說",
+    "forms": {
+      "present": "say",
+      "past": "said",
+      "pp": "said",
+      "ing": "saying"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/say-said-said-saying-af75f99baa.png",
+    "audioAsset": "audio/verb_table/v1/say-said-said-saying-71f88899dba9094c.mp3"
+  },
+  {
+    "id": "vt050",
+    "type": "verb-table",
+    "zh": "看見",
+    "forms": {
+      "present": "see",
+      "past": "saw",
+      "pp": "seen",
+      "ing": "seeing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/see-saw-seen-seeing-7debc918c7.png",
+    "audioAsset": "audio/verb_table/v1/see-saw-seen-seeing-f0c8c20cf9a0c210.mp3"
+  },
+  {
+    "id": "vt051",
+    "type": "verb-table",
+    "zh": "出售",
+    "forms": {
+      "present": "sell",
+      "past": "sold",
+      "pp": "sold",
+      "ing": "selling"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/sell-sold-sold-selling-b63c558476.png",
+    "audioAsset": "audio/verb_table/v1/sell-sold-sold-selling-85c5dafb796b2e2f.mp3"
+  },
+  {
+    "id": "vt052",
+    "type": "verb-table",
+    "zh": "發送",
+    "forms": {
+      "present": "send",
+      "past": "sent",
+      "pp": "sent",
+      "ing": "sending"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/send-sent-sent-sending-e55055a3a2.png",
+    "audioAsset": "audio/verb_table/v1/send-sent-sent-sending-2a3720ff55a5f3f7.mp3"
+  },
+  {
+    "id": "vt053",
+    "type": "verb-table",
+    "zh": "設定；放置",
+    "forms": {
+      "present": "set",
+      "past": "set",
+      "pp": "set",
+      "ing": "setting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/set-set-set-setting-715f43e121.png",
+    "audioAsset": "audio/verb_table/v1/set-set-set-setting-20a35a396153457c.mp3"
+  },
+  {
+    "id": "vt054",
+    "type": "verb-table",
+    "zh": "搖動",
+    "forms": {
+      "present": "shake",
+      "past": "shook",
+      "pp": "shaken",
+      "ing": "shaking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/shake-shook-shaken-shaking-deb3759a39.png",
+    "audioAsset": "audio/verb_table/v1/shake-shook-shaken-shaking-424b9937c60e4dc1.mp3"
+  },
+  {
+    "id": "vt055",
+    "type": "verb-table",
+    "zh": "展示",
+    "forms": {
+      "present": "show",
+      "past": "showed",
+      "pp": "shown",
+      "ing": "showing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/show-showed-shown-showing-1a39f55dcc.png",
+    "audioAsset": "audio/verb_table/v1/show-showed-shown-showing-40a0bdb1c5818103.mp3"
+  },
+  {
+    "id": "vt056",
+    "type": "verb-table",
+    "zh": "關上",
+    "forms": {
+      "present": "shut",
+      "past": "shut",
+      "pp": "shut",
+      "ing": "shutting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/shut-shut-shut-shutting-23c4ca9211.png",
+    "audioAsset": "audio/verb_table/v1/shut-shut-shut-shutting-653f510e8e0386ea.mp3"
+  },
+  {
+    "id": "vt057",
+    "type": "verb-table",
+    "zh": "唱歌",
+    "forms": {
+      "present": "sing",
+      "past": "sang",
+      "pp": "sung",
+      "ing": "singing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/sing-sang-sung-singing-c1af7879af.png",
+    "audioAsset": "audio/verb_table/v1/sing-sang-sung-singing-91a4bcd0d6e00f12.mp3"
+  },
+  {
+    "id": "vt058",
+    "type": "verb-table",
+    "zh": "坐",
+    "forms": {
+      "present": "sit",
+      "past": "sat",
+      "pp": "sat",
+      "ing": "sitting"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/sit-sat-sat-sitting-47f3ce3a27.png",
+    "audioAsset": "audio/verb_table/v1/sit-sat-sat-sitting-f87fa8dc8c1f8cae.mp3"
+  },
+  {
+    "id": "vt059",
+    "type": "verb-table",
+    "zh": "睡覺",
+    "forms": {
+      "present": "sleep",
+      "past": "slept",
+      "pp": "slept",
+      "ing": "sleeping"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/sleep-slept-slept-sleeping-ca6b7ed818.png",
+    "audioAsset": "audio/verb_table/v1/sleep-slept-slept-sleeping-a4810a122905fc37.mp3"
+  },
+  {
+    "id": "vt060",
+    "type": "verb-table",
+    "zh": "說話",
+    "forms": {
+      "present": "speak",
+      "past": "spoke",
+      "pp": "spoken",
+      "ing": "speaking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/speak-spoke-spoken-speaking-fd65a2b3de.png",
+    "audioAsset": "audio/verb_table/v1/speak-spoke-spoken-speaking-9e6f641f9bc561a2.mp3"
+  },
+  {
+    "id": "vt061",
+    "type": "verb-table",
+    "zh": "花費",
+    "forms": {
+      "present": "spend",
+      "past": "spent",
+      "pp": "spent",
+      "ing": "spending"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/spend-spent-spent-spending-0a8de20f12.png",
+    "audioAsset": "audio/verb_table/v1/spend-spent-spent-spending-467ebd9334b4f957.mp3"
+  },
+  {
+    "id": "vt062",
+    "type": "verb-table",
+    "zh": "站立",
+    "forms": {
+      "present": "stand",
+      "past": "stood",
+      "pp": "stood",
+      "ing": "standing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/stand-stood-stood-standing-79c515dad2.png",
+    "audioAsset": "audio/verb_table/v1/stand-stood-stood-standing-5859a68afcb7eefe.mp3"
+  },
+  {
+    "id": "vt063",
+    "type": "verb-table",
+    "zh": "偷",
+    "forms": {
+      "present": "steal",
+      "past": "stole",
+      "pp": "stolen",
+      "ing": "stealing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/steal-stole-stolen-stealing-ed582e555c.png",
+    "audioAsset": "audio/verb_table/v1/steal-stole-stolen-stealing-78ff64f536cef075.mp3"
+  },
+  {
+    "id": "vt064",
+    "type": "verb-table",
+    "zh": "黏住",
+    "forms": {
+      "present": "stick",
+      "past": "stuck",
+      "pp": "stuck",
+      "ing": "sticking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/stick-stuck-stuck-sticking-ce27ee1a72.png",
+    "audioAsset": "audio/verb_table/v1/stick-stuck-stuck-sticking-4a0b439df0bd6680.mp3"
+  },
+  {
+    "id": "vt065",
+    "type": "verb-table",
+    "zh": "游泳",
+    "forms": {
+      "present": "swim",
+      "past": "swam",
+      "pp": "swum",
+      "ing": "swimming"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/swim-swam-swum-swimming-3b83b2790c.png",
+    "audioAsset": "audio/verb_table/v1/swim-swam-swum-swimming-08728664815de65b.mp3"
+  },
+  {
+    "id": "vt066",
+    "type": "verb-table",
+    "zh": "拿；帶走",
+    "forms": {
+      "present": "take",
+      "past": "took",
+      "pp": "taken",
+      "ing": "taking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/take-took-taken-taking-364772d2a2.png",
+    "audioAsset": "audio/verb_table/v1/take-took-taken-taking-5aa0dbdaead5cbd6.mp3"
+  },
+  {
+    "id": "vt067",
+    "type": "verb-table",
+    "zh": "教",
+    "forms": {
+      "present": "teach",
+      "past": "taught",
+      "pp": "taught",
+      "ing": "teaching"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/teach-taught-taught-teaching-777104f337.png",
+    "audioAsset": "audio/verb_table/v1/teach-taught-taught-teaching-63f011283a5b4197.mp3"
+  },
+  {
+    "id": "vt068",
+    "type": "verb-table",
+    "zh": "告訴",
+    "forms": {
+      "present": "tell",
+      "past": "told",
+      "pp": "told",
+      "ing": "telling"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/tell-told-told-telling-57b4374c7d.png",
+    "audioAsset": "audio/verb_table/v1/tell-told-told-telling-866fbdde2b1468bb.mp3"
+  },
+  {
+    "id": "vt069",
+    "type": "verb-table",
+    "zh": "想；認為",
+    "forms": {
+      "present": "think",
+      "past": "thought",
+      "pp": "thought",
+      "ing": "thinking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/think-thought-thought-thinking-d71b7284bd.png",
+    "audioAsset": "audio/verb_table/v1/think-thought-thought-thinking-b9880132e324b709.mp3"
+  },
+  {
+    "id": "vt070",
+    "type": "verb-table",
+    "zh": "扔",
+    "forms": {
+      "present": "throw",
+      "past": "threw",
+      "pp": "thrown",
+      "ing": "throwing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/throw-threw-thrown-throwing-71b443d942.png",
+    "audioAsset": "audio/verb_table/v1/throw-threw-thrown-throwing-3b84f0c6c8184bed.mp3"
+  },
+  {
+    "id": "vt071",
+    "type": "verb-table",
+    "zh": "理解",
+    "forms": {
+      "present": "understand",
+      "past": "understood",
+      "pp": "understood",
+      "ing": "understanding"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/understand-understood-understood-understanding-17d22c241d.png",
+    "audioAsset": "audio/verb_table/v1/understand-understood-understood-understanding-e6d7033a3c8f4b35.mp3"
+  },
+  {
+    "id": "vt072",
+    "type": "verb-table",
+    "zh": "醒來",
+    "forms": {
+      "present": "wake",
+      "past": "woke",
+      "pp": "woken",
+      "ing": "waking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/wake-woke-woken-waking-479afbc4da.png",
+    "audioAsset": "audio/verb_table/v1/wake-woke-woken-waking-221b97abd007c550.mp3"
+  },
+  {
+    "id": "vt073",
+    "type": "verb-table",
+    "zh": "穿著",
+    "forms": {
+      "present": "wear",
+      "past": "wore",
+      "pp": "worn",
+      "ing": "wearing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/wear-wore-worn-wearing-586c2c3297.png",
+    "audioAsset": "audio/verb_table/v1/wear-wore-worn-wearing-675025e8e6317888.mp3"
+  },
+  {
+    "id": "vt074",
+    "type": "verb-table",
+    "zh": "贏",
+    "forms": {
+      "present": "win",
+      "past": "won",
+      "pp": "won",
+      "ing": "winning"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/win-won-won-winning-7424d92a76.png",
+    "audioAsset": "audio/verb_table/v1/win-won-won-winning-ae5266dbfbcb2501.mp3"
+  },
+  {
+    "id": "vt075",
+    "type": "verb-table",
+    "zh": "寫",
+    "forms": {
+      "present": "write",
+      "past": "wrote",
+      "pp": "written",
+      "ing": "writing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/write-wrote-written-writing-57db81274f.png",
+    "audioAsset": "audio/verb_table/v1/write-wrote-written-writing-b1b431d792573fd5.mp3"
+  },
+  {
+    "id": "vt076",
+    "type": "verb-table",
+    "zh": "回答",
+    "forms": {
+      "present": "answer",
+      "past": "answered",
+      "pp": "answered",
+      "ing": "answering"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/answer-answered-answered-answering-13ebe070a3.png",
+    "audioAsset": "audio/verb_table/v1/answer-answered-answered-answering-3ae3f84bfd7eb63a.mp3"
+  },
+  {
+    "id": "vt077",
+    "type": "verb-table",
+    "zh": "到達",
+    "forms": {
+      "present": "arrive",
+      "past": "arrived",
+      "pp": "arrived",
+      "ing": "arriving"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/arrive-arrived-arrived-arriving-a0233f10f0.png",
+    "audioAsset": "audio/verb_table/v1/arrive-arrived-arrived-arriving-27b905977864b708.mp3"
+  },
+  {
+    "id": "vt078",
+    "type": "verb-table",
+    "zh": "問",
+    "forms": {
+      "present": "ask",
+      "past": "asked",
+      "pp": "asked",
+      "ing": "asking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/ask-asked-asked-asking-b855249712.png",
+    "audioAsset": "audio/verb_table/v1/ask-asked-asked-asking-528d17d5b5b96836.mp3"
+  },
+  {
+    "id": "vt079",
+    "type": "verb-table",
+    "zh": "相信",
+    "forms": {
+      "present": "believe",
+      "past": "believed",
+      "pp": "believed",
+      "ing": "believing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/believe-believed-believed-believing-0bea7b183c.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt080",
+    "type": "verb-table",
+    "zh": "借入",
+    "forms": {
+      "present": "borrow",
+      "past": "borrowed",
+      "pp": "borrowed",
+      "ing": "borrowing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/borrow-borrowed-borrowed-borrowing-43e9fea6c4.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt081",
+    "type": "verb-table",
+    "zh": "打電話；叫",
+    "forms": {
+      "present": "call",
+      "past": "called",
+      "pp": "called",
+      "ing": "calling"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/call-called-called-calling-fbe21d58b2.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt082",
+    "type": "verb-table",
+    "zh": "攜帶",
+    "forms": {
+      "present": "carry",
+      "past": "carried",
+      "pp": "carried",
+      "ing": "carrying"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/carry-carried-carried-carrying-a955f29ed4.png",
+    "audioAsset": "audio/verb_table/v1/carry-carried-carried-carrying-d15d28027927cb79.mp3"
+  },
+  {
+    "id": "vt083",
+    "type": "verb-table",
+    "zh": "改變",
+    "forms": {
+      "present": "change",
+      "past": "changed",
+      "pp": "changed",
+      "ing": "changing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/change-changed-changed-changing-1b9d235860.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt084",
+    "type": "verb-table",
+    "zh": "檢查",
+    "forms": {
+      "present": "check",
+      "past": "checked",
+      "pp": "checked",
+      "ing": "checking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/check-checked-checked-checking-679fe6080a.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt085",
+    "type": "verb-table",
+    "zh": "打掃",
+    "forms": {
+      "present": "clean",
+      "past": "cleaned",
+      "pp": "cleaned",
+      "ing": "cleaning"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/clean-cleaned-cleaned-cleaning-ca72c2d8d2.png",
+    "audioAsset": "audio/verb_table/v1/clean-cleaned-cleaned-cleaning-9570c53a78ed51df.mp3"
+  },
+  {
+    "id": "vt086",
+    "type": "verb-table",
+    "zh": "關閉",
+    "forms": {
+      "present": "close",
+      "past": "closed",
+      "pp": "closed",
+      "ing": "closing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/close-closed-closed-closing-23c4ca9211.png",
+    "audioAsset": "audio/verb_table/v1/close-closed-closed-closing-846a16d4dd2c7607.mp3"
+  },
+  {
+    "id": "vt087",
+    "type": "verb-table",
+    "zh": "煮",
+    "forms": {
+      "present": "cook",
+      "past": "cooked",
+      "pp": "cooked",
+      "ing": "cooking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/cook-cooked-cooked-cooking-ee93d19099.png",
+    "audioAsset": "audio/verb_table/v1/cook-cooked-cooked-cooking-9af5259d9f511e2e.mp3"
+  },
+  {
+    "id": "vt088",
+    "type": "verb-table",
+    "zh": "哭",
+    "forms": {
+      "present": "cry",
+      "past": "cried",
+      "pp": "cried",
+      "ing": "crying"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/cry-cried-cried-crying-e289ec9064.png",
+    "audioAsset": "audio/verb_table/v1/cry-cried-cried-crying-08b33998b6283c1c.mp3"
+  },
+  {
+    "id": "vt089",
+    "type": "verb-table",
+    "zh": "跳舞",
+    "forms": {
+      "present": "dance",
+      "past": "danced",
+      "pp": "danced",
+      "ing": "dancing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/dance-danced-danced-dancing-1c66d99806.png",
+    "audioAsset": "audio/verb_table/v1/dance-danced-danced-dancing-f73f68bb910d375e.mp3"
+  },
+  {
+    "id": "vt090",
+    "type": "verb-table",
+    "zh": "掉下",
+    "forms": {
+      "present": "drop",
+      "past": "dropped",
+      "pp": "dropped",
+      "ing": "dropping"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/drop-dropped-dropped-dropping-49c50238c2.png",
+    "audioAsset": "audio/verb_table/v1/drop-dropped-dropped-dropping-054b3e0dd4682cb8.mp3"
+  },
+  {
+    "id": "vt091",
+    "type": "verb-table",
+    "zh": "享受",
+    "forms": {
+      "present": "enjoy",
+      "past": "enjoyed",
+      "pp": "enjoyed",
+      "ing": "enjoying"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/enjoy-enjoyed-enjoyed-enjoying-fb9ba4d868.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt092",
+    "type": "verb-table",
+    "zh": "幫助",
+    "forms": {
+      "present": "help",
+      "past": "helped",
+      "pp": "helped",
+      "ing": "helping"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/help-helped-helped-helping-fe65deb08b.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt093",
+    "type": "verb-table",
+    "zh": "跳",
+    "forms": {
+      "present": "jump",
+      "past": "jumped",
+      "pp": "jumped",
+      "ing": "jumping"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/jump-jumped-jumped-jumping-8c54a4191f.png",
+    "audioAsset": "audio/verb_table/v1/jump-jumped-jumped-jumping-ba654a7976a1f1fa.mp3"
+  },
+  {
+    "id": "vt094",
+    "type": "verb-table",
+    "zh": "喜歡",
+    "forms": {
+      "present": "like",
+      "past": "liked",
+      "pp": "liked",
+      "ing": "liking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/like-liked-liked-liking-53d0137609.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt095",
+    "type": "verb-table",
+    "zh": "聆聽",
+    "forms": {
+      "present": "listen",
+      "past": "listened",
+      "pp": "listened",
+      "ing": "listening"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/listen-listened-listened-listening-4d7e4206aa.png",
+    "audioAsset": "audio/verb_table/v1/listen-listened-listened-listening-50511e02a1b7d76b.mp3"
+  },
+  {
+    "id": "vt096",
+    "type": "verb-table",
+    "zh": "居住",
+    "forms": {
+      "present": "live",
+      "past": "lived",
+      "pp": "lived",
+      "ing": "living"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/live-lived-lived-living-1c1098aea5.png",
+    "audioAsset": "audio/verb_table/v1/live-lived-lived-living-913f6cd0003ef31c.mp3"
+  },
+  {
+    "id": "vt097",
+    "type": "verb-table",
+    "zh": "看",
+    "forms": {
+      "present": "look",
+      "past": "looked",
+      "pp": "looked",
+      "ing": "looking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/look-looked-looked-looking-7debc918c7.png",
+    "audioAsset": "audio/verb_table/v1/look-looked-looked-looking-f5732cffa65b6f08.mp3"
+  },
+  {
+    "id": "vt098",
+    "type": "verb-table",
+    "zh": "玩",
+    "forms": {
+      "present": "play",
+      "past": "played",
+      "pp": "played",
+      "ing": "playing"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/play-played-played-playing-626b4978a9.png",
+    "audioAsset": "audio/verb_table/v1/play-played-played-playing-86a8403db28a76cd.mp3"
+  },
+  {
+    "id": "vt099",
+    "type": "verb-table",
+    "zh": "觀看",
+    "forms": {
+      "present": "watch",
+      "past": "watched",
+      "pp": "watched",
+      "ing": "watching"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/watch-watched-watched-watching-7debc918c7.png",
+    "audioAsset": ""
+  },
+  {
+    "id": "vt100",
+    "type": "verb-table",
+    "zh": "行走",
+    "forms": {
+      "present": "walk",
+      "past": "walked",
+      "pp": "walked",
+      "ing": "walking"
+    },
+    "imageAsset": "assets/grammar-verbs/irasutoya/v1/walk-walked-walked-walking-2a80fc190f.png",
+    "audioAsset": "audio/verb_table/v1/walk-walked-walked-walking-5aa7c5b954cf0b35.mp3"
+  }
+]

@@ -1,6 +1,20 @@
 import 'package:audioplayers/audioplayers.dart';
 
-enum SfxCue { start, step, click, correct, wrong, next, complete }
+enum SfxCue {
+  start,
+  step,
+  click,
+  correct,
+  wrong,
+  next,
+  complete,
+  pronounPlace1,
+  pronounPlace2,
+  pronounPlace3,
+  pronounPlace4,
+  pronounRowWin,
+  pronounGrandWin,
+}
 
 abstract interface class LessonSfx {
   Future<void> play(SfxCue cue);

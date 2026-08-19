@@ -27,12 +27,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/data/lesson_01.json
-    - assets/data/lesson_02.json
-    - assets/data/quiz_01.json
+    - assets/data/
     - assets/data/vocab/
     - assets/audio/sfx/
+    - assets/audio/verb_table/v1/
     - assets/audio/vocab_words/v1/
+    - assets/grammar-verbs/irasutoya/v1/
     - assets/fonts/OFL-Chiron-GoRound-TC.md
   fonts:
     - family: ChironGoRoundTC

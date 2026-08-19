@@ -1,0 +1,1224 @@
+[
+  {
+    "id": "hu001",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many wet markets in Hong Kong.",
+    "zh": "香港有很多街市。",
+    "isCorrect": true,
+    "answer": "There are many wet markets in Hong Kong.",
+    "english": "There are many wet markets in Hong Kong.",
+    "acceptedAnswers": [
+      "There are many wet markets in Hong Kong."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 wet markets 是眾數，所以用 There are。"
+  },
+  {
+    "id": "hu002",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There has many wet markets in Hong Kong.",
+    "zh": "香港有很多街市。",
+    "isCorrect": false,
+    "answer": "There are many wet markets in Hong Kong.",
+    "english": "There are many wet markets in Hong Kong.",
+    "acceptedAnswers": [
+      "There are many wet markets in Hong Kong."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 wet markets 是眾數，所以用 There are。"
+  },
+  {
+    "id": "hu003",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many patients today.",
+    "zh": "今日有很多病人。",
+    "isCorrect": true,
+    "answer": "There are many patients today.",
+    "english": "There are many patients today.",
+    "acceptedAnswers": [
+      "There are many patients today."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 今日有很多病人是存在情況，所以用 There are。"
+  },
+  {
+    "id": "hu004",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "Today has many patients.",
+    "zh": "今日有很多病人。",
+    "isCorrect": false,
+    "answer": "There are many patients today.",
+    "english": "There are many patients today.",
+    "acceptedAnswers": [
+      "There are many patients today."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 今日有很多病人是存在情況，所以用 There are。"
+  },
+  {
+    "id": "hu005",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is only one egg in the fridge.",
+    "zh": "雪櫃只有一隻蛋。",
+    "isCorrect": true,
+    "answer": "There is only one egg in the fridge.",
+    "english": "There is only one egg in the fridge.",
+    "acceptedAnswers": [
+      "There is only one egg in the fridge."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 one egg 是單數，所以用 There is。"
+  },
+  {
+    "id": "hu006",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are only one egg in the fridge.",
+    "zh": "雪櫃只有一隻蛋。",
+    "isCorrect": false,
+    "answer": "There is only one egg in the fridge.",
+    "english": "There is only one egg in the fridge.",
+    "acceptedAnswers": [
+      "There is only one egg in the fridge."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 one egg 是單數，所以用 There is。"
+  },
+  {
+    "id": "hu007",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is a lot of fake news online.",
+    "zh": "網上有很多假新聞。",
+    "isCorrect": true,
+    "answer": "There is a lot of fake news online.",
+    "english": "There is a lot of fake news online.",
+    "acceptedAnswers": [
+      "There is a lot of fake news online.",
+      "There is a lot of fake news on the internet."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 news 是不可數名詞，所以用 There is a lot of fake news。"
+  },
+  {
+    "id": "hu008",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many fake news online.",
+    "zh": "網上有很多假新聞。",
+    "isCorrect": false,
+    "answer": "There is a lot of fake news online.",
+    "english": "There is a lot of fake news online.",
+    "acceptedAnswers": [
+      "There is a lot of fake news online.",
+      "There is a lot of fake news on the internet."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 news 是不可數名詞，所以用 There is a lot of fake news。"
+  },
+  {
+    "id": "hu009",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are five books on the desk.",
+    "zh": "桌上有五本書。",
+    "isCorrect": true,
+    "answer": "There are five books on the desk.",
+    "english": "There are five books on the desk.",
+    "acceptedAnswers": [
+      "There are five books on the desk."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 地方有東西，不寫 On the desk has，要寫 There are。"
+  },
+  {
+    "id": "hu010",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "On the desk has five books.",
+    "zh": "桌上有五本書。",
+    "isCorrect": false,
+    "answer": "There are five books on the desk.",
+    "english": "There are five books on the desk.",
+    "acceptedAnswers": [
+      "There are five books on the desk."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 地方有東西，不寫 On the desk has，要寫 There are。"
+  },
+  {
+    "id": "hu011",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is some water in the bottle.",
+    "zh": "瓶裏有一些水。",
+    "isCorrect": true,
+    "answer": "There is some water in the bottle.",
+    "english": "There is some water in the bottle.",
+    "acceptedAnswers": [
+      "There is some water in the bottle."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 water 是不可數名詞，所以用 There is some water。"
+  },
+  {
+    "id": "hu012",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are some waters in the bottle.",
+    "zh": "瓶裏有一些水。",
+    "isCorrect": false,
+    "answer": "There is some water in the bottle.",
+    "english": "There is some water in the bottle.",
+    "acceptedAnswers": [
+      "There is some water in the bottle."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 water 是不可數名詞，所以用 There is some water。"
+  },
+  {
+    "id": "hu013",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many people in the park.",
+    "zh": "公園有很多人。",
+    "isCorrect": true,
+    "answer": "There are many people in the park.",
+    "english": "There are many people in the park.",
+    "acceptedAnswers": [
+      "There are many people in the park."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 地方「有」用 There are many people in the park。"
+  },
+  {
+    "id": "hu014",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "The park there are many people.",
+    "zh": "公園有很多人。",
+    "isCorrect": false,
+    "answer": "There are many people in the park.",
+    "english": "There are many people in the park.",
+    "acceptedAnswers": [
+      "There are many people in the park."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 地方「有」用 There are many people in the park。"
+  },
+  {
+    "id": "hu015",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is a problem with my computer.",
+    "zh": "我的電腦有一個問題。",
+    "isCorrect": true,
+    "answer": "There is a problem with my computer.",
+    "english": "There is a problem with my computer.",
+    "acceptedAnswers": [
+      "There is a problem with my computer."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 這裡是說存在一個問題，所以用 There is a problem。"
+  },
+  {
+    "id": "hu016",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "My computer there is a problem.",
+    "zh": "我的電腦有一個問題。",
+    "isCorrect": false,
+    "answer": "There is a problem with my computer.",
+    "english": "There is a problem with my computer.",
+    "acceptedAnswers": [
+      "There is a problem with my computer."
+    ],
+    "explanation": "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。 這裡是說存在一個問題，所以用 There is a problem。"
+  },
+  {
+    "id": "hu017",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is a lot of food which should have expired in the fridge.",
+    "zh": "雪櫃有很多食物應該過期了。",
+    "isCorrect": true,
+    "answer": "There is a lot of food which should have expired in the fridge.",
+    "english": "There is a lot of food which should have expired in the fridge.",
+    "acceptedAnswers": [
+      "There is a lot of food which should have expired in the fridge."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There be 後面再有 should，就要加 which 連住：food which should have expired。"
+  },
+  {
+    "id": "hu018",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is a lot of food should have expired in the fridge.",
+    "zh": "雪櫃有很多食物應該過期了。",
+    "isCorrect": false,
+    "answer": "There is a lot of food which should have expired in the fridge.",
+    "english": "There is a lot of food which should have expired in the fridge.",
+    "acceptedAnswers": [
+      "There is a lot of food which should have expired in the fridge."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There be 後面再有 should，就要加 which 連住：food which should have expired。"
+  },
+  {
+    "id": "hu019",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many students who can answer this question.",
+    "zh": "有很多學生可以回答這條問題。",
+    "isCorrect": true,
+    "answer": "There are many students who can answer this question.",
+    "english": "There are many students who can answer this question.",
+    "acceptedAnswers": [
+      "There are many students who can answer this question."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There are many students 後面有 can answer，要加 who。"
+  },
+  {
+    "id": "hu020",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many students can answer this question.",
+    "zh": "有很多學生可以回答這條問題。",
+    "isCorrect": false,
+    "answer": "There are many students who can answer this question.",
+    "english": "There are many students who can answer this question.",
+    "acceptedAnswers": [
+      "There are many students who can answer this question."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There are many students 後面有 can answer，要加 who。"
+  },
+  {
+    "id": "hu021",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many students asking me this question.",
+    "zh": "有很多學生問我這問題。",
+    "isCorrect": true,
+    "answer": "There are many students asking me this question.",
+    "english": "There are many students asking me this question.",
+    "acceptedAnswers": [
+      "There are many students asking me this question.",
+      "There are many students who ask me this question."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There be 後面再有主動動作，可以用 asking，或加 who ask。"
+  },
+  {
+    "id": "hu022",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many students ask me this question.",
+    "zh": "有很多學生問我這問題。",
+    "isCorrect": false,
+    "answer": "There are many students asking me this question.",
+    "english": "There are many students asking me this question.",
+    "acceptedAnswers": [
+      "There are many students asking me this question.",
+      "There are many students who ask me this question."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There be 後面再有主動動作，可以用 asking，或加 who ask。"
+  },
+  {
+    "id": "hu023",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is a boy holding a red pen.",
+    "zh": "有一個男孩拿著一枝紅筆。",
+    "isCorrect": true,
+    "answer": "There is a boy holding a red pen.",
+    "english": "There is a boy holding a red pen.",
+    "acceptedAnswers": [
+      "There is a boy holding a red pen.",
+      "There is a boy who is holding a red pen."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 句子已有 There is；後面描述男孩拿著筆，用 holding。"
+  },
+  {
+    "id": "hu024",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is a boy holds a red pen.",
+    "zh": "有一個男孩拿著一枝紅筆。",
+    "isCorrect": false,
+    "answer": "There is a boy holding a red pen.",
+    "english": "There is a boy holding a red pen.",
+    "acceptedAnswers": [
+      "There is a boy holding a red pen.",
+      "There is a boy who is holding a red pen."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 句子已有 There is；後面描述男孩拿著筆，用 holding。"
+  },
+  {
+    "id": "hu025",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many students punished by my class teacher.",
+    "zh": "有很多學生被我的班主任罰。",
+    "isCorrect": true,
+    "answer": "There are many students punished by my class teacher.",
+    "english": "There are many students punished by my class teacher.",
+    "acceptedAnswers": [
+      "There are many students punished by my class teacher.",
+      "There are many students who were punished by my class teacher."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 被罰是被動意思，所以用 PP punished，或 who were punished。"
+  },
+  {
+    "id": "hu026",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many students punish by my class teacher.",
+    "zh": "有很多學生被我的班主任罰。",
+    "isCorrect": false,
+    "answer": "There are many students punished by my class teacher.",
+    "english": "There are many students punished by my class teacher.",
+    "acceptedAnswers": [
+      "There are many students punished by my class teacher.",
+      "There are many students who were punished by my class teacher."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 被罰是被動意思，所以用 PP punished，或 who were punished。"
+  },
+  {
+    "id": "hu027",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many windows broken by the typhoon.",
+    "zh": "有很多窗被颱風吹爛了。",
+    "isCorrect": true,
+    "answer": "There are many windows broken by the typhoon.",
+    "english": "There are many windows broken by the typhoon.",
+    "acceptedAnswers": [
+      "There are many windows broken by the typhoon."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 被吹爛是被動意思，所以用 PP broken。"
+  },
+  {
+    "id": "hu028",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are many windows broke by the typhoon.",
+    "zh": "有很多窗被颱風吹爛了。",
+    "isCorrect": false,
+    "answer": "There are many windows broken by the typhoon.",
+    "english": "There are many windows broken by the typhoon.",
+    "acceptedAnswers": [
+      "There are many windows broken by the typhoon."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 被吹爛是被動意思，所以用 PP broken。"
+  },
+  {
+    "id": "hu029",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is a dog which may bite people.",
+    "zh": "有一隻狗可能會咬人。",
+    "isCorrect": true,
+    "answer": "There is a dog which may bite people.",
+    "english": "There is a dog which may bite people.",
+    "acceptedAnswers": [
+      "There is a dog which may bite people."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There is a dog 後面有 modal verb may，要加 which。"
+  },
+  {
+    "id": "hu030",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There is a dog may bite people.",
+    "zh": "有一隻狗可能會咬人。",
+    "isCorrect": false,
+    "answer": "There is a dog which may bite people.",
+    "english": "There is a dog which may bite people.",
+    "acceptedAnswers": [
+      "There is a dog which may bite people."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There is a dog 後面有 modal verb may，要加 which。"
+  },
+  {
+    "id": "hu031",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are some children playing outside.",
+    "zh": "有些小朋友在外面玩。",
+    "isCorrect": true,
+    "answer": "There are some children playing outside.",
+    "english": "There are some children playing outside.",
+    "acceptedAnswers": [
+      "There are some children playing outside.",
+      "There are some children who are playing outside."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There are 後面再講小朋友正在玩，用 playing，或 who are playing。"
+  },
+  {
+    "id": "hu032",
+    "type": "have-usage",
+    "category": "there-be",
+    "categoryLabel": "There be",
+    "sentence": "There are some children play outside.",
+    "zh": "有些小朋友在外面玩。",
+    "isCorrect": false,
+    "answer": "There are some children playing outside.",
+    "english": "There are some children playing outside.",
+    "acceptedAnswers": [
+      "There are some children playing outside.",
+      "There are some children who are playing outside."
+    ],
+    "explanation": "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。 There are 後面再講小朋友正在玩，用 playing，或 who are playing。"
+  },
+  {
+    "id": "hu033",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "I want a tortoise with two heads.",
+    "zh": "我想要一隻有兩個頭的龜。",
+    "isCorrect": true,
+    "answer": "I want a tortoise with two heads.",
+    "english": "I want a tortoise with two heads.",
+    "acceptedAnswers": [
+      "I want a tortoise with two heads."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 有兩個頭的龜是形容 tortoise，所以用 with two heads。"
+  },
+  {
+    "id": "hu034",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "I want a tortoise has two heads.",
+    "zh": "我想要一隻有兩個頭的龜。",
+    "isCorrect": false,
+    "answer": "I want a tortoise with two heads.",
+    "english": "I want a tortoise with two heads.",
+    "acceptedAnswers": [
+      "I want a tortoise with two heads."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 有兩個頭的龜是形容 tortoise，所以用 with two heads。"
+  },
+  {
+    "id": "hu035",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "I prefer cats with a long tail.",
+    "zh": "我較喜歡有長尾巴的貓。",
+    "isCorrect": true,
+    "answer": "I prefer cats with a long tail.",
+    "english": "I prefer cats with a long tail.",
+    "acceptedAnswers": [
+      "I prefer cats with a long tail."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 有長尾巴的貓是形容 cats，所以用 cats with a long tail。"
+  },
+  {
+    "id": "hu036",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "I prefer cats have a long tail.",
+    "zh": "我較喜歡有長尾巴的貓。",
+    "isCorrect": false,
+    "answer": "I prefer cats with a long tail.",
+    "english": "I prefer cats with a long tail.",
+    "acceptedAnswers": [
+      "I prefer cats with a long tail."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 有長尾巴的貓是形容 cats，所以用 cats with a long tail。"
+  },
+  {
+    "id": "hu037",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "I don't need a torch without batteries.",
+    "zh": "我不需要沒有電池的電筒。",
+    "isCorrect": true,
+    "answer": "I don't need a torch without batteries.",
+    "english": "I don't need a torch without batteries.",
+    "acceptedAnswers": [
+      "I don't need a torch without batteries.",
+      "I do not need a torch without batteries."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 沒有電池的電筒是形容 torch，所以用 without batteries。"
+  },
+  {
+    "id": "hu038",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "I don't need a torch does not have batteries.",
+    "zh": "我不需要沒有電池的電筒。",
+    "isCorrect": false,
+    "answer": "I don't need a torch without batteries.",
+    "english": "I don't need a torch without batteries.",
+    "acceptedAnswers": [
+      "I don't need a torch without batteries.",
+      "I do not need a torch without batteries."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 沒有電池的電筒是形容 torch，所以用 without batteries。"
+  },
+  {
+    "id": "hu039",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "The girl with glasses is my sister.",
+    "zh": "那個戴眼鏡的女孩是我妹妹。",
+    "isCorrect": true,
+    "answer": "The girl with glasses is my sister.",
+    "english": "The girl with glasses is my sister.",
+    "acceptedAnswers": [
+      "The girl with glasses is my sister."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 with glasses 形容 The girl；不要直接寫 The girl has glasses is。"
+  },
+  {
+    "id": "hu040",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "The girl has glasses is my sister.",
+    "zh": "那個戴眼鏡的女孩是我妹妹。",
+    "isCorrect": false,
+    "answer": "The girl with glasses is my sister.",
+    "english": "The girl with glasses is my sister.",
+    "acceptedAnswers": [
+      "The girl with glasses is my sister."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 with glasses 形容 The girl；不要直接寫 The girl has glasses is。"
+  },
+  {
+    "id": "hu041",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "A boy with a blue bag is waiting outside.",
+    "zh": "一個有藍色書包的男孩正在外面等。",
+    "isCorrect": true,
+    "answer": "A boy with a blue bag is waiting outside.",
+    "english": "A boy with a blue bag is waiting outside.",
+    "acceptedAnswers": [
+      "A boy with a blue bag is waiting outside."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 with a blue bag 形容 A boy。"
+  },
+  {
+    "id": "hu042",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "A boy has a blue bag is waiting outside.",
+    "zh": "一個有藍色書包的男孩正在外面等。",
+    "isCorrect": false,
+    "answer": "A boy with a blue bag is waiting outside.",
+    "english": "A boy with a blue bag is waiting outside.",
+    "acceptedAnswers": [
+      "A boy with a blue bag is waiting outside."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 with a blue bag 形容 A boy。"
+  },
+  {
+    "id": "hu043",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "I bought a notebook with a red cover.",
+    "zh": "我買了一本有紅色封面的筆記簿。",
+    "isCorrect": true,
+    "answer": "I bought a notebook with a red cover.",
+    "english": "I bought a notebook with a red cover.",
+    "acceptedAnswers": [
+      "I bought a notebook with a red cover."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 with a red cover 形容 notebook。"
+  },
+  {
+    "id": "hu044",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "I bought a notebook has a red cover.",
+    "zh": "我買了一本有紅色封面的筆記簿。",
+    "isCorrect": false,
+    "answer": "I bought a notebook with a red cover.",
+    "english": "I bought a notebook with a red cover.",
+    "acceptedAnswers": [
+      "I bought a notebook with a red cover."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 with a red cover 形容 notebook。"
+  },
+  {
+    "id": "hu045",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "Do not buy snacks without labels.",
+    "zh": "不要買沒有標籤的零食。",
+    "isCorrect": true,
+    "answer": "Do not buy snacks without labels.",
+    "english": "Do not buy snacks without labels.",
+    "acceptedAnswers": [
+      "Do not buy snacks without labels.",
+      "Don't buy snacks without labels."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 沒有標籤的零食是形容 snacks，所以用 without labels。"
+  },
+  {
+    "id": "hu046",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "Do not buy snacks do not have labels.",
+    "zh": "不要買沒有標籤的零食。",
+    "isCorrect": false,
+    "answer": "Do not buy snacks without labels.",
+    "english": "Do not buy snacks without labels.",
+    "acceptedAnswers": [
+      "Do not buy snacks without labels.",
+      "Don't buy snacks without labels."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 沒有標籤的零食是形容 snacks，所以用 without labels。"
+  },
+  {
+    "id": "hu047",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "The classroom with two doors is large.",
+    "zh": "那間有兩道門的課室很大。",
+    "isCorrect": true,
+    "answer": "The classroom with two doors is large.",
+    "english": "The classroom with two doors is large.",
+    "acceptedAnswers": [
+      "The classroom with two doors is large."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 with two doors 形容 The classroom。"
+  },
+  {
+    "id": "hu048",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "The classroom has two doors is large.",
+    "zh": "那間有兩道門的課室很大。",
+    "isCorrect": false,
+    "answer": "The classroom with two doors is large.",
+    "english": "The classroom with two doors is large.",
+    "acceptedAnswers": [
+      "The classroom with two doors is large."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 with two doors 形容 The classroom。"
+  },
+  {
+    "id": "hu049",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "With your help, I believe I can pass.",
+    "zh": "有了你的幫助，我相信我可以合格。",
+    "isCorrect": true,
+    "answer": "With your help, I believe I can pass.",
+    "english": "With your help, I believe I can pass.",
+    "acceptedAnswers": [
+      "With your help, I believe I can pass."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 With your help 放句首，後面要加 comma。"
+  },
+  {
+    "id": "hu050",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "With your help I believe I can pass.",
+    "zh": "有了你的幫助，我相信我可以合格。",
+    "isCorrect": false,
+    "answer": "With your help, I believe I can pass.",
+    "english": "With your help, I believe I can pass.",
+    "acceptedAnswers": [
+      "With your help, I believe I can pass."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 With your help 放句首，後面要加 comma。"
+  },
+  {
+    "id": "hu051",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "With AI tools, I can learn faster.",
+    "zh": "有了 AI 工具，我可以學得更快。",
+    "isCorrect": true,
+    "answer": "With AI tools, I can learn faster.",
+    "english": "With AI tools, I can learn faster.",
+    "acceptedAnswers": [
+      "With AI tools, I can learn faster."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 句首「有了 AI 工具」用 With AI tools，不用 Have AI tools。"
+  },
+  {
+    "id": "hu052",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "Have AI tools, I can learn faster.",
+    "zh": "有了 AI 工具，我可以學得更快。",
+    "isCorrect": false,
+    "answer": "With AI tools, I can learn faster.",
+    "english": "With AI tools, I can learn faster.",
+    "acceptedAnswers": [
+      "With AI tools, I can learn faster."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 句首「有了 AI 工具」用 With AI tools，不用 Have AI tools。"
+  },
+  {
+    "id": "hu053",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "Without you, my life is meaningless.",
+    "zh": "沒有你，我的人生沒意義。",
+    "isCorrect": true,
+    "answer": "Without you, my life is meaningless.",
+    "english": "Without you, my life is meaningless.",
+    "acceptedAnswers": [
+      "Without you, my life is meaningless."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 Without you 放句首，後面要加 comma。"
+  },
+  {
+    "id": "hu054",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "Without you my life is meaningless.",
+    "zh": "沒有你，我的人生沒意義。",
+    "isCorrect": false,
+    "answer": "Without you, my life is meaningless.",
+    "english": "Without you, my life is meaningless.",
+    "acceptedAnswers": [
+      "Without you, my life is meaningless."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 Without you 放句首，後面要加 comma。"
+  },
+  {
+    "id": "hu055",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "Without enough sleep, students feel tired.",
+    "zh": "沒有足夠睡眠，學生會覺得累。",
+    "isCorrect": true,
+    "answer": "Without enough sleep, students feel tired.",
+    "english": "Without enough sleep, students feel tired.",
+    "acceptedAnswers": [
+      "Without enough sleep, students feel tired."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 句首「沒有足夠睡眠」用 Without enough sleep。"
+  },
+  {
+    "id": "hu056",
+    "type": "have-usage",
+    "category": "with-without",
+    "categoryLabel": "with / without",
+    "sentence": "No enough sleep, students feel tired.",
+    "zh": "沒有足夠睡眠，學生會覺得累。",
+    "isCorrect": false,
+    "answer": "Without enough sleep, students feel tired.",
+    "english": "Without enough sleep, students feel tired.",
+    "acceptedAnswers": [
+      "Without enough sleep, students feel tired."
+    ],
+    "explanation": "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。 句首「沒有足夠睡眠」用 Without enough sleep。"
+  },
+  {
+    "id": "hu057",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "They have many questions.",
+    "zh": "他們有很多問題。",
+    "isCorrect": true,
+    "answer": "They have many questions.",
+    "english": "They have many questions.",
+    "acceptedAnswers": [
+      "They have many questions."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 這裡是他們擁有問題，所以用 They have。"
+  },
+  {
+    "id": "hu058",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "There are they many questions.",
+    "zh": "他們有很多問題。",
+    "isCorrect": false,
+    "answer": "They have many questions.",
+    "english": "They have many questions.",
+    "acceptedAnswers": [
+      "They have many questions."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 這裡是他們擁有問題，所以用 They have。"
+  },
+  {
+    "id": "hu059",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "I do not have friends.",
+    "zh": "我沒有朋友。",
+    "isCorrect": true,
+    "answer": "I do not have friends.",
+    "english": "I do not have friends.",
+    "acceptedAnswers": [
+      "I do not have friends.",
+      "I don't have friends."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 沒有用 do not have；I 後面用 do not have。"
+  },
+  {
+    "id": "hu060",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "I have not friends.",
+    "zh": "我沒有朋友。",
+    "isCorrect": false,
+    "answer": "I do not have friends.",
+    "english": "I do not have friends.",
+    "acceptedAnswers": [
+      "I do not have friends.",
+      "I don't have friends."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 沒有用 do not have；I 後面用 do not have。"
+  },
+  {
+    "id": "hu061",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "These chairs do not have price tags.",
+    "zh": "這些椅子沒有價錢牌。",
+    "isCorrect": true,
+    "answer": "These chairs do not have price tags.",
+    "english": "These chairs do not have price tags.",
+    "acceptedAnswers": [
+      "These chairs do not have price tags.",
+      "These chairs don't have price tags."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 這裡是 chairs 沒有 price tags，所以用 do not have。"
+  },
+  {
+    "id": "hu062",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "These chairs without price tags.",
+    "zh": "這些椅子沒有價錢牌。",
+    "isCorrect": false,
+    "answer": "These chairs do not have price tags.",
+    "english": "These chairs do not have price tags.",
+    "acceptedAnswers": [
+      "These chairs do not have price tags.",
+      "These chairs don't have price tags."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 這裡是 chairs 沒有 price tags，所以用 do not have。"
+  },
+  {
+    "id": "hu063",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "She has a new school bag.",
+    "zh": "她有一個新書包。",
+    "isCorrect": true,
+    "answer": "She has a new school bag.",
+    "english": "She has a new school bag.",
+    "acceptedAnswers": [
+      "She has a new school bag."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 She 是單數，所以用 has；have 前面不用加 is。"
+  },
+  {
+    "id": "hu064",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "She is have a new school bag.",
+    "zh": "她有一個新書包。",
+    "isCorrect": false,
+    "answer": "She has a new school bag.",
+    "english": "She has a new school bag.",
+    "acceptedAnswers": [
+      "She has a new school bag."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 She 是單數，所以用 has；have 前面不用加 is。"
+  },
+  {
+    "id": "hu065",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "My brother has two watches.",
+    "zh": "我哥哥有兩隻手錶。",
+    "isCorrect": true,
+    "answer": "My brother has two watches.",
+    "english": "My brother has two watches.",
+    "acceptedAnswers": [
+      "My brother has two watches."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 My brother 是單數，所以用 has。"
+  },
+  {
+    "id": "hu066",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "My brother have two watches.",
+    "zh": "我哥哥有兩隻手錶。",
+    "isCorrect": false,
+    "answer": "My brother has two watches.",
+    "english": "My brother has two watches.",
+    "acceptedAnswers": [
+      "My brother has two watches."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 My brother 是單數，所以用 has。"
+  },
+  {
+    "id": "hu067",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "We have English lessons on Monday.",
+    "zh": "我們星期一有英文課。",
+    "isCorrect": true,
+    "answer": "We have English lessons on Monday.",
+    "english": "We have English lessons on Monday.",
+    "acceptedAnswers": [
+      "We have English lessons on Monday."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 We 後面用 have，不用 are have。"
+  },
+  {
+    "id": "hu068",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "We are have English lessons on Monday.",
+    "zh": "我們星期一有英文課。",
+    "isCorrect": false,
+    "answer": "We have English lessons on Monday.",
+    "english": "We have English lessons on Monday.",
+    "acceptedAnswers": [
+      "We have English lessons on Monday."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 We 後面用 have，不用 are have。"
+  },
+  {
+    "id": "hu069",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "Tom does not have a pencil.",
+    "zh": "Tom 沒有鉛筆。",
+    "isCorrect": true,
+    "answer": "Tom does not have a pencil.",
+    "english": "Tom does not have a pencil.",
+    "acceptedAnswers": [
+      "Tom does not have a pencil.",
+      "Tom doesn't have a pencil."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 Tom 是單數，所以否定句用 does not have。"
+  },
+  {
+    "id": "hu070",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "Tom do not have a pencil.",
+    "zh": "Tom 沒有鉛筆。",
+    "isCorrect": false,
+    "answer": "Tom does not have a pencil.",
+    "english": "Tom does not have a pencil.",
+    "acceptedAnswers": [
+      "Tom does not have a pencil.",
+      "Tom doesn't have a pencil."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 Tom 是單數，所以否定句用 does not have。"
+  },
+  {
+    "id": "hu071",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "Did you have breakfast?",
+    "zh": "你吃了早餐嗎？",
+    "isCorrect": true,
+    "answer": "Did you have breakfast?",
+    "english": "Did you have breakfast?",
+    "acceptedAnswers": [
+      "Did you have breakfast?"
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 問句有 Did，後面動詞用原型 have。"
+  },
+  {
+    "id": "hu072",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "Did you had breakfast?",
+    "zh": "你吃了早餐嗎？",
+    "isCorrect": false,
+    "answer": "Did you have breakfast?",
+    "english": "Did you have breakfast?",
+    "acceptedAnswers": [
+      "Did you have breakfast?"
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 問句有 Did，後面動詞用原型 have。"
+  },
+  {
+    "id": "hu073",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "Our school has a big hall.",
+    "zh": "我們學校有一個大禮堂。",
+    "isCorrect": true,
+    "answer": "Our school has a big hall.",
+    "english": "Our school has a big hall.",
+    "acceptedAnswers": [
+      "Our school has a big hall."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 Our school 是單數，所以用 has。"
+  },
+  {
+    "id": "hu074",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "Our school have a big hall.",
+    "zh": "我們學校有一個大禮堂。",
+    "isCorrect": false,
+    "answer": "Our school has a big hall.",
+    "english": "Our school has a big hall.",
+    "acceptedAnswers": [
+      "Our school has a big hall."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 Our school 是單數，所以用 has。"
+  },
+  {
+    "id": "hu075",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "I had a fever yesterday.",
+    "zh": "我昨天發燒。",
+    "isCorrect": true,
+    "answer": "I had a fever yesterday.",
+    "english": "I had a fever yesterday.",
+    "acceptedAnswers": [
+      "I had a fever yesterday."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 yesterday 是過去時間，所以 have 變 had；不用 was have。"
+  },
+  {
+    "id": "hu076",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "I was have a fever yesterday.",
+    "zh": "我昨天發燒。",
+    "isCorrect": false,
+    "answer": "I had a fever yesterday.",
+    "english": "I had a fever yesterday.",
+    "acceptedAnswers": [
+      "I had a fever yesterday."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 yesterday 是過去時間，所以 have 變 had；不用 was have。"
+  },
+  {
+    "id": "hu077",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "The dog has black ears.",
+    "zh": "那隻狗有黑色耳朵。",
+    "isCorrect": true,
+    "answer": "The dog has black ears.",
+    "english": "The dog has black ears.",
+    "acceptedAnswers": [
+      "The dog has black ears."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 這裡是完整句子，要有動詞 has；with black ears 只是一個形容部分。"
+  },
+  {
+    "id": "hu078",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "The dog with black ears.",
+    "zh": "那隻狗有黑色耳朵。",
+    "isCorrect": false,
+    "answer": "The dog has black ears.",
+    "english": "The dog has black ears.",
+    "acceptedAnswers": [
+      "The dog has black ears."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 這裡是完整句子，要有動詞 has；with black ears 只是一個形容部分。"
+  },
+  {
+    "id": "hu079",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "My phone does not have enough battery.",
+    "zh": "我的手機沒有足夠電量。",
+    "isCorrect": true,
+    "answer": "My phone does not have enough battery.",
+    "english": "My phone does not have enough battery.",
+    "acceptedAnswers": [
+      "My phone does not have enough battery.",
+      "My phone doesn't have enough battery."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 這裡要寫完整句子，所以用 does not have。"
+  },
+  {
+    "id": "hu080",
+    "type": "have-usage",
+    "category": "have",
+    "categoryLabel": "have / has",
+    "sentence": "My phone without enough battery.",
+    "zh": "我的手機沒有足夠電量。",
+    "isCorrect": false,
+    "answer": "My phone does not have enough battery.",
+    "english": "My phone does not have enough battery.",
+    "acceptedAnswers": [
+      "My phone does not have enough battery.",
+      "My phone doesn't have enough battery."
+    ],
+    "explanation": "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。 這裡要寫完整句子，所以用 does not have。"
+  }
+]

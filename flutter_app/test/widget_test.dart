@@ -51,4 +51,17 @@ void main() {
     expect(find.byKey(const Key('quiz-01-word-bank')), findsOneWidget);
     expect(find.text('1/10'), findsOneWidget);
   });
+
+  testWidgets('opens the full Verb Table without showing a keyboard',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+    final info = find.byKey(const Key('verb-table-roadmap-info'));
+    await tester.ensureVisible(info);
+    await tester.tap(info);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Verb Table 動詞表'), findsOneWidget);
+    expect(find.byKey(const Key('verb-table-reference-list')), findsOneWidget);
+    expect(find.byType(TextField), findsNothing);
+  });
 }

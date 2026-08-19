@@ -1,0 +1,904 @@
+[
+  {
+    "id": "nc001",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "I like cats.",
+    "zh": "我喜歡貓。",
+    "isCorrect": true,
+    "answer": "I like cats.",
+    "english": "I like cats.",
+    "acceptedAnswers": [
+      "I like cats."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 這裡是一般地說喜歡貓，所以用 cats。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc002",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "I like cat.",
+    "zh": "我喜歡貓。",
+    "isCorrect": false,
+    "answer": "I like cats.",
+    "english": "I like cats.",
+    "acceptedAnswers": [
+      "I like cats."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 這裡是一般地說喜歡貓，所以用 cats。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc003",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "She has a pencil.",
+    "zh": "她有一支鉛筆。",
+    "isCorrect": true,
+    "answer": "She has a pencil.",
+    "english": "She has a pencil.",
+    "acceptedAnswers": [
+      "She has a pencil."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 中文指一支 pencil，所以要用 a pencil。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc004",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "She has pencil.",
+    "zh": "她有一支鉛筆。",
+    "isCorrect": false,
+    "answer": "She has a pencil.",
+    "english": "She has a pencil.",
+    "acceptedAnswers": [
+      "She has a pencil."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 中文指一支 pencil，所以要用 a pencil。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc005",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "I see an apple.",
+    "zh": "我看見一個蘋果。",
+    "isCorrect": true,
+    "answer": "I see an apple.",
+    "english": "I see an apple.",
+    "acceptedAnswers": [
+      "I see an apple."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 apple 以母音開頭，所以一個蘋果要寫 an apple。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc006",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "I see a apple.",
+    "zh": "我看見一個蘋果。",
+    "isCorrect": false,
+    "answer": "I see an apple.",
+    "english": "I see an apple.",
+    "acceptedAnswers": [
+      "I see an apple."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 apple 以母音開頭，所以一個蘋果要寫 an apple。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc007",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "The world is big.",
+    "zh": "世界很大。",
+    "isCorrect": true,
+    "answer": "The world is big.",
+    "english": "The world is big.",
+    "acceptedAnswers": [
+      "The world is big."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 world 基本上會加 the，寫 The world。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc008",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "World is big.",
+    "zh": "世界很大。",
+    "isCorrect": false,
+    "answer": "The world is big.",
+    "english": "The world is big.",
+    "acceptedAnswers": [
+      "The world is big."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 world 基本上會加 the，寫 The world。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc009",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "The government helps people.",
+    "zh": "政府幫助人民。",
+    "isCorrect": true,
+    "answer": "The government helps people.",
+    "english": "The government helps people.",
+    "acceptedAnswers": [
+      "The government helps people."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 government 通常指一個已知的政府，所以寫 The government。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc010",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "Government helps people.",
+    "zh": "政府幫助人民。",
+    "isCorrect": false,
+    "answer": "The government helps people.",
+    "english": "The government helps people.",
+    "acceptedAnswers": [
+      "The government helps people."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 government 通常指一個已知的政府，所以寫 The government。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc011",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "My dog is cute.",
+    "zh": "我的狗很可愛。",
+    "isCorrect": true,
+    "answer": "My dog is cute.",
+    "english": "My dog is cute.",
+    "acceptedAnswers": [
+      "My dog is cute."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 中文指我的狗，所以要用代名詞的 my。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc012",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "Dog is cute.",
+    "zh": "我的狗很可愛。",
+    "isCorrect": false,
+    "answer": "My dog is cute.",
+    "english": "My dog is cute.",
+    "acceptedAnswers": [
+      "My dog is cute."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 中文指我的狗，所以要用代名詞的 my。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc013",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "I read books.",
+    "zh": "我看書。",
+    "isCorrect": true,
+    "answer": "I read books.",
+    "english": "I read books.",
+    "acceptedAnswers": [
+      "I read books."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 這裡不是指一本書，所以可數名詞 book 要用眾數 books。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc014",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "I read book.",
+    "zh": "我看書。",
+    "isCorrect": false,
+    "answer": "I read books.",
+    "english": "I read books.",
+    "acceptedAnswers": [
+      "I read books."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 這裡不是指一本書，所以可數名詞 book 要用眾數 books。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc015",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "The UK is far from Hong Kong.",
+    "zh": "英國離香港很遠。",
+    "isCorrect": true,
+    "answer": "The UK is far from Hong Kong.",
+    "english": "The UK is far from Hong Kong.",
+    "acceptedAnswers": [
+      "The UK is far from Hong Kong."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 the UK 是固定寫法，要有 the。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc016",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "UK is far from Hong Kong.",
+    "zh": "英國離香港很遠。",
+    "isCorrect": false,
+    "answer": "The UK is far from Hong Kong.",
+    "english": "The UK is far from Hong Kong.",
+    "acceptedAnswers": [
+      "The UK is far from Hong Kong."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 the UK 是固定寫法，要有 the。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc017",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "The US is a big country.",
+    "zh": "美國是一個大國。",
+    "isCorrect": true,
+    "answer": "The US is a big country.",
+    "english": "The US is a big country.",
+    "acceptedAnswers": [
+      "The US is a big country."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 the US 要有 the；country 是單數可數名詞，所以要寫 a big country。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc018",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "US is big country.",
+    "zh": "美國是一個大國。",
+    "isCorrect": false,
+    "answer": "The US is a big country.",
+    "english": "The US is a big country.",
+    "acceptedAnswers": [
+      "The US is a big country."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 the US 要有 the；country 是單數可數名詞，所以要寫 a big country。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc019",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "The environment is important.",
+    "zh": "環境很重要。",
+    "isCorrect": true,
+    "answer": "The environment is important.",
+    "english": "The environment is important.",
+    "acceptedAnswers": [
+      "The environment is important."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 environment 通常指整體環境，所以寫 The environment。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc020",
+    "type": "noun-category",
+    "category": "countable",
+    "sentence": "Environment is important.",
+    "zh": "環境很重要。",
+    "isCorrect": false,
+    "answer": "The environment is important.",
+    "english": "The environment is important.",
+    "acceptedAnswers": [
+      "The environment is important."
+    ],
+    "explanation": "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。 environment 通常指整體環境，所以寫 The environment。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc021",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Information is useful.",
+    "zh": "資料很有用。",
+    "isCorrect": true,
+    "answer": "Information is useful.",
+    "english": "Information is useful.",
+    "acceptedAnswers": [
+      "Information is useful."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 information 是不可數名詞，所以沒有 s，用 is。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc022",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Informations are useful.",
+    "zh": "資料很有用。",
+    "isCorrect": false,
+    "answer": "Information is useful.",
+    "english": "Information is useful.",
+    "acceptedAnswers": [
+      "Information is useful."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 information 是不可數名詞，所以沒有 s，用 is。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc023",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Furniture is heavy.",
+    "zh": "傢俱很重。",
+    "isCorrect": true,
+    "answer": "Furniture is heavy.",
+    "english": "Furniture is heavy.",
+    "acceptedAnswers": [
+      "Furniture is heavy."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 furniture 是不可數名詞，所以沒有 s，用 is。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc024",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Furnitures are heavy.",
+    "zh": "傢俱很重。",
+    "isCorrect": false,
+    "answer": "Furniture is heavy.",
+    "english": "Furniture is heavy.",
+    "acceptedAnswers": [
+      "Furniture is heavy."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 furniture 是不可數名詞，所以沒有 s，用 is。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc025",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Equipment is expensive.",
+    "zh": "裝備很貴。",
+    "isCorrect": true,
+    "answer": "Equipment is expensive.",
+    "english": "Equipment is expensive.",
+    "acceptedAnswers": [
+      "Equipment is expensive."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 equipment 是不可數名詞，所以沒有 s，用 is。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc026",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Equipments are expensive.",
+    "zh": "裝備很貴。",
+    "isCorrect": false,
+    "answer": "Equipment is expensive.",
+    "english": "Equipment is expensive.",
+    "acceptedAnswers": [
+      "Equipment is expensive."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 equipment 是不可數名詞，所以沒有 s，用 is。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc027",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Advice is helpful.",
+    "zh": "建議很有幫助。",
+    "isCorrect": true,
+    "answer": "Advice is helpful.",
+    "english": "Advice is helpful.",
+    "acceptedAnswers": [
+      "Advice is helpful."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 advice 是不可數名詞，所以沒有 s，用 is。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc028",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Advices are helpful.",
+    "zh": "建議很有幫助。",
+    "isCorrect": false,
+    "answer": "Advice is helpful.",
+    "english": "Advice is helpful.",
+    "acceptedAnswers": [
+      "Advice is helpful."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 advice 是不可數名詞，所以沒有 s，用 is。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc029",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "I need water.",
+    "zh": "我需要水。",
+    "isCorrect": true,
+    "answer": "I need water.",
+    "english": "I need water.",
+    "acceptedAnswers": [
+      "I need water."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 water 是不可數名詞，所以直接寫 water。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc030",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "I need waters.",
+    "zh": "我需要水。",
+    "isCorrect": false,
+    "answer": "I need water.",
+    "english": "I need water.",
+    "acceptedAnswers": [
+      "I need water."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 water 是不可數名詞，所以直接寫 water。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc031",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "The milk is cold.",
+    "zh": "那杯牛奶很凍。",
+    "isCorrect": true,
+    "answer": "The milk is cold.",
+    "english": "The milk is cold.",
+    "acceptedAnswers": [
+      "The milk is cold."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 milk 是不可數名詞；可以加 the，但不可以加 s。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc032",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "The milks are cold.",
+    "zh": "那杯牛奶很凍。",
+    "isCorrect": false,
+    "answer": "The milk is cold.",
+    "english": "The milk is cold.",
+    "acceptedAnswers": [
+      "The milk is cold."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 milk 是不可數名詞；可以加 the，但不可以加 s。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc033",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Her homework is neat.",
+    "zh": "她的功課很整齊。",
+    "isCorrect": true,
+    "answer": "Her homework is neat.",
+    "english": "Her homework is neat.",
+    "acceptedAnswers": [
+      "Her homework is neat."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 homework 是不可數名詞；可以加 her，但不可以加 s。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc034",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "Her homeworks are neat.",
+    "zh": "她的功課很整齊。",
+    "isCorrect": false,
+    "answer": "Her homework is neat.",
+    "english": "Her homework is neat.",
+    "acceptedAnswers": [
+      "Her homework is neat."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 homework 是不可數名詞；可以加 her，但不可以加 s。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc035",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "The equipment is in the room.",
+    "zh": "這批裝備在房間裏。",
+    "isCorrect": true,
+    "answer": "The equipment is in the room.",
+    "english": "The equipment is in the room.",
+    "acceptedAnswers": [
+      "The equipment is in the room."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 equipment 是不可數名詞；指定時可用 the equipment，但仍然沒有 s。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc036",
+    "type": "noun-category",
+    "category": "uncountable",
+    "sentence": "The equipments are in the room.",
+    "zh": "這批裝備在房間裏。",
+    "isCorrect": false,
+    "answer": "The equipment is in the room.",
+    "english": "The equipment is in the room.",
+    "acceptedAnswers": [
+      "The equipment is in the room."
+    ],
+    "explanation": "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。 equipment 是不可數名詞；指定時可用 the equipment，但仍然沒有 s。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc037",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "Swimming is important.",
+    "zh": "游泳十分重要。",
+    "isCorrect": true,
+    "answer": "Swimming is important.",
+    "english": "Swimming is important.",
+    "acceptedAnswers": [
+      "Swimming is important."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 游泳做主語，要寫 Swimming。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc038",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "Swim is important.",
+    "zh": "游泳十分重要。",
+    "isCorrect": false,
+    "answer": "Swimming is important.",
+    "english": "Swimming is important.",
+    "acceptedAnswers": [
+      "Swimming is important."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 游泳做主語，要寫 Swimming。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc039",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "Reading is fun.",
+    "zh": "閱讀很有趣。",
+    "isCorrect": true,
+    "answer": "Reading is fun.",
+    "english": "Reading is fun.",
+    "acceptedAnswers": [
+      "Reading is fun."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 閱讀做主語，要寫 Reading。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc040",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "Read is fun.",
+    "zh": "閱讀很有趣。",
+    "isCorrect": false,
+    "answer": "Reading is fun.",
+    "english": "Reading is fun.",
+    "acceptedAnswers": [
+      "Reading is fun."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 閱讀做主語，要寫 Reading。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc041",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "I hate eating fruits.",
+    "zh": "我討厭食水果。",
+    "isCorrect": true,
+    "answer": "I hate eating fruits.",
+    "english": "I hate eating fruits.",
+    "acceptedAnswers": [
+      "I hate eating fruits.",
+      "I hate eating fruit."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 hate 後面講「食水果」這件事，所以用 eating。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc042",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "I hate eat fruit.",
+    "zh": "我討厭食水果。",
+    "isCorrect": false,
+    "answer": "I hate eating fruits.",
+    "english": "I hate eating fruits.",
+    "acceptedAnswers": [
+      "I hate eating fruits.",
+      "I hate eating fruit."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 hate 後面講「食水果」這件事，所以用 eating。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc043",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "I can see a girl holding a pen.",
+    "zh": "我可以看到一個女孩拿著一枝筆。",
+    "isCorrect": true,
+    "answer": "I can see a girl holding a pen.",
+    "english": "I can see a girl holding a pen.",
+    "acceptedAnswers": [
+      "I can see a girl holding a pen."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 句子已有 see；後面描述女孩拿著筆，要把 hold 變成 holding。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc044",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "I can see a girl holds a pen.",
+    "zh": "我可以看到一個女孩拿著一枝筆。",
+    "isCorrect": false,
+    "answer": "I can see a girl holding a pen.",
+    "english": "I can see a girl holding a pen.",
+    "acceptedAnswers": [
+      "I can see a girl holding a pen."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 句子已有 see；後面描述女孩拿著筆，要把 hold 變成 holding。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc045",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "I enjoy playing football.",
+    "zh": "我享受踢足球。",
+    "isCorrect": true,
+    "answer": "I enjoy playing football.",
+    "english": "I enjoy playing football.",
+    "acceptedAnswers": [
+      "I enjoy playing football."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 enjoy 後面講「踢足球」這件事，所以用 playing。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc046",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "I enjoy play football.",
+    "zh": "我享受踢足球。",
+    "isCorrect": false,
+    "answer": "I enjoy playing football.",
+    "english": "I enjoy playing football.",
+    "acceptedAnswers": [
+      "I enjoy playing football."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 enjoy 後面講「踢足球」這件事，所以用 playing。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc047",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "Walking to school is healthy.",
+    "zh": "行路返學很健康。",
+    "isCorrect": true,
+    "answer": "Walking to school is healthy.",
+    "english": "Walking to school is healthy.",
+    "acceptedAnswers": [
+      "Walking to school is healthy."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 行路返學做主語，要寫 Walking to school。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc048",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "Walk to school is healthy.",
+    "zh": "行路返學很健康。",
+    "isCorrect": false,
+    "answer": "Walking to school is healthy.",
+    "english": "Walking to school is healthy.",
+    "acceptedAnswers": [
+      "Walking to school is healthy."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 行路返學做主語，要寫 Walking to school。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc049",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "Singing songs makes me happy.",
+    "zh": "唱歌令我開心。",
+    "isCorrect": true,
+    "answer": "Singing songs makes me happy.",
+    "english": "Singing songs makes me happy.",
+    "acceptedAnswers": [
+      "Singing songs makes me happy."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 唱歌這件事做主語，要寫 Singing songs。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc050",
+    "type": "noun-category",
+    "category": "gerund",
+    "sentence": "Sing songs makes me happy.",
+    "zh": "唱歌令我開心。",
+    "isCorrect": false,
+    "answer": "Singing songs makes me happy.",
+    "english": "Singing songs makes me happy.",
+    "acceptedAnswers": [
+      "Singing songs makes me happy."
+    ],
+    "explanation": "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。 唱歌這件事做主語，要寫 Singing songs。",
+    "caseSensitive": false
+  },
+  {
+    "id": "nc051",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "Tom is my friend.",
+    "zh": "Tom 是我的朋友。",
+    "isCorrect": true,
+    "answer": "Tom is my friend.",
+    "english": "Tom is my friend.",
+    "acceptedAnswers": [
+      "Tom is my friend."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 Tom 是人名，要大楷 T。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc052",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "tom is my friend.",
+    "zh": "Tom 是我的朋友。",
+    "isCorrect": false,
+    "answer": "Tom is my friend.",
+    "english": "Tom is my friend.",
+    "acceptedAnswers": [
+      "Tom is my friend."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 Tom 是人名，要大楷 T。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc053",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "Mary is my classmate.",
+    "zh": "Mary 是我的同學。",
+    "isCorrect": true,
+    "answer": "Mary is my classmate.",
+    "english": "Mary is my classmate.",
+    "acceptedAnswers": [
+      "Mary is my classmate."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 Mary 是人名，要大楷 M。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc054",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "mary is my classmate.",
+    "zh": "Mary 是我的同學。",
+    "isCorrect": false,
+    "answer": "Mary is my classmate.",
+    "english": "Mary is my classmate.",
+    "acceptedAnswers": [
+      "Mary is my classmate."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 Mary 是人名，要大楷 M。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc055",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "China is a big country.",
+    "zh": "中國是一個大國。",
+    "isCorrect": true,
+    "answer": "China is a big country.",
+    "english": "China is a big country.",
+    "acceptedAnswers": [
+      "China is a big country."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 China 是地名，要大楷 C。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc056",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "china is a big country.",
+    "zh": "中國是一個大國。",
+    "isCorrect": false,
+    "answer": "China is a big country.",
+    "english": "China is a big country.",
+    "acceptedAnswers": [
+      "China is a big country."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 China 是地名，要大楷 C。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc057",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "Anna likes English.",
+    "zh": "Anna 喜歡英文。",
+    "isCorrect": true,
+    "answer": "Anna likes English.",
+    "english": "Anna likes English.",
+    "acceptedAnswers": [
+      "Anna likes English."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 Anna 是人名，要大楷 A。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc058",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "anna likes English.",
+    "zh": "Anna 喜歡英文。",
+    "isCorrect": false,
+    "answer": "Anna likes English.",
+    "english": "Anna likes English.",
+    "acceptedAnswers": [
+      "Anna likes English."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 Anna 是人名，要大楷 A。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc059",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "Disney is a big company.",
+    "zh": "Disney 是一間大公司。",
+    "isCorrect": true,
+    "answer": "Disney is a big company.",
+    "english": "Disney is a big company.",
+    "acceptedAnswers": [
+      "Disney is a big company."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 Disney 是公司名，要大楷 D。",
+    "caseSensitive": true
+  },
+  {
+    "id": "nc060",
+    "type": "noun-category",
+    "category": "proper-noun",
+    "sentence": "disney is a big company.",
+    "zh": "Disney 是一間大公司。",
+    "isCorrect": false,
+    "answer": "Disney is a big company.",
+    "english": "Disney is a big company.",
+    "acceptedAnswers": [
+      "Disney is a big company."
+    ],
+    "explanation": "專有名詞是人名、地名或公司名，第一個字母必須大楷。 Disney 是公司名，要大楷 D。",
+    "caseSensitive": true
+  }
+]

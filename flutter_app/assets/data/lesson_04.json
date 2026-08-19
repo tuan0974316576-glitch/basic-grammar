@@ -1,0 +1,72 @@
+[
+  {
+    "id": "pm001",
+    "zh": "我",
+    "forms": {
+      "subject": "I",
+      "object": "me",
+      "possessiveAdjective": "my",
+      "possessivePronoun": "mine"
+    }
+  },
+  {
+    "id": "pm002",
+    "zh": "你",
+    "forms": {
+      "subject": "You",
+      "object": "you",
+      "possessiveAdjective": "your",
+      "possessivePronoun": "yours"
+    }
+  },
+  {
+    "id": "pm003",
+    "zh": "我們",
+    "forms": {
+      "subject": "We",
+      "object": "us",
+      "possessiveAdjective": "our",
+      "possessivePronoun": "ours"
+    }
+  },
+  {
+    "id": "pm004",
+    "zh": "他們",
+    "forms": {
+      "subject": "They",
+      "object": "them",
+      "possessiveAdjective": "their",
+      "possessivePronoun": "theirs"
+    }
+  },
+  {
+    "id": "pm005",
+    "zh": "他",
+    "forms": {
+      "subject": "He",
+      "object": "him",
+      "possessiveAdjective": "his",
+      "possessivePronoun": "his"
+    }
+  },
+  {
+    "id": "pm006",
+    "zh": "她",
+    "forms": {
+      "subject": "She",
+      "object": "her",
+      "possessiveAdjective": "her",
+      "possessivePronoun": "hers"
+    }
+  },
+  {
+    "id": "pm007",
+    "zh": "它/牠",
+    "forms": {
+      "subject": "It",
+      "object": "it",
+      "possessiveAdjective": "its",
+      "possessivePronoun": "its"
+    }
+  }
+]

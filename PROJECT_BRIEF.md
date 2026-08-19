@@ -220,16 +220,31 @@ Migration rules:
   moved behind reusable repositories rather than copied into screen widgets.
 - Keep lesson rules in controllers and repositories so iOS and Android use the
   same tested behaviour.
-- Current native milestone: roadmap shell, Lesson 01, Lesson 02, and Quiz 01 are
-  migrated. Lesson 01 includes its 100-question bank, weighted 20-question
-  rounds, multi-step answers, first-try scoring, locked wrong answers,
-  explanations, mistake review, bundled SFX, and celebration effects. Lesson 02
-  includes its 100-question bank with balanced 0 / 1 / 2-verb rounds,
-  correct-or-wrong judgment, verb counting, verb selection, sentence correction
-  with the native game keyboard, locked wrong answers, explanations, and mistake
-  review. Quiz 01 includes its 50-question sentence-building bank, randomized
-  10-question rounds, two related distractors, animated word placement, locked
-  wrong answers, first-try scoring, and mistake review.
+- Current native milestone: the full Grammar roadmap from Lesson 01 through
+  Lesson 13, including Quiz 01, is migrated and playable. The JavaScript banks
+  remain the source of truth and export into typed Flutter JSON assets. Shared
+  native lesson behaviour includes short randomized rounds, First Try scoring,
+  locked wrong answers where appropriate, clear Traditional Chinese feedback,
+  mistake review, SFX, and celebration effects.
+- Lesson 03 supports drag-to-underline sentence boundaries with different
+  crayon colours and accepts connectors such as `and` / `that` on either side
+  of a valid boundary. Lesson 04 is a seven-row pronoun matching game with four
+  answer slots, two related distractors, retryable red wrong slots, rising-note
+  placement SFX, row celebrations, and a final grand celebration. Lesson 05 is
+  a four-choice pronoun sentence quiz that explains the correct answer and why
+  each distractor cannot be used.
+- Lessons 06-10 and Lesson 13 share a tested correct-or-wrong and typed sentence
+  correction engine while keeping separate content, category labels, and
+  explanations. Lesson 13 adds a first step for `There be`, `with / without`,
+  and `have / has`. All sentence typing uses the native iOS / Android keyboard,
+  auto-capitalizes the first letter, and submits with the keyboard Done key.
+- Lesson 11 lets students select one or more tense groups, identify the tense
+  when needed, and type the correct verb form. Lesson 12 asks for present,
+  past, PP, and ING forms, gives the first present-tense letter, marks only wrong
+  fields red for retry, and has a full-screen illustrated Verb Table reference.
+  The reference uses four columns on tablets and two columns / two rows on
+  phones, never needs horizontal scrolling, plays the row pronunciation when
+  tapped, and bundles all 100 matching verb images plus available table audio.
 
 ## Content Principles
 

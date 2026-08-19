@@ -1,0 +1,842 @@
+[
+  {
+    "id": "mv001",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "I can swim.",
+    "zh": "我可以游泳。",
+    "isCorrect": true,
+    "answer": "I can swim.",
+    "english": "I can swim.",
+    "acceptedAnswers": [
+      "I can swim."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 can 後面要用 swim。"
+  },
+  {
+    "id": "mv002",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "I can swims.",
+    "zh": "我可以游泳。",
+    "isCorrect": false,
+    "answer": "I can swim.",
+    "english": "I can swim.",
+    "acceptedAnswers": [
+      "I can swim."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 can 後面要用 swim。"
+  },
+  {
+    "id": "mv003",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "He can play football.",
+    "zh": "他可以踢足球。",
+    "isCorrect": true,
+    "answer": "He can play football.",
+    "english": "He can play football.",
+    "acceptedAnswers": [
+      "He can play football."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 can 後面要用 play。"
+  },
+  {
+    "id": "mv004",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "He can plays football.",
+    "zh": "他可以踢足球。",
+    "isCorrect": false,
+    "answer": "He can play football.",
+    "english": "He can play football.",
+    "acceptedAnswers": [
+      "He can play football."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 can 後面要用 play。"
+  },
+  {
+    "id": "mv005",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "She will go home.",
+    "zh": "她會回家。",
+    "isCorrect": true,
+    "answer": "She will go home.",
+    "english": "She will go home.",
+    "acceptedAnswers": [
+      "She will go home."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 will 後面要用 go。"
+  },
+  {
+    "id": "mv006",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "She will goes home.",
+    "zh": "她會回家。",
+    "isCorrect": false,
+    "answer": "She will go home.",
+    "english": "She will go home.",
+    "acceptedAnswers": [
+      "She will go home."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 will 後面要用 go。"
+  },
+  {
+    "id": "mv007",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "They will come later.",
+    "zh": "他們會遲些來。",
+    "isCorrect": true,
+    "answer": "They will come later.",
+    "english": "They will come later.",
+    "acceptedAnswers": [
+      "They will come later."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 will 後面要用 come。"
+  },
+  {
+    "id": "mv008",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "They will comes later.",
+    "zh": "他們會遲些來。",
+    "isCorrect": false,
+    "answer": "They will come later.",
+    "english": "They will come later.",
+    "acceptedAnswers": [
+      "They will come later."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 will 後面要用 come。"
+  },
+  {
+    "id": "mv009",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "You should do your homework.",
+    "zh": "你應該做功課。",
+    "isCorrect": true,
+    "answer": "You should do your homework.",
+    "english": "You should do your homework.",
+    "acceptedAnswers": [
+      "You should do your homework."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 should 後面要用 do。"
+  },
+  {
+    "id": "mv010",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "You should does your homework.",
+    "zh": "你應該做功課。",
+    "isCorrect": false,
+    "answer": "You should do your homework.",
+    "english": "You should do your homework.",
+    "acceptedAnswers": [
+      "You should do your homework."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 should 後面要用 do。"
+  },
+  {
+    "id": "mv011",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "We should listen to the teacher.",
+    "zh": "我們應該聽老師講。",
+    "isCorrect": true,
+    "answer": "We should listen to the teacher.",
+    "english": "We should listen to the teacher.",
+    "acceptedAnswers": [
+      "We should listen to the teacher."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 should 後面要用 listen。"
+  },
+  {
+    "id": "mv012",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "We should listening to the teacher.",
+    "zh": "我們應該聽老師講。",
+    "isCorrect": false,
+    "answer": "We should listen to the teacher.",
+    "english": "We should listen to the teacher.",
+    "acceptedAnswers": [
+      "We should listen to the teacher."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 should 後面要用 listen。"
+  },
+  {
+    "id": "mv013",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "I may visit Grandma.",
+    "zh": "我可能探望嫲嫲。",
+    "isCorrect": true,
+    "answer": "I may visit Grandma.",
+    "english": "I may visit Grandma.",
+    "acceptedAnswers": [
+      "I may visit Grandma."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 may 後面要用 visit。"
+  },
+  {
+    "id": "mv014",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "I may visited Grandma.",
+    "zh": "我可能探望嫲嫲。",
+    "isCorrect": false,
+    "answer": "I may visit Grandma.",
+    "english": "I may visit Grandma.",
+    "acceptedAnswers": [
+      "I may visit Grandma."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 may 後面要用 visit。"
+  },
+  {
+    "id": "mv015",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "Tom may join us.",
+    "zh": "Tom 可能加入我們。",
+    "isCorrect": true,
+    "answer": "Tom may join us.",
+    "english": "Tom may join us.",
+    "acceptedAnswers": [
+      "Tom may join us."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 may 後面要用 join。"
+  },
+  {
+    "id": "mv016",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "Tom may joins us.",
+    "zh": "Tom 可能加入我們。",
+    "isCorrect": false,
+    "answer": "Tom may join us.",
+    "english": "Tom may join us.",
+    "acceptedAnswers": [
+      "Tom may join us."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 may 後面要用 join。"
+  },
+  {
+    "id": "mv017",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "Students must wear uniforms.",
+    "zh": "學生必須穿校服。",
+    "isCorrect": true,
+    "answer": "Students must wear uniforms.",
+    "english": "Students must wear uniforms.",
+    "acceptedAnswers": [
+      "Students must wear uniforms."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 must 後面要用 wear。"
+  },
+  {
+    "id": "mv018",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "Students must wears uniforms.",
+    "zh": "學生必須穿校服。",
+    "isCorrect": false,
+    "answer": "Students must wear uniforms.",
+    "english": "Students must wear uniforms.",
+    "acceptedAnswers": [
+      "Students must wear uniforms."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 must 後面要用 wear。"
+  },
+  {
+    "id": "mv019",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "We must finish the work.",
+    "zh": "我們必須完成工作。",
+    "isCorrect": true,
+    "answer": "We must finish the work.",
+    "english": "We must finish the work.",
+    "acceptedAnswers": [
+      "We must finish the work."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 must 後面要用 finish。"
+  },
+  {
+    "id": "mv020",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "We must finished the work.",
+    "zh": "我們必須完成工作。",
+    "isCorrect": false,
+    "answer": "We must finish the work.",
+    "english": "We must finish the work.",
+    "acceptedAnswers": [
+      "We must finish the work."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 must 後面要用 finish。"
+  },
+  {
+    "id": "mv021",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "She can draw well.",
+    "zh": "她可以畫得很好。",
+    "isCorrect": true,
+    "answer": "She can draw well.",
+    "english": "She can draw well.",
+    "acceptedAnswers": [
+      "She can draw well."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 can 後面要用 draw。"
+  },
+  {
+    "id": "mv022",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "She can drawing well.",
+    "zh": "她可以畫得很好。",
+    "isCorrect": false,
+    "answer": "She can draw well.",
+    "english": "She can draw well.",
+    "acceptedAnswers": [
+      "She can draw well."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 can 後面要用 draw。"
+  },
+  {
+    "id": "mv023",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "Dad will cook dinner.",
+    "zh": "爸爸會煮晚餐。",
+    "isCorrect": true,
+    "answer": "Dad will cook dinner.",
+    "english": "Dad will cook dinner.",
+    "acceptedAnswers": [
+      "Dad will cook dinner."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 will 後面要用 cook。"
+  },
+  {
+    "id": "mv024",
+    "type": "modal-verb",
+    "category": "base-verb",
+    "sentence": "Dad will cooks dinner.",
+    "zh": "爸爸會煮晚餐。",
+    "isCorrect": false,
+    "answer": "Dad will cook dinner.",
+    "english": "Dad will cook dinner.",
+    "acceptedAnswers": [
+      "Dad will cook dinner."
+    ],
+    "explanation": "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。 will 後面要用 cook。"
+  },
+  {
+    "id": "mv025",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "I may be late.",
+    "zh": "我可能會遲到。",
+    "isCorrect": true,
+    "answer": "I may be late.",
+    "english": "I may be late.",
+    "acceptedAnswers": [
+      "I may be late."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 late 是形容詞，所以要寫 may be late。"
+  },
+  {
+    "id": "mv026",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "I may late.",
+    "zh": "我可能會遲到。",
+    "isCorrect": false,
+    "answer": "I may be late.",
+    "english": "I may be late.",
+    "acceptedAnswers": [
+      "I may be late."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 late 是形容詞，所以要寫 may be late。"
+  },
+  {
+    "id": "mv027",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "He will be happy.",
+    "zh": "他會開心。",
+    "isCorrect": true,
+    "answer": "He will be happy.",
+    "english": "He will be happy.",
+    "acceptedAnswers": [
+      "He will be happy."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 happy 是形容詞，所以要寫 will be happy。"
+  },
+  {
+    "id": "mv028",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "He will happy.",
+    "zh": "他會開心。",
+    "isCorrect": false,
+    "answer": "He will be happy.",
+    "english": "He will be happy.",
+    "acceptedAnswers": [
+      "He will be happy."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 happy 是形容詞，所以要寫 will be happy。"
+  },
+  {
+    "id": "mv029",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "You should be careful.",
+    "zh": "你應該小心。",
+    "isCorrect": true,
+    "answer": "You should be careful.",
+    "english": "You should be careful.",
+    "acceptedAnswers": [
+      "You should be careful."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 careful 是形容詞，所以要寫 should be careful。"
+  },
+  {
+    "id": "mv030",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "You should careful.",
+    "zh": "你應該小心。",
+    "isCorrect": false,
+    "answer": "You should be careful.",
+    "english": "You should be careful.",
+    "acceptedAnswers": [
+      "You should be careful."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 careful 是形容詞，所以要寫 should be careful。"
+  },
+  {
+    "id": "mv031",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "We must be quiet.",
+    "zh": "我們必須安靜。",
+    "isCorrect": true,
+    "answer": "We must be quiet.",
+    "english": "We must be quiet.",
+    "acceptedAnswers": [
+      "We must be quiet."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 quiet 是形容詞，所以要寫 must be quiet。"
+  },
+  {
+    "id": "mv032",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "We must quiet.",
+    "zh": "我們必須安靜。",
+    "isCorrect": false,
+    "answer": "We must be quiet.",
+    "english": "We must be quiet.",
+    "acceptedAnswers": [
+      "We must be quiet."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 quiet 是形容詞，所以要寫 must be quiet。"
+  },
+  {
+    "id": "mv033",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "The answer may be right.",
+    "zh": "答案可能正確。",
+    "isCorrect": true,
+    "answer": "The answer may be right.",
+    "english": "The answer may be right.",
+    "acceptedAnswers": [
+      "The answer may be right."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 right 是形容詞，所以要寫 may be right。"
+  },
+  {
+    "id": "mv034",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "The answer may right.",
+    "zh": "答案可能正確。",
+    "isCorrect": false,
+    "answer": "The answer may be right.",
+    "english": "The answer may be right.",
+    "acceptedAnswers": [
+      "The answer may be right."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 right 是形容詞，所以要寫 may be right。"
+  },
+  {
+    "id": "mv035",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "She can be a monitor.",
+    "zh": "她可以做班長。",
+    "isCorrect": true,
+    "answer": "She can be a monitor.",
+    "english": "She can be a monitor.",
+    "acceptedAnswers": [
+      "She can be a monitor."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 a monitor 是身份名詞，所以要寫 can be a monitor。"
+  },
+  {
+    "id": "mv036",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "She can a monitor.",
+    "zh": "她可以做班長。",
+    "isCorrect": false,
+    "answer": "She can be a monitor.",
+    "english": "She can be a monitor.",
+    "acceptedAnswers": [
+      "She can be a monitor."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 a monitor 是身份名詞，所以要寫 can be a monitor。"
+  },
+  {
+    "id": "mv037",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "Tom should be at school.",
+    "zh": "Tom 應該在學校。",
+    "isCorrect": true,
+    "answer": "Tom should be at school.",
+    "english": "Tom should be at school.",
+    "acceptedAnswers": [
+      "Tom should be at school."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 at school 是地點，所以要寫 should be at school。"
+  },
+  {
+    "id": "mv038",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "Tom should at school.",
+    "zh": "Tom 應該在學校。",
+    "isCorrect": false,
+    "answer": "Tom should be at school.",
+    "english": "Tom should be at school.",
+    "acceptedAnswers": [
+      "Tom should be at school."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 at school 是地點，所以要寫 should be at school。"
+  },
+  {
+    "id": "mv039",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "The door must be open.",
+    "zh": "門必須是打開的。",
+    "isCorrect": true,
+    "answer": "The door must be open.",
+    "english": "The door must be open.",
+    "acceptedAnswers": [
+      "The door must be open."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 open 這裡是形容詞，表示狀態，所以要寫 must be open。"
+  },
+  {
+    "id": "mv040",
+    "type": "modal-verb",
+    "category": "be",
+    "sentence": "The door must opened.",
+    "zh": "門必須是打開的。",
+    "isCorrect": false,
+    "answer": "The door must be open.",
+    "english": "The door must be open.",
+    "acceptedAnswers": [
+      "The door must be open."
+    ],
+    "explanation": "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。 open 這裡是形容詞，表示狀態，所以要寫 must be open。"
+  },
+  {
+    "id": "mv041",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "He may be able to pass the exam.",
+    "zh": "他可能可以考試合格。",
+    "isCorrect": true,
+    "answer": "He may be able to pass the exam.",
+    "english": "He may be able to pass the exam.",
+    "acceptedAnswers": [
+      "He may be able to pass the exam."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 may 和 can 都是 modal verb，不可以 may can；要把 can 改成 be able to。"
+  },
+  {
+    "id": "mv042",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "He may can pass the exam.",
+    "zh": "他可能可以考試合格。",
+    "isCorrect": false,
+    "answer": "He may be able to pass the exam.",
+    "english": "He may be able to pass the exam.",
+    "acceptedAnswers": [
+      "He may be able to pass the exam."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 may 和 can 都是 modal verb，不可以 may can；要把 can 改成 be able to。"
+  },
+  {
+    "id": "mv043",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "I will be able to help you.",
+    "zh": "我將會可以幫你。",
+    "isCorrect": true,
+    "answer": "I will be able to help you.",
+    "english": "I will be able to help you.",
+    "acceptedAnswers": [
+      "I will be able to help you."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 will 和 can 不可以直接連住用；要寫 will be able to。"
+  },
+  {
+    "id": "mv044",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "I will can help you.",
+    "zh": "我將會可以幫你。",
+    "isCorrect": false,
+    "answer": "I will be able to help you.",
+    "english": "I will be able to help you.",
+    "acceptedAnswers": [
+      "I will be able to help you."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 will 和 can 不可以直接連住用；要寫 will be able to。"
+  },
+  {
+    "id": "mv045",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "She can play the piano.",
+    "zh": "她可以彈鋼琴。",
+    "isCorrect": true,
+    "answer": "She can play the piano.",
+    "english": "She can play the piano.",
+    "acceptedAnswers": [
+      "She can play the piano."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 can 要放在主語 She 正後面，後面用原型動詞 play。"
+  },
+  {
+    "id": "mv046",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "She plays can the piano.",
+    "zh": "她可以彈鋼琴。",
+    "isCorrect": false,
+    "answer": "She can play the piano.",
+    "english": "She can play the piano.",
+    "acceptedAnswers": [
+      "She can play the piano."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 can 要放在主語 She 正後面，後面用原型動詞 play。"
+  },
+  {
+    "id": "mv047",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "They will go to the park.",
+    "zh": "他們會去公園。",
+    "isCorrect": true,
+    "answer": "They will go to the park.",
+    "english": "They will go to the park.",
+    "acceptedAnswers": [
+      "They will go to the park."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 will 要放在主語 They 正後面，後面用原型動詞 go。"
+  },
+  {
+    "id": "mv048",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "They go will to the park.",
+    "zh": "他們會去公園。",
+    "isCorrect": false,
+    "answer": "They will go to the park.",
+    "english": "They will go to the park.",
+    "acceptedAnswers": [
+      "They will go to the park."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 will 要放在主語 They 正後面，後面用原型動詞 go。"
+  },
+  {
+    "id": "mv049",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "You should ask the teacher.",
+    "zh": "你應該問老師。",
+    "isCorrect": true,
+    "answer": "You should ask the teacher.",
+    "english": "You should ask the teacher.",
+    "acceptedAnswers": [
+      "You should ask the teacher."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 should 要放在主語 You 正後面，後面用原型動詞 ask。"
+  },
+  {
+    "id": "mv050",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "You ask should the teacher.",
+    "zh": "你應該問老師。",
+    "isCorrect": false,
+    "answer": "You should ask the teacher.",
+    "english": "You should ask the teacher.",
+    "acceptedAnswers": [
+      "You should ask the teacher."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 should 要放在主語 You 正後面，後面用原型動詞 ask。"
+  },
+  {
+    "id": "mv051",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "We must line up.",
+    "zh": "我們必須排隊。",
+    "isCorrect": true,
+    "answer": "We must line up.",
+    "english": "We must line up.",
+    "acceptedAnswers": [
+      "We must line up."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 must 要放在主語 We 正後面，後面用原型動詞 line。"
+  },
+  {
+    "id": "mv052",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "We line must up.",
+    "zh": "我們必須排隊。",
+    "isCorrect": false,
+    "answer": "We must line up.",
+    "english": "We must line up.",
+    "acceptedAnswers": [
+      "We must line up."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 must 要放在主語 We 正後面，後面用原型動詞 line。"
+  },
+  {
+    "id": "mv053",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "Mary may be at home.",
+    "zh": "Mary 可能在家。",
+    "isCorrect": true,
+    "answer": "Mary may be at home.",
+    "english": "Mary may be at home.",
+    "acceptedAnswers": [
+      "Mary may be at home."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 may 要放在主語 Mary 正後面；at home 是地點，所以寫 may be at home。"
+  },
+  {
+    "id": "mv054",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "Mary is may at home.",
+    "zh": "Mary 可能在家。",
+    "isCorrect": false,
+    "answer": "Mary may be at home.",
+    "english": "Mary may be at home.",
+    "acceptedAnswers": [
+      "Mary may be at home."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 may 要放在主語 Mary 正後面；at home 是地點，所以寫 may be at home。"
+  },
+  {
+    "id": "mv055",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "The dog can run fast.",
+    "zh": "那隻狗可以跑得快。",
+    "isCorrect": true,
+    "answer": "The dog can run fast.",
+    "english": "The dog can run fast.",
+    "acceptedAnswers": [
+      "The dog can run fast."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 can 要放在主語 The dog 正後面，後面用原型動詞 run。"
+  },
+  {
+    "id": "mv056",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "The dog runs can fast.",
+    "zh": "那隻狗可以跑得快。",
+    "isCorrect": false,
+    "answer": "The dog can run fast.",
+    "english": "The dog can run fast.",
+    "acceptedAnswers": [
+      "The dog can run fast."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 can 要放在主語 The dog 正後面，後面用原型動詞 run。"
+  },
+  {
+    "id": "mv057",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "My brother should be kind.",
+    "zh": "我哥哥應該友善。",
+    "isCorrect": true,
+    "answer": "My brother should be kind.",
+    "english": "My brother should be kind.",
+    "acceptedAnswers": [
+      "My brother should be kind."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 should 要放在主語 My brother 正後面；kind 是形容詞，所以寫 should be kind。"
+  },
+  {
+    "id": "mv058",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "My brother is should kind.",
+    "zh": "我哥哥應該友善。",
+    "isCorrect": false,
+    "answer": "My brother should be kind.",
+    "english": "My brother should be kind.",
+    "acceptedAnswers": [
+      "My brother should be kind."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 should 要放在主語 My brother 正後面；kind 是形容詞，所以寫 should be kind。"
+  },
+  {
+    "id": "mv059",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "We may be able to join the game.",
+    "zh": "我們可能可以參加遊戲。",
+    "isCorrect": true,
+    "answer": "We may be able to join the game.",
+    "english": "We may be able to join the game.",
+    "acceptedAnswers": [
+      "We may be able to join the game."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 may 和 can 不可以直接連住用；要寫 may be able to。"
+  },
+  {
+    "id": "mv060",
+    "type": "modal-verb",
+    "category": "position",
+    "sentence": "We may can join the game.",
+    "zh": "我們可能可以參加遊戲。",
+    "isCorrect": false,
+    "answer": "We may be able to join the game.",
+    "english": "We may be able to join the game.",
+    "acceptedAnswers": [
+      "We may be able to join the game."
+    ],
+    "explanation": "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。 may 和 can 不可以直接連住用；要寫 may be able to。"
+  }
+]

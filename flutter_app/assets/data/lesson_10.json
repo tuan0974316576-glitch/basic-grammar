@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "adv001",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Interestingly, Tom likes grammar.",
+    "zh": "有趣的是，Tom 喜歡文法。",
+    "isCorrect": true,
+    "answer": "Interestingly, Tom likes grammar.",
+    "english": "Interestingly, Tom likes grammar.",
+    "acceptedAnswers": [
+      "Interestingly, Tom likes grammar."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Interestingly 放句首，要寫 Interestingly,"
+  },
+  {
+    "id": "adv002",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Interestingly Tom likes grammar.",
+    "zh": "有趣的是，Tom 喜歡文法。",
+    "isCorrect": false,
+    "answer": "Interestingly, Tom likes grammar.",
+    "english": "Interestingly, Tom likes grammar.",
+    "acceptedAnswers": [
+      "Interestingly, Tom likes grammar."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Interestingly 放句首，要寫 Interestingly,"
+  },
+  {
+    "id": "adv003",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "More importantly, we must listen carefully.",
+    "zh": "更重要的是，我們必須小心聆聽。",
+    "isCorrect": true,
+    "answer": "More importantly, we must listen carefully.",
+    "english": "More importantly, we must listen carefully.",
+    "acceptedAnswers": [
+      "More importantly, we must listen carefully."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 More importantly 放句首，要寫 More importantly,"
+  },
+  {
+    "id": "adv004",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "More importantly we must listen carefully.",
+    "zh": "更重要的是，我們必須小心聆聽。",
+    "isCorrect": false,
+    "answer": "More importantly, we must listen carefully.",
+    "english": "More importantly, we must listen carefully.",
+    "acceptedAnswers": [
+      "More importantly, we must listen carefully."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 More importantly 放句首，要寫 More importantly,"
+  },
+  {
+    "id": "adv005",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Strangely, the door is open.",
+    "zh": "奇怪的是，門是開著的。",
+    "isCorrect": true,
+    "answer": "Strangely, the door is open.",
+    "english": "Strangely, the door is open.",
+    "acceptedAnswers": [
+      "Strangely, the door is open."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Strangely 放句首，要寫 Strangely,"
+  },
+  {
+    "id": "adv006",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Strangely the door is open.",
+    "zh": "奇怪的是，門是開著的。",
+    "isCorrect": false,
+    "answer": "Strangely, the door is open.",
+    "english": "Strangely, the door is open.",
+    "acceptedAnswers": [
+      "Strangely, the door is open."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Strangely 放句首，要寫 Strangely,"
+  },
+  {
+    "id": "adv007",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Luckily, Mary is safe.",
+    "zh": "幸運的是，Mary 很安全。",
+    "isCorrect": true,
+    "answer": "Luckily, Mary is safe.",
+    "english": "Luckily, Mary is safe.",
+    "acceptedAnswers": [
+      "Luckily, Mary is safe."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Luckily 放句首，要寫 Luckily,"
+  },
+  {
+    "id": "adv008",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Luckily Mary is safe.",
+    "zh": "幸運的是，Mary 很安全。",
+    "isCorrect": false,
+    "answer": "Luckily, Mary is safe.",
+    "english": "Luckily, Mary is safe.",
+    "acceptedAnswers": [
+      "Luckily, Mary is safe."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Luckily 放句首，要寫 Luckily,"
+  },
+  {
+    "id": "adv009",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Clearly, this answer is wrong.",
+    "zh": "明顯地，這個答案是錯的。",
+    "isCorrect": true,
+    "answer": "Clearly, this answer is wrong.",
+    "english": "Clearly, this answer is wrong.",
+    "acceptedAnswers": [
+      "Clearly, this answer is wrong."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Clearly 放句首，要寫 Clearly,"
+  },
+  {
+    "id": "adv010",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Clearly this answer is wrong.",
+    "zh": "明顯地，這個答案是錯的。",
+    "isCorrect": false,
+    "answer": "Clearly, this answer is wrong.",
+    "english": "Clearly, this answer is wrong.",
+    "acceptedAnswers": [
+      "Clearly, this answer is wrong."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Clearly 放句首，要寫 Clearly,"
+  },
+  {
+    "id": "adv011",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Surely, you know the answer.",
+    "zh": "你一定知道答案吧。",
+    "isCorrect": true,
+    "answer": "Surely, you know the answer.",
+    "english": "Surely, you know the answer.",
+    "acceptedAnswers": [
+      "Surely, you know the answer."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Surely 放句首，這課要求寫 Surely,"
+  },
+  {
+    "id": "adv012",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Surely you know the answer.",
+    "zh": "你一定知道答案吧。",
+    "isCorrect": false,
+    "answer": "Surely, you know the answer.",
+    "english": "Surely, you know the answer.",
+    "acceptedAnswers": [
+      "Surely, you know the answer."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Surely 放句首，這課要求寫 Surely,"
+  },
+  {
+    "id": "adv013",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Certainly, I can help you.",
+    "zh": "當然，我可以幫你。",
+    "isCorrect": true,
+    "answer": "Certainly, I can help you.",
+    "english": "Certainly, I can help you.",
+    "acceptedAnswers": [
+      "Certainly, I can help you."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Certainly 放句首，這課要求寫 Certainly,"
+  },
+  {
+    "id": "adv014",
+    "type": "adverb-lesson",
+    "category": "front",
+    "sentence": "Certainly I can help you.",
+    "zh": "當然，我可以幫你。",
+    "isCorrect": false,
+    "answer": "Certainly, I can help you.",
+    "english": "Certainly, I can help you.",
+    "acceptedAnswers": [
+      "Certainly, I can help you."
+    ],
+    "explanation": "句首副詞放句子最前面，後面通常要加 comma（,）。 Certainly 放句首，這課要求寫 Certainly,"
+  },
+  {
+    "id": "adv015",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "I go to school every day.",
+    "zh": "我每天上學。",
+    "isCorrect": true,
+    "answer": "I go to school every day.",
+    "english": "I go to school every day.",
+    "acceptedAnswers": [
+      "I go to school every day."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 every day 前面不用 in。"
+  },
+  {
+    "id": "adv016",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "I go to school in every day.",
+    "zh": "我每天上學。",
+    "isCorrect": false,
+    "answer": "I go to school every day.",
+    "english": "I go to school every day.",
+    "acceptedAnswers": [
+      "I go to school every day."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 every day 前面不用 in。"
+  },
+  {
+    "id": "adv017",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "I will visit Grandma tomorrow.",
+    "zh": "我明天會探望嫲嫲。",
+    "isCorrect": true,
+    "answer": "I will visit Grandma tomorrow.",
+    "english": "I will visit Grandma tomorrow.",
+    "acceptedAnswers": [
+      "I will visit Grandma tomorrow."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 tomorrow 前面不用 on。"
+  },
+  {
+    "id": "adv018",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "I will visit Grandma on tomorrow.",
+    "zh": "我明天會探望嫲嫲。",
+    "isCorrect": false,
+    "answer": "I will visit Grandma tomorrow.",
+    "english": "I will visit Grandma tomorrow.",
+    "acceptedAnswers": [
+      "I will visit Grandma tomorrow."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 tomorrow 前面不用 on。"
+  },
+  {
+    "id": "adv019",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "We played football yesterday.",
+    "zh": "我們昨天踢足球。",
+    "isCorrect": true,
+    "answer": "We played football yesterday.",
+    "english": "We played football yesterday.",
+    "acceptedAnswers": [
+      "We played football yesterday."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 yesterday 前面不用 in。"
+  },
+  {
+    "id": "adv020",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "We played football in yesterday.",
+    "zh": "我們昨天踢足球。",
+    "isCorrect": false,
+    "answer": "We played football yesterday.",
+    "english": "We played football yesterday.",
+    "acceptedAnswers": [
+      "We played football yesterday."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 yesterday 前面不用 in。"
+  },
+  {
+    "id": "adv021",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "We have a quiz today.",
+    "zh": "我們今天有小測。",
+    "isCorrect": true,
+    "answer": "We have a quiz today.",
+    "english": "We have a quiz today.",
+    "acceptedAnswers": [
+      "We have a quiz today."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 today 前面不用 on。"
+  },
+  {
+    "id": "adv022",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "We have a quiz on today.",
+    "zh": "我們今天有小測。",
+    "isCorrect": false,
+    "answer": "We have a quiz today.",
+    "english": "We have a quiz today.",
+    "acceptedAnswers": [
+      "We have a quiz today."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 today 前面不用 on。"
+  },
+  {
+    "id": "adv023",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "We will play football next week.",
+    "zh": "我們下星期會踢足球。",
+    "isCorrect": true,
+    "answer": "We will play football next week.",
+    "english": "We will play football next week.",
+    "acceptedAnswers": [
+      "We will play football next week."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 next week 前面不用 in。"
+  },
+  {
+    "id": "adv024",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "We will play football in next week.",
+    "zh": "我們下星期會踢足球。",
+    "isCorrect": false,
+    "answer": "We will play football next week.",
+    "english": "We will play football next week.",
+    "acceptedAnswers": [
+      "We will play football next week."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 next week 前面不用 in。"
+  },
+  {
+    "id": "adv025",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "She reads books at night.",
+    "zh": "她在晚上看書。",
+    "isCorrect": true,
+    "answer": "She reads books at night.",
+    "english": "She reads books at night.",
+    "acceptedAnswers": [
+      "She reads books at night."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 at night 是固定時間詞。"
+  },
+  {
+    "id": "adv026",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "She reads books in night.",
+    "zh": "她在晚上看書。",
+    "isCorrect": false,
+    "answer": "She reads books at night.",
+    "english": "She reads books at night.",
+    "acceptedAnswers": [
+      "She reads books at night."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 at night 是固定時間詞。"
+  },
+  {
+    "id": "adv027",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "I have piano lessons on Monday.",
+    "zh": "我星期一有鋼琴課。",
+    "isCorrect": true,
+    "answer": "I have piano lessons on Monday.",
+    "english": "I have piano lessons on Monday.",
+    "acceptedAnswers": [
+      "I have piano lessons on Monday."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 Monday 是日子，要用 on Monday。"
+  },
+  {
+    "id": "adv028",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "I have piano lessons in Monday.",
+    "zh": "我星期一有鋼琴課。",
+    "isCorrect": false,
+    "answer": "I have piano lessons on Monday.",
+    "english": "I have piano lessons on Monday.",
+    "acceptedAnswers": [
+      "I have piano lessons on Monday."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 Monday 是日子，要用 on Monday。"
+  },
+  {
+    "id": "adv029",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "Please do it now.",
+    "zh": "請你現在做。",
+    "isCorrect": true,
+    "answer": "Please do it now.",
+    "english": "Please do it now.",
+    "acceptedAnswers": [
+      "Please do it now."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 now 前面不用 at。"
+  },
+  {
+    "id": "adv030",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "Please do it at now.",
+    "zh": "請你現在做。",
+    "isCorrect": false,
+    "answer": "Please do it now.",
+    "english": "Please do it now.",
+    "acceptedAnswers": [
+      "Please do it now."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 now 前面不用 at。"
+  },
+  {
+    "id": "adv031",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "We will leave soon.",
+    "zh": "我們很快會離開。",
+    "isCorrect": true,
+    "answer": "We will leave soon.",
+    "english": "We will leave soon.",
+    "acceptedAnswers": [
+      "We will leave soon."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 soon 前面不用 in。"
+  },
+  {
+    "id": "adv032",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "We will leave in soon.",
+    "zh": "我們很快會離開。",
+    "isCorrect": false,
+    "answer": "We will leave soon.",
+    "english": "We will leave soon.",
+    "acceptedAnswers": [
+      "We will leave soon."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 soon 前面不用 in。"
+  },
+  {
+    "id": "adv033",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "Please try again.",
+    "zh": "請再試一次。",
+    "isCorrect": true,
+    "answer": "Please try again.",
+    "english": "Please try again.",
+    "acceptedAnswers": [
+      "Please try again."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 again 本身已經是副詞，不用加 -ly。"
+  },
+  {
+    "id": "adv034",
+    "type": "adverb-lesson",
+    "category": "end-time",
+    "sentence": "Please try againly.",
+    "zh": "請再試一次。",
+    "isCorrect": false,
+    "answer": "Please try again.",
+    "english": "Please try again.",
+    "acceptedAnswers": [
+      "Please try again."
+    ],
+    "explanation": "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。 again 本身已經是副詞，不用加 -ly。"
+  },
+  {
+    "id": "adv035",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "I live here.",
+    "zh": "我住在這裡。",
+    "isCorrect": true,
+    "answer": "I live here.",
+    "english": "I live here.",
+    "acceptedAnswers": [
+      "I live here."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 here 前面不用 in。"
+  },
+  {
+    "id": "adv036",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "I live in here.",
+    "zh": "我住在這裡。",
+    "isCorrect": false,
+    "answer": "I live here.",
+    "english": "I live here.",
+    "acceptedAnswers": [
+      "I live here."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 here 前面不用 in。"
+  },
+  {
+    "id": "adv037",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "She is there.",
+    "zh": "她在那裡。",
+    "isCorrect": true,
+    "answer": "She is there.",
+    "english": "She is there.",
+    "acceptedAnswers": [
+      "She is there."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 there 前面不用 at。"
+  },
+  {
+    "id": "adv038",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "She is at there.",
+    "zh": "她在那裡。",
+    "isCorrect": false,
+    "answer": "She is there.",
+    "english": "She is there.",
+    "acceptedAnswers": [
+      "She is there."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 there 前面不用 at。"
+  },
+  {
+    "id": "adv039",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "My uncle works overseas.",
+    "zh": "我叔叔在海外工作。",
+    "isCorrect": true,
+    "answer": "My uncle works overseas.",
+    "english": "My uncle works overseas.",
+    "acceptedAnswers": [
+      "My uncle works overseas."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 overseas 前面不用 in。"
+  },
+  {
+    "id": "adv040",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "My uncle works in overseas.",
+    "zh": "我叔叔在海外工作。",
+    "isCorrect": false,
+    "answer": "My uncle works overseas.",
+    "english": "My uncle works overseas.",
+    "acceptedAnswers": [
+      "My uncle works overseas."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 overseas 前面不用 in。"
+  },
+  {
+    "id": "adv041",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "My aunt studies abroad.",
+    "zh": "我姨姨在海外讀書。",
+    "isCorrect": true,
+    "answer": "My aunt studies abroad.",
+    "english": "My aunt studies abroad.",
+    "acceptedAnswers": [
+      "My aunt studies abroad."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 abroad 前面不用 at。"
+  },
+  {
+    "id": "adv042",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "My aunt studies at abroad.",
+    "zh": "我姨姨在海外讀書。",
+    "isCorrect": false,
+    "answer": "My aunt studies abroad.",
+    "english": "My aunt studies abroad.",
+    "acceptedAnswers": [
+      "My aunt studies abroad."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 abroad 前面不用 at。"
+  },
+  {
+    "id": "adv043",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "I live in Tsuen Wan.",
+    "zh": "我住在荃灣。",
+    "isCorrect": true,
+    "answer": "I live in Tsuen Wan.",
+    "english": "I live in Tsuen Wan.",
+    "acceptedAnswers": [
+      "I live in Tsuen Wan."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 Tsuen Wan 是地方區域，要用 in Tsuen Wan。"
+  },
+  {
+    "id": "adv044",
+    "type": "adverb-lesson",
+    "category": "end-place",
+    "sentence": "I live at Tsuen Wan.",
+    "zh": "我住在荃灣。",
+    "isCorrect": false,
+    "answer": "I live in Tsuen Wan.",
+    "english": "I live in Tsuen Wan.",
+    "acceptedAnswers": [
+      "I live in Tsuen Wan."
+    ],
+    "explanation": "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。 Tsuen Wan 是地方區域，要用 in Tsuen Wan。"
+  },
+  {
+    "id": "adv045",
+    "type": "adverb-lesson",
+    "category": "end-order",
+    "sentence": "I lived in Tsuen Wan in 2010.",
+    "zh": "我在 2010 年住在荃灣。",
+    "isCorrect": true,
+    "answer": "I lived in Tsuen Wan in 2010.",
+    "english": "I lived in Tsuen Wan in 2010.",
+    "acceptedAnswers": [
+      "I lived in Tsuen Wan in 2010."
+    ],
+    "explanation": "如果句尾同時有地方詞和時間詞，通常先寫地方，再寫時間，時間放最後。 in Tsuen Wan 是地方，in 2010 是時間，所以時間放最後。"
+  },
+  {
+    "id": "adv046",
+    "type": "adverb-lesson",
+    "category": "end-order",
+    "sentence": "I lived in 2010 in Tsuen Wan.",
+    "zh": "我在 2010 年住在荃灣。",
+    "isCorrect": false,
+    "answer": "I lived in Tsuen Wan in 2010.",
+    "english": "I lived in Tsuen Wan in 2010.",
+    "acceptedAnswers": [
+      "I lived in Tsuen Wan in 2010."
+    ],
+    "explanation": "如果句尾同時有地方詞和時間詞，通常先寫地方，再寫時間，時間放最後。 in Tsuen Wan 是地方，in 2010 是時間，所以時間放最後。"
+  },
+  {
+    "id": "adv047",
+    "type": "adverb-lesson",
+    "category": "end-order",
+    "sentence": "We will meet at the bus stop tomorrow.",
+    "zh": "我們明天會在巴士站見面。",
+    "isCorrect": true,
+    "answer": "We will meet at the bus stop tomorrow.",
+    "english": "We will meet at the bus stop tomorrow.",
+    "acceptedAnswers": [
+      "We will meet at the bus stop tomorrow."
+    ],
+    "explanation": "如果句尾同時有地方詞和時間詞，通常先寫地方，再寫時間，時間放最後。 at the bus stop 是地方，tomorrow 是時間，所以時間放最後。"
+  },
+  {
+    "id": "adv048",
+    "type": "adverb-lesson",
+    "category": "end-order",
+    "sentence": "We will meet tomorrow at the bus stop.",
+    "zh": "我們明天會在巴士站見面。",
+    "isCorrect": false,
+    "answer": "We will meet at the bus stop tomorrow.",
+    "english": "We will meet at the bus stop tomorrow.",
+    "acceptedAnswers": [
+      "We will meet at the bus stop tomorrow."
+    ],
+    "explanation": "如果句尾同時有地方詞和時間詞，通常先寫地方，再寫時間，時間放最後。 at the bus stop 是地方，tomorrow 是時間，所以時間放最後。"
+  },
+  {
+    "id": "adv049",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "I learn English here happily.",
+    "zh": "我在這裡快樂地學英文。",
+    "isCorrect": true,
+    "answer": "I learn English here happily.",
+    "english": "I learn English here happily.",
+    "acceptedAnswers": [
+      "I learn English here happily."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 happy 是形容詞，形容 learn 要用副詞 happily。"
+  },
+  {
+    "id": "adv050",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "I learn English here happy.",
+    "zh": "我在這裡快樂地學英文。",
+    "isCorrect": false,
+    "answer": "I learn English here happily.",
+    "english": "I learn English here happily.",
+    "acceptedAnswers": [
+      "I learn English here happily."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 happy 是形容詞，形容 learn 要用副詞 happily。"
+  },
+  {
+    "id": "adv051",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "Tom runs quickly.",
+    "zh": "Tom 跑得很快。",
+    "isCorrect": true,
+    "answer": "Tom runs quickly.",
+    "english": "Tom runs quickly.",
+    "acceptedAnswers": [
+      "Tom runs quickly."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 這課用 quickly 形容 runs。"
+  },
+  {
+    "id": "adv052",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "Tom runs quick.",
+    "zh": "Tom 跑得很快。",
+    "isCorrect": false,
+    "answer": "Tom runs quickly.",
+    "english": "Tom runs quickly.",
+    "acceptedAnswers": [
+      "Tom runs quickly."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 這課用 quickly 形容 runs。"
+  },
+  {
+    "id": "adv053",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "We visit Grandma once in a while.",
+    "zh": "我們有時探望嫲嫲。",
+    "isCorrect": true,
+    "answer": "We visit Grandma once in a while.",
+    "english": "We visit Grandma once in a while.",
+    "acceptedAnswers": [
+      "We visit Grandma once in a while."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 正確寫法是 once in a while。"
+  },
+  {
+    "id": "adv054",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "We visit Grandma once in while.",
+    "zh": "我們有時探望嫲嫲。",
+    "isCorrect": false,
+    "answer": "We visit Grandma once in a while.",
+    "english": "We visit Grandma once in a while.",
+    "acceptedAnswers": [
+      "We visit Grandma once in a while."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 正確寫法是 once in a while。"
+  },
+  {
+    "id": "adv055",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "I write carefully.",
+    "zh": "我小心地寫字。",
+    "isCorrect": true,
+    "answer": "I write carefully.",
+    "english": "I write carefully.",
+    "acceptedAnswers": [
+      "I write carefully."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 careful 是形容詞，形容 write 要用副詞 carefully。"
+  },
+  {
+    "id": "adv056",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "I write careful.",
+    "zh": "我小心地寫字。",
+    "isCorrect": false,
+    "answer": "I write carefully.",
+    "english": "I write carefully.",
+    "acceptedAnswers": [
+      "I write carefully."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 careful 是形容詞，形容 write 要用副詞 carefully。"
+  },
+  {
+    "id": "adv057",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "Please speak slowly.",
+    "zh": "請慢慢說。",
+    "isCorrect": true,
+    "answer": "Please speak slowly.",
+    "english": "Please speak slowly.",
+    "acceptedAnswers": [
+      "Please speak slowly."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 slow 是形容詞，形容 speak 要用副詞 slowly。"
+  },
+  {
+    "id": "adv058",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "Please speak slow.",
+    "zh": "請慢慢說。",
+    "isCorrect": false,
+    "answer": "Please speak slowly.",
+    "english": "Please speak slowly.",
+    "acceptedAnswers": [
+      "Please speak slowly."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 slow 是形容詞，形容 speak 要用副詞 slowly。"
+  },
+  {
+    "id": "adv059",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "She speaks English well.",
+    "zh": "她英文說得好。",
+    "isCorrect": true,
+    "answer": "She speaks English well.",
+    "english": "She speaks English well.",
+    "acceptedAnswers": [
+      "She speaks English well."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 形容 speaks 的表現要用副詞 well，不是形容詞 good。"
+  },
+  {
+    "id": "adv060",
+    "type": "adverb-lesson",
+    "category": "end-manner",
+    "sentence": "She speaks English good.",
+    "zh": "她英文說得好。",
+    "isCorrect": false,
+    "answer": "She speaks English well.",
+    "english": "She speaks English well.",
+    "acceptedAnswers": [
+      "She speaks English well."
+    ],
+    "explanation": "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。 形容 speaks 的表現要用副詞 well，不是形容詞 good。"
+  },
+  {
+    "id": "adv061",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I can still walk.",
+    "zh": "我仍然可以行。",
+    "isCorrect": true,
+    "answer": "I can still walk.",
+    "english": "I can still walk.",
+    "acceptedAnswers": [
+      "I can still walk."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 still 要放在 modal verb can 後面。"
+  },
+  {
+    "id": "adv062",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I still can walk.",
+    "zh": "我仍然可以行。",
+    "isCorrect": false,
+    "answer": "I can still walk.",
+    "english": "I can still walk.",
+    "acceptedAnswers": [
+      "I can still walk."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 still 要放在 modal verb can 後面。"
+  },
+  {
+    "id": "adv063",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "He is still late.",
+    "zh": "他仍然遲到。",
+    "isCorrect": true,
+    "answer": "He is still late.",
+    "english": "He is still late.",
+    "acceptedAnswers": [
+      "He is still late."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 still 要放在 be verb is 後面。"
+  },
+  {
+    "id": "adv064",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "He still is late.",
+    "zh": "他仍然遲到。",
+    "isCorrect": false,
+    "answer": "He is still late.",
+    "english": "He is still late.",
+    "acceptedAnswers": [
+      "He is still late."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 still 要放在 be verb is 後面。"
+  },
+  {
+    "id": "adv065",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I still believe you.",
+    "zh": "我仍然相信你。",
+    "isCorrect": true,
+    "answer": "I still believe you.",
+    "english": "I still believe you.",
+    "acceptedAnswers": [
+      "I still believe you."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 still 要放在主動動詞 believe 前面。"
+  },
+  {
+    "id": "adv066",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I believe still you.",
+    "zh": "我仍然相信你。",
+    "isCorrect": false,
+    "answer": "I still believe you.",
+    "english": "I still believe you.",
+    "acceptedAnswers": [
+      "I still believe you."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 still 要放在主動動詞 believe 前面。"
+  },
+  {
+    "id": "adv067",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "He can even eat ten egg tarts.",
+    "zh": "他甚至可以食十個蛋撻。",
+    "isCorrect": true,
+    "answer": "He can even eat ten egg tarts.",
+    "english": "He can even eat ten egg tarts.",
+    "acceptedAnswers": [
+      "He can even eat ten egg tarts."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 even 要放在 modal verb can 後面。"
+  },
+  {
+    "id": "adv068",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "He even can eat ten egg tarts.",
+    "zh": "他甚至可以食十個蛋撻。",
+    "isCorrect": false,
+    "answer": "He can even eat ten egg tarts.",
+    "english": "He can even eat ten egg tarts.",
+    "acceptedAnswers": [
+      "He can even eat ten egg tarts."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 even 要放在 modal verb can 後面。"
+  },
+  {
+    "id": "adv069",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "He is even willing to help me.",
+    "zh": "他甚至願意幫我。",
+    "isCorrect": true,
+    "answer": "He is even willing to help me.",
+    "english": "He is even willing to help me.",
+    "acceptedAnswers": [
+      "He is even willing to help me."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 even 要放在 be verb is 後面。"
+  },
+  {
+    "id": "adv070",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "He even is willing to help me.",
+    "zh": "他甚至願意幫我。",
+    "isCorrect": false,
+    "answer": "He is even willing to help me.",
+    "english": "He is even willing to help me.",
+    "acceptedAnswers": [
+      "He is even willing to help me."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 even 要放在 be verb is 後面。"
+  },
+  {
+    "id": "adv071",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "They even know my birthday.",
+    "zh": "他們甚至知道我的生日。",
+    "isCorrect": true,
+    "answer": "They even know my birthday.",
+    "english": "They even know my birthday.",
+    "acceptedAnswers": [
+      "They even know my birthday."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 even 要放在主動動詞 know 前面。"
+  },
+  {
+    "id": "adv072",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "They know even my birthday.",
+    "zh": "他們甚至知道我的生日。",
+    "isCorrect": false,
+    "answer": "They even know my birthday.",
+    "english": "They even know my birthday.",
+    "acceptedAnswers": [
+      "They even know my birthday."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 even 要放在主動動詞 know 前面。"
+  },
+  {
+    "id": "adv073",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I always eat breakfast.",
+    "zh": "我總是吃早餐。",
+    "isCorrect": true,
+    "answer": "I always eat breakfast.",
+    "english": "I always eat breakfast.",
+    "acceptedAnswers": [
+      "I always eat breakfast."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 always 要放在主動動詞 eat 前面。"
+  },
+  {
+    "id": "adv074",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I eat always breakfast.",
+    "zh": "我總是吃早餐。",
+    "isCorrect": false,
+    "answer": "I always eat breakfast.",
+    "english": "I always eat breakfast.",
+    "acceptedAnswers": [
+      "I always eat breakfast."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 always 要放在主動動詞 eat 前面。"
+  },
+  {
+    "id": "adv075",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I usually do homework after school.",
+    "zh": "我通常放學後做功課。",
+    "isCorrect": true,
+    "answer": "I usually do homework after school.",
+    "english": "I usually do homework after school.",
+    "acceptedAnswers": [
+      "I usually do homework after school."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 usually 要放在主動動詞 do 前面。"
+  },
+  {
+    "id": "adv076",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I do usually homework after school.",
+    "zh": "我通常放學後做功課。",
+    "isCorrect": false,
+    "answer": "I usually do homework after school.",
+    "english": "I usually do homework after school.",
+    "acceptedAnswers": [
+      "I usually do homework after school."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 usually 要放在主動動詞 do 前面。"
+  },
+  {
+    "id": "adv077",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I often read books.",
+    "zh": "我經常看書。",
+    "isCorrect": true,
+    "answer": "I often read books.",
+    "english": "I often read books.",
+    "acceptedAnswers": [
+      "I often read books."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 often 要放在主動動詞 read 前面。"
+  },
+  {
+    "id": "adv078",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I read often books.",
+    "zh": "我經常看書。",
+    "isCorrect": false,
+    "answer": "I often read books.",
+    "english": "I often read books.",
+    "acceptedAnswers": [
+      "I often read books."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 often 要放在主動動詞 read 前面。"
+  },
+  {
+    "id": "adv079",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "She sometimes plays the piano.",
+    "zh": "她有時彈鋼琴。",
+    "isCorrect": true,
+    "answer": "She sometimes plays the piano.",
+    "english": "She sometimes plays the piano.",
+    "acceptedAnswers": [
+      "She sometimes plays the piano."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 sometimes 放在主動動詞 plays 前面最清楚。"
+  },
+  {
+    "id": "adv080",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "She plays sometimes the piano.",
+    "zh": "她有時彈鋼琴。",
+    "isCorrect": false,
+    "answer": "She sometimes plays the piano.",
+    "english": "She sometimes plays the piano.",
+    "acceptedAnswers": [
+      "She sometimes plays the piano."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 sometimes 放在主動動詞 plays 前面最清楚。"
+  },
+  {
+    "id": "adv081",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "He never tells lies.",
+    "zh": "他從不說謊。",
+    "isCorrect": true,
+    "answer": "He never tells lies.",
+    "english": "He never tells lies.",
+    "acceptedAnswers": [
+      "He never tells lies."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 never 要放在主動動詞 tells 前面。"
+  },
+  {
+    "id": "adv082",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "He tells never lies.",
+    "zh": "他從不說謊。",
+    "isCorrect": false,
+    "answer": "He never tells lies.",
+    "english": "He never tells lies.",
+    "acceptedAnswers": [
+      "He never tells lies."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 never 要放在主動動詞 tells 前面。"
+  },
+  {
+    "id": "adv083",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I also like maths.",
+    "zh": "我也喜歡數學。",
+    "isCorrect": true,
+    "answer": "I also like maths.",
+    "english": "I also like maths.",
+    "acceptedAnswers": [
+      "I also like maths."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 also 要放在主動動詞 like 前面。"
+  },
+  {
+    "id": "adv084",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I like also maths.",
+    "zh": "我也喜歡數學。",
+    "isCorrect": false,
+    "answer": "I also like maths.",
+    "english": "I also like maths.",
+    "acceptedAnswers": [
+      "I also like maths."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 also 要放在主動動詞 like 前面。"
+  },
+  {
+    "id": "adv085",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I have already finished my homework.",
+    "zh": "我已經完成了功課。",
+    "isCorrect": true,
+    "answer": "I have already finished my homework.",
+    "english": "I have already finished my homework.",
+    "acceptedAnswers": [
+      "I have already finished my homework."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 already 要放在 have 和 PP finished 中間。"
+  },
+  {
+    "id": "adv086",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "I have finished already my homework.",
+    "zh": "我已經完成了功課。",
+    "isCorrect": false,
+    "answer": "I have already finished my homework.",
+    "english": "I have already finished my homework.",
+    "acceptedAnswers": [
+      "I have already finished my homework."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 already 要放在 have 和 PP finished 中間。"
+  },
+  {
+    "id": "adv087",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "She has just finished lunch.",
+    "zh": "她剛剛吃完午餐。",
+    "isCorrect": true,
+    "answer": "She has just finished lunch.",
+    "english": "She has just finished lunch.",
+    "acceptedAnswers": [
+      "She has just finished lunch."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 just 要放在 has 和 PP finished 中間。"
+  },
+  {
+    "id": "adv088",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "She has finished just lunch.",
+    "zh": "她剛剛吃完午餐。",
+    "isCorrect": false,
+    "answer": "She has just finished lunch.",
+    "english": "She has just finished lunch.",
+    "acceptedAnswers": [
+      "She has just finished lunch."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 just 要放在 has 和 PP finished 中間。"
+  },
+  {
+    "id": "adv089",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "They probably know the answer.",
+    "zh": "他們大概知道答案。",
+    "isCorrect": true,
+    "answer": "They probably know the answer.",
+    "english": "They probably know the answer.",
+    "acceptedAnswers": [
+      "They probably know the answer."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 probably 要放在主動動詞 know 前面。"
+  },
+  {
+    "id": "adv090",
+    "type": "adverb-lesson",
+    "category": "middle",
+    "sentence": "They know probably the answer.",
+    "zh": "他們大概知道答案。",
+    "isCorrect": false,
+    "answer": "They probably know the answer.",
+    "english": "They probably know the answer.",
+    "acceptedAnswers": [
+      "They probably know the answer."
+    ],
+    "explanation": "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。 probably 要放在主動動詞 know 前面。"
+  },
+  {
+    "id": "adv091",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "The box is very heavy.",
+    "zh": "這個箱很重。",
+    "isCorrect": true,
+    "answer": "The box is very heavy.",
+    "english": "The box is very heavy.",
+    "acceptedAnswers": [
+      "The box is very heavy."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 very 要放在形容詞 heavy 前面。"
+  },
+  {
+    "id": "adv092",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "The box is heavy very.",
+    "zh": "這個箱很重。",
+    "isCorrect": false,
+    "answer": "The box is very heavy.",
+    "english": "The box is very heavy.",
+    "acceptedAnswers": [
+      "The box is very heavy."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 very 要放在形容詞 heavy 前面。"
+  },
+  {
+    "id": "adv093",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "I really like this story.",
+    "zh": "我真的喜歡這個故事。",
+    "isCorrect": true,
+    "answer": "I really like this story.",
+    "english": "I really like this story.",
+    "acceptedAnswers": [
+      "I really like this story."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 really 形容 like，通常放在 like 前面。"
+  },
+  {
+    "id": "adv094",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "I like really this story.",
+    "zh": "我真的喜歡這個故事。",
+    "isCorrect": false,
+    "answer": "I really like this story.",
+    "english": "I really like this story.",
+    "acceptedAnswers": [
+      "I really like this story."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 really 形容 like，通常放在 like 前面。"
+  },
+  {
+    "id": "adv095",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "I like this book very much.",
+    "zh": "我很喜歡這本書。",
+    "isCorrect": true,
+    "answer": "I like this book very much.",
+    "english": "I like this book very much.",
+    "acceptedAnswers": [
+      "I like this book very much."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 very much 放在 this book 後面最自然。"
+  },
+  {
+    "id": "adv096",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "I like very much this book.",
+    "zh": "我很喜歡這本書。",
+    "isCorrect": false,
+    "answer": "I like this book very much.",
+    "english": "I like this book very much.",
+    "acceptedAnswers": [
+      "I like this book very much."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 very much 放在 this book 後面最自然。"
+  },
+  {
+    "id": "adv097",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "The water is too hot.",
+    "zh": "水太熱。",
+    "isCorrect": true,
+    "answer": "The water is too hot.",
+    "english": "The water is too hot.",
+    "acceptedAnswers": [
+      "The water is too hot."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 too 要放在形容詞 hot 前面，表示「太」。"
+  },
+  {
+    "id": "adv098",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "The water is hot too.",
+    "zh": "水太熱。",
+    "isCorrect": false,
+    "answer": "The water is too hot.",
+    "english": "The water is too hot.",
+    "acceptedAnswers": [
+      "The water is too hot."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 too 要放在形容詞 hot 前面，表示「太」。"
+  },
+  {
+    "id": "adv099",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "This bag is quite heavy.",
+    "zh": "這個書包頗重。",
+    "isCorrect": true,
+    "answer": "This bag is quite heavy.",
+    "english": "This bag is quite heavy.",
+    "acceptedAnswers": [
+      "This bag is quite heavy."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 quite 要放在形容詞 heavy 前面。"
+  },
+  {
+    "id": "adv100",
+    "type": "adverb-lesson",
+    "category": "degree",
+    "sentence": "This bag is heavy quite.",
+    "zh": "這個書包頗重。",
+    "isCorrect": false,
+    "answer": "This bag is quite heavy.",
+    "english": "This bag is quite heavy.",
+    "acceptedAnswers": [
+      "This bag is quite heavy."
+    ],
+    "explanation": "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。 quite 要放在形容詞 heavy 前面。"
+  }
+]

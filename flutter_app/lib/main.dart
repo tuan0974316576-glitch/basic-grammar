@@ -10,8 +10,15 @@ import 'core/app_sfx.dart';
 import 'core/widgets/stationery_frame.dart';
 import 'features/auth/student_auth_controller.dart';
 import 'features/auth/student_login_screen.dart';
+import 'features/grammar/correction/correction_lesson_question.dart';
+import 'features/grammar/correction/correction_lesson_screen.dart';
 import 'features/grammar/lesson_01/lesson_01_screen.dart';
 import 'features/grammar/lesson_02/lesson_02_screen.dart';
+import 'features/grammar/lesson_03/lesson_03_screen.dart';
+import 'features/grammar/lesson_04/lesson_04_screen.dart';
+import 'features/grammar/lesson_05/lesson_05_screen.dart';
+import 'features/grammar/lesson_11/lesson_11_screen.dart';
+import 'features/grammar/lesson_12/lesson_12_screen.dart';
 import 'features/grammar/quiz_01/quiz_01_screen.dart';
 import 'features/vocabulary/vocab_audio_repository.dart';
 import 'features/vocabulary/vocab_screen.dart';
@@ -171,7 +178,7 @@ class _AppShellState extends State<AppShell> {
       body: IndexedStack(
         index: _selectedTab,
         children: [
-          const RoadmapPage(),
+          RoadmapPage(vocabAudioRepository: widget.vocabAudioRepository),
           VocabularyScreen(audioRepository: widget.vocabAudioRepository),
           const AchievementsPage(),
           ProfilePage(authController: widget.authController),
@@ -222,7 +229,9 @@ class _AppShellState extends State<AppShell> {
 }
 
 class RoadmapPage extends StatefulWidget {
-  const RoadmapPage({super.key});
+  const RoadmapPage({this.vocabAudioRepository, super.key});
+
+  final VocabAudioRepository? vocabAudioRepository;
 
   @override
   State<RoadmapPage> createState() => _RoadmapPageState();
@@ -255,6 +264,13 @@ class _RoadmapPageState extends State<RoadmapPage> {
                   AppSfx.instance.play(SfxCue.click);
                   setState(() => _activeNode = node.index);
                   _showLessonSheet(context, node);
+                },
+                onInfoTap: (node) {
+                  AppSfx.instance.play(SfxCue.click);
+                  openVerbTableReference(
+                    context,
+                    audioRepository: widget.vocabAudioRepository,
+                  );
                 },
               ),
             ),
@@ -330,6 +346,17 @@ class _RoadmapPageState extends State<RoadmapPage> {
       0 => const Lesson01Screen(),
       1 => const Lesson02Screen(),
       2 => const Quiz01Screen(),
+      3 => const Lesson03Screen(),
+      4 => const Lesson04Screen(),
+      5 => const Lesson05Screen(),
+      6 => const CorrectionLessonScreen(config: lesson06Config),
+      7 => const CorrectionLessonScreen(config: lesson07Config),
+      8 => const CorrectionLessonScreen(config: lesson08Config),
+      9 => const CorrectionLessonScreen(config: lesson09Config),
+      10 => const CorrectionLessonScreen(config: lesson10Config),
+      11 => const Lesson11Screen(),
+      12 => Lesson12Screen(audioRepository: widget.vocabAudioRepository),
+      13 => const CorrectionLessonScreen(config: lesson13Config),
       _ => null,
     };
     if (lessonScreen == null) return;
@@ -487,10 +514,16 @@ class UnitBanner extends StatelessWidget {
 }
 
 class Roadmap extends StatelessWidget {
-  const Roadmap({required this.activeNode, required this.onNodeTap, super.key});
+  const Roadmap({
+    required this.activeNode,
+    required this.onNodeTap,
+    required this.onInfoTap,
+    super.key,
+  });
 
   final int activeNode;
   final ValueChanged<LessonNode> onNodeTap;
+  final ValueChanged<LessonNode> onInfoTap;
 
   static const nodes = [
     LessonNode(
@@ -523,7 +556,7 @@ class Roadmap extends StatelessWidget {
       subtitle: 'LESSON 03',
       description: '認識句子的分界和組成。',
       icon: Icons.menu_book_rounded,
-      state: LessonState.locked,
+      state: LessonState.current,
     ),
     LessonNode(
       index: 4,
@@ -531,7 +564,7 @@ class Roadmap extends StatelessWidget {
       subtitle: 'LESSON 04',
       description: '配對主語、非主語和所有格代名詞。',
       icon: Icons.fitness_center_rounded,
-      state: LessonState.locked,
+      state: LessonState.current,
     ),
     LessonNode(
       index: 5,
@@ -539,7 +572,7 @@ class Roadmap extends StatelessWidget {
       subtitle: 'LESSON 05',
       description: '用文法判斷句子中的代名詞。',
       icon: Icons.videocam_rounded,
-      state: LessonState.locked,
+      state: LessonState.current,
     ),
     LessonNode(
       index: 6,
@@ -547,7 +580,63 @@ class Roadmap extends StatelessWidget {
       subtitle: 'LESSON 06',
       description: '掌握單數、眾數和冠詞的使用。',
       icon: Icons.menu_book_rounded,
-      state: LessonState.locked,
+      state: LessonState.current,
+    ),
+    LessonNode(
+      index: 7,
+      title: '名詞的類別',
+      subtitle: 'LESSON 07',
+      description: '分辨可數、不可數、ING 名詞和專有名詞。',
+      icon: Icons.category_rounded,
+      state: LessonState.current,
+    ),
+    LessonNode(
+      index: 8,
+      title: 'Modal Verb',
+      subtitle: 'LESSON 08',
+      description: '掌握情態動詞和原型動詞的配搭。',
+      icon: Icons.bolt_rounded,
+      state: LessonState.current,
+    ),
+    LessonNode(
+      index: 9,
+      title: 'Adjective',
+      subtitle: 'LESSON 09',
+      description: '認識形容詞的位置和正確寫法。',
+      icon: Icons.palette_rounded,
+      state: LessonState.current,
+    ),
+    LessonNode(
+      index: 10,
+      title: 'Adverb',
+      subtitle: 'LESSON 10',
+      description: '掌握副詞在句首、句中和句尾的位置。',
+      icon: Icons.speed_rounded,
+      state: LessonState.current,
+    ),
+    LessonNode(
+      index: 11,
+      title: 'Tenses',
+      subtitle: 'LESSON 11',
+      description: '分辨時態，再寫出正確動詞形式。',
+      icon: Icons.schedule_rounded,
+      state: LessonState.current,
+    ),
+    LessonNode(
+      index: 12,
+      title: 'Verb Table',
+      subtitle: 'LESSON 12',
+      description: '練習現在式、過去式、PP 和 ING。',
+      icon: Icons.grid_view_rounded,
+      state: LessonState.current,
+    ),
+    LessonNode(
+      index: 13,
+      title: '「有」的用法',
+      subtitle: 'LESSON 13',
+      description: '分辨 There be、with 和 have。',
+      icon: Icons.add_circle_rounded,
+      state: LessonState.current,
     ),
   ];
 
@@ -557,15 +646,11 @@ class Roadmap extends StatelessWidget {
       builder: (context, constraints) {
         final width = constraints.maxWidth;
         final height = nodes.length * 148.0 + 100;
-        final xPositions = [
-          width * .28,
-          width * .70,
-          width * .36,
-          width * .68,
-          width * .30,
-          width * .68,
-          width * .42,
-        ];
+        const xPattern = [.28, .70, .36, .68, .30, .68, .42];
+        final xPositions = List.generate(
+          nodes.length,
+          (index) => width * xPattern[index % xPattern.length],
+        );
         final points = List.generate(
           nodes.length,
           (index) => Offset(xPositions[index], 55 + index * 148.0),
@@ -589,6 +674,9 @@ class Roadmap extends StatelessWidget {
                     node: nodes[index],
                     isActive: activeNode == nodes[index].index,
                     onTap: () => onNodeTap(nodes[index]),
+                    onInfo: nodes[index].index == 12
+                        ? () => onInfoTap(nodes[index])
+                        : null,
                   ),
                 ),
               Positioned(
@@ -683,12 +771,14 @@ class LessonNodeButton extends StatelessWidget {
     required this.node,
     required this.isActive,
     required this.onTap,
+    this.onInfo,
     super.key,
   });
 
   final LessonNode node;
   final bool isActive;
   final VoidCallback onTap;
+  final VoidCallback? onInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -700,57 +790,98 @@ class LessonNodeButton extends StatelessWidget {
       child: SizedBox(
         width: 94,
         height: 94,
-        child: Material(
-          color: background,
-          shape: CircleBorder(
-            side: BorderSide(
-              color: enabled ? _blueDark : AppPalette.border,
-              width: 3,
-            ),
-          ),
-          elevation: isActive ? 8 : 3,
-          shadowColor:
-              enabled ? _blueDark.withValues(alpha: 0.45) : AppPalette.border,
-          child: InkWell(
-            customBorder: const CircleBorder(),
-            onTap: enabled ? onTap : null,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Icon(
-                  node.icon,
-                  color: enabled ? Colors.white : const Color(0xFF9AA7AA),
-                  size: 46,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Positioned.fill(
+              child: Material(
+                color: background,
+                shape: CircleBorder(
+                  side: BorderSide(
+                    color: enabled ? _blueDark : AppPalette.border,
+                    width: 3,
+                  ),
                 ),
-                if (node.state == LessonState.complete)
-                  const Positioned(
-                    right: 11,
-                    top: 9,
-                    child: Icon(Icons.check_circle_rounded,
-                        color: _yellow, size: 19),
-                  ),
-                if (node.state == LessonState.locked)
-                  const Positioned(
-                    right: 10,
-                    bottom: 10,
-                    child: Icon(Icons.lock_rounded,
-                        color: Color(0xFF9BAEB2), size: 18),
-                  ),
-                if (isActive && enabled)
-                  Positioned.fill(
-                    child: IgnorePointer(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: const Color(0xCCFFFFFF), width: 3),
-                        ),
+                elevation: isActive ? 8 : 3,
+                shadowColor: enabled
+                    ? _blueDark.withValues(alpha: 0.45)
+                    : AppPalette.border,
+                child: InkWell(
+                  customBorder: const CircleBorder(),
+                  onTap: enabled ? onTap : null,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Icon(
+                        node.icon,
+                        color: enabled ? Colors.white : const Color(0xFF9AA7AA),
+                        size: 46,
                       ),
+                      if (node.state == LessonState.complete)
+                        const Positioned(
+                          right: 11,
+                          top: 9,
+                          child: Icon(
+                            Icons.check_circle_rounded,
+                            color: _yellow,
+                            size: 19,
+                          ),
+                        ),
+                      if (node.state == LessonState.locked)
+                        const Positioned(
+                          right: 10,
+                          bottom: 10,
+                          child: Icon(
+                            Icons.lock_rounded,
+                            color: Color(0xFF9BAEB2),
+                            size: 18,
+                          ),
+                        ),
+                      if (isActive && enabled)
+                        Positioned.fill(
+                          child: IgnorePointer(
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: const Color(0xCCFFFFFF),
+                                  width: 3,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if (onInfo != null)
+              Positioned(
+                right: -7,
+                top: -7,
+                child: IconButton(
+                  key: const Key('verb-table-roadmap-info'),
+                  tooltip: 'Verb Table',
+                  onPressed: onInfo,
+                  icon: const Icon(Icons.info_rounded, size: 20),
+                  style: IconButton.styleFrom(
+                    minimumSize: const Size(34, 34),
+                    maximumSize: const Size(34, 34),
+                    padding: EdgeInsets.zero,
+                    backgroundColor: AppPalette.softSecondary,
+                    foregroundColor: AppPalette.secondaryDark,
+                    side: const BorderSide(
+                      color: AppPalette.secondaryDark,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-              ],
-            ),
-          ),
+                ),
+              ),
+          ],
         ),
       ),
     );

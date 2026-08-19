@@ -1,0 +1,1302 @@
+[
+  {
+    "id": "cn001",
+    "type": "countable",
+    "sentence": "I like apples.",
+    "zh": "我喜歡蘋果。",
+    "isCorrect": true,
+    "answer": "I like apples.",
+    "english": "I like apples.",
+    "acceptedAnswers": [
+      "I like apples."
+    ],
+    "explanation": "中文是一般地說喜歡蘋果，不是說一個蘋果；apple 是可數名詞，這裡不是單數，所以要用眾數 apples。"
+  },
+  {
+    "id": "cn002",
+    "type": "countable",
+    "sentence": "I like apple.",
+    "zh": "我喜歡蘋果。",
+    "isCorrect": false,
+    "answer": "I like apples.",
+    "english": "I like apples.",
+    "acceptedAnswers": [
+      "I like apples."
+    ],
+    "explanation": "中文是一般地說喜歡蘋果，不是說一個蘋果；apple 是可數名詞，這裡不是單數，所以要用眾數 apples。"
+  },
+  {
+    "id": "cn003",
+    "type": "countable",
+    "sentence": "She likes dogs.",
+    "zh": "她喜歡狗。",
+    "isCorrect": true,
+    "answer": "She likes dogs.",
+    "english": "She likes dogs.",
+    "acceptedAnswers": [
+      "She likes dogs."
+    ],
+    "explanation": "中文是一般地說喜歡狗，不是說一隻狗；dog 是可數名詞，這裡不是單數，所以要用眾數 dogs。"
+  },
+  {
+    "id": "cn004",
+    "type": "countable",
+    "sentence": "She likes dog.",
+    "zh": "她喜歡狗。",
+    "isCorrect": false,
+    "answer": "She likes dogs.",
+    "english": "She likes dogs.",
+    "acceptedAnswers": [
+      "She likes dogs."
+    ],
+    "explanation": "中文是一般地說喜歡狗，不是說一隻狗；dog 是可數名詞，這裡不是單數，所以要用眾數 dogs。"
+  },
+  {
+    "id": "cn005",
+    "type": "countable",
+    "sentence": "We need more teachers.",
+    "zh": "我們需要更多老師。",
+    "isCorrect": true,
+    "answer": "We need more teachers.",
+    "english": "We need more teachers.",
+    "acceptedAnswers": [
+      "We need more teachers."
+    ],
+    "explanation": "more 後面如果是可數名詞，要用眾數；teacher 是可數名詞，這裡不是單數，所以要用眾數 teachers。"
+  },
+  {
+    "id": "cn006",
+    "type": "countable",
+    "sentence": "We need more teacher.",
+    "zh": "我們需要更多老師。",
+    "isCorrect": false,
+    "answer": "We need more teachers.",
+    "english": "We need more teachers.",
+    "acceptedAnswers": [
+      "We need more teachers."
+    ],
+    "explanation": "more 後面如果是可數名詞，要用眾數；teacher 是可數名詞，這裡不是單數，所以要用眾數 teachers。"
+  },
+  {
+    "id": "cn007",
+    "type": "countable",
+    "sentence": "There are three books on the desk.",
+    "zh": "桌上有三本書。",
+    "isCorrect": true,
+    "answer": "There are three books on the desk.",
+    "english": "There are three books on the desk.",
+    "acceptedAnswers": [
+      "There are three books on the desk."
+    ],
+    "explanation": "three 表示三本；book 是可數名詞，這裡不是單數，所以要用眾數 books。"
+  },
+  {
+    "id": "cn008",
+    "type": "countable",
+    "sentence": "There are three book on the desk.",
+    "zh": "桌上有三本書。",
+    "isCorrect": false,
+    "answer": "There are three books on the desk.",
+    "english": "There are three books on the desk.",
+    "acceptedAnswers": [
+      "There are three books on the desk."
+    ],
+    "explanation": "three 表示三本；book 是可數名詞，這裡不是單數，所以要用眾數 books。"
+  },
+  {
+    "id": "cn009",
+    "type": "countable",
+    "sentence": "Many students are in the playground.",
+    "zh": "很多學生在操場。",
+    "isCorrect": true,
+    "answer": "Many students are in the playground.",
+    "english": "Many students are in the playground.",
+    "acceptedAnswers": [
+      "Many students are in the playground."
+    ],
+    "explanation": "many 後面如果是可數名詞，要用眾數；student 是可數名詞，這裡不是單數，所以要用眾數 students。"
+  },
+  {
+    "id": "cn010",
+    "type": "countable",
+    "sentence": "Many student are in the playground.",
+    "zh": "很多學生在操場。",
+    "isCorrect": false,
+    "answer": "Many students are in the playground.",
+    "english": "Many students are in the playground.",
+    "acceptedAnswers": [
+      "Many students are in the playground."
+    ],
+    "explanation": "many 後面如果是可數名詞，要用眾數；student 是可數名詞，這裡不是單數，所以要用眾數 students。"
+  },
+  {
+    "id": "cn011",
+    "type": "countable",
+    "sentence": "Tom has two pencils.",
+    "zh": "Tom 有兩支鉛筆。",
+    "isCorrect": true,
+    "answer": "Tom has two pencils.",
+    "english": "Tom has two pencils.",
+    "acceptedAnswers": [
+      "Tom has two pencils."
+    ],
+    "explanation": "two 表示兩支；pencil 是可數名詞，這裡不是單數，所以要用眾數 pencils。"
+  },
+  {
+    "id": "cn012",
+    "type": "countable",
+    "sentence": "Tom has two pencil.",
+    "zh": "Tom 有兩支鉛筆。",
+    "isCorrect": false,
+    "answer": "Tom has two pencils.",
+    "english": "Tom has two pencils.",
+    "acceptedAnswers": [
+      "Tom has two pencils."
+    ],
+    "explanation": "two 表示兩支；pencil 是可數名詞，這裡不是單數，所以要用眾數 pencils。"
+  },
+  {
+    "id": "cn013",
+    "type": "countable",
+    "sentence": "They eat bananas after school.",
+    "zh": "他們放學後吃香蕉。",
+    "isCorrect": true,
+    "answer": "They eat bananas after school.",
+    "english": "They eat bananas after school.",
+    "acceptedAnswers": [
+      "They eat bananas after school."
+    ],
+    "explanation": "中文沒有說只吃一隻香蕉；banana 是可數名詞，這裡不是單數，所以要用眾數 bananas。"
+  },
+  {
+    "id": "cn014",
+    "type": "countable",
+    "sentence": "They eat banana after school.",
+    "zh": "他們放學後吃香蕉。",
+    "isCorrect": false,
+    "answer": "They eat bananas after school.",
+    "english": "They eat bananas after school.",
+    "acceptedAnswers": [
+      "They eat bananas after school."
+    ],
+    "explanation": "中文沒有說只吃一隻香蕉；banana 是可數名詞，這裡不是單數，所以要用眾數 bananas。"
+  },
+  {
+    "id": "cn015",
+    "type": "countable",
+    "sentence": "I can see birds in the tree.",
+    "zh": "我看見樹上有雀鳥。",
+    "isCorrect": true,
+    "answer": "I can see birds in the tree.",
+    "english": "I can see birds in the tree.",
+    "acceptedAnswers": [
+      "I can see birds in the tree."
+    ],
+    "explanation": "中文沒有指定只得一隻雀鳥；bird 是可數名詞，這裡不是單數，所以要用眾數 birds。"
+  },
+  {
+    "id": "cn016",
+    "type": "countable",
+    "sentence": "I can see bird in the tree.",
+    "zh": "我看見樹上有雀鳥。",
+    "isCorrect": false,
+    "answer": "I can see birds in the tree.",
+    "english": "I can see birds in the tree.",
+    "acceptedAnswers": [
+      "I can see birds in the tree."
+    ],
+    "explanation": "中文沒有指定只得一隻雀鳥；bird 是可數名詞，這裡不是單數，所以要用眾數 birds。"
+  },
+  {
+    "id": "cn017",
+    "type": "countable",
+    "sentence": "My sister collects stamps.",
+    "zh": "我姐姐收集郵票。",
+    "isCorrect": true,
+    "answer": "My sister collects stamps.",
+    "english": "My sister collects stamps.",
+    "acceptedAnswers": [
+      "My sister collects stamps."
+    ],
+    "explanation": "收集郵票通常不是一張；stamp 是可數名詞，這裡不是單數，所以要用眾數 stamps。"
+  },
+  {
+    "id": "cn018",
+    "type": "countable",
+    "sentence": "My sister collects stamp.",
+    "zh": "我姐姐收集郵票。",
+    "isCorrect": false,
+    "answer": "My sister collects stamps.",
+    "english": "My sister collects stamps.",
+    "acceptedAnswers": [
+      "My sister collects stamps."
+    ],
+    "explanation": "收集郵票通常不是一張；stamp 是可數名詞，這裡不是單數，所以要用眾數 stamps。"
+  },
+  {
+    "id": "cn019",
+    "type": "countable",
+    "sentence": "I want an apple.",
+    "zh": "我想要一個蘋果。",
+    "isCorrect": true,
+    "answer": "I want an apple.",
+    "english": "I want an apple.",
+    "acceptedAnswers": [
+      "I want an apple."
+    ],
+    "explanation": "中文強調一個蘋果；apple 以母音開頭，所以用 an；要寫成 an apple。"
+  },
+  {
+    "id": "cn020",
+    "type": "countable",
+    "sentence": "I want apple.",
+    "zh": "我想要一個蘋果。",
+    "isCorrect": false,
+    "answer": "I want an apple.",
+    "english": "I want an apple.",
+    "acceptedAnswers": [
+      "I want an apple."
+    ],
+    "explanation": "中文強調一個蘋果；apple 以母音開頭，所以用 an；要寫成 an apple。"
+  },
+  {
+    "id": "cn021",
+    "type": "countable",
+    "sentence": "She has an orange.",
+    "zh": "她有一個橙。",
+    "isCorrect": true,
+    "answer": "She has an orange.",
+    "english": "She has an orange.",
+    "acceptedAnswers": [
+      "She has an orange."
+    ],
+    "explanation": "中文強調一個橙；orange 以母音開頭，所以用 an；要寫成 an orange。"
+  },
+  {
+    "id": "cn022",
+    "type": "countable",
+    "sentence": "She has a orange.",
+    "zh": "她有一個橙。",
+    "isCorrect": false,
+    "answer": "She has an orange.",
+    "english": "She has an orange.",
+    "acceptedAnswers": [
+      "She has an orange."
+    ],
+    "explanation": "中文強調一個橙；orange 以母音開頭，所以用 an；要寫成 an orange。"
+  },
+  {
+    "id": "cn023",
+    "type": "countable",
+    "sentence": "He needs a pencil.",
+    "zh": "他需要一支鉛筆。",
+    "isCorrect": true,
+    "answer": "He needs a pencil.",
+    "english": "He needs a pencil.",
+    "acceptedAnswers": [
+      "He needs a pencil."
+    ],
+    "explanation": "中文強調一支鉛筆；pencil 不是母音開頭，所以用 a；要寫成 a pencil。"
+  },
+  {
+    "id": "cn024",
+    "type": "countable",
+    "sentence": "He needs pencil.",
+    "zh": "他需要一支鉛筆。",
+    "isCorrect": false,
+    "answer": "He needs a pencil.",
+    "english": "He needs a pencil.",
+    "acceptedAnswers": [
+      "He needs a pencil."
+    ],
+    "explanation": "中文強調一支鉛筆；pencil 不是母音開頭，所以用 a；要寫成 a pencil。"
+  },
+  {
+    "id": "cn025",
+    "type": "countable",
+    "sentence": "I bought a book.",
+    "zh": "我買了一本書。",
+    "isCorrect": true,
+    "answer": "I bought a book.",
+    "english": "I bought a book.",
+    "acceptedAnswers": [
+      "I bought a book."
+    ],
+    "explanation": "中文強調一本書；book 不是母音開頭，所以用 a；要寫成 a book。"
+  },
+  {
+    "id": "cn026",
+    "type": "countable",
+    "sentence": "I bought book.",
+    "zh": "我買了一本書。",
+    "isCorrect": false,
+    "answer": "I bought a book.",
+    "english": "I bought a book.",
+    "acceptedAnswers": [
+      "I bought a book."
+    ],
+    "explanation": "中文強調一本書；book 不是母音開頭，所以用 a；要寫成 a book。"
+  },
+  {
+    "id": "cn027",
+    "type": "countable",
+    "sentence": "Mum made a card.",
+    "zh": "媽媽做了一張卡。",
+    "isCorrect": true,
+    "answer": "Mum made a card.",
+    "english": "Mum made a card.",
+    "acceptedAnswers": [
+      "Mum made a card."
+    ],
+    "explanation": "中文強調一張卡；card 不是母音開頭，所以用 a；要寫成 a card。"
+  },
+  {
+    "id": "cn028",
+    "type": "countable",
+    "sentence": "Mum made card.",
+    "zh": "媽媽做了一張卡。",
+    "isCorrect": false,
+    "answer": "Mum made a card.",
+    "english": "Mum made a card.",
+    "acceptedAnswers": [
+      "Mum made a card."
+    ],
+    "explanation": "中文強調一張卡；card 不是母音開頭，所以用 a；要寫成 a card。"
+  },
+  {
+    "id": "cn029",
+    "type": "countable",
+    "sentence": "Tom saw an elephant.",
+    "zh": "Tom 看見一隻大象。",
+    "isCorrect": true,
+    "answer": "Tom saw an elephant.",
+    "english": "Tom saw an elephant.",
+    "acceptedAnswers": [
+      "Tom saw an elephant."
+    ],
+    "explanation": "中文強調一隻大象；elephant 以母音開頭，所以用 an；要寫成 an elephant。"
+  },
+  {
+    "id": "cn030",
+    "type": "countable",
+    "sentence": "Tom saw a elephant.",
+    "zh": "Tom 看見一隻大象。",
+    "isCorrect": false,
+    "answer": "Tom saw an elephant.",
+    "english": "Tom saw an elephant.",
+    "acceptedAnswers": [
+      "Tom saw an elephant."
+    ],
+    "explanation": "中文強調一隻大象；elephant 以母音開頭，所以用 an；要寫成 an elephant。"
+  },
+  {
+    "id": "cn031",
+    "type": "countable",
+    "sentence": "We need an umbrella.",
+    "zh": "我們需要一把傘。",
+    "isCorrect": true,
+    "answer": "We need an umbrella.",
+    "english": "We need an umbrella.",
+    "acceptedAnswers": [
+      "We need an umbrella."
+    ],
+    "explanation": "中文強調一把傘；umbrella 以母音開頭，所以用 an；要寫成 an umbrella。"
+  },
+  {
+    "id": "cn032",
+    "type": "countable",
+    "sentence": "We need a umbrella.",
+    "zh": "我們需要一把傘。",
+    "isCorrect": false,
+    "answer": "We need an umbrella.",
+    "english": "We need an umbrella.",
+    "acceptedAnswers": [
+      "We need an umbrella."
+    ],
+    "explanation": "中文強調一把傘；umbrella 以母音開頭，所以用 an；要寫成 an umbrella。"
+  },
+  {
+    "id": "cn033",
+    "type": "countable",
+    "sentence": "She wants a banana.",
+    "zh": "她想要一隻香蕉。",
+    "isCorrect": true,
+    "answer": "She wants a banana.",
+    "english": "She wants a banana.",
+    "acceptedAnswers": [
+      "She wants a banana."
+    ],
+    "explanation": "中文強調一隻香蕉；banana 不是母音開頭，所以用 a；要寫成 a banana。"
+  },
+  {
+    "id": "cn034",
+    "type": "countable",
+    "sentence": "She wants banana.",
+    "zh": "她想要一隻香蕉。",
+    "isCorrect": false,
+    "answer": "She wants a banana.",
+    "english": "She wants a banana.",
+    "acceptedAnswers": [
+      "She wants a banana."
+    ],
+    "explanation": "中文強調一隻香蕉；banana 不是母音開頭，所以用 a；要寫成 a banana。"
+  },
+  {
+    "id": "cn035",
+    "type": "countable",
+    "sentence": "Dad has a car.",
+    "zh": "爸爸有一架車。",
+    "isCorrect": true,
+    "answer": "Dad has a car.",
+    "english": "Dad has a car.",
+    "acceptedAnswers": [
+      "Dad has a car."
+    ],
+    "explanation": "中文強調一架車；car 不是母音開頭，所以用 a；要寫成 a car。"
+  },
+  {
+    "id": "cn036",
+    "type": "countable",
+    "sentence": "Dad has car.",
+    "zh": "爸爸有一架車。",
+    "isCorrect": false,
+    "answer": "Dad has a car.",
+    "english": "Dad has a car.",
+    "acceptedAnswers": [
+      "Dad has a car."
+    ],
+    "explanation": "中文強調一架車；car 不是母音開頭，所以用 a；要寫成 a car。"
+  },
+  {
+    "id": "cn037",
+    "type": "countable",
+    "sentence": "I need a ruler.",
+    "zh": "我需要一把間尺。",
+    "isCorrect": true,
+    "answer": "I need a ruler.",
+    "english": "I need a ruler.",
+    "acceptedAnswers": [
+      "I need a ruler."
+    ],
+    "explanation": "中文強調一把間尺；ruler 不是母音開頭，所以用 a；要寫成 a ruler。"
+  },
+  {
+    "id": "cn038",
+    "type": "countable",
+    "sentence": "I need ruler.",
+    "zh": "我需要一把間尺。",
+    "isCorrect": false,
+    "answer": "I need a ruler.",
+    "english": "I need a ruler.",
+    "acceptedAnswers": [
+      "I need a ruler."
+    ],
+    "explanation": "中文強調一把間尺；ruler 不是母音開頭，所以用 a；要寫成 a ruler。"
+  },
+  {
+    "id": "cn039",
+    "type": "countable",
+    "sentence": "The dog is sleeping.",
+    "zh": "這隻狗在睡覺。",
+    "isCorrect": true,
+    "answer": "The dog is sleeping.",
+    "english": "The dog is sleeping.",
+    "acceptedAnswers": [
+      "The dog is sleeping."
+    ],
+    "explanation": "the 表示指定；The dog 是指定一隻狗，所以用 is。"
+  },
+  {
+    "id": "cn040",
+    "type": "countable",
+    "sentence": "The dogs is barking.",
+    "zh": "那些狗在吠。",
+    "isCorrect": false,
+    "answer": "The dogs are barking.",
+    "english": "The dogs are barking.",
+    "acceptedAnswers": [
+      "The dogs are barking."
+    ],
+    "explanation": "the 表示指定；The dogs 是指定多隻狗，所以用 are。"
+  },
+  {
+    "id": "cn041",
+    "type": "countable",
+    "sentence": "The apple is in my bag.",
+    "zh": "這個蘋果在我的書包裏。",
+    "isCorrect": true,
+    "answer": "The apple is in my bag.",
+    "english": "The apple is in my bag.",
+    "acceptedAnswers": [
+      "The apple is in my bag."
+    ],
+    "explanation": "the 表示指定；The apple 是指定一個蘋果，所以用 is。"
+  },
+  {
+    "id": "cn042",
+    "type": "countable",
+    "sentence": "The apples is in the basket.",
+    "zh": "那些蘋果在籃子裏。",
+    "isCorrect": false,
+    "answer": "The apples are in the basket.",
+    "english": "The apples are in the basket.",
+    "acceptedAnswers": [
+      "The apples are in the basket."
+    ],
+    "explanation": "the 表示指定；The apples 是指定多個蘋果，所以用 are。"
+  },
+  {
+    "id": "cn043",
+    "type": "countable",
+    "sentence": "The student is in the classroom.",
+    "zh": "這個學生在課室裏。",
+    "isCorrect": true,
+    "answer": "The student is in the classroom.",
+    "english": "The student is in the classroom.",
+    "acceptedAnswers": [
+      "The student is in the classroom."
+    ],
+    "explanation": "the 表示指定；The student 是指定一個學生，所以用 is。"
+  },
+  {
+    "id": "cn044",
+    "type": "countable",
+    "sentence": "The students is in the hall.",
+    "zh": "那些學生在禮堂裏。",
+    "isCorrect": false,
+    "answer": "The students are in the hall.",
+    "english": "The students are in the hall.",
+    "acceptedAnswers": [
+      "The students are in the hall."
+    ],
+    "explanation": "the 表示指定；The students 是指定多個學生，所以用 are。"
+  },
+  {
+    "id": "cn045",
+    "type": "countable",
+    "sentence": "The book is on the table.",
+    "zh": "這本書在桌上。",
+    "isCorrect": true,
+    "answer": "The book is on the table.",
+    "english": "The book is on the table.",
+    "acceptedAnswers": [
+      "The book is on the table."
+    ],
+    "explanation": "the 表示指定；The book 是指定一本書，所以用 is。"
+  },
+  {
+    "id": "cn046",
+    "type": "countable",
+    "sentence": "The books is under the desk.",
+    "zh": "那些書在書桌下。",
+    "isCorrect": false,
+    "answer": "The books are under the desk.",
+    "english": "The books are under the desk.",
+    "acceptedAnswers": [
+      "The books are under the desk."
+    ],
+    "explanation": "the 表示指定；The books 是指定多本書，所以用 are。"
+  },
+  {
+    "id": "cn047",
+    "type": "countable",
+    "sentence": "The cat is under the chair.",
+    "zh": "這隻貓在椅子下。",
+    "isCorrect": true,
+    "answer": "The cat is under the chair.",
+    "english": "The cat is under the chair.",
+    "acceptedAnswers": [
+      "The cat is under the chair."
+    ],
+    "explanation": "the 表示指定；The cat 是指定一隻貓，所以用 is。"
+  },
+  {
+    "id": "cn048",
+    "type": "countable",
+    "sentence": "The cats is under the table.",
+    "zh": "那些貓在桌下。",
+    "isCorrect": false,
+    "answer": "The cats are under the table.",
+    "english": "The cats are under the table.",
+    "acceptedAnswers": [
+      "The cats are under the table."
+    ],
+    "explanation": "the 表示指定；The cats 是指定多隻貓，所以用 are。"
+  },
+  {
+    "id": "cn049",
+    "type": "countable",
+    "sentence": "The pencil is in the box.",
+    "zh": "這支鉛筆在盒子裏。",
+    "isCorrect": true,
+    "answer": "The pencil is in the box.",
+    "english": "The pencil is in the box.",
+    "acceptedAnswers": [
+      "The pencil is in the box."
+    ],
+    "explanation": "the 表示指定；The pencil 是指定一支鉛筆，所以用 is。"
+  },
+  {
+    "id": "cn050",
+    "type": "countable",
+    "sentence": "The pencils is in the box.",
+    "zh": "那些鉛筆在盒子裏。",
+    "isCorrect": false,
+    "answer": "The pencils are in the box.",
+    "english": "The pencils are in the box.",
+    "acceptedAnswers": [
+      "The pencils are in the box."
+    ],
+    "explanation": "the 表示指定；The pencils 是指定多支鉛筆，所以用 are。"
+  },
+  {
+    "id": "cn051",
+    "type": "countable",
+    "sentence": "The flowers are for Mum.",
+    "zh": "那些花是給媽媽的。",
+    "isCorrect": true,
+    "answer": "The flowers are for Mum.",
+    "english": "The flowers are for Mum.",
+    "acceptedAnswers": [
+      "The flowers are for Mum."
+    ],
+    "explanation": "the 表示指定；The flowers 是指定多朵花，所以用 are。"
+  },
+  {
+    "id": "cn052",
+    "type": "countable",
+    "sentence": "The flower are for Mum.",
+    "zh": "這朵花是給媽媽的。",
+    "isCorrect": false,
+    "answer": "The flower is for Mum.",
+    "english": "The flower is for Mum.",
+    "acceptedAnswers": [
+      "The flower is for Mum."
+    ],
+    "explanation": "the 表示指定；The flower 是指定一朵花，所以用 is。"
+  },
+  {
+    "id": "cn053",
+    "type": "countable",
+    "sentence": "The car is outside.",
+    "zh": "這架車在外面。",
+    "isCorrect": true,
+    "answer": "The car is outside.",
+    "english": "The car is outside.",
+    "acceptedAnswers": [
+      "The car is outside."
+    ],
+    "explanation": "the 表示指定；The car 是指定一架車，所以用 is。"
+  },
+  {
+    "id": "cn054",
+    "type": "countable",
+    "sentence": "The cars is outside.",
+    "zh": "那些車在外面。",
+    "isCorrect": false,
+    "answer": "The cars are outside.",
+    "english": "The cars are outside.",
+    "acceptedAnswers": [
+      "The cars are outside."
+    ],
+    "explanation": "the 表示指定；The cars 是指定多架車，所以用 are。"
+  },
+  {
+    "id": "cn055",
+    "type": "countable",
+    "sentence": "The chair is broken.",
+    "zh": "這張椅子壞了。",
+    "isCorrect": true,
+    "answer": "The chair is broken.",
+    "english": "The chair is broken.",
+    "acceptedAnswers": [
+      "The chair is broken."
+    ],
+    "explanation": "the 表示指定；The chair 是指定一張椅子，所以用 is。"
+  },
+  {
+    "id": "cn056",
+    "type": "countable",
+    "sentence": "The chairs is next to the door.",
+    "zh": "那些椅子在門旁邊。",
+    "isCorrect": false,
+    "answer": "The chairs are next to the door.",
+    "english": "The chairs are next to the door.",
+    "acceptedAnswers": [
+      "The chairs are next to the door."
+    ],
+    "explanation": "the 表示指定；The chairs 是指定多張椅子，所以用 are。"
+  },
+  {
+    "id": "cn057",
+    "type": "countable",
+    "sentence": "The egg is on the plate.",
+    "zh": "這隻雞蛋在碟上。",
+    "isCorrect": true,
+    "answer": "The egg is on the plate.",
+    "english": "The egg is on the plate.",
+    "acceptedAnswers": [
+      "The egg is on the plate."
+    ],
+    "explanation": "the 表示指定；The egg 是指定一隻雞蛋，所以用 is。"
+  },
+  {
+    "id": "cn058",
+    "type": "countable",
+    "sentence": "The eggs is on the plate.",
+    "zh": "那些雞蛋在碟上。",
+    "isCorrect": false,
+    "answer": "The eggs are on the plate.",
+    "english": "The eggs are on the plate.",
+    "acceptedAnswers": [
+      "The eggs are on the plate."
+    ],
+    "explanation": "the 表示指定；The eggs 是指定多隻雞蛋，所以用 are。"
+  },
+  {
+    "id": "cn059",
+    "type": "countable",
+    "sentence": "Water is important.",
+    "zh": "水很重要。",
+    "isCorrect": true,
+    "answer": "Water is important.",
+    "english": "Water is important.",
+    "acceptedAnswers": [
+      "Water is important."
+    ],
+    "explanation": "water 是不可數名詞，沒有 s，也不用 a/an；作主語時當單一概念，所以用 is。"
+  },
+  {
+    "id": "cn060",
+    "type": "countable",
+    "sentence": "Waters are important.",
+    "zh": "水很重要。",
+    "isCorrect": false,
+    "answer": "Water is important.",
+    "english": "Water is important.",
+    "acceptedAnswers": [
+      "Water is important."
+    ],
+    "explanation": "water 是不可數名詞，沒有 s，也不用 a/an；作主語時當單一概念，所以用 is。"
+  },
+  {
+    "id": "cn061",
+    "type": "countable",
+    "sentence": "I drink water every day.",
+    "zh": "我每天喝水。",
+    "isCorrect": true,
+    "answer": "I drink water every day.",
+    "english": "I drink water every day.",
+    "acceptedAnswers": [
+      "I drink water every day."
+    ],
+    "explanation": "water 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 water。"
+  },
+  {
+    "id": "cn062",
+    "type": "countable",
+    "sentence": "I drink waters every day.",
+    "zh": "我每天喝水。",
+    "isCorrect": false,
+    "answer": "I drink water every day.",
+    "english": "I drink water every day.",
+    "acceptedAnswers": [
+      "I drink water every day."
+    ],
+    "explanation": "water 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 water。"
+  },
+  {
+    "id": "cn063",
+    "type": "countable",
+    "sentence": "Homework is difficult.",
+    "zh": "功課很難。",
+    "isCorrect": true,
+    "answer": "Homework is difficult.",
+    "english": "Homework is difficult.",
+    "acceptedAnswers": [
+      "Homework is difficult."
+    ],
+    "explanation": "homework 是不可數名詞，沒有 s，也不用 a/an；作主語時當單一概念，所以用 is。"
+  },
+  {
+    "id": "cn064",
+    "type": "countable",
+    "sentence": "I have a homework today.",
+    "zh": "我今天有功課。",
+    "isCorrect": false,
+    "answer": "I have homework today.",
+    "english": "I have homework today.",
+    "acceptedAnswers": [
+      "I have homework today."
+    ],
+    "explanation": "homework 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 homework。"
+  },
+  {
+    "id": "cn065",
+    "type": "countable",
+    "sentence": "Information is useful.",
+    "zh": "資訊很有用。",
+    "isCorrect": true,
+    "answer": "Information is useful.",
+    "english": "Information is useful.",
+    "acceptedAnswers": [
+      "Information is useful."
+    ],
+    "explanation": "information 是不可數名詞，沒有 s，也不用 a/an；作主語時當單一概念，所以用 is。"
+  },
+  {
+    "id": "cn066",
+    "type": "countable",
+    "sentence": "We need an information.",
+    "zh": "我們需要資訊。",
+    "isCorrect": false,
+    "answer": "We need information.",
+    "english": "We need information.",
+    "acceptedAnswers": [
+      "We need information."
+    ],
+    "explanation": "information 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 information。"
+  },
+  {
+    "id": "cn067",
+    "type": "countable",
+    "sentence": "Knowledge is important.",
+    "zh": "知識很重要。",
+    "isCorrect": true,
+    "answer": "Knowledge is important.",
+    "english": "Knowledge is important.",
+    "acceptedAnswers": [
+      "Knowledge is important."
+    ],
+    "explanation": "knowledge 是不可數名詞，沒有 s，也不用 a/an；作主語時當單一概念，所以用 is。"
+  },
+  {
+    "id": "cn068",
+    "type": "countable",
+    "sentence": "I want more knowledges.",
+    "zh": "我想要更多知識。",
+    "isCorrect": false,
+    "answer": "I want more knowledge.",
+    "english": "I want more knowledge.",
+    "acceptedAnswers": [
+      "I want more knowledge."
+    ],
+    "explanation": "knowledge 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 knowledge。"
+  },
+  {
+    "id": "cn069",
+    "type": "countable",
+    "sentence": "The equipment is expensive.",
+    "zh": "這批器材很貴。",
+    "isCorrect": true,
+    "answer": "The equipment is expensive.",
+    "english": "The equipment is expensive.",
+    "acceptedAnswers": [
+      "The equipment is expensive."
+    ],
+    "explanation": "the 表示指定；equipment 是不可數名詞，沒有 s，也不用 a/an，仍然當單一概念用 is。"
+  },
+  {
+    "id": "cn070",
+    "type": "countable",
+    "sentence": "The equipments are in the room.",
+    "zh": "這批器材在房間裏。",
+    "isCorrect": false,
+    "answer": "The equipment is in the room.",
+    "english": "The equipment is in the room.",
+    "acceptedAnswers": [
+      "The equipment is in the room."
+    ],
+    "explanation": "the 表示指定；equipment 是不可數名詞，沒有 s，也不用 a/an，仍然當單一概念用 is。"
+  },
+  {
+    "id": "cn071",
+    "type": "countable",
+    "sentence": "Music is playing.",
+    "zh": "音樂正在播放。",
+    "isCorrect": true,
+    "answer": "Music is playing.",
+    "english": "Music is playing.",
+    "acceptedAnswers": [
+      "Music is playing."
+    ],
+    "explanation": "music 是不可數名詞，沒有 s，也不用 a/an；作主語時當單一概念，所以用 is。"
+  },
+  {
+    "id": "cn072",
+    "type": "countable",
+    "sentence": "I like a music.",
+    "zh": "我喜歡音樂。",
+    "isCorrect": false,
+    "answer": "I like music.",
+    "english": "I like music.",
+    "acceptedAnswers": [
+      "I like music."
+    ],
+    "explanation": "music 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 music。"
+  },
+  {
+    "id": "cn073",
+    "type": "countable",
+    "sentence": "I eat rice for lunch.",
+    "zh": "我午餐吃飯。",
+    "isCorrect": true,
+    "answer": "I eat rice for lunch.",
+    "english": "I eat rice for lunch.",
+    "acceptedAnswers": [
+      "I eat rice for lunch."
+    ],
+    "explanation": "rice 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 rice。"
+  },
+  {
+    "id": "cn074",
+    "type": "countable",
+    "sentence": "I eat rices for lunch.",
+    "zh": "我午餐吃飯。",
+    "isCorrect": false,
+    "answer": "I eat rice for lunch.",
+    "english": "I eat rice for lunch.",
+    "acceptedAnswers": [
+      "I eat rice for lunch."
+    ],
+    "explanation": "rice 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 rice。"
+  },
+  {
+    "id": "cn075",
+    "type": "countable",
+    "sentence": "The milk is in the fridge.",
+    "zh": "牛奶在雪櫃裏。",
+    "isCorrect": true,
+    "answer": "The milk is in the fridge.",
+    "english": "The milk is in the fridge.",
+    "acceptedAnswers": [
+      "The milk is in the fridge."
+    ],
+    "explanation": "the 表示指定；milk 是不可數名詞，沒有 s，也不用 a/an，仍然當單一概念用 is。"
+  },
+  {
+    "id": "cn076",
+    "type": "countable",
+    "sentence": "The breads are on the table.",
+    "zh": "麵包在桌上。",
+    "isCorrect": false,
+    "answer": "The bread is on the table.",
+    "english": "The bread is on the table.",
+    "acceptedAnswers": [
+      "The bread is on the table."
+    ],
+    "explanation": "the 表示指定；bread 是不可數名詞，沒有 s，也不用 a/an，仍然當單一概念用 is。"
+  },
+  {
+    "id": "cn077",
+    "type": "countable",
+    "sentence": "The money is in my bag.",
+    "zh": "錢在我的書包裏。",
+    "isCorrect": true,
+    "answer": "The money is in my bag.",
+    "english": "The money is in my bag.",
+    "acceptedAnswers": [
+      "The money is in my bag."
+    ],
+    "explanation": "the 表示指定；money 是不可數名詞，沒有 s，也不用 a/an，仍然當單一概念用 is。"
+  },
+  {
+    "id": "cn078",
+    "type": "countable",
+    "sentence": "A furniture is in the room.",
+    "zh": "房間裏有家具。",
+    "isCorrect": false,
+    "answer": "Furniture is in the room.",
+    "english": "Furniture is in the room.",
+    "acceptedAnswers": [
+      "Furniture is in the room."
+    ],
+    "explanation": "furniture 是不可數名詞，沒有 s，也不用 a/an；作主語時當單一概念，所以用 is。"
+  },
+  {
+    "id": "cn079",
+    "type": "countable",
+    "sentence": "I like mangoes.",
+    "zh": "我喜歡芒果。",
+    "isCorrect": true,
+    "answer": "I like mangoes.",
+    "english": "I like mangoes.",
+    "acceptedAnswers": [
+      "I like mangoes."
+    ],
+    "explanation": "中文是一般地說喜歡芒果，不是說一個芒果；mango 是可數名詞，這裡不是單數，所以要用眾數 mangoes。"
+  },
+  {
+    "id": "cn080",
+    "type": "countable",
+    "sentence": "I like mango.",
+    "zh": "我喜歡芒果。",
+    "isCorrect": false,
+    "answer": "I like mangoes.",
+    "english": "I like mangoes.",
+    "acceptedAnswers": [
+      "I like mangoes."
+    ],
+    "explanation": "中文是一般地說喜歡芒果，不是說一個芒果；mango 是可數名詞，這裡不是單數，所以要用眾數 mangoes。"
+  },
+  {
+    "id": "cn081",
+    "type": "countable",
+    "sentence": "She needs a notebook.",
+    "zh": "她需要一本筆記簿。",
+    "isCorrect": true,
+    "answer": "She needs a notebook.",
+    "english": "She needs a notebook.",
+    "acceptedAnswers": [
+      "She needs a notebook."
+    ],
+    "explanation": "中文強調一本筆記簿；notebook 不是母音開頭，所以用 a；要寫成 a notebook。"
+  },
+  {
+    "id": "cn082",
+    "type": "countable",
+    "sentence": "She needs notebook.",
+    "zh": "她需要一本筆記簿。",
+    "isCorrect": false,
+    "answer": "She needs a notebook.",
+    "english": "She needs a notebook.",
+    "acceptedAnswers": [
+      "She needs a notebook."
+    ],
+    "explanation": "中文強調一本筆記簿；notebook 不是母音開頭，所以用 a；要寫成 a notebook。"
+  },
+  {
+    "id": "cn083",
+    "type": "countable",
+    "sentence": "He has an eraser.",
+    "zh": "他有一塊擦膠。",
+    "isCorrect": true,
+    "answer": "He has an eraser.",
+    "english": "He has an eraser.",
+    "acceptedAnswers": [
+      "He has an eraser."
+    ],
+    "explanation": "中文強調一塊擦膠；eraser 以母音開頭，所以用 an；要寫成 an eraser。"
+  },
+  {
+    "id": "cn084",
+    "type": "countable",
+    "sentence": "He has a eraser.",
+    "zh": "他有一塊擦膠。",
+    "isCorrect": false,
+    "answer": "He has an eraser.",
+    "english": "He has an eraser.",
+    "acceptedAnswers": [
+      "He has an eraser."
+    ],
+    "explanation": "中文強調一塊擦膠；eraser 以母音開頭，所以用 an；要寫成 an eraser。"
+  },
+  {
+    "id": "cn085",
+    "type": "countable",
+    "sentence": "The toys are in the box.",
+    "zh": "那些玩具在盒子裏。",
+    "isCorrect": true,
+    "answer": "The toys are in the box.",
+    "english": "The toys are in the box.",
+    "acceptedAnswers": [
+      "The toys are in the box."
+    ],
+    "explanation": "the 表示指定；The toys 是指定多件玩具，所以用 are。"
+  },
+  {
+    "id": "cn086",
+    "type": "countable",
+    "sentence": "The toy are in the box.",
+    "zh": "這件玩具在盒子裏。",
+    "isCorrect": false,
+    "answer": "The toy is in the box.",
+    "english": "The toy is in the box.",
+    "acceptedAnswers": [
+      "The toy is in the box."
+    ],
+    "explanation": "the 表示指定；The toy 是指定一件玩具，所以用 is。"
+  },
+  {
+    "id": "cn087",
+    "type": "countable",
+    "sentence": "The juice is cold.",
+    "zh": "這杯果汁很凍。",
+    "isCorrect": true,
+    "answer": "The juice is cold.",
+    "english": "The juice is cold.",
+    "acceptedAnswers": [
+      "The juice is cold."
+    ],
+    "explanation": "the 表示指定；juice 是不可數名詞，沒有 s，也不用 a/an，仍然當單一概念用 is。"
+  },
+  {
+    "id": "cn088",
+    "type": "countable",
+    "sentence": "The juices are cold.",
+    "zh": "這杯果汁很凍。",
+    "isCorrect": false,
+    "answer": "The juice is cold.",
+    "english": "The juice is cold.",
+    "acceptedAnswers": [
+      "The juice is cold."
+    ],
+    "explanation": "the 表示指定；juice 是不可數名詞，沒有 s，也不用 a/an，仍然當單一概念用 is。"
+  },
+  {
+    "id": "cn089",
+    "type": "countable",
+    "sentence": "My brother wants a sandwich.",
+    "zh": "我哥哥想要一份三文治。",
+    "isCorrect": true,
+    "answer": "My brother wants a sandwich.",
+    "english": "My brother wants a sandwich.",
+    "acceptedAnswers": [
+      "My brother wants a sandwich."
+    ],
+    "explanation": "中文強調一份三文治；sandwich 不是母音開頭，所以用 a；要寫成 a sandwich。"
+  },
+  {
+    "id": "cn090",
+    "type": "countable",
+    "sentence": "My brother wants sandwich.",
+    "zh": "我哥哥想要一份三文治。",
+    "isCorrect": false,
+    "answer": "My brother wants a sandwich.",
+    "english": "My brother wants a sandwich.",
+    "acceptedAnswers": [
+      "My brother wants a sandwich."
+    ],
+    "explanation": "中文強調一份三文治；sandwich 不是母音開頭，所以用 a；要寫成 a sandwich。"
+  },
+  {
+    "id": "cn091",
+    "type": "countable",
+    "sentence": "We need more plates.",
+    "zh": "我們需要更多碟。",
+    "isCorrect": true,
+    "answer": "We need more plates.",
+    "english": "We need more plates.",
+    "acceptedAnswers": [
+      "We need more plates."
+    ],
+    "explanation": "more 後面如果是可數名詞，要用眾數；plate 是可數名詞，這裡不是單數，所以要用眾數 plates。"
+  },
+  {
+    "id": "cn092",
+    "type": "countable",
+    "sentence": "We need more plate.",
+    "zh": "我們需要更多碟。",
+    "isCorrect": false,
+    "answer": "We need more plates.",
+    "english": "We need more plates.",
+    "acceptedAnswers": [
+      "We need more plates."
+    ],
+    "explanation": "more 後面如果是可數名詞，要用眾數；plate 是可數名詞，這裡不是單數，所以要用眾數 plates。"
+  },
+  {
+    "id": "cn093",
+    "type": "countable",
+    "sentence": "The plate is dirty.",
+    "zh": "這隻碟很污糟。",
+    "isCorrect": true,
+    "answer": "The plate is dirty.",
+    "english": "The plate is dirty.",
+    "acceptedAnswers": [
+      "The plate is dirty."
+    ],
+    "explanation": "the 表示指定；The plate 是指定一隻碟，所以用 is。"
+  },
+  {
+    "id": "cn094",
+    "type": "countable",
+    "sentence": "The plates is dirty.",
+    "zh": "那些碟很污糟。",
+    "isCorrect": false,
+    "answer": "The plates are dirty.",
+    "english": "The plates are dirty.",
+    "acceptedAnswers": [
+      "The plates are dirty."
+    ],
+    "explanation": "the 表示指定；The plates 是指定多隻碟，所以用 are。"
+  },
+  {
+    "id": "cn095",
+    "type": "countable",
+    "sentence": "I drink milk in the morning.",
+    "zh": "我早上喝牛奶。",
+    "isCorrect": true,
+    "answer": "I drink milk in the morning.",
+    "english": "I drink milk in the morning.",
+    "acceptedAnswers": [
+      "I drink milk in the morning."
+    ],
+    "explanation": "milk 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 milk。"
+  },
+  {
+    "id": "cn096",
+    "type": "countable",
+    "sentence": "I drink a milk in the morning.",
+    "zh": "我早上喝牛奶。",
+    "isCorrect": false,
+    "answer": "I drink milk in the morning.",
+    "english": "I drink milk in the morning.",
+    "acceptedAnswers": [
+      "I drink milk in the morning."
+    ],
+    "explanation": "milk 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 milk。"
+  },
+  {
+    "id": "cn097",
+    "type": "countable",
+    "sentence": "She buys carrots.",
+    "zh": "她買紅蘿蔔。",
+    "isCorrect": true,
+    "answer": "She buys carrots.",
+    "english": "She buys carrots.",
+    "acceptedAnswers": [
+      "She buys carrots."
+    ],
+    "explanation": "中文沒有說只買一條紅蘿蔔；carrot 是可數名詞，這裡不是單數，所以要用眾數 carrots。"
+  },
+  {
+    "id": "cn098",
+    "type": "countable",
+    "sentence": "She buys carrot.",
+    "zh": "她買紅蘿蔔。",
+    "isCorrect": false,
+    "answer": "She buys carrots.",
+    "english": "She buys carrots.",
+    "acceptedAnswers": [
+      "She buys carrots."
+    ],
+    "explanation": "中文沒有說只買一條紅蘿蔔；carrot 是可數名詞，這裡不是單數，所以要用眾數 carrots。"
+  },
+  {
+    "id": "cn099",
+    "type": "countable",
+    "sentence": "We need cups for the party.",
+    "zh": "派對要用杯。",
+    "isCorrect": true,
+    "answer": "We need cups for the party.",
+    "english": "We need cups for the party.",
+    "acceptedAnswers": [
+      "We need cups for the party."
+    ],
+    "explanation": "派對通常需要不止一隻杯；cup 是可數名詞，這裡不是單數，所以要用眾數 cups。"
+  },
+  {
+    "id": "cn100",
+    "type": "countable",
+    "sentence": "We need cup for the party.",
+    "zh": "派對要用杯。",
+    "isCorrect": false,
+    "answer": "We need cups for the party.",
+    "english": "We need cups for the party.",
+    "acceptedAnswers": [
+      "We need cups for the party."
+    ],
+    "explanation": "派對通常需要不止一隻杯；cup 是可數名詞，這裡不是單數，所以要用眾數 cups。"
+  }
+]

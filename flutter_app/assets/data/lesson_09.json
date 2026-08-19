@@ -1,0 +1,842 @@
+[
+  {
+    "id": "adj001",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "He is happy.",
+    "zh": "他很開心。",
+    "isCorrect": true,
+    "answer": "He is happy.",
+    "english": "He is happy.",
+    "acceptedAnswers": [
+      "He is happy."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 happy 是形容詞，所以要寫 He is happy."
+  },
+  {
+    "id": "adj002",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "He happy.",
+    "zh": "他很開心。",
+    "isCorrect": false,
+    "answer": "He is happy.",
+    "english": "He is happy.",
+    "acceptedAnswers": [
+      "He is happy."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 happy 是形容詞，所以要寫 He is happy."
+  },
+  {
+    "id": "adj003",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "This tool is useful.",
+    "zh": "這件工具很有用。",
+    "isCorrect": true,
+    "answer": "This tool is useful.",
+    "english": "This tool is useful.",
+    "acceptedAnswers": [
+      "This tool is useful."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 useful 是形容詞，所以要寫 This tool is useful."
+  },
+  {
+    "id": "adj004",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "This tool useful.",
+    "zh": "這件工具很有用。",
+    "isCorrect": false,
+    "answer": "This tool is useful.",
+    "english": "This tool is useful.",
+    "acceptedAnswers": [
+      "This tool is useful."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 useful 是形容詞，所以要寫 This tool is useful."
+  },
+  {
+    "id": "adj005",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "I am careful.",
+    "zh": "我很小心。",
+    "isCorrect": true,
+    "answer": "I am careful.",
+    "english": "I am careful.",
+    "acceptedAnswers": [
+      "I am careful."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 careful 是形容詞，所以要寫 I am careful."
+  },
+  {
+    "id": "adj006",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "I careful.",
+    "zh": "我很小心。",
+    "isCorrect": false,
+    "answer": "I am careful.",
+    "english": "I am careful.",
+    "acceptedAnswers": [
+      "I am careful."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 careful 是形容詞，所以要寫 I am careful."
+  },
+  {
+    "id": "adj007",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "You are ready.",
+    "zh": "你準備好了。",
+    "isCorrect": true,
+    "answer": "You are ready.",
+    "english": "You are ready.",
+    "acceptedAnswers": [
+      "You are ready."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 ready 是形容詞，所以要寫 You are ready."
+  },
+  {
+    "id": "adj008",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "You ready.",
+    "zh": "你準備好了。",
+    "isCorrect": false,
+    "answer": "You are ready.",
+    "english": "You are ready.",
+    "acceptedAnswers": [
+      "You are ready."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 ready 是形容詞，所以要寫 You are ready."
+  },
+  {
+    "id": "adj009",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "The room is clean.",
+    "zh": "房間很乾淨。",
+    "isCorrect": true,
+    "answer": "The room is clean.",
+    "english": "The room is clean.",
+    "acceptedAnswers": [
+      "The room is clean."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 clean 是形容詞，所以要寫 The room is clean."
+  },
+  {
+    "id": "adj010",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "The room clean.",
+    "zh": "房間很乾淨。",
+    "isCorrect": false,
+    "answer": "The room is clean.",
+    "english": "The room is clean.",
+    "acceptedAnswers": [
+      "The room is clean."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 clean 是形容詞，所以要寫 The room is clean."
+  },
+  {
+    "id": "adj011",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "The weather is hot.",
+    "zh": "天氣很熱。",
+    "isCorrect": true,
+    "answer": "The weather is hot.",
+    "english": "The weather is hot.",
+    "acceptedAnswers": [
+      "The weather is hot."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 hot 是形容詞，所以要寫 The weather is hot."
+  },
+  {
+    "id": "adj012",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "The weather hot.",
+    "zh": "天氣很熱。",
+    "isCorrect": false,
+    "answer": "The weather is hot.",
+    "english": "The weather is hot.",
+    "acceptedAnswers": [
+      "The weather is hot."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 hot 是形容詞，所以要寫 The weather is hot."
+  },
+  {
+    "id": "adj013",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "They are friendly.",
+    "zh": "他們很友善。",
+    "isCorrect": true,
+    "answer": "They are friendly.",
+    "english": "They are friendly.",
+    "acceptedAnswers": [
+      "They are friendly."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 friendly 是形容詞，所以要寫 They are friendly."
+  },
+  {
+    "id": "adj014",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "They friendly.",
+    "zh": "他們很友善。",
+    "isCorrect": false,
+    "answer": "They are friendly.",
+    "english": "They are friendly.",
+    "acceptedAnswers": [
+      "They are friendly."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 friendly 是形容詞，所以要寫 They are friendly."
+  },
+  {
+    "id": "adj015",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "My bag is heavy.",
+    "zh": "我的書包很重。",
+    "isCorrect": true,
+    "answer": "My bag is heavy.",
+    "english": "My bag is heavy.",
+    "acceptedAnswers": [
+      "My bag is heavy."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 heavy 是形容詞，所以要寫 My bag is heavy."
+  },
+  {
+    "id": "adj016",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "My bag heavy.",
+    "zh": "我的書包很重。",
+    "isCorrect": false,
+    "answer": "My bag is heavy.",
+    "english": "My bag is heavy.",
+    "acceptedAnswers": [
+      "My bag is heavy."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 heavy 是形容詞，所以要寫 My bag is heavy."
+  },
+  {
+    "id": "adj017",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "The lesson is important.",
+    "zh": "這課很重要。",
+    "isCorrect": true,
+    "answer": "The lesson is important.",
+    "english": "The lesson is important.",
+    "acceptedAnswers": [
+      "The lesson is important."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 important 是形容詞，所以要寫 The lesson is important."
+  },
+  {
+    "id": "adj018",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "The lesson important.",
+    "zh": "這課很重要。",
+    "isCorrect": false,
+    "answer": "The lesson is important.",
+    "english": "The lesson is important.",
+    "acceptedAnswers": [
+      "The lesson is important."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 important 是形容詞，所以要寫 The lesson is important."
+  },
+  {
+    "id": "adj019",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "This story is interesting.",
+    "zh": "這個故事很有趣。",
+    "isCorrect": true,
+    "answer": "This story is interesting.",
+    "english": "This story is interesting.",
+    "acceptedAnswers": [
+      "This story is interesting."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 interesting 是形容詞，所以要寫 This story is interesting."
+  },
+  {
+    "id": "adj020",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "This story interesting.",
+    "zh": "這個故事很有趣。",
+    "isCorrect": false,
+    "answer": "This story is interesting.",
+    "english": "This story is interesting.",
+    "acceptedAnswers": [
+      "This story is interesting."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 interesting 是形容詞，所以要寫 This story is interesting."
+  },
+  {
+    "id": "adj021",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "Her idea is helpful.",
+    "zh": "她的想法很有幫助。",
+    "isCorrect": true,
+    "answer": "Her idea is helpful.",
+    "english": "Her idea is helpful.",
+    "acceptedAnswers": [
+      "Her idea is helpful."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 helpful 是形容詞，所以要寫 Her idea is helpful."
+  },
+  {
+    "id": "adj022",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "Her idea helpful.",
+    "zh": "她的想法很有幫助。",
+    "isCorrect": false,
+    "answer": "Her idea is helpful.",
+    "english": "Her idea is helpful.",
+    "acceptedAnswers": [
+      "Her idea is helpful."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 helpful 是形容詞，所以要寫 Her idea is helpful."
+  },
+  {
+    "id": "adj023",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "The answer is correct.",
+    "zh": "答案是正確的。",
+    "isCorrect": true,
+    "answer": "The answer is correct.",
+    "english": "The answer is correct.",
+    "acceptedAnswers": [
+      "The answer is correct."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 correct 是形容詞，所以要寫 The answer is correct."
+  },
+  {
+    "id": "adj024",
+    "type": "adjective-lesson",
+    "category": "simple",
+    "sentence": "The answer correct.",
+    "zh": "答案是正確的。",
+    "isCorrect": false,
+    "answer": "The answer is correct.",
+    "english": "The answer is correct.",
+    "acceptedAnswers": [
+      "The answer is correct."
+    ],
+    "explanation": "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。 correct 是形容詞，所以要寫 The answer is correct."
+  },
+  {
+    "id": "adj025",
+    "type": "adjective-lesson",
+    "category": "hyphen",
+    "sentence": "It is a high-quality school bag.",
+    "zh": "這是一個高質素的書包。",
+    "isCorrect": true,
+    "answer": "It is a high-quality school bag.",
+    "english": "It is a high-quality school bag.",
+    "acceptedAnswers": [
+      "It is a high-quality school bag."
+    ],
+    "explanation": "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。 high-quality 放在 school bag 前面做形容詞，所以要加 hyphen。"
+  },
+  {
+    "id": "adj026",
+    "type": "adjective-lesson",
+    "category": "hyphen",
+    "sentence": "It is a high quality school bag.",
+    "zh": "這是一個高質素的書包。",
+    "isCorrect": false,
+    "answer": "It is a high-quality school bag.",
+    "english": "It is a high-quality school bag.",
+    "acceptedAnswers": [
+      "It is a high-quality school bag."
+    ],
+    "explanation": "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。 high-quality 放在 school bag 前面做形容詞，所以要加 hyphen。"
+  },
+  {
+    "id": "adj027",
+    "type": "adjective-lesson",
+    "category": "hyphen",
+    "sentence": "This is a well-known story.",
+    "zh": "這是一個著名的故事。",
+    "isCorrect": true,
+    "answer": "This is a well-known story.",
+    "english": "This is a well-known story.",
+    "acceptedAnswers": [
+      "This is a well-known story."
+    ],
+    "explanation": "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。 well-known 放在 story 前面做形容詞，所以要加 hyphen。"
+  },
+  {
+    "id": "adj028",
+    "type": "adjective-lesson",
+    "category": "hyphen",
+    "sentence": "This is a well known story.",
+    "zh": "這是一個著名的故事。",
+    "isCorrect": false,
+    "answer": "This is a well-known story.",
+    "english": "This is a well-known story.",
+    "acceptedAnswers": [
+      "This is a well-known story."
+    ],
+    "explanation": "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。 well-known 放在 story 前面做形容詞，所以要加 hyphen。"
+  },
+  {
+    "id": "adj029",
+    "type": "adjective-lesson",
+    "category": "hyphen",
+    "sentence": "She is a hard-working student.",
+    "zh": "她是一個勤力的學生。",
+    "isCorrect": true,
+    "answer": "She is a hard-working student.",
+    "english": "She is a hard-working student.",
+    "acceptedAnswers": [
+      "She is a hard-working student."
+    ],
+    "explanation": "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。 hard-working 放在 student 前面做形容詞，所以要加 hyphen。"
+  },
+  {
+    "id": "adj030",
+    "type": "adjective-lesson",
+    "category": "hyphen",
+    "sentence": "She is a hard working student.",
+    "zh": "她是一個勤力的學生。",
+    "isCorrect": false,
+    "answer": "She is a hard-working student.",
+    "english": "She is a hard-working student.",
+    "acceptedAnswers": [
+      "She is a hard-working student."
+    ],
+    "explanation": "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。 hard-working 放在 student 前面做形容詞，所以要加 hyphen。"
+  },
+  {
+    "id": "adj031",
+    "type": "adjective-lesson",
+    "category": "hyphen",
+    "sentence": "Mum has a full-time job.",
+    "zh": "媽媽有一份全職工作。",
+    "isCorrect": true,
+    "answer": "Mum has a full-time job.",
+    "english": "Mum has a full-time job.",
+    "acceptedAnswers": [
+      "Mum has a full-time job."
+    ],
+    "explanation": "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。 full-time 放在 job 前面做形容詞，所以要加 hyphen。"
+  },
+  {
+    "id": "adj032",
+    "type": "adjective-lesson",
+    "category": "hyphen",
+    "sentence": "Mum has a full time job.",
+    "zh": "媽媽有一份全職工作。",
+    "isCorrect": false,
+    "answer": "Mum has a full-time job.",
+    "english": "Mum has a full-time job.",
+    "acceptedAnswers": [
+      "Mum has a full-time job."
+    ],
+    "explanation": "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。 full-time 放在 job 前面做形容詞，所以要加 hyphen。"
+  },
+  {
+    "id": "adj033",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "He is willing to help me.",
+    "zh": "他願意幫我。",
+    "isCorrect": true,
+    "answer": "He is willing to help me.",
+    "english": "He is willing to help me.",
+    "acceptedAnswers": [
+      "He is willing to help me."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 willing to 很似動詞，但 willing 是形容詞，所以要寫 He is willing to help me."
+  },
+  {
+    "id": "adj034",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "He willing to help me.",
+    "zh": "他願意幫我。",
+    "isCorrect": false,
+    "answer": "He is willing to help me.",
+    "english": "He is willing to help me.",
+    "acceptedAnswers": [
+      "He is willing to help me."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 willing to 很似動詞，但 willing 是形容詞，所以要寫 He is willing to help me."
+  },
+  {
+    "id": "adj035",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "I am interested in English.",
+    "zh": "我對英文感興趣。",
+    "isCorrect": true,
+    "answer": "I am interested in English.",
+    "english": "I am interested in English.",
+    "acceptedAnswers": [
+      "I am interested in English."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 interested in 是形容詞組，所以要寫 I am interested in English."
+  },
+  {
+    "id": "adj036",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "I interested in English.",
+    "zh": "我對英文感興趣。",
+    "isCorrect": false,
+    "answer": "I am interested in English.",
+    "english": "I am interested in English.",
+    "acceptedAnswers": [
+      "I am interested in English."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 interested in 是形容詞組，所以要寫 I am interested in English."
+  },
+  {
+    "id": "adj037",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "They are excited about the trip.",
+    "zh": "他們對旅行感到興奮。",
+    "isCorrect": true,
+    "answer": "They are excited about the trip.",
+    "english": "They are excited about the trip.",
+    "acceptedAnswers": [
+      "They are excited about the trip."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 excited about 是形容詞組，所以要寫 They are excited about the trip."
+  },
+  {
+    "id": "adj038",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "They excited about the trip.",
+    "zh": "他們對旅行感到興奮。",
+    "isCorrect": false,
+    "answer": "They are excited about the trip.",
+    "english": "They are excited about the trip.",
+    "acceptedAnswers": [
+      "They are excited about the trip."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 excited about 是形容詞組，所以要寫 They are excited about the trip."
+  },
+  {
+    "id": "adj039",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "She is good at drawing.",
+    "zh": "她擅長畫畫。",
+    "isCorrect": true,
+    "answer": "She is good at drawing.",
+    "english": "She is good at drawing.",
+    "acceptedAnswers": [
+      "She is good at drawing."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 good at 是形容詞組，所以要寫 She is good at drawing."
+  },
+  {
+    "id": "adj040",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "She good at drawing.",
+    "zh": "她擅長畫畫。",
+    "isCorrect": false,
+    "answer": "She is good at drawing.",
+    "english": "She is good at drawing.",
+    "acceptedAnswers": [
+      "She is good at drawing."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 good at 是形容詞組，所以要寫 She is good at drawing."
+  },
+  {
+    "id": "adj041",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "Tom is worried about the test.",
+    "zh": "Tom 擔心測驗。",
+    "isCorrect": true,
+    "answer": "Tom is worried about the test.",
+    "english": "Tom is worried about the test.",
+    "acceptedAnswers": [
+      "Tom is worried about the test."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 worried about 是形容詞組，所以要寫 Tom is worried about the test."
+  },
+  {
+    "id": "adj042",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "Tom worried about the test.",
+    "zh": "Tom 擔心測驗。",
+    "isCorrect": false,
+    "answer": "Tom is worried about the test.",
+    "english": "Tom is worried about the test.",
+    "acceptedAnswers": [
+      "Tom is worried about the test."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 worried about 是形容詞組，所以要寫 Tom is worried about the test."
+  },
+  {
+    "id": "adj043",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "We are ready for class.",
+    "zh": "我們準備好上堂。",
+    "isCorrect": true,
+    "answer": "We are ready for class.",
+    "english": "We are ready for class.",
+    "acceptedAnswers": [
+      "We are ready for class."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 ready for 是形容詞組，所以要寫 We are ready for class."
+  },
+  {
+    "id": "adj044",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "We ready for class.",
+    "zh": "我們準備好上堂。",
+    "isCorrect": false,
+    "answer": "We are ready for class.",
+    "english": "We are ready for class.",
+    "acceptedAnswers": [
+      "We are ready for class."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 ready for 是形容詞組，所以要寫 We are ready for class."
+  },
+  {
+    "id": "adj045",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "Mary is afraid of dogs.",
+    "zh": "Mary 怕狗。",
+    "isCorrect": true,
+    "answer": "Mary is afraid of dogs.",
+    "english": "Mary is afraid of dogs.",
+    "acceptedAnswers": [
+      "Mary is afraid of dogs."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 afraid of 是形容詞組，所以要寫 Mary is afraid of dogs."
+  },
+  {
+    "id": "adj046",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "Mary afraid of dogs.",
+    "zh": "Mary 怕狗。",
+    "isCorrect": false,
+    "answer": "Mary is afraid of dogs.",
+    "english": "Mary is afraid of dogs.",
+    "acceptedAnswers": [
+      "Mary is afraid of dogs."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 afraid of 是形容詞組，所以要寫 Mary is afraid of dogs."
+  },
+  {
+    "id": "adj047",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "I am proud of my team.",
+    "zh": "我為我的隊伍感到自豪。",
+    "isCorrect": true,
+    "answer": "I am proud of my team.",
+    "english": "I am proud of my team.",
+    "acceptedAnswers": [
+      "I am proud of my team."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 proud of 是形容詞組，所以要寫 I am proud of my team."
+  },
+  {
+    "id": "adj048",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "I proud of my team.",
+    "zh": "我為我的隊伍感到自豪。",
+    "isCorrect": false,
+    "answer": "I am proud of my team.",
+    "english": "I am proud of my team.",
+    "acceptedAnswers": [
+      "I am proud of my team."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 proud of 是形容詞組，所以要寫 I am proud of my team."
+  },
+  {
+    "id": "adj049",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "He is angry with his brother.",
+    "zh": "他生他哥哥的氣。",
+    "isCorrect": true,
+    "answer": "He is angry with his brother.",
+    "english": "He is angry with his brother.",
+    "acceptedAnswers": [
+      "He is angry with his brother."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 angry with 是形容詞組，所以要寫 He is angry with his brother."
+  },
+  {
+    "id": "adj050",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "He angry with his brother.",
+    "zh": "他生他哥哥的氣。",
+    "isCorrect": false,
+    "answer": "He is angry with his brother.",
+    "english": "He is angry with his brother.",
+    "acceptedAnswers": [
+      "He is angry with his brother."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 angry with 是形容詞組，所以要寫 He is angry with his brother."
+  },
+  {
+    "id": "adj051",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "The game is popular with children.",
+    "zh": "這個遊戲受小朋友歡迎。",
+    "isCorrect": true,
+    "answer": "The game is popular with children.",
+    "english": "The game is popular with children.",
+    "acceptedAnswers": [
+      "The game is popular with children."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 popular with 是形容詞組，所以要寫 The game is popular with children."
+  },
+  {
+    "id": "adj052",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "The game popular with children.",
+    "zh": "這個遊戲受小朋友歡迎。",
+    "isCorrect": false,
+    "answer": "The game is popular with children.",
+    "english": "The game is popular with children.",
+    "acceptedAnswers": [
+      "The game is popular with children."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 popular with 是形容詞組，所以要寫 The game is popular with children."
+  },
+  {
+    "id": "adj053",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "This book is suitable for Primary 4 students.",
+    "zh": "這本書適合小四學生。",
+    "isCorrect": true,
+    "answer": "This book is suitable for Primary 4 students.",
+    "english": "This book is suitable for Primary 4 students.",
+    "acceptedAnswers": [
+      "This book is suitable for Primary 4 students."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 suitable for 是形容詞組，所以要寫 This book is suitable for Primary 4 students."
+  },
+  {
+    "id": "adj054",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "This book suitable for Primary 4 students.",
+    "zh": "這本書適合小四學生。",
+    "isCorrect": false,
+    "answer": "This book is suitable for Primary 4 students.",
+    "english": "This book is suitable for Primary 4 students.",
+    "acceptedAnswers": [
+      "This book is suitable for Primary 4 students."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 suitable for 是形容詞組，所以要寫 This book is suitable for Primary 4 students."
+  },
+  {
+    "id": "adj055",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "She is kind to her classmates.",
+    "zh": "她對同學很友善。",
+    "isCorrect": true,
+    "answer": "She is kind to her classmates.",
+    "english": "She is kind to her classmates.",
+    "acceptedAnswers": [
+      "She is kind to her classmates."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 kind to 是形容詞組，所以要寫 She is kind to her classmates."
+  },
+  {
+    "id": "adj056",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "She kind to her classmates.",
+    "zh": "她對同學很友善。",
+    "isCorrect": false,
+    "answer": "She is kind to her classmates.",
+    "english": "She is kind to her classmates.",
+    "acceptedAnswers": [
+      "She is kind to her classmates."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 kind to 是形容詞組，所以要寫 She is kind to her classmates."
+  },
+  {
+    "id": "adj057",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "My answer is different from yours.",
+    "zh": "我的答案跟你的不同。",
+    "isCorrect": true,
+    "answer": "My answer is different from yours.",
+    "english": "My answer is different from yours.",
+    "acceptedAnswers": [
+      "My answer is different from yours."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 different from 是形容詞組，所以要寫 My answer is different from yours."
+  },
+  {
+    "id": "adj058",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "My answer different from yours.",
+    "zh": "我的答案跟你的不同。",
+    "isCorrect": false,
+    "answer": "My answer is different from yours.",
+    "english": "My answer is different from yours.",
+    "acceptedAnswers": [
+      "My answer is different from yours."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 different from 是形容詞組，所以要寫 My answer is different from yours."
+  },
+  {
+    "id": "adj059",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "We are responsible for the classroom.",
+    "zh": "我們負責課室。",
+    "isCorrect": true,
+    "answer": "We are responsible for the classroom.",
+    "english": "We are responsible for the classroom.",
+    "acceptedAnswers": [
+      "We are responsible for the classroom."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 responsible for 是形容詞組，所以要寫 We are responsible for the classroom."
+  },
+  {
+    "id": "adj060",
+    "type": "adjective-lesson",
+    "category": "compound",
+    "sentence": "We responsible for the classroom.",
+    "zh": "我們負責課室。",
+    "isCorrect": false,
+    "answer": "We are responsible for the classroom.",
+    "english": "We are responsible for the classroom.",
+    "acceptedAnswers": [
+      "We are responsible for the classroom."
+    ],
+    "explanation": "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。 responsible for 是形容詞組，所以要寫 We are responsible for the classroom."
+  }
+]
