@@ -199,6 +199,28 @@ This lets the app remember which teacher-bank meaning the student selected, so m
 6. Merge the scan dictionary app later.
 7. Build teacher / parent progress views after the student loop feels strong.
 
+## Native Flutter Migration
+
+The native app is being migrated incrementally in `flutter_app/` using Flutter.
+Keep the current HTML / JavaScript / Capacitor app working as the behavioural
+reference until each feature reaches parity. Do not delete or rewrite the web
+implementation merely because its Flutter equivalent has started.
+
+Migration rules:
+
+- Flutter owns the new mobile UI and native lesson flow.
+- Existing JavaScript grammar banks remain the content source of truth during
+  migration. Run `npm run flutter:export-grammar` after changing exported
+  grammar data.
+- Shared Firebase, Azure speech, student records, and vocab contracts should be
+  moved behind reusable repositories rather than copied into screen widgets.
+- Keep lesson rules in controllers and repositories so iOS and Android use the
+  same tested behaviour.
+- Current native milestone: roadmap shell and Lesson 01 are migrated. Lesson 01
+  includes its 100-question bank, weighted 20-question rounds, multi-step
+  answers, first-try scoring, locked wrong answers, explanations, mistake
+  review, bundled SFX, and celebration effects.
+
 ## Content Principles
 
 - Use Traditional Chinese / Cantonese-friendly explanations.

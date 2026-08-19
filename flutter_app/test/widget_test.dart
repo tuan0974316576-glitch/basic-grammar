@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:dope_english/main.dart';
+
+void main() {
+  testWidgets('renders the grammar roadmap shell', (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+
+    expect(find.text('English Grammar Basics'), findsOneWidget);
+    expect(find.byIcon(Icons.menu_book_rounded), findsWidgets);
+    expect(find.byIcon(Icons.fitness_center_rounded), findsWidgets);
+  });
+
+  testWidgets('opens lesson details from a roadmap node',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+    await tester.tap(find.byIcon(Icons.menu_book_rounded).first);
+    await tester.pumpAndSettle();
+
+    expect(find.text('分辨句子是否有主動動詞。'), findsOneWidget);
+    expect(find.text('開始課堂'), findsOneWidget);
+  });
+}
