@@ -23,3 +23,8 @@ flutter:
     - assets/data/lesson_02.json
     - assets/data/quiz_01.json
     - assets/audio/sfx/
+    - assets/fonts/OFL-ChironGoRoundTC.txt
+  fonts:
+    - family: ChironGoRoundTC
+      fonts:
+        - asset: assets/fonts/ChironGoRoundTC-Variable.ttf

@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'core/app_palette.dart';
 import 'core/app_sfx.dart';
@@ -19,6 +21,12 @@ const _yellow = AppPalette.secondary;
 const _panel = AppPalette.softPrimary;
 
 void main() {
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString(
+      'assets/fonts/OFL-ChironGoRoundTC.txt',
+    );
+    yield LicenseEntryWithLineBreaks(['Chiron GoRound TC'], license);
+  });
   runApp(const DopeEnglishApp());
 }
 
@@ -32,6 +40,7 @@ class DopeEnglishApp extends StatelessWidget {
       title: 'DOPE ENGLISH',
       theme: ThemeData(
         brightness: Brightness.light,
+        fontFamily: 'ChironGoRoundTC',
         scaffoldBackgroundColor: _ink,
         colorScheme: ColorScheme.fromSeed(
           seedColor: _blue,
