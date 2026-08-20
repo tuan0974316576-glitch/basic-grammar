@@ -20,7 +20,7 @@
   const staticAudioByWord = buildStaticAudioIndex(staticManifest);
   const pendingDownloads = new Map();
   const downloadQueue = [];
-  const queuedWords = new Set();
+  const queuedRequests = new Map();
   let queueRunning = false;
   let dbPromise = null;
   let activeAudio = null;
@@ -283,19 +283,38 @@
     );
   }
 
-  async function getMeta(word) {
-    return readStore(STORE_META, getCacheKey(word));
+  async function getMeta(word, options = {}) {
+    return readStore(STORE_META, getCacheKey(word, options));
   }
 
-  async function markMiss(word, reason = "not-found") {
-    const key = getCacheKey(word);
+  async function markMiss(word, reason = "not-found", options = {}) {
+    const kind = options.kind === "example" ? "example" : "word";
+    const key = getCacheKey(word, { kind });
     if (!key) return;
     await writeStore(STORE_META, {
       word: key,
+      kind,
+      text: normalizeAudioText(getRequestTextFromKey(key, kind), kind),
       status: "missing",
       reason,
       updatedAt: Date.now()
     });
+  }
+
+  function getSharedAudioErrorReason(error) {
+    const rawCode = String(error?.code || error?.name || "").trim().toLowerCase();
+    const code = rawCode.replace(/^functions\//, "");
+    if (code === "unauthenticated") return "login-required";
+    if (code === "invalid-argument") return "invalid";
+    if (code === "failed-precondition") return "tts-unavailable";
+    if (code === "permission-denied") return "permission-denied";
+    if (code === "resource-exhausted") return "quota-exhausted";
+    if (code === "unavailable" || code === "deadline-exceeded" || code === "cancelled") return code;
+    return "network-error";
+  }
+
+  function shouldCacheMiss(reason) {
+    return reason === "invalid";
   }
 
   function getSharedAudioCallable() {
@@ -394,7 +413,7 @@
     const task = (async () => {
       if (await hasCachedAudio(key, { kind })) return { status: "ready", source: "cache" };
 
-      const meta = options.force ? null : await getMeta(key);
+      const meta = options.force ? null : await getMeta(key, { kind });
       if (meta?.status === "missing" && Date.now() - Number(meta.updatedAt || 0) < CACHE_MISS_TTL_MS) {
         return { status: "missing", source: "cached-miss", reason: meta.reason || "cached-miss" };
       }
@@ -406,13 +425,13 @@
         }
 
         if (shared?.status !== "ready" || !shared.downloadUrl) {
-          await markMiss(key, shared?.reason || "not-ready");
-          return { status: "missing", source: shared?.source || "firebase-shared", reason: shared?.reason || "not-ready" };
+          const reason = shared?.reason || "not-ready";
+          if (shouldCacheMiss(reason)) await markMiss(key, reason, { kind });
+          return { status: "missing", source: shared?.source || "firebase-shared", reason };
         }
 
         const audio = await fetchSharedAudioBlob(shared);
         if (!audio?.blob) {
-          await markMiss(key, "download-failed");
           return { status: "missing", source: shared.source || "firebase-shared", reason: "download-failed" };
         }
 
@@ -423,11 +442,12 @@
           audioId: audio.audioId || ""
         };
       } catch (error) {
+        const reason = getSharedAudioErrorReason(error);
         console.warn("Shared vocab audio request failed:", error);
-        if (!options.force) {
-          await markMiss(key, "network-error");
+        if (!options.force && shouldCacheMiss(reason)) {
+          await markMiss(key, reason, { kind });
         }
-        return { status: "missing", source: "firebase-shared", reason: "network-error" };
+        return { status: "missing", source: "firebase-shared", reason };
       }
     })().finally(() => {
       pendingDownloads.delete(key);
@@ -443,8 +463,11 @@
     if (!key || hasStaticAudio(key, { kind })) return Promise.resolve({ status: "ready", source: "bundle" });
     if (!isLikelyEnglishAudioText(getRequestTextFromKey(key, kind), { kind })) return Promise.resolve({ status: "skipped", source: "invalid" });
     if (pendingDownloads.has(key)) return pendingDownloads.get(key);
-    if (!queuedWords.has(key)) {
-      queuedWords.add(key);
+    const existing = queuedRequests.get(key);
+    if (existing) {
+      existing.force = existing.force || options.force === true;
+    } else {
+      queuedRequests.set(key, { force: options.force === true, kind });
       downloadQueue.push(key);
     }
     runQueue();
@@ -456,9 +479,10 @@
     queueRunning = true;
     while (downloadQueue.length) {
       const key = downloadQueue.shift();
-      queuedWords.delete(key);
-      const kind = key.startsWith("example:") ? "example" : "word";
-      await ensureAudio(getRequestTextFromKey(key, kind), { kind });
+      const queued = queuedRequests.get(key) || {};
+      queuedRequests.delete(key);
+      const kind = queued.kind || (key.startsWith("example:") ? "example" : "word");
+      await ensureAudio(getRequestTextFromKey(key, kind), { kind, force: queued.force === true });
     }
     queueRunning = false;
   }

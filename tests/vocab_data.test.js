@@ -43,6 +43,30 @@ assert.strictEqual(vocabData.normalizeItem({
   updatedAt: now
 }, { id: "raw-have", now }), null);
 
+const reviewedPineapple = vocabData.normalizeItem({
+  id: "pineapple",
+  word: "pineapple",
+  meanings: [
+    {
+      meaning: "菠蘿 / 鳳梨",
+      pos: "noun",
+      type: "word",
+      source: "curated-sense-bank",
+      sourceEntryId: "phrase-component-audit-reviewed-pineapple"
+    }
+  ],
+  createdAt: now,
+  updatedAt: now
+}, { id: "pineapple", now });
+
+assert.ok(reviewedPineapple);
+assert.strictEqual(reviewedPineapple.meaning, "菠蘿 / 鳳梨");
+assert.strictEqual(reviewedPineapple.meanings[0].source, "curated-sense-bank");
+assert.strictEqual(
+  reviewedPineapple.meanings[0].sourceEntryId,
+  "phrase-component-audit-reviewed-pineapple"
+);
+
 assert.strictEqual(vocabData.normalizeMeaningEntry({
   meaning: "待老師確認",
   pos: "noun",

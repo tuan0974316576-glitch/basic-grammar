@@ -238,6 +238,9 @@ function normalizeVocabWord(value) {
     .trim()
     .replace(/[’‘]/g, "'")
     .replace(/[‐‑‒–—―]/g, "-")
+    .replace(/\bM\s*\+\s*Museum\b/gi, "M Plus Museum")
+    .replace(/\+/g, " ")
+    .replace(/\bV-ing\b/gi, "ving")
     .replace(/\s+/g, " ")
     .toLowerCase();
 }
@@ -1883,6 +1886,36 @@ exports.createBattleshipVocabAuthToken = onCall({
   };
 });
 
+exports.deleteBattleshipSharedVocabAccount = onCall({
+  invoker: "public",
+  timeoutSeconds: 120,
+  memory: "512MiB"
+}, async (request) => {
+  const uid = String(request.auth?.uid || "").trim();
+  const battleshipUid = String(request.auth?.token?.battleshipUid || "").trim();
+  if (!uid || !battleshipUid || request.auth?.token?.sharedVocabAccess !== true) {
+    throw new HttpsError("permission-denied", "A linked Battleship account is required.");
+  }
+  if (String(request.data?.confirmation || "").trim().toUpperCase() !== "DELETE") {
+    throw new HttpsError("invalid-argument", "Account deletion was not confirmed.");
+  }
+  if (uid !== makeBattleshipSharedVocabUid(battleshipUid)) {
+    throw new HttpsError("permission-denied", "Linked account identity mismatch.");
+  }
+
+  const db = admin.firestore();
+  const userRef = db.collection("users").doc(uid);
+  await db.recursiveDelete(userRef);
+  try {
+    await admin.auth().deleteUser(uid);
+  } catch (error) {
+    if (error?.code !== "auth/user-not-found") throw error;
+  }
+
+  console.info("Deleted Battleship shared vocab identity.", { uid, battleshipUid });
+  return { ok: true, deleted: true };
+});
+
 exports.lookupVocabMeaning = onCall({
   invoker: "public",
   secrets: []
@@ -2477,6 +2510,3 @@ if (process.env.NODE_ENV === "test") {
     shouldReuseCachedExamples
   };
 }
-    .replace(/\bM\s*\+\s*Museum\b/gi, "M Plus Museum")
-    .replace(/\+/g, " ")
-    .replace(/\bV-ing\b/gi, "ving")

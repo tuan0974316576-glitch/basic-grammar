@@ -3,6 +3,7 @@ node_modules/
 www/
 firebase-debug.log
 firebase-debug.*.log
+.firebase/
 android/.gradle/
 android/local.properties
 android/app/build/

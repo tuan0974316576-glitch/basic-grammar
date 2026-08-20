@@ -2510,7 +2510,7 @@
     { "word": "alongside with", "meaning": "與...一起 / 伴隨著", "pos": "phrase", "type": "phrase", "replaceType": true, "notes": "codex-review 1600: cleaned POS / meaning and merged duplicate / noisy senses" },
     { "word": "amaze at", "meaning": "對...感到驚嘆", "pos": "verb", "type": "phrase", "replaceType": true, "notes": "codex-review 1600: cleaned POS / meaning and merged duplicate / noisy senses" },
     { "word": "amazed at", "meaning": "對...感到驚訝", "pos": "adjective", "type": "phrase", "replaceType": true, "notes": "codex-review 1600: cleaned POS / meaning and merged duplicate / noisy senses" },
-    { "word": "an increasing number of", "meaning": "越來越多", "pos": "phrase", "type": "phrase", "replaceType": true, "display": "An increasing number of", "notes": "codex-review 1600: cleaned POS / meaning and merged duplicate / noisy senses" },
+    { "word": "an increasing number of", "meaning": "越來越多", "pos": "determiner", "type": "phrase", "replaceType": true, "display": "An increasing number of", "notes": "codex-review: determiner phrase used before a plural countable noun" },
     { "word": "an unparalleled success", "meaning": "無可比擬的成功", "pos": "phrase", "type": "phrase", "replaceType": true, "notes": "codex-review 1600: cleaned POS / meaning and merged duplicate / noisy senses" },
     { "word": "and ... accordingly", "meaning": "並因此...", "pos": "phrase", "type": "phrase", "replaceType": true, "notes": "codex-review 1600: cleaned POS / meaning and merged duplicate / noisy senses" },
     { "word": "and so forth", "meaning": "諸如此類", "pos": "phrase", "type": "phrase", "replaceType": true, "notes": "codex-review 1600: cleaned POS / meaning and merged duplicate / noisy senses" },

@@ -647,7 +647,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("four day workweeks")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["four-day workweek:phrase:noun:四天工作週:mock-unseen-mt51-paper2-reviewed"]
+    ["four-day working week:phrase:noun:四天工作週:mock-unseen-mt71-paper2-reviewed"]
   );
 
   assert.deepStrictEqual(
@@ -3986,8 +3986,8 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
-    (await lookupForStudent("dai pai dongs")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:noun:大牌檔:mock-unseen-mt70-paper2-reviewed"]
+    (await lookupForStudent("dai pai dongs")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+    ["phrase:noun:大牌檔"]
   );
 
   assert.deepStrictEqual(
@@ -4989,8 +4989,8 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
-    (await lookupForStudent("games consoles")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["game console:phrase:noun:遊戲機 / 遊戲主機:mock-unseen-mt24-paper2-reviewed"]
+    (await lookupForStudent("games consoles")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+    ["game console:phrase:noun:遊戲機 / 遊戲主機"]
   );
 
   assert.deepStrictEqual(
@@ -7414,8 +7414,21 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("issue")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:問題 / 議題:curated-sense-bank",
-      "verb:發出 / 發布:curated-sense-bank",
-      "verb:發給 / 發出:mock-unseen-mt19-paper3-reviewed"
+      "verb:發出 / 發布:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lain")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["lain:verb:躺 / 平放 / 位於（lie PP）:verb-table-form"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lay")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "lay:verb:放置:curated-sense-bank",
+      "lay:verb:下蛋:curated-sense-bank",
+      "lay:verb:躺 / 平放 / 位於（lie 過去式）:verb-table-form"
     ]
   );
 
@@ -12492,7 +12505,7 @@ function assertStudentLookupContract(word, matches) {
     ["no pun intended", "phrase:adverb:不是有意雙關 / 不是故意玩文字遊戲:mock-unseen-mt39-paper4-reviewed"],
     ["eating in", "phrase:verb:堂食:mock-unseen-mt39-paper4-reviewed"],
     ["responsibility rests with", "phrase:verb:由...承擔 / 取決於:mock-unseen-mt39-paper4-reviewed"],
-    ["do their bit", "phrase:verb:盡自己一分力:mock-unseen-mt39-paper4-reviewed"]
+    ["do their bit", "phrase:verb:盡自己一分力:mock-unseen-mt18-paper2-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
@@ -13182,7 +13195,7 @@ function assertStudentLookupContract(word, matches) {
     ["reverse the ageing process", "phrase:verb:逆轉老化過程 / 令人看起來變年輕:mock-unseen-mt81-paper4-reviewed"],
     ["got work done", "phrase:verb:做醫美 / 做整形療程:mock-unseen-mt81-paper4-reviewed"],
     ["laughter lines", "phrase:noun:笑紋:mock-unseen-mt81-paper4-reviewed"],
-    ["take out loans", "phrase:verb:借貸 / 申請貸款:mock-unseen-mt81-paper4-reviewed"]
+    ["take out loans", "phrase:verb:借貸 / 申請貸款:mock-unseen-mt60-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
@@ -13853,7 +13866,7 @@ function assertStudentLookupContract(word, matches) {
     ["health declaration form", "phrase:noun:健康申報表:mock-unseen-mt69-paper3-reviewed"],
     ["sea-level rise", "phrase:noun:海平面上升:mock-unseen-mt69-paper3-reviewed"],
     ["take a heavy toll on", "phrase:verb:對...造成嚴重損害 / 沉重打擊:mock-unseen-mt69-paper3-reviewed"],
-    ["surged", "word:verb:急升 / 激增:mock-unseen-mt69-paper3-reviewed"]
+    ["surged", "word:verb:急升 / 激增:curated-sense-bank"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

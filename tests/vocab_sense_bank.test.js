@@ -5,8 +5,41 @@ delete require.cache[require.resolve("../grammar_verb_table_data.js")];
 require("../grammar_verb_table_data.js");
 delete require.cache[require.resolve("../vocab_sense_bank.js")];
 const senseBank = require("../vocab_sense_bank.js");
+const vocabData = require("../vocab_data.js");
 const VocabExampleUtils = require("../vocab_example_utils.js");
 const vocabExampleSeed = require("../vocab_example_seed.js");
+
+function keepsSourceProvenance(entry, source) {
+  return entry.source === source || entry.duplicateSources?.includes(source);
+}
+
+const unsavableVisibleEntries = senseBank.cleanEntries
+  .filter((entry) => !entry.hidden)
+  .filter((entry) => !vocabData.normalizeMeaningEntry({
+    meaning: entry.meaning,
+    pos: entry.pos,
+    type: entry.type,
+    source: "curated-sense-bank",
+    sourceEntryId: entry.sourceEntryId,
+    level: entry.level
+  }));
+
+assert.deepStrictEqual(
+  unsavableVisibleEntries.map((entry) => `${entry.word}:${entry.pos}:${entry.meaning}`),
+  [],
+  "Every visible curated meaning must be savable to the student's vocab bank"
+);
+
+const pineapple = senseBank.lookup("pineapple").find((entry) => entry.meaning === "菠蘿 / 鳳梨");
+assert.ok(pineapple, "pineapple should expose the reviewed noun meaning");
+assert.ok(vocabData.normalizeMeaningEntry({
+  meaning: pineapple.meaning,
+  pos: pineapple.pos,
+  type: pineapple.type,
+  source: "curated-sense-bank",
+  sourceEntryId: pineapple.sourceEntryId,
+  level: pineapple.level
+}), "pineapple must remain savable after lookup");
 
 const game = senseBank.lookup("game");
 assert.deepStrictEqual(
@@ -259,7 +292,7 @@ assert.ok(mt18Paper3Entries.length >= 90, `Expected MT18 Paper 3 reviewed entrie
 const mt19Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt19-paper3-reviewed");
 assert.ok(mt19Paper3Entries.length >= 87, `Expected MT19 Paper 3 reviewed entries, got ${mt19Paper3Entries.length}`);
 const mt21Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt21-paper3-reviewed");
-assert.ok(mt21Paper3Entries.length >= 111, `Expected MT21 Paper 3 reviewed entries, got ${mt21Paper3Entries.length}`);
+assert.ok(mt21Paper3Entries.length >= 110, `Expected MT21 Paper 3 reviewed entries after duplicate cleanup, got ${mt21Paper3Entries.length}`);
 const mt23Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt23-paper3-reviewed");
 assert.ok(mt23Paper3Entries.length >= 56, `Expected MT23 Paper 3 reviewed entries, got ${mt23Paper3Entries.length}`);
 const mt24Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt24-paper3-reviewed");
@@ -303,7 +336,7 @@ assert.ok(mt65Paper2Entries.length >= 73, `Expected MT65 Paper 2 reviewed entrie
 const mt68Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper2-reviewed");
 assert.ok(mt68Paper2Entries.length >= 61, `Expected MT68 Paper 2 reviewed entries, got ${mt68Paper2Entries.length}`);
 const mt72Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt72-paper2-reviewed");
-assert.ok(mt72Paper2Entries.length >= 49, `Expected MT72 Paper 2 reviewed entries, got ${mt72Paper2Entries.length}`);
+assert.ok(mt72Paper2Entries.length >= 48, `Expected MT72 Paper 2 reviewed entries after duplicate cleanup, got ${mt72Paper2Entries.length}`);
 const mt75Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt75-paper2-reviewed");
 assert.ok(mt75Paper2Entries.length >= 54, `Expected MT75 Paper 2 reviewed entries, got ${mt75Paper2Entries.length}`);
 const mt79Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt79-paper2-reviewed");
@@ -533,7 +566,7 @@ assert.ok(mt47Paper3Entries.length >= 62, `Expected MT47 Paper 3 reviewed entrie
 const mt51Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt51-paper3-reviewed");
 assert.ok(mt51Paper3Entries.length >= 54, `Expected MT51 Paper 3 reviewed entries, got ${mt51Paper3Entries.length}`);
 const mt54Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt54-paper3-reviewed");
-assert.ok(mt54Paper3Entries.length >= 54, `Expected MT54 Paper 3 reviewed entries, got ${mt54Paper3Entries.length}`);
+assert.ok(mt54Paper3Entries.length >= 53, `Expected MT54 Paper 3 reviewed entries after duplicate cleanup, got ${mt54Paper3Entries.length}`);
 const mt55Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt55-paper3-reviewed");
 assert.ok(mt55Paper3Entries.length >= 57, `Expected MT55 Paper 3 reviewed entries, got ${mt55Paper3Entries.length}`);
 const mt57Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt57-paper3-reviewed");
@@ -563,13 +596,13 @@ assert.ok(mt16Paper2Entries.length >= 58, `Expected MT16 Paper 2 reviewed entrie
 const mt18Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt18-paper2-reviewed");
 assert.ok(mt18Paper2Entries.length >= 116, `Expected MT18 Paper 2 reviewed entries, got ${mt18Paper2Entries.length}`);
 const mt19Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt19-paper2-reviewed");
-assert.ok(mt19Paper2Entries.length >= 111, `Expected MT19 Paper 2 reviewed entries, got ${mt19Paper2Entries.length}`);
+assert.ok(mt19Paper2Entries.length >= 108, `Expected MT19 Paper 2 reviewed entries after duplicate cleanup, got ${mt19Paper2Entries.length}`);
 const mt21Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt21-paper2-reviewed");
 assert.ok(mt21Paper2Entries.length >= 68, `Expected MT21 Paper 2 reviewed entries, got ${mt21Paper2Entries.length}`);
 const mt23Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt23-paper2-reviewed");
 assert.ok(mt23Paper2Entries.length >= 70, `Expected MT23 Paper 2 reviewed entries, got ${mt23Paper2Entries.length}`);
 const mt24Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt24-paper2-reviewed");
-assert.ok(mt24Paper2Entries.length >= 64, `Expected MT24 Paper 2 reviewed entries, got ${mt24Paper2Entries.length}`);
+assert.ok(mt24Paper2Entries.length >= 63, `Expected MT24 Paper 2 reviewed entries after duplicate cleanup, got ${mt24Paper2Entries.length}`);
 const mt26Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt26-paper2-reviewed");
 assert.ok(mt26Paper2Entries.length >= 63, `Expected MT26 Paper 2 reviewed entries, got ${mt26Paper2Entries.length}`);
 const mt28Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt28-paper2-reviewed");
@@ -597,7 +630,7 @@ assert.ok(mt48Paper2Entries.length >= 75, `Expected MT48 Paper 2 reviewed entrie
 const mt50Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt50-paper2-reviewed");
 assert.ok(mt50Paper2Entries.length >= 85, `Expected MT50 Paper 2 reviewed entries, got ${mt50Paper2Entries.length}`);
 const mt51Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt51-paper2-reviewed");
-assert.ok(mt51Paper2Entries.length >= 63, `Expected MT51 Paper 2 reviewed entries, got ${mt51Paper2Entries.length}`);
+assert.ok(mt51Paper2Entries.length >= 62, `Expected MT51 Paper 2 reviewed entries after duplicate cleanup, got ${mt51Paper2Entries.length}`);
 const mt54Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt54-paper2-reviewed");
 assert.ok(mt54Paper2Entries.length >= 54, `Expected MT54 Paper 2 reviewed entries, got ${mt54Paper2Entries.length}`);
 const mt53Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt53-paper2-reviewed");
@@ -9297,7 +9330,7 @@ mt45Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
 
 ["spa", "fingertip", "farewell", "disadvantaged"].forEach((word) => {
   assert.ok(
-    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt45-paper2-reviewed"),
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => keepsSourceProvenance(entry, "mock-unseen-mt45-paper2-reviewed")),
     `${word} should be available as an MT45 phrase component`
   );
 });
@@ -9324,7 +9357,7 @@ mt49Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
 
 ["deluxe", "trivia", "console", "connectivity", "England"].forEach((word) => {
   assert.ok(
-    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt49-paper2-reviewed"),
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => keepsSourceProvenance(entry, "mock-unseen-mt49-paper2-reviewed")),
     `${word} should be available as an MT49 phrase component`
   );
 });
@@ -9351,7 +9384,7 @@ mt56Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
 
 ["vermicelli", "tofu", "dice", "burpee", "GCSE", "Chinatown", "pronunciation", "subtitle"].forEach((word) => {
   assert.ok(
-    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt56-paper2-reviewed"),
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => keepsSourceProvenance(entry, "mock-unseen-mt56-paper2-reviewed")),
     `${word} should be available as an MT56 Paper 2 phrase component`
   );
 });
@@ -9378,7 +9411,7 @@ mt59Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
 
 ["mahogany", "backyard", "preoccupied"].forEach((word) => {
   assert.ok(
-    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt59-paper2-reviewed"),
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => keepsSourceProvenance(entry, "mock-unseen-mt59-paper2-reviewed")),
     `${word} should be available as an MT59 Paper 2 phrase component`
   );
 });
@@ -9405,7 +9438,7 @@ mt63Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
 
 ["Kadoorie Farm", "local community", "over-stimulating", "resent"].forEach((word) => {
   assert.ok(
-    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt63-paper2-reviewed"),
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => keepsSourceProvenance(entry, "mock-unseen-mt63-paper2-reviewed")),
     `${word} should be available as an MT63 Paper 2 phrase component`
   );
 });
@@ -9896,7 +9929,7 @@ assert.ok(
 );
 
 const mt54Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt54-paper1-reviewed");
-assert.ok(mt54Paper1Entries.length >= 108, `Expected MT54 Paper 1 reviewed entries, got ${mt54Paper1Entries.length}`);
+assert.ok(mt54Paper1Entries.length >= 107, `Expected MT54 Paper 1 reviewed entries after duplicate cleanup, got ${mt54Paper1Entries.length}`);
 
 const mt54Paper1ReviewedExpectations = [
   ["intuitive eating", "noun", "直覺飲食法 / 聆聽身體需要的飲食方式"],
@@ -9931,7 +9964,7 @@ assert.ok(
 );
 
 const mt55Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt55-paper1-reviewed");
-assert.ok(mt55Paper1Entries.length >= 110, `Expected MT55 Paper 1 reviewed entries, got ${mt55Paper1Entries.length}`);
+assert.ok(mt55Paper1Entries.length >= 109, `Expected MT55 Paper 1 reviewed entries after duplicate cleanup, got ${mt55Paper1Entries.length}`);
 
 const mt55Paper1ReviewedExpectations = [
   ["orator", "noun", "演說家 / 雄辯家"],
@@ -9997,7 +10030,7 @@ assert.strictEqual(
 );
 
 const mt58Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt58-paper1-reviewed");
-assert.ok(mt58Paper1Entries.length >= 89, `Expected MT58 Paper 1 reviewed entries, got ${mt58Paper1Entries.length}`);
+assert.ok(mt58Paper1Entries.length >= 88, `Expected MT58 Paper 1 reviewed entries after duplicate cleanup, got ${mt58Paper1Entries.length}`);
 
 const mt58Paper1ReviewedExpectations = [
   ["cooked to order", "adjective", "即叫即煮的"],
@@ -10027,7 +10060,7 @@ assert.ok(
 );
 
 const mt60Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt60-paper1-reviewed");
-assert.ok(mt60Paper1Entries.length >= 74, `Expected MT60 Paper 1 reviewed entries, got ${mt60Paper1Entries.length}`);
+assert.ok(mt60Paper1Entries.length >= 72, `Expected MT60 Paper 1 reviewed entries after duplicate cleanup, got ${mt60Paper1Entries.length}`);
 
 const mt60Paper1ReviewedExpectations = [
   ["quick on one's feet", "adjective", "反應快的 / 腳步靈活的"],
@@ -10496,7 +10529,7 @@ assert.ok(
 );
 
 const mt75Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt75-paper1-reviewed");
-assert.ok(mt75Paper1Entries.length >= 95, `Expected MT75 Paper 1 reviewed entries, got ${mt75Paper1Entries.length}`);
+assert.ok(mt75Paper1Entries.length >= 94, `Expected MT75 Paper 1 reviewed entries after duplicate cleanup, got ${mt75Paper1Entries.length}`);
 
 const mt75Paper1ReviewedExpectations = [
   ["on the prowl", "adjective", "四處尋找獵物的 / 伺機行動的"],

@@ -3761,7 +3761,7 @@
       "word": "an increasing number of",
       "display": "An increasing number of",
       "meaning": "越來越多",
-      "pos": "phrase",
+      "pos": "determiner",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1

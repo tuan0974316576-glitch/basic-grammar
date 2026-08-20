@@ -140,6 +140,19 @@
         return true;
       });
       if (isCovered) {
+        const query = normalizeText(options.queryWord || "");
+        const entryIsExactQuery = normalizeText(entry.word || entry.display) === query;
+        const keptIsExactQuery = coveredIndex >= 0
+          && normalizeText(kept[coveredIndex].word || kept[coveredIndex].display) === query;
+        if (
+          coveredIndex >= 0
+          && entryIsExactQuery
+          && !keptIsExactQuery
+          && !shouldPreferCanonicalHeadword(kept[coveredIndex], entry, options)
+        ) {
+          kept[coveredIndex] = entry;
+          return;
+        }
         if (
           exactSameMeaning
           && coveredIndex >= 0

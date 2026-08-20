@@ -75,6 +75,26 @@ assert.ok(
   "Teacher live vocab saves in the app must use the canonical student-ready payload gate."
 );
 
+[
+  ["getTeacherLiveVocabMatches", "teacher-live"],
+  ["getTeacherVocabMatches", "teacher"],
+  ["getCuratedVocabSenseMatches", "curated-sense-bank"],
+  ["getCcCedictSupplementMatches", "cc-cedict-supplement"]
+].forEach(([functionName, storageSource]) => {
+  const functionStart = appJs.indexOf(`function ${functionName}`);
+  const nextFunctionStart = appJs.indexOf("\nfunction ", functionStart + 10);
+  const functionSource = appJs.slice(functionStart, nextFunctionStart < 0 ? undefined : nextFunctionStart);
+  assert.ok(
+    functionSource.includes(`storageSource: "${storageSource}"`),
+    `${functionName} must use the approved ${storageSource} source when students save meanings.`
+  );
+});
+
+assert.ok(
+  /function\s+makeVocabMeaningEntry[\s\S]*?const\s+storageSource\s*=\s*entry\.storageSource\s*\|\|\s*entry\.source/.test(appJs),
+  "Saved vocab meanings must prefer the provider's approved storage source."
+);
+
 assert.ok(
   syncTeacherLive.includes("buildStudentReadyPayload"),
   "Batch teacher-live sync must use the canonical student-ready payload gate."

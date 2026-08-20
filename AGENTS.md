@@ -1,6 +1,12 @@
 # Agent Notes
 
-Before making product or architecture changes, read `PROJECT_BRIEF.md`.
+Before making product or architecture changes, read `PROJECT_BRIEF.md` and
+`DEVELOPMENT_HANDOFF.md`.
+
+When continuing work from another Mac or Codex conversation, treat
+`DEVELOPMENT_HANDOFF.md` as the current operational handoff. Update it whenever
+the shipped architecture, progress, setup steps, source-of-truth files, or next
+priorities change.
 
 This app is intended to grow into a Duolingo-style English learning app for Hong Kong primary students, with three main areas:
 

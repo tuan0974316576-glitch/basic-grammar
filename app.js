@@ -24,6 +24,19 @@ const VOCAB_POS_INFERENCE = window.VocabPosInference || null;
 const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
 const VOCAB_EXAMPLE_SEED = window.VOCAB_EXAMPLE_SEED || null;
 
+function unregisterLegacyServiceWorkers() {
+  if (!("serviceWorker" in navigator) || !navigator.serviceWorker.getRegistrations) return;
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => {
+      const scope = String(registration.scope || "");
+      if (scope && !scope.startsWith(window.location.origin)) return;
+      registration.unregister().catch(() => {});
+    });
+  }).catch(() => {});
+}
+
+unregisterLegacyServiceWorkers();
+
 const {
   QUESTIONS,
   PRONOUN_CATEGORIES,
@@ -861,9 +874,13 @@ function getTeacherLiveVocabMatches(word) {
         ? TEACHER_LIVE_VOCAB.isStudentReadyEntry(entry)
         : getVocabEntryPos(entry)
     ));
-  return TEACHER_LIVE_VOCAB?.dedupeStudentReadyEntries
+  const dedupedMatches = TEACHER_LIVE_VOCAB?.dedupeStudentReadyEntries
     ? TEACHER_LIVE_VOCAB.dedupeStudentReadyEntries(matches)
     : matches;
+  return dedupedMatches.map((entry) => ({
+    ...entry,
+    storageSource: "teacher-live"
+  }));
 }
 
 function createVocabId(word) {
@@ -3034,19 +3051,23 @@ function updateVocabEntryState() {
 
 function getTeacherVocabMatches(word) {
   if (!TEACHER_VOCAB?.lookup) return [];
-  if (TEACHER_VOCAB.lookupStudentReady) {
-    return TEACHER_VOCAB.lookupStudentReady(word, { exactOnly: true, limit: 10 });
-  }
-  return TEACHER_VOCAB.lookup(word, { exactOnly: true, limit: 10 }).filter((entry) => (
-    getVocabEntryPos(entry)
-  ));
+  const matches = TEACHER_VOCAB.lookupStudentReady
+    ? TEACHER_VOCAB.lookupStudentReady(word, { exactOnly: true, limit: 10 })
+    : TEACHER_VOCAB.lookup(word, { exactOnly: true, limit: 10 }).filter((entry) => (
+      getVocabEntryPos(entry)
+    ));
+  return matches.map((entry) => ({
+    ...entry,
+    storageSource: "teacher"
+  }));
 }
 
 function getCuratedVocabSenseMatches(word) {
   if (!VOCAB_SENSE_BANK?.lookup) return [];
   return VOCAB_SENSE_BANK.lookup(word, { limit: 12, includeHidden: true }).map((entry) => ({
     ...entry,
-    source: entry.source || "curated-sense-bank"
+    source: entry.source || "curated-sense-bank",
+    storageSource: "curated-sense-bank"
   }));
 }
 
@@ -3054,7 +3075,8 @@ function getCcCedictSupplementMatches(word) {
   if (!CC_CEDICT_SUPPLEMENT?.lookup) return [];
   return CC_CEDICT_SUPPLEMENT.lookup(word, { limit: 12 }).map((entry) => ({
     ...entry,
-    source: entry.source || "cc-cedict-supplement"
+    source: entry.source || "cc-cedict-supplement",
+    storageSource: "cc-cedict-supplement"
   }));
 }
 
@@ -3775,7 +3797,8 @@ function createVocabListRow(item) {
 }
 
 function makeVocabMeaningEntry(entry = {}) {
-  const isTeacherEntry = entry.source === "teacher";
+  const storageSource = entry.storageSource || entry.source || "";
+  const isTeacherEntry = storageSource === "teacher";
   const meaningEntry = isTeacherEntry
     ? {
       meaning: normalizeVocabMeaning(entry.meaning),
@@ -3789,7 +3812,7 @@ function makeVocabMeaningEntry(entry = {}) {
       meaning: normalizeVocabMeaning(entry.meaning),
       pos: getVocabEntryPos(entry),
       type: entry.type || "word",
-      source: entry.source || "",
+      source: storageSource,
       sourceEntryId: entry.sourceEntryId || entry.id || "",
       level: entry.level || ""
     };
@@ -4277,28 +4300,111 @@ function handleVocabNextButton() {
   nextVocabQuestion();
 }
 
+function speakTextWithBrowserVoice(text, options = {}) {
+  const value = String(text || "").trim();
+  if (!value || !window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") return false;
+
+  cancelSpeech();
+  const utterance = new SpeechSynthesisUtterance(value);
+  utterance.lang = "en-US";
+  utterance.rate = Number.isFinite(options.rate) ? options.rate : 0.86;
+  utterance.pitch = Number.isFinite(options.pitch) ? options.pitch : 1;
+  window.speechSynthesis.speak(utterance);
+  return true;
+}
+
+function canShowVocabAudioFeedback(value, kind = "word") {
+  if (kind !== "word" || !vocabQuizState || vocabQuizState.locked) return false;
+  const question = currentVocabQuestion();
+  return question?.kind === "listening"
+    && normalizeVocabWord(question.item?.word) === normalizeVocabWord(value);
+}
+
+function setVocabAudioFeedback(value, kind, message = "", type = "") {
+  if (!canShowVocabAudioFeedback(value, kind)) return;
+  setVocabFeedback(message, type);
+}
+
+function describeVocabAudioMiss(reason = "") {
+  if (reason === "login-required") return "先用手機讀音。登入後會準備高質 MP3。";
+  if (reason === "invalid") return "呢個字暫時未能生成雲端讀音。";
+  if (reason === "tts-unavailable") return "先用手機讀音；雲端讀音設定暫時未好。";
+  if (reason === "quota-exhausted") return "先用手機讀音；雲端讀音額度暫時未能使用。";
+  return "先用手機讀音；雲端 MP3 暫時未準備到，稍後會再試。";
+}
+
+function ensureVocabAudioInBackground(value, options = {}) {
+  if (!VOCAB_AUDIO) return Promise.resolve(null);
+  const kind = options.kind === "example" ? "example" : "word";
+  const force = options.force === true;
+  const request = typeof VOCAB_AUDIO.ensureAudio === "function"
+    ? VOCAB_AUDIO.ensureAudio(value, { kind, force })
+    : VOCAB_AUDIO.queueEnsureAudio(value, { kind, force });
+
+  return Promise.resolve(request).then((result) => {
+    if (result?.status === "ready" && result.source !== "bundle") {
+      setVocabAudioFeedback(value, kind, "高質讀音已準備好，再按一次會播 MP3。", "success");
+    } else if (result?.status === "missing") {
+      setVocabAudioFeedback(value, kind, describeVocabAudioMiss(result.reason));
+    }
+    return result;
+  }).catch((error) => {
+    console.warn("Vocab audio preparation failed:", error);
+    setVocabAudioFeedback(value, kind, describeVocabAudioMiss("network-error"));
+    return null;
+  });
+}
+
+function speakVocabWithFallback(text, options = {}) {
+  const value = String(text || "").trim();
+  if (!value) return;
+
+  playUiSound("step");
+  const kind = options.kind === "example" ? "example" : "word";
+  const browserFallback = () => speakTextWithBrowserVoice(value, {
+    rate: kind === "example" ? 0.9 : 0.84
+  });
+  const fallbackAndPrepare = () => {
+    const spoke = browserFallback();
+    if (spoke) {
+      setVocabAudioFeedback(value, kind, studentAuthState.authenticated
+        ? "先用手機讀音，高質 MP3 準備中..."
+        : "先用手機讀音。登入後會準備高質 MP3。");
+    } else {
+      setVocabAudioFeedback(value, kind, "暫時播不到讀音，請再按一次或檢查音量。", "error");
+    }
+    return ensureVocabAudioInBackground(value, { kind, force: true });
+  };
+
+  if (!VOCAB_AUDIO) {
+    fallbackAndPrepare();
+    return;
+  }
+
+  VOCAB_AUDIO.hasAudio(value, { kind }).then((hasLocalAudio) => {
+    if (hasLocalAudio) {
+      return VOCAB_AUDIO.play(value, { kind }).then((played) => {
+        if (!played) browserFallback();
+      });
+    }
+
+    return fallbackAndPrepare();
+  }).catch((error) => {
+    console.warn("Vocab audio playback failed:", error);
+    fallbackAndPrepare();
+  });
+}
+
 function speakVocabWord(word) {
   const text = String(word || "").trim();
   if (!text) return;
-
-  playUiSound("step");
-  if (VOCAB_AUDIO) {
-    VOCAB_AUDIO.play(text, { forceEnsure: true }).catch((error) => {
-      console.warn("Vocab audio playback failed:", error);
-    });
-  }
+  speakVocabWithFallback(text);
 }
 
 function speakVocabExample(sentence) {
   const text = String(sentence || "").trim();
   if (!text) return;
-
-  playUiSound("step");
-  if (VOCAB_AUDIO) {
-    VOCAB_AUDIO.play(text, { forceEnsure: true, kind: "example" }).catch((error) => {
-      console.warn("Vocab example audio playback failed:", error);
-    });
-  }
+  speakVocabWithFallback(text, { kind: "example" });
 }
 
 function getScreenForTab(tabName) {

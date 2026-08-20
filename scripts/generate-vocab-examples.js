@@ -371,7 +371,9 @@ function buildTasks(input = {}) {
     ...teacherEntries
       .filter((entry) => !isSuppressedByHiddenCuratedEntry(entry, hiddenCuratedKeys))
       .map((entry) => normalizeTeacherTask(entry, oxfordLevelByWord)),
-    ...curatedEntries.map((entry) => normalizeMeaningTask(entry, oxfordLevelByWord, entry.source || "curated")),
+    ...curatedEntries
+      .filter((entry) => !isSuppressedByHiddenCuratedEntry(entry, hiddenCuratedKeys))
+      .map((entry) => normalizeMeaningTask(entry, oxfordLevelByWord, entry.source || "curated")),
     ...oxfordEntries.map((entry) => normalizeOxfordTask(entry, teacherWordSet))
   ].filter(Boolean);
 
