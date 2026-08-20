@@ -192,6 +192,10 @@ That script currently expects a sibling checkout at
 the sync script deliberately. Do not edit Battleship's original `VOCAB_DB`
 lesson lists while syncing the shared dictionary.
 
+The sync copies reviewed lookup data and audio manifests, but deliberately does
+not copy `vocab_audio.js`. Grammar Game and Battleship have different native
+audio bridges, so each app owns and tests its own playback runtime.
+
 ## Native Progress
 
 ### Complete and playable

@@ -17,7 +17,6 @@ const SHARED_VOCAB_FILES = [
   "vocab_sense_bank.js",
   "cc_cedict_supplement.js",
   "vocab_lookup.js",
-  "vocab_audio.js",
   "vocab_canonical_example_seed.js",
   "vocab_example_utils.js",
   "vocab_word_audio_manifest.js"
@@ -28,7 +27,7 @@ function usage() {
     "Usage: node scripts/sync-vocab-to-battleship.js [--target /path/to/battleship-1] [--dry-run]",
     "",
     "Copies reviewed Grammar Game vocab assets into Battleship-1 so both apps use the same student-facing vocab bank.",
-    "Grammar Game remains the master source. This does not copy student progress or raw review dictionaries."
+    "Grammar Game remains the master source. This does not copy student progress, raw review dictionaries, or app-specific audio runtime code."
   ].join("\n"));
 }
 

@@ -153,7 +153,8 @@ npm run vocab:sync-battleship
 npm run vocab:sync-battleship -- --dry-run
 ```
 
-Dry-run should show all 13 shared files as `unchanged`.
+Dry-run should show all 12 shared files as `unchanged`. `vocab_audio.js` is
+intentionally excluded because each app has its own native playback runtime.
 
 ## Important Current Worktree Note
 
