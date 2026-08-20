@@ -16,7 +16,9 @@ Codex conversation. Read this file together with `AGENTS.md` and
   do not delete it until native parity is complete.
 - Firebase project: `enguistics-grammar-game`. Never move real student data
   back to the Battleship Firebase project.
-- Grammar content source of truth: `grammar_data.js`.
+- Grammar lesson source of truth: `grammar_data.js`. The Lesson 12 Verb Table
+  reference is imported from the original Basic Grammar Game bank in
+  `grammar_verb_table_data.js`.
 - Reviewed vocabulary master: Grammar Game files, especially
   `teacher_vocab_bank.js`, `teacher_vocab_manual_updates.json`, and
   `vocab_sense_bank.js`.
@@ -56,6 +58,16 @@ Install these first:
 - Node.js 22 LTS (Firebase Functions declares Node 22)
 
 Accept the Xcode licence and open Xcode once after installation.
+
+Current verified native toolchain on the new Mac is Flutter 3.47.1, Dart
+3.13.1, Temurin JDK 17, Android Studio 2026.1, Android SDK platforms 36 and
+37.0, CocoaPods 1.16.2, and Xcode 26.6. The app currently compiles against API
+36. Keep `flutter_secure_storage` on 10.3.1 for now:
+version 11 hard-codes `compileSdk = 37`, but Google's stable, beta, and canary
+SDK channels currently publish `platforms;android-37.0`, not the distinct
+Gradle package ID `platforms;android-37`. Do not rename or symlink 37.0 to 37.
+Upgrade the plugin only after the real `platforms;android-37` package exists
+and an Android build passes.
 
 ### 2. Clone and install dependencies
 
@@ -125,6 +137,7 @@ device-specific Xcode user data.
 | `flutter_app/lib/features/auth/` | Student ID/PIN login and secure device session |
 | `flutter_app/assets/data/` | Generated native grammar and vocab JSON; do not hand-edit |
 | `grammar_data.js` | Canonical Grammar Lesson 01-13 and Quiz 01 content |
+| `grammar_verb_table_data.js` | Basic Grammar Game's complete Lesson 12 reference bank |
 | `app.js`, `index.html`, `style.css` | Existing web/Capacitor implementation and behaviour reference |
 | `teacher_vocab_bank.js` | Generated teacher-approved vocabulary bank |
 | `teacher_vocab_manual_updates.json` | Reviewed/manual teacher corrections and additions |
@@ -139,15 +152,17 @@ device-specific Xcode user data.
 
 ### Grammar
 
-Edit `grammar_data.js`, then regenerate Flutter JSON:
+Edit the grammar source files, then regenerate Flutter JSON:
 
 ```bash
 npm run flutter:export-grammar
 ```
 
 Generated files are `flutter_app/assets/data/lesson_01.json` through
-`lesson_13.json` and `quiz_01.json`. Commit the source and generated JSON in the
-same commit.
+`lesson_13.json`, `quiz_01.json`, and `verb_table_reference.json`. Commit the
+source and generated JSON in the same commit. `lesson_12.json` remains the
+100-row practice bank; `verb_table_reference.json` contains the complete
+282-row Basic Grammar Game reference bank and is sorted by present form.
 
 Current question-bank sizes:
 
@@ -165,7 +180,8 @@ Current question-bank sizes:
 | Lesson 09 | 60 |
 | Lesson 10 | 100 |
 | Lesson 11 | 260 |
-| Lesson 12 | 100 verb rows |
+| Lesson 12 practice | 100 verb rows |
+| Lesson 12 reference | 282 verb rows |
 | Lesson 13 | 80 |
 
 ### Vocabulary
@@ -208,8 +224,10 @@ audio bridges, so each app owns and tests its own playback runtime.
 - Native iOS/Android keyboard for all typed answers.
 - Lesson-specific Traditional Chinese feedback, SFX, mistake handling, and
   celebrations.
-- Lesson 12 illustrated Verb Table, responsive phone/tablet layout, bundled
-  audio where available, and shared audio fallback.
+- Lesson 12 illustrated Verb Table, responsive phone/tablet layout, Search,
+  alphabetical reference rows, the complete 282-row Basic Grammar Game bank,
+  bundled audio where available, and shared audio fallback. Lesson practice
+  still uses a short randomized round from the 100-row exercise bank.
 - Native vocabulary lookup from offline shards, spelling suggestions,
   multi-meaning selection, one-row-per-word saved list, date grouping,
   expandable examples, and word/example pronunciation.

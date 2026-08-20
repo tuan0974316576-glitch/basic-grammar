@@ -531,30 +531,54 @@ class VerbTableReferenceScreen extends StatefulWidget {
 }
 
 class _VerbTableReferenceScreenState extends State<VerbTableReferenceScreen> {
-  final AudioPlayer _player = AudioPlayer();
+  AudioPlayer? _player;
+  StreamSubscription<void>? _playerCompleteSubscription;
+  final TextEditingController _searchController = TextEditingController();
   late final Future<List<Lesson12Question>> _questions;
   String? _playingId;
+  String _searchQuery = '';
+  bool _searchVisible = false;
 
   @override
   void initState() {
     super.initState();
-    _questions = widget.repository.loadQuestions();
-    _player.onPlayerComplete.listen((_) {
-      if (mounted) setState(() => _playingId = null);
-    });
+    _questions = widget.repository.loadReferenceQuestions();
   }
 
   @override
   void dispose() {
-    unawaited(_player.dispose());
+    _searchController.dispose();
+    unawaited(_playerCompleteSubscription?.cancel());
+    final player = _player;
+    if (player != null) unawaited(player.dispose());
     super.dispose();
+  }
+
+  AudioPlayer get _audioPlayer {
+    final player = _player ??= AudioPlayer();
+    _playerCompleteSubscription ??= player.onPlayerComplete.listen((_) {
+      if (mounted) setState(() => _playingId = null);
+    });
+    return player;
+  }
+
+  void _toggleSearch() {
+    setState(() => _searchVisible = !_searchVisible);
+    if (_searchVisible) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) FocusScope.of(context).requestFocus();
+      });
+    } else {
+      _searchController.clear();
+      setState(() => _searchQuery = '');
+    }
   }
 
   Future<void> _play(Lesson12Question question) async {
     setState(() => _playingId = question.id);
     if (question.audioAsset.isNotEmpty) {
-      await _player.stop();
-      await _player.play(AssetSource(question.audioAsset));
+      await _audioPlayer.stop();
+      await _audioPlayer.play(AssetSource(question.audioAsset));
       return;
     }
     final played =
@@ -613,14 +637,67 @@ class _VerbTableReferenceScreenState extends State<VerbTableReferenceScreen> {
                       ],
                     ),
                   ),
-                  const Icon(
-                    Icons.auto_stories_rounded,
-                    color: AppPalette.secondaryDark,
-                    size: 31,
+                  IconButton(
+                    key: const Key('verb-table-search-button'),
+                    tooltip: '搜尋 Verb Table',
+                    onPressed: _toggleSearch,
+                    icon: const Icon(Icons.search_rounded),
+                    style: IconButton.styleFrom(
+                      backgroundColor: AppPalette.softSecondary,
+                      foregroundColor: AppPalette.secondaryDark,
+                      side: const BorderSide(
+                        color: AppPalette.secondaryDark,
+                        width: 2,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
+            if (_searchVisible)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(14, 0, 14, 8),
+                child: TextField(
+                  key: const Key('verb-table-search-field'),
+                  controller: _searchController,
+                  autofocus: true,
+                  onChanged: (value) => setState(() => _searchQuery = value),
+                  decoration: InputDecoration(
+                    hintText: '搜尋動詞、中文或四式',
+                    prefixIcon: const Icon(Icons.search_rounded),
+                    suffixIcon: _searchQuery.isEmpty
+                        ? null
+                        : IconButton(
+                            tooltip: '清除搜尋',
+                            onPressed: () {
+                              _searchController.clear();
+                              setState(() => _searchQuery = '');
+                            },
+                            icon: const Icon(Icons.close_rounded),
+                          ),
+                    filled: true,
+                    fillColor: AppPalette.paper,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: AppPalette.border),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: AppPalette.border),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(
+                        color: AppPalette.primaryDark,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             Expanded(
               child: FutureBuilder<List<Lesson12Question>>(
                 future: _questions,
@@ -636,14 +713,28 @@ class _VerbTableReferenceScreenState extends State<VerbTableReferenceScreen> {
                       ),
                     );
                   }
+                  final query = _searchQuery.trim().toLowerCase();
+                  final filtered = query.isEmpty
+                      ? questions
+                      : questions
+                          .where(
+                            (question) => <String>[
+                              question.zh,
+                              ...Lesson12Question.fields.map(question.form),
+                            ].join(' ').toLowerCase().contains(query),
+                          )
+                          .toList(growable: false);
+                  if (filtered.isEmpty) {
+                    return const Center(child: Text('找不到相關動詞。'));
+                  }
                   return ListView.separated(
                     key: const Key('verb-table-reference-list'),
                     physics: const BouncingScrollPhysics(),
                     padding: const EdgeInsets.fromLTRB(14, 4, 14, 24),
-                    itemCount: questions.length,
+                    itemCount: filtered.length,
                     separatorBuilder: (_, __) => const SizedBox(height: 10),
                     itemBuilder: (context, index) {
-                      final question = questions[index];
+                      final question = filtered[index];
                       return _VerbReferenceRow(
                         question: question,
                         playing: _playingId == question.id,
@@ -675,6 +766,7 @@ class _VerbReferenceRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
+      key: ValueKey('verb-table-row-${question.id}'),
       button: true,
       label: '${question.zh} ${question.spokenLine}',
       child: Material(

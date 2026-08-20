@@ -58,10 +58,16 @@ void main() {
     final info = find.byKey(const Key('verb-table-roadmap-info'));
     await tester.ensureVisible(info);
     await tester.tap(info);
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 100)),
+    );
+    await tester.pump(const Duration(milliseconds: 500));
 
     expect(find.text('Verb Table 動詞表'), findsOneWidget);
     expect(find.byKey(const Key('verb-table-reference-list')), findsOneWidget);
+    expect(find.byKey(const Key('verb-table-search-button')), findsOneWidget);
+    expect(find.byIcon(Icons.search_rounded), findsOneWidget);
     expect(find.byType(TextField), findsNothing);
   });
 }

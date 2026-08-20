@@ -95,4 +95,36 @@ void main() {
     expect(find.byKey(const Key('lesson-12-next')), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('Verb Table search filters the complete reference list',
+      (tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(390, 844);
+    addTearDown(tester.view.reset);
+
+    await tester.pumpWidget(
+      const MaterialApp(home: VerbTableReferenceScreen()),
+    );
+    await tester.pump();
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 100)),
+    );
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.byKey(const Key('verb-table-search-button')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('verb-table-search-button')));
+    await tester.pump();
+    await tester.enterText(
+      find.byKey(const Key('verb-table-search-field')),
+      'invite',
+    );
+    await tester.pump();
+
+    expect(
+      find.byKey(const ValueKey('verb-table-row-vtr112')),
+      findsOneWidget,
+    );
+    expect(find.text('bend'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
 }

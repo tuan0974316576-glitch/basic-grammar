@@ -116,4 +116,50 @@ void main() {
       isTrue,
     );
   });
+
+  test('Verb Table reference imports the complete legacy bank in A-Z order',
+      () {
+    final questions = Lesson12Repository.parseReferenceQuestions(
+      asset('verb_table_reference.json'),
+    );
+    expect(questions, hasLength(282));
+    expect(questions.map((question) => question.id).toSet(), hasLength(282));
+    expect(
+      questions.where((question) => question.form('present') == 'bend'),
+      hasLength(1),
+    );
+    expect(
+      questions.where((question) => question.form('present') == 'invite'),
+      hasLength(1),
+    );
+    expect(
+      questions.every(
+        (question) =>
+            question.forms.values.every((form) => form.isNotEmpty) &&
+            question.imageAsset.isNotEmpty &&
+            File(question.imageAsset).existsSync(),
+      ),
+      isTrue,
+    );
+    expect(
+      questions.where((question) => question.audioAsset.isNotEmpty),
+      hasLength(189),
+    );
+    for (var index = 1; index < questions.length; index += 1) {
+      expect(
+        questions[index - 1].form('present').toLowerCase().compareTo(
+              questions[index].form('present').toLowerCase(),
+            ),
+        lessThanOrEqualTo(0),
+      );
+    }
+  });
+
+  testWidgets('bundled Verb Table reference asset loads through rootBundle',
+      (tester) async {
+    final questions = await tester.runAsync(
+      () => const Lesson12Repository().loadReferenceQuestions(),
+    );
+    expect(questions, hasLength(282));
+  });
 }

@@ -63,6 +63,33 @@ function enrichVerbTableQuestions(questions) {
   });
 }
 
+function loadVerbTableReferenceQuestions() {
+  const bank = loadWindowValue(
+    "grammar_verb_table_data.js",
+    "GRAMMAR_VERB_BANK"
+  );
+  return bank
+    .map(([zh, present, past, pp, ing], index) => ({
+      id: `vtr${String(index + 1).padStart(3, "0")}`,
+      type: "verb-table-reference",
+      zh,
+      forms: { present, past, pp, ing }
+    }))
+    .sort((left, right) => {
+      const present = left.forms.present.localeCompare(
+        right.forms.present,
+        "en",
+        { sensitivity: "base" }
+      );
+      if (present !== 0) return present;
+      return left.id.localeCompare(right.id, "en", { sensitivity: "base" });
+    })
+    .map((question, index) => ({
+      ...question,
+      id: `vtr${String(index + 1).padStart(3, "0")}`
+    }));
+}
+
 fs.mkdirSync(outputDir, { recursive: true });
 writeQuestions("lesson_01.json", QUESTIONS);
 writeQuestions("lesson_02.json", VERB_COUNT_QUESTIONS);
@@ -77,6 +104,10 @@ writeQuestions("lesson_09.json", ADJECTIVE_QUESTIONS);
 writeQuestions("lesson_10.json", ADVERB_QUESTIONS);
 writeQuestions("lesson_11.json", TENSE_QUESTIONS);
 writeQuestions("lesson_12.json", enrichVerbTableQuestions(VERB_TABLE_QUESTIONS));
+writeQuestions(
+  "verb_table_reference.json",
+  enrichVerbTableQuestions(loadVerbTableReferenceQuestions())
+);
 writeQuestions("lesson_13.json", HAVE_USAGE_QUESTIONS);
 
 const counts = QUESTIONS.reduce((result, question) => {
