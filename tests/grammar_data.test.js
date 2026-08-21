@@ -344,6 +344,24 @@ const appSource = fs.readFileSync(path.join(__dirname, "../app.js"), "utf8");
   assert.strictEqual(appSource.includes(expectedSource), true);
 });
 
+const verbImageContext = { window: {} };
+require("vm").createContext(verbImageContext);
+require("vm").runInContext(
+  fs.readFileSync(path.join(__dirname, "../grammar_verb_table_image_manifest.js"), "utf8"),
+  verbImageContext
+);
+const verbImageManifest = verbImageContext.window.GRAMMAR_VERB_IMAGE_MANIFEST;
+const lyingImage = verbImageManifest["lie|lay|lain|lying"];
+const dishonestImage = verbImageManifest["lie|lied|lied|lying"];
+assert.strictEqual(lyingImage.sourceFile, "lie(2).png");
+assert.strictEqual(dishonestImage.sourceFile, "lie.png");
+assert.notStrictEqual(lyingImage.src, dishonestImage.src);
+assert.ok([lyingImage, dishonestImage].every((entry) => (
+  entry.sourceType === "teacher-provided"
+    && fs.existsSync(path.join(__dirname, "..", entry.src))
+    && fs.existsSync(path.join(__dirname, "../flutter_app", entry.src))
+)));
+
 assert.strictEqual(data.HAVE_USAGE_QUESTIONS.length, 80);
 assert.strictEqual(data.HAVE_USAGE_QUESTIONS.filter((question) => question.isCorrect).length, 40);
 assert.strictEqual(data.HAVE_USAGE_QUESTIONS.filter((question) => !question.isCorrect).length, 40);

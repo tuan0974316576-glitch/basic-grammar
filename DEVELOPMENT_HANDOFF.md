@@ -138,6 +138,7 @@ device-specific Xcode user data.
 | `flutter_app/assets/data/` | Generated native grammar and vocab JSON; do not hand-edit |
 | `grammar_data.js` | Canonical Grammar Lesson 01-13 and Quiz 01 content |
 | `grammar_verb_table_data.js` | Basic Grammar Game's complete Lesson 12 reference bank |
+| `grammar_verb_table_image_manifest.js` | Verb Table image mapping shared by web and Flutter export |
 | `app.js`, `index.html`, `style.css` | Existing web/Capacitor implementation and behaviour reference |
 | `teacher_vocab_bank.js` | Generated teacher-approved vocabulary bank |
 | `teacher_vocab_manual_updates.json` | Reviewed/manual teacher corrections and additions |
@@ -163,6 +164,21 @@ Generated files are `flutter_app/assets/data/lesson_01.json` through
 source and generated JSON in the same commit. `lesson_12.json` remains the
 100-row practice bank; `verb_table_reference.json` contains the complete
 282-row Basic Grammar Game reference bank and is sorted by present form.
+
+Teacher-provided Verb Table replacement images are imported in small batches
+from a local folder with:
+
+```bash
+npm run grammar:import-verb-images -- "/path/to/verb_table_image"
+npm run flutter:export-grammar
+```
+
+The importer creates 600px JPEG assets under both
+`assets/grammar-verbs/teacher/v1/` and
+`flutter_app/assets/grammar-verbs/teacher/v1/`, updates the shared manifest,
+and removes superseded images that are no longer referenced. For the two
+homonyms, `lie.png` maps to `lie / lied / lied / lying` (說謊), while
+`lie(2).png` maps to `lie / lay / lain / lying` (躺).
 
 Current question-bank sizes:
 

@@ -24,12 +24,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "beat|beat|beaten|beating": {
-    "src": "assets/grammar-verbs/irasutoya/v1/beat-beat-beaten-beating-7424d92a76.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/11/blog-post_789.html",
-    "sourceTitle": "ウイルスに勝つ細胞のイラスト",
-    "searchTerm": "勝つ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcA-VLP3ZhsT2bOFcQ8YgF90ZHtcmHiYXcTBQoSRKstQbQ9Ugt6FqiXW1niocNkx8OMWRT7lC4aetV0do6YQhe3g_fm0FXPT5Tlfc8Io9t4aacsm7u5OxuEWoAii6ID5Rwo0tJOjxhkhA/s1600/medical_virus_koutai.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/beat-beat-beaten-beating-db2c037708.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "beat.png"
   },
   "become|became|become|becoming": {
     "src": "assets/grammar-verbs/irasutoya/v1/become-became-become-becoming-6de84cd57d.png",
@@ -48,12 +45,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "bend|bent|bent|bending": {
-    "src": "assets/grammar-verbs/irasutoya/v1/bend-bent-bent-bending-de1b7a06fe.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/04/blog-post_865.html",
-    "sourceTitle": "自在ほうきのイラスト（掃除用具）",
-    "searchTerm": "曲がる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9Ncbo4rSs9w_qMuX8MfcCtjI3A05lb-e5vrUFVcm_rS29BFg1wM1fRpKqmn4a-mL8AWDVuc79fVjcKW1U_uoDVoo5AVin8NtxSp_AELjO_3fR7qg0ivDHroVPzme0clkFoCrRCvDZVH3y/s1600/cleaning_jizai_houki.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/bend-bent-bent-bending-cae6328357.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "bend.png"
   },
   "bet|bet|bet|betting": {
     "src": "assets/grammar-verbs/irasutoya/v1/bet-bet-bet-betting-309098ee87.png",
@@ -72,36 +66,24 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "dive|dived|dived|diving": {
-    "src": "assets/grammar-verbs/irasutoya/v1/dive-dived-dived-diving-757639f6f6.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/12/blog-post_16.html",
-    "sourceTitle": "落ち葉に飛び込む ぴょこ のイラスト",
-    "searchTerm": "飛び込む",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7nO95w7ejxKmxiyJs3TxG2HtrXZlpyorMiZcBlPz7bIivGo6qSfiA14LbyoduAd4NaC6DCnNbmkV_RZyN4RTlLn-BJ2_ruS3vx0megQKArLMsxxdWDEbjcwq1WTO0CatxWtxc1sboClQA/s1600/pyoko10_ochiba.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/dive-dived-dived-diving-a389e849d1.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "dive.png"
   },
   "bind|bound|bound|binding": {
-    "src": "assets/grammar-verbs/irasutoya/v1/bind-bound-bound-binding-d8d67ce97c.png",
-    "sourceUrl": "https://www.irasutoya.com/2021/01/blog-post_224.html",
-    "sourceTitle": "靴紐を結ぶ人のイラスト（女性）",
-    "searchTerm": "結ぶ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_slIvIo9rbwAit6MLdLmXeKnopQlweVvZd7_EQt6sviHGlFvE9135hF4oMY5EVX-IUZW-SINmweUkbNEJsESVjUlMSsGMCyIeu2Ghw4qNi7WolZYXqjqeJdv3bmBkoynoAsic0wshWbFp/s1600/kutsuhimo_musubu_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/bind-bound-bound-binding-54b9a0b9dc.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "bind.png"
   },
   "bite|bit|bitten|biting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/bite-bit-bitten-biting-b667ecdae9.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/11/blog-post_39.html",
-    "sourceTitle": "爪を噛む人のイラスト（女性）",
-    "searchTerm": "噛む",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5DsWoWpw0LYiojsZgstodv9mS_KO78jB9pE-LTP5B09o8T5WsrW6K-r9PeRbSzMMTf_i_Lt72JqZwRuRg2GBZWHsLpaqddSm9V6Lko4eYUWYF0LpfXgWVjt14TBf28OlkC2m3ciwzHaTM/s1600/manner_ha_kamu_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/bite-bit-bitten-biting-33322b6d9a.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "bite.png"
   },
   "bleed|bled|bled|bleeding": {
-    "src": "assets/grammar-verbs/irasutoya/v1/bleed-bled-bled-bleeding-6bbae785d4.png",
-    "sourceUrl": "https://www.irasutoya.com/2014/05/blog-post_4502.html",
-    "sourceTitle": "どろどろの血で詰まった血管のイラスト",
-    "searchTerm": "血",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhtvs2UbZUrMz1lMBg9T2SrX3NtKv264ncrfNcLD_LSSwvdZ30Vp9FP62JFRRX5cPjeyt_i12k_R1_8ZH0ICed5e5MsscHTMvb8S3wh8Zt4qkpPMefX5mnjrSy-rp_i8eh-YQyqlhcCoQ/s1600/body_kekkan_dorodoro.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/bleed-bled-bled-bleeding-e9751e9e12.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "bleed.png"
   },
   "blow|blew|blown|blowing": {
     "src": "assets/grammar-verbs/irasutoya/v1/blow-blew-blown-blowing-285d5552ad.png",
@@ -112,20 +94,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "break|broke|broken|breaking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/break-broke-broken-breaking-acf1ecd62a.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/06/blog-post_741.html",
-    "sourceTitle": "おもちゃを壊す子供のイラスト（女の子）",
-    "searchTerm": "壊す",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgilo4-zhOU8atvrbVoC1b8-rNztrDr8Ssf3wIczcimsBq6tJ57s2BLS2LAsNUTr362DNw1YorQw1il0WPXb8c21sgAMIhkLAk5ZOIbkU3FPQmY2-NhtieWIpqlbaNUbNjDJO1qawLm5RiD/s1600/omocha_kowasu_girl.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/break-broke-broken-breaking-b94204ed7b.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "break.png"
   },
   "breed|bred|bred|breeding": {
-    "src": "assets/grammar-verbs/irasutoya/v1/breed-bred-bred-breeding-10424dd447.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/02/blog-post_322.html",
-    "sourceTitle": "ムナグロのイラスト（冬羽）",
-    "searchTerm": "繁殖",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEibuXHtqh_QxOM0aMW4J5rC5087YEEp9bTwAzI0VG4qB-JxhjqiNkVj8XcT4eY0YruFssVXJbmK31QX-c-VWq_Jv-XZOfaauwg5DueJ4BH_Wi_oQsTnUZ-bhg1v2huu4t_-n3GO4GEiNZsn/s1600/hawaii_bird_munaguro_kolea.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/breed-bred-bred-breeding-ba0df7201a.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "breed.png"
   },
   "bring|brought|brought|bringing": {
     "src": "assets/grammar-verbs/irasutoya/v1/bring-brought-brought-bringing-620255f8c5.png",
@@ -152,12 +128,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "burn|burnt|burnt|burning": {
-    "src": "assets/grammar-verbs/irasutoya/v1/burn-burnt-burnt-burning-395e022434.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/07/blog-post_268.html",
-    "sourceTitle": "やる気に燃える人のイラスト（女性会社員）",
-    "searchTerm": "燃える",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCOb48PTHh-BsBnFQswcliSRzVUfTY5UdEQEKzE699CcqbrIr9Mo9ebP23YChMSXYeUsrMU8xr8u9oOIIm0MZR8CHInt3eTqjFeRWRHvFXFdQ9beVgTJz_21OmxosvOYUhIbKDoSJro4Qh/s1600/yaruki_moeru_businesswoman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/burn-burnt-burnt-burning-1975e1c659.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "burn.png"
   },
   "burst|burst|burst|bursting": {
     "src": "assets/grammar-verbs/irasutoya/v1/burst-burst-burst-bursting-c5cb541ab1.png",
@@ -168,12 +141,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "buy|bought|bought|buying": {
-    "src": "assets/grammar-verbs/irasutoya/v1/buy-bought-bought-buying-58747ab6e5.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/08/cd.html",
-    "sourceTitle": "握手券のためにCDをたくさん買う人のイラスト（女性）",
-    "searchTerm": "買う",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgojEoZcKuAhGxNtiwcWGcaAUATyBpTOSrMRIEkwaRreXvsjzI1O6j16J1rkpVIjcUFcAQSRSCTmvQBfU0VV5AriDhuOMaGAAeSKis7dSlqYHWWplQsooelIwC_VVjK_ppvvK7FU5L6isoa/s1600/idol_cd_akusyuken_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/buy-bought-bought-buying-2ac6821b69.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "buy.png"
   },
   "cast|cast|cast|casting": {
     "src": "assets/grammar-verbs/irasutoya/v1/cast-cast-cast-casting-71b443d942.png",
@@ -184,36 +154,24 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "catch|caught|caught|catching": {
-    "src": "assets/grammar-verbs/irasutoya/v1/catch-caught-caught-catching-eb371df0c3.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/03/blog-post_91.html",
-    "sourceTitle": "虫を捕まえる子供のイラスト",
-    "searchTerm": "捕まえる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo9OC_5iw9PFEaTaQFwav4KHmVkx5-74J76vYNed1Foq4dDpN0bqW9wOBgubaGIH2U3OP8AKxBmWl27fu3FNju_kv5wn78O5YnOkvokDau5S5KTxSseReR2F20DWlOv7AZYR1Yv6UxL6Y/s1600/bug_mushitori_boy.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/catch-caught-caught-catching-4cdd1e19f0.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "catch.png"
   },
   "choose|chose|chosen|choosing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/choose-chose-chosen-choosing-2135575c56.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/02/blog-post_619.html",
-    "sourceTitle": "電力会社を選ぶ人のイラスト",
-    "searchTerm": "選ぶ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCs-PfxhR8rT26CETbxRkkHh26pfJQj9rdqXluWuvj4wGwNny1PE-rDZOKkbGGG8L6uLwEmLQK5USEhq1j8whL_CG1gT9EjgcqFMwuC56xqOHJuNyrdeYjNG_3SG8KJm5QfGZYC4X_KYd0/s800/denryoku_sentaku.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/choose-chose-chosen-choosing-fa6f6f297a.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "choose.png"
   },
   "come|came|come|coming": {
-    "src": "assets/grammar-verbs/irasutoya/v1/come-came-come-coming-65fd18df27.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/09/blog-post_996.html",
-    "sourceTitle": "鴨が葱を背負っているイラスト",
-    "searchTerm": "来る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIdq1FbByn84mQ07kAGjMiITVVcK2kL0aOh26pWZZe06jkxA6BEyzXXxhPugUIW3yn-Z2VwSOmEu9Om_jR3Zziw8TnC1hlLJFgX6kxv2m1K5aTGNUfmbSlKg-_yJpU9kM0nP34Zxwi-RE/s1600/bird_kamonegi.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/come-came-come-coming-e121545768.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "come.png"
   },
   "cost|cost|cost|costing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/cost-cost-cost-costing-5f5d90b3d1.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/11/blog-post_838.html",
-    "sourceTitle": "バーコードのイラスト",
-    "searchTerm": "値段",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYgpbaGpjCy3Z-WvQH06t6cj9RWzS4v7EESwPQ3mO35s50320G8XLUuEOeYBBuCQku-Fced9Fmrid0dYudO99vYHYPNj3tBLHI_el5AL7xwdOx52knJEUaWFsoG2pCd1W4tym2c8abZP4/s1600/barcode.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/cost-cost-cost-costing-b5b9429894.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "cost.png"
   },
   "creep|crept|crept|creeping": {
     "src": "assets/grammar-verbs/irasutoya/v1/creep-crept-crept-creeping-3923a03e57.png",
@@ -224,12 +182,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "cut|cut|cut|cutting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/cut-cut-cut-cutting-2c1d14d39d.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/01/blog-post_395.html",
-    "sourceTitle": "料理の「切る」のイラスト",
-    "searchTerm": "切る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdXDoscn9UdOIGU1GEWD53pY4-J-suvCw-V5fAVrWtwtAn4LtVkDbPF0L8o2MHj86yrkW_WxPFqTOQaJgTIfy7zJvK3RwHnIDjgaKRxu9r7BpQnQeNYnVn-2zOuRgPo82_Xxyu8L4-fwgN/s1600/cooking10_kiru.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/cut-cut-cut-cutting-cb4a60809f.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "cut.png"
   },
   "deal|dealt|dealt|dealing": {
     "src": "assets/grammar-verbs/irasutoya/v1/deal-dealt-dealt-dealing-d22245747b.png",
@@ -264,20 +219,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "dream|dreamt|dreamt|dreaming": {
-    "src": "assets/grammar-verbs/irasutoya/v1/dream-dreamt-dreamt-dreaming-d58c6162fe.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/04/blog-post_241.html",
-    "sourceTitle": "明晰夢のイラスト",
-    "searchTerm": "夢",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEFDp_SRqHLwuaUE1isf_timr-jS9hiLcNwYaSQoAjqfk0a_oGZWHgYIjyBCHqw3KZzYhBiw1JwuwdO0opfkM_bUpQtSHyUFdGl3nRqjTmoKNe0tPC_joGmqIPda2G8qkehXWXUt67UUs/s1600/sleep_yume_meisekimu.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/dream-dreamt-dreamt-dreaming-04637bbfa3.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "dream.png"
   },
   "drink|drank|drunk|drinking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/drink-drank-drunk-drinking-3b00a2ebf3.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/02/blog-post_839.html",
-    "sourceTitle": "飲むヨーグルトのイラスト",
-    "searchTerm": "飲む",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiN0cafyJOLOe2afcrxRSkERnVe0qraCXmzHfMhG5ldHNJx-1gVEIJEHD65g_3mmWR72FcgxI7PjaT89JrXmdimMy7qtL1QMrhLdfe_Nk6hhphRuN6Lam-OgT6ID0DFl5z-81ihhZ_FrPOl/s1600/drink_nomu_yogurt.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/drink-drank-drunk-drinking-567f7ab0b5.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "drink.png"
   },
   "drive|drove|driven|driving": {
     "src": "assets/grammar-verbs/irasutoya/v1/drive-drove-driven-driving-f24aaaea58.png",
@@ -304,12 +253,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "fall|fell|fallen|falling": {
-    "src": "assets/grammar-verbs/irasutoya/v1/fall-fell-fallen-falling-99f860e8b3.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/08/blog-post_919.html",
-    "sourceTitle": "転ぶ人のイラスト（棒人間）",
-    "searchTerm": "転ぶ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhZK_RT7RiH98PD_zKTenyR_CpZvL6f6kUinEHaJiB-7oIQYRKHWu2I3fI19DLeHCb0-U9tTaxTEr0RG2kg-bTKhzUaVfe3PBjQXkIr_s-Gh00PPAiMhzR3jQw_gb5THYwkQsYRTMptQ0j/s1600/figure_korobu.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/fall-fell-fallen-falling-36bcb1a1eb.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "fall.png"
   },
   "feed|fed|fed|feeding": {
     "src": "assets/grammar-verbs/irasutoya/v1/feed-fed-fed-feeding-33369e39d0.png",
@@ -336,28 +282,19 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "find|found|found|finding": {
-    "src": "assets/grammar-verbs/irasutoya/v1/find-found-found-finding-ed332a36a8.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/07/blog-post_153.html",
-    "sourceTitle": "埋蔵金を探す人のイラスト（男性）",
-    "searchTerm": "探す",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjd0anaJv2b3rhwLHQ83jWrw6KpZz4mthvndFAtMlCoU9tRsYomlUgVFeV-kIgyMqRJUcu8UO3kfHjasvu4mW08OZEKcSuuTfBsaoKXJ-Iqkcbo83z7juZV1hvOVe3sa7KFauVCNSjm1lQn/s1600/money_maizoukin_horu_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/find-found-found-finding-8a9800b6e2.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "find.png"
   },
   "fit|fit|fit|fitting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/fit-fit-fit-fitting-b6f2f48305.png",
-    "sourceUrl": "https://www.irasutoya.com/2012/03/blog-post_3261.html",
-    "sourceTitle": "目玉焼きのイラスト",
-    "searchTerm": "ぴったり",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgY49xqb6fDuVUt-OyGku1pdvmALLMU9qbkr9Ar5W_JxqQwtrDz8PwWVWFewgHDzvC9ISinG3y_YGYchX0AtQsVdKnLQabz9DW9kYZrnqXcRqSOtOL8OeLHTLb7uQpiH_PknSjtyuefDxHc/s1600/food_medamayaki.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/fit-fit-fit-fitting-11946c2672.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "fit.png"
   },
   "flee|fled|fled|fleeing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/flee-fled-fled-fleeing-590b22c0e2.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/09/blog-post_238.html",
-    "sourceTitle": "落下物から逃げる人たちのイラスト",
-    "searchTerm": "逃げる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvZ01P-il23i2NvQEbX-45zz3D3j_BitQWU0HkkkZnY1fTpJgnUH0OCeaVv48Kgr_P2-aqvLPK1MUZJk3Xwla3xzm819w7Hb5uaHPBcOhgBL83G5wzuaSKrG0m5-UJTyVdWWraj-u8lfbw/s1600/jishin_kiken_rakkabutsu.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/flee-fled-fled-fleeing-d12fe91350.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "flee.png"
   },
   "fly|flew|flown|flying": {
     "src": "assets/grammar-verbs/irasutoya/v1/fly-flew-flown-flying-363efa4dad.png",
@@ -384,36 +321,24 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "forget|forgot|forgotten|forgetting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/forget-forgot-forgotten-forgetting-9f2c455b92.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/10/blog-post_4.html",
-    "sourceTitle": "泣きながら寝る人のイラスト（男性）",
-    "searchTerm": "忘れる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1oBD695107NiobNIbPpG3bqplfeza0UUx5QKECLAr2GQYELbqeYjh39HNv_AN65hTs76rGxxCDLd_ui9tt25e6hjGfqRcZn0qd7SSZyBKH5gJk4pg_WWb4nLin04tG6ZMjBYGgdLa3WE/s1600/sleep_cry_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/forget-forgot-forgotten-forgetting-2405dd7944.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "forget.png"
   },
   "forgive|forgave|forgiven|forgiving": {
-    "src": "assets/grammar-verbs/irasutoya/v1/forgive-forgave-forgiven-forgiving-86fa87d263.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/09/blog-post_228.html",
-    "sourceTitle": "急いで謝る人のイラスト（女性）",
-    "searchTerm": "謝る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5ChaZgZmqsHUBVsUKYvof774D-M2QUJgOK1GrYHBcPB1s1gm1cZjv_9RtMTwZur5HMBPI9_GCUvm3Q49AI9o_LNYgyIbkfuoHIyJ1SB9qERWoTyzQf_-OzcMO51fb9Tugj1YOLT9RWrfG/s1600/pose_syazai_sliding_dogeza_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/forgive-forgave-forgiven-forgiving-97dc8fbeb9.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "forgive.png"
   },
   "freeze|froze|frozen|freezing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/freeze-froze-frozen-freezing-f469cfd712.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/10/blog-post_63.html",
-    "sourceTitle": "凍るお茶の間のイラスト",
-    "searchTerm": "凍る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgmaNd-zAd53tqs9zXn3k_9xIWx_3I2NaUjR3DfD3zaYe2iFzWpKh0A7XhWOS2omF7otQqIGldzUxIutnSA-zXikekLFyo7WoBTi50TEBgn2RyteRBwU8pSid30_GA9ssgmsuQAuhwPgk/s1600/ochanoma_freeze.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/freeze-froze-frozen-freezing-17d071a2ed.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "freeze.png"
   },
   "get|got|got|getting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/get-got-got-getting-bad7eaf246.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/05/blog-post_49.html",
-    "sourceTitle": "置き配の出前を受け取る人のイラスト",
-    "searchTerm": "受け取る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0XaMNynRXdOoxqjEnFDPCd0octiJ11a6pg0FH-zBpGeSAkq7VRw9EXnAmmK1L8QX-9usGOO46ZKII-vi1jhBLSgb5dmXBPeXR9KTHMi8pF3KonirO7RKGhTonPymqz2PH8KhBmwL03mTD/s1600/demae_okihai_uketoru_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/get-got-got-getting-786e325397.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "get.png"
   },
   "give|gave|given|giving": {
     "src": "assets/grammar-verbs/irasutoya/v1/give-gave-given-giving-8b7824e3fe.png",
@@ -432,28 +357,19 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "grind|ground|ground|grinding": {
-    "src": "assets/grammar-verbs/irasutoya/v1/grind-ground-ground-grinding-5f27c13d02.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/09/blog-post_29.html",
-    "sourceTitle": "乳鉢のイラスト",
-    "searchTerm": "すりつぶす",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZzLuKxmAuMHQd74Dnez3aheQviroaW5P03sRzKQ2oWgRVKTQoiicmqfljpbnDTcW8Ebhhx5Qh0EcGjoyiVAoTEbZuKwbB7CjjpKIW27eXGu2WJEwQhgnc5O4CZg6MMb9I0i3fN1mxwpOw/s1600/nyuubachi_set.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/grind-ground-ground-grinding-3ae2e98fec.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "grind.png"
   },
   "grow|grew|grown|growing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/grow-grew-grown-growing-a5510dd9a8.png",
-    "sourceUrl": "https://www.irasutoya.com/2014/05/blog-post_9726.html",
-    "sourceTitle": "木の成長過程のイラスト",
-    "searchTerm": "成長",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAJAkt6r2L1fEkI-IdV_bDyk7APycg6zC_yMEQ5jIin327J87O37QiWzPQXreAJMKC0udWQYq7ZF24Khkvj8xlWYjBUQehxAjeFbBHMuNDBl0HgtB6PUlYrOlntlSLtGi-9uEvaXR2K_A/s1600/tree_seichou01.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/grow-grew-grown-growing-196a02e81d.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "grow.png"
   },
   "hang|hung|hung|hanging": {
-    "src": "assets/grammar-verbs/irasutoya/v1/hang-hung-hung-hanging-a55b6063f9.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/06/blog-post_802.html",
-    "sourceTitle": "てるてる坊主を吊るす ぴょこ のイラスト",
-    "searchTerm": "吊るす",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNegRVMjUt3x4REUGd-LAks_NjcHJlT-y-gk2o76_o3rV2QwZyVGLiVOuLkWxWR9ZOnRycbOdU-vabKj4d6IX7L2Hh_ai-b3frslaI0KCez6CzIjzKo_S-G6Z8FE6ATGK8Lpffo4uOS29f/s1600/pyoko06_teruterubouzu.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/hang-hung-hung-hanging-b833e817f0.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "hang.png"
   },
   "happen|happened|happened|happening": {
     "src": "assets/grammar-verbs/irasutoya/v1/happen-happened-happened-happening-503ab3c30e.png",
@@ -464,28 +380,19 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "hate|hated|hated|hating": {
-    "src": "assets/grammar-verbs/irasutoya/v1/hate-hated-hated-hating-02c7a17cbb.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/10/blog-post_267.html",
-    "sourceTitle": "お風呂が嫌いな子供のイラスト",
-    "searchTerm": "嫌い",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwz7qGA900tHeja1dKHttMwCkESn42hJGnEnfszH3l4LE7hcfRJiL-kZmvNb7vl3_AU4KjpG5fXT65hHb0uIBlnxLXnqK8njPwIYHc8LeQ06j9ZVVgXKUa_D_oRclbhaeR_4cIaHnuRl1f/s1600/ofuro_kirai_boy.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/hate-hated-hated-hating-c8aa3b30cf.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "hate.png"
   },
   "have|had|had|having": {
-    "src": "assets/grammar-verbs/irasutoya/v1/have-had-had-having-6d2f9f656d.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/12/blog-post_911.html",
-    "sourceTitle": "いろいろなペンライトを持つ人のイラスト（女性）",
-    "searchTerm": "持つ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGGwMvuSE_0wkyx33_tBu_PuViPU7t4D4M1vp4ozdfLLa56JrnbyI2bMRIB-cZ8O4i6_-s41nG0WJ-f_PNoyuFQqfju2qSetCUhRABhPa7hPTr2zyxC4aw80jLZlkA15rb6uucZIfwjB3U/s1600/penlight_woman01_blue.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/have-had-had-having-8a49e1fa6f.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "have.png"
   },
   "hear|heard|heard|hearing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/hear-heard-heard-hearing-4d7e4206aa.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/10/blog-post_251.html",
-    "sourceTitle": "交通安全の「止まる・見る・聞く・待つ」のイラスト（冬）",
-    "searchTerm": "聞く",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgntZ_vtCNPdTxumXwqPQlVeeRv12Flo5T-GDdtJHFk17vijC4wPyXrs8wl4Z75CaL4YYZVPjx9aeHpeJdh8uel8R6j_tpIfMJ6Ys0viBBHv1AaSdLZDa_lnYVy1BrsL03hhScdn1JMaulr/s1600/koutsu_anzen_winter1_tomaru.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/hear-heard-heard-hearing-93e143ff0a.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "hear.png"
   },
   "hide|hid|hidden|hiding": {
     "src": "assets/grammar-verbs/irasutoya/v1/hide-hid-hidden-hiding-c40fe15e81.png",
@@ -496,12 +403,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "hit|hit|hit|hitting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/hit-hit-hit-hitting-0630c6dad8.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/06/blog-post_120.html",
-    "sourceTitle": "ジャンベを叩く人のイラスト（女性）",
-    "searchTerm": "叩く",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicaMi7_vbALUKTBm_l7WXdK5RrYIXMRiKDCoIEYsYo36MzQkb1IQW2hcFcmpIKxAVwWbSev7feojt-siFze91jVrRVdV3smD8K9n7oIRPnoicmHcs8DCazJAdkZaFp-eXEL4MN4rLMqUDx/s1600/music_djembe_janbe_jambe_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/hit-hit-hit-hitting-636b56b2d1.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "hit.png"
   },
   "hold|held|held|holding": {
     "src": "assets/grammar-verbs/irasutoya/v1/hold-held-held-holding-018a4935f5.png",
@@ -512,20 +416,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "hop|hopped|hopped|hopping": {
-    "src": "assets/grammar-verbs/irasutoya/v1/hop-hopped-hopped-hopping-a116d445a3.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/10/blog-post_806.html",
-    "sourceTitle": "キノコの上を跳ねる ぴょこ のイラスト",
-    "searchTerm": "跳ねる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhblNRX-plBk4lE3WzP9nIyEsM4hh1Wp6vz3QP_o1aKshaxoys1k3yoXoBo1Ley1V2DcSWxrpnOwvaEor55I93-s4o9FHn_8BQvVjRh-LZGbWYTCfH-JV7eQrXSJRwafG8jNn4A8F9nPCGZ/s1600/pyoko11_kinoko.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/hop-hopped-hopped-hopping-2472e22513.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "hop.png"
   },
   "hurt|hurt|hurt|hurting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/hurt-hurt-hurt-hurting-f475fffdc6.png",
-    "sourceUrl": "https://www.irasutoya.com/2014/11/blog-post_304.html",
-    "sourceTitle": "腕の怪我を処置された男の子のイラスト",
-    "searchTerm": "怪我",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8N31TKBM_C9Oh4Qcyzd1QydoJw9q21VESeD33N9Yldvfch7pBR4rsXOxychXlsK6fxiq5_hhlTQs-ZG9LNuvSyKlXyjeq461Xe4H9cKjNfX6UhzXANsjJS2ITNuVkBJY5IjJ_jtTNYLuG/s1600/chiryou_syochi_boy.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/hurt-hurt-hurt-hurting-f67c0a942e.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "hurt.png"
   },
   "jump|jumped|jumped|jumping": {
     "src": "assets/grammar-verbs/irasutoya/v1/jump-jumped-jumped-jumping-8c54a4191f.png",
@@ -560,28 +458,19 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "know|knew|known|knowing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/know-knew-known-knowing-dcd83000f0.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/12/blog-post_782.html",
-    "sourceTitle": "「井の中の蛙大海を知らず」のイラスト",
-    "searchTerm": "知る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhs-iTSsovY4eKBRxZf_muD2XTloL76nN0qFhDyXsmKMLLJpScpZQV1vyIFejNInSIGv5bmGvORR02q03KinBhVuq_-uNnTmAP0ECWrKfAonw0fTV3XFGTcjz51IjEq8Q1GyKNX83N3lN88/s1600/kotowaza_inonaka_kawazu.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/know-knew-known-knowing-54fb27c9d3.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "know.png"
   },
   "lay|laid|laid|laying": {
-    "src": "assets/grammar-verbs/irasutoya/v1/lay-laid-laid-laying-9a563d3c32.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/04/blog-post_74.html",
-    "sourceTitle": "ドアの前に荷物を置く配達員のイラスト",
-    "searchTerm": "置く",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYM6bVITUi2ndjxbfblPzFqWD93o5-8m6RsARJZt3q0pLEMhG_SeaQ8-jHzEhJyvcNmu6BOusEAMLtfwv7kjmBGpTJfB6ArWszaN5bsYKOIjzdhWSIoMZ_HWdmXUnekLCPCdw76d8vZi1N/s1600/yuubin_takuhaiin_door_okihai.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/lay-laid-laid-laying-518ca456d7.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "lay.png"
   },
   "lead|led|led|leading": {
-    "src": "assets/grammar-verbs/irasutoya/v1/lead-led-led-leading-102a5cf8b3.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/01/blog-post_975.html",
-    "sourceTitle": "案内をする飼育員のイラスト（女性）",
-    "searchTerm": "案内",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyLjqmVkAj39zW3DC4YfuTWqREDsAceMzo3HQYT0b9fhO8pezMKz-QHzg2_Wx72wNHamLRs-jTCehIem6SQ_9V7W-ECivj0rZA540y-vv725KDIkEMRfnEGIh5VO6sndsgGsKWY1dOK88/s1600/job_shiikuin_woman_annai.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/lead-led-led-leading-afcc577984.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "lead.png"
   },
   "lean|leant|leant|leaning": {
     "src": "assets/grammar-verbs/irasutoya/v1/lean-leant-leant-leaning-241488f84b.png",
@@ -592,12 +481,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "leap|leapt|leapt|leaping": {
-    "src": "assets/grammar-verbs/irasutoya/v1/leap-leapt-leapt-leaping-8c54a4191f.png",
-    "sourceUrl": "https://www.irasutoya.com/2014/10/blog-post_765.html",
-    "sourceTitle": "ジャンプボールのイラスト（バスケットボール）",
-    "searchTerm": "ジャンプ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglTksKw0cLV_MbclDQsoA5fzZLTw-Ke7QeoYoyaeJlaTFLZ74TYQBl-F9UAhQrGXOZbNVmq33XUWbIcrXoUVu03xiknyAJrhEaLgKzxktF-12eV8fVDXxrhO2CN0YRlYRY-EqB4wIZDL2Q/s1600/basketball_jumpball.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/leap-leapt-leapt-leaping-3567a8c865.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "leap.png"
   },
   "learn|learnt|learnt|learning": {
     "src": "assets/grammar-verbs/irasutoya/v1/learn-learnt-learnt-learning-e3b59e6b9a.png",
@@ -608,52 +494,34 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "leave|left|left|leaving": {
-    "src": "assets/grammar-verbs/irasutoya/v1/leave-left-left-leaving-685f33e7a3.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/09/blog-post_188.html",
-    "sourceTitle": "ペットホテルのイラスト",
-    "searchTerm": "離れる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLY0xiOMf_AsUP53E1yKP7ycbeci0jvTDqCMipsuaXZMOO3njL-xhyphenhyphenDF3S0vclWZRpA-3_nZsaxJm3y5qwoVOzz-cRtS0DYlZZGk6UAK5IJq9pgy8Bx8WIfLJXISV0OvVkpugfBVYWDYg/s1600/pet_building_hotel.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/leave-left-left-leaving-cfe2ef1dd5.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "leave.png"
   },
   "lend|lent|lent|lending": {
-    "src": "assets/grammar-verbs/irasutoya/v1/lend-lent-lent-lending-a1663068da.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/03/blog-post_730.html",
-    "sourceTitle": "けが人に肩を貸す人のイラスト（女性）",
-    "searchTerm": "貸す",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTv0ulFQgno4ETZ9St51Y7T_4wHiR0Eix8YEADzK4E_Bsf46na_YTIpOA61DftS19tqc4I77eKnmBI5cczVtxYOCWgeh3nRsLKiJUU2faa-K2BFI8pNv3A7FVhDGer2s45UhGiScc287Q/s1600/friend_kata_kasu_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/lend-lent-lent-lending-2beca6e79f.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "lend.png"
   },
   "let|let|let|letting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/let-let-let-letting-c4dd4064ff.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/07/blog-post_85.html",
-    "sourceTitle": "東京特許許可局のイラスト",
-    "searchTerm": "許可",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiP219glDRTPTVCxbp2QorZxAaGgd1Kqblsduu2HzYx-ab31Lpd7ZCTJciA5qcK5MlxRoaxmWqMj9ig6B1ttMX8srTfhS9erg-HlNjMbIK0_XEYcvkllV6kKocaucWLKYPpcug9bQvwES40/s1600/hayakuchi_tokyo_tokkyo.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/let-let-let-letting-d22922fb5c.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "let.png"
   },
   "lie|lay|lain|lying": {
-    "src": "assets/grammar-verbs/irasutoya/v1/lie-lay-lain-lying-f525809bb7.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/07/blog-post_934.html",
-    "sourceTitle": "電車のドアの横に立つ人のイラスト",
-    "searchTerm": "横になる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEid0N9gmYbHI17JxXGmAFORXDeAKi5mWup6BFebKhqudrPVTL0xAEaQruThVPrCPMXL4U6P67vkLvk4B6sLvF31kPojbTN3b7zJpmattuolTje1-DHJr3uOBgT4gOOfOlOwc3eB6BSOknk5/s1600/train_door_gardian.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/lie-lay-lain-lying-fe5c983c18.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "lie(2).png"
   },
   "lie|lied|lied|lying": {
-    "src": "assets/grammar-verbs/irasutoya/v1/lie-lied-lied-lying-943d4b7fce.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/07/blog-post_711.html",
-    "sourceTitle": "エイプリルフールに嘘をつくウェブサイトのイラスト",
-    "searchTerm": "嘘をつく",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgK-psdrN1AiG5x6oDOaPSU0YTAZ5S5PlKJB_VQPYK7DvZ-9Io1yIcOxJiFwwPSUXbraXMrgh-LwJrEKS21UZqhAUUhqGCJQ8TNcCy3Pa8XeUg1K9Tq6NI7CbaaFCou8DxXeMx51vSqoMC4/s1600/aprilfools_website.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/lie-lied-lied-lying-34846f2c4b.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "lie.png"
   },
   "lose|lost|lost|losing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/lose-lost-lost-losing-784f3fd1e4.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/11/blog-post_213.html",
-    "sourceTitle": "ウイルスに負ける細胞のイラスト",
-    "searchTerm": "負ける",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikE56IqYdPnxWxb6ATQQn2mXnRIqS8NNtdEoledblplx66PkYe6EmRX7DoP4XwZK44kmjlt10sQQBT1o9GjkBPAnN14Ye6PLT5VBUWadKVC2XwKzXxWncN0fh_40JJNCNafJ4RYZyMczQ/s1600/medical_virus_saibou.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/lose-lost-lost-losing-ce899bc97c.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "lose.png"
   },
   "make|made|made|making": {
     "src": "assets/grammar-verbs/irasutoya/v1/make-made-made-making-8c0d2e90bd.png",
@@ -664,20 +532,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "mean|meant|meant|meaning": {
-    "src": "assets/grammar-verbs/irasutoya/v1/mean-meant-meant-meaning-49c103650a.png",
-    "sourceUrl": "https://www.irasutoya.com/2013/04/blog-post_7262.html",
-    "sourceTitle": "イグアノドンのイラスト（恐竜）",
-    "searchTerm": "意味",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcxwvhlTScySQRCHXvAqE9r_8uzCFm26-_c6wZ3_REdPPsHfPdyS4vsAtiJ6bw66dE7uklsAjMWhZzElNUIVjYieIstQZiO1tAwwZgOu9bT0BRVUm6us9MxBNkY6m7KOxd0U8Urvma52o/s1600/Iguanodon.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/mean-meant-meant-meaning-30e252070b.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "mean.png"
   },
   "meet|met|met|meeting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/meet-met-met-meeting-80e16da4e6.png",
-    "sourceUrl": "https://www.irasutoya.com/2019/06/blog-post_37.html",
-    "sourceTitle": "織姫と彦星のイラスト（ゆめかわ）",
-    "searchTerm": "会う",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZiupnCY1Rx6qfZStMgUQUpn1ys3nRH4k5voiVAEaQSnpEAe1emmRzj2EbeFRnfi91Z9oXI4Dqo2ZSSHdZoC_FJr0bzmxJBnFcebpo7AhQL_XFsHNizABL6la2oN2YEShPM6l1jPGekG2y/s1600/yumekawa_tanabata_couple.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/meet-met-met-meeting-9407e442f8.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "meet.png"
   },
   "mend|mended|mended|mending": {
     "src": "assets/grammar-verbs/irasutoya/v1/mend-mended-mended-mending-c381da1b5d.png",
@@ -704,20 +566,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "overtake|overtook|overtaken|overtaking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/overtake-overtook-overtaken-overtaking-751900702e.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/06/blog-post_38.html",
-    "sourceTitle": "いろいろな折れ線グラフのイラスト",
-    "searchTerm": "折れ線グラフ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUb4JCST8jijP3awcbI6ZEippcAUSY-Exw_rj7wLiTwKJqas-Bm8DV3kFWFNSlYeHcT3npRLM255IipeewkmRFNg-_5FlZS7_GopdiRzeilc8Uzb6MXxjJ6VD4praHt2k9eHdC6c78wmk/s1600/graph10_oresen1.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/overtake-overtook-overtaken-overtaking-b3d7a138dc.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "overtake.png"
   },
   "pay|paid|paid|paying": {
-    "src": "assets/grammar-verbs/irasutoya/v1/pay-paid-paid-paying-b3402c5109.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/05/blog-post_496.html",
-    "sourceTitle": "お金を支払う人のイラスト（男性会社員）",
-    "searchTerm": "支払う",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhAAazu8DS8Fje5DA3IlRTo2ITLJaM2VSFYIhH2vXyRSHp37Dzfc-VPhvniIm9LAwVzXlXyNZjLiy9WqjCHca6MBlcLV3yQolUZs8qS8vk1m6q6EOIVp3E9c3XPbyssrKM1xymfeQ1wFu8/s1600/shopping_shiharai_businessman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/pay-paid-paid-paying-171fe6994b.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "pay.png"
   },
   "play|played|played|playing": {
     "src": "assets/grammar-verbs/irasutoya/v1/play-played-played-playing-626b4978a9.png",
@@ -768,28 +624,19 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "repair|repaired|repaired|repairing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/repair-repaired-repaired-repairing-c381da1b5d.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/02/blog-post_828.html",
-    "sourceTitle": "靴を修理している人のイラスト",
-    "searchTerm": "修理",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBKJGWlBrE-WGifNpZFJlx0mBeUwhV2pDkuuWyJFiiGSW0ixNNjCem-r3xQmOqu7qCbK8GbGdrCZbEio2eBf416bXW2cP7H4ClmTszTg83CR0hSOfcs20mv90Jpkm_KpXjlmE0R7z4UMK7/s1600/shoes_kutsuya_syuri.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/repair-repaired-repaired-repairing-f27b9cf499.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "repair.png"
   },
   "ride|rode|ridden|riding": {
-    "src": "assets/grammar-verbs/irasutoya/v1/ride-rode-ridden-riding-bd17efb09b.png",
-    "sourceUrl": "https://www.irasutoya.com/2021/04/blog-post_723.html",
-    "sourceTitle": "悲しそうにブランコに乗る会社員のイラスト（女性）",
-    "searchTerm": "乗る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGq5yNeV6qPOjEHb_xlQvQEP7uH2FCeWv5FoF1t8ASwTtrlxqkqapXtKlHI_owsT41aWd0TVUXAC68vXAePW8xCf8j63_zWkO7ixgcQtXrPvu90m9dVbhvBkQsqSHTFW7rHpo48V6P1Psp/s1600/buranko_businesswoman_sad.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/ride-rode-ridden-riding-3754c1e58b.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "ride.png"
   },
   "ring|rang|rung|ringing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/ring-rang-rung-ringing-fbe21d58b2.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/09/blog-post_4.html",
-    "sourceTitle": "いろいろな携帯電話で話す人のイラスト",
-    "searchTerm": "電話",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhI4jQ7NQZGO-_mAKnm2SsweRnN6QQeEN0gGXfpMMhCDP6DrZtsdT0AXXV0DENYqsdnWFUZ44ZMJe1dXQuP78N77HXCrYTKwm1yubEXNWnSByg3eWukpNf7ghYwZOSI6rBVahSsq22ysr3j/s1600/smartphone_talk01_boy.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/ring-rang-rung-ringing-ea0ad9de07.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "ring.png"
   },
   "rise|rose|risen|rising": {
     "src": "assets/grammar-verbs/irasutoya/v1/rise-rose-risen-rising-7cd6283e33.png",
@@ -816,20 +663,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "say|said|said|saying": {
-    "src": "assets/grammar-verbs/irasutoya/v1/say-said-said-saying-af75f99baa.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/01/blog-post_46.html",
-    "sourceTitle": "「ご清聴ありがとうございました」と言う人のイラスト（男性）",
-    "searchTerm": "言う",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqhYkNOOmkrPBC9Hkf6xSAJRKW69eMOl3DdgGAPt-XrF_cSc4YhS3B7QVTc3XAP4zLLNnBbFvmRNGPAiTLEG6DaPbKalGOTPQpEGawmNtT2n62jfsPVpi3c1jGROshVKW37MNDTFXJdPV_/s1600/message_goseichou_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/say-said-said-saying-e7d8f270d0.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "say.png"
   },
   "see|saw|seen|seeing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/see-saw-seen-seeing-7debc918c7.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/06/blog-post_891.html",
-    "sourceTitle": "一緒にスマホを見る子供たちのイラスト",
-    "searchTerm": "見る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9LYlhK_71tJh9rH24H39zxavPFMQKLk2YX2TafQqx3jT2TEEy5wlfr8bmV_Fdqt1m-uQJ2_hTtr_MvSv4TfpzOyVJvTNqt6yApBQEnUUYmyKGJMkc4rma4L_mhEbNyrfrk1cXs74mIsk/s1600/smartphone_smile_boys.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/see-saw-seen-seeing-8b5fc6e3c6.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "see.png"
   },
   "seek|sought|sought|seeking": {
     "src": "assets/grammar-verbs/irasutoya/v1/seek-sought-sought-seeking-ed332a36a8.png",
@@ -840,12 +681,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "sell|sold|sold|selling": {
-    "src": "assets/grammar-verbs/irasutoya/v1/sell-sold-sold-selling-b63c558476.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/03/blog-post_223.html",
-    "sourceTitle": "不用品を売ろうとする人のイラスト（男性）",
-    "searchTerm": "売る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGzR9sRob8-UlJXYxm-rtBofBYTRYYv8NSAy51DaZCSdJBC-ez22O9-JChVwPoGdvVZAbSyfZ-94LKAFVwTwj53TlQ6zizk7bU-RMeu7JlYgv32VgHcGoxblYvndjz2wADUU0X3e7yM9A/s1600/money_fuyouhin_man_uru.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/sell-sold-sold-selling-fed569cb33.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "sell.png"
   },
   "send|sent|sent|sending": {
     "src": "assets/grammar-verbs/irasutoya/v1/send-sent-sent-sending-e55055a3a2.png",
@@ -856,12 +694,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "set|set|set|setting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/set-set-set-setting-715f43e121.png",
-    "sourceUrl": "https://www.irasutoya.com/2019/01/blog-post_52.html",
-    "sourceTitle": "高いハードルのイラスト（女性）",
-    "searchTerm": "設定",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSrXXBP3MVo7kltQDhVH-ugwDsPe9piG22AMs0hq2jOKl2iIj7IIyll9wUXPMGJCDYfNC7QnL1cFFF2TZ_b8sBXTfHUquN-tQdfiu42kAM-fzB2FxK0ZGyei26pCt2Cya7GqudnxAx5Kb2/s1600/hurdle_takai_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/set-set-set-setting-16381f1aca.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "set.png"
   },
   "sew|sewed|sewn|sewing": {
     "src": "assets/grammar-verbs/irasutoya/v1/sew-sewed-sewn-sewing-c8780c684f.png",
@@ -888,28 +723,19 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "shoot|shot|shot|shooting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/shoot-shot-shot-shooting-ebe0efff42.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/11/blog-post_81.html",
-    "sourceTitle": "撮影ボックスのイラスト",
-    "searchTerm": "撮影",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAZEStFYF9cJVufcDZVizSrfjE8HHEslX0o0RpwlQPObzBOYQMi6L_NDBNL1jJK62Pha9KpWMMJl13wUOPKCSjnFK7y7jjCiv8v8_3lKs2-EwaCt7Dq5lencbxc-gPBucy4HKsWC3yPsqM/s1600/camera_photo_booth_kani.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/shoot-shot-shot-shooting-175c2e076e.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "shoot.png"
   },
   "show|showed|shown|showing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/show-showed-shown-showing-1a39f55dcc.png",
-    "sourceUrl": "https://www.irasutoya.com/2019/07/blog-post_49.html",
-    "sourceTitle": "スマホの画面を見せる人のイラスト（スーツ）",
-    "searchTerm": "見せる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgqWWdfRfN2wR_NaO8DN_cwuqtlsMwVnreMmdQM7yg-GCjPa7y1JMPSOIoGd8h_2iU_io4PG9ifUdipYinTRaJ7QkBmc_loRR8DDF1wl7su-oCjBaJGm85M9AzL6unKi13OT3pjJ033iGK/s1600/smartphone_blank_businessman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/show-showed-shown-showing-198886e72b.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "show.png"
   },
   "shrink|shrank|shrunk|shrinking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/shrink-shrank-shrunk-shrinking-e765d00d4c.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/05/blog-post_73.html",
-    "sourceTitle": "しぼんだ風船のイラスト",
-    "searchTerm": "しぼむ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyJWIevBpL36tnUsJg9OB3V5FZAjuqZbzdKIRlY_ojM0EluVP0YDgV9H5nTK4ruecmNKKmbWkzF-wiZH8j7s25GHhLGiExXOMGyds338We04jDuvJzWYsVioesidutfzmoKGz3QaIK7ig/s1600/fuusen_shibomu.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/shrink-shrank-shrunk-shrinking-db16112a50.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "shrink.png"
   },
   "shut|shut|shut|shutting": {
     "src": "assets/grammar-verbs/irasutoya/v1/shut-shut-shut-shutting-23c4ca9211.png",
@@ -928,20 +754,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "sink|sank|sunk|sinking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/sink-sank-sunk-sinking-f2f65744cb.png",
-    "sourceUrl": "https://www.irasutoya.com/2019/01/blog-post_84.html",
-    "sourceTitle": "深海に沈むクジラの骨のイラスト",
-    "searchTerm": "沈む",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifLRaKdTI1KQVmbPTYBmS6DE-UA9cGpgiraxLiJmabVvM2s5B634CemZKBBN1cNqWJ0_QWRgE-fr8010lgH3vWCikdpIGSD5iT67ZYkt1XCu4qebKjU3onkTe2FJD2DAYo-uDlSbIKCW7p/s1600/shinkai_kujira_hone.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/sink-sank-sunk-sinking-0fd1b41fcd.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "sink.png"
   },
   "sit|sat|sat|sitting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/sit-sat-sat-sitting-47f3ce3a27.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/09/blog-post_56.html",
-    "sourceTitle": "パイプ椅子に座る学生のイラスト",
-    "searchTerm": "座る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9V8sbGaPG8Q1xohX5FrnwZ6ktJMOSFJ-gHuqBTStONpkoB7BtkrSc_v8zrHAe3Dcrz0yy7MLqKkSgvSDYv-S4XRGJxLLxApWkcAVj7o4ABNJmr230QPP7CY96TEEDqSV8799v3UCENesU/s1600/seijinshiki_pipeisu_seifuku.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/sit-sat-sat-sitting-c630f51a90.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "sit.png"
   },
   "slide|slid|slid|sliding": {
     "src": "assets/grammar-verbs/irasutoya/v1/slide-slid-slid-sliding-283663af7e.png",
@@ -952,12 +772,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "smell|smelt|smelt|smelling": {
-    "src": "assets/grammar-verbs/irasutoya/v1/smell-smelt-smelt-smelling-9635f83905.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/05/blog-post_423.html",
-    "sourceTitle": "食事中の香水の匂いを嫌がる人のイラスト",
-    "searchTerm": "匂い",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgvJuKOI10JD1LuzpUxHX_7dviw5KfmwLJ7d6Rs1P7mR2nzgdRlakwDQVtRg9igrMb9olnlxnD8gSlx6-Fa_MEU6RFzB_yFkYHjs4-7KejklCpEwdA0L80YPCR97H1tkUW1Tt91elVnjk/s1600/syokuji_couple_kousui.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/smell-smelt-smelt-smelling-7a6ef8c4c8.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "smell.png"
   },
   "sow|sowed|sown|sowing": {
     "src": "assets/grammar-verbs/irasutoya/v1/sow-sowed-sown-sowing-8e06df281f.png",
@@ -1008,12 +825,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "spin|spun|spun|spinning": {
-    "src": "assets/grammar-verbs/irasutoya/v1/spin-spun-spun-spinning-f0cf1b33a1.jpg",
-    "sourceUrl": "https://www.irasutoya.com/2018/09/blog-post_31.html",
-    "sourceTitle": "回転寿司のレーンのイラスト（空）",
-    "searchTerm": "回転",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgb_7GRvWw6VbB7eIbDdNpa6MzdF1bCld_ouVPxMehY1Qxe46Y93QDYQMx6kuzX6j_7jZosIqtR4aQtzOHdRzD6wdFItC0tR-gxNEeEW2C4zNgXaHTQlVj_E7ACCsnRFGhUweIWb98hTHiB/s1600/bg_kaitenzushi_empty.jpg",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/spin-spun-spun-spinning-ad7e91246c.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "spin.png"
   },
   "spit|spat|spat|spitting": {
     "src": "assets/grammar-verbs/irasutoya/v1/spit-spat-spat-spitting-a48cc28cf7.png",
@@ -1040,12 +854,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "spread|spread|spread|spreading": {
-    "src": "assets/grammar-verbs/irasutoya/v1/spread-spread-spread-spreading-fcddbab6e8.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/06/blog-post_672.html",
-    "sourceTitle": "両手を広げる警備員のイラスト",
-    "searchTerm": "広げる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgr2-W_y8GQhK7qzhMFmC2hJsF_igABvW8jBcJ0spgqnQAAsEnr98mU72W9fq7A_ppESRWok7XtLjS_BXRd4c8UnE8yz4X2jucU3nhNXe4BqWtYoSwdLUSdBAMNIhqiF2sbeDAv8VCRJLXe/s1600/pose_tomeru_keibiin.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/spread-spread-spread-spreading-155cc23748.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "spread.png"
   },
   "spring|sprang|sprung|springing": {
     "src": "assets/grammar-verbs/irasutoya/v1/spring-sprang-sprung-springing-a116d445a3.png",
@@ -1064,12 +875,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "start|started|started|starting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/start-started-started-starting-c6ede69742.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/08/blog-post_828.html",
-    "sourceTitle": "シンギュラリティのイラスト",
-    "searchTerm": "始める",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDv4ZuL46MgUZjwK8t_fm3_Eu7RmMQugrVjnfSuTgqYSzWC4YCLoKQ0xUpmcGAap6pvS-KEzIwobGVAEIneflNMy2K7YAGY3P4KPsf6xyPLeRd-qChmb-gFqj1pUEKWc48oAZSlQAPobVG/s1600/ai_oinukareru_singularity.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/start-started-started-starting-813189079a.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "start.png"
   },
   "steal|stole|stolen|stealing": {
     "src": "assets/grammar-verbs/irasutoya/v1/steal-stole-stolen-stealing-ed582e555c.png",
@@ -1080,20 +888,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "stick|stuck|stuck|sticking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/stick-stuck-stuck-sticking-ce27ee1a72.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/09/blog-post_178.html",
-    "sourceTitle": "貼るカイロのイラスト",
-    "searchTerm": "貼る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKbUgxzBYRaP8lvWwZFqeYhQGrYDmXN5rm-qN5lA-eGYQKW7eVGq3FfM7ZW54KK_tl8vwvsSLOtve1jjxFK2NLnuuJ62SZArp3hAo81PaMLlXdbdTWgdLFwArPexPks4N1fC3wJkiZwZ9P/s1600/winter_haru_kairo.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/stick-stuck-stuck-sticking-89f2818d8c.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "stick.png"
   },
   "sting|stung|stung|stinging": {
-    "src": "assets/grammar-verbs/irasutoya/v1/sting-stung-stung-stinging-b9ccc6969c.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/11/blog-post_894.html",
-    "sourceTitle": "竹串のイラスト",
-    "searchTerm": "刺す",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHnKF0l3AC7BwWCSpCrmtWmvAKO6e49lExItdINetFS2MBPKUu93E7NfiXLjp0-9KwHETUMRhfKkxLpqdZJbnY9RZs9SH7fW5W1RZvIm83PIB_7ePudrn8I33HKOUjIKw6CDBxseUoquvT/s1600/cooking_takegushi.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/sting-stung-stung-stinging-d56c48d8f2.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "sting.png"
   },
   "stink|stank|stunk|stinking": {
     "src": "assets/grammar-verbs/irasutoya/v1/stink-stank-stunk-stinking-4ebcc69e17.png",
@@ -1104,12 +906,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "stop|stopped|stopped|stopping": {
-    "src": "assets/grammar-verbs/irasutoya/v1/stop-stopped-stopped-stopping-4d7e4206aa.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/10/blog-post_251.html",
-    "sourceTitle": "交通安全の「止まる・見る・聞く・待つ」のイラスト（冬）",
-    "searchTerm": "止まる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgntZ_vtCNPdTxumXwqPQlVeeRv12Flo5T-GDdtJHFk17vijC4wPyXrs8wl4Z75CaL4YYZVPjx9aeHpeJdh8uel8R6j_tpIfMJ6Ys0viBBHv1AaSdLZDa_lnYVy1BrsL03hhScdn1JMaulr/s1600/koutsu_anzen_winter1_tomaru.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/stop-stopped-stopped-stopping-879c56ceb4.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "stop.png"
   },
   "strike|struck|struck|striking": {
     "src": "assets/grammar-verbs/irasutoya/v1/strike-struck-struck-striking-be68e34121.png",
@@ -1136,20 +935,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "swear|swore|sworn|swearing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/swear-swore-sworn-swearing-8c75ea2425.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/11/blog-post_875.html",
-    "sourceTitle": "影で笑う人のイラスト（女性）",
-    "searchTerm": "悪口",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDukumFUSXS0EzsZs5d0sZtuuO4RcqG2GnRXsJ3XpA31wB9uQ3DkLqgp-fEx0t5kXKPQJMxT7k0KDHZ70YrcZJB7-fSMpJI6oRBGaIT8WylE0jEUY_uKSYApzLccuqEcz-CksiXmX7n0Q/s1600/pose_kage_warau_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/swear-swore-sworn-swearing-5c57e35e57.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "swear.png"
   },
   "sweep|swept|swept|sweeping": {
-    "src": "assets/grammar-verbs/irasutoya/v1/sweep-swept-swept-sweeping-ca72c2d8d2.png",
-    "sourceUrl": "https://www.irasutoya.com/2012/11/blog-post_4708.html",
-    "sourceTitle": "掃除用具のイラスト「掃除機」",
-    "searchTerm": "掃除",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirAtrYBavRo47B3THpM3SaiCNYVcPTCDJAodEWtCYGtFBlslkOMvqGY_nqtsImlRgyhv44xzEyKOkhlyiZQgVZycBqG6xOHCjzpxUtJcM75XdR3Z1qrSicLRbEgsW0hHCc5HMeCKw04vU/s1600/oosouji_soujiki.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/sweep-swept-swept-sweeping-610781cb02.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "sweep.png"
   },
   "swim|swam|swum|swimming": {
     "src": "assets/grammar-verbs/irasutoya/v1/swim-swam-swum-swimming-3b83b2790c.png",
@@ -1168,12 +961,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "take|took|taken|taking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/take-took-taken-taking-364772d2a2.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/12/blog-post_962.html",
-    "sourceTitle": "点呼を取る作業員のイラスト",
-    "searchTerm": "取る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhNqccseD03xzDcNQRm-d2PfqVkppoTTC3kjxq4njPFFDb_3OZI0HXKQzOGVUDwvZBMRV0fKOHeSejpJQ_zkSEHuHDLwkGnp2BfUeUI2w-5kQ6NWRpmKffskRUVPCfHxX61enad7t1z0CCu/s1600/sagyouin_tenko.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/take-took-taken-taking-dfae8c8b01.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "take.png"
   },
   "teach|taught|taught|teaching": {
     "src": "assets/grammar-verbs/irasutoya/v1/teach-taught-taught-teaching-777104f337.png",
@@ -1184,28 +974,19 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "tear|tore|torn|tearing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/tear-tore-torn-tearing-0cc4fc02d2.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/12/blog-post_15.html",
-    "sourceTitle": "自分の殻を破る人のイラスト",
-    "searchTerm": "破る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiwDMqPxi6rlWDlNcceyR_gMkYyCsewRMr0QiqLs_Q6ykIKhY2gCVgSKdxEyxZQAy6iOSZRU6sAjYcPvaD_QpXQAnSZUWj5YDAT220bQSdggh-6ymTU-29MfBq8mElqA-34oS1eOak0qtD/s1600/kara_waru_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/tear-tore-torn-tearing-07406a6724.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "tear.png"
   },
   "tell|told|told|telling": {
-    "src": "assets/grammar-verbs/irasutoya/v1/tell-told-told-telling-57b4374c7d.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/02/blog-post_340.html",
-    "sourceTitle": "カップルの写真シールのイラスト",
-    "searchTerm": "伝える",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9ZuGuf_u1jLoKDlrYYddMPjEGcYvecwPZbXd7rTT3CENg0cGx26f6LQrEsWDNH6cSFtsUTgfGwleNX_0We0Ru3iE6f5gIRQfztKhyphenhyphenfmD8R12yJn0QUberEetL7jQ7MPU3PWWzNGe0CZak/s1600/purikura_couple.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/tell-told-told-telling-76e5f8e7b7.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "tell.png"
   },
   "think|thought|thought|thinking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/think-thought-thought-thinking-d71b7284bd.png",
-    "sourceUrl": "https://www.irasutoya.com/2014/02/blog-post_28.html",
-    "sourceTitle": "考える人のイラスト",
-    "searchTerm": "考える",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcuypX2JbyiD4JVxLKSb-wEau7GHS1WjK4ITmIk2QYGzwwRhYGidjl1FWbb6OeBRYS2bJEQEDxjnMvsGuB895DBHn9bb_2L5BfBTnNRkkO2TTWu94h7TAHYt38pX2pwnBRfg9Npy9EUySq/s1600/kangaeruhito.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/think-thought-thought-thinking-b1c97296fe.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "think.png"
   },
   "throw|threw|thrown|throwing": {
     "src": "assets/grammar-verbs/irasutoya/v1/throw-threw-thrown-throwing-71b443d942.png",
@@ -1224,12 +1005,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "turn|turned|turned|turning": {
-    "src": "assets/grammar-verbs/irasutoya/v1/turn-turned-turned-turning-b3b43a2020.png",
-    "sourceUrl": "https://www.irasutoya.com/2021/09/blog-post_677.html",
-    "sourceTitle": "目が回る人のイラスト（女性）",
-    "searchTerm": "回る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEkZ8P1hMxDgrn_kJQf1FkdhKanELDHSb9QoDWgvHKx7avEZfz1Dol5_lYkVf-EYr2WzSyfKBCWQXWI7mXTiea8n4EWP9ONEFZUwa7Ry5pHdNECP8ajvSZMZOtQ1Oji59hGD3dVmV-m5L7/s1600/guruguru_megamawaru_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/turn-turned-turned-turning-8584eb9281.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "turn.png"
   },
   "understand|understood|understood|understanding": {
     "src": "assets/grammar-verbs/irasutoya/v1/understand-understood-understood-understanding-17d22c241d.png",
@@ -1336,12 +1114,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "work|worked|worked|working": {
-    "src": "assets/grammar-verbs/irasutoya/v1/work-worked-worked-working-c762ee32cc.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/12/blog-post_369.html",
-    "sourceTitle": "働く障害者のイラスト（バラバラ）",
-    "searchTerm": "働く",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigejw1KmC3NcavwSc0Ok7DAfr1jgRC3xIHV6azBrflKY0f7gjolvjPgjDVXKLREEZpPSxPTOjr4SUm6-kzAFzj72Xodp5ruMyP2NVwWkiRyl269QAVnqBMv7JA4InX2IxBNr9c8AGlCvEV/s1600/business_syougai_syakaijin1.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/work-worked-worked-working-c06ac05615.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "work.png"
   },
   "write|wrote|written|writing": {
     "src": "assets/grammar-verbs/irasutoya/v1/write-wrote-written-writing-57db81274f.png",
@@ -1360,36 +1135,24 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "answer|answered|answered|answering": {
-    "src": "assets/grammar-verbs/irasutoya/v1/answer-answered-answered-answering-13ebe070a3.png",
-    "sourceUrl": "https://www.irasutoya.com/2019/10/blog-post_78.html",
-    "sourceTitle": "アンケートに答える人のイラスト（女性）",
-    "searchTerm": "答える",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiotsolsUjCBoIvB_Eaz99chrYSsIrqSKn9NbBkAMIjeBxN5CEqVrWRLt-qUZ0F3cqLGhE3SaVvHTHXnc5T_IkJuWoEiHpPui-RVSkAZMUiyDn8FJhO6dt9QmquC-i2HRkpzRqyPsSIKYJ9/s1600/qa_clipborad_anke-to_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/answer-answered-answered-answering-047e96dcb6.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "answer.png"
   },
   "appear|appeared|appeared|appearing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/appear-appeared-appeared-appearing-72cc194754.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/01/blog-post_33.html",
-    "sourceTitle": "紅葉前線のイラスト",
-    "searchTerm": "現れる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmLHqDXp156ByjO3M4feHBqmUZ8gjxyYNshpISLc_41KywdhYBgA8YvyeuZF5cX-RXFVJgx0YmX2mBAWZadrBpea97y7aLGee6OJwh_e52nFl48Wh2pcYiAKrBK3H85wsW9JtwE9U4XIR7/s1600/kouyou_zensen.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/appear-appeared-appeared-appearing-4849beddbf.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "appear.png"
   },
   "arrive|arrived|arrived|arriving": {
-    "src": "assets/grammar-verbs/irasutoya/v1/arrive-arrived-arrived-arriving-a0233f10f0.png",
-    "sourceUrl": "https://www.irasutoya.com/2013/05/blog-post_7748.html",
-    "sourceTitle": "小さな駅のイラスト",
-    "searchTerm": "到着",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiF0pSlVG-cTmI3RuY6QhJAHKWldDUa6Rhiv44uoT1MVk8h78oXZbcv9pbZPVA3kaRMk94Z6gZ64g-nykg1ifklAA8hKTqSyNbfauclnx6nUtHfhBGd3abv89WhLMNvcSH4Kc7-Y-xbsek/s1600/tatemono_station.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/arrive-arrived-arrived-arriving-752adefcc0.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "arrive.png"
   },
   "ask|asked|asked|asking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/ask-asked-asked-asking-b855249712.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/12/blog-post_399.html",
-    "sourceTitle": "職務質問のイラスト",
-    "searchTerm": "質問",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS1Wlzu_kNiRaiZHub8qPfovW05k8Wt83nNpTwZ7ED1ioxrYrv6_Q1E7FegnWmeurkv2YI8WukLJdNG6FSeKGiG_4D4unxkKdaiTgVpxTjuyYlPlcWnCHf2yosB4P3a_yXQWb7GpcDY_Q/s1600/police_syokumu_shitsumon.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/ask-asked-asked-asking-f8c1568c7e.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "ask.png"
   },
   "believe|believed|believed|believing": {
     "src": "assets/grammar-verbs/irasutoya/v1/believe-believed-believed-believing-0bea7b183c.png",
@@ -1416,20 +1179,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "carry|carried|carried|carrying": {
-    "src": "assets/grammar-verbs/irasutoya/v1/carry-carried-carried-carrying-a955f29ed4.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/06/blog-post_724.html",
-    "sourceTitle": "空港で荷物を運ぶ作業員のイラスト（女性）",
-    "searchTerm": "運ぶ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC7jG_Sx5Exo_303jwcUg7XuVa5G68drfjekcIRnrDSCkAiSDcznyodFAJtS_xe7X7lUnj909ZosaRsrE4W78r1WWdvsO4X3HM899nKqj2HsLMjSA5KBIKW_8MtYnQEywguxvgpOz-4qAq/s1600/job_ground_handling_staff_nimotsu_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/carry-carried-carried-carrying-13717e7323.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "carry.png"
   },
   "change|changed|changed|changing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/change-changed-changed-changing-1b9d235860.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/10/blog-post_276.html",
-    "sourceTitle": "ヘリウムガスで声を変える男の子のイラスト",
-    "searchTerm": "変える",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5_fS6_hkof_ZAhZYPu3Q9Szm7c2FIMzNvxRBSn8Pva0_T1qFGxgi17OUt-8ULR70DCvjrcvkK8UJ9na9pw66eOmsFDChekeulrQVBF87RubBmS856OFAadvuok5pvJuVufsI8K1dYFyt4/s1600/toy_helium_gas_voice.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/change-changed-changed-changing-4d06c2da60.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "change.png"
   },
   "check|checked|checked|checking": {
     "src": "assets/grammar-verbs/irasutoya/v1/check-checked-checked-checking-679fe6080a.png",
@@ -1448,36 +1205,24 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "clean|cleaned|cleaned|cleaning": {
-    "src": "assets/grammar-verbs/irasutoya/v1/clean-cleaned-cleaned-cleaning-ca72c2d8d2.png",
-    "sourceUrl": "https://www.irasutoya.com/2012/11/blog-post_4708.html",
-    "sourceTitle": "掃除用具のイラスト「掃除機」",
-    "searchTerm": "掃除",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirAtrYBavRo47B3THpM3SaiCNYVcPTCDJAodEWtCYGtFBlslkOMvqGY_nqtsImlRgyhv44xzEyKOkhlyiZQgVZycBqG6xOHCjzpxUtJcM75XdR3Z1qrSicLRbEgsW0hHCc5HMeCKw04vU/s1600/oosouji_soujiki.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/clean-cleaned-cleaned-cleaning-f1bc82885c.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "clean.png"
   },
   "close|closed|closed|closing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/close-closed-closed-closing-23c4ca9211.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/06/blog-post_364.html",
-    "sourceTitle": "便座を閉める子供のイラスト",
-    "searchTerm": "閉める",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5cZgyav8FgLlM9didLTbmUMmhh28I6iCpHITKt0M5Ho8UWU2HalexLMFWVRU7Hl0UP78-pSYY8h_ovDY2gO2myjUAiAYeW0MIfPAY6G73qE1npE4qzjiipUmnIGBHoN_Cbenkqge-np0/s1600/toilet_benza_shimeru_girl.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/close-closed-closed-closing-a21e883e69.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "close.png"
   },
   "collect|collected|collected|collecting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/collect-collected-collected-collecting-516682c2c2.png",
-    "sourceUrl": "https://www.irasutoya.com/2014/10/blog-post_787.html",
-    "sourceTitle": "砂を集める高校球児のイラスト（野球）",
-    "searchTerm": "集める",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwXkV5G0rfb0pdSZwuzhny61okKtqpv_95QKp2rVyCI9FyqNY7ttw3MFtR6DTFSmNkr_dhtOtEcr58OJIEaknGwMvFoux8wcNtOtIEEg0IC-HcBaByrDA6Bd9GDVsYATw0OLe3Qx3jMnK-/s1600/baseball_koushien_suna.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/collect-collected-collected-collecting-315d382fe7.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "collect.png"
   },
   "compare|compared|compared|comparing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/compare-compared-compared-comparing-d976ba7e64.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/05/blog-post_71.html",
-    "sourceTitle": "白紙のボードを比較している人のイラスト（女性）",
-    "searchTerm": "比較",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjksnHjnlqveDAtE06j18DL20OgHfDoaqU84ZyOEMBmkCXcFlEXeIlXG0sQTbC6XBgF8ctdVJJfCz50VsDEpD8vtt9Ydw61-kCb9I-BqQ11y3eHfFLu5r18xiN-uuy8EB6N2bHI1zFWnw/s1600/hikaku_board_woman.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/compare-compared-compared-comparing-847ca19d13.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "compare.png"
   },
   "complain|complained|complained|complaining": {
     "src": "assets/grammar-verbs/irasutoya/v1/complain-complained-complained-complaining-0b9a98e490.png",
@@ -1488,20 +1233,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "cook|cooked|cooked|cooking": {
-    "src": "assets/grammar-verbs/irasutoya/v1/cook-cooked-cooked-cooking-ee93d19099.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/04/blog-post_4.html",
-    "sourceTitle": "料理研究家のイラスト",
-    "searchTerm": "料理",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLpd9fOyWqRsQ8dsLtlkd1Ey_p8HhRDNiY0GPrhGPndX53GFZDpDLMXujiP-mbEaTJoqJQwAYWURL64mf-psuoz5-_bbw0k9fhFfndaE8fNvLSzL-hloyx0AIGRZU57hypQIUJ8itXvJS1/s1600/job_cooking_ryouri_kenkyuka.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/cook-cooked-cooked-cooking-0c8dae74d3.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "cook.png"
   },
   "cross|crossed|crossed|crossing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/cross-crossed-crossed-crossing-bd5782f70b.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/04/blog-post_371.html",
-    "sourceTitle": "横断歩道の前で止まる車のイラスト",
-    "searchTerm": "横断",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWbsb5XOH1MBFdIOT3_Y7v56vKGW6uYj6IHFb5TtF4OGgZqHyYX7YcRom2c9q9lcKhRopW3kxTz_zWqnbSmiHwoy372B8apkLvL6U_e7H3r8geuBfaHa0wKwOuDSi8PJAEi0UfN8dVHjjr/s1600/car_oudanhodou_mokushi.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/cross-crossed-crossed-crossing-d1ed33e8c1.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "cross.png"
   },
   "cry|cried|cried|crying": {
     "src": "assets/grammar-verbs/irasutoya/v1/cry-cried-cried-crying-e289ec9064.png",
@@ -1512,12 +1251,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "dance|danced|danced|dancing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/dance-danced-danced-dancing-1c66d99806.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/07/blog-post_0.html",
-    "sourceTitle": "体育でダンスを踊る生徒のイラスト （バラバラ）",
-    "searchTerm": "踊る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgm9D2yOySOj5id3rCbS0k_6Gryadqv2iK6lRmvt2J3ARpcuGoMxWqf9Y1GKWGaQkImCvK4DJaVOTCgjRV14xfY-ZrUuUAFOZQGE8wHFDr1cYXZqiip4uvl8KGtha1ub65UV9y-NvG1ebqb/s1600/dance_taiiku1.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/dance-danced-danced-dancing-2cd3736d8b.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "dance.png"
   },
   "decide|decided|decided|deciding": {
     "src": "assets/grammar-verbs/irasutoya/v1/decide-decided-decided-deciding-709ab8539c.png",
@@ -1576,12 +1312,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "finish|finished|finished|finishing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/finish-finished-finished-finishing-3dbea345b2.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/05/blog-post_671.html",
-    "sourceTitle": "終わらないオンライン飲み会のイラスト（男性）",
-    "searchTerm": "終わる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3NeSZdUAJjPtWrvHQfcNkqPoRfCl8wjGLMxpmzhCLTV78zmPItp4Se_S7H8dgVXGnTz8GdWl-EU4gXyaljwvcOUpSmHl_XdLurcl-yBjCTETs6SjQKj3zkh-XeQH11GOIUHKI8WZaxTXS/s1600/online_nomikai_owaranai_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/finish-finished-finished-finishing-d6c4794f04.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "finish.png"
   },
   "follow|followed|followed|following": {
     "src": "assets/grammar-verbs/irasutoya/v1/follow-followed-followed-following-bb45039281.png",
@@ -1608,12 +1341,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "improve|improved|improved|improving": {
-    "src": "assets/grammar-verbs/irasutoya/v1/improve-improved-improved-improving-26d6a89aec.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/05/blog-post_16.html",
-    "sourceTitle": "労働組合のイラスト（真剣）",
-    "searchTerm": "改善",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFkTFMVJnN_R2S2YQdudNTasZHnF-B52zvLal4lZZj8S5okRgOsfecU8Ea9YlTG68DN-URHQIJuXZX8pI90rjXZvn8KpuaKPUEybHE98uK1fOzoXlb0UKXUaZSod9mESvpDhsYiECw0m-6/s1600/company_roudou_kumiai_shinken.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/improve-improved-improved-improving-8ea9556aef.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "improve.png"
   },
   "include|included|included|including": {
     "src": "assets/grammar-verbs/irasutoya/v1/include-included-included-including-b6bec33821.png",
@@ -1632,12 +1362,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "laugh|laughed|laughed|laughing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/laugh-laughed-laughed-laughing-d2e139933b.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/02/5_27.html",
-    "sourceTitle": "笑う男性のイラスト（5段階）",
-    "searchTerm": "笑う",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-7qlPeoRiygQnQV1pGY_Te559wqEyCpzkjEEblXYKckpr7u6iCptX8G_WkZCFrqxCihyphenhyphenMr0LppI616rNIP9-VRJjNoC8OR-gsc5vUYS1OTsBCY_7KtykXRXn2sTHlpyIfqhL0zutsXM3w/s1600/face_smile_man1.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/laugh-laughed-laughed-laughing-636b42f1c8.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "laugh.png"
   },
   "like|liked|liked|liking": {
     "src": "assets/grammar-verbs/irasutoya/v1/like-liked-liked-liking-53d0137609.png",
@@ -1648,12 +1375,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "listen|listened|listened|listening": {
-    "src": "assets/grammar-verbs/irasutoya/v1/listen-listened-listened-listening-4d7e4206aa.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/10/blog-post_251.html",
-    "sourceTitle": "交通安全の「止まる・見る・聞く・待つ」のイラスト（冬）",
-    "searchTerm": "聞く",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgntZ_vtCNPdTxumXwqPQlVeeRv12Flo5T-GDdtJHFk17vijC4wPyXrs8wl4Z75CaL4YYZVPjx9aeHpeJdh8uel8R6j_tpIfMJ6Ys0viBBHv1AaSdLZDa_lnYVy1BrsL03hhScdn1JMaulr/s1600/koutsu_anzen_winter1_tomaru.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/listen-listened-listened-listening-c3b4aaf0fb.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "listen.png"
   },
   "live|lived|lived|living": {
     "src": "assets/grammar-verbs/irasutoya/v1/live-lived-lived-living-1c1098aea5.png",
@@ -1680,12 +1404,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "move|moved|moved|moving": {
-    "src": "assets/grammar-verbs/irasutoya/v1/move-moved-moved-moving-4a33d6cbad.png",
-    "sourceUrl": "https://www.irasutoya.com/2015/06/blog-post_849.html",
-    "sourceTitle": "引っ越しの挨拶のイラスト",
-    "searchTerm": "引っ越し",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLJu9-hr-fWwuR6ocnhABNIu83E-EYiAE5Nd_WP0BUjCchnPvajgWern0ny3VUObyD6bbaWOWInrBschZZooxwDKZ2jNnvBp-JkrXmubos6O-cHGUy4U30DFu9jyQPkjcLZpjVqsdaJOY/s1600/hikkoshi_goaisatsu.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/move-moved-moved-moving-6b4ece988e.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "move.png"
   },
   "need|needed|needed|needing": {
     "src": "assets/grammar-verbs/irasutoya/v1/need-needed-needed-needing-5dd568a3b7.png",
@@ -1720,20 +1441,14 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "practise|practised|practised|practising": {
-    "src": "assets/grammar-verbs/irasutoya/v1/practise-practised-practised-practising-387f974cfb.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/06/blog-post_1.html",
-    "sourceTitle": "傘でゴルフの練習をする人のイラスト",
-    "searchTerm": "練習",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiriTmGlFfKdApqZrF-GxCjMe0_V_3UeJMf3ujbAh68leYWnYMB3N8_KNmD-kWMEkoDpApoHm3KstIUhw7JjVR-59KdqCYPTwLfgj3HEorr9gxBfXdjBQioW0z8QqQMymmTGbundN25Mfe7/s1600/kasa_golf.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/practise-practised-practised-practising-dbd5f87fcd.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "practise.png"
   },
   "prefer|preferred|preferred|preferring": {
-    "src": "assets/grammar-verbs/irasutoya/v1/prefer-preferred-preferred-preferring-1324c9d5c4.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/03/blog-post_134.html",
-    "sourceTitle": "メニューを選ぶ家族のイラスト",
-    "searchTerm": "選ぶ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-GNe8dZ2bEl7IDdL1eTYM5YCIwjZtfi5EWnzKRTRLLcZ4zWadNetIwgjvcFCQ7KmujRKZV8cDKhQxn8IrXUb6moulM2Q4-SOu7vIngTjjqCL-aPoK4sFhH7oOl7t5sBT1w5PKEq9SP-os/s1600/menu_chumon_family.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/prefer-preferred-preferred-preferring-87f51430e1.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "prefer.png"
   },
   "prepare|prepared|prepared|preparing": {
     "src": "assets/grammar-verbs/irasutoya/v1/prepare-prepared-prepared-preparing-089165e538.png",
@@ -1744,12 +1459,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "promise|promised|promised|promising": {
-    "src": "assets/grammar-verbs/irasutoya/v1/promise-promised-promised-promising-f29b6fca94.png",
-    "sourceUrl": "https://www.irasutoya.com/2019/06/blog-post_68.html",
-    "sourceTitle": "約束手形のイラスト",
-    "searchTerm": "約束",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyuLEEkeL8Skb9bvnmk9md8SRVlv0MoRlweoVCaN_kKA002M6Lqjc64W8PNoj2oKCi2-2boFZMTxCwMoNmDyFcOIxvH8YUfCngR8dcRsezjuSY4PhTP2V6SGR4dokSp_bJL1OOzNI3zFoc/s1600/money_yakusoku_tegata.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/promise-promised-promised-promising-0f3015a595.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "promise.png"
   },
   "rain|rained|rained|raining": {
     "src": "assets/grammar-verbs/irasutoya/v1/rain-rained-rained-raining-a4c1773210.png",
@@ -1760,12 +1472,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "receive|received|received|receiving": {
-    "src": "assets/grammar-verbs/irasutoya/v1/receive-received-received-receiving-bad7eaf246.png",
-    "sourceUrl": "https://www.irasutoya.com/2020/05/blog-post_49.html",
-    "sourceTitle": "置き配の出前を受け取る人のイラスト",
-    "searchTerm": "受け取る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0XaMNynRXdOoxqjEnFDPCd0octiJ11a6pg0FH-zBpGeSAkq7VRw9EXnAmmK1L8QX-9usGOO46ZKII-vi1jhBLSgb5dmXBPeXR9KTHMi8pF3KonirO7RKGhTonPymqz2PH8KhBmwL03mTD/s1600/demae_okihai_uketoru_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/receive-received-received-receiving-58f258f150.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "receive.png"
   },
   "remember|remembered|remembered|remembering": {
     "src": "assets/grammar-verbs/irasutoya/v1/remember-remembered-remembered-remembering-180aefb8e1.png",
@@ -1808,12 +1517,9 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "share|shared|shared|sharing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/share-shared-shared-sharing-3ce8283722.png",
-    "sourceUrl": "https://www.irasutoya.com/2017/06/blog-post_5.html",
-    "sourceTitle": "アイディアの共有のイラスト",
-    "searchTerm": "共有",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjp89tmNvEuQv2lGriuPH5rwYktL1Xs1yX5We9eMt7BmD0XtWcrgqRJ4qjGXaTIsrlaVBGsH3xxxz5xz1-DNdvmVvuryyo38f09DAglEvCJzMf-snM0QWa7wYTQY6QUcZ6ntXGW1S_qKkWG/s1600/business_idea_share.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/share-shared-shared-sharing-40fb2ff152.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "share.png"
   },
   "stay|stayed|stayed|staying": {
     "src": "assets/grammar-verbs/irasutoya/v1/stay-stayed-stayed-staying-9ba7814f67.png",
@@ -1856,36 +1562,24 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "wait|waited|waited|waiting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/wait-waited-waited-waiting-4d7e4206aa.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/10/blog-post_251.html",
-    "sourceTitle": "交通安全の「止まる・見る・聞く・待つ」のイラスト（冬）",
-    "searchTerm": "待つ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgntZ_vtCNPdTxumXwqPQlVeeRv12Flo5T-GDdtJHFk17vijC4wPyXrs8wl4Z75CaL4YYZVPjx9aeHpeJdh8uel8R6j_tpIfMJ6Ys0viBBHv1AaSdLZDa_lnYVy1BrsL03hhScdn1JMaulr/s1600/koutsu_anzen_winter1_tomaru.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/wait-waited-waited-waiting-cea7434606.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "wait.png"
   },
   "watch|watched|watched|watching": {
-    "src": "assets/grammar-verbs/irasutoya/v1/watch-watched-watched-watching-7debc918c7.png",
-    "sourceUrl": "https://www.irasutoya.com/2018/06/blog-post_891.html",
-    "sourceTitle": "一緒にスマホを見る子供たちのイラスト",
-    "searchTerm": "見る",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9LYlhK_71tJh9rH24H39zxavPFMQKLk2YX2TafQqx3jT2TEEy5wlfr8bmV_Fdqt1m-uQJ2_hTtr_MvSv4TfpzOyVJvTNqt6yApBQEnUUYmyKGJMkc4rma4L_mhEbNyrfrk1cXs74mIsk/s1600/smartphone_smile_boys.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/watch-watched-watched-watching-6aa09f6673.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "watch.png"
   },
   "worry|worried|worried|worrying": {
-    "src": "assets/grammar-verbs/irasutoya/v1/worry-worried-worried-worrying-363533c342.png",
-    "sourceUrl": "https://www.irasutoya.com/2021/06/blog-post2-1.html",
-    "sourceTitle": "ワクチンの心配をする人のイラスト（白衣）",
-    "searchTerm": "心配",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEih17ZnZxmKlB5m44PsTU79T4yliZN8IRcBuRE9MAcJVqs5ZvU3f4_y29kjo0i17_7tM2fMkLt5xikv2Ehor8EInLz4xBC3y2g5qoSjhm-vGjZsPSfdAashQEGdHXnfCE5LOGdlF4X12Y3w/s1600/vaccine_shinpai_doctor_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/worry-worried-worried-worrying-0cd8df8dff.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "worry.png"
   },
   "invite|invited|invited|inviting": {
-    "src": "assets/grammar-verbs/irasutoya/v1/invite-invited-invited-inviting-76ce9bdc62.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/11/blog-post_929.html",
-    "sourceTitle": "歓送迎会のイラスト（男性会社員）",
-    "searchTerm": "歓迎会",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqOvT9CiqNKhr9Q52sABbohyHaOuRTE7apoBpyVTOoqbR5apE3OGtAw6nB4SkRSJebnGmWoV2Uf-IdRvIx07umSjNKzvvV-rVQtXVwGf_k12dYQays0gVLPD0AGhBdSyow28ej_GwUG13e/s1600/party_kansougeikai_business_man.png",
-    "licenseUrl": "https://www.irasutoya.com/p/terms.html"
+    "src": "assets/grammar-verbs/teacher/v1/invite-invited-invited-inviting-9d25dd49a3.jpg",
+    "sourceType": "teacher-provided",
+    "sourceFile": "invite.jpg"
   },
   "pick|picked|picked|picking": {
     "src": "assets/grammar-verbs/irasutoya/v1/pick-picked-picked-picking-5dc8aba5c3.png",
