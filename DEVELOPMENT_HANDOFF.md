@@ -394,6 +394,12 @@ adb install -r build/app/outputs/flutter-apk/app-debug.apk
 adb shell monkey -p com.enguistics.dope_english 1
 ```
 
+The native login screen was then updated to match the original Basic Grammar
+Game login treatment: a centred white teal-dashed frame, yellow `Student
+Account` label, yellow status panel, cream paper inputs, and yellow pill login
+button. The updated debug APK was installed on ASUS and verified after clearing
+the test app data; no student/Firebase data was deleted.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:

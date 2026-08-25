@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
+import '../../core/widgets/stationery_frame.dart';
 import 'student_auth_controller.dart';
 
 class StudentLoginScreen extends StatefulWidget {
@@ -59,71 +61,138 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppPalette.background,
+      backgroundColor: const Color(0xFFB9C1C2),
       resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          padding: const EdgeInsets.fromLTRB(18, 14, 18, 12),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 560),
-              child: Column(
-                children: [
-                  const _LoginHeader(),
-                  const SizedBox(height: 12),
-                  _LoginStatus(
-                    message: widget.controller.message,
-                    isError: widget.controller.status ==
-                            StudentAuthStatus.unavailable ||
-                        widget.controller.message.contains('不正確') ||
-                        widget.controller.message.contains('未能') ||
-                        widget.controller.message.contains('請輸入正確'),
-                  ),
-                  const SizedBox(height: 10),
-                  _LoginFields(
-                    studentIdController: _studentIdController,
-                    pinController: _pinController,
-                    studentIdFocusNode: _studentIdFocusNode,
-                    pinFocusNode: _pinFocusNode,
-                    onSubmit: _login,
-                  ),
-                  const SizedBox(height: 12),
-                  FilledButton(
-                    key: const Key('student-login-button'),
-                    onPressed: widget.controller.isSubmitting ? null : _login,
-                    style: FilledButton.styleFrom(
-                      minimumSize: const Size.fromHeight(52),
-                      backgroundColor: AppPalette.secondary,
-                      foregroundColor: const Color(0xFF594512),
-                      disabledBackgroundColor: AppPalette.border,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                        side: const BorderSide(
-                          color: AppPalette.secondaryDark,
-                          width: 2,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          const _BlurredGrammarBackdrop(),
+          SafeArea(
+            child: SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              padding: const EdgeInsets.fromLTRB(18, 18, 18, 24),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 560),
+                  child: StationeryFrame(
+                    padding: const EdgeInsets.fromLTRB(22, 22, 22, 24),
+                    backgroundColor: AppPalette.paper,
+                    radius: 24,
+                    ringWidth: 5,
+                    shadowDepth: 7,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const _LoginHeader(),
+                        const SizedBox(height: 12),
+                        _LoginStatus(
+                          message: widget.controller.message,
+                          isError: widget.controller.status ==
+                                  StudentAuthStatus.unavailable ||
+                              widget.controller.message.contains('不正確') ||
+                              widget.controller.message.contains('未能') ||
+                              widget.controller.message.contains('請輸入正確'),
                         ),
-                      ),
-                    ),
-                    child: widget.controller.isSubmitting
-                        ? const SizedBox.square(
-                            dimension: 22,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 3,
-                              color: AppPalette.primaryDark,
-                            ),
-                          )
-                        : const Text(
-                            '登入',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
+                        const SizedBox(height: 14),
+                        _LoginFields(
+                          studentIdController: _studentIdController,
+                          pinController: _pinController,
+                          studentIdFocusNode: _studentIdFocusNode,
+                          pinFocusNode: _pinFocusNode,
+                          onSubmit: _login,
+                        ),
+                        const SizedBox(height: 18),
+                        FilledButton(
+                          key: const Key('student-login-button'),
+                          onPressed:
+                              widget.controller.isSubmitting ? null : _login,
+                          style: FilledButton.styleFrom(
+                            minimumSize: const Size.fromHeight(58),
+                            backgroundColor: AppPalette.secondary,
+                            foregroundColor: const Color(0xFF594512),
+                            disabledBackgroundColor: AppPalette.border,
+                            shape: const StadiumBorder(
+                              side: BorderSide(
+                                color: AppPalette.secondaryDark,
+                                width: 2,
+                              ),
                             ),
                           ),
+                          child: widget.controller.isSubmitting
+                              ? const SizedBox.square(
+                                  dimension: 22,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 3,
+                                    color: AppPalette.primaryDark,
+                                  ),
+                                )
+                              : const Text(
+                                  '登入',
+                                  style: TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
+                ),
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _BlurredGrammarBackdrop extends StatelessWidget {
+  const _BlurredGrammarBackdrop();
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: BackdropFilter(
+        filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Opacity(
+          opacity: .2,
+          child: Column(
+            children: [
+              const SizedBox(height: 72),
+              const Text(
+                'DOPE ENGLISH',
+                style: TextStyle(
+                  color: AppPalette.primaryDark,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                width: 360,
+                height: 90,
+                decoration: BoxDecoration(
+                  color: AppPalette.softPrimary,
+                  border: Border.all(color: AppPalette.primary, width: 3),
+                  borderRadius: BorderRadius.circular(22),
+                ),
+              ),
+              const SizedBox(height: 18),
+              for (var index = 0; index < 4; index++)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 14),
+                  child: Container(
+                    width: 410,
+                    height: 96,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: AppPalette.border, width: 3),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
       ),
@@ -136,51 +205,42 @@ class _LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Transform.rotate(
-          angle: -0.07,
-          child: Container(
-            width: 54,
-            height: 54,
-            decoration: BoxDecoration(
-              color: AppPalette.softPrimary,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.white, width: 3),
-              boxShadow: const [
-                BoxShadow(color: AppPalette.border, offset: Offset(0, 4)),
-              ],
-            ),
-            child: const Icon(
-              Icons.menu_book_rounded,
-              color: AppPalette.primaryDark,
-              size: 31,
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+          decoration: BoxDecoration(
+            color: AppPalette.secondary,
+            borderRadius: BorderRadius.circular(999),
+            boxShadow: const [
+              BoxShadow(color: AppPalette.secondaryDark, offset: Offset(0, 3)),
+            ],
+          ),
+          child: const Text(
+            'Student Account',
+            style: TextStyle(
+              color: Color(0xFF594512),
+              fontSize: 14,
+              fontWeight: FontWeight.w900,
             ),
           ),
         ),
-        const SizedBox(width: 12),
-        const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'DOPE ENGLISH',
-              style: TextStyle(
-                color: AppPalette.primaryDark,
-                fontSize: 23,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            Text(
-              '學生登入',
-              style: TextStyle(
-                color: AppPalette.ink,
-                fontSize: 17,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ],
+        const SizedBox(height: 8),
+        const Text(
+          '學生登入',
+          style: TextStyle(
+            color: AppPalette.primaryDark,
+            fontSize: 34,
+            height: 1.05,
+            fontWeight: FontWeight.w900,
+            shadows: [
+              Shadow(color: AppPalette.softPrimary, offset: Offset(2, 2)),
+            ],
+          ),
         ),
+        const SizedBox(height: 16),
+        Container(height: 3, color: const Color(0xFFE7ECEE)),
       ],
     );
   }
@@ -196,22 +256,25 @@ class _LoginStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
-        color: isError ? AppPalette.softDanger : AppPalette.softPrimary,
-        borderRadius: BorderRadius.circular(10),
+        color: isError ? AppPalette.softDanger : AppPalette.softSecondary,
+        borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: isError ? AppPalette.danger : AppPalette.primary,
-          width: 1.5,
+          color: isError ? AppPalette.danger : AppPalette.secondaryDark,
+          width: 2,
         ),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFFE9ECEF), offset: Offset(0, 3)),
+        ],
       ),
       child: Text(
         message,
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.left,
         style: TextStyle(
-          color: isError ? AppPalette.danger : AppPalette.primaryDark,
-          fontSize: 13,
-          fontWeight: FontWeight.w800,
+          color: isError ? AppPalette.dangerDark : const Color(0xFF5D4037),
+          fontSize: 14,
+          fontWeight: FontWeight.w900,
         ),
       ),
     );
@@ -235,57 +298,107 @@ class _LoginFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const border = OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(12)),
-      borderSide: BorderSide(color: AppPalette.border, width: 2),
-    );
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextField(
-          key: const Key('student-id-field'),
-          controller: studentIdController,
-          focusNode: studentIdFocusNode,
-          textCapitalization: TextCapitalization.characters,
-          textInputAction: TextInputAction.next,
-          autocorrect: false,
-          enableSuggestions: false,
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_-]')),
-            LengthLimitingTextInputFormatter(16),
-            TextInputFormatter.withFunction((oldValue, newValue) {
-              return newValue.copyWith(
-                text: newValue.text.toUpperCase(),
-                composing: TextRange.empty,
-              );
-            }),
-          ],
-          onSubmitted: (_) => pinFocusNode.requestFocus(),
-          decoration: const InputDecoration(
-            labelText: '學號',
-            hintText: '例如 S001',
-            border: border,
+        const Text(
+          '學號',
+          style: TextStyle(
+            color: AppPalette.primaryDark,
+            fontSize: 14,
+            fontWeight: FontWeight.w900,
           ),
         ),
-        const SizedBox(height: 9),
-        TextField(
-          key: const Key('student-pin-field'),
-          controller: pinController,
-          focusNode: pinFocusNode,
-          obscureText: true,
-          obscuringCharacter: '●',
-          keyboardType: TextInputType.number,
-          textInputAction: TextInputAction.done,
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(8),
-          ],
-          onSubmitted: (_) => onSubmit(),
-          decoration: const InputDecoration(
-            labelText: 'PIN',
-            border: border,
+        const SizedBox(height: 5),
+        _LoginPaperField(
+          child: TextField(
+            key: const Key('student-id-field'),
+            controller: studentIdController,
+            focusNode: studentIdFocusNode,
+            textCapitalization: TextCapitalization.characters,
+            textInputAction: TextInputAction.next,
+            autocorrect: false,
+            enableSuggestions: false,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_-]')),
+              LengthLimitingTextInputFormatter(16),
+              TextInputFormatter.withFunction((oldValue, newValue) {
+                return newValue.copyWith(
+                  text: newValue.text.toUpperCase(),
+                  composing: TextRange.empty,
+                );
+              }),
+            ],
+            onSubmitted: (_) => pinFocusNode.requestFocus(),
+            decoration: const InputDecoration(
+              hintText: '例如 S001',
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(horizontal: 4, vertical: 14),
+            ),
+            style: const TextStyle(
+              color: Color(0xFF5D4037),
+              fontSize: 22,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        const Text(
+          'PIN',
+          style: TextStyle(
+            color: AppPalette.primaryDark,
+            fontSize: 14,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+        const SizedBox(height: 5),
+        _LoginPaperField(
+          child: TextField(
+            key: const Key('student-pin-field'),
+            controller: pinController,
+            focusNode: pinFocusNode,
+            obscureText: true,
+            obscuringCharacter: '●',
+            keyboardType: TextInputType.number,
+            textInputAction: TextInputAction.done,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              LengthLimitingTextInputFormatter(8),
+            ],
+            onSubmitted: (_) => onSubmit(),
+            decoration: const InputDecoration(
+              hintText: '4-6 位數字',
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(horizontal: 4, vertical: 14),
+            ),
+            style: const TextStyle(
+              color: Color(0xFF5D4037),
+              fontSize: 22,
+              fontWeight: FontWeight.w900,
+            ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class _LoginPaperField extends StatelessWidget {
+  const _LoginPaperField({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return StationeryFrame(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+      backgroundColor: const Color(0xFFFFFDF4),
+      borderColor: AppPalette.primary,
+      shadowColor: const Color(0xFFBDE0E1),
+      radius: 15,
+      ringWidth: 3,
+      shadowDepth: 4,
+      child: child,
     );
   }
 }
