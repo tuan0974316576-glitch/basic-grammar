@@ -105,4 +105,15 @@ void main() {
     expect(find.byKey(const Key('grammar-home-settings')), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('switches tabs without leaving the main content blank',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+    await tester.tap(find.byKey(const Key('main-tab-Scan')));
+    await tester.pumpAndSettle();
+    expect(find.text('Scan 查字'), findsOneWidget);
+    await tester.tap(find.byKey(const Key('main-tab-文法')));
+    await tester.pumpAndSettle();
+    expect(find.text('Basic Grammar Game'), findsOneWidget);
+  });
 }

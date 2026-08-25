@@ -177,24 +177,7 @@ class _AppShellState extends State<AppShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppPalette.background,
-      body: IndexedStack(
-        index: _selectedTab,
-        children: [
-          OriginalGrammarHome(
-            onLessonTap: (index) => _showLessonSheet(context, index),
-            onVerbTableInfo: () {
-              AppSfx.instance.play(SfxCue.click);
-              openVerbTableReference(
-                context,
-                audioRepository: widget.vocabAudioRepository,
-              );
-            },
-            onSettings: () => _showSettings(context),
-          ),
-          VocabularyScreen(audioRepository: widget.vocabAudioRepository),
-          const OriginalScanPage(),
-        ],
-      ),
+      body: _buildSelectedTab(context),
       bottomNavigationBar: OriginalTabBar(
         selectedIndex: _selectedTab,
         onSelected: (index) {
@@ -203,6 +186,24 @@ class _AppShellState extends State<AppShell> {
         },
       ),
     );
+  }
+
+  Widget _buildSelectedTab(BuildContext context) {
+    return switch (_selectedTab) {
+      0 => OriginalGrammarHome(
+          onLessonTap: (index) => _showLessonSheet(context, index),
+          onVerbTableInfo: () {
+            AppSfx.instance.play(SfxCue.click);
+            openVerbTableReference(
+              context,
+              audioRepository: widget.vocabAudioRepository,
+            );
+          },
+          onSettings: () => _showSettings(context),
+        ),
+      1 => VocabularyScreen(audioRepository: widget.vocabAudioRepository),
+      _ => const OriginalScanPage(),
+    };
   }
 
   void _showLessonSheet(BuildContext context, int index) {

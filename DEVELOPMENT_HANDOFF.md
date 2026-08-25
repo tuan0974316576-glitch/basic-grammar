@@ -373,6 +373,27 @@ Hosting and rules were deployed to `enguistics-grammar-game`. No question
 content was changed or published during the initial deployment; the console
 starts from the current bundled banks.
 
+## ASUS Android Smoke Check (2026-08-25)
+
+The debug APK was installed on the connected ASUS AI2401 H (Android 16,
+serial `S2AIOC447307NGJ`) and the app launched successfully. Teacher login
+with the configured teacher account reached the native app shell. During the
+manual check, the device showed the bottom tab bar but the selected page
+content could render blank after tab/login transitions. The app shell was
+hardened by replacing the three-child `IndexedStack` with a selected-tab
+builder, so only the active Grammar, Vocabulary, or Scan page is built. A
+widget test now verifies that switching Scan -> Grammar keeps the page content
+visible.
+
+The ASUS USB/ADB connection was disconnected before the hardened APK could be
+reinstalled. Reconnect the phone and run:
+
+```bash
+cd flutter_app
+adb install -r build/app/outputs/flutter-apk/app-debug.apk
+adb shell monkey -p com.enguistics.dope_english 1
+```
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:
