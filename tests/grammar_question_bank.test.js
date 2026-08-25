@@ -12,6 +12,11 @@ vm.runInContext(
 );
 const helper = context.window.GrammarQuestionBankAdmin;
 
+const adminHtml = fs.readFileSync(path.join(__dirname, "../grammar-admin.html"), "utf8");
+assert.ok(adminHtml.includes('id="question-form"'));
+assert.ok(adminHtml.includes('id="question-search"'));
+assert.strictEqual(adminHtml.includes('id="questions-json"'), false);
+
 assert.strictEqual(helper.lessonConfigs.length, 14);
 assert.strictEqual(helper.assetToLesson["lesson_12.json"], "verb-table");
 

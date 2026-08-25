@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Grammar Question Console</title>
   <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="grammar-admin.css?v=20260825-1">
+  <link rel="stylesheet" href="grammar-admin.css?v=20260825-2">
 </head>
 <body>
   <main class="admin-shell">
@@ -44,17 +44,26 @@
           <div id="source-badge" class="source-badge">BUNDLED</div>
         </div>
         <div class="editor-toolbar">
-          <span id="question-count">0 questions</span>
-          <button id="format-button" class="secondary" type="button">Format JSON</button>
-          <button id="add-button" class="secondary" type="button">+ Add question</button>
+          <span id="question-count">0 題</span>
+          <label class="question-search-label">
+            <span class="sr-only">搜尋題目</span>
+            <input id="question-search" type="search" placeholder="搜尋中文或英文">
+          </label>
+          <button id="add-button" class="secondary" type="button">＋ 新增題目</button>
+          <button id="delete-button" class="secondary danger-button" type="button">刪除本題</button>
         </div>
-        <textarea id="questions-json" spellcheck="false" aria-label="題庫 JSON"></textarea>
+        <div class="question-navigator">
+          <button id="previous-question-button" class="secondary icon-button" type="button" title="上一題">←</button>
+          <strong id="question-position">第 1 / 1 題</strong>
+          <button id="next-question-button" class="secondary icon-button" type="button" title="下一題">→</button>
+        </div>
+        <form id="question-form" class="question-form"></form>
         <div id="validation-status" class="status-line"></div>
         <div class="editor-actions">
           <button id="save-draft-button" class="secondary" type="button">Save Draft</button>
           <button id="publish-button" class="primary" type="button">Publish</button>
         </div>
-        <div class="warning-note">Publish 只會更新目前課題；其他課題不受影響。每次更新會保留 app 內置 fallback。</div>
+        <div class="warning-note">你只需要改目前呢一題；系統會自動檢查整課題庫。Publish 只會更新目前課題，其他課題不受影響。</div>
       </section>
     </section>
   </main>
@@ -63,6 +72,6 @@
   <script src="grammar_core.js"></script>
   <script src="grammar_data.js"></script>
   <script src="grammar-question-bank.js?v=20260825-1"></script>
-  <script src="grammar-admin.js?v=20260825-1" type="module"></script>
+  <script src="grammar-admin.js?v=20260825-2" type="module"></script>
 </body>
 </html>

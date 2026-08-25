@@ -350,10 +350,13 @@ The existing vocabulary console remains at:
 
 The grammar console uses the existing Teacher ID + PIN flow and requires the
 Firebase Auth custom claim `role=teacher`. It loads the canonical Lesson 01-13
-banks from `grammar_data.js`, lets the teacher edit JSON by lesson, validates
-the lesson-specific shape and duplicate IDs, and supports separate Save Draft
-and Publish actions. Drafts are stored in `grammarQuestionDrafts/{lessonId}`;
-published banks are stored in `grammarQuestionBanks/{lessonId}`.
+banks from `grammar_data.js`, lets the teacher edit one normal form-based
+question at a time (Chinese, English, answer, choices, explanation, or Verb
+Table forms as appropriate), search and navigate questions, add/delete
+questions, and supports separate Save Draft and Publish actions. Teachers do
+not need to see or edit JSON. Drafts are stored in
+`grammarQuestionDrafts/{lessonId}`; published banks are stored in
+`grammarQuestionBanks/{lessonId}`.
 
 Published banks are protected by the deployed Firestore rules: signed-in
 students can read only published banks, while only teacher-role accounts can
