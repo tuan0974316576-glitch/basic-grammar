@@ -19,6 +19,7 @@ import 'features/grammar/lesson_04/lesson_04_screen.dart';
 import 'features/grammar/lesson_05/lesson_05_screen.dart';
 import 'features/grammar/lesson_11/lesson_11_screen.dart';
 import 'features/grammar/lesson_12/lesson_12_screen.dart';
+import 'features/grammar/original_grammar_home.dart';
 import 'features/grammar/quiz_01/quiz_01_screen.dart';
 import 'features/vocabulary/vocab_audio_repository.dart';
 import 'features/vocabulary/vocab_screen.dart';
@@ -168,125 +169,50 @@ class _AppShellState extends State<AppShell> {
     'DOPE_INITIAL_TAB',
     defaultValue: 0,
   );
-  int _selectedTab = _configuredInitialTab >= 0 && _configuredInitialTab <= 3
+  int _selectedTab = _configuredInitialTab >= 0 && _configuredInitialTab <= 2
       ? _configuredInitialTab
       : 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppPalette.background,
       body: IndexedStack(
         index: _selectedTab,
         children: [
-          RoadmapPage(vocabAudioRepository: widget.vocabAudioRepository),
+          OriginalGrammarHome(
+            onLessonTap: (index) => _showLessonSheet(context, index),
+            onVerbTableInfo: () {
+              AppSfx.instance.play(SfxCue.click);
+              openVerbTableReference(
+                context,
+                audioRepository: widget.vocabAudioRepository,
+              );
+            },
+            onSettings: () => _showSettings(context),
+          ),
           VocabularyScreen(audioRepository: widget.vocabAudioRepository),
-          const AchievementsPage(),
-          ProfilePage(authController: widget.authController),
+          const OriginalScanPage(),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: OriginalTabBar(
         selectedIndex: _selectedTab,
-        onDestinationSelected: (index) {
+        onSelected: (index) {
           AppSfx.instance.play(SfxCue.click);
           setState(() => _selectedTab = index);
         },
-        backgroundColor: AppPalette.paper,
-        indicatorColor: _panel,
-        shadowColor: AppPalette.border,
-        elevation: 8,
-        height: 76,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined, color: _blueDark),
-            selectedIcon: Icon(Icons.home_rounded, color: _blueDark),
-            label: 'Grammar',
-          ),
-          NavigationDestination(
-            icon: Icon(
-              Icons.fitness_center_outlined,
-              color: AppPalette.secondaryDark,
-            ),
-            selectedIcon: Icon(
-              Icons.fitness_center_rounded,
-              color: AppPalette.secondaryDark,
-            ),
-            label: 'Vocabulary',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.emoji_events_outlined, color: _blueDark),
-            selectedIcon: Icon(Icons.emoji_events_rounded, color: _blueDark),
-            label: 'Awards',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person_outline_rounded, color: _pink),
-            selectedIcon: Icon(Icons.person_rounded, color: _pink),
-            label: 'Profile',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class RoadmapPage extends StatefulWidget {
-  const RoadmapPage({this.vocabAudioRepository, super.key});
-
-  final VocabAudioRepository? vocabAudioRepository;
-
-  @override
-  State<RoadmapPage> createState() => _RoadmapPageState();
-}
-
-class _RoadmapPageState extends State<RoadmapPage> {
-  int _activeNode = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(18, 10, 18, 12),
-            child: ProgressBar(),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18),
-            child: UnitBanner(),
-          ),
-          const SizedBox(height: 12),
-          Expanded(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
-              child: Roadmap(
-                activeNode: _activeNode,
-                onNodeTap: (node) {
-                  AppSfx.instance.play(SfxCue.click);
-                  setState(() => _activeNode = node.index);
-                  _showLessonSheet(context, node);
-                },
-                onInfoTap: (node) {
-                  AppSfx.instance.play(SfxCue.click);
-                  openVerbTableReference(
-                    context,
-                    audioRepository: widget.vocabAudioRepository,
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
 
-  void _showLessonSheet(BuildContext context, LessonNode node) {
+  void _showLessonSheet(BuildContext context, int index) {
+    final lesson = _originalLessonDetails[index];
     showModalBottomSheet<void>(
       context: context,
       backgroundColor: AppPalette.paper,
       isScrollControlled: true,
       showDragHandle: true,
-      builder: (context) {
+      builder: (sheetContext) {
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(24, 4, 24, 24),
@@ -295,7 +221,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  node.subtitle,
+                  lesson.$2,
                   style: const TextStyle(
                     color: _blueDark,
                     fontWeight: FontWeight.w800,
@@ -305,7 +231,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  node.title,
+                  lesson.$1,
                   style: const TextStyle(
                     color: _text,
                     fontWeight: FontWeight.w900,
@@ -314,7 +240,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  node.description,
+                  lesson.$3,
                   style: const TextStyle(
                     color: AppPalette.muted,
                     fontSize: 15,
@@ -323,7 +249,7 @@ class _RoadmapPageState extends State<RoadmapPage> {
                 ),
                 const SizedBox(height: 18),
                 FilledButton.icon(
-                  onPressed: () => _startLesson(context, node),
+                  onPressed: () => _startLesson(sheetContext, index),
                   icon: const Icon(Icons.play_arrow_rounded),
                   label: const Text('開始課堂'),
                   style: FilledButton.styleFrom(
@@ -340,9 +266,9 @@ class _RoadmapPageState extends State<RoadmapPage> {
     );
   }
 
-  void _startLesson(BuildContext sheetContext, LessonNode node) {
+  void _startLesson(BuildContext sheetContext, int index) {
     Navigator.of(sheetContext).pop();
-    final lessonScreen = switch (node.index) {
+    final lessonScreen = switch (index) {
       0 => const Lesson01Screen(),
       1 => const Lesson02Screen(),
       2 => const Quiz01Screen(),
@@ -368,7 +294,76 @@ class _RoadmapPageState extends State<RoadmapPage> {
       );
     });
   }
+
+  void _showSettings(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: AppPalette.paper,
+      showDragHandle: true,
+      builder: (sheetContext) {
+        final profile = widget.authController?.profile;
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24, 4, 24, 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  '設定',
+                  style: TextStyle(
+                    color: _blueDark,
+                    fontSize: 26,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  profile == null
+                      ? '目前使用本機測試模式。'
+                      : '${profile.displayName} (${profile.studentId})',
+                  style: const TextStyle(
+                    color: AppPalette.muted,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                if (widget.authController != null) ...[
+                  const SizedBox(height: 18),
+                  OutlinedButton.icon(
+                    onPressed: () {
+                      Navigator.of(sheetContext).pop();
+                      widget.authController!.logout();
+                    },
+                    icon: const Icon(Icons.logout_rounded),
+                    label: const Text('登出'),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
+
+const _originalLessonDetails = <(String, String, String)>[
+  ('分辨句子是否有主動動詞', 'LESSON 01', '分辨句子何時要 is/am/are'),
+  ('一句句子必須只有一個動詞', 'LESSON 02', '分辨正確句、沒有動詞、兩個動詞'),
+  ('重組英文句子', 'QUIZ 01', '看中文，砌出正確英文句子'),
+  ('何謂句子', 'LESSON 03', '用顏色 underline 分句'),
+  ('代名詞', 'LESSON 04', '配對主語、非主語、的、的東西'),
+  ('代名詞句子 MC', 'LESSON 05', '看英文空格，選正確代名詞'),
+  ('可數名詞的使用要點', 'LESSON 06', '判斷名詞單眾數，錯句要改正'),
+  ('名詞的類別', 'LESSON 07', '可數、不可數、ING、專有名詞'),
+  ('Modal Verb 的要訣', 'LESSON 08', 'can / will / should / may / must'),
+  ('Adjective 形容詞', 'LESSON 09', 'happy / useful / interested in / willing to'),
+  ('Adverb 副詞', 'LESSON 10', '句首、句中、句尾副詞位置'),
+  ('Tenses 時態分辨', 'LESSON 11', '可選時態範圍，再填動詞形式'),
+  ('Verb Table 動詞四式', 'LESSON 12', '現在式、過去式、PP、ING 配對'),
+  ('「有」的主要用法', 'LESSON 13', 'There be / with / without / have'),
+];
 
 class ProgressBar extends StatelessWidget {
   const ProgressBar({super.key});

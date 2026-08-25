@@ -311,6 +311,33 @@ that text does not overlap, screens do not require unintended page scrolling,
 native keyboards do not cover the confirmation flow, audio plays, and the
 Japanese stationery style remains consistent.
 
+## Native Original UI Port (2026-08-25)
+
+The native Flutter shell now uses the original Basic Grammar Game visual
+language from the retained web source (`index.html` / `style.css`):
+
+- `flutter_app/lib/features/grammar/original_grammar_home.dart` contains the
+  native home screen, Coach panel, practice-count slider, yellow lesson pills,
+  dashed stationery cards, three-tab bar, and Scan placeholder.
+- `flutter_app/lib/main.dart` keeps the existing Flutter lesson screens,
+  repositories, Firebase login, vocabulary page, and Verb Table reference, but
+  routes them from the original-style native shell.
+- `flutter_app/test/widget_test.dart` covers the native shell, lesson and Quiz
+  navigation, Verb Table reference, and a 320x568 compact-phone layout.
+
+This is a true iOS/Android Flutter UI, not a WebView wrapper. The following
+checks passed after the port:
+
+```text
+flutter analyze
+flutter test (73 tests)
+flutter build apk --debug
+flutter build ios --no-codesign
+```
+
+The iOS artifact requires the normal Xcode signing team before device install
+or TestFlight upload. No Firebase deployment was made for this UI-only task.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:
