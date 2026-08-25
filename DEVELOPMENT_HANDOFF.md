@@ -439,6 +439,15 @@ The current USB ASUS connection disappeared while building the latest APK, so
 the final physical-device install of this polish is pending reconnection. The
 latest APK was built at `flutter_app/build/app/outputs/flutter-apk/app-debug.apk`.
 
+The original asset files `assets/setting-2.png` and `assets/dumbbel.png` are
+now bundled in Flutter and used directly for the native settings and training
+buttons. Vocabulary is wrapped in the same full stationery frame as the
+original web `vocab-home-screen`, and the entry field remains in a stable tree
+while the Android keyboard is open. A USB ASUS smoke check after the final
+asset/header build showed the corrected Grammar and Vocabulary pages with no
+Flutter red error; the only filtered log noise was ASUS audio calibration
+warnings.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:

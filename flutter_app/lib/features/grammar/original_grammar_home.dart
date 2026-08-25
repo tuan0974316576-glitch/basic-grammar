@@ -190,79 +190,87 @@ class _HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 72,
-      child: Stack(
-        alignment: Alignment.center,
+      child: Row(
         children: [
-          Positioned(
-            left: 0,
-            top: 0,
-            child: Semantics(
-              button: true,
-              label: '設定',
-              child: Material(
-                color: Colors.white,
-                shape: const CircleBorder(),
-                elevation: 4,
-                shadowColor: AppPalette.primaryDark.withValues(alpha: 0.4),
-                child: InkWell(
-                  key: const Key('grammar-home-settings'),
-                  customBorder: const CircleBorder(),
-                  onTap: onSettings,
-                  child: Container(
-                    width: 58,
-                    height: 58,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: AppPalette.primary,
-                        width: 5,
-                      ),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: AppPalette.primaryDark,
-                          offset: Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    alignment: Alignment.center,
-                    child: const Icon(
-                      Icons.settings_rounded,
-                      color: AppPalette.primaryDark,
-                      size: 31,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          _SettingsSeal(
+            key: const Key('grammar-home-settings'),
+            onPressed: onSettings,
           ),
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'DOPE ENGLISH',
-                style: TextStyle(
-                  color: AppPalette.primaryDark,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 1.8,
-                ),
-              ),
-              SizedBox(height: 5),
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  'Basic Grammar Game',
+          const SizedBox(width: 8),
+          const Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'DOPE ENGLISH',
                   style: TextStyle(
                     color: AppPalette.primaryDark,
-                    fontSize: 30,
-                    height: 1,
+                    fontSize: 13,
                     fontWeight: FontWeight.w900,
+                    letterSpacing: 1.8,
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 5),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Basic Grammar Game',
+                    style: TextStyle(
+                      color: AppPalette.primaryDark,
+                      fontSize: 30,
+                      height: 1,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
+          const SizedBox(width: 66),
         ],
+      ),
+    );
+  }
+}
+
+class _SettingsSeal extends StatelessWidget {
+  const _SettingsSeal({required this.onPressed, super.key});
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: '設定',
+      child: Material(
+        color: Colors.white,
+        shape: const CircleBorder(),
+        elevation: 3,
+        shadowColor: AppPalette.primaryDark.withValues(alpha: 0.35),
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: onPressed,
+          child: Container(
+            width: 58,
+            height: 58,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(color: AppPalette.primary, width: 4),
+              boxShadow: const [
+                BoxShadow(color: AppPalette.primaryDark, offset: Offset(0, 3)),
+              ],
+            ),
+            child: Image.asset(
+              'assets/setting-2.png',
+              width: 34,
+              height: 34,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
       ),
     );
   }

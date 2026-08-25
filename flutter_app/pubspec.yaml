@@ -33,6 +33,8 @@ flutter:
     - assets/audio/sfx/
     - assets/audio/verb_table/v1/
     - assets/audio/vocab_words/v1/
+    - assets/setting-2.png
+    - assets/dumbbel.png
     - assets/grammar-verbs/irasutoya/v1/
     - assets/grammar-verbs/teacher/v1/
     - assets/fonts/OFL-Chiron-GoRound-TC.md
