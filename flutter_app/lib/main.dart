@@ -177,6 +177,7 @@ class _AppShellState extends State<AppShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppPalette.background,
+      resizeToAvoidBottomInset: false,
       body: _buildSelectedTab(context),
       bottomNavigationBar: OriginalTabBar(
         selectedIndex: _selectedTab,

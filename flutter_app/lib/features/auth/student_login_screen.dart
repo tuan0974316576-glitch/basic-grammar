@@ -52,6 +52,10 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
     );
     if (!mounted) return;
     unawaited(AppSfx.instance.play(success ? SfxCue.correct : SfxCue.wrong));
+    if (success) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      await SystemChannels.textInput.invokeMethod<void>('TextInput.hide');
+    }
     if (!success) {
       _pinController.clear();
       _pinFocusNode.requestFocus();
