@@ -202,19 +202,33 @@ class _HomeHeader extends StatelessWidget {
               child: Material(
                 color: Colors.white,
                 shape: const CircleBorder(),
-                elevation: 3,
-                shadowColor: AppPalette.primary.withValues(alpha: 0.3),
+                elevation: 4,
+                shadowColor: AppPalette.primaryDark.withValues(alpha: 0.4),
                 child: InkWell(
                   key: const Key('grammar-home-settings'),
                   customBorder: const CircleBorder(),
                   onTap: onSettings,
-                  child: const SizedBox(
-                    width: 52,
-                    height: 52,
-                    child: Icon(
+                  child: Container(
+                    width: 58,
+                    height: 58,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: AppPalette.primary,
+                        width: 5,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: AppPalette.primaryDark,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    alignment: Alignment.center,
+                    child: const Icon(
                       Icons.settings_rounded,
                       color: AppPalette.primaryDark,
-                      size: 29,
+                      size: 31,
                     ),
                   ),
                 ),
@@ -589,9 +603,9 @@ class OriginalTabBar extends StatelessWidget {
   final ValueChanged<int> onSelected;
 
   static const _tabs = [
-    ('文', '文法', Icons.menu_book_rounded),
-    ('字', '詞彙', Icons.text_fields_rounded),
-    ('查', 'Scan', Icons.search_rounded),
+    ('文', '文法'),
+    ('字', '詞彙'),
+    ('查', 'Scan'),
   ];
 
   @override
@@ -599,29 +613,31 @@ class OriginalTabBar extends StatelessWidget {
     return SafeArea(
       top: false,
       minimum: const EdgeInsets.fromLTRB(12, 0, 12, 10),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 760),
-          child: StationeryFrame(
-            padding: const EdgeInsets.all(7),
-            radius: 20,
-            ringWidth: 4,
-            shadowDepth: 5,
-            child: Row(
-              children: [
-                for (var index = 0; index < _tabs.length; index++) ...[
-                  if (index > 0) const SizedBox(width: 7),
-                  Expanded(
-                    child: _TabButton(
-                      glyph: _tabs[index].$1,
-                      label: _tabs[index].$2,
-                      icon: _tabs[index].$3,
-                      selected: selectedIndex == index,
-                      onTap: () => onSelected(index),
+      child: SizedBox(
+        height: 76,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 760),
+            child: StationeryFrame(
+              padding: const EdgeInsets.all(7),
+              radius: 20,
+              ringWidth: 4,
+              shadowDepth: 5,
+              child: Row(
+                children: [
+                  for (var index = 0; index < _tabs.length; index++) ...[
+                    if (index > 0) const SizedBox(width: 7),
+                    Expanded(
+                      child: _TabButton(
+                        glyph: _tabs[index].$1,
+                        label: _tabs[index].$2,
+                        selected: selectedIndex == index,
+                        onTap: () => onSelected(index),
+                      ),
                     ),
-                  ),
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
         ),
@@ -634,14 +650,12 @@ class _TabButton extends StatelessWidget {
   const _TabButton({
     required this.glyph,
     required this.label,
-    required this.icon,
     required this.selected,
     required this.onTap,
   });
 
   final String glyph;
   final String label;
-  final IconData icon;
   final bool selected;
   final VoidCallback onTap;
 
@@ -689,7 +703,14 @@ class _TabButton extends StatelessWidget {
                     color: AppPalette.primary,
                     borderRadius: BorderRadius.circular(9),
                   ),
-                  child: Icon(icon, color: Colors.white, size: 18),
+                  child: Text(
+                    glyph,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 6),
                 Flexible(

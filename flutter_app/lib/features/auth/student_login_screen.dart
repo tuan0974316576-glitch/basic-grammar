@@ -46,6 +46,12 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
 
   Future<void> _login() async {
     if (widget.controller.isSubmitting) return;
+    // Close the IME before the auth state swaps this screen for AppShell. On
+    // Android, rebuilding during an active IME resize can preserve a half-height
+    // viewport and leave the authenticated content above the visible tab bar.
+    FocusManager.instance.primaryFocus?.unfocus();
+    await SystemChannels.textInput.invokeMethod<void>('TextInput.hide');
+    await Future<void>.delayed(const Duration(milliseconds: 120));
     final success = await widget.controller.login(
       studentId: _studentIdController.text,
       pin: _pinController.text,

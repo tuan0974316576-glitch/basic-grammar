@@ -106,6 +106,16 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('tab bar keeps a finite height so page body stays visible',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+    final tabBarSize = tester.getSize(find.byType(OriginalTabBar));
+    final homeSize = tester.getSize(find.byType(OriginalGrammarHome));
+
+    expect(tabBarSize.height, lessThan(130));
+    expect(homeSize.height, greaterThan(0));
+  });
+
   testWidgets('switches tabs without leaving the main content blank',
       (WidgetTester tester) async {
     await tester.pumpWidget(const DopeEnglishApp());

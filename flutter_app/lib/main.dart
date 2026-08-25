@@ -202,7 +202,10 @@ class _AppShellState extends State<AppShell> {
           },
           onSettings: () => _showSettings(context),
         ),
-      1 => VocabularyScreen(audioRepository: widget.vocabAudioRepository),
+      1 => VocabularyScreen(
+          audioRepository: widget.vocabAudioRepository,
+          onSettings: () => _showSettings(context),
+        ),
       _ => const OriginalScanPage(),
     };
   }

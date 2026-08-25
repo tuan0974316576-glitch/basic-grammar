@@ -44,6 +44,7 @@ void main() {
     );
     expect(input.readOnly, isFalse);
     expect(input.textInputAction, TextInputAction.done);
+    expect(input.focusNode?.hasFocus, isTrue);
     expect(find.byKey(const Key('vocab-game-keyboard')), findsNothing);
 
     await tester.enterText(find.byKey(const Key('vocab-word-input')), 'have');

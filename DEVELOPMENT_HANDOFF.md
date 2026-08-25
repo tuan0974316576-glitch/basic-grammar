@@ -414,6 +414,31 @@ to ADB. Use ASUS Settings -> System -> Developer options -> Wireless debugging
 -> Pair device with pairing code, then provide the fresh `IP:pairing-port` and
 six-digit code before claiming the post-login screen is verified again.
 
+The next USB investigation captured the exact cause of the apparent blank
+pages: `OriginalTabBar` was receiving the full Scaffold height (914 logical
+pixels) and the Scaffold body was receiving `h=0.0`. The tab strip now has an
+explicit 76 logical pixel height, and a widget test asserts that the tab bar is
+finite while the Grammar home body remains non-zero. This fixes all three tabs
+at the layout level rather than relying on login timing.
+
+## Native Original Tab and Vocabulary Polish (2026-08-25)
+
+The native Flutter shell now matches the original tab language more closely:
+
+- Settings uses the teal gear seal with white circular face and shadow.
+- Bottom tabs use the original `文`, `字`, and `查` glyphs inside teal icon
+  squares, with the yellow selected state.
+- Vocabulary header now has the original `VOCABULARY / 詞彙本` title, settings
+  seal, yellow dumbbell review button, and in-panel `已加入 / 待溫習` stats.
+- Vocabulary's entry panel is kept in one stable widget tree while the input
+  is focused, so Android does not rebuild it and dismiss the keyboard.
+- `flutter_app/test/vocab_screen_test.dart` checks that the native text field
+  keeps focus after tapping.
+
+The current USB ASUS connection disappeared while building the latest APK, so
+the final physical-device install of this polish is pending reconnection. The
+latest APK was built at `flutter_app/build/app/outputs/flutter-apk/app-debug.apk`.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:

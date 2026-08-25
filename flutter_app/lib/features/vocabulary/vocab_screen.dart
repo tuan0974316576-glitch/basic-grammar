@@ -14,11 +14,13 @@ class VocabularyScreen extends StatefulWidget {
   const VocabularyScreen({
     this.controller,
     this.audioRepository,
+    this.onSettings,
     super.key,
   });
 
   final VocabController? controller;
   final VocabAudioRepository? audioRepository;
+  final VoidCallback? onSettings;
 
   @override
   State<VocabularyScreen> createState() => _VocabularyScreenState();
@@ -187,7 +189,6 @@ class _VocabularyScreenState extends State<VocabularyScreen>
 
   @override
   Widget build(BuildContext context) {
-    final keyboardIsOpen = MediaQuery.viewInsetsOf(context).bottom > 0;
     return SafeArea(
       child: Column(
         children: [
@@ -197,6 +198,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
             pulse: _pulseController,
             shouldPulse: _controller.items.length >= 4,
             onReview: _openReview,
+            onSettings: widget.onSettings,
           ),
           if (_controller.isInitializing)
             const Expanded(
@@ -211,45 +213,25 @@ class _VocabularyScreenState extends State<VocabularyScreen>
               ),
             )
           else ...[
-            if (keyboardIsOpen)
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(14, 4, 14, 8),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    child: _VocabEntryPanel(
-                      controller: _controller,
-                      textController: _textController,
-                      focusNode: _focusNode,
-                      onChanged: _controller.updateQuery,
-                      onAdd: _addWord,
-                    ),
-                  ),
-                ),
-              )
-            else ...[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(14, 4, 14, 8),
-                child: _VocabEntryPanel(
-                  controller: _controller,
-                  textController: _textController,
-                  focusNode: _focusNode,
-                  onChanged: _controller.updateQuery,
-                  onAdd: _addWord,
-                ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(14, 4, 14, 8),
+              child: _VocabEntryPanel(
+                controller: _controller,
+                textController: _textController,
+                focusNode: _focusNode,
+                onChanged: _controller.updateQuery,
+                onAdd: _addWord,
               ),
-              Expanded(
-                child: _VocabList(
-                  controller: _controller,
-                  speakingExample: _speakingExample,
-                  onSpeakWord: _speakWord,
-                  onSpeakExample: _speakExample,
-                  onDelete: _deleteWord,
-                ),
+            ),
+            Expanded(
+              child: _VocabList(
+                controller: _controller,
+                speakingExample: _speakingExample,
+                onSpeakWord: _speakWord,
+                onSpeakExample: _speakExample,
+                onDelete: _deleteWord,
               ),
-            ],
+            ),
           ],
         ],
       ),
@@ -264,6 +246,7 @@ class _VocabularyHeader extends StatelessWidget {
     required this.pulse,
     required this.shouldPulse,
     required this.onReview,
+    this.onSettings,
   });
 
   final int wordCount;
@@ -271,97 +254,139 @@ class _VocabularyHeader extends StatelessWidget {
   final Animation<double> pulse;
   final bool shouldPulse;
   final VoidCallback onReview;
+  final VoidCallback? onSettings;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(18, 9, 13, 7),
-      child: Row(
+    return SizedBox(
+      height: 96,
+      child: Stack(
+        alignment: Alignment.center,
         children: [
-          const Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'DOPE ENGLISH',
-                  style: TextStyle(
-                    color: AppPalette.primaryDark,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                Text(
-                  '我的生字簿',
-                  style: TextStyle(
-                    color: AppPalette.ink,
-                    fontSize: 25,
-                    height: 1.05,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ],
+          if (onSettings != null)
+            Positioned(
+              left: 13,
+              top: 8,
+              child: _VocabSettingsButton(onPressed: onSettings!),
             ),
+          const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'VOCABULARY',
+                style: TextStyle(
+                  color: AppPalette.primaryDark,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.4,
+                ),
+              ),
+              SizedBox(height: 4),
+              Text(
+                '詞彙本',
+                style: TextStyle(
+                  color: AppPalette.primaryDark,
+                  fontSize: 30,
+                  height: 1,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ],
           ),
-          Text(
-            '$wordCount 個',
-            style: const TextStyle(
-              color: AppPalette.muted,
-              fontSize: 14,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(width: 10),
-          AnimatedBuilder(
-            animation: pulse,
-            builder: (context, child) {
-              final scale = shouldPulse ? 1 + pulse.value * 0.08 : 1.0;
-              return Transform.scale(scale: scale, child: child);
-            },
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                IconButton(
-                  key: const Key('vocab-review-button'),
-                  tooltip: '溫習生字',
-                  onPressed: onReview,
-                  icon: const Icon(Icons.fitness_center_rounded, size: 29),
-                  color: const Color(0xFF9E8A63),
-                  style: IconButton.styleFrom(
-                    backgroundColor: AppPalette.softSecondary,
-                    side: const BorderSide(
-                      color: AppPalette.secondaryDark,
-                      width: 2,
+          Positioned(
+            right: 10,
+            top: 8,
+            child: AnimatedBuilder(
+              animation: pulse,
+              builder: (context, child) {
+                final scale = shouldPulse ? 1 + pulse.value * 0.08 : 1.0;
+                return Transform.scale(scale: scale, child: child);
+              },
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  IconButton(
+                    key: const Key('vocab-review-button'),
+                    tooltip: '溫習生字',
+                    onPressed: onReview,
+                    icon: const Icon(Icons.fitness_center_rounded, size: 29),
+                    color: const Color(0xFF9E8A63),
+                    style: IconButton.styleFrom(
+                      backgroundColor: AppPalette.softSecondary,
+                      side: const BorderSide(
+                        color: AppPalette.secondaryDark,
+                        width: 2,
+                      ),
                     ),
                   ),
-                ),
-                if (reviewCount > 0)
-                  Positioned(
-                    right: -2,
-                    top: -3,
-                    child: Container(
-                      constraints:
-                          const BoxConstraints(minWidth: 20, minHeight: 20),
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppPalette.danger,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.white, width: 2),
-                      ),
-                      child: Text(
-                        '$reviewCount',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w900,
+                  if (reviewCount > 0)
+                    Positioned(
+                      right: -2,
+                      top: -3,
+                      child: Container(
+                        constraints: const BoxConstraints(
+                          minWidth: 20,
+                          minHeight: 20,
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppPalette.danger,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                        child: Text(
+                          '$reviewCount',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _VocabSettingsButton extends StatelessWidget {
+  const _VocabSettingsButton({required this.onPressed});
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.white,
+      shape: const CircleBorder(),
+      elevation: 4,
+      child: InkWell(
+        key: const Key('vocab-settings-button'),
+        customBorder: const CircleBorder(),
+        onTap: onPressed,
+        child: Container(
+          width: 58,
+          height: 58,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: AppPalette.primary, width: 5),
+            boxShadow: const [
+              BoxShadow(color: AppPalette.primaryDark, offset: Offset(0, 4)),
+            ],
+          ),
+          child: const Icon(
+            Icons.settings_rounded,
+            color: AppPalette.primaryDark,
+            size: 31,
+          ),
+        ),
       ),
     );
   }
@@ -393,6 +418,11 @@ class _VocabEntryPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          _VocabStatsRow(
+            wordCount: controller.items.length,
+            reviewCount: controller.dueCount,
+          ),
+          const SizedBox(height: 10),
           const Text(
             'ENGLISH WORD',
             style: TextStyle(
@@ -560,6 +590,64 @@ class _VocabEntryPanel extends StatelessWidget {
                 ),
               ),
           ],
+        ],
+      ),
+    );
+  }
+}
+
+class _VocabStatsRow extends StatelessWidget {
+  const _VocabStatsRow({required this.wordCount, required this.reviewCount});
+
+  final int wordCount;
+  final int reviewCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(child: _VocabStat(label: '已加入', value: wordCount)),
+        const SizedBox(width: 10),
+        Expanded(child: _VocabStat(label: '待溫習', value: reviewCount)),
+      ],
+    );
+  }
+}
+
+class _VocabStat extends StatelessWidget {
+  const _VocabStat({required this.label, required this.value});
+
+  final String label;
+  final int value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 9),
+      decoration: BoxDecoration(
+        color: AppPalette.paper,
+        border: Border.all(color: AppPalette.border, width: 2),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              color: AppPalette.muted,
+              fontSize: 13,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            '$value',
+            style: const TextStyle(
+              color: Color(0xFF5D4037),
+              fontSize: 25,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
         ],
       ),
     );
