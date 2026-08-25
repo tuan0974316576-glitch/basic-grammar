@@ -448,6 +448,36 @@ asset/header build showed the corrected Grammar and Vocabulary pages with no
 Flutter red error; the only filtered log noise was ASUS audio calibration
 warnings.
 
+Grammar, Vocabulary, and Scan now use the single shared native shell in
+`flutter_app/lib/core/widgets/original_section_frame.dart`. It owns the outer
+frame dimensions, border radius, padding, title baseline, and the exact
+original settings seal placement. Grammar and Vocabulary therefore no longer
+draw slightly different frames or settings buttons, and Grammar scrolls only
+its lesson list inside the fixed frame. Scan keeps the original web behaviour
+of having no settings button, while using the identical frame geometry. A
+widget regression test compares the frame rectangles across all three tabs and
+the settings-button rectangles across Grammar and Vocabulary.
+
+The native Vocabulary home now follows the retained `style.css` selectors
+directly instead of using approximate Material controls. The stat/input panel,
+word rows, progress badge, teal `例` button, red `×` button, expanded amber
+dashed examples panel, individual white example cards, clickable underlined
+English examples, and the bottom tabs use the original CSS dimensions and
+colors. Native tap states reproduce the original raised/depressed VFX, while
+the word row highlights with the original soft teal background and teal dashed
+border. The extra native-only speaker icon inside each example was removed;
+tapping the underlined English sentence still plays its audio. The add button
+is now always present and disabled in the same grey state as the original when
+no meaning is selected. `OriginalDashedSurface` in
+`flutter_app/lib/core/widgets/stationery_frame.dart` is the shared painter for
+these non-screen controls, preventing solid-border drift.
+
+After this parity pass, `flutter analyze`, all 78 Flutter tests, and the Android
+debug build passed. The APK was installed on the USB-connected ASUS AI2401 H.
+Physical screenshots confirmed the collapsed and expanded Vocabulary states,
+including three loaded example cards and the corrected pale-yellow selected
+Vocabulary tab.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:

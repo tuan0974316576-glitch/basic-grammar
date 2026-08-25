@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
+import '../../core/widgets/original_section_frame.dart';
 import '../../core/widgets/stationery_frame.dart';
 
 /// The native home screen follows the original Basic Grammar Game shell:
@@ -129,148 +130,44 @@ class _OriginalGrammarHomeState extends State<OriginalGrammarHome> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final horizontal = constraints.maxWidth >= 700 ? 28.0 : 12.0;
-          return SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            padding: EdgeInsets.fromLTRB(horizontal, 12, horizontal, 20),
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 760),
-                child: StationeryFrame(
-                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
-                  radius: 24,
-                  ringWidth: 5,
-                  shadowDepth: 6,
-                  child: Column(
-                    children: [
-                      _HomeHeader(
-                        onSettings: widget.onSettings,
-                      ),
-                      const SizedBox(height: 12),
-                      _CoachPanel(
-                        practiceCount: _practiceCount,
-                        onPracticeCountChanged: (value) {
-                          setState(() => _practiceCount = value);
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      for (final lesson in _lessons) ...[
-                        _LessonCard(
-                          lesson: lesson,
-                          onTap: () {
-                            AppSfx.instance.play(SfxCue.click);
-                            widget.onLessonTap(lesson.index);
-                          },
-                          onInfo:
-                              lesson.hasInfo ? widget.onVerbTableInfo : null,
-                        ),
-                        if (lesson != _lessons.last) const SizedBox(height: 14),
-                      ],
-                    ],
-                  ),
-                ),
+    return OriginalSectionFrame(
+      sectionKey: const Key('original-section-frame-grammar'),
+      eyebrow: 'DOPE ENGLISH',
+      title: 'Basic Grammar Game',
+      onSettings: widget.onSettings,
+      settingsKey: const Key('grammar-home-settings'),
+      child: Column(
+        children: [
+          _CoachPanel(
+            practiceCount: _practiceCount,
+            onPracticeCountChanged: (value) {
+              setState(() => _practiceCount = value);
+            },
+          ),
+          const SizedBox(height: 16),
+          Expanded(
+            child: SingleChildScrollView(
+              key: const Key('grammar-lesson-list'),
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(5, 2, 5, 10),
+              child: Column(
+                children: [
+                  for (final lesson in _lessons) ...[
+                    _LessonCard(
+                      lesson: lesson,
+                      onTap: () {
+                        AppSfx.instance.play(SfxCue.click);
+                        widget.onLessonTap(lesson.index);
+                      },
+                      onInfo: lesson.hasInfo ? widget.onVerbTableInfo : null,
+                    ),
+                    if (lesson != _lessons.last) const SizedBox(height: 14),
+                  ],
+                ],
               ),
             ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class _HomeHeader extends StatelessWidget {
-  const _HomeHeader({required this.onSettings});
-
-  final VoidCallback onSettings;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 72,
-      child: Row(
-        children: [
-          _SettingsSeal(
-            key: const Key('grammar-home-settings'),
-            onPressed: onSettings,
           ),
-          const SizedBox(width: 8),
-          const Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'DOPE ENGLISH',
-                  style: TextStyle(
-                    color: AppPalette.primaryDark,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.8,
-                  ),
-                ),
-                SizedBox(height: 5),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    'Basic Grammar Game',
-                    style: TextStyle(
-                      color: AppPalette.primaryDark,
-                      fontSize: 30,
-                      height: 1,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 66),
         ],
-      ),
-    );
-  }
-}
-
-class _SettingsSeal extends StatelessWidget {
-  const _SettingsSeal({required this.onPressed, super.key});
-
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      label: '設定',
-      child: Material(
-        color: Colors.white,
-        shape: const CircleBorder(),
-        elevation: 3,
-        shadowColor: AppPalette.primaryDark.withValues(alpha: 0.35),
-        child: InkWell(
-          customBorder: const CircleBorder(),
-          onTap: onPressed,
-          child: Container(
-            width: 58,
-            height: 58,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-              border: Border.all(color: AppPalette.primary, width: 4),
-              boxShadow: const [
-                BoxShadow(color: AppPalette.primaryDark, offset: Offset(0, 3)),
-              ],
-            ),
-            child: Image.asset(
-              'assets/setting-2.png',
-              width: 34,
-              height: 34,
-              fit: BoxFit.contain,
-            ),
-          ),
-        ),
       ),
     );
   }
@@ -625,12 +522,12 @@ class OriginalTabBar extends StatelessWidget {
         height: 76,
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 760),
+            constraints: const BoxConstraints(maxWidth: 560),
             child: StationeryFrame(
-              padding: const EdgeInsets.all(7),
-              radius: 20,
-              ringWidth: 4,
-              shadowDepth: 5,
+              padding: const EdgeInsets.all(8),
+              radius: 26,
+              ringWidth: 0,
+              shadowDepth: 8,
               child: Row(
                 children: [
                   for (var index = 0; index < _tabs.length; index++) ...[
@@ -654,7 +551,7 @@ class OriginalTabBar extends StatelessWidget {
   }
 }
 
-class _TabButton extends StatelessWidget {
+class _TabButton extends StatefulWidget {
   const _TabButton({
     required this.glyph,
     required this.label,
@@ -668,72 +565,82 @@ class _TabButton extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
+  State<_TabButton> createState() => _TabButtonState();
+}
+
+class _TabButtonState extends State<_TabButton> {
+  bool _pressed = false;
+
+  @override
   Widget build(BuildContext context) {
     final foreground =
-        selected ? const Color(0xFF176B5F) : const Color(0xFF5D4037);
+        widget.selected ? const Color(0xFF176B5F) : const Color(0xFF5D4037);
     return Semantics(
       button: true,
-      selected: selected,
-      label: label,
-      child: Material(
-        color: selected ? AppPalette.secondary : const Color(0xFFF8FBFB),
-        borderRadius: BorderRadius.circular(15),
-        child: InkWell(
-          key: Key('main-tab-$label'),
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(15),
-          child: Container(
-            constraints: const BoxConstraints(minHeight: 54),
+      selected: widget.selected,
+      label: widget.label,
+      child: GestureDetector(
+        key: Key('main-tab-${widget.label}'),
+        behavior: HitTestBehavior.opaque,
+        onTapDown: (_) => setState(() => _pressed = true),
+        onTapUp: (_) => setState(() => _pressed = false),
+        onTapCancel: () => setState(() => _pressed = false),
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
+          transform: Matrix4.translationValues(0, _pressed ? 4 : 0, 0),
+          child: OriginalDashedSurface(
+            backgroundColor: widget.selected
+                ? AppPalette.secondary
+                : const Color(0xFFF8FBFB),
+            borderColor:
+                widget.selected ? Colors.white : const Color(0xFFD9E5E7),
+            shadowColor: _pressed
+                ? Colors.transparent
+                : widget.selected
+                    ? AppPalette.secondaryDark
+                    : const Color(0xFFE8EEEE),
+            shadowDepth: widget.selected ? 4 : 3,
+            strokeWidth: 2,
+            radius: 18,
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-                color: selected ? Colors.white : const Color(0xFFD9E5E7),
-                width: 2,
+            child: SizedBox(
+              height: 54,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 28,
+                    height: 28,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppPalette.primary,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      widget.glyph,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Flexible(
+                    child: Text(
+                      widget.label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: foreground,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: selected
-                      ? AppPalette.secondaryDark
-                      : const Color(0xFFE8EEEE),
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 29,
-                  height: 29,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppPalette.primary,
-                    borderRadius: BorderRadius.circular(9),
-                  ),
-                  child: Text(
-                    glyph,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 6),
-                Flexible(
-                  child: Text(
-                    label,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: foreground,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-              ],
             ),
           ),
         ),
@@ -747,81 +654,110 @@ class OriginalScanPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(18, 24, 18, 28),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 760),
-            child: StationeryFrame(
-              padding: const EdgeInsets.fromLTRB(18, 24, 18, 24),
-              child: Column(
-                children: [
-                  const Text(
-                    'SCAN DICTIONARY',
-                    style: TextStyle(
-                      color: AppPalette.primaryDark,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  const Text(
-                    'Scan 查字',
-                    style: TextStyle(
-                      color: AppPalette.primaryDark,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                  const SizedBox(height: 22),
-                  StationeryFrame(
-                    padding: const EdgeInsets.all(18),
-                    backgroundColor: AppPalette.softPrimary,
-                    radius: 20,
-                    ringWidth: 4,
-                    child: Column(
-                      children: [
-                        const Icon(
-                          Icons.document_scanner_rounded,
+    return OriginalSectionFrame(
+      sectionKey: const Key('original-section-frame-scan'),
+      eyebrow: 'Scan Dictionary',
+      title: 'Scan 查字',
+      child: Column(
+        children: [
+          const StationeryFrame(
+            padding: EdgeInsets.all(12),
+            backgroundColor: AppPalette.softPrimary,
+            radius: 20,
+            ringWidth: 4,
+            child: Row(
+              children: [
+                Icon(
+                  Icons.document_scanner_rounded,
+                  color: AppPalette.primaryDark,
+                  size: 54,
+                ),
+                SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'COACH',
+                        style: TextStyle(
                           color: AppPalette.primaryDark,
-                          size: 76,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
                         ),
-                        const SizedBox(height: 14),
-                        const Text(
-                          '影相查字稍後合併。',
-                          style: TextStyle(
-                            color: Color(0xFF5D4037),
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                          ),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        '影相查字稍後合併。',
+                        style: TextStyle(
+                          color: Color(0xFF5D4037),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
                         ),
-                        const SizedBox(height: 6),
-                        const Text(
-                          '之後可以影 worksheet 或書本，自動找出生字。',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppPalette.muted,
-                            fontSize: 15,
-                            height: 1.35,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        FilledButton.icon(
-                          onPressed: null,
-                          icon: const Icon(Icons.camera_alt_rounded),
-                          label: const Text('即將推出'),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          Expanded(
+            child: StationeryFrame(
+              padding: const EdgeInsets.all(18),
+              borderColor: AppPalette.border,
+              shadowColor: const Color(0xFFE9ECEF),
+              radius: 22,
+              ringWidth: 4,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.document_scanner_rounded,
+                            color: AppPalette.primaryDark,
+                            size: 76,
+                          ),
+                          const SizedBox(height: 14),
+                          const Text(
+                            '影相查字稍後合併。',
+                            style: TextStyle(
+                              color: Color(0xFF5D4037),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          const Text(
+                            '之後可以影 worksheet 或書本，自動找出生字。',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: AppPalette.muted,
+                              fontSize: 15,
+                              height: 1.35,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          FilledButton.icon(
+                            onPressed: null,
+                            icon: const Icon(Icons.camera_alt_rounded),
+                            label: const Text('即將推出'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

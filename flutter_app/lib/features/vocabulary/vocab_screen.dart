@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
+import '../../core/widgets/original_section_frame.dart';
 import '../../core/widgets/stationery_frame.dart';
 import 'vocab_audio_repository.dart';
 import 'vocab_controller.dart';
@@ -189,226 +190,142 @@ class _VocabularyScreenState extends State<VocabularyScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
-        child: StationeryFrame(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-          radius: 24,
-          ringWidth: 5,
-          shadowDepth: 6,
-          child: Column(
-            children: [
-              _VocabularyHeader(
-                wordCount: _controller.items.length,
-                reviewCount: _controller.dueCount,
-                pulse: _pulseController,
-                shouldPulse: _controller.items.length >= 4,
-                onReview: _openReview,
-                onSettings: widget.onSettings,
-              ),
-              if (_controller.isInitializing)
-                const Expanded(
-                  child: Center(
-                    child: Text(
-                      '正在打開生字簿...',
-                      style: TextStyle(
-                        color: AppPalette.primaryDark,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                )
-              else ...[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(2, 4, 2, 8),
-                  child: _VocabEntryPanel(
-                    controller: _controller,
-                    textController: _textController,
-                    focusNode: _focusNode,
-                    onChanged: _controller.updateQuery,
-                    onAdd: _addWord,
-                  ),
-                ),
-                Expanded(
-                  child: _VocabList(
-                    controller: _controller,
-                    speakingExample: _speakingExample,
-                    onSpeakWord: _speakWord,
-                    onSpeakExample: _speakExample,
-                    onDelete: _deleteWord,
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
+    return OriginalSectionFrame(
+      sectionKey: const Key('original-section-frame-vocabulary'),
+      eyebrow: 'Vocabulary',
+      title: '詞彙本',
+      onSettings: widget.onSettings,
+      settingsKey: const Key('vocab-settings-button'),
+      trailing: _VocabTrainingButton(
+        reviewCount: _controller.dueCount,
+        pulse: _pulseController,
+        shouldPulse: _controller.items.length >= 4,
+        onReview: _openReview,
       ),
-    );
-  }
-}
-
-class _VocabularyHeader extends StatelessWidget {
-  const _VocabularyHeader({
-    required this.wordCount,
-    required this.reviewCount,
-    required this.pulse,
-    required this.shouldPulse,
-    required this.onReview,
-    this.onSettings,
-  });
-
-  final int wordCount;
-  final int reviewCount;
-  final Animation<double> pulse;
-  final bool shouldPulse;
-  final VoidCallback onReview;
-  final VoidCallback? onSettings;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 96,
-      child: Row(
+      child: Column(
         children: [
-          if (onSettings != null) _VocabSettingsButton(onPressed: onSettings!),
-          const SizedBox(width: 8),
-          const Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'VOCABULARY',
+          if (_controller.isInitializing)
+            const Expanded(
+              child: Center(
+                child: Text(
+                  '正在打開生字簿...',
                   style: TextStyle(
                     color: AppPalette.primaryDark,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.4,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: 4),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    '詞彙本',
-                    style: TextStyle(
-                      color: AppPalette.primaryDark,
-                      fontSize: 30,
-                      height: 1,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-              ],
+              ),
+            )
+          else ...[
+            const SizedBox(height: 38),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(2, 0, 2, 8),
+              child: _VocabEntryPanel(
+                controller: _controller,
+                textController: _textController,
+                focusNode: _focusNode,
+                onChanged: _controller.updateQuery,
+                onAdd: _addWord,
+              ),
             ),
-          ),
-          AnimatedBuilder(
-            animation: pulse,
-            builder: (context, child) {
-              final scale = shouldPulse ? 1 + pulse.value * 0.08 : 1.0;
-              return Transform.scale(scale: scale, child: child);
-            },
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  width: 52,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    color: AppPalette.softSecondary,
-                    border: Border.all(
-                      color: const Color(0xFFFFCF66),
-                      width: 3,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0xFFE0B84F),
-                        offset: Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: InkWell(
-                    key: const Key('vocab-review-button'),
-                    onTap: onReview,
-                    borderRadius: BorderRadius.circular(16),
-                    child: Image.asset(
-                      'assets/dumbbel.png',
-                      width: 31,
-                      height: 31,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-                if (reviewCount > 0)
-                  Positioned(
-                    right: -2,
-                    top: -3,
-                    child: Container(
-                      constraints: const BoxConstraints(
-                        minWidth: 20,
-                        minHeight: 20,
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppPalette.danger,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.white, width: 2),
-                      ),
-                      child: Text(
-                        '$reviewCount',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
+            Expanded(
+              child: _VocabList(
+                controller: _controller,
+                speakingExample: _speakingExample,
+                onSpeakWord: _speakWord,
+                onSpeakExample: _speakExample,
+                onDelete: _deleteWord,
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );
   }
 }
 
-class _VocabSettingsButton extends StatelessWidget {
-  const _VocabSettingsButton({required this.onPressed});
+class _VocabTrainingButton extends StatelessWidget {
+  const _VocabTrainingButton({
+    required this.reviewCount,
+    required this.pulse,
+    required this.shouldPulse,
+    required this.onReview,
+  });
 
-  final VoidCallback onPressed;
+  final int reviewCount;
+  final Animation<double> pulse;
+  final bool shouldPulse;
+  final VoidCallback onReview;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      shape: const CircleBorder(),
-      elevation: 4,
-      child: InkWell(
-        key: const Key('vocab-settings-button'),
-        customBorder: const CircleBorder(),
-        onTap: onPressed,
-        child: Container(
-          width: 58,
-          height: 58,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            border: Border.all(color: AppPalette.primary, width: 5),
-            boxShadow: const [
-              BoxShadow(color: AppPalette.primaryDark, offset: Offset(0, 4)),
-            ],
+    final compact = MediaQuery.sizeOf(context).width <= 720;
+    final size = compact ? 46.0 : 52.0;
+    return AnimatedBuilder(
+      animation: pulse,
+      builder: (context, child) {
+        final scale = shouldPulse ? 1 + pulse.value * 0.08 : 1.0;
+        return Transform.scale(scale: scale, child: child);
+      },
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              color: AppPalette.softSecondary,
+              border: Border.all(
+                color: const Color(0xFFFFCF66),
+                width: 3,
+              ),
+              borderRadius: BorderRadius.circular(compact ? 14 : 16),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0xFFE0B84F),
+                  offset: Offset(0, 5),
+                ),
+              ],
+            ),
+            child: InkWell(
+              key: const Key('vocab-review-button'),
+              onTap: onReview,
+              borderRadius: BorderRadius.circular(compact ? 14 : 16),
+              child: Image.asset(
+                'assets/dumbbel.png',
+                width: 31,
+                height: 31,
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
-          child: Image.asset(
-            'assets/setting-2.png',
-            width: 33,
-            height: 33,
-            fit: BoxFit.contain,
-          ),
-        ),
+          if (reviewCount > 0)
+            Positioned(
+              right: -2,
+              top: -3,
+              child: Container(
+                constraints: const BoxConstraints(
+                  minWidth: 20,
+                  minHeight: 20,
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: AppPalette.danger,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.white, width: 2),
+                ),
+                child: Text(
+                  '$reviewCount',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -431,11 +348,13 @@ class _VocabEntryPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StationeryFrame(
-      radius: 16,
-      ringWidth: 3,
-      shadowDepth: 3,
-      padding: const EdgeInsets.fromLTRB(14, 13, 14, 14),
+    final compact = MediaQuery.sizeOf(context).width <= 720;
+    return OriginalDashedSurface(
+      radius: compact ? 20 : 24,
+      strokeWidth: 3,
+      shadowColor: const Color(0xFFBDE0E1),
+      shadowDepth: 5,
+      padding: EdgeInsets.all(compact ? 12 : 16),
       backgroundColor: AppPalette.softPrimary,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -445,133 +364,89 @@ class _VocabEntryPanel extends StatelessWidget {
             reviewCount: controller.dueCount,
           ),
           const SizedBox(height: 10),
-          const Text(
-            'ENGLISH WORD',
-            style: TextStyle(
-              color: AppPalette.primaryDark,
-              fontSize: 12,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-          const SizedBox(height: 6),
-          TextField(
-            key: const Key('vocab-word-input'),
-            controller: textController,
-            focusNode: focusNode,
-            showCursor: true,
-            enableInteractiveSelection: true,
-            autocorrect: false,
-            enableSuggestions: false,
-            textCapitalization: TextCapitalization.sentences,
-            textInputAction: TextInputAction.done,
-            onChanged: onChanged,
-            onSubmitted: (_) => focusNode.unfocus(),
-            decoration: InputDecoration(
-              hintText: '輸入英文生字或詞語',
-              filled: true,
-              fillColor: AppPalette.paper,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-              suffixIcon: controller.isLookingUp
-                  ? const Padding(
-                      padding: EdgeInsets.all(13),
-                      child: SizedBox.square(
-                        dimension: 18,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.5,
-                          color: AppPalette.primary,
-                        ),
+          ListenableBuilder(
+            listenable: focusNode,
+            builder: (context, _) {
+              final focused = focusNode.hasFocus;
+              return OriginalDashedSurface(
+                backgroundColor: Colors.white,
+                borderColor:
+                    focused ? AppPalette.secondaryDark : AppPalette.primary,
+                shadowColor: focused
+                    ? AppPalette.secondaryDark.withValues(alpha: 0.38)
+                    : const Color(0xFFBDE0E1),
+                shadowDepth: focused ? 5 : 4,
+                radius: 18,
+                strokeWidth: 3,
+                child: SizedBox(
+                  height: 54,
+                  child: TextField(
+                    key: const Key('vocab-word-input'),
+                    controller: textController,
+                    focusNode: focusNode,
+                    showCursor: true,
+                    enableInteractiveSelection: true,
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    textCapitalization: TextCapitalization.none,
+                    textInputAction: TextInputAction.done,
+                    onChanged: onChanged,
+                    onSubmitted: (_) => focusNode.unfocus(),
+                    decoration: const InputDecoration(
+                      hintText: 'English word',
+                      hintStyle: TextStyle(
+                        color: Color(0xFFA0A0A0),
+                        fontWeight: FontWeight.w900,
                       ),
-                    )
-                  : controller.query.isNotEmpty
-                      ? IconButton(
-                          tooltip: '清除',
-                          onPressed: () => onChanged(''),
-                          icon: const Icon(Icons.close_rounded),
-                        )
-                      : null,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide:
-                    const BorderSide(color: AppPalette.primary, width: 2),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide:
-                    const BorderSide(color: AppPalette.primaryDark, width: 3),
-              ),
-            ),
-            style: const TextStyle(
-              color: AppPalette.ink,
-              fontSize: 19,
-              fontWeight: FontWeight.w800,
-            ),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 13,
+                      ),
+                    ),
+                    style: const TextStyle(
+                      color: Color(0xFF5D4037),
+                      fontSize: 18,
+                      height: 1.15,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
           if (controller.lookupSenses.isNotEmpty) ...[
-            const SizedBox(height: 11),
-            const Text(
-              '揀選中文意思（可多選）',
-              style: TextStyle(
-                color: AppPalette.muted,
-                fontSize: 13,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            const SizedBox(height: 7),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 132),
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Wrap(
-                  spacing: 7,
-                  runSpacing: 7,
-                  children: controller.lookupSenses.map((sense) {
-                    final selected =
-                        controller.selectedSenseIds.contains(sense.id);
-                    return FilterChip(
-                      key: ValueKey('vocab-sense-${sense.id}'),
-                      selected: selected,
-                      onSelected: (_) {
-                        controller.toggleSense(sense);
-                        unawaited(AppSfx.instance.play(SfxCue.step));
-                      },
-                      label: Text(sense.label),
-                      checkmarkColor: AppPalette.correctDark,
-                      selectedColor: AppPalette.softCorrect,
-                      backgroundColor: AppPalette.softSecondary,
-                      side: BorderSide(
-                        color: selected
-                            ? AppPalette.correct
-                            : AppPalette.secondaryDark,
-                        width: 2,
-                      ),
-                      labelStyle: TextStyle(
-                        color:
-                            selected ? AppPalette.correctDark : AppPalette.ink,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    );
-                  }).toList(growable: false),
+            const SizedBox(height: 9),
+            OriginalDashedSurface(
+              backgroundColor: const Color(0xFFFFFDF7),
+              borderColor: const Color(0xFFF2C879),
+              strokeWidth: 2,
+              radius: 18,
+              padding: const EdgeInsets.all(8),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 132),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Wrap(
+                    spacing: 7,
+                    runSpacing: 7,
+                    children: controller.lookupSenses.map((sense) {
+                      final selected =
+                          controller.selectedSenseIds.contains(sense.id);
+                      return _MeaningChip(
+                        key: ValueKey('vocab-sense-${sense.id}'),
+                        label: sense.label,
+                        selected: selected,
+                        onTap: () {
+                          controller.toggleSense(sense);
+                          unawaited(AppSfx.instance.play(SfxCue.step));
+                        },
+                      );
+                    }).toList(growable: false),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            FilledButton.icon(
-              key: const Key('vocab-add-button'),
-              onPressed: controller.canAdd ? onAdd : null,
-              icon: const Icon(Icons.add_rounded),
-              label: Text(
-                controller.selectedSenseIds.length > 1
-                    ? '加入 ${controller.selectedSenseIds.length} 個意思'
-                    : '加入',
-              ),
-              style: FilledButton.styleFrom(
-                backgroundColor: AppPalette.secondary,
-                foregroundColor: const Color(0xFF614F16),
-                disabledBackgroundColor: const Color(0xFFE5E5E0),
-                minimumSize: const Size.fromHeight(45),
-                textStyle:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
               ),
             ),
           ] else if (!controller.isLookingUp &&
@@ -612,6 +487,34 @@ class _VocabEntryPanel extends StatelessWidget {
                 ),
               ),
           ],
+          const SizedBox(height: 9),
+          _OriginalRaisedButton(
+            key: const Key('vocab-add-button'),
+            onTap: controller.canAdd ? onAdd : null,
+            height: 48,
+            radius: 999,
+            backgroundColor: AppPalette.secondary,
+            foregroundColor: const Color(0xFF5D4037),
+            shadowColor: AppPalette.secondaryDark,
+            shadowDepth: 6,
+            hoverBackgroundColor: const Color(0xFFFFEB85),
+            hoverOffset: -2,
+            hoverShadowDepth: 8,
+            disabledBackgroundColor: const Color(0xFFF3F3F3),
+            disabledForegroundColor: const Color(0xFFAAAAAA),
+            disabledShadowColor: const Color(0xFFDDDDDD),
+            disabledShadowDepth: 4,
+            semanticLabel: '加入',
+            child: Text(
+              controller.selectedSenseIds.length > 1
+                  ? '加入 ${controller.selectedSenseIds.length} 個意思'
+                  : '加入',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -644,33 +547,209 @@ class _VocabStat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 9),
-      decoration: BoxDecoration(
-        color: AppPalette.paper,
-        border: Border.all(color: AppPalette.border, width: 2),
-        borderRadius: BorderRadius.circular(14),
+    return OriginalDashedSurface(
+      backgroundColor: Colors.white.withValues(alpha: 0.86),
+      borderColor: AppPalette.border,
+      shadowColor: const Color(0xFFF0F0F0),
+      strokeWidth: 2,
+      shadowDepth: 4,
+      radius: 18,
+      child: SizedBox(
+        height: 70,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              label,
+              style: const TextStyle(
+                color: AppPalette.muted,
+                fontSize: 13,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              '$value',
+              style: const TextStyle(
+                color: Color(0xFF5D4037),
+                fontSize: 26,
+                height: 1,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ],
+        ),
       ),
-      child: Column(
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-              color: AppPalette.muted,
-              fontSize: 13,
-              fontWeight: FontWeight.w900,
+    );
+  }
+}
+
+class _MeaningChip extends StatelessWidget {
+  const _MeaningChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+    super.key,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return _OriginalRaisedButton(
+      onTap: onTap,
+      radius: 13,
+      backgroundColor: selected ? AppPalette.primary : const Color(0xFFFFF7CF),
+      foregroundColor: selected ? Colors.white : const Color(0xFF5D4037),
+      shadowColor: selected ? AppPalette.primaryDark : const Color(0xFFE5BD5F),
+      shadowDepth: 3,
+      semanticLabel: label,
+      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
+      child: Text(
+        label,
+        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
+      ),
+    );
+  }
+}
+
+class _OriginalRaisedButton extends StatefulWidget {
+  const _OriginalRaisedButton({
+    required this.child,
+    required this.backgroundColor,
+    required this.foregroundColor,
+    required this.shadowColor,
+    required this.shadowDepth,
+    required this.radius,
+    required this.semanticLabel,
+    this.onTap,
+    this.width,
+    this.height,
+    this.padding = EdgeInsets.zero,
+    this.hoverBackgroundColor,
+    this.hoverOffset = 0,
+    this.hoverShadowDepth,
+    this.disabledBackgroundColor,
+    this.disabledForegroundColor,
+    this.disabledShadowColor,
+    this.disabledShadowDepth,
+    super.key,
+  });
+
+  final Widget child;
+  final VoidCallback? onTap;
+  final double? width;
+  final double? height;
+  final EdgeInsetsGeometry padding;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final Color shadowColor;
+  final double shadowDepth;
+  final double radius;
+  final String semanticLabel;
+  final Color? hoverBackgroundColor;
+  final double hoverOffset;
+  final double? hoverShadowDepth;
+  final Color? disabledBackgroundColor;
+  final Color? disabledForegroundColor;
+  final Color? disabledShadowColor;
+  final double? disabledShadowDepth;
+
+  @override
+  State<_OriginalRaisedButton> createState() => _OriginalRaisedButtonState();
+}
+
+class _OriginalRaisedButtonState extends State<_OriginalRaisedButton> {
+  bool _hovered = false;
+  bool _pressed = false;
+
+  bool get _enabled => widget.onTap != null;
+
+  void _setPressed(bool value) {
+    if (_pressed == value || !_enabled) return;
+    setState(() => _pressed = value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final hovering = _enabled && _hovered && !_pressed;
+    final background = !_enabled
+        ? widget.disabledBackgroundColor ?? widget.backgroundColor
+        : hovering
+            ? widget.hoverBackgroundColor ?? widget.backgroundColor
+            : widget.backgroundColor;
+    final foreground = !_enabled
+        ? widget.disabledForegroundColor ?? widget.foregroundColor
+        : widget.foregroundColor;
+    final shadow = !_enabled
+        ? widget.disabledShadowColor ?? widget.shadowColor
+        : widget.shadowColor;
+    final depth = !_enabled
+        ? widget.disabledShadowDepth ?? widget.shadowDepth
+        : _pressed
+            ? 0.0
+            : hovering
+                ? widget.hoverShadowDepth ?? widget.shadowDepth
+                : widget.shadowDepth;
+    final offset = _pressed ? 4.0 : (hovering ? widget.hoverOffset : 0.0);
+
+    return Semantics(
+      button: true,
+      enabled: _enabled,
+      label: widget.semanticLabel,
+      child: MouseRegion(
+        cursor: _enabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
+        onEnter: (_) {
+          if (_enabled) setState(() => _hovered = true);
+        },
+        onExit: (_) {
+          if (_hovered || _pressed) {
+            setState(() {
+              _hovered = false;
+              _pressed = false;
+            });
+          }
+        },
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTapDown: _enabled ? (_) => _setPressed(true) : null,
+          onTapUp: _enabled ? (_) => _setPressed(false) : null,
+          onTapCancel: _enabled ? () => _setPressed(false) : null,
+          onTap: widget.onTap,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 120),
+            curve: Curves.easeOut,
+            width: widget.width,
+            height: widget.height,
+            padding: widget.padding,
+            alignment: Alignment.center,
+            transform: Matrix4.translationValues(0, offset, 0),
+            decoration: BoxDecoration(
+              color: background,
+              borderRadius: BorderRadius.circular(widget.radius),
+              boxShadow: depth == 0
+                  ? null
+                  : [
+                      BoxShadow(
+                        color: shadow,
+                        offset: Offset(0, depth),
+                      ),
+                    ],
+            ),
+            foregroundDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(widget.radius),
+            ),
+            child: IconTheme.merge(
+              data: IconThemeData(color: foreground),
+              child: DefaultTextStyle.merge(
+                style: TextStyle(color: foreground),
+                child: widget.child,
+              ),
             ),
           ),
-          const SizedBox(height: 2),
-          Text(
-            '$value',
-            style: const TextStyle(
-              color: Color(0xFF5D4037),
-              fontSize: 25,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -734,7 +813,7 @@ class _VocabList extends StatelessWidget {
     return ListView(
       key: const Key('vocab-list'),
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.fromLTRB(14, 0, 14, 24),
+      padding: const EdgeInsets.fromLTRB(5, 2, 5, 10),
       children: children,
     );
   }
@@ -778,7 +857,7 @@ class _DateDivider extends StatelessWidget {
   }
 }
 
-class _VocabRow extends StatelessWidget {
+class _VocabRow extends StatefulWidget {
   const _VocabRow({
     required this.item,
     required this.expanded,
@@ -802,136 +881,151 @@ class _VocabRow extends StatelessWidget {
   final VoidCallback onDelete;
 
   @override
-  Widget build(BuildContext context) {
-    return StationeryFrame(
-      radius: 12,
-      ringWidth: 2,
-      shadowDepth: 3,
-      borderColor: const Color(0xFF9BD8D3),
-      padding: const EdgeInsets.all(11),
-      child: Column(
-        children: [
-          InkWell(
-            key: ValueKey('vocab-row-${item.id}'),
-            onTap: onSpeakWord,
-            borderRadius: BorderRadius.circular(9),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        item.word,
-                        style: const TextStyle(
-                          color: AppPalette.ink,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      const SizedBox(height: 3),
-                      ...item.senses.map((sense) => Text(
-                            sense.label,
-                            style: const TextStyle(
-                              color: AppPalette.muted,
-                              fontSize: 14,
-                              height: 1.28,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          )),
-                    ],
-                  ),
-                ),
-                Text(
-                  '${item.totalCorrect}/${item.totalSeen}',
-                  style: const TextStyle(
-                    color: AppPalette.primaryDark,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                const SizedBox(width: 7),
-                _SmallTextButton(
-                  label: '例',
-                  selected: expanded,
-                  onTap: onToggleExamples,
-                ),
-                const SizedBox(width: 5),
-                IconButton(
-                  key: ValueKey('vocab-delete-${item.id}'),
-                  tooltip: '刪除 ${item.word}',
-                  onPressed: onDelete,
-                  icon: const Icon(Icons.close_rounded, size: 20),
-                  color: AppPalette.dangerDark,
-                  style: IconButton.styleFrom(
-                    backgroundColor: AppPalette.softDanger,
-                    minimumSize: const Size.square(36),
-                    maximumSize: const Size.square(36),
-                    padding: EdgeInsets.zero,
-                    side: const BorderSide(color: AppPalette.danger, width: 2),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          AnimatedSize(
-            duration: const Duration(milliseconds: 220),
-            alignment: Alignment.topCenter,
-            child: expanded
-                ? Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: _ExamplePanel(
-                      loading: examplesLoading,
-                      sections: exampleSections,
-                      speakingExample: speakingExample,
-                      onSpeakExample: onSpeakExample,
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          ),
-        ],
-      ),
-    );
-  }
+  State<_VocabRow> createState() => _VocabRowState();
 }
 
-class _SmallTextButton extends StatelessWidget {
-  const _SmallTextButton({
-    required this.label,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final String label;
-  final bool selected;
-  final VoidCallback onTap;
+class _VocabRowState extends State<_VocabRow> {
+  bool _hovered = false;
+  bool _pressed = false;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: selected ? AppPalette.softCorrect : AppPalette.softSecondary,
-      borderRadius: BorderRadius.circular(9),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(9),
-        child: Container(
-          width: 36,
-          height: 36,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(9),
-            border: Border.all(
-              color: selected ? AppPalette.correct : AppPalette.secondaryDark,
-              width: 2,
-            ),
-          ),
-          child: Text(
-            label,
-            style: TextStyle(
-              color:
-                  selected ? AppPalette.correctDark : const Color(0xFF795F19),
-              fontSize: 16,
-              fontWeight: FontWeight.w900,
+    final compact = MediaQuery.sizeOf(context).width <= 720;
+    final highlighted = _hovered || _pressed;
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() {
+        _hovered = false;
+        _pressed = false;
+      }),
+      child: GestureDetector(
+        key: ValueKey('vocab-row-${widget.item.id}'),
+        behavior: HitTestBehavior.opaque,
+        onTapDown: (_) => setState(() => _pressed = true),
+        onTapUp: (_) => setState(() => _pressed = false),
+        onTapCancel: () => setState(() => _pressed = false),
+        onTap: widget.onSpeakWord,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
+          curve: Curves.easeOut,
+          transform: Matrix4.translationValues(0, highlighted ? -2 : 0, 0),
+          child: OriginalDashedSurface(
+            backgroundColor:
+                highlighted ? AppPalette.softPrimary : Colors.white,
+            borderColor: highlighted ? AppPalette.primary : AppPalette.border,
+            shadowColor:
+                highlighted ? const Color(0xFFBDE0E1) : const Color(0xFFE9ECEF),
+            shadowDepth: highlighted ? 6 : 4,
+            radius: compact ? 16 : 20,
+            strokeWidth: 3,
+            padding: EdgeInsets.all(compact ? 8 : 12),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.item.word,
+                            style: const TextStyle(
+                              color: Color(0xFF5D4037),
+                              fontSize: 20,
+                              height: 1.1,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          ...widget.item.senses.map(
+                            (sense) => Text(
+                              sense.label,
+                              style: const TextStyle(
+                                color: AppPalette.muted,
+                                fontSize: 13,
+                                height: 1.2,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    OriginalDashedSurface(
+                      backgroundColor: const Color(0xFFF3FFFE),
+                      borderColor: AppPalette.primary,
+                      strokeWidth: 2,
+                      radius: 999,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: compact ? 7 : 9,
+                        vertical: compact ? 5 : 6,
+                      ),
+                      child: Text(
+                        '${widget.item.totalCorrect}/${widget.item.totalSeen}',
+                        style: const TextStyle(
+                          color: AppPalette.primaryDark,
+                          fontSize: 12,
+                          height: 1.2,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: compact ? 6 : 10),
+                    _OriginalRaisedButton(
+                      width: compact ? 36 : 42,
+                      height: compact ? 36 : 42,
+                      radius: compact ? 12 : 14,
+                      onTap: widget.onToggleExamples,
+                      backgroundColor: widget.expanded
+                          ? const Color(0xFFD6F2F2)
+                          : const Color(0xFFEAF8F8),
+                      foregroundColor: AppPalette.primaryDark,
+                      shadowColor: const Color(0xFFBDE0E1),
+                      shadowDepth: 4,
+                      semanticLabel:
+                          '${widget.expanded ? "收起" : "打開"} ${widget.item.word} 例句',
+                      child: const Text(
+                        '例',
+                        style: TextStyle(
+                          fontSize: 18,
+                          height: 1,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: compact ? 6 : 10),
+                    _OriginalRaisedButton(
+                      key: ValueKey('vocab-delete-${widget.item.id}'),
+                      width: compact ? 36 : 42,
+                      height: compact ? 36 : 42,
+                      radius: compact ? 12 : 14,
+                      onTap: widget.onDelete,
+                      backgroundColor: AppPalette.danger,
+                      foregroundColor: Colors.white,
+                      shadowColor: AppPalette.dangerDark,
+                      shadowDepth: 4,
+                      semanticLabel: '刪除 ${widget.item.word}',
+                      child: const Text(
+                        '×',
+                        style: TextStyle(
+                          fontSize: 24,
+                          height: 1,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                if (widget.expanded) ...[
+                  const SizedBox(height: 9),
+                  _ExamplePanel(
+                    loading: widget.examplesLoading,
+                    sections: widget.exampleSections,
+                    speakingExample: widget.speakingExample,
+                    onSpeakExample: widget.onSpeakExample,
+                  ),
+                ],
+              ],
             ),
           ),
         ),
@@ -957,117 +1051,203 @@ class _ExamplePanel extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget child;
     if (loading) {
-      child = const Padding(
-        padding: EdgeInsets.all(12),
-        child: Center(
-          child: CircularProgressIndicator(
-            color: AppPalette.secondaryDark,
-            strokeWidth: 3,
-          ),
+      child = const Text(
+        '例句載入中...',
+        style: TextStyle(
+          color: Color(0xFF8A6A32),
+          fontSize: 13,
+          fontWeight: FontWeight.w900,
         ),
       );
     } else if (sections == null ||
         sections!.every((section) => section.examples.isEmpty)) {
-      child = const Padding(
-        padding: EdgeInsets.all(8),
-        child: Text(
-          '暫時未有合適例句。',
-          style:
-              TextStyle(color: AppPalette.muted, fontWeight: FontWeight.w700),
+      child = const Text(
+        '暫時未有合適例句。',
+        style: TextStyle(
+          color: Color(0xFF8A6A32),
+          fontSize: 13,
+          fontWeight: FontWeight.w900,
         ),
       );
     } else {
+      final visibleSections =
+          sections!.where((section) => section.examples.isNotEmpty).toList();
       child = Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          for (final section
-              in sections!.where((section) => section.examples.isNotEmpty)) ...[
+          for (var sectionIndex = 0;
+              sectionIndex < visibleSections.length;
+              sectionIndex++) ...[
+            if (sectionIndex > 0) ...[
+              const SizedBox(height: 8),
+              const _DashedExampleDivider(),
+              const SizedBox(height: 8),
+            ],
             if (sections!.length > 1)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: Text(
-                  section.sense.label,
-                  style: const TextStyle(
-                    color: Color(0xFF8B6E1D),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w900,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFEAF8F8),
+                    borderRadius: BorderRadius.circular(9),
                   ),
-                ),
-              ),
-            for (final example in section.examples)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 9),
-                child: InkWell(
-                  onTap: () => onSpeakExample(example.english),
-                  borderRadius: BorderRadius.circular(7),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 2, right: 5),
-                              child: speakingExample == example.english
-                                  ? const SizedBox.square(
-                                      dimension: 16,
-                                      child: CircularProgressIndicator(
-                                        color: AppPalette.secondaryDark,
-                                        strokeWidth: 2.2,
-                                      ),
-                                    )
-                                  : const Icon(
-                                      Icons.volume_up_rounded,
-                                      color: AppPalette.secondaryDark,
-                                      size: 16,
-                                    ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                example.english,
-                                style: const TextStyle(
-                                  color: AppPalette.ink,
-                                  fontSize: 14,
-                                  height: 1.28,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 21, top: 2),
-                          child: Text(
-                            example.chinese,
-                            style: const TextStyle(
-                              color: AppPalette.muted,
-                              fontSize: 13,
-                              height: 1.25,
-                            ),
-                          ),
-                        ),
-                      ],
+                  child: Text(
+                    visibleSections[sectionIndex].sense.label,
+                    style: const TextStyle(
+                      color: AppPalette.primaryDark,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
                 ),
               ),
+            for (var exampleIndex = 0;
+                exampleIndex < visibleSections[sectionIndex].examples.length;
+                exampleIndex++) ...[
+              if (exampleIndex > 0) const SizedBox(height: 7),
+              _ExampleCard(
+                example: visibleSections[sectionIndex].examples[exampleIndex],
+                speaking: speakingExample ==
+                    visibleSections[sectionIndex]
+                        .examples[exampleIndex]
+                        .english,
+                onSpeak: onSpeakExample,
+              ),
+            ],
           ],
         ],
       );
     }
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: AppPalette.softSecondary,
-        borderRadius: BorderRadius.circular(9),
-        border: Border.all(color: AppPalette.secondaryDark, width: 2),
+    return OriginalDashedSurface(
+      key: const Key('vocab-example-panel'),
+      backgroundColor: const Color(0xFFFFFDF2),
+      borderColor: const Color(0xFFF2C879),
+      strokeWidth: 2,
+      radius: 16,
+      padding: const EdgeInsets.all(9),
+      child: DefaultTextStyle.merge(
+        style: const TextStyle(
+          color: Color(0xFF8A6A32),
+          fontSize: 13,
+          height: 1.35,
+          fontWeight: FontWeight.w900,
+        ),
+        child: child,
       ),
-      child: child,
     );
   }
+}
+
+class _ExampleCard extends StatelessWidget {
+  const _ExampleCard({
+    required this.example,
+    required this.speaking,
+    required this.onSpeak,
+  });
+
+  final VocabExample example;
+  final bool speaking;
+  final ValueChanged<String> onSpeak;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: ValueKey('vocab-example-card-${example.english}'),
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: const Color(0xFFF2C879).withValues(alpha: 0.28),
+          width: 2,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Material(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
+            child: InkWell(
+              key: ValueKey('vocab-example-english-${example.english}'),
+              onTap: () => onSpeak(example.english),
+              borderRadius: BorderRadius.circular(8),
+              splashColor: AppPalette.primary.withValues(alpha: 0.18),
+              highlightColor: const Color(0xFFEAF8F8),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 120),
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                decoration: BoxDecoration(
+                  color:
+                      speaking ? const Color(0xFFEAF8F8) : Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  example.english,
+                  style: const TextStyle(
+                    color: Color(0xFF5D4037),
+                    fontSize: 13,
+                    height: 1.35,
+                    fontWeight: FontWeight.w900,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Color(0x6B49A09F),
+                    decorationThickness: 2,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            example.chinese,
+            style: const TextStyle(
+              color: AppPalette.muted,
+              fontSize: 12,
+              height: 1.35,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DashedExampleDivider extends StatelessWidget {
+  const _DashedExampleDivider();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 1,
+      width: double.infinity,
+      child: CustomPaint(painter: _DashedLinePainter()),
+    );
+  }
+}
+
+class _DashedLinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = const Color(0xFFF2C879).withValues(alpha: 0.72)
+      ..strokeWidth = 1;
+    var x = 0.0;
+    while (x < size.width) {
+      canvas.drawLine(
+        Offset(x, 0.5),
+        Offset((x + 5).clamp(0, size.width), 0.5),
+        paint,
+      );
+      x += 8;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 class VocabularyReviewScreen extends StatefulWidget {

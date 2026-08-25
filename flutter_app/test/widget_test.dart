@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:dope_english/core/app_palette.dart';
+import 'package:dope_english/core/widgets/stationery_frame.dart';
 import 'package:dope_english/features/grammar/original_grammar_home.dart';
 import 'package:dope_english/main.dart';
 
@@ -125,5 +126,65 @@ void main() {
     await tester.tap(find.byKey(const Key('main-tab-文法')));
     await tester.pumpAndSettle();
     expect(find.text('Basic Grammar Game'), findsOneWidget);
+  });
+
+  testWidgets('main tabs keep one frame and settings geometry',
+      (WidgetTester tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(390, 844);
+    addTearDown(tester.view.reset);
+
+    await tester.pumpWidget(const DopeEnglishApp());
+    await tester.pumpAndSettle();
+    final grammarFrame = tester.getRect(
+      find.byKey(const Key('original-section-frame-grammar')),
+    );
+    final grammarSettings = tester.getRect(
+      find.byKey(const Key('grammar-home-settings')),
+    );
+
+    await tester.tap(find.byKey(const Key('main-tab-詞彙')));
+    await tester.pumpAndSettle();
+    final vocabFrame = tester.getRect(
+      find.byKey(const Key('original-section-frame-vocabulary')),
+    );
+    final vocabSettings = tester.getRect(
+      find.byKey(const Key('vocab-settings-button')),
+    );
+
+    expect(vocabFrame, grammarFrame);
+    expect(vocabSettings, grammarSettings);
+
+    await tester.tap(find.byKey(const Key('main-tab-Scan')));
+    await tester.pumpAndSettle();
+    final scanFrame = tester.getRect(
+      find.byKey(const Key('original-section-frame-scan')),
+    );
+    expect(scanFrame, grammarFrame);
+  });
+
+  testWidgets('bottom tabs use the original dashed yellow selected state',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+
+    OriginalDashedSurface tabSurface(String label) {
+      final finder = find
+          .descendant(
+            of: find.byKey(Key('main-tab-$label')),
+            matching: find.byType(OriginalDashedSurface),
+          )
+          .first;
+      return tester.widget<OriginalDashedSurface>(finder);
+    }
+
+    expect(tabSurface('文法').backgroundColor, AppPalette.secondary);
+    expect(tabSurface('文法').borderColor, Colors.white);
+    expect(tabSurface('詞彙').backgroundColor, const Color(0xFFF8FBFB));
+    expect(tabSurface('詞彙').borderColor, const Color(0xFFD9E5E7));
+
+    await tester.tap(find.byKey(const Key('main-tab-詞彙')));
+    await tester.pumpAndSettle();
+    expect(tabSurface('詞彙').backgroundColor, AppPalette.secondary);
+    expect(tabSurface('文法').backgroundColor, const Color(0xFFF8FBFB));
   });
 }

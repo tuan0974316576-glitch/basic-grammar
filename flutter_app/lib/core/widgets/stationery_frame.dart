@@ -64,6 +64,69 @@ class StationeryFrame extends StatelessWidget {
   }
 }
 
+/// A single dashed surface without the white stationery ring.
+///
+/// This matches original web controls such as vocabulary rows, stat boxes,
+/// text fields, and bottom tabs, which share the dashed border but not the
+/// outer white ring used by a full screen frame.
+class OriginalDashedSurface extends StatelessWidget {
+  const OriginalDashedSurface({
+    required this.child,
+    this.padding = EdgeInsets.zero,
+    this.backgroundColor = AppPalette.paper,
+    this.borderColor = AppPalette.primary,
+    this.shadowColor = Colors.transparent,
+    this.radius = 18,
+    this.strokeWidth = 3,
+    this.shadowDepth = 0,
+    this.blurRadius = 0,
+    super.key,
+  });
+
+  final Widget child;
+  final EdgeInsetsGeometry padding;
+  final Color backgroundColor;
+  final Color borderColor;
+  final Color shadowColor;
+  final double radius;
+  final double strokeWidth;
+  final double shadowDepth;
+  final double blurRadius;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(radius),
+        boxShadow: shadowColor == Colors.transparent
+            ? null
+            : [
+                BoxShadow(
+                  color: shadowColor,
+                  offset: Offset(0, shadowDepth),
+                  blurRadius: blurRadius,
+                ),
+              ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(radius),
+        child: ColoredBox(
+          color: backgroundColor,
+          child: CustomPaint(
+            foregroundPainter: _DashedRoundedBorderPainter(
+              color: borderColor,
+              radius: radius,
+              strokeWidth: strokeWidth,
+            ),
+            child: Padding(padding: padding, child: child),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _DashedRoundedBorderPainter extends CustomPainter {
   const _DashedRoundedBorderPainter({
     required this.color,
