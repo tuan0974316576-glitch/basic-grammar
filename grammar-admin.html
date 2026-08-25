@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grammar Question Console</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="grammar-admin.css?v=20260825-1">
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="admin-header">
+      <div>
+        <div class="eyebrow">DOPE ENGLISH / TEACHER</div>
+        <h1>Grammar Question Console</h1>
+        <p>修改題目後先 Save Draft，檢查無誤再 Publish。學生 app 會讀已發布版本，離線時用內置題庫。</p>
+      </div>
+      <div id="cloud-status" class="status-badge">LOGIN REQUIRED</div>
+    </header>
+
+    <section id="login-panel" class="panel login-panel">
+      <h2>登入老師帳號</h2>
+      <form id="login-form" class="login-form">
+        <label>Teacher ID<input id="login-student-id" autocomplete="username" placeholder="例如 TEACHER"></label>
+        <label>PIN<input id="login-pin" type="password" inputmode="numeric" autocomplete="current-password" placeholder="4-8 位數字"></label>
+        <button id="login-button" class="primary" type="submit">登入</button>
+      </form>
+      <div id="login-status" class="status-line">請用 Grammar Game 老師帳號登入。</div>
+    </section>
+
+    <section id="workspace" class="workspace hidden">
+      <aside class="panel lesson-list-panel">
+        <div class="workspace-topline">
+          <div><span class="eyebrow">Question Banks</span><h2>選擇課題</h2></div>
+          <button id="refresh-button" class="secondary" type="button" title="重新讀取">↻</button>
+        </div>
+        <div id="account-label" class="account-label"></div>
+        <div id="lesson-list" class="lesson-list"></div>
+      </aside>
+
+      <section class="panel editor-panel">
+        <div class="workspace-topline">
+          <div><span id="editor-kicker" class="eyebrow">Lesson 01</span><h2 id="editor-title">--</h2></div>
+          <div id="source-badge" class="source-badge">BUNDLED</div>
+        </div>
+        <div class="editor-toolbar">
+          <span id="question-count">0 questions</span>
+          <button id="format-button" class="secondary" type="button">Format JSON</button>
+          <button id="add-button" class="secondary" type="button">+ Add question</button>
+        </div>
+        <textarea id="questions-json" spellcheck="false" aria-label="題庫 JSON"></textarea>
+        <div id="validation-status" class="status-line"></div>
+        <div class="editor-actions">
+          <button id="save-draft-button" class="secondary" type="button">Save Draft</button>
+          <button id="publish-button" class="primary" type="button">Publish</button>
+        </div>
+        <div class="warning-note">Publish 只會更新目前課題；其他課題不受影響。每次更新會保留 app 內置 fallback。</div>
+      </section>
+    </section>
+  </main>
+
+  <script src="firebase_config.js"></script>
+  <script src="grammar_core.js"></script>
+  <script src="grammar_data.js"></script>
+  <script src="grammar-question-bank.js?v=20260825-1"></script>
+  <script src="grammar-admin.js?v=20260825-1" type="module"></script>
+</body>
+</html>

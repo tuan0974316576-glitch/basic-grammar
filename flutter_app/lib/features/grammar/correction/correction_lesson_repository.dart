@@ -2,13 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+import '../grammar_question_bank_service.dart';
 import 'correction_lesson_question.dart';
 
 class CorrectionLessonRepository {
   const CorrectionLessonRepository();
 
   Future<List<CorrectionLessonQuestion>> loadQuestions(String assetPath) async {
-    return parseQuestions(await rootBundle.loadString(assetPath));
+    final remote =
+        await GrammarQuestionBankService.loadPublishedForAsset(assetPath);
+    return parseQuestions(remote ?? await rootBundle.loadString(assetPath));
   }
 
   static List<CorrectionLessonQuestion> parseQuestions(String source) {

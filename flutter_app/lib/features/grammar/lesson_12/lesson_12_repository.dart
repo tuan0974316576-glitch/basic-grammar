@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+import '../grammar_question_bank_service.dart';
 import 'lesson_12_question.dart';
 
 class Lesson12Repository {
@@ -11,12 +12,16 @@ class Lesson12Repository {
   static const referenceAssetPath = 'assets/data/verb_table_reference.json';
 
   Future<List<Lesson12Question>> loadQuestions() async {
-    return parseQuestions(await rootBundle.loadString(assetPath));
+    final remote =
+        await GrammarQuestionBankService.loadPublishedForAsset(assetPath);
+    return parseQuestions(remote ?? await rootBundle.loadString(assetPath));
   }
 
   Future<List<Lesson12Question>> loadReferenceQuestions() async {
+    final remote = await GrammarQuestionBankService.loadPublishedForAsset(
+        referenceAssetPath);
     return parseReferenceQuestions(
-      await rootBundle.loadString(referenceAssetPath),
+      remote ?? await rootBundle.loadString(referenceAssetPath),
     );
   }
 

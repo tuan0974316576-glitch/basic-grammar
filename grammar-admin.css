@@ -1,0 +1,71 @@
+:root {
+  --teal: #2cb5ac;
+  --teal-dark: #176b5f;
+  --soft-teal: #e0fbfc;
+  --yellow: #ffe66d;
+  --yellow-dark: #d99a00;
+  --ink: #444;
+  --muted: #717b80;
+  --line: #d1d8e0;
+  --paper: #fffefb;
+  --danger: #c94b4b;
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; }
+body {
+  color: var(--ink);
+  font-family: "Chiron GoRound TC", "M PLUS Rounded 1c", "Hiragino Kaku Gothic ProN", sans-serif;
+  background: #f7fcfc;
+}
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+.hidden { display: none !important; }
+.admin-shell { width: min(1280px, calc(100% - 28px)); margin: 0 auto; padding: 24px 0 44px; }
+.admin-header {
+  display: flex; justify-content: space-between; gap: 18px; align-items: flex-start;
+  padding: 24px; margin-bottom: 18px; background: var(--soft-teal);
+  border: 3px dashed var(--teal); border-radius: 24px; box-shadow: 0 6px 0 #bde0e1;
+}
+.eyebrow { color: var(--teal-dark); font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2 { margin: 4px 0 0; color: var(--teal-dark); font-weight: 900; }
+h1 { font-size: clamp(26px, 4vw, 42px); }
+h2 { font-size: 22px; }
+p { max-width: 740px; margin: 10px 0 0; color: var(--muted); line-height: 1.5; font-weight: 700; }
+.status-badge, .source-badge { padding: 9px 12px; border-radius: 999px; background: white; color: var(--teal-dark); border: 2px solid var(--teal); font-size: 12px; font-weight: 900; white-space: nowrap; }
+.panel { background: var(--paper); border: 3px dashed var(--line); border-radius: 22px; box-shadow: 0 5px 0 #e9ecef; padding: 20px; }
+.login-panel { max-width: 560px; margin: 0 auto; }
+.login-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; margin-top: 16px; }
+label { display: grid; gap: 6px; color: var(--teal-dark); font-size: 12px; font-weight: 900; }
+input, textarea { width: 100%; color: var(--ink); background: white; border: 2px solid var(--line); border-radius: 12px; padding: 10px 12px; outline: none; }
+input:focus, textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px #e0fbfc; }
+.primary, .secondary { min-height: 42px; padding: 8px 15px; border-radius: 12px; font-weight: 900; }
+.primary { color: #5d4037; background: var(--yellow); border: 2px solid white; box-shadow: 0 3px 0 var(--yellow-dark); }
+.secondary { color: var(--teal-dark); background: white; border: 2px solid var(--line); box-shadow: 0 3px 0 #e9ecef; }
+.primary:active, .secondary:active { transform: translateY(2px); box-shadow: none; }
+.status-line { min-height: 22px; margin-top: 12px; color: var(--muted); font-size: 13px; font-weight: 800; line-height: 1.4; }
+.status-line.error { color: var(--danger); }
+.status-line.success { color: var(--teal-dark); }
+.workspace { display: grid; grid-template-columns: minmax(230px, .36fr) minmax(0, 1fr); gap: 18px; }
+.workspace-topline { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.account-label { margin: 12px 0; color: var(--muted); font-size: 13px; font-weight: 800; overflow-wrap: anywhere; }
+.lesson-list { display: grid; gap: 9px; max-height: 680px; overflow: auto; padding: 3px 3px 8px; }
+.lesson-button { width: 100%; padding: 12px; text-align: left; color: var(--ink); background: white; border: 2px dashed var(--line); border-radius: 14px; box-shadow: 0 3px 0 #e9ecef; }
+.lesson-button.active { color: var(--teal-dark); border-color: var(--teal); background: var(--soft-teal); box-shadow: 0 3px 0 #bde0e1; }
+.lesson-button strong, .lesson-button span { display: block; }
+.lesson-button strong { margin-top: 3px; font-size: 15px; }
+.lesson-button span:last-child { margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 800; }
+.editor-toolbar, .editor-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin: 16px 0 10px; }
+.editor-toolbar span { margin-right: auto; color: var(--muted); font-size: 13px; font-weight: 900; }
+#questions-json { min-height: 560px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 1.5; tab-size: 2; }
+.editor-actions { justify-content: flex-end; }
+.warning-note { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+@media (max-width: 760px) {
+  .admin-shell { width: min(100% - 18px, 640px); padding-top: 10px; }
+  .admin-header { display: block; padding: 18px; }
+  .status-badge { display: inline-block; margin-top: 14px; }
+  .login-form { grid-template-columns: 1fr; }
+  .workspace { grid-template-columns: 1fr; }
+  .lesson-list { max-height: 260px; }
+  #questions-json { min-height: 460px; }
+}

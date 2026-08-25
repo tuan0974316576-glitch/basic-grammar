@@ -160,6 +160,33 @@ service cloud.firestore {
         && (!("updatedBy" in request.resource.data) || request.resource.data.updatedBy == request.auth.uid);
     }
 
+    function grammarBankKeysAreSafe() {
+      return request.resource.data.keys().hasOnly([
+        "lessonId",
+        "kicker",
+        "title",
+        "questions",
+        "status",
+        "version",
+        "updatedAt",
+        "updatedBy",
+        "publishedAt",
+        "publishedBy"
+      ]);
+    }
+
+    function grammarBankFieldsAreSafe(expectedLessonId, expectedStatus) {
+      return request.resource.data.lessonId is string
+        && request.resource.data.lessonId == expectedLessonId
+        && request.resource.data.kicker is string
+        && request.resource.data.title is string
+        && request.resource.data.questions is list
+        && request.resource.data.questions.size() > 0
+        && request.resource.data.questions.size() <= 500
+        && request.resource.data.status == expectedStatus
+        && request.resource.data.updatedBy == request.auth.uid;
+    }
+
     match /studentAccounts/{studentId} {
       allow read, write: if false;
     }
@@ -173,6 +200,22 @@ service cloud.firestore {
       allow create, update: if isTeacher()
         && teacherVocabKeysAreSafe()
         && teacherVocabFieldsAreSafe();
+      allow delete: if false;
+    }
+
+    match /grammarQuestionBanks/{lessonId} {
+      allow read: if signedIn();
+      allow create, update: if isTeacher()
+        && grammarBankKeysAreSafe()
+        && grammarBankFieldsAreSafe(lessonId, "published");
+      allow delete: if false;
+    }
+
+    match /grammarQuestionDrafts/{lessonId} {
+      allow read: if isTeacher();
+      allow create, update: if isTeacher()
+        && grammarBankKeysAreSafe()
+        && grammarBankFieldsAreSafe(lessonId, "draft");
       allow delete: if false;
     }
 

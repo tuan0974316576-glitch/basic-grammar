@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/services.dart';
 
+import '../grammar_question_bank_service.dart';
 import 'lesson_02_question.dart';
 
 class Lesson02Repository {
@@ -11,7 +12,9 @@ class Lesson02Repository {
   static const assetPath = 'assets/data/lesson_02.json';
 
   Future<List<Lesson02Question>> loadQuestions() async {
-    return parseQuestions(await rootBundle.loadString(assetPath));
+    final remote =
+        await GrammarQuestionBankService.loadPublishedForAsset(assetPath);
+    return parseQuestions(remote ?? await rootBundle.loadString(assetPath));
   }
 
   static List<Lesson02Question> parseQuestions(String source) {

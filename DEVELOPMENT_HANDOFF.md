@@ -338,6 +338,38 @@ flutter build ios --no-codesign
 The iOS artifact requires the normal Xcode signing team before device install
 or TestFlight upload. No Firebase deployment was made for this UI-only task.
 
+## Grammar Question Admin (2026-08-25)
+
+There is now a teacher-only question-bank console at:
+
+`https://enguistics-grammar-game.web.app/grammar-admin`
+
+The existing vocabulary console remains at:
+
+`https://enguistics-grammar-game.web.app/teacher-vocab`
+
+The grammar console uses the existing Teacher ID + PIN flow and requires the
+Firebase Auth custom claim `role=teacher`. It loads the canonical Lesson 01-13
+banks from `grammar_data.js`, lets the teacher edit JSON by lesson, validates
+the lesson-specific shape and duplicate IDs, and supports separate Save Draft
+and Publish actions. Drafts are stored in `grammarQuestionDrafts/{lessonId}`;
+published banks are stored in `grammarQuestionBanks/{lessonId}`.
+
+Published banks are protected by the deployed Firestore rules: signed-in
+students can read only published banks, while only teacher-role accounts can
+write draft or published documents. The rules were released on 2026-08-25.
+
+Native Flutter repositories now check the matching published bank first and
+fall back to the bundled JSON asset after a timeout, while offline, or when a
+published bank is missing/malformed. This keeps the app usable if Firebase is
+unavailable. The mapping and validation helper lives in
+`grammar-question-bank.js`; the native reader is
+`flutter_app/lib/features/grammar/grammar_question_bank_service.dart`.
+
+Hosting and rules were deployed to `enguistics-grammar-game`. No question
+content was changed or published during the initial deployment; the console
+starts from the current bundled banks.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:

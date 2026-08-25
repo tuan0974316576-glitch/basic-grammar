@@ -10,6 +10,10 @@
       {
         "source": "/teacher-vocab",
         "destination": "/teacher-vocab.html"
+      },
+      {
+        "source": "/grammar-admin",
+        "destination": "/grammar-admin.html"
       }
     ]
   },
