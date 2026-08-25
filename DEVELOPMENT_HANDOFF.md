@@ -478,6 +478,41 @@ Physical screenshots confirmed the collapsed and expanded Vocabulary states,
 including three loaded example cards and the corrected pale-yellow selected
 Vocabulary tab.
 
+## Original Motion Assets (2026-08-26)
+
+The retained web source and its Git history were audited before changing native
+motion assets. Contrary to the earlier assumption that every header control was
+a Lottie file, the verifiable originals are:
+
+- Settings: `assets/setting-2.png`, an Inkscape-authored 128x128 PNG added in
+  commit `05156c16`. Both Grammar and Vocabulary use the byte-identical file in
+  Flutter. The original 420ms / 145-degree gear rotation now runs while the
+  Settings sheet is open.
+- Vocabulary Training: `assets/dumbbel.png`, an Inkscape-authored 128x128 PNG
+  added in commit `1c84ad48` when the earlier inline SVG was replaced. Flutter
+  uses the byte-identical PNG with the original raised/pressed button motion.
+- Lessons / Quiz: `assets/confetti.json` is the actual original Lottie. All
+  native Lesson 01-13 and Quiz 01 success/completion overlays now render this
+  asset through the Flutter `lottie` package. The separate hand-painted Flutter
+  particle implementations in Lesson 01, Lesson 02, and Quiz 01 were removed.
+- Study streak: the original `STREAK_FIRE_LOTTIE_DATA` embedded in
+  `assets/streak-fire-animation.js` was extracted without redesign into
+  `flutter_app/assets/lottie/streak-fire.json`; the native reusable widget is
+  `OriginalStreakFireAnimation` in `lesson_ui.dart` for the later persisted
+  streak screen.
+
+The installed legacy iPad app (`com.enguistics.grammar`), its readable WebKit
+cache, all reachable Git objects, the Mac filesystem, and a focused LottieFiles
+search were checked. No separate Settings, Lesson-card, or Training Lottie JSON
+exists in the available source, so those PNG controls must not be relabelled as
+Lottie or replaced by an unverified lookalike. Tests validate both Lottie JSON
+files, render both Flutter Lottie widgets, and compare the native Settings and
+Training PNG hashes against the retained web originals.
+
+The Flutter APK built from this motion pass is approximately 277 MB in debug
+mode because it bundles the Lottie renderer and original JSON assets. Release
+builds should be used for TestFlight / Play Store distribution.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:

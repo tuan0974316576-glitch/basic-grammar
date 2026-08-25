@@ -172,6 +172,7 @@ class _AppShellState extends State<AppShell> {
   int _selectedTab = _configuredInitialTab >= 0 && _configuredInitialTab <= 2
       ? _configuredInitialTab
       : 0;
+  bool _settingsOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -201,10 +202,12 @@ class _AppShellState extends State<AppShell> {
             );
           },
           onSettings: () => _showSettings(context),
+          settingsActive: _settingsOpen,
         ),
       1 => VocabularyScreen(
           audioRepository: widget.vocabAudioRepository,
           onSettings: () => _showSettings(context),
+          settingsActive: _settingsOpen,
         ),
       _ => const OriginalScanPage(),
     };
@@ -301,7 +304,8 @@ class _AppShellState extends State<AppShell> {
   }
 
   void _showSettings(BuildContext context) {
-    showModalBottomSheet<void>(
+    setState(() => _settingsOpen = true);
+    final modal = showModalBottomSheet<void>(
       context: context,
       backgroundColor: AppPalette.paper,
       showDragHandle: true,
@@ -350,6 +354,9 @@ class _AppShellState extends State<AppShell> {
         );
       },
     );
+    unawaited(modal.whenComplete(() {
+      if (mounted) setState(() => _settingsOpen = false);
+    }));
   }
 }
 

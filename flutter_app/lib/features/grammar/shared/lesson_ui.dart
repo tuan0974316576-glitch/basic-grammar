@@ -1,6 +1,5 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/widgets/stationery_frame.dart';
@@ -523,16 +522,37 @@ class LessonCelebrationOverlay extends StatelessWidget {
     if (trigger == 0) return const SizedBox.shrink();
     return Positioned.fill(
       child: IgnorePointer(
-        child: TweenAnimationBuilder<double>(
-          key: ValueKey('$trigger-$grand'),
-          tween: Tween(begin: 0, end: 1),
-          duration: Duration(milliseconds: grand ? 1350 : 850),
-          builder: (context, progress, _) {
-            return CustomPaint(
-              painter: _CelebrationPainter(progress: progress, grand: grand),
-            );
-          },
+        child: Transform.scale(
+          scale: grand ? 1.48 : 1.28,
+          child: Lottie.asset(
+            'assets/lottie/confetti.json',
+            key: ValueKey('original-confetti-$trigger-$grand'),
+            fit: BoxFit.cover,
+            repeat: false,
+            frameRate: FrameRate.max,
+            options: LottieOptions(enableMergePaths: true),
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class OriginalStreakFireAnimation extends StatelessWidget {
+  const OriginalStreakFireAnimation({this.size = 220, super.key});
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.square(
+      key: const Key('original-streak-fire-lottie'),
+      dimension: size,
+      child: Lottie.asset(
+        'assets/lottie/streak-fire.json',
+        fit: BoxFit.contain,
+        repeat: true,
+        frameRate: FrameRate.max,
       ),
     );
   }
@@ -634,49 +654,5 @@ class _ResultStat extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _CelebrationPainter extends CustomPainter {
-  const _CelebrationPainter({required this.progress, required this.grand});
-
-  final double progress;
-  final bool grand;
-
-  static const colors = [
-    AppPalette.primary,
-    AppPalette.secondaryDark,
-    AppPalette.correct,
-    AppPalette.danger,
-    AppPalette.pink,
-  ];
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (progress <= 0 || progress >= 1) return;
-    final opacity = math.sin(progress * math.pi);
-    final center = Offset(size.width / 2, size.height * 0.48);
-    final count = grand ? 70 : 34;
-    final radius = size.shortestSide * (grand ? 0.9 : 0.56) * progress;
-    for (var index = 0; index < count; index++) {
-      final angle = (math.pi * 2 * index / count) + (index % 5) * 0.09;
-      final distance = radius * (0.45 + (index % 9) / 13);
-      final point =
-          center + Offset(math.cos(angle), math.sin(angle)) * distance;
-      final paint = Paint()
-        ..color = colors[index % colors.length].withValues(alpha: opacity)
-        ..strokeWidth = grand ? 5 : 4
-        ..strokeCap = StrokeCap.round;
-      canvas.drawLine(
-        point,
-        point + Offset(math.cos(angle), math.sin(angle)) * 10,
-        paint,
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _CelebrationPainter oldDelegate) {
-    return progress != oldDelegate.progress || grand != oldDelegate.grand;
   }
 }

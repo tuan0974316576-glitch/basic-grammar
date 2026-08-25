@@ -16,12 +16,14 @@ class VocabularyScreen extends StatefulWidget {
     this.controller,
     this.audioRepository,
     this.onSettings,
+    this.settingsActive = false,
     super.key,
   });
 
   final VocabController? controller;
   final VocabAudioRepository? audioRepository;
   final VoidCallback? onSettings;
+  final bool settingsActive;
 
   @override
   State<VocabularyScreen> createState() => _VocabularyScreenState();
@@ -195,6 +197,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
       eyebrow: 'Vocabulary',
       title: '詞彙本',
       onSettings: widget.onSettings,
+      settingsActive: widget.settingsActive,
       settingsKey: const Key('vocab-settings-button'),
       trailing: _VocabTrainingButton(
         reviewCount: _controller.dueCount,
@@ -270,33 +273,24 @@ class _VocabTrainingButton extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          Container(
+          _OriginalRaisedButton(
+            key: const Key('vocab-review-button'),
             width: size,
             height: size,
-            decoration: BoxDecoration(
-              color: AppPalette.softSecondary,
-              border: Border.all(
-                color: const Color(0xFFFFCF66),
-                width: 3,
-              ),
-              borderRadius: BorderRadius.circular(compact ? 14 : 16),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0xFFE0B84F),
-                  offset: Offset(0, 5),
-                ),
-              ],
-            ),
-            child: InkWell(
-              key: const Key('vocab-review-button'),
-              onTap: onReview,
-              borderRadius: BorderRadius.circular(compact ? 14 : 16),
-              child: Image.asset(
-                'assets/dumbbel.png',
-                width: 31,
-                height: 31,
-                fit: BoxFit.contain,
-              ),
+            radius: compact ? 14 : 16,
+            onTap: onReview,
+            backgroundColor: AppPalette.softSecondary,
+            foregroundColor: const Color(0xFF5D4037),
+            shadowColor: const Color(0xFFE0B84F),
+            shadowDepth: 5,
+            borderColor: const Color(0xFFFFCF66),
+            borderWidth: 3,
+            semanticLabel: '開始詞彙溫習',
+            child: Image.asset(
+              'assets/dumbbel.png',
+              width: 31,
+              height: 31,
+              fit: BoxFit.contain,
             ),
           ),
           if (reviewCount > 0)
@@ -635,6 +629,8 @@ class _OriginalRaisedButton extends StatefulWidget {
     this.disabledForegroundColor,
     this.disabledShadowColor,
     this.disabledShadowDepth,
+    this.borderColor,
+    this.borderWidth = 0,
     super.key,
   });
 
@@ -656,6 +652,8 @@ class _OriginalRaisedButton extends StatefulWidget {
   final Color? disabledForegroundColor;
   final Color? disabledShadowColor;
   final double? disabledShadowDepth;
+  final Color? borderColor;
+  final double borderWidth;
 
   @override
   State<_OriginalRaisedButton> createState() => _OriginalRaisedButtonState();
@@ -729,6 +727,12 @@ class _OriginalRaisedButtonState extends State<_OriginalRaisedButton> {
             decoration: BoxDecoration(
               color: background,
               borderRadius: BorderRadius.circular(widget.radius),
+              border: widget.borderColor == null || widget.borderWidth == 0
+                  ? null
+                  : Border.all(
+                      color: widget.borderColor!,
+                      width: widget.borderWidth,
+                    ),
               boxShadow: depth == 0
                   ? null
                   : [

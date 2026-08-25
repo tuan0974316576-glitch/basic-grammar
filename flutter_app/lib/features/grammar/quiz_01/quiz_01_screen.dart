@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
 import '../../../core/widgets/stationery_frame.dart';
+import '../shared/lesson_ui.dart';
 import 'quiz_01_controller.dart';
 import 'quiz_01_question.dart';
 import 'quiz_01_repository.dart';
@@ -17,7 +18,6 @@ const _blue = AppPalette.primary;
 const _blueDark = AppPalette.primaryDark;
 const _green = AppPalette.correctDark;
 const _red = AppPalette.danger;
-const _yellow = AppPalette.secondary;
 const _pink = AppPalette.pink;
 const _softText = AppPalette.muted;
 
@@ -37,21 +37,16 @@ class Quiz01Screen extends StatefulWidget {
   State<Quiz01Screen> createState() => _Quiz01ScreenState();
 }
 
-class _Quiz01ScreenState extends State<Quiz01Screen>
-    with SingleTickerProviderStateMixin {
+class _Quiz01ScreenState extends State<Quiz01Screen> {
   Quiz01Controller? _controller;
   Object? _loadError;
-  late final AnimationController _burstController;
+  int _celebration = 0;
 
   LessonSfx get _sfx => widget.sfx ?? AppSfx.instance;
 
   @override
   void initState() {
     super.initState();
-    _burstController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 900),
-    );
     if (widget.controller case final controller?) {
       _attachController(controller);
     } else {
@@ -84,7 +79,6 @@ class _Quiz01ScreenState extends State<Quiz01Screen>
   void dispose() {
     _controller?.removeListener(_refresh);
     if (widget.controller == null) _controller?.dispose();
-    _burstController.dispose();
     super.dispose();
   }
 
@@ -101,7 +95,7 @@ class _Quiz01ScreenState extends State<Quiz01Screen>
     if (cue != null) unawaited(_sfx.play(cue));
     if (event == Quiz01Event.questionCorrect ||
         event == Quiz01Event.completed) {
-      _burstController.forward(from: 0);
+      setState(() => _celebration += 1);
     }
   }
 
@@ -159,18 +153,9 @@ class _Quiz01ScreenState extends State<Quiz01Screen>
                 onEvent: _playEvent,
                 onNext: _nextQuestion,
               ),
-            Positioned.fill(
-              child: IgnorePointer(
-                child: AnimatedBuilder(
-                  animation: _burstController,
-                  builder: (context, child) => CustomPaint(
-                    painter: _SparkBurstPainter(
-                      progress: _burstController.value,
-                      grand: controller.isComplete,
-                    ),
-                  ),
-                ),
-              ),
+            LessonCelebrationOverlay(
+              trigger: _celebration,
+              grand: controller.isComplete,
             ),
           ],
         ),
@@ -899,52 +884,4 @@ class _DashedAnswerLinePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _DashedAnswerLinePainter oldDelegate) => false;
-}
-
-class _SparkBurstPainter extends CustomPainter {
-  const _SparkBurstPainter({required this.progress, required this.grand});
-
-  final double progress;
-  final bool grand;
-
-  static const colors = [_blue, _yellow, _green, _red, _pink];
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (progress <= 0 || progress >= 1) return;
-    final count = grand ? 38 : 22;
-    final center = Offset(size.width / 2, size.height * (grand ? .42 : .34));
-    final fade = 1 - Curves.easeIn.transform(progress);
-    final distance = Curves.easeOutCubic.transform(progress) *
-        math.min(size.width, size.height) *
-        (grand ? .56 : .38);
-
-    for (var index = 0; index < count; index++) {
-      final angle = (math.pi * 2 * index / count) + (index % 3) * .09;
-      final radius = distance * (.62 + (index % 5) * .095);
-      final point = center + Offset(math.cos(angle), math.sin(angle)) * radius;
-      final paint = Paint()
-        ..color = colors[index % colors.length].withValues(alpha: fade);
-      canvas.save();
-      canvas.translate(point.dx, point.dy);
-      canvas.rotate(angle + progress * 2.5);
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromCenter(
-            center: Offset.zero,
-            width: index.isEven ? 7 : 4,
-            height: index.isEven ? 14 : 9,
-          ),
-          const Radius.circular(2),
-        ),
-        paint,
-      );
-      canvas.restore();
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _SparkBurstPainter oldDelegate) {
-    return oldDelegate.progress != progress || oldDelegate.grand != grand;
-  }
 }

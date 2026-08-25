@@ -12,12 +12,14 @@ class OriginalGrammarHome extends StatefulWidget {
     required this.onLessonTap,
     required this.onVerbTableInfo,
     required this.onSettings,
+    this.settingsActive = false,
     super.key,
   });
 
   final ValueChanged<int> onLessonTap;
   final VoidCallback onVerbTableInfo;
   final VoidCallback onSettings;
+  final bool settingsActive;
 
   @override
   State<OriginalGrammarHome> createState() => _OriginalGrammarHomeState();
@@ -135,6 +137,7 @@ class _OriginalGrammarHomeState extends State<OriginalGrammarHome> {
       eyebrow: 'DOPE ENGLISH',
       title: 'Basic Grammar Game',
       onSettings: widget.onSettings,
+      settingsActive: widget.settingsActive,
       settingsKey: const Key('grammar-home-settings'),
       child: Column(
         children: [
@@ -359,7 +362,7 @@ class _CoachPainter extends CustomPainter {
   bool shouldRepaint(covariant _CoachPainter oldDelegate) => false;
 }
 
-class _LessonCard extends StatelessWidget {
+class _LessonCard extends StatefulWidget {
   const _LessonCard({
     required this.lesson,
     required this.onTap,
@@ -371,89 +374,123 @@ class _LessonCard extends StatelessWidget {
   final VoidCallback? onInfo;
 
   @override
+  State<_LessonCard> createState() => _LessonCardState();
+}
+
+class _LessonCardState extends State<_LessonCard> {
+  bool _hovered = false;
+  bool _pressed = false;
+
+  @override
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: '${lesson.label} ${lesson.title}',
+      label: '${widget.lesson.label} ${widget.lesson.title}',
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          GestureDetector(
-            key: Key('grammar-lesson-card-${lesson.index}'),
-            behavior: HitTestBehavior.opaque,
-            onTap: onTap,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: onTap,
-                borderRadius: BorderRadius.circular(18),
-                child: StationeryFrame(
-                  padding: const EdgeInsets.fromLTRB(18, 28, 16, 14),
-                  borderColor: AppPalette.border,
-                  shadowColor: const Color(0xFFE9ECEF),
-                  radius: 18,
-                  ringWidth: 4,
-                  shadowDepth: 5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        lesson.title,
-                        style: TextStyle(
-                          color: AppPalette.primaryDark,
-                          fontSize:
-                              MediaQuery.sizeOf(context).width < 380 ? 19 : 22,
-                          height: 1.18,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            onEnter: (_) => setState(() => _hovered = true),
+            onExit: (_) => setState(() {
+              _hovered = false;
+              _pressed = false;
+            }),
+            child: GestureDetector(
+              key: Key('grammar-lesson-card-${widget.lesson.index}'),
+              behavior: HitTestBehavior.opaque,
+              onTapDown: (_) => setState(() => _pressed = true),
+              onTapUp: (_) => setState(() => _pressed = false),
+              onTapCancel: () => setState(() => _pressed = false),
+              onTap: widget.onTap,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 120),
+                curve: Curves.easeOut,
+                transform: Matrix4.translationValues(
+                  0,
+                  _pressed ? 5 : (_hovered ? -2 : 0),
+                  0,
+                ),
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    StationeryFrame(
+                      padding: const EdgeInsets.fromLTRB(18, 28, 16, 14),
+                      backgroundColor:
+                          _hovered ? AppPalette.softPrimary : AppPalette.paper,
+                      borderColor:
+                          _hovered ? AppPalette.primary : AppPalette.border,
+                      shadowColor: _pressed
+                          ? Colors.transparent
+                          : _hovered
+                              ? const Color(0xFFBDE0E1)
+                              : const Color(0xFFE9ECEF),
+                      radius: 18,
+                      ringWidth: 4,
+                      shadowDepth: _hovered ? 7 : 5,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Text(
-                              lesson.subtitle,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                color: AppPalette.muted,
-                                fontSize: 14,
-                                height: 1.25,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
                           Text(
-                            '0/${lesson.total}',
-                            style: const TextStyle(
-                              color: AppPalette.muted,
-                              fontSize: 15,
+                            widget.lesson.title,
+                            style: TextStyle(
+                              color: AppPalette.primaryDark,
+                              fontSize: MediaQuery.sizeOf(context).width < 380
+                                  ? 19
+                                  : 22,
+                              height: 1.18,
                               fontWeight: FontWeight.w900,
                             ),
                           ),
+                          const SizedBox(height: 8),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  widget.lesson.subtitle,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: AppPalette.muted,
+                                    fontSize: 14,
+                                    height: 1.25,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                '0/${widget.lesson.total}',
+                                style: const TextStyle(
+                                  color: AppPalette.muted,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Positioned(
+                      left: 16,
+                      top: -2,
+                      child: _YellowPill(label: widget.lesson.label),
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
-          Positioned(
-            left: 16,
-            top: -2,
-            child: _YellowPill(label: lesson.label),
-          ),
-          if (onInfo != null)
+          if (widget.onInfo != null)
             Positioned(
               right: 8,
               top: 5,
               child: IconButton(
                 key: const Key('verb-table-roadmap-info'),
                 tooltip: 'Verb Table 溫習表',
-                onPressed: onInfo,
+                onPressed: widget.onInfo,
                 icon: const Icon(Icons.info_outline_rounded, size: 20),
                 color: AppPalette.primaryDark,
                 constraints:

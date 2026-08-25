@@ -19,6 +19,7 @@ dependencies:
   http: ^1.6.0
   crypto: ^3.0.7
   flutter_secure_storage: ^10.3.1
+  lottie: ^3.3.2
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +36,7 @@ flutter:
     - assets/audio/vocab_words/v1/
     - assets/setting-2.png
     - assets/dumbbel.png
+    - assets/lottie/
     - assets/grammar-verbs/irasutoya/v1/
     - assets/grammar-verbs/teacher/v1/
     - assets/fonts/OFL-Chiron-GoRound-TC.md

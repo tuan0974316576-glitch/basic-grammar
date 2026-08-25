@@ -18,6 +18,7 @@ class OriginalSectionFrame extends StatelessWidget {
     required this.child,
     this.onSettings,
     this.settingsKey,
+    this.settingsActive = false,
     this.trailing,
     super.key,
   });
@@ -28,6 +29,7 @@ class OriginalSectionFrame extends StatelessWidget {
   final Widget child;
   final VoidCallback? onSettings;
   final Key? settingsKey;
+  final bool settingsActive;
   final Widget? trailing;
 
   @override
@@ -68,6 +70,7 @@ class OriginalSectionFrame extends StatelessWidget {
                         title: title,
                         onSettings: onSettings,
                         settingsKey: settingsKey,
+                        settingsActive: settingsActive,
                         trailing: trailing,
                       ),
                       Expanded(
@@ -114,6 +117,7 @@ class _OriginalSectionHeader extends StatelessWidget {
     required this.title,
     required this.onSettings,
     required this.settingsKey,
+    required this.settingsActive,
     required this.trailing,
   });
 
@@ -122,6 +126,7 @@ class _OriginalSectionHeader extends StatelessWidget {
   final String title;
   final VoidCallback? onSettings;
   final Key? settingsKey;
+  final bool settingsActive;
   final Widget? trailing;
 
   @override
@@ -188,6 +193,7 @@ class _OriginalSectionHeader extends StatelessWidget {
               child: OriginalSettingsSeal(
                 key: settingsKey,
                 compact: compact,
+                active: settingsActive,
                 onPressed: onSettings!,
               ),
             ),
@@ -206,11 +212,13 @@ class _OriginalSectionHeader extends StatelessWidget {
 class OriginalSettingsSeal extends StatelessWidget {
   const OriginalSettingsSeal({
     required this.compact,
+    required this.active,
     required this.onPressed,
     super.key,
   });
 
   final bool compact;
+  final bool active;
   final VoidCallback onPressed;
 
   @override
@@ -248,11 +256,17 @@ class OriginalSettingsSeal extends StatelessWidget {
                 ),
               ],
             ),
-            child: Image.asset(
-              'assets/setting-2.png',
-              width: compact ? 27 : 33,
-              height: compact ? 27 : 33,
-              fit: BoxFit.contain,
+            child: AnimatedRotation(
+              key: const Key('settings-icon-rotation'),
+              turns: active ? 145 / 360 : 0,
+              duration: const Duration(milliseconds: 420),
+              curve: const Cubic(0.2, 0.9, 0.25, 1.0),
+              child: Image.asset(
+                'assets/setting-2.png',
+                width: compact ? 27 : 33,
+                height: compact ? 27 : 33,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/services.dart';
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
 import '../../../core/widgets/stationery_frame.dart';
+import '../shared/lesson_ui.dart';
 import 'lesson_02_controller.dart';
 import 'lesson_02_question.dart';
 import 'lesson_02_repository.dart';
@@ -37,21 +37,16 @@ class Lesson02Screen extends StatefulWidget {
   State<Lesson02Screen> createState() => _Lesson02ScreenState();
 }
 
-class _Lesson02ScreenState extends State<Lesson02Screen>
-    with SingleTickerProviderStateMixin {
+class _Lesson02ScreenState extends State<Lesson02Screen> {
   Lesson02Controller? _controller;
   Object? _loadError;
-  late final AnimationController _burstController;
+  int _celebration = 0;
 
   LessonSfx get _sfx => widget.sfx ?? AppSfx.instance;
 
   @override
   void initState() {
     super.initState();
-    _burstController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 900),
-    );
     if (widget.controller case final controller?) {
       _attachController(controller);
     } else {
@@ -84,7 +79,6 @@ class _Lesson02ScreenState extends State<Lesson02Screen>
   void dispose() {
     _controller?.removeListener(_refresh);
     if (widget.controller == null) _controller?.dispose();
-    _burstController.dispose();
     super.dispose();
   }
 
@@ -103,7 +97,7 @@ class _Lesson02ScreenState extends State<Lesson02Screen>
     if (cue != null) unawaited(_sfx.play(cue));
     if (event == Lesson02Event.questionCorrect ||
         event == Lesson02Event.completed) {
-      _burstController.forward(from: 0);
+      setState(() => _celebration += 1);
     }
   }
 
@@ -160,18 +154,9 @@ class _Lesson02ScreenState extends State<Lesson02Screen>
                 onEvent: _playEvent,
                 onNext: _nextQuestion,
               ),
-            Positioned.fill(
-              child: IgnorePointer(
-                child: AnimatedBuilder(
-                  animation: _burstController,
-                  builder: (context, child) => CustomPaint(
-                    painter: _SparkBurstPainter(
-                      progress: _burstController.value,
-                      grand: controller.isComplete,
-                    ),
-                  ),
-                ),
-              ),
+            LessonCelebrationOverlay(
+              trigger: _celebration,
+              grand: controller.isComplete,
             ),
           ],
         ),
@@ -1191,40 +1176,5 @@ class _LoadErrorScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _SparkBurstPainter extends CustomPainter {
-  const _SparkBurstPainter({required this.progress, required this.grand});
-
-  final double progress;
-  final bool grand;
-
-  static const colors = [_blue, _yellow, _green, _red, Color(0xFFF58BC9)];
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (progress <= 0 || progress >= 1) return;
-    final fade = math.sin(progress * math.pi);
-    final center = Offset(size.width / 2, size.height * (grand ? 0.42 : 0.55));
-    final count = grand ? 54 : 28;
-    final radius =
-        (grand ? size.shortestSide * 0.78 : size.shortestSide * 0.45) *
-            progress;
-    for (var index = 0; index < count; index++) {
-      final angle = math.pi * 2 * index / count + (index % 4) * 0.11;
-      final distance = radius * (0.55 + (index % 7) / 12);
-      final point =
-          center + Offset(math.cos(angle), math.sin(angle)) * distance;
-      final paint = Paint()
-        ..color = colors[index % colors.length].withValues(alpha: fade);
-      canvas.drawCircle(
-          point, (grand ? 6.5 : 5) * (1 - progress * 0.35), paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _SparkBurstPainter oldDelegate) {
-    return oldDelegate.progress != progress || oldDelegate.grand != grand;
   }
 }

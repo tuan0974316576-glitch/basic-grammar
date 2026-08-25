@@ -187,4 +187,22 @@ void main() {
     expect(tabSurface('詞彙').backgroundColor, AppPalette.secondary);
     expect(tabSurface('文法').backgroundColor, const Color(0xFFF8FBFB));
   });
+
+  testWidgets('settings gear rotates while the original settings panel is open',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const DopeEnglishApp());
+
+    AnimatedRotation rotation() => tester.widget<AnimatedRotation>(
+          find.byKey(const Key('settings-icon-rotation')),
+        );
+
+    expect(rotation().turns, 0);
+    await tester.tap(find.byKey(const Key('grammar-home-settings')));
+    await tester.pump();
+    expect(rotation().turns, closeTo(145 / 360, 0.0001));
+
+    Navigator.of(tester.element(find.text('設定'))).pop();
+    await tester.pumpAndSettle();
+    expect(rotation().turns, 0);
+  });
 }
