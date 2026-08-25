@@ -400,6 +400,20 @@ Account` label, yellow status panel, cream paper inputs, and yellow pill login
 button. The updated debug APK was installed on ASUS and verified after clearing
 the test app data; no student/Firebase data was deleted.
 
+After the ASUS login smoke check showed the bottom tabs moving into the middle
+of the screen after sign-in, the native shell was hardened again: successful
+login now explicitly dismisses the keyboard, and the authenticated `AppShell`
+uses `resizeToAvoidBottomInset: false` so the main Grammar/Vocabulary/Scan
+content is not compressed by the login IME transition. Flutter analyze and all
+74 Flutter tests pass. The rebuilt APK is ready at
+`flutter_app/build/app/outputs/flutter-apk/app-debug.apk`.
+
+The final ASUS re-install is pending a fresh Wireless debugging pairing. The
+previous pairing endpoint/code expired and the device is currently not visible
+to ADB. Use ASUS Settings -> System -> Developer options -> Wireless debugging
+-> Pair device with pairing code, then provide the fresh `IP:pairing-port` and
+six-digit code before claiming the post-login screen is verified again.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:
