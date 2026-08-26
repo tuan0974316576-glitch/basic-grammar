@@ -18,7 +18,34 @@ abstract interface class VocabAudioRepository {
 
   Future<bool> speakExample(String sentence);
 
+  /// Returns true when a local bundled file or persistent downloaded file is
+  /// already available. This never calls the network.
+  Future<bool> hasAudio(
+    String text, {
+    VocabAudioKind kind = VocabAudioKind.word,
+  });
+
+  /// Ensures an audio file exists in the persistent cache without playing it.
+  Future<VocabAudioEnsureResult> ensureAudio(
+    String text, {
+    VocabAudioKind kind = VocabAudioKind.word,
+  });
+
   Future<void> dispose();
+}
+
+class VocabAudioEnsureResult {
+  const VocabAudioEnsureResult({
+    required this.status,
+    this.source = '',
+    this.reason = '',
+  });
+
+  final String status;
+  final String source;
+  final String reason;
+
+  bool get ready => status == 'ready' || status == 'skipped';
 }
 
 class SharedVocabAudio {
@@ -50,7 +77,7 @@ class FirebaseVocabAudioCloudClient implements VocabAudioCloudClient {
           _functions ?? FirebaseFunctions.instanceFor(region: 'asia-east2');
       final callable = functions.httpsCallable(
         'ensureVocabAudio',
-        options: HttpsCallableOptions(timeout: const Duration(seconds: 35)),
+        options: HttpsCallableOptions(timeout: const Duration(seconds: 12)),
       );
       final result = await callable.call<Object?>({
         'text': text,
@@ -122,31 +149,92 @@ class AssetVocabAudioRepository implements VocabAudioRepository {
   Future<bool> speakWord(String word) async {
     final normalized = normalizeVocabWord(word);
     if (normalized.isEmpty) return false;
-    final path = (await _loadManifest())[normalized];
-    if (path != null && path.isNotEmpty) {
-      return _play(AssetSource(path));
+    final manifestPath = (await _loadManifest())[normalized];
+    if (manifestPath != null && manifestPath.isNotEmpty) {
+      return _play(AssetSource(manifestPath));
     }
-    return _speakShared(normalized, VocabAudioKind.word);
+    final path = await _resolveSharedAudioOnce(normalized, VocabAudioKind.word);
+    if (path == null) return false;
+    return _play(DeviceFileSource(path));
   }
 
   @override
   Future<bool> speakExample(String sentence) async {
     final text = _normalizeExample(sentence);
     if (!_isValidExample(text)) return false;
-    return _speakShared(text, VocabAudioKind.example);
-  }
-
-  Future<bool> _speakShared(String text, VocabAudioKind kind) async {
-    if (_cloudClient == null) return false;
-    final key = _cacheKey(text, kind);
-    final path = await (_downloadsInFlight[key] ??=
-        _resolveSharedAudio(text, kind).whenComplete(
-      () {
-        _downloadsInFlight.remove(key);
-      },
-    ));
+    final path = await _resolveSharedAudioOnce(text, VocabAudioKind.example);
     if (path == null) return false;
     return _play(DeviceFileSource(path));
+  }
+
+  @override
+  Future<bool> hasAudio(
+    String text, {
+    VocabAudioKind kind = VocabAudioKind.word,
+  }) async {
+    final normalized = kind == VocabAudioKind.word
+        ? normalizeVocabWord(text)
+        : _normalizeExample(text);
+    if (normalized.isEmpty) return false;
+    if (kind == VocabAudioKind.word &&
+        (await _loadManifest())[normalized]?.isNotEmpty == true) {
+      return true;
+    }
+    final directory = await _cacheDirectory();
+    final target = File('${directory.path}/${_cacheKey(normalized, kind)}.mp3');
+    if (!await target.exists()) return false;
+    return await target.length() > 0;
+  }
+
+  @override
+  Future<VocabAudioEnsureResult> ensureAudio(
+    String text, {
+    VocabAudioKind kind = VocabAudioKind.word,
+  }) async {
+    final normalized = kind == VocabAudioKind.word
+        ? normalizeVocabWord(text)
+        : _normalizeExample(text);
+    if (normalized.isEmpty ||
+        (kind == VocabAudioKind.example && !_isValidExample(normalized))) {
+      return const VocabAudioEnsureResult(
+        status: 'error',
+        reason: 'invalid-text',
+      );
+    }
+    if (await hasAudio(normalized, kind: kind)) {
+      return const VocabAudioEnsureResult(
+        status: 'skipped',
+        source: 'existing',
+      );
+    }
+    if (_cloudClient == null) {
+      return const VocabAudioEnsureResult(
+        status: 'error',
+        reason: 'cloud-unavailable',
+      );
+    }
+    final path = await _resolveSharedAudioOnce(normalized, kind);
+    return path == null
+        ? const VocabAudioEnsureResult(
+            status: 'error', reason: 'download-failed')
+        : const VocabAudioEnsureResult(status: 'ready', source: 'shared-cloud');
+  }
+
+  Future<String?> _resolveSharedAudioOnce(
+    String text,
+    VocabAudioKind kind,
+  ) {
+    final key = _cacheKey(text, kind);
+    final existing = _downloadsInFlight[key];
+    if (existing != null) return existing;
+    late final Future<String?> task;
+    task = _resolveSharedAudio(text, kind).whenComplete(() {
+      if (identical(_downloadsInFlight[key], task)) {
+        _downloadsInFlight.remove(key);
+      }
+    });
+    _downloadsInFlight[key] = task;
+    return task;
   }
 
   Future<String?> _resolveSharedAudio(
@@ -244,6 +332,23 @@ class SilentVocabAudioRepository implements VocabAudioRepository {
 
   @override
   Future<bool> speakExample(String sentence) async => false;
+
+  @override
+  Future<bool> hasAudio(
+    String text, {
+    VocabAudioKind kind = VocabAudioKind.word,
+  }) async =>
+      false;
+
+  @override
+  Future<VocabAudioEnsureResult> ensureAudio(
+    String text, {
+    VocabAudioKind kind = VocabAudioKind.word,
+  }) async =>
+      const VocabAudioEnsureResult(
+        status: 'error',
+        reason: 'silent-repository',
+      );
 
   @override
   Future<bool> speakWord(String word) async => false;

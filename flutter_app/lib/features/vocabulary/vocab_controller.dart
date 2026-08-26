@@ -191,6 +191,12 @@ class VocabController extends ChangeNotifier {
   List<VocabExampleSection>? examplesFor(String itemId) =>
       _examplesByItem[itemId];
 
+  /// Loads the reviewed/shared examples without changing which row is open.
+  /// Used by the background audio warmer after login and cloud restore.
+  Future<List<VocabExampleSection>> loadExamplesForAudio(VocabItem item) {
+    return _lookupRepository.loadExamples(item);
+  }
+
   Map<DateTime, List<VocabItem>> get groupedItems {
     final groups = <DateTime, List<VocabItem>>{};
     for (final item in _items) {

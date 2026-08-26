@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,10 @@ import 'features/grammar/lesson_12/lesson_12_screen.dart';
 import 'features/grammar/original_grammar_home.dart';
 import 'features/grammar/quiz_01/quiz_01_screen.dart';
 import 'features/vocabulary/vocab_audio_repository.dart';
+import 'features/vocabulary/cloud_vocab_repository.dart';
+import 'features/vocabulary/vocab_audio_reconciler.dart';
+import 'features/vocabulary/vocab_controller.dart';
+import 'features/vocabulary/vocab_repository.dart';
 import 'features/vocabulary/vocab_screen.dart';
 
 const _ink = AppPalette.background;
@@ -154,11 +159,13 @@ class AppShell extends StatefulWidget {
   const AppShell({
     this.authController,
     this.vocabAudioRepository,
+    this.vocabController,
     super.key,
   });
 
   final StudentAuthController? authController;
   final VocabAudioRepository? vocabAudioRepository;
+  final VocabController? vocabController;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -173,6 +180,50 @@ class _AppShellState extends State<AppShell> {
       ? _configuredInitialTab
       : 0;
   bool _settingsOpen = false;
+  late final VocabController _vocabController;
+  late final bool _ownsVocabController;
+  late final VocabAudioRepository _vocabAudio;
+  late final bool _ownsVocabAudio;
+  late final VocabAudioReconciler _vocabAudioReconciler;
+
+  @override
+  void initState() {
+    super.initState();
+    _ownsVocabController = widget.vocabController == null;
+    _vocabController = widget.vocabController ??
+        VocabController(
+          lookupRepository: CloudVocabLookupRepository(),
+          store: const SharedPreferencesVocabStore(),
+        );
+    _ownsVocabAudio = widget.vocabAudioRepository == null;
+    _vocabAudio = widget.vocabAudioRepository ??
+        AssetVocabAudioRepository(
+          cloudClient: FirebaseVocabAudioCloudClient(),
+        );
+    _vocabAudioReconciler = VocabAudioReconciler(
+      audio: _vocabAudio,
+      items: () => _vocabController.items,
+      examples: _vocabController.loadExamplesForAudio,
+      changes: _vocabController,
+      connectivity: widget.authController == null ? null : Connectivity(),
+      authenticated: () => widget.authController?.isAuthenticated ?? true,
+    );
+    unawaited(_initializeVocabulary());
+  }
+
+  Future<void> _initializeVocabulary() async {
+    if (_ownsVocabController) await _vocabController.initialize();
+    if (!mounted) return;
+    _vocabAudioReconciler.start();
+  }
+
+  @override
+  void dispose() {
+    unawaited(_vocabAudioReconciler.dispose());
+    if (_ownsVocabController) _vocabController.dispose();
+    if (_ownsVocabAudio) unawaited(_vocabAudio.dispose());
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -205,7 +256,8 @@ class _AppShellState extends State<AppShell> {
           settingsActive: _settingsOpen,
         ),
       1 => VocabularyScreen(
-          audioRepository: widget.vocabAudioRepository,
+          controller: _vocabController,
+          audioRepository: _vocabAudio,
           onSettings: () => _showSettings(context),
           settingsActive: _settingsOpen,
         ),

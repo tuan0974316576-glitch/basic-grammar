@@ -1,6 +1,6 @@
 # DOPE ENGLISH Development Handoff
 
-Last updated: 20 August 2026
+Last updated: 26 August 2026
 
 This is the operational handoff for moving development to another Mac or a new
 Codex conversation. Read this file together with `AGENTS.md` and
@@ -254,9 +254,9 @@ audio bridges, so each app owns and tests its own playback runtime.
 
 - Native saved vocabulary currently uses `SharedPreferences`; full per-user
   Firestore vocab sync is not connected in Flutter yet.
-- Native example lookup currently uses bundled example shards. Web has broader
-  Firestore/Gemini fallback behaviour that still needs repository-level native
-  migration.
+- Native example lookup now calls the shared `lookupVocabExamples` callable and
+  uses the same sense-aware `vocabExampleCache` as Battleship, with bundled
+  shards as the offline fallback.
 - Awards tab is a placeholder.
 - Profile shows the logged-in student and logout, but has no detailed stats.
 - Roadmap top counters are visual sample values, not live XP/streak data.
@@ -536,6 +536,30 @@ word or example audio. Added tests cover cloud-first `macaroni` resolution and
 offline fallback. The ASUS USB device disconnected before this final cloud
 lookup APK could be reinstalled; reconnect it for a physical `macaroni` smoke
 check.
+
+## Native Vocab Audio Reconciliation (2026-08-26)
+
+Native audio now follows Battleship commit `86eede3d` rather than waiting for
+the student to tap every word. `VocabAudioRepository` exposes separate
+`hasAudio` (local-only, no network) and `ensureAudio` (download/cache only,
+never playback) operations. `VocabAudioReconciler` starts after the authenticated
+AppShell restores the local My Vocab list, then processes all saved words first
+and all sense-specific example sentences second. It skips bundled or persistent
+cache hits, deduplicates in-flight downloads, yields between requests, pauses
+when the app backgrounds or connectivity reports offline, resumes on foreground
+or online, and schedules a 31-minute retry after temporary failures. The cache
+uses `getApplicationSupportDirectory()/vocab-audio/v1`, which survives normal
+app updates and is recreated automatically after uninstall, data clearing, or
+device migration.
+
+`AppShell` owns one shared `VocabController`, audio repository, and reconciler
+so switching Grammar/Vocabulary/Scan cannot dispose an active background pass.
+The shared Firebase `ensureVocabAudio` callable and `asia-east2` Storage remain
+the single source for generated word/example MP3s. Tests cover ordering,
+existing-audio skips, no-playback background ensures, pause-safe reconciliation,
+cache reuse, and the cloud example/meaning paths. Full per-user Firestore My
+Vocab item sync remains a separate future milestone; this pass guarantees that
+every locally restored My Vocab item receives the same shared audio treatment.
 
 ## Git Workflow Across Two Macs
 

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:dope_english/features/vocabulary/vocab_audio_repository.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   late Directory cacheRoot;
 
   setUp(() async {
@@ -75,6 +76,39 @@ void main() {
 
     expect(await repository.speakExample('中文例句'), isFalse);
     expect(cloud.requests, isEmpty);
+
+    await repository.dispose();
+  });
+
+  test(
+      'hasAudio skips bundled words and ensureAudio fills cache without playback',
+      () async {
+    final cloud = _FakeCloudClient();
+    var downloadCount = 0;
+    final playedSources = <Source>[];
+    final repository = AssetVocabAudioRepository(
+      cloudClient: cloud,
+      directoryProvider: () async => cacheRoot,
+      download: (uri) async {
+        downloadCount += 1;
+        return http.Response.bytes(
+          const [0x49, 0x44, 0x33, 0x04, 0x00],
+          200,
+          headers: const {'content-type': 'audio/mpeg'},
+        );
+      },
+      playback: (source) async => playedSources.add(source),
+    );
+
+    expect(await repository.hasAudio('animation'), isTrue);
+    expect(
+      await repository.ensureAudio('background word'),
+      isA<VocabAudioEnsureResult>()
+          .having((result) => result.ready, 'ready', true),
+    );
+    expect(downloadCount, 1);
+    expect(playedSources, isEmpty);
+    expect(await repository.hasAudio('background word'), isTrue);
 
     await repository.dispose();
   });

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
@@ -10,6 +11,22 @@ import 'vocab_repository.dart';
 /// Minimal cloud reader so Firestore stays injectable in widget/unit tests.
 abstract interface class TeacherVocabCloudReader {
   Future<List<Map<String, dynamic>>> lookup(String word);
+}
+
+class VocabExampleCloudResult {
+  const VocabExampleCloudResult({
+    required this.examples,
+    this.status = 'ready',
+    this.source = 'shared-cache',
+  });
+
+  final List<VocabExample> examples;
+  final String status;
+  final String source;
+}
+
+abstract interface class VocabExampleCloudReader {
+  Future<VocabExampleCloudResult?> lookup(String word, VocabSense sense);
 }
 
 class FirestoreTeacherVocabReader implements TeacherVocabCloudReader {
@@ -55,6 +72,75 @@ class FirestoreTeacherVocabReader implements TeacherVocabCloudReader {
   }
 }
 
+/// Calls the same `lookupVocabExamples` function used by Battleship.
+class FirebaseVocabExampleReader implements VocabExampleCloudReader {
+  FirebaseVocabExampleReader({
+    FirebaseFunctions? functions,
+    FirebaseAuth? auth,
+  })  : _functions = functions,
+        _auth = auth;
+
+  final FirebaseFunctions? _functions;
+  final FirebaseAuth? _auth;
+
+  @override
+  Future<VocabExampleCloudResult?> lookup(
+    String word,
+    VocabSense sense,
+  ) async {
+    final auth = _auth ?? FirebaseAuth.instance;
+    if (auth.currentUser == null) return null;
+    try {
+      final functions =
+          _functions ?? FirebaseFunctions.instanceFor(region: 'asia-east2');
+      final callable = functions.httpsCallable(
+        'lookupVocabExamples',
+        options: HttpsCallableOptions(timeout: const Duration(seconds: 12)),
+      );
+      final response = await callable.call<Object?>({
+        'word': normalizeVocabWord(word),
+        'meanings': [
+          {
+            'meaning': sense.meaning,
+            'pos': sense.pos,
+            'type': sense.type,
+            'level': sense.level,
+          },
+        ],
+      });
+      final raw = response.data;
+      if (raw is! Map) return null;
+      final data = Map<String, dynamic>.from(raw);
+      final examples = data['examples'] is List
+          ? (data['examples'] as List)
+              .whereType<Map>()
+              .map((entry) {
+                final map = Map<String, dynamic>.from(entry);
+                return VocabExample(
+                  english: '${map['source'] ?? map['english'] ?? ''}'.trim(),
+                  chinese: '${map['target'] ?? map['chinese'] ?? ''}'.trim(),
+                );
+              })
+              .where((example) =>
+                  example.english.isNotEmpty && example.chinese.isNotEmpty)
+              .take(3)
+              .toList(growable: false)
+          : <VocabExample>[];
+      return VocabExampleCloudResult(
+        examples: examples,
+        status: '${data['status'] ?? 'ready'}',
+        source: '${data['source'] ?? 'shared-cache'}',
+      );
+    } on FirebaseFunctionsException catch (error) {
+      debugPrint('Shared vocab examples failed: ${error.code}');
+      return null;
+    } catch (error) {
+      debugPrint('Shared vocab examples failed: $error');
+      return null;
+    }
+  }
+}
+
 /// Battleship-compatible cloud-first vocabulary lookup.
 ///
 /// Teacher-approved live entries win over the bundled bank. Offline,
@@ -63,12 +149,16 @@ class CloudVocabLookupRepository implements VocabLookupRepository {
   CloudVocabLookupRepository({
     VocabLookupRepository? local,
     TeacherVocabCloudReader? cloud,
+    VocabExampleCloudReader? examplesCloud,
   })  : _local = local ?? AssetVocabLookupRepository(),
-        _cloud = cloud ?? FirestoreTeacherVocabReader();
+        _cloud = cloud ?? FirestoreTeacherVocabReader(),
+        _examplesCloud = examplesCloud ?? FirebaseVocabExampleReader();
 
   final VocabLookupRepository _local;
   final TeacherVocabCloudReader _cloud;
+  final VocabExampleCloudReader _examplesCloud;
   final Map<String, Future<List<Map<String, dynamic>>>> _cloudLookups = {};
+  final Map<String, Future<VocabExampleCloudResult?>> _exampleLookups = {};
 
   @override
   Future<VocabLookupResult> lookup(String query) async {
@@ -94,13 +184,40 @@ class CloudVocabLookupRepository implements VocabLookupRepository {
   @override
   Future<List<VocabExampleSection>> loadExamples(VocabItem item) async {
     final localFuture = _local.loadExamples(item);
-    final cloudFuture =
-        _cloudLookups[item.normalizedWord] ??= _readCloud(item.normalizedWord);
+    final cloudFuture = Future.wait(
+      item.senses.map((sense) => _readCloudExamples(item, sense)),
+    );
     final results = await Future.wait([localFuture, cloudFuture]);
     final local = results[0] as List<VocabExampleSection>;
-    final cloudRows = results[1] as List<Map<String, dynamic>>;
-    final cloud = _cloudExamples(item, cloudRows);
-    return cloud.isNotEmpty ? cloud : local;
+    final cloud = results[1] as List<VocabExampleCloudResult?>;
+    final localBySense = {
+      for (final section in local) section.sense.storageId: section,
+    };
+    final sections = <VocabExampleSection>[];
+    for (var index = 0; index < item.senses.length; index++) {
+      final sense = item.senses[index];
+      final cloudResult = cloud[index];
+      if (cloudResult != null && cloudResult.examples.isNotEmpty) {
+        sections.add(VocabExampleSection(
+          sense: sense,
+          examples: cloudResult.examples,
+        ));
+      } else if (localBySense[sense.storageId] case final fallback?) {
+        sections.add(fallback);
+      }
+    }
+    return sections;
+  }
+
+  Future<VocabExampleCloudResult?> _readCloudExamples(
+    VocabItem item,
+    VocabSense sense,
+  ) async {
+    final key = '${item.normalizedWord}|${sense.storageId}';
+    return _exampleLookups[key] ??= _examplesCloud
+        .lookup(item.normalizedWord, sense)
+        .timeout(const Duration(seconds: 13), onTimeout: () => null)
+        .catchError((_) => null);
   }
 
   Future<List<Map<String, dynamic>>> _readCloud(String word) async {
@@ -134,58 +251,5 @@ class CloudVocabLookupRepository implements VocabLookupRepository {
       }
     }
     return byStorageId.values.toList(growable: false);
-  }
-
-  List<VocabExampleSection> _cloudExamples(
-    VocabItem item,
-    List<Map<String, dynamic>> rows,
-  ) {
-    final sections = <VocabExampleSection>[];
-    for (final row in rows) {
-      if (row['disabled'] == true) continue;
-      final sense = VocabSense.fromJson({
-        ...row,
-        'id': row['id'] ?? '',
-        'word': item.normalizedWord,
-        'display': row['display'] ?? item.word,
-        'type': row['type'] ?? 'word',
-      });
-      final examples =
-          _parseExamples(row['teacherExamples'] ?? row['examples']);
-      if (examples.isEmpty) continue;
-      final matchingSense = item.senses.firstWhere(
-        (candidate) => candidate.storageId == sense.storageId,
-        orElse: () => item.senses.first,
-      );
-      sections.add(VocabExampleSection(
-        sense: matchingSense,
-        examples: examples.take(3).toList(growable: false),
-      ));
-    }
-    return sections;
-  }
-
-  List<VocabExample> _parseExamples(Object? raw) {
-    if (raw is! List) return const [];
-    return raw
-        .map((entry) {
-          if (entry is String) {
-            return VocabExample(english: entry.trim(), chinese: '');
-          }
-          if (entry is Map) {
-            final map = Map<String, dynamic>.from(entry);
-            return VocabExample(
-              english:
-                  '${map['source'] ?? map['english'] ?? map['sentence'] ?? ''}'
-                      .trim(),
-              chinese:
-                  '${map['target'] ?? map['chinese'] ?? map['meaning'] ?? ''}'
-                      .trim(),
-            );
-          }
-          return const VocabExample(english: '', chinese: '');
-        })
-        .where((example) => example.english.isNotEmpty)
-        .toList(growable: false);
   }
 }
