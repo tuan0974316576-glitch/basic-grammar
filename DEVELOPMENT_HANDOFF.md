@@ -513,6 +513,30 @@ The Flutter APK built from this motion pass is approximately 277 MB in debug
 mode because it bundles the Lottie renderer and original JSON assets. Release
 builds should be used for TestFlight / Play Store distribution.
 
+## Native Vocabulary Cloud Lookup (2026-08-26)
+
+The native Vocabulary screen previously queried only the generated local shards
+under `flutter_app/assets/data/vocab/`. This meant a teacher-live word such as
+`macaroni` (present in Firebase `teacherVocabLive` as `macaroni-noun-d09b937542`
+with meaning `通心粉`) was invisible even though the web/Battleship mechanism
+could find it. `CloudVocabLookupRepository` now follows the Battleship order:
+
+1. Read signed-in `teacherVocabLive` by exact normalized `word` and, when
+   available, `aliases array-contains`.
+2. Use non-disabled teacher rows as the student-facing result, preserving POS,
+   type, display, and source metadata.
+3. Fall back to the generated local teacher/curated/supplement shards when the
+   cloud is unavailable, unauthenticated, malformed, or times out.
+
+Cloud teacher examples are also read from `teacherExamples` / `examples` when
+present, with local reviewed examples as fallback. The existing
+`ensureVocabAudio` callable remains the Battleship-compatible audio path: local
+manifest first, then shared Firebase Storage generation/download for missing
+word or example audio. Added tests cover cloud-first `macaroni` resolution and
+offline fallback. The ASUS USB device disconnected before this final cloud
+lookup APK could be reinstalled; reconnect it for a physical `macaroni` smoke
+check.
+
 ## Git Workflow Across Two Macs
 
 At the start of a task:

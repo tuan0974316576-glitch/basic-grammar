@@ -7,6 +7,7 @@ import '../../core/app_sfx.dart';
 import '../../core/widgets/original_section_frame.dart';
 import '../../core/widgets/stationery_frame.dart';
 import 'vocab_audio_repository.dart';
+import 'cloud_vocab_repository.dart';
 import 'vocab_controller.dart';
 import 'vocab_models.dart';
 import 'vocab_repository.dart';
@@ -14,6 +15,7 @@ import 'vocab_repository.dart';
 class VocabularyScreen extends StatefulWidget {
   const VocabularyScreen({
     this.controller,
+    this.lookupRepository,
     this.audioRepository,
     this.onSettings,
     this.settingsActive = false,
@@ -21,6 +23,7 @@ class VocabularyScreen extends StatefulWidget {
   });
 
   final VocabController? controller;
+  final VocabLookupRepository? lookupRepository;
   final VocabAudioRepository? audioRepository;
   final VoidCallback? onSettings;
   final bool settingsActive;
@@ -47,7 +50,8 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     _ownsController = widget.controller == null;
     _controller = widget.controller ??
         VocabController(
-          lookupRepository: AssetVocabLookupRepository(),
+          lookupRepository: widget.lookupRepository ??
+              CloudVocabLookupRepository(local: AssetVocabLookupRepository()),
           store: const SharedPreferencesVocabStore(),
         );
     _ownsAudio = widget.audioRepository == null;
