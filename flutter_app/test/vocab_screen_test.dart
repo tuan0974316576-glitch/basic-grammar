@@ -130,6 +130,8 @@ void main() {
 
     await controller.updateQuery('have');
     await tester.pumpAndSettle();
+    expect(find.byKey(const Key('vocab-search-focus-overlay')), findsOneWidget);
+    expect(find.text('MEMORY TRACE LOCKED'), findsOneWidget);
     final row = find.byKey(ValueKey('vocab-row-${controller.items.single.id}'));
     await tester.ensureVisible(row);
     expect(row, findsOneWidget);

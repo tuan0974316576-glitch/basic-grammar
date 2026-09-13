@@ -126,6 +126,13 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     _scheduleSavedWordFocus();
   }
 
+  VocabItem? _savedItemForQuery(String normalizedQuery) {
+    for (final item in _controller.items) {
+      if (item.normalizedWord == normalizedQuery) return item;
+    }
+    return null;
+  }
+
   void _scheduleSavedWordFocus() {
     final query = normalizeVocabWord(_controller.query);
     final match = query.isEmpty
@@ -773,6 +780,24 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                 ],
               ),
             ),
+            if (_focusedSearchItemId.isNotEmpty)
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: _VocabSearchFocusOverlay(
+                    key: const Key('vocab-search-focus-overlay'),
+                    word: _controller.items
+                            .cast<VocabItem?>()
+                            .firstWhere(
+                              (item) =>
+                                  item?.normalizedWord ==
+                                  _lastFocusedSearchWord,
+                              orElse: () => null,
+                            )
+                            ?.word ??
+                        _lastFocusedSearchWord,
+                  ),
+                ),
+              ),
             // Keep the keyboard outside the stationery frame.  This is the same
             // full-width bottom dock used by the original English Grammar Game;
             // placing it here also lets it cover the app tabs cleanly.
@@ -1888,6 +1913,115 @@ class _VocabList extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.fromLTRB(5, 2, 5, 10),
       children: children,
+    );
+  }
+}
+
+class _VocabSearchFocusOverlay extends StatelessWidget {
+  const _VocabSearchFocusOverlay({required this.word, super.key});
+
+  final String word;
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder<double>(
+      tween: const Tween<double>(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 760),
+      curve: Curves.easeOutCubic,
+      builder: (context, value, child) {
+        final scanTop = (value * 1.24) - 0.12;
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            Opacity(
+              opacity: 0.16 * (1 - value * 0.35),
+              child: DecoratedBox(
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(
+                    colors: [Color(0xFF5BC7C2), Colors.transparent],
+                    stops: [0, 0.72],
+                  ),
+                ),
+              ),
+            ),
+            FractionallySizedBox(
+              heightFactor: 0.006,
+              alignment: Alignment(0, (scanTop * 2) - 1),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppPalette.primary.withValues(alpha: 0.75),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppPalette.primary.withValues(alpha: 0.5),
+                      blurRadius: 12,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Center(
+              child: Transform.scale(
+                scale: 0.92 + (value * 0.08),
+                child: Opacity(
+                  opacity: Curves.easeOut.transform(value),
+                  child: Container(
+                    constraints: const BoxConstraints(minWidth: 220),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 22,
+                      vertical: 15,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.94),
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(
+                        color: AppPalette.primary.withValues(alpha: 0.78),
+                        width: 2,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppPalette.primary.withValues(alpha: 0.3),
+                          blurRadius: 22,
+                          spreadRadius: 3,
+                        ),
+                        const BoxShadow(
+                          color: Color(0xFFD7EEEE),
+                          offset: Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          'MEMORY TRACE LOCKED',
+                          style: TextStyle(
+                            color: AppPalette.primaryDark,
+                            fontSize: 11,
+                            letterSpacing: 1.4,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const SizedBox(height: 7),
+                        Text(
+                          displayVocabWord(word),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFF5D4037),
+                            fontSize: 24,
+                            letterSpacing: 0.7,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
