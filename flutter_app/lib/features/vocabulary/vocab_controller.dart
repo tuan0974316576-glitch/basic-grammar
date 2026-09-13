@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 
 import 'vocab_models.dart';
+import 'vocab_cloud_store.dart';
+import 'vocab_import_models.dart';
 import 'vocab_repository.dart';
+import 'vocab_synonym_repository.dart';
 
 enum VocabAddResult { added, invalid, saveFailed }
 
@@ -29,6 +34,7 @@ class VocabController extends ChangeNotifier {
   final Map<String, List<VocabExampleSection>> _examplesByItem = {};
   final Set<String> _loadingExampleItemIds = {};
   int _lookupRequest = 0;
+  StreamSubscription<List<VocabItem>>? _remoteItemsSubscription;
 
   List<VocabItem> get items => List.unmodifiable(_items);
   String get query => _query;
@@ -46,10 +52,34 @@ class VocabController extends ChangeNotifier {
       .length;
 
   Future<void> initialize() async {
-    _items = await _store.load();
+    if (_store case final CloudSyncedVocabStore cloudStore) {
+      await _remoteItemsSubscription?.cancel();
+      _remoteItemsSubscription = cloudStore.remoteChanges.listen((items) {
+        _items = _normalizeSavedItems(items);
+        _sortItems();
+        notifyListeners();
+      });
+    }
+    _items = _normalizeSavedItems(await _store.load());
     _sortItems();
     _isInitializing = false;
     notifyListeners();
+  }
+
+  List<VocabItem> _normalizeSavedItems(Iterable<VocabItem> items) {
+    return items
+        .map(normalizeSavedVocabItem)
+        .where((item) => item.senses.isNotEmpty)
+        .toList(growable: false);
+  }
+
+  @override
+  void dispose() {
+    unawaited(_remoteItemsSubscription?.cancel());
+    if (_store case final CloudSyncedVocabStore cloudStore) {
+      unawaited(cloudStore.dispose());
+    }
+    super.dispose();
   }
 
   Future<void> updateQuery(String value) async {
@@ -113,7 +143,7 @@ class VocabController extends ChangeNotifier {
       };
       final next = existing.copyWith(
         word: senses.first.display,
-        senses: byId.values.toList(growable: false),
+        senses: dedupeVocabSenses(byId.values),
         updatedAt: now,
       );
       _items = [..._items]..[existingIndex] = next;
@@ -145,6 +175,144 @@ class VocabController extends ChangeNotifier {
     return VocabAddResult.added;
   }
 
+  Future<VocabImportSaveResult> bulkUpsertImported(
+    List<VocabImportedEntry> importedEntries, {
+    int? detectedCount,
+  }) async {
+    final uniqueEntries = <String, VocabImportedEntry>{};
+    for (final entry in importedEntries) {
+      final word = normalizeVocabWord(entry.word);
+      if (word.isNotEmpty) uniqueEntries.putIfAbsent(word, () => entry);
+    }
+
+    final resolved = <String, List<VocabSense>>{};
+    final entries = uniqueEntries.entries.toList(growable: false);
+    for (var offset = 0; offset < entries.length; offset += 12) {
+      final batch = entries.skip(offset).take(12).toList(growable: false);
+      final results = await Future.wait(batch.map((entry) async {
+        if (entry.value.senses.isNotEmpty) return entry.value.senses;
+        try {
+          return (await _lookupRepository.lookup(entry.key)).senses;
+        } catch (_) {
+          return const <VocabSense>[];
+        }
+      }));
+      for (var index = 0; index < batch.length; index += 1) {
+        resolved[batch[index].key] = results[index];
+      }
+    }
+
+    final previousItems = _items;
+    var workingItems = [..._items];
+    var addedCount = 0;
+    var duplicateCount = 0;
+    final now = _now();
+    for (var importIndex = 0; importIndex < entries.length; importIndex += 1) {
+      final imported = entries[importIndex].value;
+      final word = entries[importIndex].key;
+      final rawSenses = resolved[word] ?? const <VocabSense>[];
+      final sensesById = <String, VocabSense>{};
+      for (final sense in rawSenses) {
+        final meaning = normalizeVocabMeaning(sense.meaning);
+        if (meaning.isEmpty) continue;
+        final normalized = VocabSense(
+          id: sense.id.isEmpty
+              ? 'import-$word-${sense.pos}-${normalizeMeaningKey(meaning)}'
+              : sense.id,
+          word: word,
+          display: imported.display.isEmpty ? sense.display : imported.display,
+          meaning: meaning,
+          pos: sense.pos.trim().toLowerCase(),
+          type: sense.type.trim().toLowerCase().isEmpty
+              ? 'word'
+              : sense.type.trim().toLowerCase(),
+          level: sense.level,
+          source: sense.source,
+          sourceEntryId: sense.sourceEntryId,
+        );
+        if (normalized.pos.isNotEmpty) {
+          sensesById[normalized.storageId] = normalized;
+        }
+      }
+      if (sensesById.isEmpty) continue;
+
+      final existingIndex = workingItems.indexWhere(
+        (item) => item.normalizedWord == word,
+      );
+      if (existingIndex >= 0) {
+        final existing = workingItems[existingIndex];
+        final merged = <String, VocabSense>{
+          for (final sense in existing.senses) sense.storageId: sense,
+          ...sensesById,
+        };
+        workingItems[existingIndex] = existing.copyWith(
+          word: imported.display.isEmpty ? existing.word : imported.display,
+          senses: dedupeVocabSenses(merged.values),
+          updatedAt: now,
+        );
+        duplicateCount += 1;
+      } else {
+        workingItems.insert(
+          0,
+          VocabItem(
+            id: 'vocab-${now.microsecondsSinceEpoch}-${word.hashCode.abs()}-$importIndex',
+            word: imported.display.isEmpty ? word : imported.display,
+            senses: dedupeVocabSenses(sensesById.values),
+            createdAt: now,
+            updatedAt: now,
+          ),
+        );
+        addedCount += 1;
+      }
+    }
+
+    workingItems.sort((left, right) {
+      final date = right.createdAt.compareTo(left.createdAt);
+      return date != 0 ? date : left.word.compareTo(right.word);
+    });
+    try {
+      await _store.save(workingItems);
+    } catch (_) {
+      _items = previousItems;
+      notifyListeners();
+      return VocabImportSaveResult(
+        detectedCount: detectedCount ?? uniqueEntries.length,
+        addedCount: 0,
+        duplicateCount: 0,
+        saved: false,
+      );
+    }
+    _items = workingItems;
+    notifyListeners();
+    return VocabImportSaveResult(
+      detectedCount: detectedCount ?? uniqueEntries.length,
+      addedCount: addedCount,
+      duplicateCount: duplicateCount,
+      saved: true,
+    );
+  }
+
+  /// Saves linked synonym candidates as normal vocab rows, keeping one row per
+  /// word and allowing the existing cloud/local sync path to handle them.
+  Future<bool> addSynonymCandidates(
+    List<VocabSynonymCandidate> candidates,
+  ) async {
+    final entries = candidates
+        .where((candidate) => !candidate.saved)
+        .map((candidate) => VocabImportedEntry(
+              word: candidate.word,
+              display: candidate.display,
+              senses: [candidate.sense],
+            ))
+        .toList(growable: false);
+    if (entries.isEmpty) return false;
+    final result = await bulkUpsertImported(
+      entries,
+      detectedCount: entries.length,
+    );
+    return result.saved;
+  }
+
   Future<bool> deleteItem(String itemId) async {
     final previous = _items;
     _items = _items.where((item) => item.id != itemId).toList(growable: false);
@@ -160,6 +328,28 @@ class VocabController extends ChangeNotifier {
       _items = previous;
       notifyListeners();
       return false;
+    }
+  }
+
+  /// Records one completed review answer and keeps the saved-list badge in
+  /// sync with the training round.
+  Future<void> recordReviewAnswer(VocabItem item, bool correct) async {
+    final index = _items.indexWhere((candidate) => candidate.id == item.id);
+    if (index < 0) return;
+    final previous = _items;
+    final current = _items[index];
+    _items = [..._items];
+    _items[index] = current.copyWith(
+      totalSeen: current.totalSeen + 1,
+      totalCorrect: current.totalCorrect + (correct ? 1 : 0),
+      updatedAt: _now(),
+    );
+    notifyListeners();
+    try {
+      await _store.save(_items);
+    } catch (_) {
+      _items = previous;
+      notifyListeners();
     }
   }
 
@@ -183,6 +373,12 @@ class VocabController extends ChangeNotifier {
       _loadingExampleItemIds.remove(item.id);
       notifyListeners();
     }
+  }
+
+  void collapseExamples() {
+    if (_expandedItemId == null) return;
+    _expandedItemId = null;
+    notifyListeners();
   }
 
   bool examplesAreLoading(String itemId) =>

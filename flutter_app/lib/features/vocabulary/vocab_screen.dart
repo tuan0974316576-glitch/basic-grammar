@@ -1,23 +1,41 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
+import '../../core/widgets/original_game_keyboard.dart';
 import '../../core/widgets/original_section_frame.dart';
 import '../../core/widgets/stationery_frame.dart';
+import '../grammar/shared/lesson_ui.dart';
 import 'vocab_audio_repository.dart';
 import 'cloud_vocab_repository.dart';
 import 'vocab_controller.dart';
+import 'vocab_import_dialog.dart';
+import 'vocab_import_models.dart';
+import 'vocab_import_repository.dart';
 import 'vocab_models.dart';
 import 'vocab_repository.dart';
+import 'vocab_review_controller.dart';
+import 'vocab_synonym_dialog.dart';
+import 'vocab_synonym_repository.dart';
+
+enum _VocabSortMode { recent, alpha, random }
+
+enum _VocabStudyMode { both, english, chinese }
 
 class VocabularyScreen extends StatefulWidget {
   const VocabularyScreen({
     this.controller,
     this.lookupRepository,
     this.audioRepository,
+    this.importRepository,
+    this.synonymRepository,
+    this.sfx,
     this.onSettings,
+    this.onKeyboardVisibilityChanged,
     this.settingsActive = false,
     super.key,
   });
@@ -25,7 +43,14 @@ class VocabularyScreen extends StatefulWidget {
   final VocabController? controller;
   final VocabLookupRepository? lookupRepository;
   final VocabAudioRepository? audioRepository;
+  final VocabImportRepository? importRepository;
+  final VocabSynonymRepository? synonymRepository;
+  final LessonSfx? sfx;
   final VoidCallback? onSettings;
+
+  /// Lets the app shell make room for the custom keyboard at the very bottom
+  /// of the window.  The legacy game hides the three main tabs while typing.
+  final ValueChanged<bool>? onKeyboardVisibilityChanged;
   final bool settingsActive;
 
   @override
@@ -38,11 +63,30 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   late final VocabAudioRepository _audio;
   late final bool _ownsController;
   late final bool _ownsAudio;
+  late final VocabSynonymRepository _synonymRepository;
+  late final LessonSfx _sfx;
   late final AnimationController _pulseController;
+  VocabImportRepository? _importRepository;
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+  final GlobalKey _keyboardKey = GlobalKey();
+  final ScrollController _vocabListScrollController = ScrollController();
+  final Map<String, GlobalKey> _vocabRowKeys = {};
   bool _pulseInFlight = false;
+  bool _keyboardOpen = false;
+  String _focusedSearchItemId = '';
+  String _lastFocusedSearchWord = '';
+  Timer? _focusedSearchTimer;
+  String? _speakingWord;
   String? _speakingExample;
+  Timer? _speakingWordTimer;
+  Timer? _speakingExampleTimer;
+  Timer? _synonymLinkTimer;
+  _VocabSortMode _sortMode = _VocabSortMode.recent;
+  _VocabStudyMode _studyMode = _VocabStudyMode.both;
+  List<String> _shuffleOrder = const [];
+  Set<String> _revealedItemIds = const {};
+  int _shuffleRevision = 0;
 
   @override
   void initState() {
@@ -56,6 +100,9 @@ class _VocabularyScreenState extends State<VocabularyScreen>
         );
     _ownsAudio = widget.audioRepository == null;
     _audio = widget.audioRepository ?? AssetVocabAudioRepository();
+    _synonymRepository =
+        widget.synonymRepository ?? CloudSyncedVocabSynonymRepository();
+    _sfx = widget.sfx ?? AppSfx.instance;
     _controller.addListener(_refresh);
     _pulseController = AnimationController(
       vsync: this,
@@ -76,6 +123,146 @@ class _VocabularyScreenState extends State<VocabularyScreen>
       );
     }
     if (mounted) setState(() {});
+    _scheduleSavedWordFocus();
+  }
+
+  void _scheduleSavedWordFocus() {
+    final query = normalizeVocabWord(_controller.query);
+    final match = query.isEmpty
+        ? null
+        : _controller.items.cast<VocabItem?>().firstWhere(
+              (item) => item?.normalizedWord == query,
+              orElse: () => null,
+            );
+    if (match == null) {
+      _lastFocusedSearchWord = '';
+      if (_focusedSearchItemId.isNotEmpty && mounted) {
+        setState(() => _focusedSearchItemId = '');
+      }
+      return;
+    }
+    if (_lastFocusedSearchWord == query) return;
+    _lastFocusedSearchWord = query;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || normalizeVocabWord(_controller.query) != query) return;
+      _focusSavedSearchItem(query);
+    });
+  }
+
+  void _focusSavedSearchItem(String normalizedWord, {int attempt = 0}) {
+    if (!mounted || normalizeVocabWord(_controller.query) != normalizedWord) {
+      return;
+    }
+    final match = _controller.items.cast<VocabItem?>().firstWhere(
+          (item) => item?.normalizedWord == normalizedWord,
+          orElse: () => null,
+        );
+    if (match == null) return;
+
+    final rowContext = _vocabRowKeys[match.id]?.currentContext;
+    if (rowContext != null) {
+      Scrollable.ensureVisible(
+        rowContext,
+        duration: const Duration(milliseconds: 720),
+        curve: Curves.easeOutCubic,
+        alignment: 0.44,
+        alignmentPolicy: ScrollPositionAlignmentPolicy.explicit,
+      );
+      _focusedSearchTimer?.cancel();
+      setState(() => _focusedSearchItemId = match.id);
+      unawaited(_sfx.play(SfxCue.step));
+      _focusedSearchTimer = Timer(const Duration(milliseconds: 1700), () {
+        if (mounted && _focusedSearchItemId == match.id) {
+          setState(() => _focusedSearchItemId = '');
+        }
+      });
+      return;
+    }
+
+    // ListView only builds visible children.  Move near the estimated row
+    // first, then retry after layout so the real row context can be used for
+    // the final centre-aligned animation.  This keeps large saved lists fast.
+    if (attempt == 0 && _vocabListScrollController.hasClients) {
+      final index = _orderedItems.indexWhere(
+        (item) => item.id == match.id,
+      );
+      if (index >= 0) {
+        final compact = MediaQuery.sizeOf(context).width <= 720;
+        final estimatedRowHeight = compact ? 104.0 : 120.0;
+        final position = _vocabListScrollController.position;
+        final target = (index * estimatedRowHeight)
+            .clamp(0.0, position.maxScrollExtent)
+            .toDouble();
+        unawaited(_vocabListScrollController.animateTo(
+          target,
+          duration: const Duration(milliseconds: 520),
+          curve: Curves.easeOutCubic,
+        ));
+      }
+    }
+    if (attempt < 8) {
+      Timer(Duration(milliseconds: 120 + (attempt * 40)), () {
+        if (!mounted) return;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _focusSavedSearchItem(normalizedWord, attempt: attempt + 1);
+        });
+      });
+    }
+  }
+
+  void _openVocabKeyboard() {
+    if (_keyboardOpen) return;
+    setState(() => _keyboardOpen = true);
+    widget.onKeyboardVisibilityChanged?.call(true);
+    unawaited(_sfx.play(SfxCue.clickEnglishWords));
+    _focusNode.requestFocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _dismissKeyboardIfOutside(PointerDownEvent event) {
+    if (!_keyboardOpen) return;
+    final keyboardContext = _keyboardKey.currentContext;
+    final renderObject = keyboardContext?.findRenderObject();
+    if (renderObject is! RenderBox || !renderObject.hasSize) return;
+    final topLeft = renderObject.localToGlobal(Offset.zero);
+    final keyboardRect = topLeft & renderObject.size;
+    if (!keyboardRect.contains(event.position)) {
+      _closeVocabKeyboard();
+    }
+  }
+
+  void _closeVocabKeyboard() {
+    if (!_keyboardOpen) return;
+    setState(() => _keyboardOpen = false);
+    widget.onKeyboardVisibilityChanged?.call(false);
+    _focusNode.unfocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _handleVocabKeyboardKey(String key) {
+    if (!_keyboardOpen) return;
+    final current = _textController.text;
+    String next;
+    switch (key) {
+      case 'BACKSPACE':
+        next = current.isEmpty
+            ? current
+            : current.substring(0, current.length - 1);
+      case 'SPACE':
+        next = current.endsWith(' ') ? current : '$current ';
+      case 'ENTER':
+        _closeVocabKeyboard();
+        return;
+      default:
+        next = '$current${key.toLowerCase()}';
+    }
+    if (next.length > 42) return;
+    _textController.value = TextEditingValue(
+      text: next,
+      selection: TextSelection.collapsed(offset: next.length),
+    );
+    unawaited(_controller.updateQuery(next));
+    unawaited(_sfx.play(SfxCue.type));
   }
 
   void _syncPulseAnimation() {
@@ -103,6 +290,14 @@ class _VocabularyScreenState extends State<VocabularyScreen>
 
   @override
   void dispose() {
+    if (_keyboardOpen) {
+      widget.onKeyboardVisibilityChanged?.call(false);
+    }
+    _speakingWordTimer?.cancel();
+    _speakingExampleTimer?.cancel();
+    _synonymLinkTimer?.cancel();
+    _focusedSearchTimer?.cancel();
+    _vocabListScrollController.dispose();
     _controller.removeListener(_refresh);
     if (_ownsController) _controller.dispose();
     if (_ownsAudio) unawaited(_audio.dispose());
@@ -113,6 +308,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   }
 
   Future<void> _addWord() async {
+    final sourceWord = _controller.query;
     final result = await _controller.addSelected();
     if (!mounted) return;
     if (result == VocabAddResult.added) {
@@ -125,6 +321,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
           behavior: SnackBarBehavior.floating,
         ),
       );
+      _scheduleSynonymLink(sourceWord);
       return;
     }
     unawaited(AppSfx.instance.play(SfxCue.wrong));
@@ -135,13 +332,207 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     }
   }
 
+  void _scheduleSynonymLink(String sourceWord) {
+    final normalized = normalizeVocabWord(sourceWord);
+    if (normalized.isEmpty) return;
+    _synonymLinkTimer?.cancel();
+    _synonymLinkTimer = Timer(const Duration(milliseconds: 1120), () async {
+      if (!mounted) return;
+      final groups = await _synonymRepository.lookup(normalized);
+      if (!mounted || groups.isEmpty) return;
+      final savedByWord = <String, VocabItem>{
+        for (final item in _controller.items) item.normalizedWord: item,
+      };
+      final linkedWords = <String>{};
+      final linkedGroups = groups
+          .map((group) => group.copyWith(
+                candidates: group.candidates.where((candidate) {
+                  return linkedWords.add(candidate.word);
+                }).map((candidate) {
+                  final savedItem = savedByWord[candidate.word];
+                  final saved = savedItem?.senses.any(
+                        (sense) => vocabSenseCovers(sense, candidate.sense),
+                      ) ??
+                      false;
+                  return candidate.copyWith(saved: saved);
+                }).toList(growable: false),
+              ))
+          .where((group) => group.candidates.isNotEmpty)
+          .toList(growable: false);
+      final selectable = linkedGroups.any(
+        (group) => group.candidates.any((candidate) => !candidate.saved),
+      );
+      if (!selectable) return;
+      await showVocabSynonymDialog(
+        context: context,
+        sourceWord: sourceWord.trim(),
+        groups: linkedGroups,
+        onSave: (candidates) async {
+          final saved = await _controller.addSynonymCandidates(candidates);
+          if (!mounted) return saved;
+          if (saved) {
+            unawaited(AppSfx.instance.play(SfxCue.correct));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('已加入 ${candidates.length} 個同義詞'),
+                duration: const Duration(milliseconds: 1100),
+                behavior: SnackBarBehavior.floating,
+              ),
+            );
+          }
+          return saved;
+        },
+      );
+    });
+  }
+
   Future<void> _deleteWord(VocabItem item) async {
     unawaited(AppSfx.instance.play(SfxCue.click));
     await _controller.deleteItem(item.id);
   }
 
+  Future<void> _openImport() async {
+    _focusNode.unfocus();
+    unawaited(AppSfx.instance.play(SfxCue.click));
+    try {
+      final repository = _importRepository ??=
+          widget.importRepository ?? FirebaseVocabImportRepository();
+      final sourceRepository = repository is VocabImportSourceRepository
+          ? repository as VocabImportSourceRepository
+          : null;
+      final source = sourceRepository != null
+          ? await _chooseImportSource()
+          : VocabImportSource.files;
+      if (!mounted || source == null) return;
+      final files = sourceRepository != null
+          ? await sourceRepository.pickFilesFrom(source)
+          : await repository.pickFiles();
+      if (!mounted || files.isEmpty) return;
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => VocabImportDialog(
+          files: files,
+          repository: repository,
+          controller: _controller,
+        ),
+      );
+    } on VocabImportException catch (error) {
+      if (!mounted) return;
+      unawaited(AppSfx.instance.play(SfxCue.wrong));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(error.message)),
+      );
+    } catch (_) {
+      if (!mounted) return;
+      unawaited(AppSfx.instance.play(SfxCue.wrong));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('暫時未能開啟筆記，請再試一次。')),
+      );
+    }
+  }
+
+  Future<VocabImportSource?> _chooseImportSource() {
+    return showModalBottomSheet<VocabImportSource>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withValues(alpha: 0.28),
+      isScrollControlled: false,
+      builder: (context) => SafeArea(
+        minimum: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+        child: OriginalDashedSurface(
+          key: const Key('vocab-import-source-sheet'),
+          backgroundColor: const Color(0xFFFFFEFA),
+          borderColor: AppPalette.primary,
+          shadowColor: const Color(0xFF9ECFD0),
+          shadowDepth: 6,
+          strokeWidth: 3,
+          radius: 18,
+          padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 42,
+                height: 5,
+                decoration: BoxDecoration(
+                  color: AppPalette.border,
+                  borderRadius: BorderRadius.circular(999),
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                '選擇筆記來源',
+                style: TextStyle(
+                  color: AppPalette.primaryDark,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              const SizedBox(height: 10),
+              _ImportSourceChoice(
+                key: const Key('vocab-import-camera-choice'),
+                icon: Icons.photo_camera_rounded,
+                label: '拍攝相片',
+                detail: '即時影低 worksheet 或書本',
+                color: AppPalette.softSecondary,
+                onTap: () => _chooseImportSourceAndClose(
+                  context,
+                  VocabImportSource.camera,
+                ),
+              ),
+              const SizedBox(height: 8),
+              _ImportSourceChoice(
+                key: const Key('vocab-import-gallery-choice'),
+                icon: Icons.photo_library_rounded,
+                label: '從相簿選取',
+                detail: '選擇一張或多張相片',
+                color: const Color(0xFFF0E9FF),
+                onTap: () => _chooseImportSourceAndClose(
+                  context,
+                  VocabImportSource.gallery,
+                ),
+              ),
+              const SizedBox(height: 8),
+              _ImportSourceChoice(
+                key: const Key('vocab-import-files-choice'),
+                icon: Icons.folder_open_rounded,
+                label: '瀏覽檔案',
+                detail: 'PDF、JPEG、PNG、WebP 或 TIFF',
+                color: const Color(0xFFFFF5D7),
+                onTap: () => _chooseImportSourceAndClose(
+                  context,
+                  VocabImportSource.files,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _chooseImportSourceAndClose(
+    BuildContext context,
+    VocabImportSource source,
+  ) {
+    unawaited(_sfx.play(SfxCue.click));
+    Navigator.of(context).pop(source);
+  }
+
   Future<void> _speakWord(String word) async {
     unawaited(AppSfx.instance.play(SfxCue.click));
+    _speakingWordTimer?.cancel();
+    _speakingExampleTimer?.cancel();
+    setState(() {
+      _speakingWord = word;
+      _speakingExample = null;
+    });
+    _speakingWordTimer = Timer(const Duration(milliseconds: 520), () {
+      if (mounted && _speakingWord == word) {
+        setState(() => _speakingWord = null);
+      }
+    });
     final played = await _audio.speakWord(word);
     if (!played && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -155,22 +546,27 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   }
 
   Future<void> _speakExample(String sentence) async {
-    if (_speakingExample != null) return;
     unawaited(AppSfx.instance.play(SfxCue.click));
-    setState(() => _speakingExample = sentence);
-    try {
-      final played = await _audio.speakExample(sentence);
-      if (!played && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('暫時未能播放這句例句，請檢查網絡後再試。'),
-            duration: Duration(milliseconds: 1600),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+    _speakingWordTimer?.cancel();
+    _speakingExampleTimer?.cancel();
+    setState(() {
+      _speakingWord = null;
+      _speakingExample = sentence;
+    });
+    _speakingExampleTimer = Timer(const Duration(milliseconds: 900), () {
+      if (mounted && _speakingExample == sentence) {
+        setState(() => _speakingExample = null);
       }
-    } finally {
-      if (mounted) setState(() => _speakingExample = null);
+    });
+    final played = await _audio.speakExample(sentence);
+    if (!played && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('暫時未能播放這句例句，請檢查網絡後再試。'),
+          duration: Duration(milliseconds: 1600),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
     }
   }
 
@@ -189,63 +585,217 @@ class _VocabularyScreenState extends State<VocabularyScreen>
         builder: (_) => VocabularyReviewScreen(
           items: _controller.items,
           audioRepository: _audio,
+          onAnswered: _controller.recordReviewAnswer,
         ),
       ),
     );
   }
 
+  void _setSortMode(_VocabSortMode mode) {
+    if (mode == _sortMode && mode != _VocabSortMode.random) return;
+    final ids =
+        _controller.items.map((item) => item.id).toList(growable: false);
+    setState(() {
+      _sortMode = mode;
+      _revealedItemIds = const {};
+      if (mode == _VocabSortMode.random) {
+        _shuffleOrder = _makeShuffleOrder(ids, _shuffleOrder);
+        _shuffleRevision += 1;
+      } else {
+        _shuffleOrder = const [];
+      }
+    });
+    _controller.collapseExamples();
+    unawaited(AppSfx.instance.play(SfxCue.step));
+  }
+
+  void _setStudyMode(_VocabStudyMode mode) {
+    setState(() {
+      _studyMode = _studyMode == mode ? _VocabStudyMode.both : mode;
+      _revealedItemIds = const {};
+    });
+    _controller.collapseExamples();
+    unawaited(AppSfx.instance.play(SfxCue.step));
+  }
+
+  void _revealStudyItem(String itemId) {
+    if (_studyMode == _VocabStudyMode.both ||
+        _revealedItemIds.contains(itemId)) {
+      return;
+    }
+    setState(() => _revealedItemIds = {..._revealedItemIds, itemId});
+    // Use the page's injected mixer so crayon reveals are audible in the
+    // same way as the other vocabulary controls and remain testable.
+    unawaited(_sfx.play(SfxCue.step));
+  }
+
+  List<String> _makeShuffleOrder(
+    List<String> ids,
+    List<String> previous,
+  ) {
+    final shuffled = [...ids];
+    final random = math.Random();
+    for (var index = shuffled.length - 1; index > 0; index -= 1) {
+      final swapIndex = random.nextInt(index + 1);
+      final current = shuffled[index];
+      shuffled[index] = shuffled[swapIndex];
+      shuffled[swapIndex] = current;
+    }
+    if (shuffled.length > 1 &&
+        previous.length == shuffled.length &&
+        List.generate(
+          shuffled.length,
+          (index) => shuffled[index] == previous[index],
+        ).every((same) => same)) {
+      shuffled.add(shuffled.removeAt(0));
+    }
+    return shuffled;
+  }
+
+  List<VocabItem> get _orderedItems {
+    final items = [..._controller.items];
+    switch (_sortMode) {
+      case _VocabSortMode.recent:
+        items.sort((left, right) {
+          final updated = right.updatedAt.compareTo(left.updatedAt);
+          if (updated != 0) return updated;
+          final created = right.createdAt.compareTo(left.createdAt);
+          return created != 0
+              ? created
+              : left.normalizedWord.compareTo(right.normalizedWord);
+        });
+        break;
+      case _VocabSortMode.alpha:
+        items.sort(
+          (left, right) => left.normalizedWord.compareTo(right.normalizedWord),
+        );
+        break;
+      case _VocabSortMode.random:
+        final order = <String, int>{
+          for (var index = 0; index < _shuffleOrder.length; index += 1)
+            _shuffleOrder[index]: index,
+        };
+        items.sort((left, right) {
+          final position =
+              (order[left.id] ?? 1 << 30).compareTo(order[right.id] ?? 1 << 30);
+          return position != 0
+              ? position
+              : left.normalizedWord.compareTo(right.normalizedWord);
+        });
+        break;
+    }
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return OriginalSectionFrame(
-      sectionKey: const Key('original-section-frame-vocabulary'),
-      eyebrow: 'Vocabulary',
-      title: '詞彙本',
-      onSettings: widget.onSettings,
-      settingsActive: widget.settingsActive,
-      settingsKey: const Key('vocab-settings-button'),
-      trailing: _VocabTrainingButton(
-        reviewCount: _controller.dueCount,
-        pulse: _pulseController,
-        shouldPulse: _controller.items.length >= 4,
-        onReview: _openReview,
-      ),
-      child: Column(
-        children: [
-          if (_controller.isInitializing)
-            const Expanded(
-              child: Center(
-                child: Text(
-                  '正在打開生字簿...',
-                  style: TextStyle(
-                    color: AppPalette.primaryDark,
-                    fontWeight: FontWeight.w800,
+    return PopScope(
+      canPop: !_keyboardOpen,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop && _keyboardOpen) _closeVocabKeyboard();
+      },
+      child: Listener(
+        onPointerDown: _dismissKeyboardIfOutside,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            OriginalSectionFrame(
+              sectionKey: const Key('original-section-frame-vocabulary'),
+              eyebrow: 'Vocabulary',
+              title: '詞彙本',
+              onSettings: widget.onSettings,
+              settingsActive: widget.settingsActive,
+              settingsKey: const Key('vocab-settings-button'),
+              trailing: _VocabTrainingButton(
+                reviewCount: _controller.dueCount,
+                pulse: _pulseController,
+                shouldPulse: _controller.items.length >= 4,
+                onReview: _openReview,
+              ),
+              child: Column(
+                children: [
+                  if (_controller.isInitializing)
+                    const Expanded(
+                      child: Center(
+                        child: Text(
+                          '正在打開生字簿...',
+                          style: TextStyle(
+                            color: AppPalette.primaryDark,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    )
+                  else ...[
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(2, 0, 2, 5),
+                      child: _VocabEntryPanel(
+                        controller: _controller,
+                        textController: _textController,
+                        focusNode: _focusNode,
+                        onChanged: _controller.updateQuery,
+                        onType: () => unawaited(_sfx.play(SfxCue.type)),
+                        onTapInput: _openVocabKeyboard,
+                        keyboardOpen: _keyboardOpen,
+                        onAdd: _addWord,
+                        onImport: _openImport,
+                      ),
+                    ),
+                    _VocabLearningToolbar(
+                      sortMode: _sortMode,
+                      studyMode: _studyMode,
+                      shuffleRevision: _shuffleRevision,
+                      onSortMode: _setSortMode,
+                      onStudyMode: _setStudyMode,
+                    ),
+                    const SizedBox(height: 4),
+                    Expanded(
+                      child: _VocabList(
+                        controller: _controller,
+                        scrollController: _vocabListScrollController,
+                        rowKeys: _vocabRowKeys,
+                        focusedItemId: _focusedSearchItemId,
+                        items: _orderedItems,
+                        sortMode: _sortMode,
+                        studyMode: _studyMode,
+                        revealedItemIds: _revealedItemIds,
+                        shuffleRevision: _shuffleRevision,
+                        speakingWord: _speakingWord,
+                        speakingExample: _speakingExample,
+                        onSpeakWord: _speakWord,
+                        onSpeakExample: _speakExample,
+                        onDelete: _deleteWord,
+                        onReveal: _revealStudyItem,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            // Keep the keyboard outside the stationery frame.  This is the same
+            // full-width bottom dock used by the original English Grammar Game;
+            // placing it here also lets it cover the app tabs cleanly.
+            if (_keyboardOpen)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 920),
+                    child: OriginalGameKeyboard(
+                      key: _keyboardKey,
+                      keyboardKey: const Key('vocab-custom-keyboard'),
+                      keyPrefix: 'vocab-keyboard-key-',
+                      onKey: _handleVocabKeyboardKey,
+                    ),
                   ),
                 ),
               ),
-            )
-          else ...[
-            const SizedBox(height: 38),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(2, 0, 2, 8),
-              child: _VocabEntryPanel(
-                controller: _controller,
-                textController: _textController,
-                focusNode: _focusNode,
-                onChanged: _controller.updateQuery,
-                onAdd: _addWord,
-              ),
-            ),
-            Expanded(
-              child: _VocabList(
-                controller: _controller,
-                speakingExample: _speakingExample,
-                onSpeakWord: _speakWord,
-                onSpeakExample: _speakExample,
-                onDelete: _deleteWord,
-              ),
-            ),
           ],
-        ],
+        ),
       ),
     );
   }
@@ -335,19 +885,28 @@ class _VocabEntryPanel extends StatelessWidget {
     required this.textController,
     required this.focusNode,
     required this.onChanged,
+    required this.onType,
+    required this.onTapInput,
+    required this.keyboardOpen,
     required this.onAdd,
+    required this.onImport,
   });
 
   final VocabController controller;
   final TextEditingController textController;
   final FocusNode focusNode;
   final ValueChanged<String> onChanged;
+  final VoidCallback onType;
+  final VoidCallback onTapInput;
+  final bool keyboardOpen;
   final VoidCallback onAdd;
+  final VoidCallback onImport;
 
   @override
   Widget build(BuildContext context) {
     final compact = MediaQuery.sizeOf(context).width <= 720;
     return OriginalDashedSurface(
+      key: const Key('vocab-entry-panel'),
       radius: compact ? 20 : 24,
       strokeWidth: 3,
       shadowColor: const Color(0xFFBDE0E1),
@@ -360,6 +919,7 @@ class _VocabEntryPanel extends StatelessWidget {
           _VocabStatsRow(
             wordCount: controller.items.length,
             reviewCount: controller.dueCount,
+            onImport: onImport,
           ),
           const SizedBox(height: 10),
           ListenableBuilder(
@@ -382,13 +942,20 @@ class _VocabEntryPanel extends StatelessWidget {
                     key: const Key('vocab-word-input'),
                     controller: textController,
                     focusNode: focusNode,
-                    showCursor: true,
-                    enableInteractiveSelection: true,
+                    readOnly: true,
+                    showCursor: keyboardOpen,
+                    enableInteractiveSelection: false,
                     autocorrect: false,
                     enableSuggestions: false,
+                    spellCheckConfiguration:
+                        const SpellCheckConfiguration.disabled(),
                     textCapitalization: TextCapitalization.none,
                     textInputAction: TextInputAction.done,
-                    onChanged: onChanged,
+                    onChanged: (value) {
+                      onChanged(value);
+                      onType();
+                    },
+                    onTap: onTapInput,
                     onSubmitted: (_) => focusNode.unfocus(),
                     decoration: const InputDecoration(
                       hintText: 'English word',
@@ -451,30 +1018,12 @@ class _VocabEntryPanel extends StatelessWidget {
               controller.query.isNotEmpty) ...[
             const SizedBox(height: 10),
             if (controller.suggestions.isNotEmpty) ...[
-              const Text(
-                '你是否想輸入：',
-                style: TextStyle(
-                  color: AppPalette.muted,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Wrap(
-                spacing: 7,
-                runSpacing: 7,
-                children: controller.suggestions.map((suggestion) {
-                  return ActionChip(
-                    label: Text(suggestion.display),
-                    onPressed: () {
-                      unawaited(controller.chooseSuggestion(suggestion));
-                      unawaited(AppSfx.instance.play(SfxCue.click));
-                    },
-                    backgroundColor: AppPalette.softSecondary,
-                    side: const BorderSide(
-                        color: AppPalette.secondaryDark, width: 2),
-                  );
-                }).toList(growable: false),
+              _SuggestedWordsPanel(
+                suggestions: controller.suggestions,
+                onChoose: (suggestion) {
+                  unawaited(controller.chooseSuggestion(suggestion));
+                  unawaited(AppSfx.instance.play(SfxCue.click));
+                },
               ),
             ] else
               const Text(
@@ -519,20 +1068,298 @@ class _VocabEntryPanel extends StatelessWidget {
   }
 }
 
+class _SuggestedWordsPanel extends StatelessWidget {
+  const _SuggestedWordsPanel(
+      {required this.suggestions, required this.onChoose});
+
+  final List<VocabWordSuggestion> suggestions;
+  final ValueChanged<VocabWordSuggestion> onChoose;
+
+  @override
+  Widget build(BuildContext context) {
+    return OriginalDashedSurface(
+      key: const Key('vocab-suggested-words-panel'),
+      backgroundColor: const Color(0xFFFFFBF0),
+      borderColor: const Color(0xFFF4C95D),
+      shadowColor: const Color(0xFFFFE9A8),
+      shadowDepth: 4,
+      radius: 17,
+      strokeWidth: 2,
+      padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                decoration: BoxDecoration(
+                  color: AppPalette.secondary,
+                  borderRadius: BorderRadius.circular(999),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: AppPalette.secondaryDark, offset: Offset(0, 3)),
+                  ],
+                ),
+                child: const Text(
+                  'Suggested Words',
+                  style: TextStyle(
+                    color: Color(0xFF5D4037),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Expanded(
+                child: Text(
+                  '你是否想輸入：',
+                  style: TextStyle(
+                    color: AppPalette.muted,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 7,
+            runSpacing: 8,
+            children: [
+              for (var index = 0; index < suggestions.length; index += 1)
+                _SuggestedWordSticker(
+                  suggestion: suggestions[index],
+                  colorIndex: index,
+                  onTap: () => onChoose(suggestions[index]),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SuggestedWordSticker extends StatefulWidget {
+  const _SuggestedWordSticker({
+    required this.suggestion,
+    required this.colorIndex,
+    required this.onTap,
+  });
+
+  final VocabWordSuggestion suggestion;
+  final int colorIndex;
+  final VoidCallback onTap;
+
+  @override
+  State<_SuggestedWordSticker> createState() => _SuggestedWordStickerState();
+}
+
+class _SuggestedWordStickerState extends State<_SuggestedWordSticker> {
+  bool _pressed = false;
+
+  static const fills = [
+    Color(0xFFFFF1F6),
+    Color(0xFFEFFFFB),
+    Color(0xFFFFF8DC),
+    Color(0xFFF0F4FF),
+    Color(0xFFF7EEFF),
+  ];
+  static const edges = [
+    Color(0xFFF2A8C7),
+    Color(0xFF8DDED0),
+    Color(0xFFF0C44F),
+    Color(0xFFAAC6EC),
+    Color(0xFFC9A9EE),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final index = widget.colorIndex % fills.length;
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapUp: (_) => setState(() => _pressed = false),
+      onTapCancel: () => setState(() => _pressed = false),
+      onTap: widget.onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        transform: Matrix4.translationValues(0, _pressed ? 2 : 0, 0)
+          ..scaleByDouble(_pressed ? .97 : 1.0, _pressed ? .97 : 1.0, 1.0, 1.0),
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+        decoration: BoxDecoration(
+          color: fills[index],
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(color: edges[index], width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: edges[index],
+              offset: Offset(0, _pressed ? 1 : 4),
+            ),
+          ],
+        ),
+        child: Text(
+          widget.suggestion.display,
+          style: const TextStyle(
+            color: Color(0xFF5D4037),
+            fontSize: 15,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _VocabStatsRow extends StatelessWidget {
-  const _VocabStatsRow({required this.wordCount, required this.reviewCount});
+  const _VocabStatsRow({
+    required this.wordCount,
+    required this.reviewCount,
+    required this.onImport,
+  });
 
   final int wordCount;
   final int reviewCount;
+  final VoidCallback onImport;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(child: _VocabStat(label: '已加入', value: wordCount)),
-        const SizedBox(width: 10),
+        const SizedBox(width: 6),
         Expanded(child: _VocabStat(label: '待溫習', value: reviewCount)),
+        const SizedBox(width: 6),
+        Expanded(child: _VocabImportButton(onTap: onImport)),
       ],
+    );
+  }
+}
+
+class _VocabImportButton extends StatelessWidget {
+  const _VocabImportButton({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: '上傳筆記',
+      child: GestureDetector(
+        key: const Key('vocab-import-note-button'),
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: const OriginalDashedSurface(
+          backgroundColor: AppPalette.softSecondary,
+          borderColor: AppPalette.secondaryDark,
+          shadowColor: Color(0xFFE0B84F),
+          strokeWidth: 2,
+          shadowDepth: 4,
+          radius: 18,
+          child: SizedBox(
+            height: 70,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    '上傳筆記',
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: Color(0xFF5D4037),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 2),
+                Icon(
+                  Icons.upload_file_rounded,
+                  size: 26,
+                  color: Color(0xFF5D4037),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ImportSourceChoice extends StatelessWidget {
+  const _ImportSourceChoice({
+    required this.icon,
+    required this.label,
+    required this.detail,
+    required this.color,
+    required this.onTap,
+    super.key,
+  });
+
+  final IconData icon;
+  final String label;
+  final String detail;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: label,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: OriginalDashedSurface(
+          backgroundColor: color,
+          borderColor: AppPalette.primary.withValues(alpha: 0.72),
+          shadowColor: const Color(0xFFD9E8E8),
+          shadowDepth: 3,
+          strokeWidth: 2,
+          radius: 14,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+          child: Row(
+            children: [
+              Icon(icon, color: AppPalette.primaryDark, size: 27),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      label,
+                      style: const TextStyle(
+                        color: Color(0xFF5D4037),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    const SizedBox(height: 1),
+                    Text(
+                      detail,
+                      style: const TextStyle(
+                        color: AppPalette.muted,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(
+                Icons.chevron_right_rounded,
+                color: AppPalette.primaryDark,
+                size: 24,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -763,24 +1590,231 @@ class _OriginalRaisedButtonState extends State<_OriginalRaisedButton> {
   }
 }
 
+class _VocabLearningToolbar extends StatelessWidget {
+  const _VocabLearningToolbar({
+    required this.sortMode,
+    required this.studyMode,
+    required this.shuffleRevision,
+    required this.onSortMode,
+    required this.onStudyMode,
+  });
+
+  final _VocabSortMode sortMode;
+  final _VocabStudyMode studyMode;
+  final int shuffleRevision;
+  final ValueChanged<_VocabSortMode> onSortMode;
+  final ValueChanged<_VocabStudyMode> onStudyMode;
+
+  @override
+  Widget build(BuildContext context) {
+    final compact = MediaQuery.sizeOf(context).width <= 720;
+    final size = compact ? 36.0 : 40.0;
+    return SizedBox(
+      key: const Key('vocab-learning-toolbar'),
+      height: size + 4,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _VocabToolButton(
+            key: const Key('vocab-sort-recent-button'),
+            tooltip: '按時序排列',
+            semanticLabel: '按時序排列詞彙',
+            size: size,
+            active: sortMode == _VocabSortMode.recent,
+            groupColor: AppPalette.softPrimary,
+            onTap: () => onSortMode(_VocabSortMode.recent),
+            child: const Icon(
+              Icons.history_rounded,
+              size: 25,
+              color: AppPalette.primaryDark,
+            ),
+          ),
+          const SizedBox(width: 6),
+          _VocabToolButton(
+            key: const Key('vocab-sort-alpha-button'),
+            tooltip: '按字母排列',
+            semanticLabel: '按英文字母排列詞彙',
+            size: size,
+            active: sortMode == _VocabSortMode.alpha,
+            groupColor: AppPalette.softPrimary,
+            onTap: () => onSortMode(_VocabSortMode.alpha),
+            child: const Icon(
+              Icons.sort_by_alpha_rounded,
+              size: 24,
+              color: AppPalette.primaryDark,
+            ),
+          ),
+          const SizedBox(width: 6),
+          _VocabToolButton(
+            key: const Key('vocab-sort-shuffle-button'),
+            tooltip: '隨機排列',
+            semanticLabel: '隨機排列詞彙',
+            size: size,
+            active: sortMode == _VocabSortMode.random,
+            groupColor: AppPalette.softPrimary,
+            onTap: () => onSortMode(_VocabSortMode.random),
+            child: TweenAnimationBuilder<double>(
+              key: ValueKey('vocab-shuffle-icon-$shuffleRevision'),
+              tween: Tween(begin: 0, end: 1),
+              duration: const Duration(milliseconds: 580),
+              curve: Curves.easeOutCubic,
+              builder: (context, value, child) => Transform.rotate(
+                angle: value * math.pi * 2,
+                child: Transform.scale(
+                  scale: 0.86 + (math.sin(value * math.pi) * 0.18),
+                  child: child,
+                ),
+              ),
+              child: const Icon(
+                Icons.shuffle_rounded,
+                size: 23,
+                color: AppPalette.primaryDark,
+              ),
+            ),
+          ),
+          Container(
+            width: 2,
+            height: 26,
+            margin: const EdgeInsets.symmetric(horizontal: 9),
+            decoration: BoxDecoration(
+              color: AppPalette.purple.withValues(alpha: 0.45),
+              borderRadius: BorderRadius.circular(1),
+            ),
+          ),
+          _VocabToolButton(
+            key: const Key('vocab-study-english-button'),
+            tooltip: '只顯示英文',
+            semanticLabel: '只顯示英文，點字卡顯示中文',
+            size: size,
+            active: studyMode == _VocabStudyMode.english,
+            groupColor: const Color(0xFFF0E9FF),
+            onTap: () => onStudyMode(_VocabStudyMode.english),
+            child: const Text(
+              'En',
+              style: TextStyle(
+                color: Color(0xFF66508F),
+                fontSize: 12,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          const SizedBox(width: 6),
+          _VocabToolButton(
+            key: const Key('vocab-study-chinese-button'),
+            tooltip: '只顯示中文',
+            semanticLabel: '只顯示中文，點字卡顯示英文',
+            size: size,
+            active: studyMode == _VocabStudyMode.chinese,
+            groupColor: const Color(0xFFF0E9FF),
+            onTap: () => onStudyMode(_VocabStudyMode.chinese),
+            child: const Text(
+              'Chi',
+              style: TextStyle(
+                color: Color(0xFF66508F),
+                fontSize: 11,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _VocabToolButton extends StatelessWidget {
+  const _VocabToolButton({
+    required this.tooltip,
+    required this.semanticLabel,
+    required this.size,
+    required this.active,
+    required this.groupColor,
+    required this.onTap,
+    required this.child,
+    super.key,
+  });
+
+  final String tooltip;
+  final String semanticLabel;
+  final double size;
+  final bool active;
+  final Color groupColor;
+  final VoidCallback onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: tooltip,
+      child: Semantics(
+        button: true,
+        selected: active,
+        label: semanticLabel,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: onTap,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            width: size,
+            height: size,
+            transform: Matrix4.translationValues(0, active ? -2 : 0, 0),
+            child: OriginalDashedSurface(
+              backgroundColor: active ? AppPalette.secondary : groupColor,
+              borderColor: active
+                  ? AppPalette.secondaryDark
+                  : AppPalette.primary.withValues(alpha: 0.72),
+              shadowColor:
+                  active ? const Color(0xFFE0B84F) : const Color(0xFFD9E8E8),
+              shadowDepth: active ? 4 : 2,
+              strokeWidth: 2,
+              radius: 7,
+              child: Center(child: child),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _VocabList extends StatelessWidget {
   const _VocabList({
     required this.controller,
+    required this.scrollController,
+    required this.rowKeys,
+    required this.focusedItemId,
+    required this.items,
+    required this.sortMode,
+    required this.studyMode,
+    required this.revealedItemIds,
+    required this.shuffleRevision,
+    required this.speakingWord,
     required this.speakingExample,
     required this.onSpeakWord,
     required this.onSpeakExample,
     required this.onDelete,
+    required this.onReveal,
   });
 
   final VocabController controller;
+  final ScrollController scrollController;
+  final Map<String, GlobalKey> rowKeys;
+  final String focusedItemId;
+  final List<VocabItem> items;
+  final _VocabSortMode sortMode;
+  final _VocabStudyMode studyMode;
+  final Set<String> revealedItemIds;
+  final int shuffleRevision;
+  final String? speakingWord;
   final String? speakingExample;
   final ValueChanged<String> onSpeakWord;
   final ValueChanged<String> onSpeakExample;
   final ValueChanged<VocabItem> onDelete;
+  final ValueChanged<String> onReveal;
 
   @override
   Widget build(BuildContext context) {
-    if (controller.items.isEmpty) {
+    if (items.isEmpty) {
       return const Center(
         child: Padding(
           padding: EdgeInsets.all(28),
@@ -798,31 +1832,93 @@ class _VocabList extends StatelessWidget {
       );
     }
     final children = <Widget>[];
-    controller.groupedItems.forEach((date, items) {
-      children.add(_DateDivider(date: date));
-      children.addAll(items.map((item) => Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: _VocabRow(
-              item: item,
-              expanded: controller.expandedItemId == item.id,
-              examplesLoading: controller.examplesAreLoading(item.id),
-              exampleSections: controller.examplesFor(item.id),
-              speakingExample: speakingExample,
-              onSpeakWord: () => onSpeakWord(item.word),
-              onSpeakExample: onSpeakExample,
-              onToggleExamples: () {
-                unawaited(controller.toggleExamples(item));
-                unawaited(AppSfx.instance.play(SfxCue.click));
-              },
-              onDelete: () => onDelete(item),
-            ),
-          )));
-    });
+    var rowIndex = 0;
+    Widget buildRow(VocabItem item) {
+      final index = rowIndex++;
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: _ShuffleListEntry(
+          key: ValueKey('vocab-list-entry-${item.id}-$shuffleRevision'),
+          animate: sortMode == _VocabSortMode.random && index < 12,
+          index: index,
+          child: _VocabRow(
+            key: rowKeys.putIfAbsent(item.id, () => GlobalKey()),
+            item: item,
+            searchFocused: focusedItemId == item.id,
+            studyMode: studyMode,
+            answerRevealed: revealedItemIds.contains(item.id),
+            speakingWord: speakingWord,
+            expanded: controller.expandedItemId == item.id,
+            examplesLoading: controller.examplesAreLoading(item.id),
+            exampleSections: controller.examplesFor(item.id),
+            speakingExample: speakingExample,
+            onSpeakWord: () => onSpeakWord(item.word),
+            onSpeakExample: onSpeakExample,
+            onReveal: () => onReveal(item.id),
+            onToggleExamples: () {
+              unawaited(controller.toggleExamples(item));
+              unawaited(AppSfx.instance.play(SfxCue.click));
+            },
+            onDelete: () => onDelete(item),
+          ),
+        ),
+      );
+    }
+
+    if (sortMode == _VocabSortMode.recent) {
+      final groups = <DateTime, List<VocabItem>>{};
+      for (final item in items) {
+        final date = DateTime(
+          item.createdAt.year,
+          item.createdAt.month,
+          item.createdAt.day,
+        );
+        groups.putIfAbsent(date, () => []).add(item);
+      }
+      groups.forEach((date, dateItems) {
+        children.add(_DateDivider(date: date));
+        children.addAll(dateItems.map(buildRow));
+      });
+    } else {
+      children.addAll(items.map(buildRow));
+    }
     return ListView(
       key: const Key('vocab-list'),
+      controller: scrollController,
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.fromLTRB(5, 2, 5, 10),
       children: children,
+    );
+  }
+}
+
+class _ShuffleListEntry extends StatelessWidget {
+  const _ShuffleListEntry({
+    required this.animate,
+    required this.index,
+    required this.child,
+    super.key,
+  });
+
+  final bool animate;
+  final int index;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!animate) return child;
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: Duration(milliseconds: 360 + index * 22),
+      curve: Curves.easeOutCubic,
+      builder: (context, value, child) => Opacity(
+        opacity: 0.42 + value * 0.58,
+        child: Transform.translate(
+          offset: Offset((index.isEven ? -10 : 10) * (1 - value), 0),
+          child: child,
+        ),
+      ),
+      child: child,
     );
   }
 }
@@ -868,23 +1964,34 @@ class _DateDivider extends StatelessWidget {
 class _VocabRow extends StatefulWidget {
   const _VocabRow({
     required this.item,
+    required this.searchFocused,
+    required this.studyMode,
+    required this.answerRevealed,
+    required this.speakingWord,
     required this.expanded,
     required this.examplesLoading,
     required this.exampleSections,
     required this.speakingExample,
     required this.onSpeakWord,
     required this.onSpeakExample,
+    required this.onReveal,
     required this.onToggleExamples,
     required this.onDelete,
+    super.key,
   });
 
   final VocabItem item;
+  final bool searchFocused;
+  final _VocabStudyMode studyMode;
+  final bool answerRevealed;
+  final String? speakingWord;
   final bool expanded;
   final bool examplesLoading;
   final List<VocabExampleSection>? exampleSections;
   final String? speakingExample;
   final VoidCallback onSpeakWord;
   final ValueChanged<String> onSpeakExample;
+  final VoidCallback onReveal;
   final VoidCallback onToggleExamples;
   final VoidCallback onDelete;
 
@@ -899,146 +2006,380 @@ class _VocabRowState extends State<_VocabRow> {
   @override
   Widget build(BuildContext context) {
     final compact = MediaQuery.sizeOf(context).width <= 720;
-    final highlighted = _hovered || _pressed;
+    final speaking = widget.speakingWord == widget.item.word;
+    final highlighted =
+        _hovered || _pressed || speaking || widget.searchFocused;
+    final backgroundColor = highlighted ? AppPalette.softPrimary : Colors.white;
+    final hideEnglish =
+        widget.studyMode == _VocabStudyMode.chinese && !widget.answerRevealed;
+    final hideChinese =
+        widget.studyMode == _VocabStudyMode.english && !widget.answerRevealed;
+    final crayonColor = _crayonColorFor(widget.item.id);
+    final mainRow = GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapUp: (_) => setState(() => _pressed = false),
+      onTapCancel: () => setState(() => _pressed = false),
+      onTap: widget.onSpeakWord,
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  switchInCurve: Curves.easeOutBack,
+                  layoutBuilder: _leftAlignedSwitcherLayout,
+                  transitionBuilder: _studyRevealTransition,
+                  child: hideEnglish
+                      ? _CrayonRevealMask(
+                          key: ValueKey(
+                            'vocab-english-mask-${widget.item.id}',
+                          ),
+                          semanticLabel: '顯示 ${widget.item.word} 英文',
+                          color: crayonColor,
+                          seed: _stableCrayonSeed(widget.item.id),
+                          onReveal: widget.onReveal,
+                          visiblePrefix: widget.item.word.isEmpty
+                              ? null
+                              : widget.item.word.substring(0, 1),
+                          child: Text(
+                            widget.item.word,
+                            style: _wordStyle,
+                          ),
+                        )
+                      : Text(
+                          widget.item.word,
+                          key: ValueKey(
+                            'vocab-english-visible-${widget.item.id}',
+                          ),
+                          style: _wordStyle,
+                        ),
+                ),
+                const SizedBox(height: 3),
+                ...widget.item.senses.asMap().entries.map((entry) {
+                  final sense = entry.value;
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    switchInCurve: Curves.easeOutBack,
+                    layoutBuilder: _leftAlignedSwitcherLayout,
+                    transitionBuilder: _studyRevealTransition,
+                    child: hideChinese
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (sense.metaLabel.isNotEmpty)
+                                Text('${sense.metaLabel} ',
+                                    style: _meaningStyle),
+                              Flexible(
+                                child: _CrayonRevealMask(
+                                  key: ValueKey(
+                                    'vocab-chinese-mask-${widget.item.id}-${entry.key}',
+                                  ),
+                                  semanticLabel: '顯示 ${widget.item.word} 中文意思',
+                                  color: crayonColor,
+                                  seed: _stableCrayonSeed(widget.item.id) +
+                                      entry.key * 17,
+                                  onReveal: widget.onReveal,
+                                  child: Text(
+                                    sense.meaning,
+                                    style: _meaningStyle,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            sense.label,
+                            key: ValueKey(
+                              'vocab-chinese-visible-${widget.item.id}-${entry.key}',
+                            ),
+                            style: _meaningStyle,
+                          ),
+                  );
+                }),
+              ],
+            ),
+          ),
+          OriginalDashedSurface(
+            backgroundColor: const Color(0xFFF3FFFE),
+            borderColor: AppPalette.primary,
+            strokeWidth: 2,
+            radius: 999,
+            padding: EdgeInsets.symmetric(
+              horizontal: compact ? 7 : 9,
+              vertical: compact ? 5 : 6,
+            ),
+            child: Text(
+              '${widget.item.totalCorrect}/${widget.item.totalSeen}',
+              style: const TextStyle(
+                color: AppPalette.primaryDark,
+                fontSize: 12,
+                height: 1.2,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          SizedBox(width: compact ? 6 : 10),
+          _OriginalRaisedButton(
+            width: compact ? 36 : 42,
+            height: compact ? 36 : 42,
+            radius: compact ? 12 : 14,
+            onTap: widget.onToggleExamples,
+            backgroundColor: widget.expanded
+                ? const Color(0xFFD6F2F2)
+                : const Color(0xFFEAF8F8),
+            foregroundColor: AppPalette.primaryDark,
+            shadowColor: const Color(0xFFBDE0E1),
+            shadowDepth: 4,
+            semanticLabel:
+                '${widget.expanded ? "收起" : "打開"} ${widget.item.word} 例句',
+            child: const Text(
+              '例',
+              style: TextStyle(
+                fontSize: 18,
+                height: 1,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          SizedBox(width: compact ? 6 : 10),
+          _OriginalRaisedButton(
+            key: ValueKey('vocab-delete-${widget.item.id}'),
+            width: compact ? 36 : 42,
+            height: compact ? 36 : 42,
+            radius: compact ? 12 : 14,
+            onTap: widget.onDelete,
+            backgroundColor: AppPalette.danger,
+            foregroundColor: Colors.white,
+            shadowColor: AppPalette.dangerDark,
+            shadowDepth: 4,
+            semanticLabel: '刪除 ${widget.item.word}',
+            child: const Text(
+              '×',
+              style: TextStyle(
+                fontSize: 24,
+                height: 1,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
     return MouseRegion(
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() {
         _hovered = false;
         _pressed = false;
       }),
-      child: GestureDetector(
+      child: AnimatedContainer(
         key: ValueKey('vocab-row-${widget.item.id}'),
-        behavior: HitTestBehavior.opaque,
-        onTapDown: (_) => setState(() => _pressed = true),
-        onTapUp: (_) => setState(() => _pressed = false),
-        onTapCancel: () => setState(() => _pressed = false),
-        onTap: widget.onSpeakWord,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 120),
-          curve: Curves.easeOut,
-          transform: Matrix4.translationValues(0, highlighted ? -2 : 0, 0),
-          child: OriginalDashedSurface(
-            backgroundColor:
-                highlighted ? AppPalette.softPrimary : Colors.white,
-            borderColor: highlighted ? AppPalette.primary : AppPalette.border,
-            shadowColor:
-                highlighted ? const Color(0xFFBDE0E1) : const Color(0xFFE9ECEF),
-            shadowDepth: highlighted ? 6 : 4,
-            radius: compact ? 16 : 20,
-            strokeWidth: 3,
-            padding: EdgeInsets.all(compact ? 8 : 12),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.item.word,
-                            style: const TextStyle(
-                              color: Color(0xFF5D4037),
-                              fontSize: 20,
-                              height: 1.1,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          const SizedBox(height: 3),
-                          ...widget.item.senses.map(
-                            (sense) => Text(
-                              sense.label,
-                              style: const TextStyle(
-                                color: AppPalette.muted,
-                                fontSize: 13,
-                                height: 1.2,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    OriginalDashedSurface(
-                      backgroundColor: const Color(0xFFF3FFFE),
-                      borderColor: AppPalette.primary,
-                      strokeWidth: 2,
-                      radius: 999,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: compact ? 7 : 9,
-                        vertical: compact ? 5 : 6,
-                      ),
-                      child: Text(
-                        '${widget.item.totalCorrect}/${widget.item.totalSeen}',
-                        style: const TextStyle(
-                          color: AppPalette.primaryDark,
-                          fontSize: 12,
-                          height: 1.2,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: compact ? 6 : 10),
-                    _OriginalRaisedButton(
-                      width: compact ? 36 : 42,
-                      height: compact ? 36 : 42,
-                      radius: compact ? 12 : 14,
-                      onTap: widget.onToggleExamples,
-                      backgroundColor: widget.expanded
-                          ? const Color(0xFFD6F2F2)
-                          : const Color(0xFFEAF8F8),
-                      foregroundColor: AppPalette.primaryDark,
-                      shadowColor: const Color(0xFFBDE0E1),
-                      shadowDepth: 4,
-                      semanticLabel:
-                          '${widget.expanded ? "收起" : "打開"} ${widget.item.word} 例句',
-                      child: const Text(
-                        '例',
-                        style: TextStyle(
-                          fontSize: 18,
-                          height: 1,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: compact ? 6 : 10),
-                    _OriginalRaisedButton(
-                      key: ValueKey('vocab-delete-${widget.item.id}'),
-                      width: compact ? 36 : 42,
-                      height: compact ? 36 : 42,
-                      radius: compact ? 12 : 14,
-                      onTap: widget.onDelete,
-                      backgroundColor: AppPalette.danger,
-                      foregroundColor: Colors.white,
-                      shadowColor: AppPalette.dangerDark,
-                      shadowDepth: 4,
-                      semanticLabel: '刪除 ${widget.item.word}',
-                      child: const Text(
-                        '×',
-                        style: TextStyle(
-                          fontSize: 24,
-                          height: 1,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                    ),
-                  ],
+        duration: const Duration(milliseconds: 320),
+        curve: Curves.easeOutCubic,
+        transform: Matrix4.translationValues(0, highlighted ? -2 : 0, 0),
+        child: OriginalDashedSurface(
+          backgroundColor: backgroundColor,
+          borderColor: highlighted ? AppPalette.primary : AppPalette.border,
+          shadowColor: highlighted
+              ? (widget.searchFocused
+                  ? AppPalette.primary.withValues(alpha: 0.42)
+                  : const Color(0xFFBDE0E1))
+              : const Color(0xFFE9ECEF),
+          shadowDepth: widget.searchFocused ? 8 : (highlighted ? 6 : 4),
+          blurRadius: widget.searchFocused ? 12 : (highlighted ? 2 : 0),
+          radius: compact ? 16 : 20,
+          strokeWidth: 3,
+          padding: EdgeInsets.all(compact ? 8 : 12),
+          child: Column(
+            children: [
+              mainRow,
+              if (widget.expanded) ...[
+                const SizedBox(height: 9),
+                _ExamplePanel(
+                  loading: widget.examplesLoading,
+                  sections: widget.exampleSections,
+                  speakingExample: widget.speakingExample,
+                  onSpeakExample: widget.onSpeakExample,
                 ),
-                if (widget.expanded) ...[
-                  const SizedBox(height: 9),
-                  _ExamplePanel(
-                    loading: widget.examplesLoading,
-                    sections: widget.exampleSections,
-                    speakingExample: widget.speakingExample,
-                    onSpeakExample: widget.onSpeakExample,
-                  ),
-                ],
               ],
-            ),
+            ],
           ),
         ),
       ),
     );
+  }
+}
+
+const _wordStyle = TextStyle(
+  color: Color(0xFF5D4037),
+  fontSize: 20,
+  height: 1.1,
+  fontWeight: FontWeight.w900,
+);
+
+const _meaningStyle = TextStyle(
+  color: AppPalette.muted,
+  fontSize: 13,
+  height: 1.2,
+  fontWeight: FontWeight.w900,
+);
+
+Widget _leftAlignedSwitcherLayout(
+  Widget? currentChild,
+  List<Widget> previousChildren,
+) {
+  return Stack(
+    alignment: Alignment.centerLeft,
+    children: [...previousChildren, if (currentChild != null) currentChild],
+  );
+}
+
+Widget _studyRevealTransition(Widget child, Animation<double> animation) {
+  return FadeTransition(
+    opacity: animation,
+    child: SlideTransition(
+      position: Tween<Offset>(
+        begin: const Offset(0, 0.18),
+        end: Offset.zero,
+      ).animate(animation),
+      child: child,
+    ),
+  );
+}
+
+const _crayonColors = <Color>[
+  Color(0xFFF2C94C),
+  Color(0xFF6FCF78),
+  Color(0xFF63A9E8),
+  Color(0xFFA88AE3),
+  Color(0xFFEB86AA),
+];
+
+int _stableCrayonSeed(String value) {
+  var seed = 7;
+  for (final codeUnit in value.codeUnits) {
+    seed = (seed * 31 + codeUnit) & 0x7fffffff;
+  }
+  return seed;
+}
+
+Color _crayonColorFor(String value) {
+  return _crayonColors[_stableCrayonSeed(value) % _crayonColors.length];
+}
+
+class _CrayonRevealMask extends StatelessWidget {
+  const _CrayonRevealMask({
+    required this.semanticLabel,
+    required this.color,
+    required this.seed,
+    required this.onReveal,
+    this.visiblePrefix,
+    required this.child,
+    super.key,
+  });
+
+  final String semanticLabel;
+  final Color color;
+  final int seed;
+  final VoidCallback onReveal;
+  final String? visiblePrefix;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: semanticLabel,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onReveal,
+        child: visiblePrefix == null || visiblePrefix!.isEmpty
+            ? _maskedChild()
+            : Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    visiblePrefix!,
+                    key: ValueKey('crayon-visible-prefix-$seed'),
+                    style: _wordStyle,
+                  ),
+                  _maskedChild(
+                    child: Text(
+                      _remainingWord(child, visiblePrefix!),
+                      style: _wordStyle,
+                    ),
+                  ),
+                ],
+              ),
+      ),
+    );
+  }
+
+  Widget _maskedChild({Widget? child}) {
+    return CustomPaint(
+      key: ValueKey('crayon-mask-$seed'),
+      foregroundPainter: _CrayonMaskPainter(color: color, seed: seed),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
+        child: ExcludeSemantics(
+          child: Opacity(opacity: 0, child: child ?? this.child),
+        ),
+      ),
+    );
+  }
+
+  String _remainingWord(Widget child, String visiblePrefix) {
+    if (child is Text) {
+      final text = child.data ?? '';
+      if (text.startsWith(visiblePrefix)) {
+        return text.substring(visiblePrefix.length);
+      }
+    }
+    return '';
+  }
+}
+
+class _CrayonMaskPainter extends CustomPainter {
+  const _CrayonMaskPainter({required this.color, required this.seed});
+
+  final Color color;
+  final int seed;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.isEmpty) return;
+    final centerY = size.height / 2;
+    final strokeWidth = (size.height * 0.78).clamp(11.0, 22.0);
+    for (var layer = 0; layer < 4; layer += 1) {
+      final wobble = ((seed + layer * 7) % 5 - 2) * 0.32;
+      final path = Path()
+        ..moveTo(-2, centerY + wobble)
+        ..quadraticBezierTo(
+          size.width * 0.34,
+          centerY - wobble * 0.65,
+          size.width * 0.68,
+          centerY + wobble * 0.38,
+        )
+        ..lineTo(size.width + 2, centerY - wobble * 0.28);
+      canvas.drawPath(
+        path,
+        Paint()
+          ..color = color.withValues(alpha: layer == 1 ? 0.48 : 0.3)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth - layer * 0.9
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _CrayonMaskPainter oldDelegate) {
+    return oldDelegate.color != color || oldDelegate.seed != seed;
   }
 }
 
@@ -1149,7 +2490,7 @@ class _ExamplePanel extends StatelessWidget {
   }
 }
 
-class _ExampleCard extends StatelessWidget {
+class _ExampleCard extends StatefulWidget {
   const _ExampleCard({
     required this.example,
     required this.speaking,
@@ -1161,40 +2502,60 @@ class _ExampleCard extends StatelessWidget {
   final ValueChanged<String> onSpeak;
 
   @override
+  State<_ExampleCard> createState() => _ExampleCardState();
+}
+
+class _ExampleCardState extends State<_ExampleCard> {
+  bool _hovered = false;
+  bool _pressed = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      key: ValueKey('vocab-example-card-${example.english}'),
-      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: const Color(0xFFF2C879).withValues(alpha: 0.28),
-          width: 2,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Material(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
-            child: InkWell(
-              key: ValueKey('vocab-example-english-${example.english}'),
-              onTap: () => onSpeak(example.english),
-              borderRadius: BorderRadius.circular(8),
-              splashColor: AppPalette.primary.withValues(alpha: 0.18),
-              highlightColor: const Color(0xFFEAF8F8),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 120),
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                decoration: BoxDecoration(
-                  color:
-                      speaking ? const Color(0xFFEAF8F8) : Colors.transparent,
-                  borderRadius: BorderRadius.circular(8),
+    final highlighted = _hovered || _pressed || widget.speaking;
+    return Semantics(
+      button: true,
+      label: '讀出例句：${widget.example.english}',
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _hovered = true),
+        onExit: (_) => setState(() {
+          _hovered = false;
+          _pressed = false;
+        }),
+        child: GestureDetector(
+          key: ValueKey('vocab-example-card-${widget.example.english}'),
+          behavior: HitTestBehavior.opaque,
+          onTapDown: (_) => setState(() => _pressed = true),
+          onTapUp: (_) => setState(() => _pressed = false),
+          onTapCancel: () => setState(() => _pressed = false),
+          onTap: () => widget.onSpeak(widget.example.english),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 120),
+            curve: Curves.easeOut,
+            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
+            decoration: BoxDecoration(
+              color: highlighted ? AppPalette.softPrimary : Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: highlighted
+                    ? AppPalette.primary
+                    : const Color(0xFFF2C879).withValues(alpha: 0.28),
+                width: 2,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: highlighted
+                      ? const Color(0xFFBDE0E1)
+                      : const Color(0xFFF3E3C5),
+                  offset: Offset(0, highlighted ? 5 : 3),
                 ),
-                child: Text(
-                  example.english,
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.example.english,
                   style: const TextStyle(
                     color: Color(0xFF5D4037),
                     fontSize: 13,
@@ -1205,20 +2566,20 @@ class _ExampleCard extends StatelessWidget {
                     decorationThickness: 2,
                   ),
                 ),
-              ),
+                const SizedBox(height: 3),
+                Text(
+                  widget.example.chinese,
+                  style: const TextStyle(
+                    color: AppPalette.muted,
+                    fontSize: 12,
+                    height: 1.35,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 3),
-          Text(
-            example.chinese,
-            style: const TextStyle(
-              color: AppPalette.muted,
-              fontSize: 12,
-              height: 1.35,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -1262,180 +2623,845 @@ class VocabularyReviewScreen extends StatefulWidget {
   const VocabularyReviewScreen({
     required this.items,
     required this.audioRepository,
+    this.reviewController,
+    this.onAnswered,
+    this.sfx,
     super.key,
   });
 
   final List<VocabItem> items;
   final VocabAudioRepository audioRepository;
+  final VocabReviewController? reviewController;
+  final Future<void> Function(VocabItem item, bool correct)? onAnswered;
+  final LessonSfx? sfx;
 
   @override
   State<VocabularyReviewScreen> createState() => _VocabularyReviewScreenState();
 }
 
 class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
-  int _index = 0;
-  String? _selectedMeaning;
-  bool _resolved = false;
-  late List<String> _currentChoices;
-
-  VocabItem get _item => widget.items[_index % widget.items.length];
+  late final VocabReviewController _review;
+  late final bool _ownsReview;
+  late final LessonSfx _sfx;
+  final TextEditingController _answerController = TextEditingController();
+  final FocusNode _answerFocusNode = FocusNode();
+  Timer? _listeningTimer;
+  Timer? _spellingFocusTimer;
+  bool _keyboardOpen = false;
+  String _questionSignature = '';
+  int _celebration = 0;
 
   @override
   void initState() {
     super.initState();
-    _currentChoices = _buildChoices();
+    _ownsReview = widget.reviewController == null;
+    _review =
+        widget.reviewController ?? VocabReviewController(items: widget.items);
+    _sfx = widget.sfx ?? AppSfx.instance;
+    _review.addListener(_refresh);
+    _questionSignature = _review.currentQuestion?.id ??
+        (_review.isComplete ? 'complete' : 'empty');
+    WidgetsBinding.instance.addPostFrameCallback((_) => _prepareQuestion());
   }
 
-  List<String> _buildChoices() {
-    final correct = _item.senses.first.label;
-    final others = widget.items
-        .where((item) => item.id != _item.id)
-        .expand((item) => item.senses.take(1))
-        .map((sense) => sense.label)
-        .where((label) => label != correct)
-        .toSet()
-        .take(3)
-        .toList();
-    return [correct, ...others]..shuffle();
+  @override
+  void dispose() {
+    _listeningTimer?.cancel();
+    _spellingFocusTimer?.cancel();
+    _review.removeListener(_refresh);
+    if (_ownsReview) _review.dispose();
+    _answerController.dispose();
+    _answerFocusNode.dispose();
+    super.dispose();
   }
 
-  void _choose(String meaning) {
-    if (_resolved) return;
-    final correct = meaning == _item.senses.first.label;
-    setState(() {
-      _selectedMeaning = meaning;
-      _resolved = true;
-    });
-    unawaited(AppSfx.instance.play(correct ? SfxCue.correct : SfxCue.wrong));
+  void _refresh() {
+    if (!mounted) return;
+    final questionId = _review.currentQuestion?.id ??
+        (_review.isComplete ? 'complete' : 'empty');
+    if (questionId != _questionSignature) {
+      _questionSignature = questionId;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _prepareQuestion();
+      });
+    }
+    setState(() {});
+  }
+
+  void _prepareQuestion() {
+    _listeningTimer?.cancel();
+    _spellingFocusTimer?.cancel();
+    final question = _review.currentQuestion;
+    if (question == null) {
+      _keyboardOpen = false;
+      _answerFocusNode.unfocus();
+      return;
+    }
+    if (question.kind == VocabReviewKind.spelling) {
+      _answerController.clear();
+      _spellingFocusTimer?.cancel();
+      _spellingFocusTimer = Timer(const Duration(milliseconds: 80), () {
+        if (mounted && !_review.isResolved) {
+          _openReviewKeyboard();
+        }
+      });
+    } else {
+      _keyboardOpen = false;
+      _answerFocusNode.unfocus();
+    }
+    if (question.kind == VocabReviewKind.listening) {
+      _listeningTimer = Timer(const Duration(milliseconds: 220), () {
+        if (mounted && !_review.isResolved) _speakCurrentWord();
+      });
+    }
+  }
+
+  void _speakCurrentWord() {
+    final question = _review.currentQuestion;
+    if (question == null || _review.isResolved) return;
+    unawaited(widget.audioRepository.speakWord(question.item.word));
+  }
+
+  void _recordAnswer(VocabReviewQuestion question, bool correct) {
+    final callback = widget.onAnswered;
+    if (callback != null) unawaited(callback(question.item, correct));
+  }
+
+  void _playAnswerEvent(
+    VocabReviewEvent event,
+    VocabReviewQuestion question,
+  ) {
+    switch (event) {
+      case VocabReviewEvent.correct:
+        unawaited(_sfx.play(SfxCue.correct));
+        setState(() => _celebration += 1);
+        _recordAnswer(question, true);
+      case VocabReviewEvent.wrong:
+        unawaited(_sfx.play(SfxCue.wrong));
+        _recordAnswer(question, false);
+      case VocabReviewEvent.invalidInput:
+        unawaited(_sfx.play(SfxCue.wrong));
+      case VocabReviewEvent.ignored:
+      case VocabReviewEvent.nextQuestion:
+      case VocabReviewEvent.completed:
+        break;
+    }
+  }
+
+  void _choose(String choice) {
+    final question = _review.currentQuestion;
+    if (question == null) return;
+    final event = _review.choose(choice);
+    _playAnswerEvent(event, question);
+  }
+
+  void _submitSpelling() {
+    final question = _review.currentQuestion;
+    if (question == null) return;
+    _closeReviewKeyboard();
+    final event = _review.submitSpelling();
+    _playAnswerEvent(event, question);
+  }
+
+  void _openReviewKeyboard() {
+    if (_keyboardOpen ||
+        _review.currentQuestion?.kind != VocabReviewKind.spelling ||
+        _review.isResolved) {
+      return;
+    }
+    setState(() => _keyboardOpen = true);
+    _answerFocusNode.requestFocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _closeReviewKeyboard() {
+    if (!_keyboardOpen) return;
+    setState(() => _keyboardOpen = false);
+    _answerFocusNode.unfocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _handleReviewKeyboardKey(String key) {
+    if (!_keyboardOpen || _review.isResolved) return;
+    final current = _answerController.text;
+    final next = switch (key) {
+      'BACKSPACE' =>
+        current.isEmpty ? current : current.substring(0, current.length - 1),
+      'SPACE' => current.endsWith(' ') ? current : '$current ',
+      _ => '$current${key.toLowerCase()}',
+    };
+    if (next.length > 60) return;
+    _answerController.value = TextEditingValue(
+      text: next,
+      selection: TextSelection.collapsed(offset: next.length),
+    );
+    _review.updateSpelling(next);
+    unawaited(_sfx.play(SfxCue.type));
   }
 
   void _next() {
-    if (_index >= widget.items.length - 1) {
-      unawaited(AppSfx.instance.play(SfxCue.complete));
-      Navigator.of(context).pop();
-      return;
+    final event = _review.next();
+    switch (event) {
+      case VocabReviewEvent.nextQuestion:
+        unawaited(_sfx.play(SfxCue.next));
+      case VocabReviewEvent.completed:
+        unawaited(_sfx.play(
+          AppSfx.resultCueForPercent(
+            _review.total == 0
+                ? 0
+                : ((_review.score / _review.total) * 100).round(),
+          ),
+        ));
+        setState(() => _celebration += 1);
+      case VocabReviewEvent.ignored:
+      case VocabReviewEvent.invalidInput:
+      case VocabReviewEvent.correct:
+      case VocabReviewEvent.wrong:
+        break;
     }
-    setState(() {
-      _index += 1;
-      _selectedMeaning = null;
-      _resolved = false;
-      _currentChoices = _buildChoices();
-    });
-    unawaited(AppSfx.instance.play(SfxCue.next));
+  }
+
+  void _close() {
+    unawaited(_sfx.play(SfxCue.click));
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    final choices = _currentChoices;
     return Scaffold(
       backgroundColor: AppPalette.background,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(18, 10, 18, 18),
-          child: Column(
-            children: [
-              Row(
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(14, 8, 14, 12),
+              child: Column(
                 children: [
-                  IconButton(
-                    tooltip: '離開',
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(Icons.close_rounded),
+                  _ReviewHeader(
+                    review: _review,
+                    onClose: _close,
+                    onSpeak: _speakCurrentWord,
                   ),
-                  Expanded(
-                    child: LinearProgressIndicator(
-                      value:
-                          (_index + (_resolved ? 1 : 0)) / widget.items.length,
-                      minHeight: 10,
-                      borderRadius: BorderRadius.circular(8),
-                      color: AppPalette.primary,
-                      backgroundColor: const Color(0xFFE4E8E8),
-                    ),
-                  ),
+                  const SizedBox(height: 12),
+                  Expanded(child: _buildBody()),
                 ],
               ),
-              const SizedBox(height: 16),
-              Expanded(
-                child: StationeryFrame(
-                  backgroundColor: AppPalette.softPrimary,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text(
-                        '揀出正確中文意思',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppPalette.muted,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      const Spacer(),
-                      InkWell(
-                        onTap: () =>
-                            widget.audioRepository.speakWord(_item.word),
-                        child: Text(
-                          _item.word,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: AppPalette.ink,
-                            fontSize: 34,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      for (final choice in choices)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 9),
-                          child: OutlinedButton(
-                            onPressed: _resolved ? null : () => _choose(choice),
-                            style: OutlinedButton.styleFrom(
-                              backgroundColor: _resolved &&
-                                      choice == _item.senses.first.label
-                                  ? AppPalette.softCorrect
-                                  : _resolved && choice == _selectedMeaning
-                                      ? AppPalette.softDanger
-                                      : AppPalette.paper,
-                              side: BorderSide(
-                                color: _resolved &&
-                                        choice == _item.senses.first.label
-                                    ? AppPalette.correct
-                                    : _resolved && choice == _selectedMeaning
-                                        ? AppPalette.danger
-                                        : AppPalette.primary,
-                                width: 2,
-                              ),
-                              minimumSize: const Size.fromHeight(48),
-                            ),
-                            child: Text(
-                              choice,
-                              style: const TextStyle(
-                                color: AppPalette.ink,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
-                        ),
+            ),
+            LessonCelebrationOverlay(
+              trigger: _celebration,
+              grand: _review.isComplete,
+            ),
+            if (_keyboardOpen)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 920),
+                    child: OriginalGameKeyboard(
+                      keyboardKey: const Key('vocab-review-custom-keyboard'),
+                      keyPrefix: 'vocab-review-keyboard-key-',
+                      onKey: _handleReviewKeyboardKey,
+                      onSubmit: _submitSpelling,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBody() {
+    final question = _review.currentQuestion;
+    if (_review.isComplete) {
+      return _ReviewComplete(
+        review: _review,
+        onBack: _close,
+      );
+    }
+    if (question == null) {
+      return const Center(child: Text('未有可溫習生字。'));
+    }
+    return SingleChildScrollView(
+      key: const Key('vocab-review-scroll'),
+      physics: const BouncingScrollPhysics(),
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      padding: const EdgeInsets.fromLTRB(4, 0, 4, 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _ReviewPrompt(question: question),
+          const SizedBox(height: 14),
+          if (question.kind == VocabReviewKind.spelling)
+            _ReviewSpellingField(
+              controller: _answerController,
+              focusNode: _answerFocusNode,
+              resolved: _review.isResolved,
+              correct: _review.lastCorrect,
+              starter: _firstLetter(question.item.word),
+              onChanged: _review.updateSpelling,
+              onType: () => unawaited(_sfx.play(SfxCue.type)),
+              onSubmitted: _submitSpelling,
+              keyboardOpen: _keyboardOpen,
+              onTap: _openReviewKeyboard,
+            )
+          else
+            _ReviewChoiceGrid(
+              question: question,
+              review: _review,
+              onChoose: _choose,
+            ),
+          if (_review.isResolved) ...[
+            const SizedBox(height: 14),
+            _ReviewFeedback(review: _review, question: question),
+            const SizedBox(height: 14),
+            _ReviewNextButton(
+              label: '下一題',
+              onPressed: _next,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _ReviewHeader extends StatelessWidget {
+  const _ReviewHeader({
+    required this.review,
+    required this.onClose,
+    required this.onSpeak,
+  });
+
+  final VocabReviewController review;
+  final VoidCallback onClose;
+  final VoidCallback onSpeak;
+
+  @override
+  Widget build(BuildContext context) {
+    final question = review.currentQuestion;
+    return SizedBox(
+      height: 46,
+      child: Row(
+        children: [
+          OutlinedButton(
+            key: const Key('vocab-review-back'),
+            onPressed: onClose,
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size(82, 42),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              foregroundColor: AppPalette.muted,
+              backgroundColor: Colors.white,
+              side: const BorderSide(color: Color(0xFFEEEEEE), width: 2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(999),
+              ),
+              textStyle: const TextStyle(fontWeight: FontWeight.w900),
+            ),
+            child: const Text('< Vocab'),
+          ),
+          const SizedBox(width: 9),
+          Expanded(
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(end: review.progress),
+              duration: const Duration(milliseconds: 260),
+              curve: Curves.easeOut,
+              builder: (context, value, child) => ClipRRect(
+                borderRadius: BorderRadius.circular(99),
+                child: LinearProgressIndicator(
+                  value: value.clamp(0, 1),
+                  minHeight: 14,
+                  color: AppPalette.primary,
+                  backgroundColor: const Color(0xFFE5E7EB),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 9),
+          if (question?.kind == VocabReviewKind.listening && !review.isResolved)
+            _OriginalRaisedButton(
+              key: const Key('vocab-review-sound'),
+              width: 46,
+              height: 46,
+              radius: 999,
+              onTap: onSpeak,
+              backgroundColor: AppPalette.secondary,
+              foregroundColor: const Color(0xFF5D4037),
+              shadowColor: AppPalette.secondaryDark,
+              shadowDepth: 4,
+              semanticLabel: '讀出生字',
+              child: const Text(
+                '♪',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
+              ),
+            )
+          else
+            const SizedBox(width: 46),
+        ],
+      ),
+    );
+  }
+}
+
+class _ReviewPrompt extends StatelessWidget {
+  const _ReviewPrompt({required this.question});
+
+  final VocabReviewQuestion question;
+
+  @override
+  Widget build(BuildContext context) {
+    final spelling = question.kind == VocabReviewKind.spelling;
+    final listening = question.kind == VocabReviewKind.listening;
+    return OriginalDashedSurface(
+      key: const Key('vocab-review-prompt'),
+      backgroundColor: AppPalette.paper,
+      borderColor: AppPalette.primary,
+      strokeWidth: 3,
+      radius: 26,
+      shadowColor: const Color(0xFFE9ECEF),
+      shadowDepth: 5,
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+      child: Column(
+        children: [
+          Text(
+            spelling
+                ? question.correctMeaning
+                : listening
+                    ? '♪'
+                    : question.item.word,
+            key: const Key('vocab-review-prompt-text'),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: const Color(0xFF5D4037),
+              fontSize: listening ? 50 : (spelling ? 28 : 44),
+              height: 1.12,
+              fontWeight: FontWeight.w900,
+              shadows: const [
+                Shadow(color: Color(0xFFFFF3BF), offset: Offset(2, 2)),
+              ],
+            ),
+          ),
+          if (spelling) ...[
+            const SizedBox(height: 4),
+            Text(
+              '${_firstLetter(question.item.word)}…',
+              key: const Key('vocab-review-spelling-hint'),
+              style: const TextStyle(
+                color: AppPalette.primaryDark,
+                fontSize: 20,
+                height: 1,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ],
+          const SizedBox(height: 10),
+          Text(
+            spelling
+                ? '打出英文生字'
+                : listening
+                    ? '聽讀音，再選出正確中文意思'
+                    : '選出正確中文意思',
+            key: const Key('vocab-review-guidance'),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: AppPalette.muted,
+              fontSize: 14,
+              height: 1.4,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _firstLetter(String word) {
+  final trimmed = word.trim();
+  return trimmed.isEmpty ? '' : trimmed.substring(0, 1).toUpperCase();
+}
+
+class _ReviewChoiceGrid extends StatelessWidget {
+  const _ReviewChoiceGrid({
+    required this.question,
+    required this.review,
+    required this.onChoose,
+  });
+
+  final VocabReviewQuestion question;
+  final VocabReviewController review;
+  final ValueChanged<String> onChoose;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      key: const Key('vocab-review-choice-grid'),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: question.choices.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        mainAxisExtent: 82,
+      ),
+      itemBuilder: (context, index) {
+        final choice = question.choices[index];
+        final correct = review.isResolved && choice == question.correctMeaning;
+        final wrong = review.isResolved &&
+            choice == review.selectedChoice &&
+            choice != question.correctMeaning;
+        return _ReviewChoiceButton(
+          key: ValueKey('vocab-review-choice-$index'),
+          label: choice,
+          correct: correct,
+          wrong: wrong,
+          enabled: !review.isResolved,
+          onTap: () => onChoose(choice),
+        );
+      },
+    );
+  }
+}
+
+class _ReviewChoiceButton extends StatefulWidget {
+  const _ReviewChoiceButton({
+    required this.label,
+    required this.enabled,
+    required this.correct,
+    required this.wrong,
+    required this.onTap,
+    super.key,
+  });
+
+  final String label;
+  final bool enabled;
+  final bool correct;
+  final bool wrong;
+  final VoidCallback onTap;
+
+  @override
+  State<_ReviewChoiceButton> createState() => _ReviewChoiceButtonState();
+}
+
+class _ReviewChoiceButtonState extends State<_ReviewChoiceButton> {
+  bool _hovered = false;
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final active = _hovered || _pressed;
+    final highlighted = active && widget.enabled;
+    final correct = widget.correct;
+    final wrong = widget.wrong;
+    final background = correct
+        ? AppPalette.softCorrect
+        : wrong
+            ? AppPalette.softDanger
+            : highlighted
+                ? AppPalette.softPrimary
+                : Colors.white;
+    final border = correct
+        ? AppPalette.correctDark
+        : wrong
+            ? AppPalette.danger
+            : highlighted
+                ? AppPalette.primary
+                : AppPalette.border;
+    final shadow = correct
+        ? const Color(0xFFB7E7BF)
+        : wrong
+            ? AppPalette.dangerDark
+            : highlighted
+                ? const Color(0xFFBDE0E1)
+                : const Color(0xFFE9ECEF);
+    return MouseRegion(
+      cursor:
+          widget.enabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() {
+        _hovered = false;
+        _pressed = false;
+      }),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTapDown:
+            widget.enabled ? (_) => setState(() => _pressed = true) : null,
+        onTapUp:
+            widget.enabled ? (_) => setState(() => _pressed = false) : null,
+        onTapCancel:
+            widget.enabled ? () => setState(() => _pressed = false) : null,
+        onTap: widget.enabled ? widget.onTap : null,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
+          curve: Curves.easeOut,
+          transform: Matrix4.translationValues(0, highlighted ? -2 : 0, 0),
+          child: OriginalDashedSurface(
+            backgroundColor: background,
+            borderColor: border,
+            shadowColor: shadow,
+            shadowDepth: highlighted || correct || wrong ? 6 : 4,
+            radius: 18,
+            strokeWidth: 3,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            child: Center(
+              child: Text(
+                widget.label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: correct
+                      ? AppPalette.correctDark
+                      : wrong
+                          ? AppPalette.dangerDark
+                          : highlighted
+                              ? AppPalette.primaryDark
+                              : AppPalette.ink,
+                  fontSize: 16,
+                  height: 1.2,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ReviewSpellingField extends StatelessWidget {
+  const _ReviewSpellingField({
+    required this.controller,
+    required this.focusNode,
+    required this.resolved,
+    required this.correct,
+    required this.starter,
+    required this.onChanged,
+    required this.onType,
+    required this.onSubmitted,
+    required this.keyboardOpen,
+    required this.onTap,
+  });
+
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final bool resolved;
+  final bool? correct;
+  final String starter;
+  final ValueChanged<String> onChanged;
+  final VoidCallback onType;
+  final VoidCallback onSubmitted;
+  final bool keyboardOpen;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final isCorrect = resolved && correct == true;
+    final isWrong = resolved && correct == false;
+    return OriginalDashedSurface(
+      key: const Key('vocab-review-spelling-panel'),
+      backgroundColor: Colors.white,
+      borderColor: isCorrect
+          ? AppPalette.correctDark
+          : isWrong
+              ? AppPalette.danger
+              : AppPalette.primary,
+      shadowColor: isCorrect
+          ? const Color(0xFFB7E7BF)
+          : isWrong
+              ? AppPalette.dangerDark
+              : const Color(0xFFBDE0E1),
+      shadowDepth: 4,
+      radius: 18,
+      strokeWidth: 3,
+      child: SizedBox(
+        height: 58,
+        child: TextField(
+          key: const Key('vocab-review-spelling-input'),
+          controller: controller,
+          focusNode: focusNode,
+          readOnly: resolved,
+          keyboardType: TextInputType.none,
+          showCursor: keyboardOpen,
+          autocorrect: false,
+          enableSuggestions: false,
+          spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
+          textCapitalization: TextCapitalization.none,
+          textInputAction: TextInputAction.done,
+          onChanged: (value) {
+            onChanged(value);
+            onType();
+          },
+          onSubmitted: (_) => onSubmitted(),
+          onTap: onTap,
+          decoration: InputDecoration(
+            hintText: starter.isEmpty ? 'Type the word' : '$starter...',
+            hintStyle: const TextStyle(
+              color: Color(0xFFA0A0A0),
+              fontWeight: FontWeight.w900,
+            ),
+            border: InputBorder.none,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+          ),
+          style: const TextStyle(
+            color: Color(0xFF5D4037),
+            fontSize: 22,
+            height: 1.15,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ReviewFeedback extends StatelessWidget {
+  const _ReviewFeedback({required this.review, required this.question});
+
+  final VocabReviewController review;
+  final VocabReviewQuestion question;
+
+  @override
+  Widget build(BuildContext context) {
+    final correct = review.lastCorrect == true;
+    final message = correct
+        ? '正確，${question.item.word} 是「${question.correctMeaning}」。'
+        : question.kind == VocabReviewKind.spelling
+            ? '再檢查串法。正確答案係 ${question.item.word}，意思係「${question.correctMeaning}」。'
+            : '${question.item.word} 是「${question.correctMeaning}」。';
+    return OriginalDashedSurface(
+      key: const Key('vocab-review-feedback'),
+      backgroundColor: const Color(0xFFFFFDF2),
+      borderColor: AppPalette.secondaryDark,
+      shadowColor: const Color(0xFFFFE7A3),
+      shadowDepth: 4,
+      radius: 18,
+      strokeWidth: 2,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      child: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: correct ? AppPalette.correctDark : AppPalette.dangerDark,
+          fontSize: 15,
+          height: 1.45,
+          fontWeight: FontWeight.w900,
+        ),
+      ),
+    );
+  }
+}
+
+class _ReviewNextButton extends StatelessWidget {
+  const _ReviewNextButton({required this.label, required this.onPressed});
+
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return _OriginalRaisedButton(
+      key: const Key('vocab-review-next'),
+      onTap: onPressed,
+      height: 56,
+      radius: 999,
+      backgroundColor: AppPalette.secondary,
+      foregroundColor: const Color(0xFF5D4037),
+      shadowColor: AppPalette.secondaryDark,
+      shadowDepth: 6,
+      hoverBackgroundColor: const Color(0xFFFFEB85),
+      hoverOffset: -2,
+      hoverShadowDepth: 8,
+      semanticLabel: label,
+      child: Text(
+        label,
+        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
+      ),
+    );
+  }
+}
+
+class _ReviewComplete extends StatelessWidget {
+  const _ReviewComplete({required this.review, required this.onBack});
+
+  final VocabReviewController review;
+  final VoidCallback onBack;
+
+  @override
+  Widget build(BuildContext context) {
+    final perfect = review.score == review.total;
+    return SingleChildScrollView(
+      key: const Key('vocab-review-complete'),
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(4, 0, 4, 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          OriginalDashedSurface(
+            backgroundColor: AppPalette.paper,
+            borderColor: AppPalette.primary,
+            strokeWidth: 3,
+            radius: 26,
+            shadowColor: const Color(0xFFE9ECEF),
+            shadowDepth: 5,
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+            child: Column(
+              children: [
+                Text(
+                  perfect ? 'Full marks!' : '完成',
+                  key: const Key('vocab-review-complete-prompt'),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color(0xFF5D4037),
+                    fontSize: 42,
+                    height: 1.1,
+                    fontWeight: FontWeight.w900,
+                    shadows: [
+                      Shadow(color: Color(0xFFFFF3BF), offset: Offset(2, 2)),
                     ],
                   ),
                 ),
-              ),
-              if (_resolved) ...[
-                const SizedBox(height: 12),
-                FilledButton(
-                  key: const Key('vocab-review-next'),
-                  onPressed: _next,
-                  style: FilledButton.styleFrom(
-                    backgroundColor: AppPalette.primary,
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size.fromHeight(50),
+                const SizedBox(height: 10),
+                Text(
+                  '今次答啱 ${review.score}/${review.total}。',
+                  style: const TextStyle(
+                    color: AppPalette.muted,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w900,
                   ),
-                  child: Text(_index == widget.items.length - 1 ? '完成' : '下一題'),
                 ),
               ],
-            ],
+            ),
           ),
-        ),
+          const SizedBox(height: 14),
+          OriginalDashedSurface(
+            key: const Key('vocab-review-complete-feedback'),
+            backgroundColor: const Color(0xFFFFFDF2),
+            borderColor: AppPalette.secondaryDark,
+            shadowColor: const Color(0xFFFFE7A3),
+            shadowDepth: 4,
+            radius: 18,
+            strokeWidth: 2,
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            child: Text(
+              perfect ? '做得好！繼續保持。' : '再溫習一次，記憶會更穩。',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0xFF8A6A32),
+                fontSize: 15,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          const SizedBox(height: 14),
+          _ReviewNextButton(label: '返回詞彙', onPressed: onBack),
+        ],
       ),
     );
   }
