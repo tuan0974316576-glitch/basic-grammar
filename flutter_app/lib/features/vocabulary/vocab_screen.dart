@@ -126,13 +126,6 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     _scheduleSavedWordFocus();
   }
 
-  VocabItem? _savedItemForQuery(String normalizedQuery) {
-    for (final item in _controller.items) {
-      if (item.normalizedWord == normalizedQuery) return item;
-    }
-    return null;
-  }
-
   void _scheduleSavedWordFocus() {
     final query = normalizeVocabWord(_controller.query);
     final match = query.isEmpty
@@ -1925,7 +1918,7 @@ class _VocabSearchFocusOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
-      tween: const Tween<double>(begin: 0, end: 1),
+      tween: Tween<double>(begin: 0, end: 1),
       duration: const Duration(milliseconds: 760),
       curve: Curves.easeOutCubic,
       builder: (context, value, child) {
