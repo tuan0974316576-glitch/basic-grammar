@@ -372,6 +372,7 @@ class VocabItem {
     required this.updatedAt,
     this.totalSeen = 0,
     this.totalCorrect = 0,
+    this.reviewMastered = false,
     this.listeningMastered = false,
     this.spellingMastered = false,
     this.speakingMastered = false,
@@ -411,6 +412,11 @@ class VocabItem {
       ),
       totalSeen: (json['totalSeen'] as num?)?.toInt() ?? 0,
       totalCorrect: (json['totalCorrect'] as num?)?.toInt() ?? 0,
+      reviewMastered: json.containsKey('reviewMastered')
+          ? json['reviewMastered'] == true
+          : ((json['totalSeen'] as num?)?.toInt() ?? 0) > 0 &&
+              ((json['totalCorrect'] as num?)?.toInt() ?? 0) >=
+                  ((json['totalSeen'] as num?)?.toInt() ?? 0),
       listeningMastered: json['listeningMastered'] == true,
       spellingMastered: json['spellingMastered'] == true,
       speakingMastered: json['speakingMastered'] == true,
@@ -424,6 +430,7 @@ class VocabItem {
   final DateTime updatedAt;
   final int totalSeen;
   final int totalCorrect;
+  final bool reviewMastered;
   final bool listeningMastered;
   final bool spellingMastered;
   final bool speakingMastered;
@@ -436,6 +443,7 @@ class VocabItem {
     DateTime? updatedAt,
     int? totalSeen,
     int? totalCorrect,
+    bool? reviewMastered,
     bool? listeningMastered,
     bool? spellingMastered,
     bool? speakingMastered,
@@ -448,6 +456,7 @@ class VocabItem {
       updatedAt: updatedAt ?? this.updatedAt,
       totalSeen: totalSeen ?? this.totalSeen,
       totalCorrect: totalCorrect ?? this.totalCorrect,
+      reviewMastered: reviewMastered ?? this.reviewMastered,
       listeningMastered: listeningMastered ?? this.listeningMastered,
       spellingMastered: spellingMastered ?? this.spellingMastered,
       speakingMastered: speakingMastered ?? this.speakingMastered,
@@ -462,6 +471,7 @@ class VocabItem {
         'updatedAt': updatedAt.millisecondsSinceEpoch,
         'totalSeen': totalSeen,
         'totalCorrect': totalCorrect,
+        'reviewMastered': reviewMastered,
         'listeningMastered': listeningMastered,
         'spellingMastered': spellingMastered,
         'speakingMastered': speakingMastered,

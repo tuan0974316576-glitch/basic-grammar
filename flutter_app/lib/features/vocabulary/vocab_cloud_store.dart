@@ -186,6 +186,7 @@ class FirestoreVocabCloudBackend implements VocabCloudBackend {
       'progress': {
         'totalSeen': item.totalSeen,
         'totalCorrect': item.totalCorrect,
+        'reviewMastered': item.reviewMastered,
         'listeningMastered': item.listeningMastered,
         'spellingMastered': item.spellingMastered,
         'speakingMastered': item.speakingMastered,
@@ -247,6 +248,20 @@ class FirestoreVocabCloudBackend implements VocabCloudBackend {
       totalCorrect: (progress['totalCorrect'] as num?)?.toInt() ??
           (data['totalCorrect'] as num?)?.toInt() ??
           0,
+      reviewMastered: progress.containsKey('reviewMastered')
+          ? progress['reviewMastered'] == true
+          : (data.containsKey('reviewMastered')
+              ? data['reviewMastered'] == true
+              : ((progress['totalSeen'] as num?)?.toInt() ??
+                          (data['totalSeen'] as num?)?.toInt() ??
+                          0) >
+                      0 &&
+                  ((progress['totalCorrect'] as num?)?.toInt() ??
+                          (data['totalCorrect'] as num?)?.toInt() ??
+                          0) >=
+                      ((progress['totalSeen'] as num?)?.toInt() ??
+                          (data['totalSeen'] as num?)?.toInt() ??
+                          0)),
       listeningMastered: progress['listeningMastered'] == true,
       spellingMastered: progress['spellingMastered'] == true,
       speakingMastered: progress['speakingMastered'] == true,
@@ -628,6 +643,7 @@ class CloudSyncedVocabStore implements VocabStore {
       totalCorrect: left.totalCorrect > right.totalCorrect
           ? left.totalCorrect
           : right.totalCorrect,
+      reviewMastered: newer.reviewMastered,
       listeningMastered: left.listeningMastered || right.listeningMastered,
       spellingMastered: left.spellingMastered || right.spellingMastered,
       speakingMastered: left.speakingMastered || right.speakingMastered,
@@ -667,6 +683,7 @@ class CloudSyncedVocabStore implements VocabStore {
         'updatedAt': item.updatedAt.millisecondsSinceEpoch,
         'totalSeen': item.totalSeen,
         'totalCorrect': item.totalCorrect,
+        'reviewMastered': item.reviewMastered,
         'listeningMastered': item.listeningMastered,
         'spellingMastered': item.spellingMastered,
         'speakingMastered': item.speakingMastered,

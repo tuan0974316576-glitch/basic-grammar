@@ -4,6 +4,7 @@ import 'package:dope_english/features/vocabulary/vocab_controller.dart';
 import 'package:dope_english/features/vocabulary/vocab_import_models.dart';
 import 'package:dope_english/features/vocabulary/vocab_models.dart';
 import 'package:dope_english/features/vocabulary/vocab_repository.dart';
+import 'package:dope_english/features/vocabulary/vocab_review_controller.dart';
 import 'package:dope_english/features/vocabulary/vocab_synonym_repository.dart';
 
 void main() {
@@ -64,6 +65,28 @@ void main() {
 
     expect(controller.items, hasLength(1));
     expect(controller.items.single.senses, hasLength(2));
+  });
+
+  test('a correct retry clears due state after an earlier wrong attempt',
+      () async {
+    await controller.bulkUpsertImported(const [
+      VocabImportedEntry(
+        word: 'have',
+        display: 'have',
+        senses: [_haveOwn],
+      ),
+    ]);
+
+    final item = controller.items.single;
+    expect(controller.dueCount, 1);
+    await controller.recordReviewAnswer(item, VocabReviewKind.reading, false);
+    expect(controller.dueCount, 1);
+    await controller.recordReviewAnswer(item, VocabReviewKind.reading, true);
+
+    expect(controller.dueCount, 0);
+    expect(controller.items.single.reviewMastered, isTrue);
+    expect(controller.items.single.totalSeen, 2);
+    expect(controller.items.single.totalCorrect, 1);
   });
 
   test('loads examples only after expanding a row', () async {

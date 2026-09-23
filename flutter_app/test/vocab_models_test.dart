@@ -51,6 +51,7 @@ void main() {
       ],
       createdAt: DateTime(2026, 8, 19),
       updatedAt: DateTime(2026, 8, 19),
+      reviewMastered: true,
       speakingMastered: true,
     );
 
@@ -59,6 +60,7 @@ void main() {
     expect(decoded, hasLength(1));
     expect(decoded.single.senses, hasLength(2));
     expect(decoded.single.senses.last.label, 'v. 吃 / 喝');
+    expect(decoded.single.reviewMastered, isTrue);
     expect(decoded.single.speakingMastered, isTrue);
   });
 

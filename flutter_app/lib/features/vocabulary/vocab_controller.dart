@@ -48,8 +48,7 @@ class VocabController extends ChangeNotifier {
   bool get canAdd =>
       normalizeVocabWord(_query).isNotEmpty && _selectedSenseIds.isNotEmpty;
   int get dueCount => _items
-      .where(
-          (item) => item.totalSeen == 0 || item.totalCorrect < item.totalSeen)
+      .where((item) => item.totalSeen == 0 || !item.reviewMastered)
       .length;
 
   Future<void> initialize() async {
@@ -347,6 +346,7 @@ class VocabController extends ChangeNotifier {
     _items[index] = current.copyWith(
       totalSeen: current.totalSeen + 1,
       totalCorrect: current.totalCorrect + (correct ? 1 : 0),
+      reviewMastered: correct,
       listeningMastered: current.listeningMastered ||
           (correct && kind == VocabReviewKind.listening),
       spellingMastered: current.spellingMastered ||

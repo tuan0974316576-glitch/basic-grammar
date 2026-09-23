@@ -2,6 +2,18 @@
 
 Last updated: 23 September 2026
 
+## Vocabulary Due-State Fix (2026-09-23)
+
+- Vocabulary Training now stores an explicit `reviewMastered` state per saved
+  word. A wrong first attempt followed by a correct retry keeps the historical
+  `totalSeen` / `totalCorrect` counts but clears the word from `待溫習`.
+- Old local and Firestore records derive the new flag from their existing
+  counters when the field is absent, so upgrading does not require clearing
+  student data. Cloud sync payloads now carry the flag in `progress`.
+- Regression coverage verifies `dueCount` changes from 1 to 0 after the
+  wrong-then-correct retry sequence. The complete Flutter suite passes 288
+  tests.
+
 ## Full-Screen Streak Claim Page (2026-09-23)
 
 - Claiming XP after Vocabulary Training now opens a persistent full-screen
