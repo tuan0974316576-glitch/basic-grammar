@@ -2,6 +2,18 @@ rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
+    match /vocab-imports/{uid}/{jobId}/{fileName} {
+      allow read: if false;
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.size > 0
+        && request.resource.size <= 25 * 1024 * 1024
+        && request.resource.contentType.matches(
+          'application/pdf|image/jpeg|image/png|image/webp|image/tiff'
+        );
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+
     match /vocab-audio/{allPaths=**} {
       allow get: if true;
       allow list: if false;

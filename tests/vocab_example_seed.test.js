@@ -156,6 +156,11 @@ assert.strictEqual(normalized[0].meaning, "食 / 飲");
 assert.strictEqual(normalized[0].level, "A1");
 
 const seed = require("../vocab_example_seed.js");
+["no man is an island", "vary from ... to ...", "differ from ... to ..."].forEach((word) => {
+  const payload = Object.values(seed.entries).find((entry) => entry.word === word);
+  assert.ok(payload, `${word} should have reviewed fallback examples`);
+  assert.strictEqual(payload.examples.length, 3);
+});
 [
   { word: "look forward to", pos: "verb", meaning: "期待", level: "A2" },
   { word: "be used to", pos: "adjective", meaning: "習慣於", level: "B1" },

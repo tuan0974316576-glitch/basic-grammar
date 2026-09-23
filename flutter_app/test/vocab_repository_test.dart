@@ -12,6 +12,9 @@ void main() {
     final pretty = await repository.lookup('pretty');
     final beard = await repository.lookup('beard');
     final phrase = await repository.lookup('rule out');
+    final rather = await repository.lookup('rather');
+    final differPattern = await repository.lookup('differ from ... to ...');
+    final differAlias = await repository.lookup('differ from to');
 
     expect(
       pretty.senses,
@@ -26,6 +29,14 @@ void main() {
         (sense) => sense.pos == 'verb' && sense.meaning.contains('排除'),
       )),
     );
+    expect(rather.senses, isNotEmpty);
+    expect(
+        rather.senses,
+        everyElement(predicate<VocabSense>(
+          (sense) => sense.pos == 'adverb' && sense.metaLabel == 'adv.',
+        )));
+    expect(differPattern.senses.single.meaning, '因...而異');
+    expect(differAlias.senses.single.word, 'differ from ... to ...');
   });
 
   test('bundled bank returns meaning-aware examples', () async {

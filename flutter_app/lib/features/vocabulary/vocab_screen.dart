@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
@@ -19,6 +20,8 @@ import 'vocab_import_repository.dart';
 import 'vocab_models.dart';
 import 'vocab_repository.dart';
 import 'vocab_review_controller.dart';
+import 'vocab_speaking_repository.dart';
+import 'vocab_spelling_pattern.dart';
 import 'vocab_synonym_dialog.dart';
 import 'vocab_synonym_repository.dart';
 
@@ -36,6 +39,7 @@ class VocabularyScreen extends StatefulWidget {
     this.sfx,
     this.onSettings,
     this.onKeyboardVisibilityChanged,
+    this.onReviewCompleted,
     this.settingsActive = false,
     super.key,
   });
@@ -51,6 +55,7 @@ class VocabularyScreen extends StatefulWidget {
   /// Lets the app shell make room for the custom keyboard at the very bottom
   /// of the window.  The legacy game hides the three main tabs while typing.
   final ValueChanged<bool>? onKeyboardVisibilityChanged;
+  final ValueChanged<int>? onReviewCompleted;
   final bool settingsActive;
 
   @override
@@ -65,14 +70,12 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   late final bool _ownsAudio;
   late final VocabSynonymRepository _synonymRepository;
   late final LessonSfx _sfx;
-  late final AnimationController _pulseController;
   VocabImportRepository? _importRepository;
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final GlobalKey _keyboardKey = GlobalKey();
   final ScrollController _vocabListScrollController = ScrollController();
   final Map<String, GlobalKey> _vocabRowKeys = {};
-  bool _pulseInFlight = false;
   bool _keyboardOpen = false;
   String _focusedSearchItemId = '';
   String _lastFocusedSearchWord = '';
@@ -104,18 +107,10 @@ class _VocabularyScreenState extends State<VocabularyScreen>
         widget.synonymRepository ?? CloudSyncedVocabSynonymRepository();
     _sfx = widget.sfx ?? AppSfx.instance;
     _controller.addListener(_refresh);
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 620),
-      lowerBound: 0,
-      upperBound: 1,
-    );
-    _syncPulseAnimation();
     if (_ownsController) unawaited(_controller.initialize());
   }
 
   void _refresh() {
-    _syncPulseAnimation();
     if (_textController.text != _controller.query) {
       _textController.value = TextEditingValue(
         text: _controller.query,
@@ -265,29 +260,6 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     unawaited(_sfx.play(SfxCue.type));
   }
 
-  void _syncPulseAnimation() {
-    if (_controller.items.length >= 4) {
-      if (!_pulseController.isAnimating && !_pulseInFlight) {
-        _pulseInFlight = true;
-        unawaited(_playPulseOnce());
-      }
-    } else if (_pulseController.isAnimating || _pulseController.value != 0) {
-      _pulseController.stop();
-      _pulseController.value = 0;
-    }
-  }
-
-  Future<void> _playPulseOnce() async {
-    try {
-      await _pulseController.forward(from: 0);
-      await _pulseController.reverse();
-    } on TickerCanceled {
-      // The page was disposed while its short attention animation was running.
-    } finally {
-      _pulseInFlight = false;
-    }
-  }
-
   @override
   void dispose() {
     if (_keyboardOpen) {
@@ -301,7 +273,6 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     _controller.removeListener(_refresh);
     if (_ownsController) _controller.dispose();
     if (_ownsAudio) unawaited(_audio.dispose());
-    _pulseController.dispose();
     _textController.dispose();
     _focusNode.dispose();
     super.dispose();
@@ -570,7 +541,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     }
   }
 
-  void _openReview() {
+  Future<void> _openReview() async {
     unawaited(AppSfx.instance.play(
       _controller.items.isEmpty ? SfxCue.wrong : SfxCue.start,
     ));
@@ -580,12 +551,38 @@ class _VocabularyScreenState extends State<VocabularyScreen>
       );
       return;
     }
+    final items = _controller.items;
+    final exampleByItemId = <String, String>{};
+    for (final item in items.where(
+      (item) => item.listeningMastered && item.spellingMastered,
+    )) {
+      final sections = await _controller.loadExamplesForAudio(item);
+      final example = sections
+          .expand((section) => section.examples)
+          .map((example) => example.english.trim())
+          .firstWhere(
+            (sentence) => RegExp(
+              r'\b' + RegExp.escape(item.word) + r'\b',
+              caseSensitive: false,
+            ).hasMatch(sentence),
+            orElse: () => '',
+          );
+      if (example.isNotEmpty) exampleByItemId[item.id] = example;
+    }
+    if (!mounted) return;
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => VocabularyReviewScreen(
-          items: _controller.items,
+          items: items,
           audioRepository: _audio,
+          reviewController: VocabReviewController(
+            items: items,
+            exampleByItemId: exampleByItemId,
+            repeatWrongAnswers: true,
+          ),
+          speakingRepository: FirebaseVocabSpeakingRepository(),
           onAnswered: _controller.recordReviewAnswer,
+          onCompleted: widget.onReviewCompleted,
         ),
       ),
     );
@@ -656,14 +653,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     final items = [..._controller.items];
     switch (_sortMode) {
       case _VocabSortMode.recent:
-        items.sort((left, right) {
-          final updated = right.updatedAt.compareTo(left.updatedAt);
-          if (updated != 0) return updated;
-          final created = right.createdAt.compareTo(left.createdAt);
-          return created != 0
-              ? created
-              : left.normalizedWord.compareTo(right.normalizedWord);
-        });
+        items.sort(compareVocabItemsByRecentCreation);
         break;
       case _VocabSortMode.alpha:
         items.sort(
@@ -708,8 +698,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
               settingsKey: const Key('vocab-settings-button'),
               trailing: _VocabTrainingButton(
                 reviewCount: _controller.dueCount,
-                pulse: _pulseController,
-                shouldPulse: _controller.items.length >= 4,
+                shouldPulse: _controller.dueCount > 0,
                 onReview: _openReview,
               ),
               child: Column(
@@ -791,7 +780,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                   ),
                 ),
               ),
-            // Keep the keyboard outside the stationery frame.  This is the same
+            // Keep the keyboard outside the stationery frame. This is the same
             // full-width bottom dock used by the original English Grammar Game;
             // placing it here also lets it cover the app tabs cleanly.
             if (_keyboardOpen)
@@ -822,13 +811,11 @@ class _VocabularyScreenState extends State<VocabularyScreen>
 class _VocabTrainingButton extends StatelessWidget {
   const _VocabTrainingButton({
     required this.reviewCount,
-    required this.pulse,
     required this.shouldPulse,
     required this.onReview,
   });
 
   final int reviewCount;
-  final Animation<double> pulse;
   final bool shouldPulse;
   final VoidCallback onReview;
 
@@ -836,21 +823,92 @@ class _VocabTrainingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final compact = MediaQuery.sizeOf(context).width <= 720;
     final size = compact ? 46.0 : 52.0;
-    return AnimatedBuilder(
-      animation: pulse,
-      builder: (context, child) {
-        final scale = shouldPulse ? 1 + pulse.value * 0.08 : 1.0;
-        return Transform.scale(scale: scale, child: child);
-      },
+    return _VocabTrainingButtonAnimation(
+      size: size,
+      shouldPulse: shouldPulse,
+      reviewCount: reviewCount,
+      onReview: onReview,
+    );
+  }
+}
+
+class _VocabTrainingButtonAnimation extends StatefulWidget {
+  const _VocabTrainingButtonAnimation({
+    required this.size,
+    required this.shouldPulse,
+    required this.reviewCount,
+    required this.onReview,
+  });
+
+  final double size;
+  final bool shouldPulse;
+  final int reviewCount;
+  final VoidCallback onReview;
+
+  @override
+  State<_VocabTrainingButtonAnimation> createState() =>
+      _VocabTrainingButtonAnimationState();
+}
+
+class _VocabTrainingButtonAnimationState
+    extends State<_VocabTrainingButtonAnimation> {
+  Timer? _pulseTimer;
+  Timer? _pulseStartTimer;
+  bool _expanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _syncTimer();
+  }
+
+  @override
+  void didUpdateWidget(covariant _VocabTrainingButtonAnimation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.shouldPulse != widget.shouldPulse) _syncTimer();
+  }
+
+  void _syncTimer() {
+    _pulseTimer?.cancel();
+    _pulseStartTimer?.cancel();
+    _pulseTimer = null;
+    _pulseStartTimer = null;
+    if (!widget.shouldPulse) {
+      _expanded = false;
+      return;
+    }
+    _expanded = false;
+    _pulseStartTimer = Timer(const Duration(milliseconds: 80), () {
+      if (mounted) setState(() => _expanded = true);
+    });
+    _pulseTimer = Timer.periodic(const Duration(milliseconds: 900), (_) {
+      if (mounted) setState(() => _expanded = !_expanded);
+    });
+  }
+
+  @override
+  void dispose() {
+    _pulseTimer?.cancel();
+    _pulseStartTimer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedScale(
+      key: const Key('vocab-review-button-pulse'),
+      scale: widget.shouldPulse && _expanded ? 1.16 : 1.0,
+      duration: const Duration(milliseconds: 700),
+      curve: Curves.easeInOut,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
           _OriginalRaisedButton(
             key: const Key('vocab-review-button'),
-            width: size,
-            height: size,
-            radius: compact ? 14 : 16,
-            onTap: onReview,
+            width: widget.size,
+            height: widget.size,
+            radius: widget.size <= 46 ? 14 : 16,
+            onTap: widget.onReview,
             backgroundColor: AppPalette.softSecondary,
             foregroundColor: const Color(0xFF5D4037),
             shadowColor: const Color(0xFFE0B84F),
@@ -865,7 +923,7 @@ class _VocabTrainingButton extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
-          if (reviewCount > 0)
+          if (widget.reviewCount > 0)
             Positioned(
               right: -2,
               top: -3,
@@ -882,7 +940,7 @@ class _VocabTrainingButton extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 2),
                 ),
                 child: Text(
-                  '$reviewCount',
+                  '${widget.reviewCount}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
@@ -1000,6 +1058,9 @@ class _VocabEntryPanel extends StatelessWidget {
               );
             },
           ),
+          _VocabLookupIndicator(
+            visible: controller.isLookingUp && controller.query.isNotEmpty,
+          ),
           if (controller.lookupSenses.isNotEmpty) ...[
             const SizedBox(height: 9),
             OriginalDashedSurface(
@@ -1082,6 +1143,119 @@ class _VocabEntryPanel extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _VocabLookupIndicator extends StatefulWidget {
+  const _VocabLookupIndicator({required this.visible});
+
+  final bool visible;
+
+  @override
+  State<_VocabLookupIndicator> createState() => _VocabLookupIndicatorState();
+}
+
+class _VocabLookupIndicatorState extends State<_VocabLookupIndicator>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 900),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.visible) _controller.repeat();
+  }
+
+  @override
+  void didUpdateWidget(covariant _VocabLookupIndicator oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.visible && !oldWidget.visible) {
+      _controller.repeat();
+    } else if (!widget.visible && oldWidget.visible) {
+      _controller.stop();
+      _controller.value = 0;
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 180),
+      curve: Curves.easeOutCubic,
+      alignment: Alignment.topCenter,
+      child: widget.visible
+          ? SizedBox(
+              key: const Key('vocab-lookup-loading'),
+              height: 34,
+              child: Center(
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.76),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.search_rounded,
+                        size: 17,
+                        color: AppPalette.primaryDark,
+                      ),
+                      const SizedBox(width: 5),
+                      const Text(
+                        '激情搜尋中',
+                        style: TextStyle(
+                          color: AppPalette.primaryDark,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(width: 3),
+                      AnimatedBuilder(
+                        animation: _controller,
+                        builder: (context, _) {
+                          final active = (_controller.value * 3).floor() % 3;
+                          return Row(
+                            children: List.generate(3, (index) {
+                              final distance = (index - active).abs();
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 1),
+                                child: AnimatedOpacity(
+                                  opacity: distance == 0 ? 1 : 0.3,
+                                  duration: const Duration(milliseconds: 120),
+                                  child: const Text(
+                                    '.',
+                                    style: TextStyle(
+                                      color: AppPalette.primaryDark,
+                                      fontSize: 15,
+                                      height: 1,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          : const SizedBox.shrink(),
     );
   }
 }
@@ -1919,91 +2093,119 @@ class _VocabSearchFocusOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
       tween: Tween<double>(begin: 0, end: 1),
-      duration: const Duration(milliseconds: 760),
-      curve: Curves.easeOutCubic,
+      duration: const Duration(milliseconds: 820),
+      curve: Curves.easeOutBack,
       builder: (context, value, child) {
-        final scanTop = (value * 1.24) - 0.12;
+        final fade = Curves.easeOut.transform(value.clamp(0, 1));
+        final tilt = (1 - fade) * -0.045;
         return Stack(
           fit: StackFit.expand,
           children: [
             Opacity(
-              opacity: 0.16 * (1 - value * 0.35),
-              child: DecoratedBox(
-                decoration: const BoxDecoration(
+              opacity: 0.10 * (1 - fade),
+              child: const DecoratedBox(
+                decoration: BoxDecoration(
                   gradient: RadialGradient(
-                    colors: [Color(0xFF5BC7C2), Colors.transparent],
-                    stops: [0, 0.72],
+                    colors: [Color(0xFFFFD9E3), Colors.transparent],
+                    stops: [0, 0.78],
                   ),
                 ),
               ),
             ),
-            FractionallySizedBox(
-              heightFactor: 0.006,
-              alignment: Alignment(0, (scanTop * 2) - 1),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppPalette.primary.withValues(alpha: 0.75),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppPalette.primary.withValues(alpha: 0.5),
-                      blurRadius: 12,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-              ),
-            ),
             Center(
-              child: Transform.scale(
-                scale: 0.92 + (value * 0.08),
-                child: Opacity(
-                  opacity: Curves.easeOut.transform(value),
-                  child: Container(
-                    constraints: const BoxConstraints(minWidth: 220),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 22,
-                      vertical: 15,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.94),
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(
-                        color: AppPalette.primary.withValues(alpha: 0.78),
-                        width: 2,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppPalette.primary.withValues(alpha: 0.3),
-                          blurRadius: 22,
-                          spreadRadius: 3,
-                        ),
-                        const BoxShadow(
-                          color: Color(0xFFD7EEEE),
-                          offset: Offset(0, 5),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
+              child: Opacity(
+                opacity: fade,
+                child: Transform.rotate(
+                  angle: tilt,
+                  child: Transform.scale(
+                    scale: 0.82 + (fade * 0.18),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.center,
                       children: [
-                        const Text(
-                          'MEMORY TRACE LOCKED',
-                          style: TextStyle(
-                            color: AppPalette.primaryDark,
-                            fontSize: 11,
-                            letterSpacing: 1.4,
-                            fontWeight: FontWeight.w900,
-                          ),
+                        _SearchStickerSpark(
+                          icon: Icons.auto_awesome_rounded,
+                          color: AppPalette.secondaryDark,
+                          offset: Offset(-116 * fade, -48 * fade),
+                          scale: 0.75 + (0.25 * fade),
                         ),
-                        const SizedBox(height: 7),
-                        Text(
-                          displayVocabWord(word),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color(0xFF5D4037),
-                            fontSize: 24,
-                            letterSpacing: 0.7,
-                            fontWeight: FontWeight.w900,
+                        _SearchStickerSpark(
+                          icon: Icons.favorite_rounded,
+                          color: AppPalette.pink,
+                          offset: Offset(116 * fade, -28 * fade),
+                          scale: 0.7 + (0.3 * fade),
+                        ),
+                        _SearchStickerSpark(
+                          icon: Icons.star_rounded,
+                          color: AppPalette.primary,
+                          offset: Offset(106 * fade, 50 * fade),
+                          scale: 0.65 + (0.35 * fade),
+                        ),
+                        Container(
+                          constraints: const BoxConstraints(minWidth: 214),
+                          padding: const EdgeInsets.fromLTRB(23, 17, 23, 16),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFFFDF7),
+                            borderRadius: BorderRadius.circular(23),
+                            border: Border.all(
+                              color: AppPalette.pink.withValues(alpha: 0.74),
+                              width: 3,
+                            ),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0xFFF3C7D4),
+                                offset: Offset(0, 7),
+                              ),
+                              BoxShadow(
+                                color: Color(0x33E99AB2),
+                                blurRadius: 16,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.search_rounded,
+                                    color: AppPalette.primaryDark,
+                                    size: 18,
+                                  ),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    '搵到喇！',
+                                    style: TextStyle(
+                                      color: AppPalette.primaryDark,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 7),
+                              Text(
+                                displayVocabWord(word),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Color(0xFF5D4037),
+                                  fontSize: 24,
+                                  letterSpacing: 0.7,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              Container(
+                                width: 70,
+                                height: 4,
+                                decoration: BoxDecoration(
+                                  color: AppPalette.secondary,
+                                  borderRadius: BorderRadius.circular(99),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -2015,6 +2217,31 @@ class _VocabSearchFocusOverlay extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+}
+
+class _SearchStickerSpark extends StatelessWidget {
+  const _SearchStickerSpark({
+    required this.icon,
+    required this.color,
+    required this.offset,
+    required this.scale,
+  });
+
+  final IconData icon;
+  final Color color;
+  final Offset offset;
+  final double scale;
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.translate(
+      offset: offset,
+      child: Transform.scale(
+        scale: scale,
+        child: Icon(icon, color: color, size: 27),
+      ),
     );
   }
 }
@@ -2141,7 +2368,9 @@ class _VocabRowState extends State<_VocabRow> {
         widget.studyMode == _VocabStudyMode.chinese && !widget.answerRevealed;
     final hideChinese =
         widget.studyMode == _VocabStudyMode.english && !widget.answerRevealed;
-    final crayonColor = _crayonColorFor(widget.item.id);
+    final crayonColor = vocabCrayonColorForPos(
+      widget.item.senses.isEmpty ? '' : widget.item.senses.first.pos,
+    );
     final mainRow = GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTapDown: (_) => setState(() => _pressed = true),
@@ -2206,7 +2435,7 @@ class _VocabRowState extends State<_VocabRow> {
                                     'vocab-chinese-mask-${widget.item.id}-${entry.key}',
                                   ),
                                   semanticLabel: '顯示 ${widget.item.word} 中文意思',
-                                  color: crayonColor,
+                                  color: vocabCrayonColorForPos(sense.pos),
                                   seed: _stableCrayonSeed(widget.item.id) +
                                       entry.key * 17,
                                   onReveal: widget.onReveal,
@@ -2377,13 +2606,13 @@ Widget _studyRevealTransition(Widget child, Animation<double> animation) {
   );
 }
 
-const _crayonColors = <Color>[
-  Color(0xFFF2C94C),
-  Color(0xFF6FCF78),
-  Color(0xFF63A9E8),
-  Color(0xFFA88AE3),
-  Color(0xFFEB86AA),
-];
+const _crayonColorsByPos = <String, Color>{
+  'noun': Color(0xFFF2C94C),
+  'verb': Color(0xFF6FCF78),
+  'adjective': Color(0xFFA88AE3),
+  'adverb': Color(0xFF63A9E8),
+  'other': Color(0xFFEB86AA),
+};
 
 int _stableCrayonSeed(String value) {
   var seed = 7;
@@ -2393,8 +2622,17 @@ int _stableCrayonSeed(String value) {
   return seed;
 }
 
-Color _crayonColorFor(String value) {
-  return _crayonColors[_stableCrayonSeed(value) % _crayonColors.length];
+@visibleForTesting
+Color vocabCrayonColorForPos(String pos) {
+  final normalized = pos.trim().toLowerCase();
+  final key = switch (normalized) {
+    'n' || 'noun' => 'noun',
+    'v' || 'verb' => 'verb',
+    'adj' || 'adjective' => 'adjective',
+    'adv' || 'adverb' => 'adverb',
+    _ => 'other',
+  };
+  return _crayonColorsByPos[key]!;
 }
 
 class _CrayonRevealMask extends StatelessWidget {
@@ -2751,7 +2989,9 @@ class VocabularyReviewScreen extends StatefulWidget {
     required this.items,
     required this.audioRepository,
     this.reviewController,
+    this.speakingRepository,
     this.onAnswered,
+    this.onCompleted,
     this.sfx,
     super.key,
   });
@@ -2759,7 +2999,13 @@ class VocabularyReviewScreen extends StatefulWidget {
   final List<VocabItem> items;
   final VocabAudioRepository audioRepository;
   final VocabReviewController? reviewController;
-  final Future<void> Function(VocabItem item, bool correct)? onAnswered;
+  final VocabSpeakingRepository? speakingRepository;
+  final Future<void> Function(
+    VocabItem item,
+    VocabReviewKind kind,
+    bool correct,
+  )? onAnswered;
+  final ValueChanged<int>? onCompleted;
   final LessonSfx? sfx;
 
   @override
@@ -2770,6 +3016,8 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
   late final VocabReviewController _review;
   late final bool _ownsReview;
   late final LessonSfx _sfx;
+  late final VocabSpeakingRepository _speaking;
+  late final bool _ownsSpeaking;
   final TextEditingController _answerController = TextEditingController();
   final FocusNode _answerFocusNode = FocusNode();
   Timer? _listeningTimer;
@@ -2777,6 +3025,11 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
   bool _keyboardOpen = false;
   String _questionSignature = '';
   int _celebration = 0;
+  bool _recording = false;
+  bool _assessingSpeech = false;
+  VocabPronunciationResult? _pronunciationResult;
+  String _speakingError = '';
+  bool _completionReported = false;
 
   @override
   void initState() {
@@ -2785,6 +3038,8 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
     _review =
         widget.reviewController ?? VocabReviewController(items: widget.items);
     _sfx = widget.sfx ?? AppSfx.instance;
+    _ownsSpeaking = widget.speakingRepository == null;
+    _speaking = widget.speakingRepository ?? FirebaseVocabSpeakingRepository();
     _review.addListener(_refresh);
     _questionSignature = _review.currentQuestion?.id ??
         (_review.isComplete ? 'complete' : 'empty');
@@ -2799,6 +3054,11 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
     if (_ownsReview) _review.dispose();
     _answerController.dispose();
     _answerFocusNode.dispose();
+    if (_ownsSpeaking) {
+      unawaited(_speaking.dispose());
+    } else {
+      unawaited(_speaking.cancel());
+    }
     super.dispose();
   }
 
@@ -2819,13 +3079,24 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
     _listeningTimer?.cancel();
     _spellingFocusTimer?.cancel();
     final question = _review.currentQuestion;
+    _recording = false;
+    _assessingSpeech = false;
+    _pronunciationResult = null;
+    _speakingError = '';
     if (question == null) {
       _keyboardOpen = false;
       _answerFocusNode.unfocus();
       return;
     }
-    if (question.kind == VocabReviewKind.spelling) {
-      _answerController.clear();
+    if (question.kind == VocabReviewKind.spelling ||
+        question.kind == VocabReviewKind.sentenceCloze) {
+      final givenFirstLetter =
+          vocabSpellingGivenLetter(question.item.word.trim());
+      _answerController.value = TextEditingValue(
+        text: givenFirstLetter,
+        selection: TextSelection.collapsed(offset: givenFirstLetter.length),
+      );
+      _review.updateSpelling(givenFirstLetter);
       _spellingFocusTimer?.cancel();
       _spellingFocusTimer = Timer(const Duration(milliseconds: 80), () {
         if (mounted && !_review.isResolved) {
@@ -2841,6 +3112,21 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
         if (mounted && !_review.isResolved) _speakCurrentWord();
       });
     }
+    if (question.kind.needsSpeaking) {
+      _listeningTimer = Timer(const Duration(milliseconds: 220), () {
+        if (mounted && !_review.isResolved) _speakCurrentReference();
+      });
+    }
+    if (question.kind == VocabReviewKind.sentenceCloze &&
+        question.exampleSentence.isNotEmpty) {
+      _listeningTimer = Timer(const Duration(milliseconds: 220), () {
+        if (mounted && !_review.isResolved) {
+          unawaited(widget.audioRepository.speakExample(
+            question.exampleSentence,
+          ));
+        }
+      });
+    }
   }
 
   void _speakCurrentWord() {
@@ -2849,9 +3135,90 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
     unawaited(widget.audioRepository.speakWord(question.item.word));
   }
 
+  String _speakingText(VocabReviewQuestion question) =>
+      question.kind == VocabReviewKind.speakingSentence
+          ? question.exampleSentence
+          : question.item.word;
+
+  void _speakCurrentReference() {
+    final question = _review.currentQuestion;
+    if (question == null || !question.kind.needsSpeaking) return;
+    if (question.kind == VocabReviewKind.speakingSentence) {
+      unawaited(widget.audioRepository.speakExample(question.exampleSentence));
+    } else {
+      unawaited(widget.audioRepository.speakWord(question.item.word));
+    }
+  }
+
+  Future<void> _toggleSpeakingRecording() async {
+    final question = _review.currentQuestion;
+    if (question == null ||
+        !question.kind.needsSpeaking ||
+        _review.isResolved ||
+        _assessingSpeech) {
+      return;
+    }
+    if (_recording) {
+      setState(() {
+        _recording = false;
+        _assessingSpeech = true;
+        _speakingError = '';
+      });
+      final result = await _speaking.stopAndAssess(
+        expectedText: _speakingText(question),
+        referenceId: question.id,
+      );
+      if (!mounted || _review.currentQuestion?.id != question.id) return;
+      if (result == null) {
+        setState(() {
+          _assessingSpeech = false;
+          _speakingError = '未能分析今次錄音，請再試一次。';
+        });
+        return;
+      }
+      setState(() {
+        _assessingSpeech = false;
+        _pronunciationResult = result;
+      });
+      final event = _review.submitSpeaking(result.passed);
+      _playAnswerEvent(event, question);
+      return;
+    }
+
+    setState(() {
+      _speakingError = '';
+      _pronunciationResult = null;
+    });
+    final start = await _speaking.start();
+    if (!mounted || _review.currentQuestion?.id != question.id) return;
+    setState(() {
+      _recording = start == VocabSpeakingStartResult.started;
+      _speakingError = switch (start) {
+        VocabSpeakingStartResult.started => '',
+        VocabSpeakingStartResult.permissionDenied => '請先允許使用咪高峰，先可以練習讀音。',
+        VocabSpeakingStartResult.unavailable => '暫時未能開啟咪高峰，請再試一次。',
+      };
+    });
+  }
+
+  Future<void> _disableAudioQuestions() async {
+    await _speaking.cancel();
+    if (!mounted) return;
+    setState(() {
+      _recording = false;
+      _assessingSpeech = false;
+      _pronunciationResult = null;
+      _speakingError = '';
+    });
+    final kind = _review.currentQuestion?.kind;
+    if (kind != null) _review.disableQuestionsLike(kind);
+  }
+
   void _recordAnswer(VocabReviewQuestion question, bool correct) {
     final callback = widget.onAnswered;
-    if (callback != null) unawaited(callback(question.item, correct));
+    if (callback != null) {
+      unawaited(callback(question.item, question.kind, correct));
+    }
   }
 
   void _playAnswerEvent(
@@ -2870,6 +3237,7 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
         unawaited(_sfx.play(SfxCue.wrong));
       case VocabReviewEvent.ignored:
       case VocabReviewEvent.nextQuestion:
+      case VocabReviewEvent.retryIntro:
       case VocabReviewEvent.completed:
         break;
     }
@@ -2885,6 +3253,10 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
   void _submitSpelling() {
     final question = _review.currentQuestion;
     if (question == null) return;
+    _review.updateSpelling(composeVocabSpellingAnswer(
+      question.item.word,
+      _answerController.text,
+    ));
     _closeReviewKeyboard();
     final event = _review.submitSpelling();
     _playAnswerEvent(event, question);
@@ -2892,7 +3264,8 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
 
   void _openReviewKeyboard() {
     if (_keyboardOpen ||
-        _review.currentQuestion?.kind != VocabReviewKind.spelling ||
+        (_review.currentQuestion?.kind != VocabReviewKind.spelling &&
+            _review.currentQuestion?.kind != VocabReviewKind.sentenceCloze) ||
         _review.isResolved) {
       return;
     }
@@ -2912,10 +3285,14 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
     if (!_keyboardOpen || _review.isResolved) return;
     final current = _answerController.text;
     final next = switch (key) {
-      'BACKSPACE' =>
-        current.isEmpty ? current : current.substring(0, current.length - 1),
-      'SPACE' => current.endsWith(' ') ? current : '$current ',
-      _ => '$current${key.toLowerCase()}',
+      'BACKSPACE' => current.length <= 1
+          ? current
+          : current.substring(0, current.length - 1),
+      'SPACE' || '-' || "'" => current,
+      _ => normalizeVocabSpellingInput(
+          '$current${key.toLowerCase()}',
+          _review.currentQuestion!.item.word,
+        ),
     };
     if (next.length > 60) return;
     _answerController.value = TextEditingValue(
@@ -2931,21 +3308,40 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
     switch (event) {
       case VocabReviewEvent.nextQuestion:
         unawaited(_sfx.play(SfxCue.next));
+      case VocabReviewEvent.retryIntro:
+        unawaited(_sfx.play(SfxCue.next));
       case VocabReviewEvent.completed:
         unawaited(_sfx.play(
           AppSfx.resultCueForPercent(
-            _review.total == 0
-                ? 0
-                : ((_review.score / _review.total) * 100).round(),
+            _review.accuracyPercent,
           ),
         ));
         setState(() => _celebration += 1);
+        if (!_review.repeatsWrong && !_completionReported) {
+          _completionReported = true;
+          widget.onCompleted?.call(_review.targetTotal);
+        }
       case VocabReviewEvent.ignored:
       case VocabReviewEvent.invalidInput:
       case VocabReviewEvent.correct:
       case VocabReviewEvent.wrong:
         break;
     }
+  }
+
+  void _startRetry() {
+    final event = _review.startRetry();
+    if (event == VocabReviewEvent.nextQuestion) {
+      unawaited(_sfx.play(SfxCue.next));
+    }
+  }
+
+  void _claimXpAndClose() {
+    if (!_completionReported) {
+      _completionReported = true;
+      widget.onCompleted?.call(_review.targetTotal);
+    }
+    _close();
   }
 
   void _close() {
@@ -2968,7 +3364,6 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
                   _ReviewHeader(
                     review: _review,
                     onClose: _close,
-                    onSpeak: _speakCurrentWord,
                   ),
                   const SizedBox(height: 12),
                   Expanded(child: _buildBody()),
@@ -3008,8 +3403,11 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
     if (_review.isComplete) {
       return _ReviewComplete(
         review: _review,
-        onBack: _close,
+        onBack: _review.repeatsWrong ? _claimXpAndClose : _close,
       );
+    }
+    if (_review.isRetryIntro) {
+      return _ReviewRetryIntro(onContinue: _startRetry);
     }
     if (question == null) {
       return const Center(child: Text('未有可溫習生字。'));
@@ -3022,15 +3420,37 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _ReviewPrompt(question: question),
+          _ReviewPrompt(
+            question: question,
+            onSpeak: question.kind == VocabReviewKind.listening
+                ? _speakCurrentWord
+                : question.kind.needsSpeaking
+                    ? _speakCurrentReference
+                    : question.kind == VocabReviewKind.sentenceCloze &&
+                            question.exampleSentence.isNotEmpty
+                        ? () => unawaited(widget.audioRepository.speakExample(
+                              question.exampleSentence,
+                            ))
+                        : null,
+          ),
           const SizedBox(height: 14),
-          if (question.kind == VocabReviewKind.spelling)
+          if (question.kind.needsSpeaking)
+            _ReviewSpeakingPanel(
+              recording: _recording,
+              assessing: _assessingSpeech,
+              result: _pronunciationResult,
+              error: _speakingError,
+              resolved: _review.isResolved,
+              onToggleRecording: _toggleSpeakingRecording,
+            )
+          else if (question.kind == VocabReviewKind.spelling ||
+              question.kind == VocabReviewKind.sentenceCloze)
             _ReviewSpellingField(
               controller: _answerController,
               focusNode: _answerFocusNode,
               resolved: _review.isResolved,
               correct: _review.lastCorrect,
-              starter: _firstLetter(question.item.word),
+              answerWord: question.item.word,
               onChanged: _review.updateSpelling,
               onType: () => unawaited(_sfx.play(SfxCue.type)),
               onSubmitted: _submitSpelling,
@@ -3043,9 +3463,20 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
               review: _review,
               onChoose: _choose,
             ),
+          if (!_review.isResolved && question.kind.needsAudioOrMicrophone) ...[
+            const SizedBox(height: 12),
+            _ReviewAudioOptOutButton(
+              speaking: question.kind.needsSpeaking,
+              onPressed: _disableAudioQuestions,
+            ),
+          ],
           if (_review.isResolved) ...[
             const SizedBox(height: 14),
-            _ReviewFeedback(review: _review, question: question),
+            _ReviewFeedback(
+              review: _review,
+              question: question,
+              pronunciationResult: _pronunciationResult,
+            ),
             const SizedBox(height: 14),
             _ReviewNextButton(
               label: '下一題',
@@ -3058,20 +3489,106 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
   }
 }
 
+class _ReviewRetryIntro extends StatelessWidget {
+  const _ReviewRetryIntro({required this.onContinue});
+
+  final VoidCallback onContinue;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      key: const Key('vocab-review-retry-intro'),
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(4, 0, 4, 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          OriginalDashedSurface(
+            backgroundColor: AppPalette.softSecondary,
+            borderColor: AppPalette.secondaryDark,
+            shadowColor: const Color(0xFFFFE7A3),
+            shadowDepth: 6,
+            radius: 26,
+            strokeWidth: 3,
+            padding: const EdgeInsets.fromLTRB(16, 15, 16, 20),
+            child: Column(
+              children: [
+                SizedBox.square(
+                  dimension: 205,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Lottie.asset(
+                          'assets/lottie/monsters/monster-blue.json',
+                          repeat: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const OriginalDashedSurface(
+                  key: Key('vocab-review-retry-bubble'),
+                  backgroundColor: AppPalette.paper,
+                  borderColor: AppPalette.primary,
+                  shadowColor: Color(0xFFBDE0E1),
+                  shadowDepth: 4,
+                  radius: 20,
+                  strokeWidth: 2,
+                  padding: EdgeInsets.fromLTRB(14, 13, 14, 12),
+                  child: Column(
+                    children: [
+                      Text(
+                        '有幾題要再練習，一齊答啱佢哋！',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFF5D4037),
+                          fontSize: 21,
+                          height: 1.25,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        '錯題唔扣分，慢慢答啱就得。',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppPalette.muted,
+                          fontSize: 14,
+                          height: 1.35,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          _ReviewNextButton(
+            key: const Key('vocab-review-retry-continue'),
+            label: '繼續溫習',
+            onPressed: onContinue,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _ReviewHeader extends StatelessWidget {
   const _ReviewHeader({
     required this.review,
     required this.onClose,
-    required this.onSpeak,
   });
 
   final VocabReviewController review;
   final VoidCallback onClose;
-  final VoidCallback onSpeak;
 
   @override
   Widget build(BuildContext context) {
-    final question = review.currentQuestion;
     return SizedBox(
       height: 46,
       child: Row(
@@ -3110,40 +3627,72 @@ class _ReviewHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 9),
-          if (question?.kind == VocabReviewKind.listening && !review.isResolved)
-            _OriginalRaisedButton(
-              key: const Key('vocab-review-sound'),
-              width: 46,
-              height: 46,
-              radius: 999,
-              onTap: onSpeak,
-              backgroundColor: AppPalette.secondary,
-              foregroundColor: const Color(0xFF5D4037),
-              shadowColor: AppPalette.secondaryDark,
-              shadowDepth: 4,
-              semanticLabel: '讀出生字',
-              child: const Text(
-                '♪',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
-              ),
-            )
-          else
-            const SizedBox(width: 46),
         ],
       ),
     );
   }
 }
 
-class _ReviewPrompt extends StatelessWidget {
-  const _ReviewPrompt({required this.question});
+class _ReviewPrompt extends StatefulWidget {
+  const _ReviewPrompt({required this.question, this.onSpeak});
 
   final VocabReviewQuestion question;
+  final VoidCallback? onSpeak;
+
+  @override
+  State<_ReviewPrompt> createState() => _ReviewPromptState();
+}
+
+class _ReviewPromptState extends State<_ReviewPrompt>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _noteController = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 360),
+  );
+  late final Animation<double> _noteScale = TweenSequence<double>([
+    TweenSequenceItem(tween: Tween(begin: 1, end: 1.28), weight: 45),
+    TweenSequenceItem(tween: Tween(begin: 1.28, end: 0.92), weight: 25),
+    TweenSequenceItem(tween: Tween(begin: 0.92, end: 1), weight: 30),
+  ]).animate(CurvedAnimation(parent: _noteController, curve: Curves.easeOut));
+
+  @override
+  void dispose() {
+    _noteController.dispose();
+    super.dispose();
+  }
+
+  void _replay() {
+    widget.onSpeak?.call();
+    _noteController.forward(from: 0);
+  }
 
   @override
   Widget build(BuildContext context) {
+    final question = widget.question;
     final spelling = question.kind == VocabReviewKind.spelling;
     final listening = question.kind == VocabReviewKind.listening;
+    final sentenceCloze = question.kind == VocabReviewKind.sentenceCloze;
+    final speaking = question.kind.needsSpeaking;
+    final speakingSentence = question.kind == VocabReviewKind.speakingSentence;
+    final readingChoice =
+        question.kind == VocabReviewKind.reading && question.choices.isNotEmpty;
+    final promptText = speakingSentence
+        ? question.exampleSentence
+        : question.kind == VocabReviewKind.speakingWord
+            ? question.item.word
+            : sentenceCloze
+                ? question.exampleSentence.replaceAll(
+                    RegExp(r'\b' + RegExp.escape(question.item.word) + r'\b',
+                        caseSensitive: false),
+                    '_____ ',
+                  )
+                : spelling
+                    ? question.correctMeaning
+                    : listening
+                        ? '♪'
+                        : readingChoice
+                            ? '${question.item.word} (${_vocabPromptPos(question.item, question.sense)})'
+                            : question.item.word;
     return OriginalDashedSurface(
       key: const Key('vocab-review-prompt'),
       backgroundColor: AppPalette.paper,
@@ -3155,44 +3704,43 @@ class _ReviewPrompt extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
       child: Column(
         children: [
-          Text(
-            spelling
-                ? question.correctMeaning
-                : listening
-                    ? '♪'
-                    : question.item.word,
-            key: const Key('vocab-review-prompt-text'),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: const Color(0xFF5D4037),
-              fontSize: listening ? 50 : (spelling ? 28 : 44),
-              height: 1.12,
-              fontWeight: FontWeight.w900,
-              shadows: const [
-                Shadow(color: Color(0xFFFFF3BF), offset: Offset(2, 2)),
-              ],
-            ),
-          ),
-          if (spelling) ...[
-            const SizedBox(height: 4),
-            Text(
-              '${_firstLetter(question.item.word)}…',
-              key: const Key('vocab-review-spelling-hint'),
-              style: const TextStyle(
-                color: AppPalette.primaryDark,
-                fontSize: 20,
-                height: 1,
-                fontWeight: FontWeight.w900,
+          GestureDetector(
+            key: const Key('vocab-review-prompt-audio'),
+            onTap: widget.onSpeak == null ? null : _replay,
+            child: ScaleTransition(
+              key: const Key('vocab-review-note-animation'),
+              scale: listening || sentenceCloze || speaking
+                  ? _noteScale
+                  : const AlwaysStoppedAnimation(1),
+              child: Text(
+                promptText,
+                key: const Key('vocab-review-prompt-text'),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: const Color(0xFF5D4037),
+                  fontSize: listening ? 50 : (spelling || speaking ? 28 : 24),
+                  height: 1.3,
+                  fontWeight: FontWeight.w900,
+                  shadows: const [
+                    Shadow(color: Color(0xFFFFF3BF), offset: Offset(2, 2)),
+                  ],
+                ),
               ),
             ),
-          ],
+          ),
           const SizedBox(height: 10),
           Text(
             spelling
                 ? '打出英文生字'
                 : listening
                     ? '聽讀音，再選出正確中文意思'
-                    : '選出正確中文意思',
+                    : speakingSentence
+                        ? '先聽一次，再按咪高峰讀出完整句子'
+                        : speaking
+                            ? '先聽一次，再按咪高峰讀出英文生字'
+                            : sentenceCloze
+                                ? '聽例句，填回欠缺的英文生字'
+                                : '選出正確中文意思',
             key: const Key('vocab-review-guidance'),
             textAlign: TextAlign.center,
             style: const TextStyle(
@@ -3208,9 +3756,159 @@ class _ReviewPrompt extends StatelessWidget {
   }
 }
 
-String _firstLetter(String word) {
-  final trimmed = word.trim();
-  return trimmed.isEmpty ? '' : trimmed.substring(0, 1).toUpperCase();
+String _vocabPromptPos(VocabItem item, [VocabSense? selectedSense]) {
+  final pos = (selectedSense == null ? item.senses : [selectedSense])
+      .map((sense) => sense.pos.trim().toLowerCase())
+      .firstWhere((value) => value.isNotEmpty, orElse: () => '');
+  return switch (pos) {
+    'noun' => 'n.',
+    'verb' => 'v.',
+    'adjective' => 'adj.',
+    'adverb' => 'adv.',
+    'preposition' => 'prep.',
+    'conjunction' => 'conj.',
+    'pronoun' => 'pron.',
+    'determiner' => 'det.',
+    'exclamation' => 'excl.',
+    _ => pos.isEmpty ? 'word' : pos,
+  };
+}
+
+class _ReviewSpeakingPanel extends StatelessWidget {
+  const _ReviewSpeakingPanel({
+    required this.recording,
+    required this.assessing,
+    required this.result,
+    required this.error,
+    required this.resolved,
+    required this.onToggleRecording,
+  });
+
+  final bool recording;
+  final bool assessing;
+  final VocabPronunciationResult? result;
+  final String error;
+  final bool resolved;
+  final VoidCallback onToggleRecording;
+
+  @override
+  Widget build(BuildContext context) {
+    final score = result?.score.round();
+    return OriginalDashedSurface(
+      key: const Key('vocab-review-speaking-panel'),
+      backgroundColor: Colors.white,
+      borderColor: recording ? AppPalette.danger : AppPalette.primary,
+      shadowColor:
+          recording ? const Color(0xFFFFC1C1) : const Color(0xFFBDE0E1),
+      shadowDepth: 4,
+      radius: 18,
+      strokeWidth: 3,
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+      child: Column(
+        children: [
+          GestureDetector(
+            key: const Key('vocab-review-speaking-record'),
+            behavior: HitTestBehavior.opaque,
+            onTap: resolved || assessing ? null : onToggleRecording,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 160),
+              width: 68,
+              height: 68,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color:
+                    recording ? AppPalette.softDanger : const Color(0xFFE8F8F6),
+                border: Border.all(
+                  color: recording ? AppPalette.danger : AppPalette.primary,
+                  width: 3,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: recording
+                        ? const Color(0x55E95D69)
+                        : const Color(0x445BC7C2),
+                    blurRadius: recording ? 16 : 8,
+                    spreadRadius: recording ? 3 : 1,
+                  ),
+                ],
+              ),
+              child: Icon(
+                recording ? Icons.stop_rounded : Icons.mic_rounded,
+                color:
+                    recording ? AppPalette.dangerDark : AppPalette.primaryDark,
+                size: 34,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            assessing
+                ? '正在分析讀音...'
+                : recording
+                    ? '錄音中，讀完後再按一次停止'
+                    : score != null
+                        ? '讀音分數：$score / 100'
+                        : '按咪高峰開始錄音',
+            key: const Key('vocab-review-speaking-status'),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: recording ? AppPalette.dangerDark : AppPalette.primaryDark,
+              fontSize: 15,
+              height: 1.35,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          if (assessing) ...[
+            const SizedBox(height: 10),
+            const LinearProgressIndicator(
+              minHeight: 6,
+              color: AppPalette.primary,
+              backgroundColor: Color(0xFFE5E7EB),
+            ),
+          ],
+          if (error.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(
+              error,
+              key: const Key('vocab-review-speaking-error'),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: AppPalette.dangerDark,
+                fontSize: 13,
+                height: 1.35,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _ReviewAudioOptOutButton extends StatelessWidget {
+  const _ReviewAudioOptOutButton({
+    required this.speaking,
+    required this.onPressed,
+  });
+
+  final bool speaking;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      key: const Key('vocab-review-audio-opt-out'),
+      onPressed: onPressed,
+      icon: Icon(speaking ? Icons.mic_off_rounded : Icons.volume_off_rounded),
+      label: Text(speaking ? '而家唔方便講？改問其他題' : '而家唔方便聽？改問其他題'),
+      style: TextButton.styleFrom(
+        foregroundColor: AppPalette.muted,
+        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      ),
+    );
+  }
 }
 
 class _ReviewChoiceGrid extends StatelessWidget {
@@ -3367,7 +4065,7 @@ class _ReviewSpellingField extends StatelessWidget {
     required this.focusNode,
     required this.resolved,
     required this.correct,
-    required this.starter,
+    required this.answerWord,
     required this.onChanged,
     required this.onType,
     required this.onSubmitted,
@@ -3379,7 +4077,7 @@ class _ReviewSpellingField extends StatelessWidget {
   final FocusNode focusNode;
   final bool resolved;
   final bool? correct;
-  final String starter;
+  final String answerWord;
   final ValueChanged<String> onChanged;
   final VoidCallback onType;
   final VoidCallback onSubmitted;
@@ -3406,62 +4104,175 @@ class _ReviewSpellingField extends StatelessWidget {
       shadowDepth: 4,
       radius: 18,
       strokeWidth: 3,
-      child: SizedBox(
-        height: 58,
-        child: TextField(
-          key: const Key('vocab-review-spelling-input'),
-          controller: controller,
-          focusNode: focusNode,
-          readOnly: resolved,
-          keyboardType: TextInputType.none,
-          showCursor: keyboardOpen,
-          autocorrect: false,
-          enableSuggestions: false,
-          spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
-          textCapitalization: TextCapitalization.none,
-          textInputAction: TextInputAction.done,
-          onChanged: (value) {
-            onChanged(value);
-            onType();
-          },
-          onSubmitted: (_) => onSubmitted(),
-          onTap: onTap,
-          decoration: InputDecoration(
-            hintText: starter.isEmpty ? 'Type the word' : '$starter...',
-            hintStyle: const TextStyle(
-              color: Color(0xFFA0A0A0),
-              fontWeight: FontWeight.w900,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 58),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
+              child: IgnorePointer(
+                child: _SpellingPattern(
+                  key: const Key('vocab-review-spelling-hint'),
+                  answer: answerWord,
+                  typed: controller.text,
+                  resolved: resolved,
+                ),
+              ),
             ),
-            border: InputBorder.none,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-          ),
-          style: const TextStyle(
-            color: Color(0xFF5D4037),
-            fontSize: 22,
-            height: 1.15,
-            fontWeight: FontWeight.w900,
-          ),
+            Positioned.fill(
+              child: TextField(
+                key: const Key('vocab-review-spelling-input'),
+                controller: controller,
+                focusNode: focusNode,
+                readOnly: resolved,
+                keyboardType: TextInputType.none,
+                showCursor: false,
+                cursorWidth: 0,
+                cursorColor: Colors.transparent,
+                selectionControls: null,
+                autocorrect: false,
+                enableSuggestions: false,
+                spellCheckConfiguration:
+                    const SpellCheckConfiguration.disabled(),
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.done,
+                onChanged: (value) {
+                  onChanged(value);
+                  onType();
+                },
+                inputFormatters: [
+                  TextInputFormatter.withFunction((oldValue, newValue) {
+                    final normalized = normalizeVocabSpellingInput(
+                      newValue.text,
+                      answerWord,
+                    );
+                    if (normalized.isEmpty) return oldValue;
+                    return newValue.copyWith(
+                      text: normalized,
+                      selection:
+                          TextSelection.collapsed(offset: normalized.length),
+                    );
+                  }),
+                ],
+                onSubmitted: (_) => onSubmitted(),
+                onTap: onTap,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
+                style: const TextStyle(
+                  color: Colors.transparent,
+                  fontSize: 22,
+                  height: 1.15,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
+class _SpellingPattern extends StatelessWidget {
+  const _SpellingPattern({
+    required this.answer,
+    required this.typed,
+    required this.resolved,
+    super.key,
+  });
+
+  final String answer;
+  final String typed;
+  final bool resolved;
+
+  @override
+  Widget build(BuildContext context) {
+    final characters = answer.trim().split('');
+    final shownLetters = normalizeVocabSpellingInput(typed, answer);
+    final composed = composeVocabSpellingAnswer(answer, shownLetters);
+    var letterIndex = 0;
+    var firstLetterShown = false;
+    final slots = <Widget>[];
+    for (var index = 0; index < characters.length; index++) {
+      final character = characters[index];
+      final isLetter = isVocabSpellingLetter(character);
+      final isFirstLetter = isLetter && !firstLetterShown;
+      if (isLetter) firstLetterShown = true;
+      final visible = isLetter
+          ? (letterIndex < shownLetters.length ? shownLetters[letterIndex] : '')
+          : character;
+      if (isLetter) letterIndex += 1;
+      slots.add(SizedBox(
+        width: isLetter ? 20 : (character == ' ' ? 8 : 12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 27,
+              child: Text(
+                visible,
+                key: ValueKey('vocab-review-spelling-slot-$index'),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: resolved
+                      ? (composed.toLowerCase() == answer.toLowerCase()
+                          ? AppPalette.correctDark
+                          : AppPalette.dangerDark)
+                      : const Color(0xFF5D4037),
+                  fontSize: 22,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+            if (isLetter && !isFirstLetter)
+              Container(
+                height: 2,
+                color: const Color(0xFF5D4037),
+              )
+            else
+              const SizedBox(height: 2),
+          ],
+        ),
+      ));
+    }
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.end,
+      spacing: 5,
+      runSpacing: 7,
+      children: slots,
+    );
+  }
+}
+
 class _ReviewFeedback extends StatelessWidget {
-  const _ReviewFeedback({required this.review, required this.question});
+  const _ReviewFeedback({
+    required this.review,
+    required this.question,
+    this.pronunciationResult,
+  });
 
   final VocabReviewController review;
   final VocabReviewQuestion question;
+  final VocabPronunciationResult? pronunciationResult;
 
   @override
   Widget build(BuildContext context) {
     final correct = review.lastCorrect == true;
-    final message = correct
-        ? '正確，${question.item.word} 是「${question.correctMeaning}」。'
-        : question.kind == VocabReviewKind.spelling
-            ? '再檢查串法。正確答案係 ${question.item.word}，意思係「${question.correctMeaning}」。'
-            : '${question.item.word} 是「${question.correctMeaning}」。';
+    final weakest = pronunciationResult?.weakestWord;
+    final message = question.kind.needsSpeaking && pronunciationResult != null
+        ? correct
+            ? '讀音合格，得到 ${pronunciationResult!.score.round()} 分。'
+            : '今次得到 ${pronunciationResult!.score.round()} 分；${weakest == null ? '聽一次標準讀音再試。' : '留意 ${weakest.word} 的讀音。'}'
+        : correct
+            ? '正確，${question.item.word} 是「${question.correctMeaning}」。'
+            : question.kind == VocabReviewKind.spelling ||
+                    question.kind == VocabReviewKind.sentenceCloze
+                ? '再檢查串法。正確答案係 ${question.item.word}，意思係「${question.correctMeaning}」。'
+                : '${question.item.word} 是「${question.correctMeaning}」。';
     return OriginalDashedSurface(
       key: const Key('vocab-review-feedback'),
       backgroundColor: const Color(0xFFFFFDF2),
@@ -3486,7 +4297,8 @@ class _ReviewFeedback extends StatelessWidget {
 }
 
 class _ReviewNextButton extends StatelessWidget {
-  const _ReviewNextButton({required this.label, required this.onPressed});
+  const _ReviewNextButton(
+      {required this.label, required this.onPressed, super.key});
 
   final String label;
   final VoidCallback onPressed;
@@ -3494,7 +4306,7 @@ class _ReviewNextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _OriginalRaisedButton(
-      key: const Key('vocab-review-next'),
+      key: key ?? const Key('vocab-review-next'),
       onTap: onPressed,
       height: 56,
       radius: 999,
@@ -3516,6 +4328,21 @@ class _ReviewNextButton extends StatelessWidget {
 
 class _ReviewComplete extends StatelessWidget {
   const _ReviewComplete({required this.review, required this.onBack});
+
+  final VocabReviewController review;
+  final VoidCallback onBack;
+
+  @override
+  Widget build(BuildContext context) {
+    if (review.repeatsWrong) {
+      return _RepeatUntilCorrectComplete(review: review, onBack: onBack);
+    }
+    return _LegacyReviewComplete(review: review, onBack: onBack);
+  }
+}
+
+class _LegacyReviewComplete extends StatelessWidget {
+  const _LegacyReviewComplete({required this.review, required this.onBack});
 
   final VocabReviewController review;
   final VoidCallback onBack;
@@ -3592,4 +4419,203 @@ class _ReviewComplete extends StatelessWidget {
       ),
     );
   }
+}
+
+class _RepeatUntilCorrectComplete extends StatelessWidget {
+  const _RepeatUntilCorrectComplete({
+    required this.review,
+    required this.onBack,
+  });
+
+  final VocabReviewController review;
+  final VoidCallback onBack;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      key: const Key('vocab-review-complete'),
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(4, 0, 4, 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const OriginalDashedSurface(
+            key: Key('vocab-review-success-panel'),
+            backgroundColor: AppPalette.paper,
+            borderColor: AppPalette.primary,
+            shadowColor: Color(0xFFBDE0E1),
+            shadowDepth: 6,
+            radius: 26,
+            strokeWidth: 3,
+            padding: EdgeInsets.fromLTRB(14, 18, 14, 15),
+            child: Column(
+              children: [
+                Text(
+                  '溫習大成功！！',
+                  key: Key('vocab-review-success-title'),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF5D4037),
+                    fontSize: 30,
+                    height: 1.1,
+                    fontWeight: FontWeight.w900,
+                    shadows: [
+                      Shadow(color: Color(0xFFFFF3BF), offset: Offset(2, 2)),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 7),
+                Text(
+                  '全部生字都答啱喇！',
+                  style: TextStyle(
+                    color: AppPalette.muted,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 4),
+          SizedBox(
+            key: const Key('vocab-review-success-monster'),
+            height: 252,
+            child: Lottie.asset(
+              successMonsterAssetForToday(),
+              fit: BoxFit.contain,
+              repeat: true,
+              frameRate: FrameRate.max,
+            ),
+          ),
+          const SizedBox(height: 14),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: _ReviewMetric(
+                  label: 'XP',
+                  value: '${review.xpEarned}',
+                  color: const Color(0xFFD99A00),
+                  background: const Color(0xFFFFF3BF),
+                  icon: Icons.bolt_rounded,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: _ReviewMetric(
+                  label: '正確率',
+                  value: '${review.accuracyPercent}%',
+                  color: AppPalette.correctDark,
+                  background: AppPalette.softCorrect,
+                  icon: Icons.track_changes_rounded,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: _ReviewMetric(
+                  label: '速度',
+                  value: _formatReviewDuration(review.elapsed),
+                  color: const Color(0xFF2C9FD4),
+                  background: const Color(0xFFE4F6FF),
+                  icon: Icons.timer_rounded,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          _ReviewNextButton(
+            key: const Key('vocab-review-claim-xp'),
+            label: '得到經驗值',
+            onPressed: onBack,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ReviewMetric extends StatelessWidget {
+  const _ReviewMetric({
+    required this.label,
+    required this.value,
+    required this.color,
+    required this.background,
+    required this.icon,
+  });
+
+  final String label;
+  final String value;
+  final Color color;
+  final Color background;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return OriginalDashedSurface(
+      backgroundColor: background,
+      borderColor: color,
+      shadowColor: color.withValues(alpha: 0.24),
+      shadowDepth: 4,
+      radius: 16,
+      strokeWidth: 2.5,
+      padding: const EdgeInsets.fromLTRB(5, 9, 5, 10),
+      child: Column(
+        children: [
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: color,
+              fontSize: 12,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Icon(icon, color: color, size: 21),
+          const SizedBox(height: 2),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              value,
+              style: TextStyle(
+                color: color,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _formatReviewDuration(Duration duration) {
+  final seconds = duration.inSeconds.clamp(0, 99 * 60 + 59);
+  final minutes = seconds ~/ 60;
+  final remainder = (seconds % 60).toString().padLeft(2, '0');
+  return '$minutes:$remainder';
+}
+
+/// Keeps the celebration colour stable for the whole Hong Kong calendar day.
+/// The animation is pre-coloured in the asset, so its movement stays exactly
+/// the same while the body and limbs get a different weekday palette.
+String successMonsterAssetForToday({DateTime? now}) {
+  final hongKongNow =
+      (now ?? DateTime.now()).toUtc().add(const Duration(hours: 8));
+  return successMonsterAssetForWeekday(hongKongNow.weekday);
+}
+
+String successMonsterAssetForWeekday(int weekday) {
+  const weekdays = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday',
+  ];
+  final index = (weekday - 1).clamp(0, weekdays.length - 1).toInt();
+  return 'assets/lottie/monsters/cute-monster-${weekdays[index]}.json';
 }

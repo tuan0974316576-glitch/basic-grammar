@@ -37,7 +37,9 @@ class AssetVocabLookupRepository implements VocabLookupRepository {
             .where((entry) => entry.meaning.isNotEmpty)
             .toList(growable: false)
         : <VocabSense>[];
-    if (senses.isNotEmpty) return VocabLookupResult(senses: senses);
+    if (senses.isNotEmpty) {
+      return VocabLookupResult(senses: dedupeVocabSenses(senses));
+    }
     return VocabLookupResult(
       senses: const [],
       suggestions: await _findSuggestions(word),

@@ -4,6 +4,19 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val dopeReleaseKeystorePath = System.getenv("DOPE_KEYSTORE_FILE")
+val dopeReleaseKeyAlias = System.getenv("DOPE_KEY_ALIAS")
+val dopeReleaseStorePassword = System.getenv("DOPE_STORE_PASSWORD")
+val dopeReleaseKeyPassword = System.getenv("DOPE_KEY_PASSWORD")
+val dopeReleaseSigningAvailable = listOf(
+    dopeReleaseKeystorePath,
+    dopeReleaseKeyAlias,
+    dopeReleaseStorePassword,
+    dopeReleaseKeyPassword,
+).all { !it.isNullOrBlank() }
+val dopeDebugSigningExplicitlyAllowed =
+    System.getenv("DOPE_ALLOW_DEBUG_SIGNING") == "true"
+
 android {
     namespace = "com.enguistics.dope_english"
     compileSdk = flutter.compileSdkVersion
@@ -29,11 +42,32 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            if (dopeReleaseSigningAvailable) {
+                storeFile = file(dopeReleaseKeystorePath!!)
+                storePassword = dopeReleaseStorePassword
+                keyAlias = dopeReleaseKeyAlias
+                keyPassword = dopeReleaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            if (!dopeReleaseSigningAvailable && !dopeDebugSigningExplicitlyAllowed) {
+                throw GradleException(
+                    "DOPE release signing key is missing. Set DOPE_KEYSTORE_FILE, " +
+                        "DOPE_KEY_ALIAS, DOPE_STORE_PASSWORD, and DOPE_KEY_PASSWORD " +
+                        "or explicitly set DOPE_ALLOW_DEBUG_SIGNING=true for a " +
+                        "non-Play local build.",
+                )
+            }
+            signingConfig = if (dopeReleaseSigningAvailable) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
 }

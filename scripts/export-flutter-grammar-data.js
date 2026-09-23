@@ -63,6 +63,38 @@ function enrichVerbTableQuestions(questions) {
   });
 }
 
+function enrichTenseQuestions(questions) {
+  const bank = loadWindowValue("grammar_verb_table_data.js", "GRAMMAR_VERB_BANK");
+  const formToPresent = new Map();
+  for (const row of bank) {
+    const [, present, past, pp, ing] = row;
+    for (const form of [present, past, pp, ing]) {
+      if (form && !String(form).includes("/")) {
+        formToPresent.set(String(form).toLowerCase(), present);
+      }
+    }
+  }
+
+  function hintFor(answer) {
+    const words = String(answer || "").trim().toLowerCase().split(/\s+/);
+    let word = words[words.length - 1] || "";
+    if (formToPresent.has(word)) return formToPresent.get(word);
+    if (word === "has") return "have";
+    if (word === "is" || word === "am" || word === "are" || word === "was" || word === "were") return "be";
+    if (word.endsWith("ies")) return `${word.slice(0, -3)}y`;
+    if (/(ches|shes|sses|xes|zes)$/.test(word)) return word.slice(0, -2);
+    if (word.endsWith("s") && !word.endsWith("ss")) return word.slice(0, -1);
+    if (word.endsWith("ing")) return word.slice(0, -3);
+    if (word.endsWith("ed")) return word.slice(0, -2);
+    return word;
+  }
+
+  return questions.map((question) => ({
+    ...question,
+    baseVerb: hintFor(question.answer)
+  }));
+}
+
 function loadVerbTableReferenceQuestions() {
   const bank = loadWindowValue(
     "grammar_verb_table_data.js",
@@ -102,7 +134,7 @@ writeQuestions("lesson_07.json", NOUN_CATEGORY_QUESTIONS);
 writeQuestions("lesson_08.json", MODAL_VERB_QUESTIONS);
 writeQuestions("lesson_09.json", ADJECTIVE_QUESTIONS);
 writeQuestions("lesson_10.json", ADVERB_QUESTIONS);
-writeQuestions("lesson_11.json", TENSE_QUESTIONS);
+writeQuestions("lesson_11.json", enrichTenseQuestions(TENSE_QUESTIONS));
 writeQuestions("lesson_12.json", enrichVerbTableQuestions(VERB_TABLE_QUESTIONS));
 writeQuestions(
   "verb_table_reference.json",

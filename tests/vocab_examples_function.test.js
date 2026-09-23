@@ -61,6 +61,7 @@ Module._load = function loadMock(request, parent, isMain) {
   }
   if (request === "firebase-functions/v2/firestore") {
     return {
+      onDocumentCreated: (_options, handler) => handler,
       onDocumentWritten: (_options, handler) => handler
     };
   }
@@ -85,6 +86,9 @@ Module._load = originalLoad;
 const helpers = functions._private;
 const helpersForMock = helpers;
 assert.ok(helpers, "Expected test helpers to be exported.");
+assert.strictEqual(helpers.isLikelyWordOrPhrase("on ... occasions"), true);
+assert.strictEqual(helpers.isLikelyWordOrPhrase("vary from ... to ..."), true);
+assert.strictEqual(helpers.isLikelyWordOrPhrase("bad..pattern"), false);
 
 const haveFoodHints = helpers.normalizeExampleHints([
   { meaning: "食 / 飲", pos: "verb", type: "word" },
@@ -110,6 +114,54 @@ assert.ok(prompt.includes("Return exactly 3 examples"));
 assert.ok(prompt.includes("vocabulary example sentences for Hong Kong English learners"));
 assert.ok(!prompt.includes("Cantonese-friendly"));
 assert.ok(helpers.makeVocabExamplesCacheKey("have", haveFoodHints).startsWith("v2-written-zh|"));
+
+const patternPrompt = helpers.buildGeminiExamplePrompt("vary from ... to ...", [
+  { meaning: "因...而異", pos: "verb", type: "pattern", level: "B2" }
+]);
+assert.ok(patternPrompt.includes("dots (...) are placeholders"));
+assert.ok(patternPrompt.includes("vary from person to person"));
+assert.ok(patternPrompt.includes("Do not replace a fixed phrase"));
+assert.strictEqual(
+  helpers.containsVocabularyItem(
+    "vary from ... to ...",
+    "Study methods vary from student to student."
+  ),
+  true
+);
+assert.strictEqual(
+  helpers.getVocabExampleRejectionReason("vary from ... to ...", [], {
+    source: "Prices vary from ... to ... .",
+    target: "價格不一。"
+  }),
+  "literal-placeholder"
+);
+const repairPrompt = helpers.buildExampleRepairPrompt("vary from ... to ...", [], [{
+  index: 0,
+  source: "Prices vary.",
+  reason: "missing-vocabulary-structure"
+}]);
+assert.ok(repairPrompt.includes("REPAIR REQUIRED"));
+assert.ok(repairPrompt.includes("Never print literal dots"));
+assert.ok(repairPrompt.includes("missing-vocabulary-structure"));
+assert.strictEqual(
+  helpers.isUsableVocabExample("vary from ... to ...", [], {
+    source: "Ticket prices vary from fifty dollars to two hundred dollars.",
+    target: "票價由五十元至二百元不等。"
+  }),
+  true
+);
+assert.strictEqual(
+  helpers.buildCuratedVocabExamples("no man is an island", [
+    { meaning: "人不能孤立生活", pos: "phrase", type: "phrase" }
+  ]).length,
+  3
+);
+assert.strictEqual(
+  helpers.buildCuratedVocabExamples("vary from ... to ...", [
+    { meaning: "因...而異", pos: "verb", type: "pattern" }
+  ]).length,
+  3
+);
 
 const idiomHints = helpers.normalizeExampleGenerationHints("jump through hoops", [
   { meaning: "經歷磨難", pos: "noun", type: "phrase", level: "B2" }

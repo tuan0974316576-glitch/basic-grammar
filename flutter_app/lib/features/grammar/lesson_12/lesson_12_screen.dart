@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
+import '../../../core/widgets/original_game_keyboard.dart';
 import '../../../core/widgets/stationery_frame.dart';
 import '../../vocabulary/vocab_audio_repository.dart';
 import '../shared/lesson_ui.dart';
@@ -16,12 +17,14 @@ import 'lesson_12_repository.dart';
 Future<void> openVerbTableReference(
   BuildContext context, {
   VocabAudioRepository? audioRepository,
+  LessonSfx? sfx,
 }) {
   return Navigator.of(context).push(
     MaterialPageRoute<void>(
       fullscreenDialog: true,
       builder: (_) => VerbTableReferenceScreen(
         audioRepository: audioRepository,
+        sfx: sfx,
       ),
     ),
   );
@@ -33,6 +36,7 @@ class Lesson12Screen extends StatefulWidget {
     this.controller,
     this.sfx,
     this.audioRepository,
+    this.onQuestionCorrect,
     super.key,
   });
 
@@ -40,6 +44,7 @@ class Lesson12Screen extends StatefulWidget {
   final Lesson12Controller? controller;
   final LessonSfx? sfx;
   final VocabAudioRepository? audioRepository;
+  final VoidCallback? onQuestionCorrect;
 
   @override
   State<Lesson12Screen> createState() => _Lesson12ScreenState();
@@ -56,6 +61,8 @@ class _Lesson12ScreenState extends State<Lesson12Screen> {
   Object? _loadError;
   String? _lastQuestionId;
   int _celebration = 0;
+  bool _keyboardOpen = false;
+  String? _activeKeyboardField;
 
   LessonSfx get _sfx => widget.sfx ?? AppSfx.instance;
 
@@ -120,12 +127,15 @@ class _Lesson12ScreenState extends State<Lesson12Screen> {
       case Lesson12Event.ignored || Lesson12Event.inputChanged:
         return;
       case Lesson12Event.invalidInput || Lesson12Event.wrong:
+        _closeKeyboard();
         unawaited(_sfx.play(SfxCue.wrong));
         WidgetsBinding.instance.addPostFrameCallback((_) => _focusFirstWrong());
         return;
       case Lesson12Event.questionCorrect:
+        _closeKeyboard();
         FocusManager.instance.primaryFocus?.unfocus();
         setState(() => _celebration += 1);
+        widget.onQuestionCorrect?.call();
         unawaited(_sfx.play(SfxCue.correct));
         return;
       case Lesson12Event.nextQuestion:
@@ -159,7 +169,54 @@ class _Lesson12ScreenState extends State<Lesson12Screen> {
     _handle(_controller!.submit());
   }
 
+  void _openKeyboard(String field) {
+    if (_controller?.isResolved ?? false) return;
+    setState(() {
+      _keyboardOpen = true;
+      _activeKeyboardField = field;
+    });
+    _focusNodes[field]?.requestFocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _closeKeyboard() {
+    if (!_keyboardOpen) return;
+    setState(() {
+      _keyboardOpen = false;
+      _activeKeyboardField = null;
+    });
+    FocusManager.instance.primaryFocus?.unfocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _handleKeyboardKey(String key) {
+    final field = _activeKeyboardField;
+    final controller = _controller;
+    if (!_keyboardOpen ||
+        field == null ||
+        controller == null ||
+        controller.isResolved) {
+      return;
+    }
+    final input = _textControllers[field]!;
+    final current = input.text;
+    final next = switch (key) {
+      'BACKSPACE' =>
+        current.isEmpty ? current : current.substring(0, current.length - 1),
+      'SPACE' => current.endsWith(' ') ? current : '$current ',
+      _ => '$current${key.toLowerCase()}',
+    };
+    if (next.length > 28) return;
+    input.value = TextEditingValue(
+      text: next,
+      selection: TextSelection.collapsed(offset: next.length),
+    );
+    _handle(controller.updateAnswer(field, next));
+    unawaited(_sfx.play(SfxCue.type));
+  }
+
   void _close() {
+    _closeKeyboard();
     FocusManager.instance.primaryFocus?.unfocus();
     unawaited(_sfx.play(SfxCue.click));
     Navigator.of(context).pop();
@@ -199,6 +256,7 @@ class _Lesson12ScreenState extends State<Lesson12Screen> {
             total: controller.total,
             mistakes: controller.mistakes,
             reviewMode: controller.isReviewMode,
+            sfx: _sfx,
             onClose: _close,
             onRestart: () {
               controller.restart();
@@ -229,10 +287,14 @@ class _Lesson12ScreenState extends State<Lesson12Screen> {
             controller: controller,
             textControllers: _textControllers,
             focusNodes: _focusNodes,
+            sfx: _sfx,
             onChanged: (field, value) {
               _handle(controller.updateAnswer(field, value));
             },
             onSubmitted: _nextField,
+            keyboardOpen: _keyboardOpen,
+            activeKeyboardField: _activeKeyboardField,
+            onTapInput: _openKeyboard,
           ),
           bottom: controller.isResolved
               ? _Lesson12Bottom(
@@ -254,6 +316,24 @@ class _Lesson12ScreenState extends State<Lesson12Screen> {
                   ),
                 ),
         ),
+        if (_keyboardOpen)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 920),
+                child: OriginalGameKeyboard(
+                  keyboardKey: const Key('lesson-12-custom-keyboard'),
+                  keyPrefix: 'lesson-12-keyboard-key-',
+                  onKey: _handleKeyboardKey,
+                  onSubmit: () => _handle(controller.submit()),
+                ),
+              ),
+            ),
+          ),
         LessonCelebrationOverlay(trigger: _celebration),
       ],
     );
@@ -283,16 +363,26 @@ class _ReferenceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      key: const Key('verb-table-reference-button'),
-      tooltip: 'Verb Table',
-      onPressed: onPressed,
-      icon: const Icon(Icons.info_rounded),
-      style: IconButton.styleFrom(
-        backgroundColor: AppPalette.softSecondary,
-        foregroundColor: AppPalette.secondaryDark,
-        side: const BorderSide(color: AppPalette.secondaryDark, width: 2),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    return OriginalDashedSurface(
+      backgroundColor: AppPalette.secondary,
+      borderColor: AppPalette.secondary,
+      shadowColor: AppPalette.secondaryDark,
+      shadowDepth: 3,
+      strokeWidth: 2,
+      radius: 999,
+      padding: EdgeInsets.zero,
+      child: IconButton(
+        key: const Key('verb-table-reference-button'),
+        tooltip: 'Verb Table',
+        onPressed: onPressed,
+        icon: const Icon(Icons.info_rounded),
+        color: Colors.white,
+        constraints: const BoxConstraints.tightFor(width: 34, height: 34),
+        padding: EdgeInsets.zero,
+        iconSize: 20,
+        style: IconButton.styleFrom(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
       ),
     );
   }
@@ -303,15 +393,23 @@ class _Lesson12QuestionBody extends StatelessWidget {
     required this.controller,
     required this.textControllers,
     required this.focusNodes,
+    required this.sfx,
     required this.onChanged,
     required this.onSubmitted,
+    required this.keyboardOpen,
+    required this.activeKeyboardField,
+    required this.onTapInput,
   });
 
   final Lesson12Controller controller;
   final Map<String, TextEditingController> textControllers;
   final Map<String, FocusNode> focusNodes;
+  final LessonSfx sfx;
   final void Function(String field, String value) onChanged;
   final ValueChanged<String> onSubmitted;
+  final bool keyboardOpen;
+  final String? activeKeyboardField;
+  final ValueChanged<String> onTapInput;
 
   @override
   Widget build(BuildContext context) {
@@ -319,7 +417,7 @@ class _Lesson12QuestionBody extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final availableWidth = constraints.maxWidth.clamp(0, 760).toDouble();
-        final fieldWidth = (availableWidth - 10) / 2;
+        final fieldWidth = (availableWidth - 18) / 2;
         return Align(
           alignment: Alignment.topCenter,
           child: ConstrainedBox(
@@ -330,12 +428,14 @@ class _Lesson12QuestionBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  StationeryFrame(
+                  OriginalDashedSurface(
                     radius: 18,
-                    ringWidth: 3,
+                    strokeWidth: 3,
                     shadowDepth: 3,
+                    borderColor: AppPalette.primary,
+                    shadowColor: const Color(0xFFBDE0E1),
                     padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-                    backgroundColor: AppPalette.softPrimary,
+                    backgroundColor: AppPalette.paper,
                     child: Column(
                       children: [
                         Text(
@@ -365,7 +465,7 @@ class _Lesson12QuestionBody extends StatelessWidget {
                   ),
                   const SizedBox(height: 13),
                   Wrap(
-                    spacing: 10,
+                    spacing: 8,
                     runSpacing: 10,
                     children: [
                       for (final field in Lesson12Question.fields)
@@ -381,8 +481,12 @@ class _Lesson12QuestionBody extends StatelessWidget {
                                 (controller.questionHadMistake &&
                                     controller.isFieldCorrect(field)),
                             onChanged: (value) => onChanged(field, value),
+                            onType: () => unawaited(sfx.play(SfxCue.type)),
                             onSubmitted: (_) => onSubmitted(field),
                             readOnly: controller.isResolved,
+                            keyboardOpen:
+                                keyboardOpen && activeKeyboardField == field,
+                            onTap: () => onTapInput(field),
                           ),
                         ),
                     ],
@@ -429,8 +533,11 @@ class _VerbFormField extends StatelessWidget {
     required this.wrong,
     required this.correct,
     required this.onChanged,
+    required this.onType,
     required this.onSubmitted,
     required this.readOnly,
+    required this.keyboardOpen,
+    required this.onTap,
   });
 
   final String field;
@@ -440,8 +547,11 @@ class _VerbFormField extends StatelessWidget {
   final bool wrong;
   final bool correct;
   final ValueChanged<String> onChanged;
+  final VoidCallback onType;
   final ValueChanged<String> onSubmitted;
   final bool readOnly;
+  final bool keyboardOpen;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -461,9 +571,12 @@ class _VerbFormField extends StatelessWidget {
       controller: controller,
       focusNode: focusNode,
       readOnly: readOnly,
+      showCursor: keyboardOpen,
+      keyboardType: TextInputType.none,
       maxLength: 28,
       autocorrect: false,
       enableSuggestions: false,
+      spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
       textCapitalization: TextCapitalization.none,
       textInputAction: field == Lesson12Question.fields.last
           ? TextInputAction.done
@@ -471,8 +584,12 @@ class _VerbFormField extends StatelessWidget {
       inputFormatters: [
         FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z /'-]")),
       ],
-      onChanged: onChanged,
+      onChanged: (value) {
+        onChanged(value);
+        onType();
+      },
       onSubmitted: onSubmitted,
+      onTap: onTap,
       decoration: InputDecoration(
         labelText: Lesson12Question.labels[field],
         prefixText: isPresent ? question.presentFirstLetter : null,
@@ -519,11 +636,13 @@ class VerbTableReferenceScreen extends StatefulWidget {
   const VerbTableReferenceScreen({
     this.repository = const Lesson12Repository(),
     this.audioRepository,
+    this.sfx,
     super.key,
   });
 
   final Lesson12Repository repository;
   final VocabAudioRepository? audioRepository;
+  final LessonSfx? sfx;
 
   @override
   State<VerbTableReferenceScreen> createState() =>
@@ -538,6 +657,8 @@ class _VerbTableReferenceScreenState extends State<VerbTableReferenceScreen> {
   String? _playingId;
   String _searchQuery = '';
   bool _searchVisible = false;
+
+  LessonSfx get _sfx => widget.sfx ?? AppSfx.instance;
 
   @override
   void initState() {
@@ -608,7 +729,7 @@ class _VerbTableReferenceScreenState extends State<VerbTableReferenceScreen> {
                   IconButton(
                     tooltip: '返回',
                     onPressed: () {
-                      unawaited(AppSfx.instance.play(SfxCue.click));
+                      unawaited(_sfx.play(SfxCue.click));
                       Navigator.of(context).pop();
                     },
                     icon: const Icon(Icons.close_rounded),
@@ -664,7 +785,10 @@ class _VerbTableReferenceScreenState extends State<VerbTableReferenceScreen> {
                   key: const Key('verb-table-search-field'),
                   controller: _searchController,
                   autofocus: true,
-                  onChanged: (value) => setState(() => _searchQuery = value),
+                  onChanged: (value) {
+                    setState(() => _searchQuery = value);
+                    unawaited(_sfx.play(SfxCue.type));
+                  },
                   decoration: InputDecoration(
                     hintText: '搜尋動詞、中文或四式',
                     prefixIcon: const Icon(Icons.search_rounded),

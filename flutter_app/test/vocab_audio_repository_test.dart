@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
@@ -20,6 +21,12 @@ void main() {
     }
   });
 
+  test('vocabulary speech gets a 60 percent boost capped at full volume', () {
+    expect(boostedVocabPlaybackVolume(0.5), closeTo(0.8, 0.0001));
+    expect(boostedVocabPlaybackVolume(0.8), 1);
+    expect(boostedVocabPlaybackVolume(1), 1);
+  });
+
   test('downloads example audio once and reuses the disk cache', () async {
     final cloud = _FakeCloudClient();
     var downloadCount = 0;
@@ -38,7 +45,7 @@ void main() {
       playback: (source) async => playedSources.add(source),
     );
 
-    const sentence = 'DOPE ENGLISH helps me learn new words.';
+    const sentence = 'A1 BUDDY helps me learn new words.';
     expect(
       await repository
           .speakExample(sentence)
@@ -59,10 +66,94 @@ void main() {
     final cachedFiles = Directory('${cacheRoot.path}/vocab-audio/v1')
         .listSync()
         .whereType<File>()
+        .where((file) => file.path.endsWith('.mp3'))
         .toList();
     expect(cachedFiles, hasLength(1));
     expect(await cachedFiles.single.length(), greaterThan(0));
 
+    await repository.dispose();
+  });
+
+  test('refreshes a cached word when the cloud revision changes', () async {
+    final cloud = _FakeCloudClient();
+    var audioByte = 1;
+    var downloadCount = 0;
+
+    AssetVocabAudioRepository makeRepository() => AssetVocabAudioRepository(
+          cloudClient: cloud,
+          directoryProvider: () async => cacheRoot,
+          download: (uri) async {
+            downloadCount += 1;
+            return http.Response.bytes(
+              [0x49, 0x44, 0x33, audioByte],
+              200,
+              headers: const {'content-type': 'audio/mpeg'},
+            );
+          },
+          playback: (_) async {},
+        );
+
+    var repository = makeRepository();
+    expect(await repository.speakWord('bald'), isTrue);
+    expect(downloadCount, 1);
+    await repository.dispose();
+
+    cloud.revision = 'revision-2';
+    audioByte = 2;
+    repository = makeRepository();
+    expect(await repository.speakWord('bald'), isTrue);
+    await repository.refreshWordAudio('bald');
+    expect(downloadCount, 2);
+    expect(cloud.checkOnlyRequests, ['bald', 'bald']);
+
+    expect(await repository.speakWord('bald'), isTrue);
+    expect(downloadCount, 2);
+    expect(cloud.checkOnlyRequests, ['bald', 'bald']);
+    await repository.dispose();
+  });
+
+  test('cached word plays without waiting for a cloud revision check',
+      () async {
+    final seedRepository = AssetVocabAudioRepository(
+      cloudClient: _FakeCloudClient(),
+      directoryProvider: () async => cacheRoot,
+      download: (_) async => http.Response.bytes(
+        const [0x49, 0x44, 0x33, 0x01],
+        200,
+        headers: const {'content-type': 'audio/mpeg'},
+      ),
+      playback: (_) async {},
+    );
+    expect(await seedRepository.speakWord('instant word'), isTrue);
+    await seedRepository.dispose();
+
+    final cloud = _ControlledCloudClient();
+    final playedSources = <Source>[];
+    final repository = AssetVocabAudioRepository(
+      cloudClient: cloud,
+      directoryProvider: () async => cacheRoot,
+      download: (_) async => http.Response.bytes(
+        const [0x49, 0x44, 0x33, 0x02],
+        200,
+        headers: const {'content-type': 'audio/mpeg'},
+      ),
+      playback: (source) async => playedSources.add(source),
+    );
+
+    expect(
+      await repository
+          .speakWord('instant word')
+          .timeout(const Duration(milliseconds: 500)),
+      isTrue,
+    );
+    expect(cloud.checkStarted.isCompleted, isTrue);
+    expect(playedSources.single, isA<DeviceFileSource>());
+
+    cloud.response.complete(const SharedVocabAudio(
+      downloadUrl: 'https://example.test/revised.mp3',
+      revision: 'revision-1',
+    ));
+    await repository.refreshWordAudio('instant word');
     await repository.dispose();
   });
 
@@ -116,15 +207,35 @@ void main() {
 
 class _FakeCloudClient implements VocabAudioCloudClient {
   final requests = <String>[];
+  final checkOnlyRequests = <String>[];
+  String revision = 'revision-1';
 
   @override
   Future<SharedVocabAudio?> ensureAudio(
     String text, {
     required VocabAudioKind kind,
+    bool checkOnly = false,
   }) async {
     requests.add(text);
-    return const SharedVocabAudio(
+    if (checkOnly) checkOnlyRequests.add(text);
+    return SharedVocabAudio(
       downloadUrl: 'https://example.test/example.mp3',
+      revision: revision,
     );
+  }
+}
+
+class _ControlledCloudClient implements VocabAudioCloudClient {
+  final checkStarted = Completer<void>();
+  final response = Completer<SharedVocabAudio?>();
+
+  @override
+  Future<SharedVocabAudio?> ensureAudio(
+    String text, {
+    required VocabAudioKind kind,
+    bool checkOnly = false,
+  }) {
+    if (!checkStarted.isCompleted) checkStarted.complete();
+    return response.future;
   }
 }

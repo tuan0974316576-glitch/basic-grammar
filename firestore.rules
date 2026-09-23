@@ -18,6 +18,12 @@ service cloud.firestore {
       return request.resource.data.keys().hasOnly([
         "studentId",
         "displayName",
+        "avatarStyle",
+        "avatarSeed",
+        "avatarBackground",
+        "avatarOptions",
+        "profileSetupComplete",
+        "profileUpdatedAt",
         "classId",
         "role",
         "lastLoginAt",
@@ -28,11 +34,38 @@ service cloud.firestore {
       ]);
     }
 
+    function userProfileFieldsAreSafe() {
+      return (!("displayName" in request.resource.data) || request.resource.data.displayName is string)
+        && (!("avatarStyle" in request.resource.data) || request.resource.data.avatarStyle is string)
+        && (!("avatarSeed" in request.resource.data) || request.resource.data.avatarSeed is string)
+        && (!("avatarBackground" in request.resource.data) || request.resource.data.avatarBackground is string)
+        && (!("avatarOptions" in request.resource.data)
+          || (request.resource.data.avatarOptions is map
+            && request.resource.data.avatarOptions.keys().hasOnly([
+              "top",
+              "body",
+              "pattern",
+              "cheeks",
+              "eyes",
+              "mouth",
+              "bodyColor",
+              "accentColor",
+              "inkColor"
+            ])
+          ))
+        && (!("profileSetupComplete" in request.resource.data) || request.resource.data.profileSetupComplete is bool);
+    }
+
     function studyStreakFieldsAreSafe(studyStreak) {
       return studyStreak.keys().hasOnly([
         "days",
+        "bestDays",
+        "freezeCount",
+        "totalActiveDays",
         "lastDateKey",
         "lastCompletedDateKey",
+        "activeDateKeys",
+        "freezeUsedDateKeys",
         "updatedAt"
       ]);
     }
@@ -72,6 +105,9 @@ service cloud.firestore {
         "nextDueAt",
         "lastRecallProb",
         "halfLifeDays",
+        "listeningMastered",
+        "spellingMastered",
+        "speakingMastered",
         "updatedAt"
       ]);
     }
@@ -203,6 +239,11 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    match /publicProfiles/{uid} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
     match /grammarQuestionBanks/{lessonId} {
       allow read: if signedIn();
       allow create, update: if isTeacher()
@@ -223,6 +264,7 @@ service cloud.firestore {
       allow read: if isOwner(uid);
       allow create, update: if isOwner(uid)
         && userDocKeysAreSafe()
+        && userProfileFieldsAreSafe()
         && (!("studyStreak" in request.resource.data) || (request.resource.data.studyStreak is map && studyStreakFieldsAreSafe(request.resource.data.studyStreak)))
         && studentIdMatchesToken()
         && classIdMatchesToken();
@@ -244,9 +286,41 @@ service cloud.firestore {
         allow delete: if false;
       }
 
+      match /vocabImportJobs/{jobId} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if false;
+      }
+
       match /attempts/{attemptId} {
         allow read, create: if isOwner(uid);
         allow update, delete: if false;
+      }
+
+      match /learningActivities/{activityId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+
+      match /notificationTokens/{tokenId} {
+        allow read, write: if false;
+      }
+
+      // Social/teacher services write safe event types here. Students cannot
+      // create arbitrary notification text or read delivery internals.
+      match /notificationOutbox/{notificationId} {
+        allow read, write: if false;
+      }
+
+      // ECON progress is derived by aggregateEconPracticeAttempt. Students
+      // may read their own summaries but cannot forge marks or leaderboard data.
+      match /questionStats/{questionId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+
+      match /topicStats/{topicId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
       }
 
       match /achievements/{achievementId} {

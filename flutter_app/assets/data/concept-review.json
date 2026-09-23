@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "lessons": [
+    {
+      "id": "chapter-1-scarcity-and-choice",
+      "chapterNo": 1,
+      "title": {
+        "en": "Scarcity and choice",
+        "zh": "稀少性與選擇"
+      },
+      "description": {
+        "en": "Build the core chain: resources, wants, scarcity, competition and choice.",
+        "zh": "由資源、慾望開始，逐步掌握稀少性、競爭和選擇。"
+      },
+      "exercises": [
+        {
+          "id": "scarcity-definition-reorder",
+          "type": "reorder",
+          "concept": "scarcity",
+          "prompt": {
+            "en": "Rebuild the definition of scarcity.",
+            "zh": "重新排列稀少性的定義。"
+          },
+          "tokens": {
+            "en": ["Scarcity", "means", "available", "resources", "are", "insufficient", "to", "satisfy", "everyone's", "wants"],
+            "zh": ["所有人的", "慾望", "稀少性", "指", "不足以", "滿足", "可用的", "資源"]
+          },
+          "answerTokens": {
+            "en": ["Scarcity", "means", "available", "resources", "are", "insufficient", "to", "satisfy", "everyone's", "wants"],
+            "zh": ["稀少性", "指", "可用的", "資源", "不足以", "滿足", "所有人的", "慾望"]
+          },
+          "explanation": {
+            "en": "Scarcity exists when available resources are insufficient to satisfy everyone's wants.",
+            "zh": "當可用的資源不足以滿足所有人的慾望時，便存在稀少性。"
+          }
+        },
+        {
+          "id": "scarcity-resource-symbol",
+          "type": "symbol",
+          "concept": "scarcity",
+          "prompt": {
+            "en": "For scarcity to exist: resources ___ wants",
+            "zh": "要存在稀少性：資源 ___ 慾望"
+          },
+          "promptTitle": {
+            "en": "For scarcity to exist",
+            "zh": "要存在稀少性"
+          },
+          "promptMain": {
+            "en": "resources ___ wants",
+            "zh": "資源 ___ 慾望"
+          },
+          "options": ["<", "=", ">", "≥"],
+          "answer": "<",
+          "explanation": {
+            "en": "Scarcity means resources are less than wants.",
+            "zh": "稀少性代表資源少於慾望。"
+          }
+        },
+        {
+          "id": "no-scarcity-resource-symbol",
+          "type": "symbol",
+          "concept": "scarcity",
+          "prompt": {
+            "en": "When there is no scarcity: resources ___ wants",
+            "zh": "沒有稀少性時：資源 ___ 慾望"
+          },
+          "promptTitle": {
+            "en": "When there is no scarcity",
+            "zh": "沒有稀少性時"
+          },
+          "promptMain": {
+            "en": "resources ___ wants",
+            "zh": "資源 ___ 慾望"
+          },
+          "options": ["<", "=", ">", "≥"],
+          "answer": "≥",
+          "explanation": {
+            "en": "If resources are at least as great as wants, all wants can be satisfied and scarcity does not arise.",
+            "zh": "如果資源大於或等於慾望，所有慾望都可以被滿足，因此沒有稀少性。"
+          }
+        },
+        {
+          "id": "scarcity-leads-to-competition",
+          "type": "trueFalse",
+          "concept": "competition",
+          "prompt": {
+            "en": "When scarcity exists, people need to compete for resources.",
+            "zh": "當稀少性存在時，人們需要競爭資源。"
+          },
+          "answer": true,
+          "explanation": {
+            "en": "Scarcity means resources cannot satisfy everyone, so people compete for them.",
+            "zh": "稀少性代表資源不能滿足所有人，所以人們會競爭資源。"
+          }
+        },
+        {
+          "id": "competition-two-forms",
+          "type": "reorder",
+          "concept": "competition",
+          "prompt": {
+            "en": "Complete the relationship.",
+            "zh": "完成以下關係。"
+          },
+          "tokens": {
+            "en": ["Competition", "=", "price", "competition", "+", "non-price", "competition"],
+            "zh": ["競爭", "=", "價格競爭", "+", "非價格競爭"]
+          },
+          "answerTokens": {
+            "en": ["Competition", "=", "price", "competition", "+", "non-price", "competition"],
+            "zh": ["競爭", "=", "價格競爭", "+", "非價格競爭"]
+          },
+          "explanation": {
+            "en": "Competition can take the form of price competition or non-price competition.",
+            "zh": "競爭可以分為價格競爭和非價格競爭。"
+          }
+        },
+        {
+          "id": "scarcity-choice-true",
+          "type": "trueFalse",
+          "concept": "choice",
+          "prompt": {
+            "en": "When scarcity exists, people must choose which wants to satisfy.",
+            "zh": "當稀少性存在時，人們必須選擇滿足哪些慾望。"
+          },
+          "answer": true,
+          "explanation": {
+            "en": "Limited resources mean that people cannot satisfy every want, so choice is necessary.",
+            "zh": "資源有限代表人們不能滿足所有慾望，因此必須作出選擇。"
+          }
+        },
+        {
+          "id": "scarcity-definition-type",
+          "type": "type",
+          "concept": "scarcity",
+          "prompt": {
+            "en": "Type the definition: Scarcity means ...",
+            "zh": "輸入定義：稀少性指……"
+          },
+          "answer": {
+            "en": "Scarcity means available resources are insufficient to satisfy everyone's wants.",
+            "zh": "稀少性指可用的資源不足以滿足所有人的慾望。"
+          },
+          "acceptedAnswers": {
+            "en": ["Scarcity means available resources are insufficient to satisfy everyone's wants.", "Scarcity means available resources are insufficient to satisfy all people's wants.", "Scarcity means resources available are insufficient to satisfy everyone's wants.", "Scarcity means resources available are insufficient to satisfy all people's wants."],
+            "zh": ["稀少性指可用的資源不足以滿足所有人的慾望。", "稀少性是可用的資源不足以滿足所有人的慾望。"]
+          },
+          "explanation": {
+            "en": "The key idea is that available resources are insufficient for everyone's wants.",
+            "zh": "重點是可用的資源不足以滿足所有人的慾望。"
+          }
+        }
+      ]
+    }
+  ]
+}

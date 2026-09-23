@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -15,9 +14,8 @@ const _ink = AppPalette.background;
 const _text = AppPalette.ink;
 const _panel = AppPalette.softPrimary;
 const _blue = AppPalette.primary;
-const _blueDark = AppPalette.primaryDark;
 const _green = AppPalette.correctDark;
-const _red = AppPalette.danger;
+const _red = AppPalette.dangerDark;
 const _pink = AppPalette.pink;
 const _softText = AppPalette.muted;
 
@@ -26,12 +24,14 @@ class Quiz01Screen extends StatefulWidget {
     this.controller,
     this.repository = const Quiz01Repository(),
     this.sfx,
+    this.onQuestionCorrect,
     super.key,
   });
 
   final Quiz01Controller? controller;
   final Quiz01Repository repository;
   final LessonSfx? sfx;
+  final VoidCallback? onQuestionCorrect;
 
   @override
   State<Quiz01Screen> createState() => _Quiz01ScreenState();
@@ -97,6 +97,9 @@ class _Quiz01ScreenState extends State<Quiz01Screen> {
         event == Quiz01Event.completed) {
       setState(() => _celebration += 1);
     }
+    if (event == Quiz01Event.questionCorrect) {
+      widget.onQuestionCorrect?.call();
+    }
   }
 
   void _closeQuiz() {
@@ -129,22 +132,28 @@ class _Quiz01ScreenState extends State<Quiz01Screen> {
     }
     if (controller == null) {
       return const Scaffold(
-        backgroundColor: _ink,
+        backgroundColor: AppPalette.background,
         body: Center(child: CircularProgressIndicator(color: _blue)),
       );
     }
 
     return Scaffold(
-      backgroundColor: _ink,
+      backgroundColor: AppPalette.background,
       body: SafeArea(
         child: Stack(
           children: [
             if (controller.isComplete)
-              _QuizResult(
-                controller: controller,
+              LessonResultScreen(
+                lessonLabel: 'Quiz 01',
+                score: controller.score,
+                total: controller.total,
+                mistakes: controller.mistakes,
+                reviewMode: controller.isReviewMode,
+                sfx: _sfx,
                 onClose: _closeQuiz,
                 onRestart: _restart,
-                onReview: _reviewMistakes,
+                onReview:
+                    controller.missedQuestions.isEmpty ? null : _reviewMistakes,
               )
             else
               _QuestionScreen(
@@ -180,29 +189,34 @@ class _QuestionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-      child: Column(
-        children: [
-          _QuizProgressHeader(controller: controller, onClose: onClose),
-          const SizedBox(height: 8),
-          Expanded(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 220),
-              switchInCurve: Curves.easeOut,
-              child: controller.isResolved
-                  ? _ResolvedQuestion(
-                      key: ValueKey('resolved-${controller.index}'),
-                      controller: controller,
-                      onNext: onNext,
-                    )
-                  : _ActiveQuestion(
-                      key: ValueKey('active-${controller.index}'),
-                      controller: controller,
-                      onEvent: onEvent,
-                    ),
-            ),
+      padding: const EdgeInsets.all(6),
+      child: StationeryFrame(
+        padding: EdgeInsets.zero,
+        radius: 26,
+        ringWidth: 6,
+        shadowDepth: 8,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 4, 10, 6),
+          child: Column(
+            children: [
+              _QuizProgressHeader(controller: controller, onClose: onClose),
+              const SizedBox(height: 8),
+              Expanded(
+                child: controller.isResolved
+                    ? _ResolvedQuestion(
+                        key: ValueKey('resolved-${controller.index}'),
+                        controller: controller,
+                        onNext: onNext,
+                      )
+                    : _ActiveQuestion(
+                        key: ValueKey('active-${controller.index}'),
+                        controller: controller,
+                        onEvent: onEvent,
+                      ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -219,50 +233,17 @@ class _QuizProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 44,
-      child: Row(
-        children: [
-          IconButton(
-            tooltip: '離開測驗',
-            onPressed: onClose,
-            icon: const Icon(Icons.close_rounded),
-            color: _softText,
-            iconSize: 30,
-          ),
-          const SizedBox(width: 6),
-          Expanded(
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(end: controller.progress),
-              duration: const Duration(milliseconds: 320),
-              curve: Curves.easeOutCubic,
-              builder: (context, progress, child) => ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: LinearProgressIndicator(
-                  value: progress,
-                  minHeight: 14,
-                  color: _pink,
-                  backgroundColor: AppPalette.border,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Text(
-            '${controller.index + 1}/${controller.total}',
-            style: const TextStyle(
-              color: _text,
-              fontSize: 16,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-        ],
-      ),
+    return LessonHeader(
+      lessonLabel: 'QUIZ 01',
+      title: '重組英文句子',
+      progress: controller.progress,
+      questionLabel: '${controller.index + 1}/${controller.total}',
+      onClose: onClose,
     );
   }
 }
 
-class _ActiveQuestion extends StatelessWidget {
+class _ActiveQuestion extends StatefulWidget {
   const _ActiveQuestion({
     required this.controller,
     required this.onEvent,
@@ -273,90 +254,253 @@ class _ActiveQuestion extends StatelessWidget {
   final ValueChanged<Quiz01Event> onEvent;
 
   @override
+  State<_ActiveQuestion> createState() => _ActiveQuestionState();
+}
+
+class _QuizFlight {
+  const _QuizFlight({
+    required this.block,
+    required this.start,
+    required this.end,
+  });
+
+  final Quiz01WordBlock block;
+  final Offset start;
+  final Offset end;
+}
+
+class _ActiveQuestionState extends State<_ActiveQuestion>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _flightController;
+  final GlobalKey _stageKey = GlobalKey();
+  final GlobalKey _answerLineKey = GlobalKey();
+  final GlobalKey _flightTargetKey = GlobalKey();
+  final Map<String, GlobalKey> _bankKeys = {};
+  _QuizFlight? _flight;
+  String? _hiddenBlockId;
+
+  @override
+  void initState() {
+    super.initState();
+    _flightController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 420),
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed && mounted) {
+          setState(() {
+            _flight = null;
+            _hiddenBlockId = null;
+          });
+          _flightController.reset();
+        }
+      });
+  }
+
+  @override
+  void dispose() {
+    _flightController.dispose();
+    super.dispose();
+  }
+
+  void _tapBankBlock(Quiz01WordBlock block) {
+    if (_flight != null) return;
+    final sourceContext = _bankKeys[block.id]?.currentContext;
+    final sourceBox = sourceContext?.findRenderObject() as RenderBox?;
+    final stageBox = _stageKey.currentContext?.findRenderObject() as RenderBox?;
+    if (sourceBox == null || stageBox == null || !sourceBox.hasSize) {
+      widget.onEvent(widget.controller.toggleBlock(block.id));
+      return;
+    }
+
+    final startGlobal = sourceBox.localToGlobal(Offset.zero);
+    widget.onEvent(widget.controller.toggleBlock(block.id));
+    setState(() {
+      _hiddenBlockId = block.id;
+      final start = stageBox.globalToLocal(startGlobal);
+      _flight = _QuizFlight(block: block, start: start, end: start);
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || _flight?.block.id != block.id) return;
+      final targetContext = _flightTargetKey.currentContext;
+      final targetBox = targetContext?.findRenderObject() as RenderBox?;
+      final latestStageBox =
+          _stageKey.currentContext?.findRenderObject() as RenderBox?;
+      if (targetBox == null || latestStageBox == null || !targetBox.hasSize) {
+        _flightController.forward(from: 0);
+        return;
+      }
+      final targetGlobal = targetBox.localToGlobal(Offset.zero);
+      setState(() {
+        final current = _flight;
+        if (current != null) {
+          _flight = _QuizFlight(
+            block: current.block,
+            start: current.start,
+            end: latestStageBox.globalToLocal(targetGlobal),
+          );
+        }
+      });
+      _flightController.forward(from: 0);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final controller = widget.controller;
     return LayoutBuilder(
       builder: (context, constraints) {
         final compact = constraints.maxHeight < 500;
-        return Column(
+        final selected = controller.selectedBlocks
+            .where((block) => block.id != _hiddenBlockId)
+            .toList(growable: false);
+        final flight = _flight;
+        return Stack(
+          key: _stageKey,
+          clipBehavior: Clip.none,
           children: [
-            SizedBox(
-              height: compact ? 66 : 84,
-              child: StationeryFrame(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: compact ? 7 : 10,
+            Column(
+              children: [
+                SizedBox(
+                  height: compact ? 58 : 84,
+                  child: OriginalDashedSurface(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: compact ? 7 : 10,
+                    ),
+                    radius: 20,
+                    strokeWidth: 3,
+                    backgroundColor: AppPalette.paper,
+                    borderColor: AppPalette.primary,
+                    shadowColor: const Color(0xFFBDE0E1),
+                    shadowDepth: 4,
+                    child: Center(
+                      child: Text(
+                        controller.currentQuestion.zh,
+                        key: const Key('quiz-01-chinese-prompt'),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: _text,
+                          fontSize: compact ? 21 : 25,
+                          height: 1.2,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                radius: 20,
-                ringWidth: 3,
-                shadowDepth: 4,
-                child: Center(
-                  child: Text(
-                    controller.currentQuestion.zh,
-                    key: const Key('quiz-01-chinese-prompt'),
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: _text,
-                      fontSize: compact ? 21 : 25,
-                      height: 1.2,
-                      fontWeight: FontWeight.w900,
+                _AnswerLine(
+                  key: _answerLineKey,
+                  blocks: selected,
+                  flightBlock: flight?.block,
+                  flightTargetKey: _flightTargetKey,
+                  compact: compact,
+                  onTap: (block) => widget.onEvent(
+                    controller.toggleBlock(block.id),
+                  ),
+                ),
+                SizedBox(height: compact ? 6 : 10),
+                Expanded(
+                  child: OriginalDashedSurface(
+                    key: const Key('quiz-01-word-bank'),
+                    backgroundColor: AppPalette.softSecondary,
+                    borderColor: AppPalette.secondaryDark,
+                    strokeWidth: 3,
+                    radius: 22,
+                    shadowColor: const Color(0xFFFFE7A3),
+                    shadowDepth: 5,
+                    padding: EdgeInsets.all(compact ? 10 : 14),
+                    child: LayoutBuilder(
+                      builder: (context, bankConstraints) =>
+                          SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: SizedBox(
+                          width: bankConstraints.maxWidth,
+                          child: Wrap(
+                            alignment: WrapAlignment.center,
+                            spacing: compact ? 7 : 10,
+                            runSpacing: compact ? 8 : 10,
+                            children: [
+                              for (var index = 0;
+                                  index < controller.availableBlocks.length;
+                                  index++)
+                                Builder(
+                                  builder: (context) {
+                                    final block =
+                                        controller.availableBlocks[index];
+                                    final key = _bankKeys.putIfAbsent(
+                                      block.id,
+                                      GlobalKey.new,
+                                    );
+                                    return _WordBlock(
+                                      key: key,
+                                      block: block,
+                                      compact: compact,
+                                      onTap: () => _tapBankBlock(block),
+                                    );
+                                  },
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: compact ? 16 : 29,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 160),
+                    child: controller.feedback == null
+                        ? const SizedBox.shrink()
+                        : Text(
+                            controller.feedback!.title,
+                            key: const Key('quiz-01-input-warning'),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: _red,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                  ),
+                ),
+                _PrimaryButton(
+                  key: const Key('quiz-01-confirm'),
+                  label: '確認',
+                  icon: Icons.check_rounded,
+                  onPressed: () => widget.onEvent(controller.submit()),
+                  enabled: controller.canSubmit,
+                ),
+              ],
+            ),
+            if (flight != null)
+              Positioned(
+                left: 0,
+                top: 0,
+                child: IgnorePointer(
+                  child: AnimatedBuilder(
+                    animation: _flightController,
+                    builder: (context, child) {
+                      final offset = Offset.lerp(
+                        flight.start,
+                        flight.end,
+                        Curves.easeOutCubic.transform(_flightController.value),
+                      )!;
+                      return Transform.translate(offset: offset, child: child);
+                    },
+                    child: _WordBlock(
+                      key: ValueKey('quiz-01-flight-${flight.block.id}'),
+                      block: flight.block,
+                      compact: compact,
+                      selected: true,
+                      onTap: () {},
                     ),
                   ),
                 ),
               ),
-            ),
-            _AnswerLine(
-              blocks: controller.selectedBlocks,
-              compact: compact,
-              onTap: (block) => onEvent(controller.toggleBlock(block.id)),
-            ),
-            SizedBox(height: compact ? 6 : 10),
-            Expanded(
-              child: Center(
-                child: Wrap(
-                  key: const Key('quiz-01-word-bank'),
-                  alignment: WrapAlignment.center,
-                  runAlignment: WrapAlignment.center,
-                  spacing: compact ? 7 : 9,
-                  runSpacing: compact ? 8 : 10,
-                  children: [
-                    for (final block in controller.availableBlocks)
-                      _WordBlock(
-                        key: ValueKey('bank-${block.id}'),
-                        block: block,
-                        compact: compact,
-                        onTap: () => onEvent(controller.toggleBlock(block.id)),
-                      ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: compact ? 23 : 29,
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 160),
-                child: controller.feedback == null
-                    ? const SizedBox.shrink()
-                    : Text(
-                        controller.feedback!.title,
-                        key: const Key('quiz-01-input-warning'),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: _red,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-              ),
-            ),
-            _PrimaryButton(
-              key: const Key('quiz-01-confirm'),
-              label: '確認',
-              icon: Icons.check_rounded,
-              onPressed: () => onEvent(controller.submit()),
-              enabled: controller.canSubmit,
-            ),
           ],
         );
       },
@@ -367,57 +511,99 @@ class _ActiveQuestion extends StatelessWidget {
 class _AnswerLine extends StatelessWidget {
   const _AnswerLine({
     required this.blocks,
+    required this.flightBlock,
+    required this.flightTargetKey,
     required this.compact,
     required this.onTap,
+    super.key,
   });
 
   final List<Quiz01WordBlock> blocks;
+  final Quiz01WordBlock? flightBlock;
+  final GlobalKey flightTargetKey;
   final bool compact;
   final ValueChanged<Quiz01WordBlock> onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return OriginalDashedSurface(
       key: const Key('quiz-01-answer-line'),
-      height: compact ? 96 : 112,
-      width: double.infinity,
-      child: CustomPaint(
-        painter: const _DashedAnswerLinePainter(),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(4, 6, 4, 18),
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Wrap(
-              spacing: compact ? 6 : 8,
-              runSpacing: compact ? 7 : 9,
-              children: [
-                for (final block in blocks)
-                  TweenAnimationBuilder<double>(
-                    key: ValueKey('answer-${block.id}'),
-                    tween: Tween(begin: 0, end: 1),
-                    duration: const Duration(milliseconds: 280),
-                    curve: Curves.easeOutBack,
-                    builder: (context, value, child) => Opacity(
-                      opacity: value.clamp(0, 1),
-                      child: Transform.translate(
-                        offset: Offset(0, (1 - value) * 44),
-                        child: child,
+      backgroundColor: const Color(0xFFF8F9FA),
+      borderColor: const Color(0xFFCFD4DA),
+      strokeWidth: 3,
+      radius: 20,
+      shadowColor: const Color(0xFFECEFF3),
+      shadowDepth: 4,
+      padding: EdgeInsets.symmetric(
+        horizontal: compact ? 8 : 14,
+        vertical: compact ? 8 : 12,
+      ),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: compact ? 54 : 76),
+        child: CustomPaint(
+          painter: const _DottedAnswerPainter(),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: compact ? 10 : 12),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Wrap(
+                spacing: compact ? 6 : 8,
+                runSpacing: compact ? 7 : 9,
+                children: [
+                  for (var index = 0; index < blocks.length; index++)
+                    KeyedSubtree(
+                      key: ValueKey('answer-${blocks[index].id}'),
+                      child: _WordBlock(
+                        block: blocks[index],
+                        compact: compact,
+                        selected: true,
+                        onTap: () => onTap(blocks[index]),
                       ),
                     ),
-                    child: _WordBlock(
-                      block: block,
-                      compact: compact,
-                      selected: true,
-                      onTap: () => onTap(block),
+                  if (flightBlock case final block?)
+                    Opacity(
+                      opacity: 0,
+                      child: IgnorePointer(
+                        child: KeyedSubtree(
+                          key: ValueKey('quiz-01-flight-target-${block.id}'),
+                          child: _WordBlock(
+                            key: flightTargetKey,
+                            block: block,
+                            compact: compact,
+                            selected: true,
+                            onTap: () {},
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
+}
+
+class _DottedAnswerPainter extends CustomPainter {
+  const _DottedAnswerPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = const Color(0xFFBFC4CA)
+      ..style = PaintingStyle.fill;
+    const radius = 2.0;
+    const gap = 12.0;
+    final y = size.height - radius - 1;
+    for (var x = 0.0; x < size.width; x += gap) {
+      canvas.drawCircle(Offset(x + radius, y), radius, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _DottedAnswerPainter oldDelegate) => false;
 }
 
 class _WordBlock extends StatelessWidget {
@@ -434,42 +620,158 @@ class _WordBlock extends StatelessWidget {
   final VoidCallback onTap;
   final bool selected;
 
+  double _pillWidth(BuildContext context) {
+    final fontSize = compact ? 14.0 : 17.0;
+    final painter = TextPainter(
+      text: TextSpan(
+        text: block.text,
+        style: TextStyle(
+          fontFamily: DefaultTextStyle.of(context).style.fontFamily,
+          fontSize: fontSize,
+          fontWeight: FontWeight.w900,
+        ),
+      ),
+      maxLines: 1,
+      textDirection: Directionality.of(context),
+    )..layout();
+    final horizontalPadding = compact ? 20.0 : 28.0;
+    return (painter.width + horizontalPadding).clamp(48.0, 150.0);
+  }
+
+  static int _wordClass(String value) {
+    final word = value.trim().toLowerCase();
+    const adverbs = {
+      'always',
+      'often',
+      'never',
+      'sometimes',
+      'usually',
+      'very',
+      'now',
+      'here',
+      'there',
+      'today',
+      'well',
+    };
+    const verbs = {
+      'am',
+      'is',
+      'are',
+      'was',
+      'were',
+      'be',
+      'have',
+      'has',
+      'had',
+      'do',
+      'does',
+      'did',
+      'go',
+      'goes',
+      'went',
+      'eat',
+      'eats',
+      'ate',
+      'play',
+      'plays',
+      'played',
+      'draw',
+      'draws',
+      'drew',
+      'write',
+      'writes',
+      'wrote',
+      'read',
+      'reads',
+      'run',
+      'runs',
+      'make',
+      'makes',
+      'see',
+      'sees',
+      'like',
+      'likes',
+      'want',
+      'wants',
+    };
+    const other = {
+      'a',
+      'an',
+      'the',
+      'i',
+      'you',
+      'he',
+      'she',
+      'it',
+      'we',
+      'they',
+      'my',
+      'your',
+      'his',
+      'her',
+      'our',
+      'their',
+      'and',
+      'but',
+      'in',
+      'on',
+      'at',
+      'to',
+      'happy',
+      'big',
+      'small',
+      'good',
+      'new',
+    };
+    if (adverbs.contains(word) || word.endsWith('ly')) return 2;
+    if (verbs.contains(word) || word.endsWith('ed') || word.endsWith('ing')) {
+      return 1;
+    }
+    if (other.contains(word)) return 3;
+    return 0;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final color = selected ? const Color(0xFFE1F6FF) : Colors.white;
-    final border = selected ? _blue : const Color(0xFFC5D6DA);
-    final shadow = selected ? _blueDark : const Color(0xFF718B92);
-    return Semantics(
-      button: true,
-      label: selected ? '${block.text}，已放到答案' : block.text,
-      child: Material(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            constraints: BoxConstraints(
-              minWidth: compact ? 50 : 58,
-              minHeight: compact ? 42 : 48,
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: compact ? 11 : 14,
-              vertical: compact ? 7 : 9,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: border, width: 2),
-              boxShadow: [BoxShadow(color: shadow, offset: const Offset(0, 3))],
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              block.text,
-              maxLines: 1,
-              style: TextStyle(
-                color: const Color(0xFF21363C),
-                fontSize: compact ? 17 : 19,
-                fontWeight: FontWeight.w900,
+    final border = switch (_wordClass(block.text)) {
+      0 => AppPalette.secondaryDark,
+      1 => AppPalette.primary,
+      2 => const Color(0xFF4D96FF),
+      _ => AppPalette.purple,
+    };
+    const color = Colors.white;
+    return SizedBox(
+      key: ValueKey('quiz-word-pill-${block.id}'),
+      width: _pillWidth(context),
+      height: compact ? 36 : 44,
+      child: Semantics(
+        button: true,
+        label: selected ? '${block.text}，已放到答案' : block.text,
+        child: Material(
+          color: color,
+          borderRadius: BorderRadius.circular(999),
+          child: InkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(999),
+            child: CustomPaint(
+              foregroundPainter: _WordBlockDashedPainter(color: border),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: compact ? 8 : 12,
+                  vertical: compact ? 4 : 7,
+                ),
+                child: Center(
+                  child: Text(
+                    block.text,
+                    maxLines: 1,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                      color: selected ? AppPalette.primaryDark : AppPalette.ink,
+                      fontSize: compact ? 14 : 17,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -477,6 +779,50 @@ class _WordBlock extends StatelessWidget {
       ),
     );
   }
+}
+
+class _WordBlockDashedPainter extends CustomPainter {
+  const _WordBlockDashedPainter({required this.color});
+
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = RRect.fromRectAndRadius(
+      Offset.zero & size,
+      Radius.circular(size.height / 2),
+    );
+    final path = Path()..addRRect(rect);
+    const layers = [
+      (alpha: 0.82, width: 2.4, y: 0.0, dash: 8.0, gap: 14.0),
+      (alpha: 0.34, width: 1.3, y: 0.8, dash: 9.0, gap: 16.0),
+      (alpha: 0.22, width: 0.9, y: -0.7, dash: 6.0, gap: 11.0),
+    ];
+    for (final layer in layers) {
+      final paint = Paint()
+        ..color = color.withValues(alpha: layer.alpha)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = layer.width
+        ..strokeCap = StrokeCap.round;
+      canvas.save();
+      canvas.translate(0, layer.y);
+      for (final metric in path.computeMetrics()) {
+        var distance = 0.0;
+        while (distance < metric.length) {
+          canvas.drawPath(
+            metric.extractPath(distance, distance + layer.dash),
+            paint,
+          );
+          distance += layer.dash + layer.gap;
+        }
+      }
+      canvas.restore();
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _WordBlockDashedPainter oldDelegate) =>
+      oldDelegate.color != color;
 }
 
 class _ResolvedQuestion extends StatelessWidget {
@@ -493,6 +839,7 @@ class _ResolvedQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     final feedback = controller.feedback!;
     final color = feedback.isCorrect ? _green : _red;
+    final frameColor = feedback.isCorrect ? AppPalette.secondaryDark : color;
     return LayoutBuilder(
       builder: (context, constraints) {
         final compact = constraints.maxHeight < 500;
@@ -515,76 +862,82 @@ class _ResolvedQuestion extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(compact ? 16 : 20),
-                decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.13),
-                  border: Border(
-                    top: BorderSide(color: color, width: 3),
-                    bottom: BorderSide(
-                      color: color.withValues(alpha: 0.5),
-                      width: 2,
-                    ),
-                  ),
-                ),
-                child: LayoutBuilder(
-                  builder: (context, feedbackConstraints) => FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.topLeft,
-                    child: SizedBox(
-                      width: feedbackConstraints.maxWidth,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: OriginalDashedSurface(
+                  key: const Key('quiz-01-feedback-panel'),
+                  backgroundColor: feedback.isCorrect
+                      ? AppPalette.softSecondary
+                      : Colors.white,
+                  borderColor: frameColor,
+                  strokeWidth: 4,
+                  radius: 22,
+                  shadowColor: feedback.isCorrect
+                      ? const Color(0xFFFFE7A3)
+                      : color.withValues(alpha: 0.2),
+                  shadowDepth: 5,
+                  padding: EdgeInsets.all(compact ? 14 : 18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
                         children: [
-                          Row(
-                            children: [
-                              Icon(
-                                feedback.isCorrect
-                                    ? Icons.check_circle_rounded
-                                    : Icons.cancel_rounded,
-                                color: color,
-                                size: 29,
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: Text(
-                                  feedback.title,
-                                  style: TextStyle(
-                                    color: color,
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          Icon(
+                            feedback.isCorrect
+                                ? Icons.check_circle_rounded
+                                : Icons.cancel_rounded,
+                            color: color,
+                            size: 28,
                           ),
-                          if (feedback.picked.isNotEmpty) ...[
-                            const SizedBox(height: 14),
-                            Text(
-                              '你的答案：${feedback.picked}',
-                              style: const TextStyle(
-                                color: _text,
-                                fontSize: 17,
-                                height: 1.4,
-                                fontWeight: FontWeight.w700,
+                          const SizedBox(width: 9),
+                          Expanded(
+                            child: Text(
+                              feedback.title,
+                              style: TextStyle(
+                                color: color,
+                                fontSize: compact ? 18 : 20,
+                                fontWeight: FontWeight.w900,
                               ),
-                            ),
-                          ],
-                          const SizedBox(height: 14),
-                          Text(
-                            '正確答案：${feedback.answer}',
-                            key: const Key('quiz-01-correct-answer'),
-                            style: const TextStyle(
-                              color: _green,
-                              fontSize: 18,
-                              height: 1.4,
-                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ],
                       ),
-                    ),
+                      if (feedback.picked.isNotEmpty) ...[
+                        const SizedBox(height: 10),
+                        Text(
+                          '你的答案：${feedback.picked}',
+                          style: const TextStyle(
+                            color: _text,
+                            fontSize: 16,
+                            height: 1.35,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                      const SizedBox(height: 10),
+                      OriginalDashedSurface(
+                        backgroundColor: Colors.white,
+                        borderColor: AppPalette.primary,
+                        strokeWidth: 2,
+                        radius: 16,
+                        shadowColor: const Color(0xFFBDE0E1),
+                        shadowDepth: 3,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 10,
+                        ),
+                        child: Text(
+                          '正確答案：${feedback.answer}',
+                          key: const Key('quiz-01-correct-answer'),
+                          style: const TextStyle(
+                            color: AppPalette.primaryDark,
+                            fontSize: 16,
+                            height: 1.3,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -621,25 +974,32 @@ class _PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 440),
-      child: FilledButton.icon(
-        onPressed: enabled ? onPressed : null,
-        icon: Icon(icon),
-        label: Text(label),
-        style: FilledButton.styleFrom(
-          minimumSize: const Size.fromHeight(56),
-          backgroundColor: _blueDark,
-          disabledBackgroundColor: AppPalette.border,
-          disabledForegroundColor: AppPalette.muted,
-          foregroundColor: Colors.white,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton.icon(
+          onPressed: enabled ? onPressed : null,
+          icon: Icon(icon),
+          label: Text(label),
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size.fromHeight(50),
+            backgroundColor: AppPalette.secondary,
+            disabledBackgroundColor: const Color(0xFFF3F3F3),
+            disabledForegroundColor: const Color(0xFFAAAAAA),
+            foregroundColor: const Color(0xFF5D4037),
+            shadowColor: AppPalette.secondaryDark,
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(999)),
+            textStyle:
+                const TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+          ),
         ),
       ),
     );
   }
 }
 
+// ignore: unused_element
 class _QuizResult extends StatelessWidget {
   const _QuizResult({
     required this.controller,
@@ -857,31 +1217,4 @@ class _LoadErrorScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class _DashedAnswerLinePainter extends CustomPainter {
-  const _DashedAnswerLinePainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = const Color(0xFF71858C)
-      ..strokeWidth = 2.5
-      ..strokeCap = StrokeCap.round;
-    const dashWidth = 9.0;
-    const gap = 7.0;
-    final y = size.height - 10;
-    var x = 2.0;
-    while (x < size.width - 2) {
-      canvas.drawLine(
-        Offset(x, y),
-        Offset(math.min(x + dashWidth, size.width - 2), y),
-        paint,
-      );
-      x += dashWidth + gap;
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _DashedAnswerLinePainter oldDelegate) => false;
 }

@@ -9,6 +9,7 @@ const ReviewDashboard = require("./build-vocab-review-dashboard.js");
 const ReviewIndex = require("./build-vocab-review-index.js");
 const ReviewPaths = require("./vocab-review-paths.js");
 const TeacherLiveVocab = require("../teacher_live_vocab.js");
+const MeaningDedupe = require("./vocab-meaning-dedupe.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_INPUT = path.join(ROOT_DIR, "teacher_vocab_manual_updates.json");
@@ -147,8 +148,15 @@ function loadTeacherLiveEntries(inputPath, options = {}) {
   const rawDisableEntries = inputKind === "promote-plan"
     ? ApplyPlan.splitEntries(payload.entries || []).teacher.filter((entry) => entry.suppress)
     : entriesFromTeacherUpdates(payload).filter((entry) => entry.suppress);
+  const compactedRawEntries = MeaningDedupe.collapseMeaningSubsetDuplicates(rawEntries, {
+    normalizeWord: TeacherLiveVocab.normalizeWord,
+    normalizeMeaning: TeacherLiveVocab.normalizeMeaning,
+    normalizePos: TeacherLiveVocab.normalizePos,
+    normalizeType: TeacherLiveVocab.normalizeType,
+    effectivePos: (entry) => TeacherLiveVocab.normalizePos(entry.pos || entry.inferredPos)
+  }).entries;
   const seen = new Set();
-  const entries = rawEntries
+  const entries = compactedRawEntries
     .map(normalizeTeacherEntry)
     .filter(Boolean)
     .filter((entry) => {

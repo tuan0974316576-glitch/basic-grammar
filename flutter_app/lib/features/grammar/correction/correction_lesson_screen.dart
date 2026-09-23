@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
+import '../../../core/widgets/original_game_keyboard.dart';
+import '../../../core/widgets/stationery_frame.dart';
 import '../shared/lesson_ui.dart';
 import 'correction_lesson_controller.dart';
 import 'correction_lesson_question.dart';
@@ -15,12 +17,14 @@ class CorrectionLessonScreen extends StatefulWidget {
     required this.config,
     this.repository = const CorrectionLessonRepository(),
     this.sfx,
+    this.onQuestionCorrect,
     super.key,
   });
 
   final CorrectionLessonConfig config;
   final CorrectionLessonRepository repository;
   final LessonSfx? sfx;
+  final VoidCallback? onQuestionCorrect;
 
   @override
   State<CorrectionLessonScreen> createState() => _CorrectionLessonScreenState();
@@ -34,6 +38,7 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
   CorrectionLessonStage? _lastStage;
   String? _lastQuestionId;
   int _celebration = 0;
+  bool _keyboardOpen = false;
 
   LessonSfx get _sfx => widget.sfx ?? AppSfx.instance;
 
@@ -89,7 +94,7 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
     setState(() {});
     if (openedCorrection) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) _focusNode.requestFocus();
+        if (mounted) _openKeyboard();
       });
     }
   }
@@ -99,6 +104,7 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
       case CorrectionLessonEvent.ignored || CorrectionLessonEvent.inputChanged:
         return;
       case CorrectionLessonEvent.invalidInput || CorrectionLessonEvent.wrong:
+        _closeKeyboard();
         _focusNode.unfocus();
         unawaited(_sfx.play(SfxCue.wrong));
         return;
@@ -106,8 +112,10 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
         unawaited(_sfx.play(SfxCue.correct));
         return;
       case CorrectionLessonEvent.questionCorrect:
+        _closeKeyboard();
         _focusNode.unfocus();
         setState(() => _celebration += 1);
+        widget.onQuestionCorrect?.call();
         unawaited(_sfx.play(SfxCue.correct));
         return;
       case CorrectionLessonEvent.nextQuestion:
@@ -121,7 +129,46 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
   }
 
   void _submitCorrection() {
+    _closeKeyboard();
     _handle(_controller!.submitCorrection());
+  }
+
+  void _openKeyboard() {
+    if (_keyboardOpen ||
+        _controller?.stage != CorrectionLessonStage.correction) {
+      return;
+    }
+    setState(() => _keyboardOpen = true);
+    _focusNode.requestFocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _closeKeyboard() {
+    if (!_keyboardOpen) return;
+    setState(() => _keyboardOpen = false);
+    _focusNode.unfocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _handleKeyboardKey(String key) {
+    if (!_keyboardOpen ||
+        _controller?.stage != CorrectionLessonStage.correction) {
+      return;
+    }
+    final current = _textController.text;
+    final next = switch (key) {
+      'BACKSPACE' =>
+        current.isEmpty ? current : current.substring(0, current.length - 1),
+      'SPACE' => current.endsWith(' ') ? current : '$current ',
+      _ => '$current${key.toLowerCase()}',
+    };
+    if (next.length > 120) return;
+    _textController.value = TextEditingValue(
+      text: next,
+      selection: TextSelection.collapsed(offset: next.length),
+    );
+    _handle(_controller!.updateCorrection(next));
+    unawaited(_sfx.play(SfxCue.type));
   }
 
   void _close() {
@@ -155,6 +202,7 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
             total: controller.total,
             mistakes: controller.mistakes,
             reviewMode: controller.isReviewMode,
+            sfx: _sfx,
             onClose: _close,
             onRestart: () {
               controller.restart();
@@ -192,6 +240,27 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
                 )
               : null,
         ),
+        if (_keyboardOpen)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 920),
+                child: OriginalGameKeyboard(
+                  keyboardKey: Key(
+                    'lesson-${widget.config.lessonNumber}-custom-keyboard',
+                  ),
+                  keyPrefix:
+                      'lesson-${widget.config.lessonNumber}-keyboard-key-',
+                  onKey: _handleKeyboardKey,
+                  onSubmit: _submitCorrection,
+                ),
+              ),
+            ),
+          ),
         LessonCelebrationOverlay(trigger: _celebration),
       ],
     );
@@ -239,8 +308,7 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
                   key: const Key('judgment-correct'),
                   label: '正確',
                   icon: Icons.check_rounded,
-                  color: AppPalette.correctDark,
-                  background: AppPalette.softCorrect,
+                  color: AppPalette.tick,
                   onPressed: () => _handle(controller.answerJudgment(true)),
                 ),
               ),
@@ -250,8 +318,7 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
                   key: const Key('judgment-wrong'),
                   label: '錯誤',
                   icon: Icons.close_rounded,
-                  color: AppPalette.danger,
-                  background: AppPalette.softDanger,
+                  color: AppPalette.cross,
                   onPressed: () => _handle(controller.answerJudgment(false)),
                 ),
               ),
@@ -275,50 +342,62 @@ class _CorrectionLessonScreenState extends State<CorrectionLessonScreen> {
               compact: true,
             ),
             const SizedBox(height: 14),
-            TextField(
-              key: const Key('correction-input'),
-              controller: _textController,
-              focusNode: _focusNode,
-              autofocus: true,
-              maxLength: 120,
-              maxLines: 3,
-              minLines: 1,
-              autocorrect: false,
-              enableSuggestions: false,
-              textCapitalization: TextCapitalization.sentences,
-              textInputAction: TextInputAction.done,
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(
-                  RegExp(r"[a-zA-Z0-9 '\-.,!?/]"),
-                ),
-              ],
-              onChanged: (value) => _handle(controller.updateCorrection(value)),
-              onSubmitted: (_) => _submitCorrection(),
-              decoration: InputDecoration(
-                hintText: 'Type the correct sentence',
-                counterText: '',
-                errorText: controller.errorMessage,
-                filled: true,
-                fillColor: AppPalette.paper,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(
-                    color: AppPalette.primary,
-                    width: 2,
+            OriginalDashedSurface(
+              radius: 18,
+              strokeWidth: 3,
+              backgroundColor: AppPalette.paper,
+              borderColor: controller.errorMessage == null
+                  ? AppPalette.primary
+                  : AppPalette.danger,
+              shadowColor: controller.errorMessage == null
+                  ? const Color(0xFFBDE0E1)
+                  : const Color(0xFFFFC9C9),
+              shadowDepth: 4,
+              padding: EdgeInsets.zero,
+              child: TextField(
+                key: const Key('correction-input'),
+                controller: _textController,
+                focusNode: _focusNode,
+                autofocus: true,
+                maxLength: 120,
+                maxLines: 3,
+                minLines: 1,
+                autocorrect: false,
+                enableSuggestions: false,
+                spellCheckConfiguration:
+                    const SpellCheckConfiguration.disabled(),
+                textCapitalization: TextCapitalization.sentences,
+                textInputAction: TextInputAction.done,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                    RegExp(r"[a-zA-Z0-9 '\-.,!?/]"),
+                  ),
+                ],
+                onChanged: (value) {
+                  _handle(controller.updateCorrection(value));
+                  unawaited(_sfx.play(SfxCue.type));
+                },
+                onSubmitted: (_) => _submitCorrection(),
+                onTap: _openKeyboard,
+                readOnly: true,
+                showCursor: _keyboardOpen,
+                keyboardType: TextInputType.none,
+                decoration: InputDecoration(
+                  hintText: 'Type the correct sentence',
+                  counterText: '',
+                  errorText: controller.errorMessage,
+                  filled: false,
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 15,
                   ),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(
-                    color: AppPalette.primaryDark,
-                    width: 3,
-                  ),
+                style: const TextStyle(
+                  color: AppPalette.ink,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
                 ),
-              ),
-              style: const TextStyle(
-                color: AppPalette.ink,
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
               ),
             ),
           ],
@@ -356,7 +435,6 @@ class _JudgmentButton extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.color,
-    required this.background,
     required this.onPressed,
     super.key,
   });
@@ -364,20 +442,20 @@ class _JudgmentButton extends StatelessWidget {
   final String label;
   final IconData icon;
   final Color color;
-  final Color background;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: background,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-        side: BorderSide(color: color, width: 3),
-      ),
+    return OriginalDashedSurface(
+      backgroundColor: Colors.white,
+      borderColor: color,
+      strokeWidth: 5,
+      radius: 26,
+      shadowColor: color.withValues(alpha: 0.24),
+      shadowDepth: 5,
       child: InkWell(
         onTap: onPressed,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(26),
         child: SizedBox(
           height: 112,
           child: Column(

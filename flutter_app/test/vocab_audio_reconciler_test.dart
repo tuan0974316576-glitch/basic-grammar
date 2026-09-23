@@ -70,6 +70,7 @@ void main() {
 
     expect(result.complete, isTrue);
     expect(calls, [
+      'refresh:ready',
       'word:missing',
       'example:This is a ready example.',
       'example:This is a missing example.',
@@ -130,7 +131,8 @@ void main() {
   });
 }
 
-class _FakeAudioRepository implements VocabAudioRepository {
+class _FakeAudioRepository
+    implements VocabAudioRepository, VocabAudioRevisionRefresher {
   _FakeAudioRepository({
     required this.calls,
     this.existingWords = const {},
@@ -159,6 +161,12 @@ class _FakeAudioRepository implements VocabAudioRepository {
     VocabAudioKind kind = VocabAudioKind.word,
   }) async {
     calls.add('${kind == VocabAudioKind.example ? 'example' : 'word'}:$text');
+    return const VocabAudioEnsureResult(status: 'ready');
+  }
+
+  @override
+  Future<VocabAudioEnsureResult> refreshWordAudio(String word) async {
+    calls.add('refresh:$word');
     return const VocabAudioEnsureResult(status: 'ready');
   }
 

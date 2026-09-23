@@ -186,6 +186,9 @@ class FirestoreVocabCloudBackend implements VocabCloudBackend {
       'progress': {
         'totalSeen': item.totalSeen,
         'totalCorrect': item.totalCorrect,
+        'listeningMastered': item.listeningMastered,
+        'spellingMastered': item.spellingMastered,
+        'speakingMastered': item.speakingMastered,
         'updatedAt': item.updatedAt.millisecondsSinceEpoch,
       },
       'ownerUid': uid,
@@ -244,6 +247,9 @@ class FirestoreVocabCloudBackend implements VocabCloudBackend {
       totalCorrect: (progress['totalCorrect'] as num?)?.toInt() ??
           (data['totalCorrect'] as num?)?.toInt() ??
           0,
+      listeningMastered: progress['listeningMastered'] == true,
+      spellingMastered: progress['spellingMastered'] == true,
+      speakingMastered: progress['speakingMastered'] == true,
     );
   }
 
@@ -595,10 +601,7 @@ class CloudSyncedVocabStore implements VocabStore {
       }
     }
     activeTombstones.removeWhere((_, value) => value <= 0);
-    activeItems.sort((left, right) {
-      final date = right.updatedAt.compareTo(left.updatedAt);
-      return date != 0 ? date : left.word.compareTo(right.word);
-    });
+    activeItems.sort(compareVocabItemsByRecentCreation);
     return _MergedVocab(
       items: activeItems,
       tombstones: activeTombstones,
@@ -625,6 +628,9 @@ class CloudSyncedVocabStore implements VocabStore {
       totalCorrect: left.totalCorrect > right.totalCorrect
           ? left.totalCorrect
           : right.totalCorrect,
+      listeningMastered: left.listeningMastered || right.listeningMastered,
+      spellingMastered: left.spellingMastered || right.spellingMastered,
+      speakingMastered: left.speakingMastered || right.speakingMastered,
     );
   }
 
@@ -661,6 +667,9 @@ class CloudSyncedVocabStore implements VocabStore {
         'updatedAt': item.updatedAt.millisecondsSinceEpoch,
         'totalSeen': item.totalSeen,
         'totalCorrect': item.totalCorrect,
+        'listeningMastered': item.listeningMastered,
+        'spellingMastered': item.spellingMastered,
+        'speakingMastered': item.speakingMastered,
       });
 
   static _VocabCloudDelta _cloudRepairDelta(

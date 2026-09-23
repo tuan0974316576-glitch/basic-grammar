@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/app_brand.dart';
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
 import '../../core/widgets/original_section_frame.dart';
@@ -12,6 +13,7 @@ class OriginalGrammarHome extends StatefulWidget {
     required this.onLessonTap,
     required this.onVerbTableInfo,
     required this.onSettings,
+    this.lessonProgress = const {},
     this.settingsActive = false,
     super.key,
   });
@@ -19,6 +21,7 @@ class OriginalGrammarHome extends StatefulWidget {
   final ValueChanged<int> onLessonTap;
   final VoidCallback onVerbTableInfo;
   final VoidCallback onSettings;
+  final Map<int, int> lessonProgress;
   final bool settingsActive;
 
   @override
@@ -134,8 +137,8 @@ class _OriginalGrammarHomeState extends State<OriginalGrammarHome> {
   Widget build(BuildContext context) {
     return OriginalSectionFrame(
       sectionKey: const Key('original-section-frame-grammar'),
-      eyebrow: 'DOPE ENGLISH',
-      title: 'Basic Grammar Game',
+      eyebrow: appProviderName,
+      title: appDisplayName,
       onSettings: widget.onSettings,
       settingsActive: widget.settingsActive,
       settingsKey: const Key('grammar-home-settings'),
@@ -152,12 +155,13 @@ class _OriginalGrammarHomeState extends State<OriginalGrammarHome> {
             child: SingleChildScrollView(
               key: const Key('grammar-lesson-list'),
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(5, 2, 5, 10),
+              padding: const EdgeInsets.fromLTRB(5, 14, 5, 10),
               child: Column(
                 children: [
                   for (final lesson in _lessons) ...[
                     _LessonCard(
                       lesson: lesson,
+                      completed: widget.lessonProgress[lesson.index] ?? 0,
                       onTap: () {
                         AppSfx.instance.play(SfxCue.click);
                         widget.onLessonTap(lesson.index);
@@ -365,11 +369,13 @@ class _CoachPainter extends CustomPainter {
 class _LessonCard extends StatefulWidget {
   const _LessonCard({
     required this.lesson,
+    required this.completed,
     required this.onTap,
     this.onInfo,
   });
 
   final _OriginalLesson lesson;
+  final int completed;
   final VoidCallback onTap;
   final VoidCallback? onInfo;
 
@@ -415,7 +421,7 @@ class _LessonCardState extends State<_LessonCard> {
                   clipBehavior: Clip.none,
                   children: [
                     StationeryFrame(
-                      padding: const EdgeInsets.fromLTRB(18, 28, 16, 14),
+                      padding: const EdgeInsets.fromLTRB(18, 23, 16, 18),
                       backgroundColor:
                           _hovered ? AppPalette.softPrimary : AppPalette.paper,
                       borderColor:
@@ -429,6 +435,7 @@ class _LessonCardState extends State<_LessonCard> {
                       ringWidth: 4,
                       shadowDepth: _hovered ? 7 : 5,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -461,7 +468,10 @@ class _LessonCardState extends State<_LessonCard> {
                               ),
                               const SizedBox(width: 10),
                               Text(
-                                '0/${widget.lesson.total}',
+                                '${widget.completed.clamp(0, widget.lesson.total)}/${widget.lesson.total}',
+                                key: Key(
+                                  'grammar-lesson-progress-${widget.lesson.index}',
+                                ),
                                 style: const TextStyle(
                                   color: AppPalette.muted,
                                   fontSize: 15,
@@ -475,7 +485,7 @@ class _LessonCardState extends State<_LessonCard> {
                     ),
                     Positioned(
                       left: 16,
-                      top: -2,
+                      top: -12,
                       child: _YellowPill(label: widget.lesson.label),
                     ),
                   ],
@@ -486,16 +496,29 @@ class _LessonCardState extends State<_LessonCard> {
           if (widget.onInfo != null)
             Positioned(
               right: 8,
-              top: 5,
-              child: IconButton(
-                key: const Key('verb-table-roadmap-info'),
-                tooltip: 'Verb Table 溫習表',
-                onPressed: widget.onInfo,
-                icon: const Icon(Icons.info_outline_rounded, size: 20),
-                color: AppPalette.primaryDark,
-                constraints:
-                    const BoxConstraints.tightFor(width: 34, height: 34),
+              top: -9,
+              child: OriginalDashedSurface(
+                backgroundColor: AppPalette.secondary,
+                borderColor: AppPalette.secondary,
+                shadowColor: AppPalette.secondaryDark,
+                shadowDepth: 3,
+                strokeWidth: 2,
+                radius: 999,
                 padding: EdgeInsets.zero,
+                child: IconButton(
+                  key: const Key('verb-table-roadmap-info'),
+                  tooltip: 'Verb Table 溫習表',
+                  onPressed: widget.onInfo,
+                  icon: const Icon(Icons.info_rounded),
+                  color: Colors.white,
+                  constraints:
+                      const BoxConstraints.tightFor(width: 32, height: 32),
+                  padding: EdgeInsets.zero,
+                  iconSize: 19,
+                  style: IconButton.styleFrom(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                ),
               ),
             ),
         ],
@@ -512,8 +535,8 @@ class _YellowPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(minHeight: 34),
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
+      constraints: const BoxConstraints(minHeight: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 3),
       decoration: BoxDecoration(
         color: AppPalette.secondary,
         borderRadius: BorderRadius.circular(999),
@@ -538,17 +561,17 @@ class OriginalTabBar extends StatelessWidget {
   const OriginalTabBar({
     required this.selectedIndex,
     required this.onSelected,
+    this.tabs = const [
+      ('文', '文法'),
+      ('字', '詞彙'),
+      ('研', '研修'),
+    ],
     super.key,
   });
 
   final int selectedIndex;
   final ValueChanged<int> onSelected;
-
-  static const _tabs = [
-    ('文', '文法'),
-    ('字', '詞彙'),
-    ('查', 'Scan'),
-  ];
+  final List<(String, String)> tabs;
 
   @override
   Widget build(BuildContext context) {
@@ -567,12 +590,12 @@ class OriginalTabBar extends StatelessWidget {
               shadowDepth: 8,
               child: Row(
                 children: [
-                  for (var index = 0; index < _tabs.length; index++) ...[
+                  for (var index = 0; index < tabs.length; index++) ...[
                     if (index > 0) const SizedBox(width: 7),
                     Expanded(
                       child: _TabButton(
-                        glyph: _tabs[index].$1,
-                        label: _tabs[index].$2,
+                        glyph: tabs[index].$1,
+                        label: tabs[index].$2,
                         selected: selectedIndex == index,
                         onTap: () => onSelected(index),
                       ),

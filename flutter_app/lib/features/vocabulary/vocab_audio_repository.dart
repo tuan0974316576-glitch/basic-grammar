@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -34,6 +35,19 @@ abstract interface class VocabAudioRepository {
   Future<void> dispose();
 }
 
+abstract interface class VocabAudioVolumeController {
+  Future<void> setPlaybackVolume(double volume);
+}
+
+abstract interface class VocabAudioRevisionRefresher {
+  /// Checks for a teacher-corrected cloud revision without playing audio.
+  Future<VocabAudioEnsureResult> refreshWordAudio(String word);
+}
+
+@visibleForTesting
+double boostedVocabPlaybackVolume(double masterVolume) =>
+    (masterVolume * 1.6).clamp(0, 1).toDouble();
+
 class VocabAudioEnsureResult {
   const VocabAudioEnsureResult({
     required this.status,
@@ -49,15 +63,20 @@ class VocabAudioEnsureResult {
 }
 
 class SharedVocabAudio {
-  const SharedVocabAudio({required this.downloadUrl});
+  const SharedVocabAudio({
+    required this.downloadUrl,
+    this.revision = '',
+  });
 
   final String downloadUrl;
+  final String revision;
 }
 
 abstract interface class VocabAudioCloudClient {
   Future<SharedVocabAudio?> ensureAudio(
     String text, {
     required VocabAudioKind kind,
+    bool checkOnly = false,
   });
 }
 
@@ -71,6 +90,7 @@ class FirebaseVocabAudioCloudClient implements VocabAudioCloudClient {
   Future<SharedVocabAudio?> ensureAudio(
     String text, {
     required VocabAudioKind kind,
+    bool checkOnly = false,
   }) async {
     try {
       final functions =
@@ -83,13 +103,17 @@ class FirebaseVocabAudioCloudClient implements VocabAudioCloudClient {
         'text': text,
         'word': text,
         'kind': kind == VocabAudioKind.example ? 'example' : 'word',
+        if (checkOnly) 'checkOnly': true,
       });
       final raw = result.data;
       if (raw is! Map) return null;
       final data = Map<String, dynamic>.from(raw);
       final url = '${data['downloadUrl'] ?? ''}'.trim();
       if (data['status'] != 'ready' || url.isEmpty) return null;
-      return SharedVocabAudio(downloadUrl: url);
+      return SharedVocabAudio(
+        downloadUrl: url,
+        revision: '${data['revision'] ?? ''}'.trim(),
+      );
     } on FirebaseFunctionsException catch (error) {
       debugPrint(
         'Shared vocab audio failed: ${error.code} ${error.message ?? ''}',
@@ -106,7 +130,11 @@ typedef VocabAudioDirectoryProvider = Future<Directory> Function();
 typedef VocabAudioDownload = Future<http.Response> Function(Uri uri);
 typedef VocabAudioPlayback = Future<void> Function(Source source);
 
-class AssetVocabAudioRepository implements VocabAudioRepository {
+class AssetVocabAudioRepository
+    implements
+        VocabAudioRepository,
+        VocabAudioVolumeController,
+        VocabAudioRevisionRefresher {
   AssetVocabAudioRepository({
     AssetBundle? bundle,
     AudioPlayer? player,
@@ -132,7 +160,16 @@ class AssetVocabAudioRepository implements VocabAudioRepository {
   final VocabAudioDownload _download;
   final VocabAudioPlayback? _playback;
   final Map<String, Future<String?>> _downloadsInFlight = {};
+  final Map<String, Future<String?>> _correctionChecksInFlight = {};
+  final Set<String> _cloudCheckedWords = {};
   Map<String, String>? _audioByWord;
+  double _playbackVolume = 0.5;
+
+  @override
+  Future<void> setPlaybackVolume(double volume) async {
+    _playbackVolume = volume.clamp(0, 1);
+    await _player?.setVolume(_playbackVolume);
+  }
 
   Future<Map<String, String>> _loadManifest() async {
     final cached = _audioByWord;
@@ -149,9 +186,22 @@ class AssetVocabAudioRepository implements VocabAudioRepository {
   Future<bool> speakWord(String word) async {
     final normalized = normalizeVocabWord(word);
     if (normalized.isEmpty) return false;
+    final cachedPath = await _existingCachedAudioPath(
+      normalized,
+      VocabAudioKind.word,
+    );
+    if (cachedPath != null) {
+      unawaited(refreshWordAudio(normalized));
+      return _play(DeviceFileSource(cachedPath));
+    }
     final manifestPath = (await _loadManifest())[normalized];
     if (manifestPath != null && manifestPath.isNotEmpty) {
+      unawaited(refreshWordAudio(normalized));
       return _play(AssetSource(manifestPath));
+    }
+    final correctedPath = await _resolveCloudCorrectionOnce(normalized);
+    if (correctedPath != null) {
+      return _play(DeviceFileSource(correctedPath));
     }
     final path = await _resolveSharedAudioOnce(normalized, VocabAudioKind.word);
     if (path == null) return false;
@@ -220,6 +270,33 @@ class AssetVocabAudioRepository implements VocabAudioRepository {
         : const VocabAudioEnsureResult(status: 'ready', source: 'shared-cloud');
   }
 
+  @override
+  Future<VocabAudioEnsureResult> refreshWordAudio(String word) async {
+    final normalized = normalizeVocabWord(word);
+    if (normalized.isEmpty) {
+      return const VocabAudioEnsureResult(
+        status: 'error',
+        reason: 'invalid-text',
+      );
+    }
+    if (_cloudClient == null) {
+      return const VocabAudioEnsureResult(
+        status: 'error',
+        reason: 'cloud-unavailable',
+      );
+    }
+    final path = await _resolveCloudCorrectionOnce(normalized);
+    return path == null
+        ? const VocabAudioEnsureResult(
+            status: 'skipped',
+            source: 'existing',
+          )
+        : const VocabAudioEnsureResult(
+            status: 'ready',
+            source: 'cloud-revision',
+          );
+  }
+
   Future<String?> _resolveSharedAudioOnce(
     String text,
     VocabAudioKind kind,
@@ -249,31 +326,98 @@ class AssetVocabAudioRepository implements VocabAudioRepository {
       }
 
       final shared = await _cloudClient!.ensureAudio(text, kind: kind);
-      final uri = Uri.tryParse(shared?.downloadUrl ?? '');
-      if (uri == null || uri.scheme != 'https') return null;
-      final response =
-          await _download(uri).timeout(const Duration(seconds: 20));
-      final bytes = response.bodyBytes;
-      final contentType = response.headers['content-type']?.toLowerCase() ?? '';
-      if (response.statusCode != 200 ||
-          bytes.isEmpty ||
-          bytes.length > _maximumAudioBytes ||
-          (contentType.isNotEmpty &&
-              !contentType.contains('audio/mpeg') &&
-              !contentType.contains('audio/mp3') &&
-              !contentType.contains('application/octet-stream'))) {
-        return null;
-      }
-
-      final temporary = File('${target.path}.download');
-      await temporary.writeAsBytes(bytes, flush: true);
-      if (await target.exists()) await target.delete();
-      await temporary.rename(target.path);
-      return target.path;
+      return await _downloadSharedAudio(target, shared);
     } catch (error) {
       debugPrint('Vocab audio cache failed: $error');
       return null;
     }
+  }
+
+  Future<String?> _existingCachedAudioPath(
+    String text,
+    VocabAudioKind kind,
+  ) async {
+    final directory = await _cacheDirectory();
+    final target = File('${directory.path}/${_cacheKey(text, kind)}.mp3');
+    if (!await target.exists() || await target.length() <= 0) return null;
+    return target.path;
+  }
+
+  Future<String?> _resolveCloudCorrectionOnce(String word) {
+    if (_cloudClient == null) return Future.value(null);
+    final pending = _correctionChecksInFlight[word];
+    if (pending != null) return pending;
+    if (!_cloudCheckedWords.add(word)) return Future.value(null);
+
+    late final Future<String?> task;
+    task = _resolveCloudCorrection(word).whenComplete(() {
+      if (identical(_correctionChecksInFlight[word], task)) {
+        _correctionChecksInFlight.remove(word);
+      }
+    });
+    _correctionChecksInFlight[word] = task;
+    return task;
+  }
+
+  Future<String?> _resolveCloudCorrection(String word) async {
+    try {
+      final shared = await _cloudClient!.ensureAudio(
+        word,
+        kind: VocabAudioKind.word,
+        checkOnly: true,
+      );
+      if (shared == null) return null;
+      final directory = await _cacheDirectory();
+      final target = File(
+        '${directory.path}/${_cacheKey(word, VocabAudioKind.word)}.mp3',
+      );
+      final revisionFile = File('${target.path}.revision');
+      final localRevision = await revisionFile.exists()
+          ? (await revisionFile.readAsString()).trim()
+          : '';
+      if (await target.exists() &&
+          await target.length() > 0 &&
+          shared.revision.isNotEmpty &&
+          shared.revision == localRevision) {
+        return target.path;
+      }
+      return await _downloadSharedAudio(target, shared);
+    } catch (error) {
+      debugPrint('Vocab audio correction check failed: $error');
+      return null;
+    }
+  }
+
+  Future<String?> _downloadSharedAudio(
+    File target,
+    SharedVocabAudio? shared,
+  ) async {
+    final uri = Uri.tryParse(shared?.downloadUrl ?? '');
+    if (uri == null || uri.scheme != 'https') return null;
+    final response = await _download(uri).timeout(const Duration(seconds: 20));
+    final bytes = response.bodyBytes;
+    final contentType = response.headers['content-type']?.toLowerCase() ?? '';
+    if (response.statusCode != 200 ||
+        bytes.isEmpty ||
+        bytes.length > _maximumAudioBytes ||
+        (contentType.isNotEmpty &&
+            !contentType.contains('audio/mpeg') &&
+            !contentType.contains('audio/mp3') &&
+            !contentType.contains('application/octet-stream'))) {
+      return null;
+    }
+
+    final temporary = File('${target.path}.download');
+    await temporary.writeAsBytes(bytes, flush: true);
+    if (await target.exists()) await target.delete();
+    await temporary.rename(target.path);
+    final revisionFile = File('${target.path}.revision');
+    if (shared!.revision.isNotEmpty) {
+      await revisionFile.writeAsString(shared.revision, flush: true);
+    } else if (await revisionFile.exists()) {
+      await revisionFile.delete();
+    }
+    return target.path;
   }
 
   Future<Directory> _cacheDirectory() async {
@@ -288,7 +432,13 @@ class AssetVocabAudioRepository implements VocabAudioRepository {
         await playback(source);
       } else {
         await _player!.stop();
-        await _player.play(source);
+        // Give vocabulary speech a modest clarity boost without changing the
+        // Vocabulary speech needs extra headroom in a busy classroom. Keep
+        // the user's master slider as the base and add a 60% clarity boost.
+        await _player.play(
+          source,
+          volume: boostedVocabPlaybackVolume(_playbackVolume),
+        );
       }
       return true;
     } catch (error) {

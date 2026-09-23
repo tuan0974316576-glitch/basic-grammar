@@ -1,9 +1,35 @@
 const crypto = require("crypto");
 const admin = require("firebase-admin");
-const { onDocumentWritten } = require("firebase-functions/v2/firestore");
+const { onDocumentCreated, onDocumentWritten } = require("firebase-functions/v2/firestore");
 const { HttpsError, onCall } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
+const { onSchedule } = require("firebase-functions/v2/scheduler");
 const { defineSecret } = require("firebase-functions/params");
+const vocabImport = require("./vocab-import");
+const { gradeP2Response } = require("./econ-grading");
+const { assessPronunciation } = require("./pronunciation-assessment");
+const { decodeTeacherMp3, safeOriginalFileName } = require("./vocab-audio-upload");
+const {
+  resolveStudentIdentity,
+  validateStudentProfileInput,
+} = require("./student-profile");
+const {
+  LEARNING_ACTIVITY_KINDS,
+  STREAK_MILESTONES,
+  hongKongDateKey,
+  nextStudyStreak,
+} = require("./streak-engine");
+const {
+  ACHIEVEMENT_TEMPLATES,
+  DAILY_TEMPLATES,
+  SOCIAL_TEMPLATES,
+  STREAK_RISK_TEMPLATES,
+  WEEKLY_TEMPLATES,
+  dueReminderAt,
+  normalizeReminderMinutes,
+  pickFreshTemplate,
+  trimTemplateHistory,
+} = require("./notification-engine");
 
 const GRAMMAR_GAME_STORAGE_BUCKET = "enguistics-grammar-game.firebasestorage.app";
 
@@ -19,6 +45,109 @@ const AZURE_TRANSLATOR_KEY = defineSecret("AZURE_TRANSLATOR_KEY");
 const AZURE_TRANSLATOR_REGION = defineSecret("AZURE_TRANSLATOR_REGION");
 const GEMINI_API_KEY = defineSecret("GEMINI_API_KEY");
 const DEEPSEEK_API_KEY = defineSecret("DEEPSEEK_API_KEY");
+
+exports.processVocabImport = onCall({
+  timeoutSeconds: 540,
+  memory: "2GiB",
+  concurrency: 4,
+  secrets: [GEMINI_API_KEY]
+}, vocabImport.processVocabImport);
+
+exports.assessVocabPronunciation = onCall({
+  timeoutSeconds: 45,
+  memory: "512MiB",
+  secrets: [AZURE_SPEECH_KEY, AZURE_SPEECH_REGION],
+}, async (request) => {
+  if (!request.auth?.uid) {
+    throw new HttpsError("unauthenticated", "Please log in before speaking practice.");
+  }
+  const expectedText = String(request.data?.expectedText || "").trim();
+  const referenceId = String(request.data?.referenceId || "").trim();
+  const audioBase64 = String(request.data?.audioBase64 || "").trim();
+  if (!expectedText || expectedText.length > 220 || !/^[A-Za-z0-9 ',.!?\-]+$/.test(expectedText)) {
+    throw new HttpsError("invalid-argument", "Invalid speaking reference text.");
+  }
+  if (!audioBase64 || audioBase64.length > 5_600_000) {
+    throw new HttpsError("invalid-argument", "Submit a WAV recording up to 4 MB.");
+  }
+  let audioBuffer;
+  try {
+    audioBuffer = Buffer.from(audioBase64, "base64");
+  } catch (_) {
+    throw new HttpsError("invalid-argument", "Invalid WAV recording.");
+  }
+  if (audioBuffer.length < 44 || audioBuffer.length > 4 * 1024 * 1024 ||
+      audioBuffer.subarray(0, 4).toString("ascii") !== "RIFF" ||
+      audioBuffer.subarray(8, 12).toString("ascii") !== "WAVE") {
+    throw new HttpsError("invalid-argument", "Invalid WAV recording.");
+  }
+  try {
+    return await assessPronunciation({
+      speechKey: AZURE_SPEECH_KEY.value(),
+      speechRegion: AZURE_SPEECH_REGION.value(),
+      audioBuffer,
+      expectedText,
+      referenceId,
+    });
+  } catch (error) {
+    console.error("Vocabulary pronunciation assessment failed.", error);
+    throw new HttpsError("unavailable", "Pronunciation checking is temporarily unavailable.");
+  }
+});
+
+// ECON Paper 2 uses the same A1 BUDDY Firebase Auth identity and user profile
+// as Grammar/Vocabulary. The reviewed marking contract is bundled beside the
+// function so no question text or rubric is fetched from the client.
+exports.gradeP2Answer = onCall({
+  timeoutSeconds: 60,
+  memory: "256MiB",
+  secrets: [DEEPSEEK_API_KEY],
+}, async (request) => {
+  if (!request.auth?.uid) {
+    throw new HttpsError("unauthenticated", "Sign in before marking an answer.");
+  }
+  const questionId = String(request.data?.questionId || "").trim();
+  const response = String(request.data?.response || "").trim();
+  const diagram = request.data?.diagram ?? null;
+  if (!questionId || response.length < 1 || response.length > 6000) {
+    throw new HttpsError("invalid-argument", "Submit a valid question and an answer of up to 6,000 characters.");
+  }
+
+  const profile = (await db.doc(`users/${request.auth.uid}`).get()).data() || {};
+  const role = String(profile.role || request.auth.token?.role || "student");
+  const isTeacher = role === "teacher" || Boolean(request.auth.token?.admin);
+  const explicitAccessStatus = String(profile.accessStatus || "").trim().toLowerCase();
+  if (!isTeacher && ["suspended", "expired"].includes(explicitAccessStatus)) {
+    throw new HttpsError("permission-denied", "An active student account is required.");
+  }
+
+  try {
+    return {
+      grade: await gradeP2Response({
+        questionId,
+        response,
+        diagram,
+        apiKey: DEEPSEEK_API_KEY.value(),
+      }),
+    };
+  } catch (error) {
+    if (error?.gradingCode === "question-not-found") {
+      throw new HttpsError("not-found", error.message);
+    }
+    if (error?.gradingCode === "invalid-diagram") {
+      throw new HttpsError("invalid-argument", error.message);
+    }
+    if (error?.gradingCode === "provider-error") {
+      console.error("ECON P2 grading provider failed.", error.message);
+      throw new HttpsError("unavailable", "Automated marking is temporarily unavailable.");
+    }
+    if (error?.gradingCode === "not-configured") {
+      throw new HttpsError("failed-precondition", "Automated marking is not configured.");
+    }
+    console.error("ECON P2 grading failed.", error);
+    throw new HttpsError("internal", "The answer could not be marked. Try again.");
+  }
+});
 
 const DEFAULT_VOICE = "en-US-AndrewMultilingualNeural";
 const DEFAULT_OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3";
@@ -341,7 +470,14 @@ async function createStudentDeviceSession(accountRef, { uid, studentId, classId,
 
 function isLikelyWordOrPhrase(value) {
   const text = normalizeVocabWord(value);
-  return Boolean(text && /^[a-z][a-z' -]{0,63}$/.test(text) && !/ {2,}|--|''/.test(text));
+  const slots = text.match(/\.\.\./g) || [];
+  const validationText = text.replace(/\.\.\./g, "slot");
+  return Boolean(
+    text
+    && slots.length <= 4
+    && /^[a-z][a-z' -]{0,79}$/.test(validationText)
+    && !/ {2,}|--|''/.test(validationText)
+  );
 }
 
 function normalizeAudioText(value, kind = "word") {
@@ -656,6 +792,34 @@ function getPrimaryExampleMeaning(hints = []) {
 }
 
 const CURATED_VOCAB_EXAMPLES = new Map([
+  ["no man is an island", [
+    {
+      source: "No man is an island, so we should help one another.",
+      target: "沒有人可以孤立生活，所以我們應該互相幫助。"
+    },
+    {
+      source: "She learned that no man is an island when her friends supported her.",
+      target: "朋友支持她時，她明白到沒有人可以孤立生活。"
+    },
+    {
+      source: "Our class believes that no man is an island and teamwork matters.",
+      target: "我們全班都相信人不能孤立生活，團隊合作十分重要。"
+    }
+  ]],
+  ["vary from ... to ...", [
+    {
+      source: "Ticket prices vary from fifty dollars to two hundred dollars.",
+      target: "票價由五十元至二百元不等。"
+    },
+    {
+      source: "The weather can vary from sunny to rainy within one day.",
+      target: "天氣可以在一天內由晴朗轉為下雨。"
+    },
+    {
+      source: "Study methods vary from student to student.",
+      target: "學習方法因學生而異。"
+    }
+  ]],
   ["go through hoops", [
     {
       source: "We had to go through hoops to get permission for the event.",
@@ -760,8 +924,12 @@ function containsVocabularyItem(word, source) {
     const firstTokenPattern = getExampleWordForms(wordTokens[0])
       .map(escapeRegExp)
       .join("|");
-    const remainingTokens = wordTokens.slice(1).map(escapeRegExp).join("\\s+");
-    return new RegExp(`\\b(?:${firstTokenPattern})\\s+${remainingTokens}\\b`, "i").test(normalizedSource);
+    const remainingPattern = wordTokens.slice(1).map((token) => (
+      token === "..."
+        ? "(?:\\s+[a-z0-9][a-z0-9'-]*){1,6}"
+        : `\\s+${escapeRegExp(token)}`
+    )).join("");
+    return new RegExp(`\\b(?:${firstTokenPattern})${remainingPattern}\\b`, "i").test(normalizedSource);
   }
   const forms = getExampleWordForms(normalizedWord).map(escapeRegExp).join("|");
   return new RegExp(`\\b(?:${forms})\\b`, "i").test(normalizedSource);
@@ -778,28 +946,37 @@ const GENERIC_EXAMPLE_SOURCE_PATTERNS = [
 const GENERIC_EXAMPLE_TARGET_PATTERN = /造句|白板|學了|學習了|請用.+句子/;
 
 function isUsableVocabExample(word, hints = [], example = {}) {
+  return !getVocabExampleRejectionReason(word, hints, example);
+}
+
+function getVocabExampleRejectionReason(word, hints = [], example = {}) {
   const source = normalizeVocabExample(example.source);
   const target = normalizeVocabExample(example.target);
-  if (!source || !target || !containsVocabularyItem(word, source)) return false;
-  if (GENERIC_EXAMPLE_SOURCE_PATTERNS.some((pattern) => pattern.test(source))) return false;
-  if (GENERIC_EXAMPLE_TARGET_PATTERN.test(target)) return false;
+  if (!source) return "missing-english";
+  if (!target) return "missing-translation";
+  if (source.includes("...")) return "literal-placeholder";
+  if (!containsVocabularyItem(word, source)) return "missing-vocabulary-structure";
+  if (GENERIC_EXAMPLE_SOURCE_PATTERNS.some((pattern) => pattern.test(source))) return "meta-example";
+  if (GENERIC_EXAMPLE_TARGET_PATTERN.test(target)) return "meta-translation";
 
   const normalizedWord = normalizeVocabWord(word);
-  const wordTokenCount = normalizedWord.split(/\s+/).filter(Boolean).length;
+  const wordTokenCount = normalizedWord.split(/\s+/).filter((token) => token && token !== "...").length;
   const sourceTokenCount = source.split(/\s+/).filter(Boolean).length;
-  if (wordTokenCount > 1 && sourceTokenCount <= wordTokenCount + 1) return false;
+  if (wordTokenCount > 1 && sourceTokenCount <= wordTokenCount + 1) return "too-short";
 
   const guidance = getPhraseExampleGuidance(normalizedWord);
-  if (!guidance) return true;
+  if (!guidance) return "";
 
   const phrasePattern = normalizedWord === "go through hoops"
     ? /\b(?:go|goes|went|gone|going)\s+through\s+hoops\b/i
     : /\b(?:jump|jumps|jumped|jumping)\s+through\s+hoops\b/i;
-  if (!phrasePattern.test(source)) return false;
+  if (!phrasePattern.test(source)) return "wrong-idiom-form";
   if (/\b(?:basketball|football|soccer|gym|gymnast|gymnastics|circus|hula|trampoline|acrobat|athlete|ring|dunk)\b/i.test(source)) {
-    return false;
+    return "literal-idiom-context";
   }
-  return /\b(?:to|before|until|so that|in order to|because|just to|must|need(?:s|ed)? to|have to|had to)\b/i.test(source);
+  return /\b(?:to|before|until|so that|in order to|because|just to|must|need(?:s|ed)? to|have to|had to)\b/i.test(source)
+    ? ""
+    : "unclear-idiom-context";
 }
 
 function filterVocabExampleQuality(word, hints = [], examples = []) {
@@ -950,6 +1127,11 @@ function buildGeminiExamplePrompt(word, hints = []) {
     "- Avoid strange, violent, adult, political, religious, or scary content.",
     "- Avoid rare names and idioms unless the vocabulary item itself is a phrase.",
     "- If the vocabulary item is a phrase, keep the phrase together in the English sentence.",
+    "- Do not replace a fixed phrase or idiom with a synonym, paraphrase, modernized wording, or pronoun substitution.",
+    ...(normalizedWord.includes("...") ? [
+      "- The dots (...) are placeholders, not literal punctuation. Replace every placeholder with natural words in each sentence.",
+      "- Keep the fixed words in the same order. For example, 'vary from ... to ...' can become 'vary from person to person'."
+    ] : []),
     "- Do not write meta classroom or dictionary instructions such as 'I learned ...', 'Our teacher wrote ...', or 'Please use ... in a sentence.'",
     "- Every sentence must show a meaningful real-life use of the vocabulary item, not merely mention it as a label.",
     ...(getPhraseExampleGuidance(normalizedWord) ? [
@@ -1182,6 +1364,42 @@ function normalizeDeepSeekExamples(word, body, hints = []) {
   )).slice(0, GEMINI_EXAMPLE_LIMIT);
 }
 
+function getDeepSeekRawExamples(body = {}) {
+  const text = String(body?.choices?.[0]?.message?.content || "").trim();
+  const parsed = parseGeminiJsonText(text);
+  return Array.isArray(parsed?.examples) ? parsed.examples : [];
+}
+
+function summarizeExampleRejections(word, hints = [], body = {}) {
+  const normalizedHints = normalizeExampleGenerationHints(word, hints);
+  return getDeepSeekRawExamples(body).map((example, index) => ({
+    index,
+    source: normalizeVocabExample(example?.source || example?.english || "").slice(0, 180),
+    reason: getVocabExampleRejectionReason(word, normalizedHints, {
+      source: example?.source || example?.english || "",
+      target: example?.target || example?.chinese || example?.translation || ""
+    }) || "accepted"
+  }));
+}
+
+function buildExampleRepairPrompt(word, hints = [], rejectionSummary = []) {
+  const normalizedWord = normalizeVocabWord(word);
+  const reasons = rejectionSummary
+    .map((item) => `${item.index + 1}. ${item.reason}: ${item.source || "(blank)"}`)
+    .join("\n");
+  return [
+    buildGeminiExamplePrompt(normalizedWord, hints),
+    "",
+    "REPAIR REQUIRED:",
+    "The previous response failed automated validation. Generate three completely new examples.",
+    `Use the exact vocabulary structure '${normalizedWord}'. Do not paraphrase or modernize it.`,
+    normalizedWord.includes("...")
+      ? "Replace every ... slot with natural words, while preserving all fixed words in the same order. Never print literal dots."
+      : "Keep the fixed phrase intact, apart from a natural inflection of its first verb.",
+    reasons ? `Previous rejection report:\n${reasons}` : "Previous rejection report: no parseable examples.",
+  ].join("\n");
+}
+
 function normalizeGeminiExamples(word, body, hints = []) {
   const text = body?.candidates?.[0]?.content?.parts
     ?.map((part) => part?.text || "")
@@ -1223,11 +1441,29 @@ async function postDeepSeekJson(prompt, apiKeyValue, options = {}) {
 }
 
 async function generateVocabExamplesWithDeepSeek(word, hints = [], apiKeyValue) {
-  const body = await postDeepSeekJson(buildGeminiExamplePrompt(word, hints), apiKeyValue, {
+  const firstBody = await postDeepSeekJson(buildGeminiExamplePrompt(word, hints), apiKeyValue, {
     temperature: 0.4,
     maxTokens: 512
   });
-  return normalizeDeepSeekExamples(word, body, hints);
+  const firstExamples = normalizeDeepSeekExamples(word, firstBody, hints);
+  if (hasCompleteExampleSet(firstExamples)) return firstExamples;
+
+  const rejectionSummary = summarizeExampleRejections(word, hints, firstBody);
+  console.warn("DeepSeek vocab examples need repair.", {
+    word: normalizeVocabWord(word),
+    accepted: firstExamples.length,
+    rejected: rejectionSummary.filter((item) => item.reason !== "accepted")
+  });
+  const repairedBody = await postDeepSeekJson(
+    buildExampleRepairPrompt(word, hints, rejectionSummary),
+    apiKeyValue,
+    { temperature: 0.25, maxTokens: 640 }
+  );
+  const repairedExamples = normalizeDeepSeekExamples(word, repairedBody, hints);
+  return filterVocabExampleQuality(word, hints, [
+    ...firstExamples,
+    ...repairedExamples
+  ]).slice(0, GEMINI_EXAMPLE_LIMIT);
 }
 
 async function generateVocabExamplesWithGemini(word, hints = [], apiKeyValue) {
@@ -1729,6 +1965,8 @@ async function generateAzureTtsMp3(text, { speechKey, speechRegion }) {
 
 async function getOrCreateVocabAudio(text, context = {}) {
   const kind = context.kind === "example" ? "example" : "word";
+  const force = context.force === true;
+  const checkOnly = context.checkOnly === true;
   const normalizedText = normalizeAudioText(text, kind);
   const audioId = makeAudioTextId(normalizedText, kind);
   const storagePath = makeAudioStoragePath(normalizedText, kind);
@@ -1741,30 +1979,38 @@ async function getOrCreateVocabAudio(text, context = {}) {
   const file = bucket.file(storagePath);
   const fileExists = Boolean(existsResult?.[0]);
 
-  if (fileExists) {
+  if (fileExists && !force) {
     const data = docSnap.exists ? (docSnap.data() || {}) : {};
+    const [metadata] = await file.getMetadata();
+    const revision = String(data.revision || metadata?.generation || "");
     const downloadUrl = await getOrCreateDownloadUrl(file, storagePath);
-    await docRef.set({
-      text: normalizedText,
-      word: kind === "word" ? normalizedText : "",
-      kind,
-      audioId,
-      storagePath,
-      source: data.source || "firebase-shared",
-      voice: data.voice || DEFAULT_VOICE,
-      outputFormat: data.outputFormat || DEFAULT_OUTPUT_FORMAT,
-      updatedAt: admin.firestore.FieldValue.serverTimestamp()
-    }, { merge: true });
+    if (!checkOnly) {
+      await docRef.set({
+        text: normalizedText,
+        word: kind === "word" ? normalizedText : "",
+        kind,
+        audioId,
+        storagePath,
+        source: data.source || "firebase-shared",
+        voice: data.voice || DEFAULT_VOICE,
+        outputFormat: data.outputFormat || DEFAULT_OUTPUT_FORMAT,
+        revision,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+    }
     return {
       audioId,
       storagePath,
       downloadUrl,
       source: data.source || "firebase-shared",
       kind,
+      revision,
       createdAt: data.createdAt || null,
       cached: true
     };
   }
+
+  if (checkOnly) return null;
 
   const key = AZURE_SPEECH_KEY.value();
   const region = AZURE_SPEECH_REGION.value();
@@ -1779,6 +2025,7 @@ async function getOrCreateVocabAudio(text, context = {}) {
   });
 
   const downloadToken = crypto.randomUUID();
+  const revision = crypto.randomUUID();
   await file.save(audioBuffer, {
     resumable: false,
     metadata: {
@@ -1791,6 +2038,8 @@ async function getOrCreateVocabAudio(text, context = {}) {
         kind,
         voice: DEFAULT_VOICE,
         source: "azure-tts",
+        revision,
+        teacherOverride: force ? "true" : "false",
         firebaseStorageDownloadTokens: downloadToken
       }
     }
@@ -1808,6 +2057,12 @@ async function getOrCreateVocabAudio(text, context = {}) {
     source: "azure-tts",
     voice: DEFAULT_VOICE,
     outputFormat: DEFAULT_OUTPUT_FORMAT,
+    revision,
+    teacherOverride: force || Boolean(docSnap.data()?.teacherOverride),
+    ...(force ? {
+      regeneratedAt: admin.firestore.FieldValue.serverTimestamp(),
+      regeneratedBy: String(context.actorUid || "")
+    } : {}),
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     updatedAt: admin.firestore.FieldValue.serverTimestamp()
   }, { merge: true });
@@ -1818,6 +2073,7 @@ async function getOrCreateVocabAudio(text, context = {}) {
     downloadUrl,
     source: "azure-tts",
     kind,
+    revision,
     cached: false
   };
 }
@@ -1836,13 +2092,120 @@ exports.ensureVocabAudio = onCall({
     throw new HttpsError("invalid-argument", "Invalid audio text.");
   }
 
-  const result = await getOrCreateVocabAudio(text, { ...request, kind });
+  const force = request.data?.force === true;
+  const checkOnly = request.data?.checkOnly === true;
+  if (force && request.auth.token?.role !== "teacher" && !request.auth.token?.admin) {
+    throw new HttpsError("permission-denied", "Teacher account required to regenerate audio.");
+  }
+
+  const result = await getOrCreateVocabAudio(text, {
+    kind,
+    force,
+    checkOnly,
+    actorUid: request.auth.uid
+  });
+  if (!result) {
+    return {
+      status: "missing",
+      word: kind === "word" ? text : "",
+      text,
+      kind,
+      reason: "not-generated"
+    };
+  }
   return {
     status: "ready",
     word: kind === "word" ? text : "",
     text,
     kind,
     ...result
+  };
+});
+
+exports.uploadVocabAudio = onCall({
+  invoker: "public",
+  timeoutSeconds: 30,
+  memory: "256MiB",
+}, async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "Please log in first.");
+  }
+  if (request.auth.token?.role !== "teacher" && !request.auth.token?.admin) {
+    throw new HttpsError("permission-denied", "Teacher account required to upload audio.");
+  }
+
+  const word = normalizeAudioText(request.data?.word, "word");
+  if (!isLikelyAudioText(word, "word")) {
+    throw new HttpsError("invalid-argument", "Invalid vocabulary word.");
+  }
+  let audioBuffer;
+  try {
+    audioBuffer = decodeTeacherMp3(request.data?.audioBase64, request.data?.contentType);
+  } catch (error) {
+    throw new HttpsError("invalid-argument", error.message || "Invalid MP3 upload.");
+  }
+
+  const audioId = makeAudioTextId(word, "word");
+  const storagePath = makeAudioStoragePath(word, "word");
+  const docRef = db.collection("vocabAudio").doc(audioId);
+  const file = bucket.file(storagePath);
+  const revision = crypto.randomUUID();
+  const downloadToken = crypto.randomUUID();
+  const originalFileName = safeOriginalFileName(request.data?.fileName);
+
+  await file.save(audioBuffer, {
+    resumable: false,
+    metadata: {
+      contentType: "audio/mpeg",
+      cacheControl: "public, max-age=31536000, immutable",
+      metadata: {
+        audioId,
+        text: word,
+        word,
+        kind: "word",
+        source: "teacher-upload",
+        revision,
+        teacherOverride: "true",
+        originalFileName,
+        uploadedBy: request.auth.uid,
+        firebaseStorageDownloadTokens: downloadToken
+      }
+    }
+  });
+
+  const downloadUrl = makeDownloadUrl(bucket.name, storagePath, downloadToken);
+  const existing = await docRef.get();
+  await docRef.set({
+    text: word,
+    word,
+    kind: "word",
+    audioId,
+    storagePath,
+    downloadUrl,
+    source: "teacher-upload",
+    voice: "teacher-upload",
+    outputFormat: "audio/mpeg",
+    revision,
+    teacherOverride: true,
+    originalFileName,
+    uploadedBytes: audioBuffer.length,
+    uploadedAt: admin.firestore.FieldValue.serverTimestamp(),
+    uploadedBy: request.auth.uid,
+    ...(!existing.exists ? { createdAt: admin.firestore.FieldValue.serverTimestamp() } : {}),
+    updatedAt: admin.firestore.FieldValue.serverTimestamp()
+  }, { merge: true });
+
+  return {
+    status: "ready",
+    word,
+    text: word,
+    kind: "word",
+    audioId,
+    storagePath,
+    downloadUrl,
+    source: "teacher-upload",
+    revision,
+    uploadedBytes: audioBuffer.length
   };
 });
 
@@ -2340,11 +2703,20 @@ exports.studentLogin = onCall({
   }
 
   const uid = account.uid || `student_${studentId.toLowerCase()}`;
-  const displayName = account.displayName || studentId;
+  const accountDisplayName = account.displayName || studentId;
   const classId = account.classId || "";
   const role = account.role === "teacher" ? "teacher" : "student";
   const email = account.email || makeStudentEmail(studentId);
   const authPassword = makeStudentPassword(studentId, pin, salt);
+  const userRef = db.collection("users").doc(uid);
+  const userSnapshot = await userRef.get();
+  const identity = resolveStudentIdentity(
+    account,
+    userSnapshot.exists ? (userSnapshot.data() || {}) : {},
+    studentId,
+    role,
+  );
+  const displayName = identity.displayName;
 
   await ensureStudentAuthUser({
     uid,
@@ -2362,18 +2734,23 @@ exports.studentLogin = onCall({
   await accountRef.set({
     uid,
     email,
-    displayName,
+    displayName: accountDisplayName,
     classId,
     role,
     lastLoginAt: admin.firestore.FieldValue.serverTimestamp(),
     failedLoginCount: 0
   }, { merge: true });
 
-  await db.collection("users").doc(uid).set({
+  await userRef.set({
     studentId,
     displayName,
     classId,
     role,
+    avatarStyle: identity.avatarStyle,
+    avatarSeed: identity.avatarSeed,
+    avatarBackground: identity.avatarBackground,
+    avatarOptions: identity.avatarOptions,
+    profileSetupComplete: identity.profileSetupComplete,
     lastLoginAt: admin.firestore.FieldValue.serverTimestamp()
   }, { merge: true });
 
@@ -2391,8 +2768,544 @@ exports.studentLogin = onCall({
     studentId,
     displayName,
     classId,
-    role
+    role,
+    avatarStyle: identity.avatarStyle,
+    avatarSeed: identity.avatarSeed,
+    avatarBackground: identity.avatarBackground,
+    avatarOptions: identity.avatarOptions,
+    profileSetupComplete: identity.profileSetupComplete
   };
+});
+
+exports.completeStudentProfile = onCall({
+  invoker: "public"
+}, async (request) => {
+  const uid = request.auth?.uid;
+  if (!uid) {
+    throw new HttpsError("unauthenticated", "Please log in before setting up a profile.");
+  }
+  const validated = validateStudentProfileInput(request.data || {});
+  if (!validated.valid) {
+    throw new HttpsError("invalid-argument", validated.reason || "Invalid profile.");
+  }
+
+  const profile = validated.profile;
+  const studentId = String(request.auth.token?.studentId || "").trim().toUpperCase();
+  const role = request.auth.token?.role === "teacher" ? "teacher" : "student";
+  const updatedAt = admin.firestore.FieldValue.serverTimestamp();
+  const batch = db.batch();
+  batch.set(db.collection("users").doc(uid), {
+    ...profile,
+    ...(studentId ? { studentId } : {}),
+    role,
+    profileUpdatedAt: updatedAt,
+    updatedAt,
+  }, { merge: true });
+  batch.set(db.collection("publicProfiles").doc(uid), {
+    displayName: profile.displayName,
+    avatarStyle: profile.avatarStyle,
+    avatarSeed: profile.avatarSeed,
+    avatarBackground: profile.avatarBackground,
+    avatarOptions: profile.avatarOptions,
+    updatedAt,
+  }, { merge: true });
+  await batch.commit();
+  await admin.auth().updateUser(uid, { displayName: profile.displayName });
+
+  return profile;
+});
+
+exports.aggregateEconPracticeAttempt = onDocumentCreated(
+  { document: "users/{uid}/attempts/{attemptId}" },
+  async (event) => {
+    const attemptRef = event.data.ref;
+    const uid = event.params.uid;
+    await db.runTransaction(async (transaction) => {
+      const latest = await transaction.get(attemptRef);
+      const attempt = latest.data();
+      if (!attempt || attempt.econAggregatedAt) return;
+      if (!attempt.questionId || !attempt.paper) {
+        transaction.update(attemptRef, { econAggregatedAt: admin.firestore.FieldValue.serverTimestamp() });
+        return;
+      }
+
+      const questionStatsId = safeEconDocumentId(attempt.questionId);
+      const topicStatsId = safeEconDocumentId(
+        attempt.topicId || `${attempt.language || "en"}|${attempt.chapterNo || 0}|${attempt.keyPoint || ""}`,
+      );
+      const questionRef = db.doc(`users/${uid}/questionStats/${questionStatsId}`);
+      const topicRef = db.doc(`users/${uid}/topicStats/${topicStatsId}`);
+      const userRef = db.doc(`users/${uid}`);
+      const awardedMarks = Number(attempt.awardedMarks) || 0;
+      const maxMarks = Number(attempt.maxMarks) || 0;
+      const missedMarks = Math.max(0, Number(attempt.missedMarks) || maxMarks - awardedMarks);
+      const fullCredit = missedMarks === 0 ? 1 : 0;
+      const missedAttempt = missedMarks > 0 ? 1 : 0;
+      const paper = attempt.paper === "P2" ? "P2" : "P1";
+      const increments = {
+        attemptCount: admin.firestore.FieldValue.increment(1),
+        fullCreditCount: admin.firestore.FieldValue.increment(fullCredit),
+        missedAttemptCount: admin.firestore.FieldValue.increment(missedAttempt),
+        awardedMarks: admin.firestore.FieldValue.increment(awardedMarks),
+        availableMarks: admin.firestore.FieldValue.increment(maxMarks),
+        missedMarks: admin.firestore.FieldValue.increment(missedMarks),
+        lastAttemptAt: admin.firestore.FieldValue.serverTimestamp(),
+      };
+      transaction.set(questionRef, {
+        ...increments,
+        questionId: attempt.questionId,
+        questionRef: attempt.questionRef || "",
+        paper,
+        year: String(attempt.year || ""),
+        language: attempt.language === "zh" ? "zh" : "en",
+        chapterNo: Number(attempt.chapterNo || 0),
+        chapterTitle: String(attempt.chapterTitle || ""),
+        keyPoint: String(attempt.keyPoint || ""),
+        lastOutcome: missedMarks === 0 ? "correct" : "incorrect",
+      }, { merge: true });
+      transaction.set(topicRef, {
+        ...increments,
+        language: attempt.language === "zh" ? "zh" : "en",
+        chapterNo: Number(attempt.chapterNo || 0),
+        chapterTitle: String(attempt.chapterTitle || ""),
+        keyPoint: String(attempt.keyPoint || ""),
+      }, { merge: true });
+      transaction.set(userRef, {
+        totalAttempts: admin.firestore.FieldValue.increment(1),
+        totalAwardedMarks: admin.firestore.FieldValue.increment(awardedMarks),
+        totalAvailableMarks: admin.firestore.FieldValue.increment(maxMarks),
+        [`paperStats.${paper}.attemptCount`]: admin.firestore.FieldValue.increment(1),
+        [`paperStats.${paper}.correctCount`]: admin.firestore.FieldValue.increment(fullCredit),
+        lastActiveAt: admin.firestore.FieldValue.serverTimestamp(),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true });
+      transaction.update(attemptRef, {
+        econAggregatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    });
+  },
+);
+
+exports.getLeaderboard = onCall(async (request) => {
+  if (!request.auth?.uid) {
+    throw new HttpsError("unauthenticated", "Sign in before viewing the leaderboard.");
+  }
+  const usersSnapshot = await db.collection("users").where("role", "==", "student").get();
+  const rows = usersSnapshot.docs.map((document) => econLeaderboardRow(document)).filter(Boolean);
+  return {
+    leaderboards: {
+      P1: rankEconLeaderboard(rows, "P1"),
+      P2: rankEconLeaderboard(rows, "P2"),
+    },
+  };
+});
+
+exports.recordLearningActivity = onCall(async (request) => {
+  const uid = request.auth?.uid;
+  if (!uid) {
+    throw new HttpsError("unauthenticated", "Sign in before recording learning activity.");
+  }
+  const eventId = String(request.data?.eventId || "").trim();
+  const kind = String(request.data?.kind || "").trim();
+  const sourceId = String(request.data?.sourceId || "").trim();
+  const answerCount = Math.max(0, Math.min(500, Number(request.data?.answerCount) || 0));
+  const completedAtMs = Number(request.data?.completedAtMs) || Date.now();
+  if (!/^[A-Za-z0-9_-]{8,120}$/.test(eventId) || !LEARNING_ACTIVITY_KINDS.has(kind)) {
+    throw new HttpsError("invalid-argument", "Invalid learning activity.");
+  }
+  if (!sourceId || sourceId.length > 160 || answerCount < 1) {
+    throw new HttpsError("invalid-argument", "Incomplete learning activity.");
+  }
+  const now = Date.now();
+  if (completedAtMs > now + 10 * 60000 || completedAtMs < now - 72 * 60 * 60000) {
+    throw new HttpsError("invalid-argument", "Learning activity timestamp is outside the sync window.");
+  }
+  const dateKey = hongKongDateKey(new Date(completedAtMs));
+  const userRef = db.doc(`users/${uid}`);
+  const activityRef = userRef.collection("learningActivities").doc(eventId);
+  const result = await db.runTransaction(async (transaction) => {
+    const [activitySnapshot, userSnapshot] = await Promise.all([
+      transaction.get(activityRef),
+      transaction.get(userRef),
+    ]);
+    const user = userSnapshot.data() || {};
+    const current = user.studyStreak || {};
+    if (activitySnapshot.exists) {
+      return {
+        studyStreak: current,
+        duplicate: true,
+        extended: false,
+        freezeUsed: false,
+        milestone: false,
+      };
+    }
+    const update = nextStudyStreak(current, dateKey);
+    transaction.set(activityRef, {
+      kind,
+      sourceId,
+      answerCount,
+      dateKey,
+      clientCompletedAt: admin.firestore.Timestamp.fromMillis(completedAtMs),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    transaction.set(userRef, {
+      studyStreak: {
+        ...update.streak,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      },
+      bestStreak: update.streak.bestDays || 0,
+      lastActiveAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    return {
+      studyStreak: update.streak,
+      duplicate: false,
+      extended: update.extended,
+      freezeUsed: update.freezeUsed,
+      milestone: update.extended && STREAK_MILESTONES.has(update.streak.days),
+    };
+  });
+  if (result.milestone) {
+    try {
+      await sendUserCategoryNotification({
+        uid,
+        category: "achievements",
+        templates: ACHIEVEMENT_TEMPLATES,
+        dateKey,
+        type: "achievement",
+        route: "streak",
+        salt: `${uid}|milestone|${result.studyStreak.days}`,
+      });
+    } catch (error) {
+      console.error("Streak milestone notification failed.", {
+        uid,
+        message: error?.message || String(error),
+      });
+    }
+  }
+  return result;
+});
+
+function notificationTokenId(token) {
+  return crypto.createHash("sha256").update(token).digest("hex");
+}
+
+function normalizeNotificationCategories(value = {}) {
+  return {
+    daily: value.daily === true,
+    streakRisk: value.streakRisk === true,
+    social: value.social === true,
+    achievements: value.achievements === true,
+  };
+}
+
+function anyNotificationCategoryEnabled(categories) {
+  return Object.values(categories).some(Boolean);
+}
+
+exports.registerNotificationToken = onCall(async (request) => {
+  const uid = request.auth?.uid;
+  if (!uid) throw new HttpsError("unauthenticated", "Sign in before enabling notifications.");
+  const token = String(request.data?.token || "").trim();
+  const platform = String(request.data?.platform || "").trim();
+  const categories = normalizeNotificationCategories(request.data?.categories || {});
+  const reminderMinutes = normalizeReminderMinutes(request.data?.reminderMinutes);
+  const timeZone = String(request.data?.timeZone || "Asia/Hong_Kong").trim();
+  if (token.length < 32 || token.length > 4096 || !["ios", "android", "web"].includes(platform)) {
+    throw new HttpsError("invalid-argument", "Invalid notification token.");
+  }
+  if (timeZone !== "Asia/Hong_Kong") {
+    throw new HttpsError("invalid-argument", "Unsupported notification time zone.");
+  }
+  await db.doc(`users/${uid}/notificationTokens/${notificationTokenId(token)}`).set({
+    token,
+    platform,
+    categories,
+    reminderMinutes,
+    timeZone,
+    enabled: anyNotificationCategoryEnabled(categories),
+    updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+  }, { merge: true });
+  return { enabled: anyNotificationCategoryEnabled(categories) };
+});
+
+exports.unregisterNotificationToken = onCall(async (request) => {
+  const uid = request.auth?.uid;
+  if (!uid) throw new HttpsError("unauthenticated", "Sign in before changing notifications.");
+  const token = String(request.data?.token || "").trim();
+  if (token.length < 32 || token.length > 4096) {
+    throw new HttpsError("invalid-argument", "Invalid notification token.");
+  }
+  await db.doc(`users/${uid}/notificationTokens/${notificationTokenId(token)}`).set({
+    enabled: false,
+    updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+  }, { merge: true });
+  return { enabled: false };
+});
+
+function hongKongTimeParts(date) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Hong_Kong",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(date);
+  const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  const hour = Number(value.hour) || 0;
+  const minute = Number(value.minute) || 0;
+  return { hour, minute, minuteOfDay: hour * 60 + minute };
+}
+
+function notificationMessage(token, template, type, route) {
+  return {
+    token,
+    notification: { title: template.title, body: template.body },
+    data: { type, route },
+    android: { collapseKey: type },
+    apns: { payload: { aps: { sound: "default" } } },
+  };
+}
+
+function tokenCategories(tokenData = {}, { legacyDaily = false } = {}) {
+  if (tokenData.categories && typeof tokenData.categories === "object") {
+    return normalizeNotificationCategories(tokenData.categories);
+  }
+  return {
+    daily: legacyDaily,
+    streakRisk: legacyDaily,
+    social: false,
+    achievements: false,
+  };
+}
+
+async function updateSuccessfulNotification(candidate, dateKey, extra = {}) {
+  const history = trimTemplateHistory(candidate.history, dateKey);
+  history[candidate.template.id] = dateKey;
+  await candidate.tokenDocument.ref.set({
+    ...extra,
+    templateHistory: history,
+    lastSentAt: admin.firestore.FieldValue.serverTimestamp(),
+  }, { merge: true });
+}
+
+async function disableInvalidNotificationToken(candidate, result) {
+  if (result.success) return;
+  const code = result.error?.code || "";
+  if (code.includes("registration-token-not-registered") || code.includes("invalid-registration-token")) {
+    await candidate.tokenDocument.ref.set({
+      enabled: false,
+      disabledReason: "invalid-token",
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+  }
+}
+
+async function sendUserCategoryNotification({
+  uid,
+  category,
+  templates,
+  dateKey,
+  type,
+  route,
+  salt,
+}) {
+  const snapshot = await db.collection(`users/${uid}/notificationTokens`)
+    .where("enabled", "==", true)
+    .get();
+  const candidates = snapshot.docs.flatMap((tokenDocument) => {
+    const data = tokenDocument.data() || {};
+    if (!tokenCategories(data)[category] || !data.token) return [];
+    const history = data.templateHistory || {};
+    return [{
+      tokenDocument,
+      token: data.token,
+      history,
+      template: pickFreshTemplate(
+        templates,
+        history,
+        dateKey,
+        `${salt}|${tokenDocument.id}`,
+      ),
+    }];
+  });
+  if (!candidates.length) return;
+  const response = await admin.messaging().sendEach(candidates.map((candidate) => (
+    notificationMessage(candidate.token, candidate.template, type, route)
+  )));
+  await Promise.all(response.responses.map(async (result, index) => {
+    const candidate = candidates[index];
+    if (result.success) {
+      await updateSuccessfulNotification(candidate, dateKey, {
+        lastCategory: category,
+      });
+    } else {
+      await disableInvalidNotificationToken(candidate, result);
+    }
+  }));
+}
+
+exports.deliverSocialNotification = onDocumentCreated(
+  "users/{uid}/notificationOutbox/{notificationId}",
+  async (event) => {
+    const data = event.data?.data() || {};
+    const eventType = String(data.eventType || "");
+    if (!["classGoal", "friendQuest", "friendStreak"].includes(eventType)) {
+      await event.data?.ref.set({
+        deliveryStatus: "ignored",
+        deliveredAt: admin.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true });
+      return;
+    }
+    const dateKey = hongKongDateKey(new Date());
+    try {
+      await sendUserCategoryNotification({
+        uid: event.params.uid,
+        category: "social",
+        templates: SOCIAL_TEMPLATES,
+        dateKey,
+        type: "social",
+        route: "social",
+        salt: `${event.params.uid}|${eventType}|${event.params.notificationId}`,
+      });
+      await event.data.ref.set({
+        deliveryStatus: "sent",
+        deliveredAt: admin.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true });
+    } catch (error) {
+      console.error("Social notification delivery failed.", {
+        uid: event.params.uid,
+        notificationId: event.params.notificationId,
+        message: error?.message || String(error),
+      });
+      await event.data.ref.set({
+        deliveryStatus: "failed",
+        deliveryError: String(error?.message || error).slice(0, 300),
+        deliveredAt: admin.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true });
+    }
+  },
+);
+
+exports.sendStudyReminders = onSchedule({
+  schedule: "every 15 minutes",
+  timeZone: "Asia/Hong_Kong",
+  timeoutSeconds: 300,
+}, async () => {
+  const now = new Date();
+  const dateKey = hongKongDateKey(now);
+  const clock = hongKongTimeParts(now);
+  const weeklyDue = new Date(`${dateKey}T00:00:00Z`).getUTCDay() === 0
+    && clock.minuteOfDay >= 17 * 60
+    && clock.minuteOfDay < 17 * 60 + 15;
+  const tokenSnapshot = await db.collectionGroup("notificationTokens")
+    .where("enabled", "==", true)
+    .get();
+  const candidates = [];
+  const userSnapshots = new Map();
+  for (const tokenDocument of tokenSnapshot.docs) {
+    const tokenData = tokenDocument.data() || {};
+    const userRef = tokenDocument.ref.parent.parent;
+    if (!userRef || !tokenData.token) continue;
+    let userSnapshot = userSnapshots.get(userRef.path);
+    if (!userSnapshot) {
+      userSnapshot = await userRef.get();
+      userSnapshots.set(userRef.path, userSnapshot);
+    }
+    const streak = userSnapshot.data()?.studyStreak || {};
+    const categories = tokenCategories(tokenData, { legacyDaily: true });
+    const history = tokenData.templateHistory || {};
+    let category = "";
+    let type = "";
+    let route = "resume-study";
+    let template = null;
+    let successFields = {};
+
+    if (weeklyDue && categories.achievements &&
+        tokenData.lastWeeklyDateKey !== dateKey && Number(streak.totalActiveDays) > 0) {
+      category = "achievements";
+      type = "weekly_summary";
+      route = "streak";
+      template = pickFreshTemplate(
+        WEEKLY_TEMPLATES,
+        history,
+        dateKey,
+        `${tokenDocument.id}|weekly`,
+      );
+      successFields = { lastWeeklyDateKey: dateKey };
+    } else {
+      if (streak.lastCompletedDateKey === dateKey) continue;
+      const due = dueReminderAt(
+        clock.minuteOfDay,
+        tokenData.reminderMinutes,
+      );
+      if (!due) continue;
+      if (due.kind === "daily" && categories.daily) {
+        const count = tokenData.dailyReminderDateKey === dateKey
+          ? Number(tokenData.dailyReminderCount) || 0
+          : 0;
+        const slotKey = `${dateKey}:${due.slotIndex}`;
+        if (count >= 3 || tokenData.lastDailySlotKey === slotKey) continue;
+        category = "daily";
+        type = "daily_reminder";
+        template = pickFreshTemplate(
+          DAILY_TEMPLATES,
+          history,
+          dateKey,
+          `${tokenDocument.id}|daily|${due.slotIndex}`,
+        );
+        successFields = {
+          dailyReminderDateKey: dateKey,
+          dailyReminderCount: count + 1,
+          lastDailySlotKey: slotKey,
+        };
+      } else if (due.kind === "streakRisk" && categories.streakRisk &&
+          tokenData.lastDangerDateKey !== dateKey && Number(streak.days) > 0) {
+        category = "streakRisk";
+        type = "streak_risk";
+        route = "streak";
+        template = pickFreshTemplate(
+          STREAK_RISK_TEMPLATES,
+          history,
+          dateKey,
+          `${tokenDocument.id}|risk`,
+        );
+        successFields = { lastDangerDateKey: dateKey };
+      }
+    }
+    if (!template) continue;
+    candidates.push({
+      tokenDocument,
+      token: tokenData.token,
+      history,
+      template,
+      category,
+      type,
+      route,
+      successFields,
+    });
+  }
+  for (let offset = 0; offset < candidates.length; offset += 500) {
+    const batch = candidates.slice(offset, offset + 500);
+    const response = await admin.messaging().sendEach(batch.map((candidate) => (
+      notificationMessage(
+        candidate.token,
+        candidate.template,
+        candidate.type,
+        candidate.route,
+      )
+    )));
+    await Promise.all(response.responses.map(async (result, index) => {
+      const candidate = batch[index];
+      if (result.success) {
+        await updateSuccessfulNotification(candidate, dateKey, {
+          ...candidate.successFields,
+          lastCategory: candidate.category,
+        });
+      } else {
+        await disableInvalidNotificationToken(candidate, result);
+      }
+    }));
+  }
 });
 
 exports.studentDeviceLogin = onCall({
@@ -2436,9 +3349,17 @@ exports.studentDeviceLogin = onCall({
   }
 
   const uid = account.uid || session.uid || `student_${studentId.toLowerCase()}`;
-  const displayName = account.displayName || studentId;
   const classId = account.classId || session.classId || "";
   const role = account.role === "teacher" ? "teacher" : "student";
+  const userRef = db.collection("users").doc(uid);
+  const userSnapshot = await userRef.get();
+  const identity = resolveStudentIdentity(
+    account,
+    userSnapshot.exists ? (userSnapshot.data() || {}) : {},
+    studentId,
+    role,
+  );
+  const displayName = identity.displayName;
 
   await admin.auth().setCustomUserClaims(uid, {
     role,
@@ -2450,11 +3371,16 @@ exports.studentDeviceLogin = onCall({
     lastUsedAt: admin.firestore.FieldValue.serverTimestamp()
   }, { merge: true });
 
-  await db.collection("users").doc(uid).set({
+  await userRef.set({
     studentId,
     displayName,
     classId,
     role,
+    avatarStyle: identity.avatarStyle,
+    avatarSeed: identity.avatarSeed,
+    avatarBackground: identity.avatarBackground,
+    avatarOptions: identity.avatarOptions,
+    profileSetupComplete: identity.profileSetupComplete,
     lastLoginAt: admin.firestore.FieldValue.serverTimestamp()
   }, { merge: true });
 
@@ -2469,13 +3395,66 @@ exports.studentDeviceLogin = onCall({
     studentId,
     displayName,
     classId,
-    role
+    role,
+    avatarStyle: identity.avatarStyle,
+    avatarSeed: identity.avatarSeed,
+    avatarBackground: identity.avatarBackground,
+    avatarOptions: identity.avatarOptions,
+    profileSetupComplete: identity.profileSetupComplete
   };
 });
+
+function safeEconDocumentId(value) {
+  const text = String(value || "").trim();
+  const safe = text.replace(/[^A-Za-z0-9_-]+/g, "_").slice(0, 120);
+  return safe || crypto.createHash("sha256").update(text).digest("hex").slice(0, 32);
+}
+
+function econLeaderboardRow(document) {
+  const profile = document.data() || {};
+  if (profile.disabled || ["suspended", "expired"].includes(String(profile.accessStatus || "").toLowerCase())) {
+    return null;
+  }
+  const paperStats = profile.paperStats || {};
+  return {
+    displayName: String(profile.displayName || profile.studentId || "Student").trim() || "Student",
+    P1: {
+      attemptCount: Number(paperStats.P1?.attemptCount || 0),
+      correctCount: Number(paperStats.P1?.correctCount || 0),
+    },
+    P2: {
+      attemptCount: Number(paperStats.P2?.attemptCount || 0),
+      correctCount: Number(paperStats.P2?.correctCount || 0),
+    },
+  };
+}
+
+function rankEconLeaderboard(rows, paper) {
+  return rows
+    .map((row) => {
+      const stats = row[paper];
+      return {
+        displayName: row.displayName,
+        correctCount: stats.correctCount,
+        attemptCount: stats.attemptCount,
+        accuracy: stats.attemptCount ? Math.round((stats.correctCount / stats.attemptCount) * 100) : 0,
+      };
+    })
+    .filter((row) => row.attemptCount > 0)
+    .sort((left, right) => (
+      right.correctCount - left.correctCount
+      || right.accuracy - left.accuracy
+      || right.attemptCount - left.attemptCount
+      || left.displayName.localeCompare(right.displayName)
+    ))
+    .slice(0, 100)
+    .map((row, index) => ({ rank: index + 1, ...row }));
+}
 
 if (process.env.NODE_ENV === "test") {
   module.exports._private = {
     buildGeminiExamplePrompt,
+    buildExampleRepairPrompt,
     buildDeepSeekChatPayload,
     buildVocabLevelPrompt,
     getOrCreateVocabMeaning,
@@ -2494,6 +3473,7 @@ if (process.env.NODE_ENV === "test") {
     normalizeVocabCefrLevel,
     shouldInferTeacherVocabLevel,
     inferFallbackVocabLevel,
+    isLikelyWordOrPhrase,
     buildTeacherExamplePrompt,
     normalizeTeacherExamplesWithDeepSeek,
     normalizeTeacherExamplesWithGemini,
@@ -2501,6 +3481,8 @@ if (process.env.NODE_ENV === "test") {
     normalizeExampleGenerationHints,
     containsVocabularyItem,
     isUsableVocabExample,
+    getVocabExampleRejectionReason,
+    summarizeExampleRejections,
     filterVocabExampleQuality,
     completeExamplesToLimit,
     getTeacherVocabWarmSignature,

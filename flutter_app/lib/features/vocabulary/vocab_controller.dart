@@ -6,6 +6,7 @@ import 'vocab_models.dart';
 import 'vocab_cloud_store.dart';
 import 'vocab_import_models.dart';
 import 'vocab_repository.dart';
+import 'vocab_review_controller.dart';
 import 'vocab_synonym_repository.dart';
 
 enum VocabAddResult { added, invalid, saveFailed }
@@ -333,7 +334,11 @@ class VocabController extends ChangeNotifier {
 
   /// Records one completed review answer and keeps the saved-list badge in
   /// sync with the training round.
-  Future<void> recordReviewAnswer(VocabItem item, bool correct) async {
+  Future<void> recordReviewAnswer(
+    VocabItem item,
+    VocabReviewKind kind,
+    bool correct,
+  ) async {
     final index = _items.indexWhere((candidate) => candidate.id == item.id);
     if (index < 0) return;
     final previous = _items;
@@ -342,6 +347,12 @@ class VocabController extends ChangeNotifier {
     _items[index] = current.copyWith(
       totalSeen: current.totalSeen + 1,
       totalCorrect: current.totalCorrect + (correct ? 1 : 0),
+      listeningMastered: current.listeningMastered ||
+          (correct && kind == VocabReviewKind.listening),
+      spellingMastered: current.spellingMastered ||
+          (correct && kind == VocabReviewKind.spelling),
+      speakingMastered:
+          current.speakingMastered || (correct && kind.needsSpeaking),
       updatedAt: _now(),
     );
     notifyListeners();
@@ -404,9 +415,6 @@ class VocabController extends ChangeNotifier {
   }
 
   void _sortItems() {
-    _items = [..._items]..sort((left, right) {
-        final date = right.createdAt.compareTo(left.createdAt);
-        return date != 0 ? date : left.word.compareTo(right.word);
-      });
+    _items = [..._items]..sort(compareVocabItemsByRecentCreation);
   }
 }

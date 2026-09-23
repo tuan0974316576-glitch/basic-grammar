@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,12 +12,39 @@ import '../../firebase_options.dart';
 
 enum StudentAuthStatus { initializing, signedOut, authenticated, unavailable }
 
+const studentAvatarStyle = 'dicebear-critters-v10';
+const studentAvatarBackgrounds = <String>[
+  'ffd5dc',
+  'ffe8a3',
+  'bcebd7',
+  'bfe3ff',
+  'd9ccff',
+  'ffd4ad',
+];
+
+String normalizeStudentDisplayName(String value) =>
+    value.trim().replaceAll(RegExp(r'\s+'), ' ');
+
+bool isValidStudentDisplayName(String value) {
+  final name = normalizeStudentDisplayName(value);
+  final length = name.runes.length;
+  return length >= 2 &&
+      length <= 20 &&
+      RegExp(r"^[A-Za-z0-9\u00C0-\u024F\u3400-\u9FFF][A-Za-z0-9\u00C0-\u024F\u3400-\u9FFF .'-]*$")
+          .hasMatch(name);
+}
+
 class StudentProfile {
   const StudentProfile({
     required this.studentId,
     required this.displayName,
     this.classId = '',
     this.role = 'student',
+    this.avatarStyle = '',
+    this.avatarSeed = '',
+    this.avatarBackground = '',
+    this.avatarOptions = const <String, String>{},
+    this.profileSetupComplete = false,
   });
 
   factory StudentProfile.fromJson(Map<String, dynamic> json) {
@@ -24,6 +53,13 @@ class StudentProfile {
       displayName: '${json['displayName'] ?? json['studentId'] ?? ''}'.trim(),
       classId: '${json['classId'] ?? ''}'.trim(),
       role: json['role'] == 'teacher' ? 'teacher' : 'student',
+      avatarStyle: '${json['avatarStyle'] ?? ''}'.trim(),
+      avatarSeed: '${json['avatarSeed'] ?? ''}'.trim(),
+      avatarBackground:
+          '${json['avatarBackground'] ?? ''}'.trim().toLowerCase(),
+      avatarOptions: _readAvatarOptions(json['avatarOptions']),
+      profileSetupComplete:
+          json['role'] == 'teacher' || json['profileSetupComplete'] == true,
     );
   }
 
@@ -31,13 +67,32 @@ class StudentProfile {
   final String displayName;
   final String classId;
   final String role;
+  final String avatarStyle;
+  final String avatarSeed;
+  final String avatarBackground;
+  final Map<String, String> avatarOptions;
+  final bool profileSetupComplete;
 
   Map<String, dynamic> toJson() => {
         'studentId': studentId,
         'displayName': displayName,
         'classId': classId,
         'role': role,
+        'avatarStyle': avatarStyle,
+        'avatarSeed': avatarSeed,
+        'avatarBackground': avatarBackground,
+        'avatarOptions': avatarOptions,
+        'profileSetupComplete': profileSetupComplete,
       };
+
+  static Map<String, String> _readAvatarOptions(Object? raw) {
+    if (raw is! Map) return const <String, String>{};
+    return {
+      for (final entry in raw.entries)
+        if (entry.key is String && entry.value is String)
+          entry.key as String: entry.value as String,
+    };
+  }
 }
 
 class StudentAuthController extends ChangeNotifier {
@@ -45,9 +100,11 @@ class StudentAuthController extends ChangeNotifier {
     FlutterSecureStorage? secureStorage,
     FirebaseAuth? auth,
     FirebaseFunctions? functions,
+    FirebaseFirestore? firestore,
   })  : _secureStorage = secureStorage ?? const FlutterSecureStorage(),
         _auth = auth,
-        _functions = functions;
+        _functions = functions,
+        _firestore = firestore;
 
   static const _deviceSessionKey = 'dope_student_device_session_v1';
   static const _profileKey = 'dope_student_profile_v1';
@@ -55,6 +112,7 @@ class StudentAuthController extends ChangeNotifier {
   final FlutterSecureStorage _secureStorage;
   FirebaseAuth? _auth;
   FirebaseFunctions? _functions;
+  FirebaseFirestore? _firestore;
   StudentAuthStatus _status = StudentAuthStatus.initializing;
   StudentProfile? _profile;
   String _message = '正在檢查登入狀態...';
@@ -65,6 +123,10 @@ class StudentAuthController extends ChangeNotifier {
   String get message => _message;
   bool get isSubmitting => _isSubmitting;
   bool get isAuthenticated => _status == StudentAuthStatus.authenticated;
+  bool get needsProfileSetup =>
+      isAuthenticated &&
+      (_profile == null ||
+          (_profile!.role != 'teacher' && !_profile!.profileSetupComplete));
 
   Future<void> initialize() async {
     _status = StudentAuthStatus.initializing;
@@ -78,9 +140,11 @@ class StudentAuthController extends ChangeNotifier {
       }
       _auth ??= FirebaseAuth.instance;
       _functions ??= FirebaseFunctions.instanceFor(region: 'asia-east2');
+      _firestore ??= FirebaseFirestore.instance;
 
       _profile = await _readProfile();
       if (_auth!.currentUser != null) {
+        await _refreshProfileFromCloud();
         _status = StudentAuthStatus.authenticated;
         _message = '已自動登入。';
         notifyListeners();
@@ -176,6 +240,69 @@ class StudentAuthController extends ChangeNotifier {
     }
   }
 
+  Future<bool> completeProfile({
+    required String displayName,
+    required String avatarSeed,
+    required String avatarBackground,
+    Map<String, String> avatarOptions = const <String, String>{},
+  }) async {
+    final name = normalizeStudentDisplayName(displayName);
+    final background =
+        avatarBackground.trim().toLowerCase().replaceFirst('#', '');
+    if (!isAuthenticated ||
+        !isValidStudentDisplayName(name) ||
+        !RegExp(r'^[A-Za-z0-9_-]{4,64}$').hasMatch(avatarSeed) ||
+        !studentAvatarBackgrounds.contains(background) ||
+        avatarOptions.length > 12 ||
+        avatarOptions.keys.any((key) =>
+            !RegExp(r'^[A-Za-z]+Color$|^(top|body|pattern|cheeks|eyes|mouth)$')
+                .hasMatch(key)) ||
+        avatarOptions.values.any(
+            (value) => !RegExp(r'^[A-Za-z0-9_-]{1,32}$').hasMatch(value))) {
+      _message = '請輸入 2 至 20 個字嘅名稱，再揀一個頭像。';
+      notifyListeners();
+      return false;
+    }
+
+    _isSubmitting = true;
+    _message = '正在建立你嘅個人檔案...';
+    notifyListeners();
+    try {
+      final callable = _functions!.httpsCallable(
+        'completeStudentProfile',
+        options: HttpsCallableOptions(timeout: const Duration(seconds: 20)),
+      );
+      final result = await callable.call<Map<String, dynamic>>({
+        'displayName': name,
+        'avatarStyle': studentAvatarStyle,
+        'avatarSeed': avatarSeed,
+        'avatarBackground': background,
+        'avatarOptions': avatarOptions,
+      });
+      final data = Map<String, dynamic>.from(result.data);
+      _profile = StudentProfile.fromJson({
+        ...?_profile?.toJson(),
+        ...data,
+      });
+      await _saveProfile(_profile!);
+      _message = '個人檔案已完成。';
+      return true;
+    } on FirebaseFunctionsException catch (error) {
+      debugPrint('Student profile setup failed: ${error.code}');
+      _message = error.code == 'invalid-argument'
+          ? '名稱或頭像格式唔正確，請再揀一次。'
+          : '暫時未能儲存個人檔案，請檢查網絡後再試。';
+      return false;
+    } catch (error) {
+      debugPrint('Student profile setup failed: $error');
+      _message = '暫時未能儲存個人檔案，請稍後再試。';
+      return false;
+    } finally {
+      _isSubmitting = false;
+      notifyListeners();
+    }
+  }
+
   Future<bool> _restoreDeviceSession() async {
     final source = await _secureStorage.read(key: _deviceSessionKey);
     if (source == null || source.isEmpty) return false;
@@ -221,6 +348,26 @@ class StudentAuthController extends ChangeNotifier {
       );
     } catch (_) {
       return null;
+    }
+  }
+
+  Future<void> _refreshProfileFromCloud() async {
+    final uid = _auth?.currentUser?.uid;
+    if (uid == null || uid.isEmpty || _firestore == null) return;
+    try {
+      final snapshot = await _firestore!
+          .collection('users')
+          .doc(uid)
+          .get()
+          .timeout(const Duration(seconds: 4));
+      if (!snapshot.exists) return;
+      _profile = StudentProfile.fromJson({
+        ...?_profile?.toJson(),
+        ...?snapshot.data(),
+      });
+      await _saveProfile(_profile!);
+    } catch (error) {
+      debugPrint('Student profile refresh skipped: $error');
     }
   }
 

@@ -5,17 +5,24 @@ import 'package:flutter/services.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
+import '../../../core/widgets/original_game_keyboard.dart';
+import '../../../core/widgets/stationery_frame.dart';
 import '../shared/lesson_ui.dart';
 import 'lesson_11_controller.dart';
 import 'lesson_11_question.dart';
 import 'lesson_11_repository.dart';
 
 class Lesson11Screen extends StatefulWidget {
-  const Lesson11Screen(
-      {this.repository = const Lesson11Repository(), this.sfx, super.key});
+  const Lesson11Screen({
+    this.repository = const Lesson11Repository(),
+    this.sfx,
+    this.onQuestionCorrect,
+    super.key,
+  });
 
   final Lesson11Repository repository;
   final LessonSfx? sfx;
+  final VoidCallback? onQuestionCorrect;
 
   @override
   State<Lesson11Screen> createState() => _Lesson11ScreenState();
@@ -29,6 +36,7 @@ class _Lesson11ScreenState extends State<Lesson11Screen> {
   Lesson11Stage? _lastStage;
   String? _lastQuestionId;
   int _celebration = 0;
+  bool _keyboardOpen = false;
 
   LessonSfx get _sfx => widget.sfx ?? AppSfx.instance;
 
@@ -82,7 +90,7 @@ class _Lesson11ScreenState extends State<Lesson11Screen> {
     setState(() {});
     if (openedAnswer) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) _focusNode.requestFocus();
+        if (mounted) _openKeyboard();
       });
     }
   }
@@ -98,6 +106,7 @@ class _Lesson11ScreenState extends State<Lesson11Screen> {
         unawaited(_sfx.play(SfxCue.start));
         return;
       case Lesson11Event.invalidInput || Lesson11Event.wrong:
+        _closeKeyboard();
         _focusNode.unfocus();
         unawaited(_sfx.play(SfxCue.wrong));
         return;
@@ -105,8 +114,10 @@ class _Lesson11ScreenState extends State<Lesson11Screen> {
         unawaited(_sfx.play(SfxCue.correct));
         return;
       case Lesson11Event.questionCorrect:
+        _closeKeyboard();
         _focusNode.unfocus();
         setState(() => _celebration += 1);
+        widget.onQuestionCorrect?.call();
         unawaited(_sfx.play(SfxCue.correct));
         return;
       case Lesson11Event.nextQuestion:
@@ -120,9 +131,47 @@ class _Lesson11ScreenState extends State<Lesson11Screen> {
   }
 
   void _close() {
+    _closeKeyboard();
     _focusNode.unfocus();
     unawaited(_sfx.play(SfxCue.click));
     Navigator.of(context).pop();
+  }
+
+  void _openKeyboard() {
+    final controller = _controller;
+    if (_keyboardOpen ||
+        controller == null ||
+        controller.stage != Lesson11Stage.answer) {
+      return;
+    }
+    setState(() => _keyboardOpen = true);
+    _focusNode.requestFocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _closeKeyboard() {
+    if (!_keyboardOpen) return;
+    setState(() => _keyboardOpen = false);
+    _focusNode.unfocus();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _handleKeyboardKey(String key) {
+    if (!_keyboardOpen || _controller?.stage != Lesson11Stage.answer) return;
+    final current = _textController.text;
+    final next = switch (key) {
+      'BACKSPACE' =>
+        current.isEmpty ? current : current.substring(0, current.length - 1),
+      'SPACE' => current.endsWith(' ') ? current : '$current ',
+      _ => '$current${key.toLowerCase()}',
+    };
+    if (next.length > 60) return;
+    _textController.value = TextEditingValue(
+      text: next,
+      selection: TextSelection.collapsed(offset: next.length),
+    );
+    _handle(_controller!.updateAnswer(next));
+    unawaited(_sfx.play(SfxCue.type));
   }
 
   @override
@@ -147,6 +196,7 @@ class _Lesson11ScreenState extends State<Lesson11Screen> {
             total: controller.total,
             mistakes: controller.mistakes,
             reviewMode: controller.isReviewMode,
+            sfx: _sfx,
             onClose: _close,
             onRestart: () {
               controller.chooseScopeAgain();
@@ -182,6 +232,9 @@ class _Lesson11ScreenState extends State<Lesson11Screen> {
                   textController: _textController,
                   focusNode: _focusNode,
                   onEvent: _handle,
+                  sfx: _sfx,
+                  keyboardOpen: _keyboardOpen,
+                  onTapInput: _openKeyboard,
                 ),
           bottom: stage == Lesson11Stage.resolved
               ? LessonPrimaryButton(
@@ -192,6 +245,24 @@ class _Lesson11ScreenState extends State<Lesson11Screen> {
                 )
               : null,
         ),
+        if (_keyboardOpen)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 920),
+                child: OriginalGameKeyboard(
+                  keyboardKey: const Key('lesson-11-custom-keyboard'),
+                  keyPrefix: 'lesson-11-keyboard-key-',
+                  onKey: _handleKeyboardKey,
+                  onSubmit: () => _handle(_controller!.submitAnswer()),
+                ),
+              ),
+            ),
+          ),
         LessonCelebrationOverlay(trigger: _celebration),
       ],
     );
@@ -254,12 +325,18 @@ class _QuestionStage extends StatelessWidget {
     required this.textController,
     required this.focusNode,
     required this.onEvent,
+    required this.sfx,
+    required this.keyboardOpen,
+    required this.onTapInput,
   });
 
   final Lesson11Controller controller;
   final TextEditingController textController;
   final FocusNode focusNode;
   final ValueChanged<Lesson11Event> onEvent;
+  final LessonSfx sfx;
+  final bool keyboardOpen;
+  final VoidCallback onTapInput;
 
   @override
   Widget build(BuildContext context) {
@@ -276,6 +353,9 @@ class _QuestionStage extends StatelessWidget {
           textController: textController,
           focusNode: focusNode,
           onEvent: onEvent,
+          sfx: sfx,
+          keyboardOpen: keyboardOpen,
+          onTapInput: onTapInput,
         ),
       Lesson11Stage.resolved => Column(
           children: [
@@ -356,6 +436,9 @@ class _TenseAnswerStage extends StatelessWidget {
     required this.textController,
     required this.focusNode,
     required this.onEvent,
+    required this.sfx,
+    required this.keyboardOpen,
+    required this.onTapInput,
   });
 
   final Lesson11Question question;
@@ -363,59 +446,81 @@ class _TenseAnswerStage extends StatelessWidget {
   final TextEditingController textController;
   final FocusNode focusNode;
   final ValueChanged<Lesson11Event> onEvent;
+  final LessonSfx sfx;
+  final bool keyboardOpen;
+  final VoidCallback onTapInput;
 
   @override
   Widget build(BuildContext context) {
+    final sentence = question.verbHint.isEmpty
+        ? question.sentence
+        : question.sentence.replaceFirst(
+            '___',
+            '___ (${question.verbHint})',
+          );
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
         children: [
           LessonPromptCard(
-            primary: question.sentence,
+            primary: sentence,
             translation: question.zh,
             instruction: question.tenseLabel,
             compact: true,
           ),
           const SizedBox(height: 14),
-          TextField(
-            key: const Key('lesson-11-answer-input'),
-            controller: textController,
-            focusNode: focusNode,
-            autofocus: true,
-            maxLength: 60,
-            autocorrect: false,
-            enableSuggestions: false,
-            textCapitalization: TextCapitalization.none,
-            textInputAction: TextInputAction.done,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z '\-/]")),
-            ],
-            onChanged: (value) => onEvent(controller.updateAnswer(value)),
-            onSubmitted: (_) => onEvent(controller.submitAnswer()),
-            decoration: InputDecoration(
-              hintText: '輸入空格內的動詞形式',
-              counterText: '',
-              errorText: controller.errorMessage,
-              filled: true,
-              fillColor: AppPalette.paper,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(13),
-                borderSide:
-                    const BorderSide(color: AppPalette.primary, width: 2),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(13),
-                borderSide: const BorderSide(
-                  color: AppPalette.primaryDark,
-                  width: 3,
+          OriginalDashedSurface(
+            radius: 18,
+            strokeWidth: 3,
+            backgroundColor: AppPalette.paper,
+            borderColor: controller.errorMessage == null
+                ? AppPalette.primary
+                : AppPalette.danger,
+            shadowColor: controller.errorMessage == null
+                ? const Color(0xFFBDE0E1)
+                : const Color(0xFFFFC9C9),
+            shadowDepth: 4,
+            padding: EdgeInsets.zero,
+            child: TextField(
+              key: const Key('lesson-11-answer-input'),
+              controller: textController,
+              focusNode: focusNode,
+              autofocus: true,
+              maxLength: 60,
+              autocorrect: false,
+              enableSuggestions: false,
+              spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
+              textCapitalization: TextCapitalization.none,
+              textInputAction: TextInputAction.done,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z '\-/]")),
+              ],
+              onChanged: (value) {
+                onEvent(controller.updateAnswer(value));
+                unawaited(sfx.play(SfxCue.type));
+              },
+              onSubmitted: (_) => onEvent(controller.submitAnswer()),
+              onTap: onTapInput,
+              showCursor: keyboardOpen,
+              readOnly: true,
+              keyboardType: TextInputType.none,
+              decoration: InputDecoration(
+                hintText: '輸入空格內的動詞形式',
+                counterText: '',
+                errorText: controller.errorMessage,
+                filled: false,
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 15,
                 ),
               ),
-            ),
-            style: const TextStyle(
-              color: AppPalette.ink,
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
+              style: const TextStyle(
+                color: AppPalette.ink,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
         ],

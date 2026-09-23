@@ -10,6 +10,8 @@
   --danger-dark: #d94848;
   --correct-color: #6bf178;
   --correct-dark: #2f9e44;
+  --cross-color: #f68ba2;
+  --tick-color: #8ed8b8;
   --ink: #444444;
   --muted: #7a7a7a;
   --border-color: #d1d8e0;
@@ -1612,29 +1614,29 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .tick {
-  color: var(--correct-dark);
+  color: var(--tick-color);
   background: var(--soft-green);
-  border-color: var(--correct-color);
-  box-shadow: 0 4px 0 #b7e7bf;
+  border-color: var(--tick-color);
+  box-shadow: 0 4px 0 var(--tick-color);
 }
 
 .tick:hover {
   color: #ffffff;
-  background: var(--correct-color);
+  background: var(--tick-color);
   border-color: var(--correct-dark);
   box-shadow: 0 6px 0 var(--correct-dark);
 }
 
 .cross {
-  color: var(--danger-dark);
+  color: var(--cross-color);
   background: var(--soft-red);
-  border-color: var(--danger-color);
-  box-shadow: 0 4px 0 #ffc9c9;
+  border-color: var(--cross-color);
+  box-shadow: 0 4px 0 var(--cross-color);
 }
 
 .cross:hover {
   color: #ffffff;
-  background: var(--danger-color);
+  background: var(--cross-color);
   border-color: var(--danger-dark);
   box-shadow: 0 6px 0 var(--danger-dark);
 }

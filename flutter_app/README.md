@@ -1,4 +1,4 @@
-# DOPE ENGLISH Flutter app
+# A1 BUDDY Flutter app
 
 This directory is the native iOS and Android app. The existing HTML/Capacitor
 app remains the behavioural reference and the source of truth for grammar and

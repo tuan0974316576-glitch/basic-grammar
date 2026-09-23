@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
+import '../../../core/widgets/original_game_keyboard.dart';
 import '../../../core/widgets/stationery_frame.dart';
 import '../shared/lesson_ui.dart';
 import 'lesson_02_controller.dart';
@@ -17,7 +18,7 @@ const _panel = AppPalette.softPrimary;
 const _blue = AppPalette.primary;
 const _blueDark = AppPalette.primaryDark;
 const _green = AppPalette.correctDark;
-const _red = AppPalette.danger;
+const _red = AppPalette.dangerDark;
 const _yellow = AppPalette.secondary;
 const _softText = AppPalette.muted;
 
@@ -26,12 +27,14 @@ class Lesson02Screen extends StatefulWidget {
     this.controller,
     this.repository = const Lesson02Repository(),
     this.sfx,
+    this.onQuestionCorrect,
     super.key,
   });
 
   final Lesson02Controller? controller;
   final Lesson02Repository repository;
   final LessonSfx? sfx;
+  final VoidCallback? onQuestionCorrect;
 
   @override
   State<Lesson02Screen> createState() => _Lesson02ScreenState();
@@ -99,6 +102,9 @@ class _Lesson02ScreenState extends State<Lesson02Screen> {
         event == Lesson02Event.completed) {
       setState(() => _celebration += 1);
     }
+    if (event == Lesson02Event.questionCorrect) {
+      widget.onQuestionCorrect?.call();
+    }
   }
 
   void _closeLesson() {
@@ -130,22 +136,28 @@ class _Lesson02ScreenState extends State<Lesson02Screen> {
     }
     if (controller == null) {
       return const Scaffold(
-        backgroundColor: _ink,
+        backgroundColor: AppPalette.background,
         body: Center(child: CircularProgressIndicator(color: _blue)),
       );
     }
 
     return Scaffold(
-      backgroundColor: _ink,
+      backgroundColor: AppPalette.background,
       body: SafeArea(
         child: Stack(
           children: [
             if (controller.isComplete)
-              _LessonResult(
-                controller: controller,
+              LessonResultScreen(
+                lessonLabel: 'Lesson 02',
+                score: controller.score,
+                total: controller.total,
+                mistakes: controller.mistakes,
+                reviewMode: controller.isReviewMode,
+                sfx: _sfx,
                 onClose: _closeLesson,
                 onRestart: _restart,
-                onReview: _reviewMistakes,
+                onReview:
+                    controller.missedQuestions.isEmpty ? null : _reviewMistakes,
               )
             else
               _QuestionScreen(
@@ -153,6 +165,7 @@ class _Lesson02ScreenState extends State<Lesson02Screen> {
                 onClose: _closeLesson,
                 onEvent: _playEvent,
                 onNext: _nextQuestion,
+                sfx: _sfx,
               ),
             LessonCelebrationOverlay(
               trigger: _celebration,
@@ -171,39 +184,51 @@ class _QuestionScreen extends StatelessWidget {
     required this.onClose,
     required this.onEvent,
     required this.onNext,
+    required this.sfx,
   });
 
   final Lesson02Controller controller;
   final VoidCallback onClose;
   final ValueChanged<Lesson02Event> onEvent;
   final VoidCallback onNext;
+  final LessonSfx sfx;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(14, 8, 14, 10),
-      child: Column(
-        children: [
-          _ProgressHeader(controller: controller, onClose: onClose),
-          const SizedBox(height: 8),
-          Expanded(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 220),
-              child: controller.isResolved
-                  ? _ResolvedQuestion(
-                      key: ValueKey('resolved-${controller.index}'),
-                      controller: controller,
-                      onNext: onNext,
-                    )
-                  : _ActiveQuestion(
-                      key: ValueKey(
-                          '${controller.index}-${controller.stage.name}'),
-                      controller: controller,
-                      onEvent: onEvent,
-                    ),
-            ),
+      padding: const EdgeInsets.all(6),
+      child: StationeryFrame(
+        padding: EdgeInsets.zero,
+        radius: 26,
+        ringWidth: 6,
+        shadowDepth: 8,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(8, 4, 8, 6),
+          child: Column(
+            children: [
+              _ProgressHeader(controller: controller, onClose: onClose),
+              const SizedBox(height: 8),
+              Expanded(
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 220),
+                  child: controller.isResolved
+                      ? _ResolvedQuestion(
+                          key: ValueKey('resolved-${controller.index}'),
+                          controller: controller,
+                          onNext: onNext,
+                        )
+                      : _ActiveQuestion(
+                          key: ValueKey(
+                              '${controller.index}-${controller.stage.name}'),
+                          controller: controller,
+                          onEvent: onEvent,
+                          sfx: sfx,
+                        ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -217,44 +242,12 @@ class _ProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 44,
-      child: Row(
-        children: [
-          IconButton(
-            tooltip: '離開課堂',
-            onPressed: onClose,
-            icon: const Icon(Icons.close_rounded),
-            color: _softText,
-            iconSize: 30,
-          ),
-          const SizedBox(width: 6),
-          Expanded(
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(end: controller.progress),
-              duration: const Duration(milliseconds: 320),
-              builder: (context, progress, child) => ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: LinearProgressIndicator(
-                  value: progress,
-                  minHeight: 14,
-                  color: _blue,
-                  backgroundColor: AppPalette.border,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Text(
-            '${controller.index + 1}/${controller.total}',
-            style: const TextStyle(
-              color: _text,
-              fontSize: 16,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-        ],
-      ),
+    return LessonHeader(
+      lessonLabel: 'LESSON 02',
+      title: '一句句子必須只有一個動詞',
+      progress: controller.progress,
+      questionLabel: '${controller.index + 1}/${controller.total}',
+      onClose: onClose,
     );
   }
 }
@@ -263,16 +256,22 @@ class _ActiveQuestion extends StatelessWidget {
   const _ActiveQuestion({
     required this.controller,
     required this.onEvent,
+    required this.sfx,
     super.key,
   });
 
   final Lesson02Controller controller;
   final ValueChanged<Lesson02Event> onEvent;
+  final LessonSfx sfx;
 
   @override
   Widget build(BuildContext context) {
     if (controller.stage == Lesson02Stage.correction) {
-      return _CorrectionStage(controller: controller, onEvent: onEvent);
+      return _CorrectionStage(
+        controller: controller,
+        onEvent: onEvent,
+        sfx: sfx,
+      );
     }
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -444,7 +443,7 @@ class _JudgmentChoices extends StatelessWidget {
           _SymbolChoice(
             key: const Key('sentence-correct'),
             compact: compact,
-            color: _green,
+            color: AppPalette.tick,
             icon: Icons.check_rounded,
             label: '正確',
             onTap: onCorrect,
@@ -453,7 +452,7 @@ class _JudgmentChoices extends StatelessWidget {
           _SymbolChoice(
             key: const Key('sentence-wrong'),
             compact: compact,
-            color: _red,
+            color: AppPalette.cross,
             icon: Icons.close_rounded,
             label: '錯誤',
             onTap: onWrong,
@@ -486,26 +485,20 @@ class _SymbolChoice extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Material(
-          color: color,
-          borderRadius: BorderRadius.circular(27),
+        OriginalDashedSurface(
+          backgroundColor: Colors.white,
+          borderColor: color,
+          strokeWidth: 5,
+          radius: 26,
+          shadowColor: color.withValues(alpha: 0.24),
+          shadowDepth: 5,
           child: InkWell(
             onTap: onTap,
             borderRadius: BorderRadius.circular(27),
-            child: Container(
+            child: SizedBox(
               width: size,
               height: size,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(27),
-                border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.7), width: 4),
-                boxShadow: [
-                  BoxShadow(
-                      color: color.withValues(alpha: 0.4),
-                      offset: const Offset(0, 7)),
-                ],
-              ),
-              child: Icon(icon, color: Colors.white, size: size * 0.62),
+              child: Icon(icon, color: color, size: size * 0.62),
             ),
           ),
         ),
@@ -656,10 +649,15 @@ class _TokenButton extends StatelessWidget {
 }
 
 class _CorrectionStage extends StatefulWidget {
-  const _CorrectionStage({required this.controller, required this.onEvent});
+  const _CorrectionStage({
+    required this.controller,
+    required this.onEvent,
+    required this.sfx,
+  });
 
   final Lesson02Controller controller;
   final ValueChanged<Lesson02Event> onEvent;
+  final LessonSfx sfx;
 
   @override
   State<_CorrectionStage> createState() => _CorrectionStageState();
@@ -668,6 +666,7 @@ class _CorrectionStage extends StatefulWidget {
 class _CorrectionStageState extends State<_CorrectionStage> {
   late final TextEditingController _textController;
   final FocusNode _focusNode = FocusNode();
+  final OverlayPortalController _keyboardOverlay = OverlayPortalController();
 
   @override
   void initState() {
@@ -676,7 +675,7 @@ class _CorrectionStageState extends State<_CorrectionStage> {
       text: widget.controller.typedCorrection,
     );
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) _focusNode.requestFocus();
+      if (mounted) _showKeyboard();
     });
   }
 
@@ -712,8 +711,32 @@ class _CorrectionStageState extends State<_CorrectionStage> {
   }
 
   void _submit() {
+    _keyboardOverlay.hide();
     _focusNode.unfocus();
     widget.onEvent(widget.controller.submitCorrection());
+  }
+
+  void _showKeyboard() {
+    _focusNode.requestFocus();
+    _keyboardOverlay.show();
+    unawaited(SystemChannels.textInput.invokeMethod<void>('TextInput.hide'));
+  }
+
+  void _handleKeyboardKey(String key) {
+    final current = _textController.text;
+    final next = switch (key) {
+      'BACKSPACE' =>
+        current.isEmpty ? current : current.substring(0, current.length - 1),
+      'SPACE' => current.endsWith(' ') ? current : '$current ',
+      _ => '$current${key.toLowerCase()}',
+    };
+    if (next.length > 80) return;
+    _textController.value = TextEditingValue(
+      text: next,
+      selection: TextSelection.collapsed(offset: next.length),
+    );
+    _handleChanged(next);
+    unawaited(widget.sfx.play(SfxCue.type));
   }
 
   @override
@@ -739,11 +762,36 @@ class _CorrectionStageState extends State<_CorrectionStage> {
                   _CompactFeedback(feedback: feedback),
                   SizedBox(height: compact ? 7 : 10),
                 ],
-                _AnswerField(
-                  controller: _textController,
-                  focusNode: _focusNode,
-                  onChanged: _handleChanged,
-                  onSubmitted: _submit,
+                OverlayPortal(
+                  controller: _keyboardOverlay,
+                  overlayChildBuilder: (context) => Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 920),
+                          child: OriginalGameKeyboard(
+                            keyboardKey: const Key('lesson-02-custom-keyboard'),
+                            keyPrefix: 'lesson-02-keyboard-key-',
+                            onKey: _handleKeyboardKey,
+                            onSubmit: _submit,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  child: _AnswerField(
+                    controller: _textController,
+                    focusNode: _focusNode,
+                    onChanged: _handleChanged,
+                    onSubmitted: _submit,
+                    onTap: _showKeyboard,
+                    onType: () => unawaited(widget.sfx.play(SfxCue.type)),
+                  ),
                 ),
               ],
             ),
@@ -760,22 +808,29 @@ class _AnswerField extends StatelessWidget {
     required this.focusNode,
     required this.onChanged,
     required this.onSubmitted,
+    required this.onTap,
+    required this.onType,
   });
 
   final TextEditingController controller;
   final FocusNode focusNode;
   final ValueChanged<String> onChanged;
   final VoidCallback onSubmitted;
+  final VoidCallback onTap;
+  final VoidCallback onType;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: StationeryFrame(
+      child: OriginalDashedSurface(
         key: const Key('lesson-02-answer-field'),
         padding: EdgeInsets.zero,
         radius: 18,
-        ringWidth: 2,
+        strokeWidth: 3,
+        backgroundColor: Colors.white,
+        borderColor: AppPalette.primary,
+        shadowColor: const Color(0xFFBDE0E1),
         shadowDepth: 4,
         child: TextField(
           key: const Key('lesson-02-correction-input'),
@@ -787,13 +842,19 @@ class _AnswerField extends StatelessWidget {
           minLines: 1,
           autocorrect: false,
           enableSuggestions: false,
+          spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
           textCapitalization: TextCapitalization.sentences,
+          keyboardType: TextInputType.none,
           textInputAction: TextInputAction.done,
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z '\-.,!?]")),
           ],
-          onChanged: onChanged,
+          onChanged: (value) {
+            onChanged(value);
+            onType();
+          },
           onSubmitted: (_) => onSubmitted(),
+          onTap: onTap,
           decoration: const InputDecoration(
             hintText: 'Type the correct sentence',
             counterText: '',
@@ -820,22 +881,31 @@ class _CompactFeedback extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = feedback.isCorrect ? _green : _red;
-    return Container(
+    final frameColor = feedback.isCorrect ? AppPalette.secondaryDark : color;
+    return SizedBox(
       width: double.infinity,
-      constraints: const BoxConstraints(minHeight: 44),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.14),
-        borderRadius: BorderRadius.circular(11),
-        border: Border.all(color: color.withValues(alpha: 0.7), width: 2),
-      ),
-      child: Text(
-        feedback.title,
-        textAlign: TextAlign.center,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        style:
-            TextStyle(color: color, fontSize: 15, fontWeight: FontWeight.w900),
+      child: OriginalDashedSurface(
+        radius: 18,
+        strokeWidth: feedback.isCorrect ? 3 : 2,
+        borderColor: frameColor,
+        shadowColor: feedback.isCorrect
+            ? const Color(0xFFFFE7A3)
+            : color.withValues(alpha: 0.18),
+        shadowDepth: 3,
+        backgroundColor:
+            feedback.isCorrect ? AppPalette.softSecondary : Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        child: Text(
+          feedback.title,
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: color,
+            fontSize: 15,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
       ),
     );
   }
@@ -851,7 +921,6 @@ class _ResolvedQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final feedback = controller.feedback!;
-    final color = feedback.isCorrect ? _green : _red;
     return LayoutBuilder(
       builder: (context, constraints) {
         final compact = constraints.maxHeight < 560;
@@ -866,72 +935,13 @@ class _ResolvedQuestion extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(compact ? 15 : 20),
-                decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.13),
-                  border: Border(
-                    top: BorderSide(color: color, width: 3),
-                    bottom: BorderSide(
-                        color: color.withValues(alpha: 0.5), width: 2),
-                  ),
-                ),
-                child: LayoutBuilder(
-                  builder: (context, feedbackConstraints) => FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.topLeft,
-                    child: SizedBox(
-                      width: feedbackConstraints.maxWidth,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                feedback.isCorrect
-                                    ? Icons.check_circle_rounded
-                                    : Icons.cancel_rounded,
-                                color: color,
-                                size: 29,
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: Text(
-                                  feedback.title,
-                                  style: TextStyle(
-                                    color: color,
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            feedback.reason,
-                            style: const TextStyle(
-                              color: _text,
-                              fontSize: 17,
-                              height: 1.4,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            feedback.answer,
-                            style: const TextStyle(
-                              color: _green,
-                              fontSize: 17,
-                              height: 1.4,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: LessonFeedbackCard(
+                  correct: feedback.isCorrect,
+                  title: feedback.title,
+                  lines: [feedback.reason],
+                  answer: feedback.answer,
                 ),
               ),
             ),
@@ -967,18 +977,20 @@ class _PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 440),
-      child: FilledButton.icon(
+      child: ElevatedButton.icon(
         onPressed: enabled ? onPressed : null,
         icon: Icon(icon),
         label: Text(label),
-        style: FilledButton.styleFrom(
+        style: ElevatedButton.styleFrom(
           minimumSize: const Size.fromHeight(54),
-          backgroundColor: _blueDark,
-          disabledBackgroundColor: AppPalette.border,
-          disabledForegroundColor: AppPalette.muted,
-          foregroundColor: Colors.white,
+          backgroundColor: AppPalette.secondary,
+          disabledBackgroundColor: const Color(0xFFF3F3F3),
+          disabledForegroundColor: const Color(0xFFAAAAAA),
+          foregroundColor: const Color(0xFF5D4037),
+          shadowColor: AppPalette.secondaryDark,
+          elevation: 4,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
           textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
         ),
       ),
@@ -986,6 +998,7 @@ class _PrimaryButton extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _LessonResult extends StatelessWidget {
   const _LessonResult({
     required this.controller,

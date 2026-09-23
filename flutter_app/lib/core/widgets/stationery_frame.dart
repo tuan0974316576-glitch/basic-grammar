@@ -10,6 +10,7 @@ class StationeryFrame extends StatelessWidget {
     this.backgroundColor = AppPalette.paper,
     this.borderColor = AppPalette.primary,
     this.shadowColor = const Color(0xFFBDE0E1),
+    this.glowColor = AppPalette.primary,
     this.radius = 24,
     this.strokeWidth = 3,
     this.ringWidth = 5,
@@ -22,6 +23,7 @@ class StationeryFrame extends StatelessWidget {
   final Color backgroundColor;
   final Color borderColor;
   final Color shadowColor;
+  final Color glowColor;
   final double radius;
   final double strokeWidth;
   final double ringWidth;
@@ -39,7 +41,7 @@ class StationeryFrame extends StatelessWidget {
             offset: Offset(0, shadowDepth),
           ),
           BoxShadow(
-            color: AppPalette.primary.withValues(alpha: 0.13),
+            color: glowColor.withValues(alpha: 0.13),
             offset: Offset(0, shadowDepth + 5),
             blurRadius: 13,
           ),
@@ -121,6 +123,37 @@ class OriginalDashedSurface extends StatelessWidget {
             ),
             child: Padding(padding: padding, child: child),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Yellow lesson label shared by Grammar and ECON's chapter/paper pickers.
+class OriginalYellowTag extends StatelessWidget {
+  const OriginalYellowTag({required this.label, super.key});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: const BoxConstraints(minHeight: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 3),
+      decoration: BoxDecoration(
+        color: AppPalette.secondary,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: Colors.white, width: 2),
+        boxShadow: const [
+          BoxShadow(color: AppPalette.secondaryDark, offset: Offset(0, 4)),
+        ],
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          color: Color(0xFF5D4037),
+          fontSize: 14,
+          fontWeight: FontWeight.w900,
         ),
       ),
     );

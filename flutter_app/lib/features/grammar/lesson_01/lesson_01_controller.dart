@@ -154,17 +154,36 @@ class Lesson01Controller extends ChangeNotifier {
         ),
       );
     }
-    return _resolveCorrect(
-      Lesson01Feedback(
-        isCorrect: true,
-        title: '答對了！',
-        lines: [question.note],
-      ),
+    _stage = Lesson01Stage.needsBe;
+    _feedback = Lesson01Feedback(
+      isCorrect: true,
+      title: '正確，已經揀中主動動詞。',
+      lines: [question.note, '再判斷一次：要唔要加 is / am / are？'],
     );
+    notifyListeners();
+    return Lesson01Event.correctStep;
   }
 
   Lesson01Event answerNeedsBe(bool needsBe) {
     if (_stage != Lesson01Stage.needsBe) return Lesson01Event.ignored;
+    if (currentQuestion.type == Lesson01QuestionType.action) {
+      if (needsBe) {
+        return _resolveWrong(
+          const Lesson01Feedback(
+            isCorrect: false,
+            title: '唔需要再加 be 動詞',
+            lines: ['句子已經有主動動詞，再加 is / am / are 會變成兩個動詞。'],
+          ),
+        );
+      }
+      return _resolveCorrect(
+        const Lesson01Feedback(
+          isCorrect: true,
+          title: '正確，不需要加 is / am / are。',
+          lines: ['句子已有主動動詞，直接用動作動詞就可以。'],
+        ),
+      );
+    }
     if (!needsBe) {
       return _resolveWrong(
         const Lesson01Feedback(

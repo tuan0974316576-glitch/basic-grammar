@@ -6,6 +6,7 @@ const path = require("path");
 const yauzl = require("yauzl");
 const sax = require("sax");
 const VocabPosInference = require("../vocab_pos_inference.js");
+const MeaningDedupe = require("./vocab-meaning-dedupe.js");
 
 const DEFAULT_OUTPUT = path.resolve(__dirname, "..", "teacher_vocab_bank.js");
 const DEFAULT_CONFLICTS = path.resolve(__dirname, "..", "teacher_vocab_conflicts.json");
@@ -630,6 +631,16 @@ function effectiveEntryPos(entry) {
   return normalizePos(inferred.pos) || "";
 }
 
+function collapseSubsetMeaningDuplicates(entries = []) {
+  return MeaningDedupe.collapseMeaningSubsetDuplicates(entries, {
+    normalizeWord,
+    normalizeMeaning,
+    normalizePos,
+    normalizeType: (value, word) => entryType({ type: value, word }),
+    effectivePos: effectiveEntryPos
+  });
+}
+
 function manualOverlayKey(entry) {
   return [
     normalizeWord(entry.word),
@@ -681,8 +692,9 @@ function rebuildEntriesFromExistingBank(existingEntries = [], manualEntries = []
   });
 
   const deduped = dedupeEntries(Array.from(candidates.values()));
+  const collapsed = collapseSubsetMeaningDuplicates(deduped);
   const finalEntries = new Map();
-  deduped.forEach((entry) => {
+  collapsed.entries.forEach((entry) => {
     const key = reviewedSenseKey(entry);
     finalEntries.set(key, chooseHigherRankedEntry(finalEntries.get(key), entry));
   });
@@ -889,7 +901,7 @@ async function main() {
     ...workbooks.flatMap((workbook) => workbook.entries),
     ...manualUpdates.flatMap((updateFile) => updateFile.entries)
   ];
-  const entries = dedupeEntries(rawEntries);
+    const entries = collapseSubsetMeaningDuplicates(dedupeEntries(rawEntries)).entries;
   const blankChineseCandidates = workbooks.flatMap((workbook) => workbook.blankChineseCandidates);
   const conflictReport = buildConflicts(entries, blankChineseCandidates);
   const uniqueWordCount = new Set(entries.map((entry) => normalizeWord(entry.word))).size;
@@ -940,6 +952,7 @@ if (require.main === module) {
 module.exports = {
   detectType,
   createManualEntriesFromData,
+  collapseSubsetMeaningDuplicates,
   createBankJs,
   dedupeEntries,
   extractEntriesFromRows,

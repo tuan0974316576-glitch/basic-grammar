@@ -2,17 +2,23 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/app_palette.dart';
+import 'core/app_brand.dart';
 import 'core/app_sfx.dart';
 import 'core/widgets/stationery_frame.dart';
+import 'core/widgets/original_modal.dart';
+import 'core/widgets/original_section_frame.dart';
 import 'features/auth/student_auth_controller.dart';
 import 'features/auth/student_login_screen.dart';
 import 'features/grammar/correction/correction_lesson_question.dart';
 import 'features/grammar/correction/correction_lesson_screen.dart';
+import 'features/grammar/grammar_progress_controller.dart';
 import 'features/grammar/lesson_01/lesson_01_screen.dart';
 import 'features/grammar/lesson_02/lesson_02_screen.dart';
 import 'features/grammar/lesson_03/lesson_03_screen.dart';
@@ -22,12 +28,30 @@ import 'features/grammar/lesson_11/lesson_11_screen.dart';
 import 'features/grammar/lesson_12/lesson_12_screen.dart';
 import 'features/grammar/original_grammar_home.dart';
 import 'features/grammar/quiz_01/quiz_01_screen.dart';
+import 'features/game/game_hub_screen.dart';
+import 'features/econ/econ_concept_review_screen.dart';
+import 'features/econ/econ_concept_review_models.dart';
+import 'features/econ/econ_question_picker_screen.dart';
+import 'features/econ/econ_question_repository.dart';
+import 'features/econ/econ_leaderboard_screen.dart';
+import 'features/econ/econ_learning_menu_screen.dart';
+import 'features/econ/econ_palette.dart';
 import 'features/vocabulary/vocab_audio_repository.dart';
 import 'features/vocabulary/cloud_vocab_repository.dart';
 import 'features/vocabulary/vocab_audio_reconciler.dart';
+import 'features/vocabulary/vocab_cloud_store.dart';
 import 'features/vocabulary/vocab_controller.dart';
 import 'features/vocabulary/vocab_repository.dart';
 import 'features/vocabulary/vocab_screen.dart';
+import 'features/workshop/grammar_workshop_screen.dart';
+import 'features/workshop/grammar_workshop_repository.dart';
+import 'features/streak/streak_controller.dart';
+import 'features/streak/streak_models.dart';
+import 'features/streak/streak_repository.dart';
+import 'features/streak/streak_widgets.dart';
+import 'features/notifications/notification_controller.dart';
+import 'features/profile/critter_avatar.dart';
+import 'features/profile/student_profile_setup_screen.dart';
 
 const _ink = AppPalette.background;
 const _text = AppPalette.ink;
@@ -38,7 +62,24 @@ const _pink = AppPalette.pink;
 const _yellow = AppPalette.secondary;
 const _panel = AppPalette.softPrimary;
 
-void main() {
+enum AppDeviceClass { phone, tablet }
+
+AppDeviceClass appDeviceClassForShortestSide(double shortestSide) {
+  return shortestSide >= 600 ? AppDeviceClass.tablet : AppDeviceClass.phone;
+}
+
+List<DeviceOrientation> preferredOrientationsForDevice(
+  AppDeviceClass deviceClass,
+) {
+  return deviceClass == AppDeviceClass.tablet
+      ? const [
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight,
+        ]
+      : const [DeviceOrientation.portraitUp];
+}
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString(
@@ -50,30 +91,54 @@ void main() {
   final audioRepository = AssetVocabAudioRepository(
     cloudClient: FirebaseVocabAudioCloudClient(),
   );
+  final startup = Future.wait<void>([
+    AppSfx.instance.initialize(),
+    authController.initialize(),
+    const EconQuestionRepository().loadQuestions(),
+  ]);
   runApp(
     DopeEnglishApp(
       authController: authController,
       audioRepository: audioRepository,
+      startup: startup,
+      showBrandIntro: true,
+      showGameHub: false,
     ),
   );
-  unawaited(authController.initialize());
 }
 
 class DopeEnglishApp extends StatelessWidget {
   const DopeEnglishApp({
     this.authController,
     this.audioRepository,
+    this.grammarProgressController,
+    this.workshopRepository,
+    this.streakController,
+    this.startup,
+    this.showBrandIntro = false,
+    this.showGameHub = false,
+    this.initialEnglishTab = const int.fromEnvironment(
+      'DOPE_INITIAL_TAB',
+      defaultValue: 1,
+    ),
     super.key,
   });
 
   final StudentAuthController? authController;
   final VocabAudioRepository? audioRepository;
+  final GrammarProgressController? grammarProgressController;
+  final GrammarWorkshopBankRepository? workshopRepository;
+  final StreakController? streakController;
+  final Future<void>? startup;
+  final bool showBrandIntro;
+  final bool showGameHub;
+  final int initialEnglishTab;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'DOPE ENGLISH',
+      title: appDisplayName,
       theme: ThemeData(
         brightness: Brightness.light,
         fontFamily: 'ChironGoRoundTC',
@@ -95,64 +160,237 @@ class DopeEnglishApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: authController == null
-          ? AppShell(vocabAudioRepository: audioRepository)
-          : AnimatedBuilder(
-              animation: authController!,
-              builder: (context, _) {
-                return switch (authController!.status) {
-                  StudentAuthStatus.initializing => const _AppLoadingScreen(),
-                  StudentAuthStatus.authenticated => AppShell(
-                      authController: authController,
-                      vocabAudioRepository: audioRepository,
+      builder: (context, child) => _OrientationLock(child: child!),
+      home: _BrandLaunchGate(
+        enabled: showBrandIntro,
+        startup: startup,
+        child: authController == null
+            ? AppShell(
+                vocabAudioRepository: audioRepository,
+                grammarProgressController: grammarProgressController,
+                workshopRepository: workshopRepository,
+                streakController: streakController,
+                startAtGameHub: showGameHub,
+                initialEnglishTab: initialEnglishTab,
+              )
+            : AnimatedBuilder(
+                animation: authController!,
+                builder: (context, _) {
+                  return switch (authController!.status) {
+                    // Auth restoration (especially an expired device session)
+                    // may need the network. Keep the local vocabulary shell
+                    // visible while it runs; the authenticated/login route
+                    // swaps in automatically when the status resolves.
+                    StudentAuthStatus.initializing => AppShell(
+                        vocabAudioRepository: audioRepository,
+                        grammarProgressController: grammarProgressController,
+                        workshopRepository: workshopRepository,
+                        streakController: streakController,
+                        startAtGameHub: showGameHub,
+                        initialEnglishTab: initialEnglishTab,
+                      ),
+                    StudentAuthStatus.authenticated => authController!
+                            .needsProfileSetup
+                        ? StudentProfileSetupScreen(
+                            studentId: authController!.profile?.studentId ?? '',
+                            initialName:
+                                authController!.profile?.displayName ?? '',
+                            initialAvatarSeed:
+                                authController!.profile?.avatarSeed ?? '',
+                            initialAvatarBackground:
+                                authController!.profile?.avatarBackground ?? '',
+                            initialAvatarOptions:
+                                authController!.profile?.avatarOptions ??
+                                    const <String, String>{},
+                            isSubmitting: authController!.isSubmitting,
+                            message: authController!.message,
+                            onComplete: authController!.completeProfile,
+                          )
+                        : AppShell(
+                            authController: authController,
+                            vocabAudioRepository: audioRepository,
+                            grammarProgressController:
+                                grammarProgressController,
+                            workshopRepository: workshopRepository,
+                            streakController: streakController,
+                            startAtGameHub: showGameHub,
+                            initialEnglishTab: initialEnglishTab,
+                          ),
+                    StudentAuthStatus.signedOut ||
+                    StudentAuthStatus.unavailable =>
+                      StudentLoginScreen(controller: authController!),
+                  };
+                },
+              ),
+      ),
+    );
+  }
+}
+
+class _BrandLaunchGate extends StatefulWidget {
+  const _BrandLaunchGate({
+    required this.enabled,
+    required this.startup,
+    required this.child,
+  });
+
+  final bool enabled;
+  final Future<void>? startup;
+  final Widget child;
+
+  @override
+  State<_BrandLaunchGate> createState() => _BrandLaunchGateState();
+}
+
+class _BrandLaunchGateState extends State<_BrandLaunchGate>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _logoOpacity;
+  late final Animation<double> _logoScale;
+  late final Animation<Offset> _logoSlide;
+  bool _introFinished = false;
+  bool _startupFinished = false;
+  bool _showApp = false;
+  Timer? _introDelay;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1450),
+    );
+    _logoOpacity = Tween<double>(begin: 0.55, end: 1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0, 0.56, curve: Curves.easeOut),
+      ),
+    );
+    _logoScale = Tween<double>(begin: 0.86, end: 1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0, 0.82, curve: Curves.easeOutBack),
+      ),
+    );
+    _logoSlide = Tween<Offset>(
+      begin: const Offset(0, 0.08),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
+    );
+    if (!widget.enabled) {
+      _introFinished = true;
+      _startupFinished = true;
+      _showApp = true;
+      return;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _introDelay = Timer(const Duration(milliseconds: 500), () {
+        if (!mounted) return;
+        _controller.forward().whenComplete(() {
+          if (!mounted) return;
+          _introFinished = true;
+          _revealWhenReady();
+        });
+      });
+    });
+    // Firebase/Auth and other startup work runs in parallel, but it must not
+    // hold the app behind the logo. AppShell can render local vocabulary while
+    // the auth state is being resolved.
+    _startupFinished = true;
+  }
+
+  void _revealWhenReady() {
+    if (_showApp || !_introFinished || !_startupFinished) return;
+    setState(() => _showApp = true);
+  }
+
+  @override
+  void dispose() {
+    _introDelay?.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 360),
+      switchInCurve: Curves.easeOut,
+      switchOutCurve: Curves.easeIn,
+      child: _showApp
+          ? KeyedSubtree(
+              key: const ValueKey('a1-buddy-app'),
+              child: widget.child,
+            )
+          : Scaffold(
+              key: const ValueKey('a1-buddy-brand-intro'),
+              backgroundColor: Colors.white,
+              body: SafeArea(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 28),
+                    child: FadeTransition(
+                      opacity: _logoOpacity,
+                      child: SlideTransition(
+                        position: _logoSlide,
+                        child: ScaleTransition(
+                          scale: _logoScale,
+                          child: Image.asset(
+                            appBrandLogoAsset,
+                            key: const Key('a1-brand-launch-logo'),
+                            width: 560,
+                            fit: BoxFit.contain,
+                            filterQuality: FilterQuality.high,
+                          ),
+                        ),
+                      ),
                     ),
-                  StudentAuthStatus.signedOut ||
-                  StudentAuthStatus.unavailable =>
-                    StudentLoginScreen(controller: authController!),
-                };
-              },
+                  ),
+                ),
+              ),
             ),
     );
   }
 }
 
-class _AppLoadingScreen extends StatelessWidget {
-  const _AppLoadingScreen();
+class _OrientationLock extends StatefulWidget {
+  const _OrientationLock({required this.child});
+
+  final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppPalette.background,
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.menu_book_rounded,
-                color: AppPalette.primaryDark,
-                size: 58,
-              ),
-              SizedBox(height: 14),
-              Text(
-                'DOPE ENGLISH',
-                style: TextStyle(
-                  color: AppPalette.primaryDark,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              SizedBox(height: 18),
-              CircularProgressIndicator(
-                color: AppPalette.secondaryDark,
-                strokeWidth: 4,
-              ),
-            ],
-          ),
-        ),
-      ),
+  State<_OrientationLock> createState() => _OrientationLockState();
+}
+
+class _OrientationLockState extends State<_OrientationLock> {
+  AppDeviceClass? _lastDeviceClass;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final deviceClass = appDeviceClassForShortestSide(
+      MediaQuery.sizeOf(context).shortestSide,
     );
+    if (_lastDeviceClass == deviceClass) return;
+    _lastDeviceClass = deviceClass;
+    unawaited(_applyOrientationLock(deviceClass));
   }
+
+  Future<void> _applyOrientationLock(AppDeviceClass deviceClass) async {
+    try {
+      await SystemChrome.setPreferredOrientations(
+        preferredOrientationsForDevice(deviceClass),
+      );
+    } catch (_) {
+      // Desktop/web test shells and unsupported embedders may not expose this
+      // platform channel; the app remains usable without the lock.
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }
 
 class AppShell extends StatefulWidget {
@@ -160,46 +398,91 @@ class AppShell extends StatefulWidget {
     this.authController,
     this.vocabAudioRepository,
     this.vocabController,
+    this.grammarProgressController,
+    this.workshopRepository,
+    this.streakController,
+    this.startAtGameHub = false,
+    this.initialEnglishTab = 1,
     super.key,
   });
 
   final StudentAuthController? authController;
   final VocabAudioRepository? vocabAudioRepository;
   final VocabController? vocabController;
+  final GrammarProgressController? grammarProgressController;
+  final GrammarWorkshopBankRepository? workshopRepository;
+  final StreakController? streakController;
+  final bool startAtGameHub;
+  final int initialEnglishTab;
 
   @override
   State<AppShell> createState() => _AppShellState();
 }
 
 class _AppShellState extends State<AppShell> {
-  static const _configuredInitialTab = int.fromEnvironment(
-    'DOPE_INITIAL_TAB',
-    defaultValue: 0,
-  );
-  int _selectedTab = _configuredInitialTab >= 0 && _configuredInitialTab <= 2
-      ? _configuredInitialTab
-      : 0;
+  late int _selectedTab;
+  double _econPracticeCount = 10;
+  String _econLanguage = 'zh';
+  late bool _gameHubOpen;
+  GameSubject _gameSubject = GameSubject.eng;
+  static const _subjectPreferenceKey = 'a1-buddy-last-subject-v1';
   bool _settingsOpen = false;
+  bool _econLearningLessonOpen = false;
+  bool _vocabKeyboardOpen = false;
   late final VocabController _vocabController;
   late final bool _ownsVocabController;
   late final VocabAudioRepository _vocabAudio;
   late final bool _ownsVocabAudio;
   late final VocabAudioReconciler _vocabAudioReconciler;
+  late final GrammarProgressController _grammarProgress;
+  late final bool _ownsGrammarProgress;
+  late final StreakController _streakController;
+  late final bool _ownsStreakController;
+  StreakUpdate? _shownStreakUpdate;
+  Timer? _streakOverlayTimer;
+  OverlayEntry? _streakOverlayEntry;
+  NotificationController? _notificationController;
+  bool _notificationOfferOpen = false;
 
   @override
   void initState() {
     super.initState();
+    _selectedTab =
+        widget.initialEnglishTab >= 0 && widget.initialEnglishTab <= 2
+            ? widget.initialEnglishTab
+            : 1;
+    _gameHubOpen = widget.startAtGameHub;
+    unawaited(_restoreLastSubject());
+    _ownsGrammarProgress = widget.grammarProgressController == null;
+    _grammarProgress = widget.grammarProgressController ??
+        GrammarProgressController(
+          playerId: widget.authController?.profile?.studentId ?? 'guest',
+        );
+    _grammarProgress.addListener(_refreshGrammarProgress);
+    unawaited(_grammarProgress.initialize());
+    _ownsStreakController = widget.streakController == null;
+    _streakController = widget.streakController ??
+        StreakController(
+          repository: widget.authController == null
+              ? LocalStreakRepository()
+              : FirebaseStreakRepository(),
+        );
+    _streakController.addListener(_refreshStreak);
+    unawaited(_streakController.initialize());
     _ownsVocabController = widget.vocabController == null;
     _vocabController = widget.vocabController ??
         VocabController(
           lookupRepository: CloudVocabLookupRepository(),
-          store: const SharedPreferencesVocabStore(),
+          store: widget.authController == null
+              ? const SharedPreferencesVocabStore()
+              : CloudSyncedVocabStore(auth: FirebaseAuth.instance),
         );
     _ownsVocabAudio = widget.vocabAudioRepository == null;
     _vocabAudio = widget.vocabAudioRepository ??
         AssetVocabAudioRepository(
           cloudClient: FirebaseVocabAudioCloudClient(),
         );
+    _applyVolume(AppSfx.instance.volume, persist: false);
     _vocabAudioReconciler = VocabAudioReconciler(
       audio: _vocabAudio,
       items: () => _vocabController.items,
@@ -208,6 +491,12 @@ class _AppShellState extends State<AppShell> {
       connectivity: widget.authController == null ? null : Connectivity(),
       authenticated: () => widget.authController?.isAuthenticated ?? true,
     );
+    if (widget.authController != null) {
+      _notificationController = NotificationController(
+        onStudyReminderOpened: _openStudyReminder,
+      )..addListener(_refreshNotifications);
+      unawaited(_notificationController!.initialize());
+    }
     unawaited(_initializeVocabulary());
   }
 
@@ -217,8 +506,152 @@ class _AppShellState extends State<AppShell> {
     _vocabAudioReconciler.start();
   }
 
+  Future<void> _restoreLastSubject() async {
+    try {
+      final preferences = await SharedPreferences.getInstance();
+      final saved = preferences.getString(_subjectPreferenceKey);
+      if (!mounted || saved == null) return;
+      setState(() {
+        _gameSubject = saved == 'econ' ? GameSubject.econ : GameSubject.eng;
+        _selectedTab = _gameSubject == GameSubject.eng ? 1 : 0;
+      });
+    } catch (_) {
+      // Keep ENG when the local preference is unavailable.
+    }
+  }
+
+  Future<void> _switchSubject(GameSubject subject) async {
+    if (_gameSubject == subject && !_gameHubOpen) return;
+    setState(() {
+      _gameSubject = subject;
+      _selectedTab = subject == GameSubject.eng ? 1 : 0;
+      _gameHubOpen = false;
+      _vocabKeyboardOpen = false;
+      _econLearningLessonOpen = false;
+    });
+    if (subject == GameSubject.econ) {
+      unawaited(const EconQuestionRepository().loadQuestions());
+    }
+    try {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.setString(
+        _subjectPreferenceKey,
+        subject == GameSubject.econ ? 'econ' : 'eng',
+      );
+    } catch (_) {
+      // Session state still changes when persistence is unavailable.
+    }
+  }
+
+  void _refreshGrammarProgress() {
+    if (mounted) setState(() {});
+  }
+
+  void _refreshStreak() {
+    if (!mounted) return;
+    final update = _streakController.lastUpdate;
+    setState(() {});
+    if (update == null ||
+        !update.extended ||
+        identical(update, _shownStreakUpdate)) {
+      return;
+    }
+    _shownStreakUpdate = update;
+    _streakOverlayTimer?.cancel();
+    _streakOverlayEntry?.remove();
+    final overlay = Overlay.of(context, rootOverlay: true);
+    final entry = OverlayEntry(
+      builder: (_) => StreakCelebrationOverlay(update: update),
+    );
+    _streakOverlayEntry = entry;
+    overlay.insert(entry);
+    _streakOverlayTimer = Timer(const Duration(milliseconds: 2400), () {
+      if (!mounted) return;
+      if (identical(_streakOverlayEntry, entry)) {
+        entry.remove();
+        _streakOverlayEntry = null;
+      }
+      _streakController.clearLastUpdate();
+    });
+  }
+
+  void _recordLearningActivity(String kind, String sourceId, int answerCount) {
+    unawaited(_recordLearningActivityAndOfferNotifications(
+      kind: kind,
+      sourceId: sourceId,
+      answerCount: answerCount,
+    ));
+  }
+
+  Future<void> _recordLearningActivityAndOfferNotifications({
+    required String kind,
+    required String sourceId,
+    required int answerCount,
+  }) async {
+    await _streakController.recordActivity(
+      kind: kind,
+      sourceId: sourceId,
+      answerCount: answerCount,
+    );
+    final notifications = _notificationController;
+    if (notifications == null) return;
+    await notifications.noteLearningActivity(
+      streakDays: _streakController.streak.days,
+    );
+    if (!mounted ||
+        !notifications.shouldOfferPermission ||
+        _notificationOfferOpen) {
+      return;
+    }
+    await notifications.markPermissionOfferShown();
+    if (!mounted) return;
+    _notificationOfferOpen = true;
+    await showOriginalModal<void>(
+      context: context,
+      barrierLabel: '關閉通知提示',
+      child: Builder(
+        builder: (modalContext) => NotificationPermissionOfferModal(
+          onLater: () => Navigator.of(modalContext).pop(),
+          onEnable: () async {
+            Navigator.of(modalContext).pop();
+            await notifications.enableRecommended();
+          },
+        ),
+      ),
+    );
+    _notificationOfferOpen = false;
+  }
+
+  void _refreshNotifications() {
+    if (mounted) setState(() {});
+  }
+
+  void _openStudyReminder() {
+    if (!mounted) return;
+    setState(() {
+      _gameHubOpen = false;
+      _gameSubject = GameSubject.eng;
+      _selectedTab = _vocabController.dueCount > 0 ? 1 : 0;
+      _vocabKeyboardOpen = false;
+    });
+  }
+
+  void _setVocabKeyboardOpen(bool open) {
+    if (!mounted || _vocabKeyboardOpen == open) return;
+    setState(() => _vocabKeyboardOpen = open);
+  }
+
   @override
   void dispose() {
+    _streakOverlayTimer?.cancel();
+    _streakOverlayEntry?.remove();
+    _streakOverlayEntry = null;
+    _streakController.removeListener(_refreshStreak);
+    if (_ownsStreakController) _streakController.dispose();
+    _notificationController?.removeListener(_refreshNotifications);
+    _notificationController?.dispose();
+    _grammarProgress.removeListener(_refreshGrammarProgress);
+    if (_ownsGrammarProgress) _grammarProgress.dispose();
     unawaited(_vocabAudioReconciler.dispose());
     if (_ownsVocabController) _vocabController.dispose();
     if (_ownsVocabAudio) unawaited(_vocabAudio.dispose());
@@ -230,20 +663,176 @@ class _AppShellState extends State<AppShell> {
     return Scaffold(
       backgroundColor: AppPalette.background,
       resizeToAvoidBottomInset: false,
-      body: _buildSelectedTab(context),
-      bottomNavigationBar: OriginalTabBar(
-        selectedIndex: _selectedTab,
-        onSelected: (index) {
-          AppSfx.instance.play(SfxCue.click);
-          setState(() => _selectedTab = index);
-        },
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          _gameHubOpen
+              ? _buildGameHub(context)
+              : OriginalHeaderAccessoryScope(
+                  width: 38,
+                  accessory: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      StreakBadge(
+                        compact: true,
+                        streak: _streakController.streak,
+                        onTap: () => _showStreakPanel(context),
+                      ),
+                    ],
+                  ),
+                  child: _buildSelectedTab(context),
+                ),
+          if (!_gameHubOpen)
+            Positioned(
+              left: -14,
+              top: 22,
+              child: SubjectSwitcher(
+                subject: _gameSubject,
+                onChanged: (subject) {
+                  AppSfx.instance.play(SfxCue.click);
+                  unawaited(_switchSubject(subject));
+                },
+              ),
+            ),
+        ],
       ),
+      bottomNavigationBar: _gameHubOpen
+          ? null
+          : _selectedTab == 1 && _vocabKeyboardOpen
+              ? null
+              : _gameSubject == GameSubject.econ
+                  ? EconTabBar(
+                      selectedIndex: _selectedTab,
+                      onSelected: (index) {
+                        AppSfx.instance.play(SfxCue.click);
+                        setState(() {
+                          _selectedTab = index;
+                          _vocabKeyboardOpen = false;
+                        });
+                      },
+                    )
+                  : OriginalTabBar(
+                      selectedIndex: _selectedTab,
+                      onSelected: (index) {
+                        AppSfx.instance.play(SfxCue.click);
+                        setState(() {
+                          _selectedTab = index;
+                          if (index != 1) _vocabKeyboardOpen = false;
+                        });
+                      },
+                    ),
     );
   }
 
+  Widget _buildGameHub(BuildContext context) {
+    return GameHubScreen(
+      subject: _gameSubject,
+      onSubjectChanged: (subject) {
+        AppSfx.instance.play(SfxCue.click);
+        setState(() => _gameSubject = subject);
+      },
+      onEnglishMode: _openEnglishMode,
+      onEconMode: _openEconMode,
+      onSettings: () => _showSettings(context),
+      settingsActive: _settingsOpen,
+    );
+  }
+
+  void _openEnglishMode(EnglishGameMode mode) {
+    setState(() {
+      _gameHubOpen = false;
+      _gameSubject = GameSubject.eng;
+      _selectedTab = switch (mode) {
+        EnglishGameMode.grammar => 0,
+        EnglishGameMode.review => 1,
+        EnglishGameMode.workshop => 2,
+      };
+    });
+  }
+
+  void _openEconMode(EconGameMode mode) {
+    unawaited(const EconQuestionRepository().loadQuestions());
+    setState(() {
+      _gameHubOpen = false;
+      _gameSubject = GameSubject.econ;
+      _selectedTab = switch (mode) {
+        EconGameMode.learn => 0,
+        EconGameMode.topics => 1,
+        EconGameMode.year => 2,
+      };
+      _econLearningLessonOpen = false;
+    });
+  }
+
   Widget _buildSelectedTab(BuildContext context) {
+    if (_gameSubject == GameSubject.econ) {
+      return switch (_selectedTab) {
+        0 => _econLearningLessonOpen
+            ? EconConceptReviewScreen(
+                questionCount: _econPracticeCount.round(),
+                initialLanguage: _econLanguage == 'en'
+                    ? EconReviewLanguage.en
+                    : EconReviewLanguage.zh,
+                onClose: () => setState(() => _econLearningLessonOpen = false),
+                onCompleted: (count) =>
+                    _recordLearningActivity('econ', 'concept-review', count),
+              )
+            : EconLearningMenuScreen(
+                practiceCount: _econPracticeCount,
+                language: _econLanguage,
+                onLanguageChanged: (value) {
+                  setState(() => _econLanguage = value);
+                },
+                onSettings: () => _showSettings(context),
+                settingsActive: _settingsOpen,
+                onPracticeCountChanged: (value) {
+                  setState(() => _econPracticeCount = value);
+                },
+                onLessonTap: (chapterNo) {
+                  if (chapterNo == 1) {
+                    setState(() => _econLearningLessonOpen = true);
+                  }
+                },
+              ),
+        1 => EconQuestionPickerScreen(
+            mode: EconGamePickerMode.topics,
+            practiceCount: _econPracticeCount.round(),
+            onPracticeCountChanged: (value) {
+              setState(() => _econPracticeCount = value);
+            },
+            language: _econLanguage,
+            onLanguageChanged: (value) {
+              setState(() => _econLanguage = value);
+            },
+            onClose: () => setState(() => _selectedTab = 1),
+            onSettings: () => _showSettings(context),
+            settingsActive: _settingsOpen,
+            onRoundCompleted: (count) =>
+                _recordLearningActivity('econ', 'topic-practice', count),
+          ),
+        2 => EconQuestionPickerScreen(
+            mode: EconGamePickerMode.year,
+            practiceCount: _econPracticeCount.round(),
+            language: _econLanguage,
+            onLanguageChanged: (value) {
+              setState(() => _econLanguage = value);
+            },
+            onClose: () => setState(() => _selectedTab = 2),
+            onSettings: () => _showSettings(context),
+            settingsActive: _settingsOpen,
+            onRoundCompleted: (count) =>
+                _recordLearningActivity('econ', 'paper-practice', count),
+          ),
+        _ => EconLeaderboardScreen(
+            onClose: () => setState(() => _selectedTab = 3),
+            onSettings: () => _showSettings(context),
+            settingsActive: _settingsOpen,
+          ),
+      };
+    }
     return switch (_selectedTab) {
       0 => OriginalGrammarHome(
+          lessonProgress: _grammarProgress.progressByIndex,
           onLessonTap: (index) => _showLessonSheet(context, index),
           onVerbTableInfo: () {
             AppSfx.instance.play(SfxCue.click);
@@ -259,94 +848,88 @@ class _AppShellState extends State<AppShell> {
           controller: _vocabController,
           audioRepository: _vocabAudio,
           onSettings: () => _showSettings(context),
+          onKeyboardVisibilityChanged: _setVocabKeyboardOpen,
           settingsActive: _settingsOpen,
+          onReviewCompleted: (count) =>
+              _recordLearningActivity('vocabulary', 'training', count),
         ),
-      _ => const OriginalScanPage(),
+      _ => GrammarWorkshopScreen(
+          repository: widget.workshopRepository,
+          onSettings: () => _showSettings(context),
+          settingsActive: _settingsOpen,
+          onRoundCompleted: (count) =>
+              _recordLearningActivity('workshop', 'grammar-workshop', count),
+        ),
     };
   }
 
   void _showLessonSheet(BuildContext context, int index) {
     final lesson = _originalLessonDetails[index];
-    showModalBottomSheet<void>(
+    unawaited(showOriginalModal<void>(
       context: context,
-      backgroundColor: AppPalette.paper,
-      isScrollControlled: true,
-      showDragHandle: true,
-      builder: (sheetContext) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 4, 24, 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  lesson.$2,
-                  style: const TextStyle(
-                    color: _blueDark,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 13,
-                    letterSpacing: 0.4,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  lesson.$1,
-                  style: const TextStyle(
-                    color: _text,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 23,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  lesson.$3,
-                  style: const TextStyle(
-                    color: AppPalette.muted,
-                    fontSize: 15,
-                    height: 1.35,
-                  ),
-                ),
-                const SizedBox(height: 18),
-                FilledButton.icon(
-                  onPressed: () => _startLesson(sheetContext, index),
-                  icon: const Icon(Icons.play_arrow_rounded),
-                  label: const Text('開始課堂'),
-                  style: FilledButton.styleFrom(
-                    backgroundColor: _blueDark,
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size.fromHeight(52),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
+      barrierLabel: '關閉課堂資料',
+      child: OriginalLessonStartModal(
+        lessonLabel: lesson.$2,
+        title: lesson.$1,
+        description: lesson.$3,
+        sfx: AppSfx.instance,
+        onStart: () => _startLesson(context, index),
+      ),
+    ));
   }
 
   void _startLesson(BuildContext sheetContext, int index) {
     Navigator.of(sheetContext).pop();
+    var correctCount = 0;
+    var activityRecorded = false;
+    void recordCorrect() {
+      unawaited(_grammarProgress.recordCorrect(index));
+      correctCount += 1;
+      if (!activityRecorded && correctCount >= 5) {
+        activityRecorded = true;
+        _recordLearningActivity('grammar', 'lesson-${index + 1}', correctCount);
+      }
+    }
+
     final lessonScreen = switch (index) {
-      0 => const Lesson01Screen(),
-      1 => const Lesson02Screen(),
-      2 => const Quiz01Screen(),
-      3 => const Lesson03Screen(),
-      4 => const Lesson04Screen(),
-      5 => const Lesson05Screen(),
-      6 => const CorrectionLessonScreen(config: lesson06Config),
-      7 => const CorrectionLessonScreen(config: lesson07Config),
-      8 => const CorrectionLessonScreen(config: lesson08Config),
-      9 => const CorrectionLessonScreen(config: lesson09Config),
-      10 => const CorrectionLessonScreen(config: lesson10Config),
-      11 => const Lesson11Screen(),
-      12 => Lesson12Screen(audioRepository: widget.vocabAudioRepository),
-      13 => const CorrectionLessonScreen(config: lesson13Config),
+      0 => Lesson01Screen(onQuestionCorrect: recordCorrect),
+      1 => Lesson02Screen(onQuestionCorrect: recordCorrect),
+      2 => Quiz01Screen(onQuestionCorrect: recordCorrect),
+      3 => Lesson03Screen(onQuestionCorrect: recordCorrect),
+      4 => Lesson04Screen(onQuestionCorrect: recordCorrect),
+      5 => Lesson05Screen(onQuestionCorrect: recordCorrect),
+      6 => CorrectionLessonScreen(
+          config: lesson06Config,
+          onQuestionCorrect: recordCorrect,
+        ),
+      7 => CorrectionLessonScreen(
+          config: lesson07Config,
+          onQuestionCorrect: recordCorrect,
+        ),
+      8 => CorrectionLessonScreen(
+          config: lesson08Config,
+          onQuestionCorrect: recordCorrect,
+        ),
+      9 => CorrectionLessonScreen(
+          config: lesson09Config,
+          onQuestionCorrect: recordCorrect,
+        ),
+      10 => CorrectionLessonScreen(
+          config: lesson10Config,
+          onQuestionCorrect: recordCorrect,
+        ),
+      11 => Lesson11Screen(onQuestionCorrect: recordCorrect),
+      12 => Lesson12Screen(
+          audioRepository: widget.vocabAudioRepository,
+          onQuestionCorrect: recordCorrect,
+        ),
+      13 => CorrectionLessonScreen(
+          config: lesson13Config,
+          onQuestionCorrect: recordCorrect,
+        ),
       _ => null,
     };
     if (lessonScreen == null) return;
-    AppSfx.instance.play(SfxCue.start);
     Future<void>.delayed(Duration.zero, () {
       if (!mounted) return;
       Navigator.of(context).push(
@@ -355,60 +938,141 @@ class _AppShellState extends State<AppShell> {
     });
   }
 
+  void _showStreakPanel(BuildContext context) {
+    unawaited(AppSfx.instance.play(SfxCue.click));
+    unawaited(showOriginalModal<void>(
+      context: context,
+      barrierLabel: '關閉連續學習紀錄',
+      child: Builder(
+        builder: (modalContext) => AnimatedBuilder(
+          animation: _streakController,
+          builder: (_, __) => StreakPanel(
+            streak: _streakController.streak,
+            onClose: () => Navigator.of(modalContext).pop(),
+          ),
+        ),
+      ),
+    ));
+  }
+
   void _showSettings(BuildContext context) {
     setState(() => _settingsOpen = true);
-    final modal = showModalBottomSheet<void>(
+    unawaited(AppSfx.instance.play(SfxCue.click));
+    final profile = widget.authController?.profile;
+    final modal = showOriginalModal<void>(
       context: context,
-      backgroundColor: AppPalette.paper,
-      showDragHandle: true,
-      builder: (sheetContext) {
-        final profile = widget.authController?.profile;
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 4, 24, 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  '設定',
-                  style: TextStyle(
-                    color: _blueDark,
-                    fontSize: 26,
-                    fontWeight: FontWeight.w900,
-                  ),
+      barrierLabel: '關閉設定',
+      child: OriginalSettingsModal(
+        initialVolume: AppSfx.instance.volume,
+        onVolumeChanged: (value) => _applyVolume(value, persist: false),
+        onVolumeCommitted: (value) => _applyVolume(value, persist: true),
+        sfx: AppSfx.instance,
+        accentColor: _gameSubject == GameSubject.econ
+            ? EconPalette.primary
+            : AppPalette.primary,
+        accentDarkColor: _gameSubject == GameSubject.econ
+            ? EconPalette.primaryDark
+            : AppPalette.primaryDark,
+        accentSoftColor: _gameSubject == GameSubject.econ
+            ? EconPalette.softPrimary
+            : AppPalette.softPrimary,
+        accentShadowColor: _gameSubject == GameSubject.econ
+            ? EconPalette.border
+            : const Color(0xFFBDE0E1),
+        notificationPreferences: _notificationController?.preferences,
+        onNotificationCategoryChanged: _notificationController?.setCategory,
+        onReminderMinutesChanged: _notificationController?.setReminderMinutes,
+        profileName: profile?.displayName,
+        profilePreview: profile?.avatarSeed.isNotEmpty == true
+            ? Center(
+                child: CritterAvatar(
+                  seed: profile!.avatarSeed,
+                  background: profile.avatarBackground.isEmpty
+                      ? studentAvatarBackgrounds.first
+                      : profile.avatarBackground,
+                  options: profile.avatarOptions,
+                  size: 46,
+                  borderColor: Colors.white,
+                  borderWidth: 3,
+                  animate: false,
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  profile == null
-                      ? '目前使用本機測試模式。'
-                      : '${profile.displayName} (${profile.studentId})',
-                  style: const TextStyle(
-                    color: AppPalette.muted,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                if (widget.authController != null) ...[
-                  const SizedBox(height: 18),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      Navigator.of(sheetContext).pop();
-                      widget.authController!.logout();
-                    },
-                    icon: const Icon(Icons.logout_rounded),
-                    label: const Text('登出'),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        );
-      },
+              )
+            : null,
+        onEditProfile: widget.authController == null
+            ? null
+            : () => _openProfileEditor(context),
+        onLogout: widget.authController == null
+            ? null
+            : () {
+                Navigator.of(context).pop();
+                unawaited(_logout());
+              },
+      ),
     );
     unawaited(modal.whenComplete(() {
       if (mounted) setState(() => _settingsOpen = false);
     }));
+  }
+
+  void _openProfileEditor(BuildContext settingsContext) {
+    final auth = widget.authController;
+    final profile = auth?.profile;
+    if (auth == null || profile == null) return;
+    Navigator.of(settingsContext).pop();
+    Future<void>.delayed(Duration.zero, () {
+      if (!mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => AnimatedBuilder(
+            animation: auth,
+            builder: (_, __) => StudentProfileSetupScreen(
+              studentId: auth.profile?.studentId ?? profile.studentId,
+              initialName: auth.profile?.displayName ?? profile.displayName,
+              initialAvatarSeed: auth.profile?.avatarSeed ?? profile.avatarSeed,
+              initialAvatarBackground:
+                  auth.profile?.avatarBackground ?? profile.avatarBackground,
+              initialAvatarOptions:
+                  auth.profile?.avatarOptions ?? profile.avatarOptions,
+              initialStep: 1,
+              isSubmitting: auth.isSubmitting,
+              message: auth.message,
+              onComplete: ({
+                required displayName,
+                required avatarSeed,
+                required avatarBackground,
+                avatarOptions = const <String, String>{},
+              }) async {
+                final saved = await auth.completeProfile(
+                  displayName: displayName,
+                  avatarSeed: avatarSeed,
+                  avatarBackground: avatarBackground,
+                  avatarOptions: avatarOptions,
+                );
+                if (saved && mounted && Navigator.of(context).canPop()) {
+                  Navigator.of(context).pop();
+                }
+                return saved;
+              },
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  Future<void> _logout() async {
+    await _notificationController?.unregisterForLogout();
+    await widget.authController?.logout();
+  }
+
+  void _applyVolume(double value, {required bool persist}) {
+    unawaited(AppSfx.instance.setVolume(value, persist: persist));
+    final audio = _vocabAudio;
+    if (audio is VocabAudioVolumeController) {
+      unawaited(
+        (audio as VocabAudioVolumeController).setPlaybackVolume(value),
+      );
+    }
   }
 }
 
@@ -1037,21 +1701,76 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profile = authController?.profile;
-    return SectionPlaceholder(
-      title: 'Profile',
-      chineseTitle: '帳戶',
-      icon: Icons.person_rounded,
-      accent: _pink,
-      message: profile == null
-          ? '目前使用本機測試模式。'
-          : '${profile.displayName} (${profile.studentId})\n學習紀錄及讀音已連接 Firebase。',
-      actionLabel: authController == null ? null : '登出',
-      onAction: authController == null
-          ? null
-          : () {
-              AppSfx.instance.play(SfxCue.click);
-              authController!.logout();
-            },
+    if (profile == null) {
+      return const SectionPlaceholder(
+        title: 'Profile',
+        chineseTitle: '帳戶',
+        icon: Icons.person_rounded,
+        accent: _pink,
+        message: '目前使用本機測試模式。',
+      );
+    }
+    return SafeArea(
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 440),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (profile.avatarSeed.isNotEmpty)
+                  CritterAvatar(
+                    seed: profile.avatarSeed,
+                    background: profile.avatarBackground.isEmpty
+                        ? studentAvatarBackgrounds.first
+                        : profile.avatarBackground,
+                    options: profile.avatarOptions,
+                    size: 132,
+                    borderColor: AppPalette.primary,
+                    borderWidth: 4,
+                  )
+                else
+                  const CircleAvatar(
+                    radius: 66,
+                    backgroundColor: AppPalette.softPrimary,
+                    child: Icon(
+                      Icons.person_rounded,
+                      size: 62,
+                      color: AppPalette.primaryDark,
+                    ),
+                  ),
+                const SizedBox(height: 18),
+                Text(
+                  profile.displayName,
+                  style: const TextStyle(
+                    color: AppPalette.ink,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  profile.studentId,
+                  style: const TextStyle(
+                    color: AppPalette.muted,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                OutlinedButton.icon(
+                  onPressed: () {
+                    AppSfx.instance.play(SfxCue.click);
+                    authController?.logout();
+                  },
+                  icon: const Icon(Icons.logout_rounded),
+                  label: const Text('登出'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -11773,7 +11773,7 @@
     ["valued", "adjective", "受重視的 / 珍貴的", {"level":"B2","overrideTeacher":true}],
     ["valueless", "adjective", "無價值的", {"level":"C1","overrideTeacher":true}],
     ["variance", "noun", "差異", {"level":"C1","overrideTeacher":true}],
-    ["vary from ... to ...", "verb", "由...到...不等 / 因...而異", {"type":"phrase","level":"B2","overrideTeacher":true}],
+    ["vary from ... to ...", "verb", "由...到...不等 / 因...而異", {"type":"phrase","level":"B2","overrideTeacher":true,"aliases":["vary from to"]}],
     ["vegetative", "adjective", "植物人的 / 植物狀態的", {"level":"C1","overrideTeacher":true,"hidden":true}],
     ["vend", "verb", "販賣", {"level":"C1","overrideTeacher":true}],
     ["venerable", "adjective", "德高望重的 / 可敬的", {"level":"C1","overrideTeacher":true}],
@@ -40201,6 +40201,7 @@
     ["millennium", "noun", "一千年", { hidden: true, overrideTeacher: true, source: "duplicate-suppression" }],
     ["mishap", "noun", "小意外 / 差錯", { hidden: true, overrideTeacher: true, source: "duplicate-suppression" }],
     ["misleading", "adjective", "誤導性的", { hidden: true, overrideTeacher: true, source: "duplicate-suppression" }],
+    ["differ from ... to ...", "verb", "因...而異", { type: "pattern", level: "B2", overrideTeacher: true, aliases: ["differ from to"] }],
   ];
 
   function normalizeVerbTableMeaning(value) {

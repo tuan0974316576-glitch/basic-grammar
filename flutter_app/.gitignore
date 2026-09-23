@@ -1,4 +1,5 @@
 .dart_tool/
+private_keys/
 .packages
 .flutter-plugins
 .flutter-plugins-dependencies

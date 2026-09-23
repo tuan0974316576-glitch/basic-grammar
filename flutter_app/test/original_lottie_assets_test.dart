@@ -22,10 +22,73 @@ void main() {
     for (final asset in [
       'assets/lottie/confetti.json',
       'assets/lottie/streak-fire.json',
+      'assets/lottie/streak-extend.json',
+      'assets/lottie/streak-freeze.json',
     ]) {
       final data = jsonDecode(await File(asset).readAsString());
       expect(data, isA<Map<String, dynamic>>());
       expect((data as Map<String, dynamic>)['v'], isNotEmpty);
+      expect(data['layers'], isA<List<dynamic>>());
+      expect((data['layers'] as List<dynamic>), isNotEmpty);
+    }
+  });
+
+  test('milestone monster assets are valid vector Lottie data', () async {
+    for (final name in [
+      'cute-monster',
+      'monster-blue',
+      'monster-3',
+      'monster-5',
+      'monster-6',
+      'one-eye-monster-2',
+    ]) {
+      final data = jsonDecode(
+        await File('assets/lottie/monsters/$name.json').readAsString(),
+      ) as Map<String, dynamic>;
+      expect(data['assets'], isA<List<dynamic>>());
+      expect((data['assets'] as List<dynamic>), isEmpty);
+      expect(data['layers'], isA<List<dynamic>>());
+    }
+  });
+
+  test('the imported monster set is valid Lottie JSON', () async {
+    for (final name in [
+      'crying-monster',
+      'sad-monster',
+      'one-eye-monster-5',
+      'three-eye-monster',
+      'three-eye-monster-2',
+      'three-eye-monster-3',
+      'three-eye-monster-4',
+      'three-eye-monster-5',
+      'three-eye-monster-6',
+      'top-badge-animation',
+    ]) {
+      final data = jsonDecode(
+        await File('assets/lottie/monsters/$name.json').readAsString(),
+      ) as Map<String, dynamic>;
+      expect(data['v'], isNotEmpty);
+      expect(data['layers'], isA<List<dynamic>>());
+      expect((data['layers'] as List<dynamic>), isNotEmpty);
+    }
+  });
+
+  test('weekday success monsters keep one colour variant per day', () async {
+    const names = [
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday',
+    ];
+    for (final name in names) {
+      final data = jsonDecode(
+        await File('assets/lottie/monsters/cute-monster-$name.json')
+            .readAsString(),
+      ) as Map<String, dynamic>;
+      expect(data['v'], isNotEmpty);
       expect(data['layers'], isA<List<dynamic>>());
       expect((data['layers'] as List<dynamic>), isNotEmpty);
     }
@@ -69,6 +132,7 @@ void main() {
     expect(
         find.byKey(const Key('original-streak-fire-lottie')), findsOneWidget);
     expect(find.byType(Lottie), findsOneWidget);
+    expect(tester.widget<Lottie>(find.byType(Lottie)).repeat, isTrue);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
     await tester.pump();

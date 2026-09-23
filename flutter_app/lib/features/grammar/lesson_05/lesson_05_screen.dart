@@ -10,11 +10,16 @@ import 'lesson_05_question.dart';
 import 'lesson_05_repository.dart';
 
 class Lesson05Screen extends StatefulWidget {
-  const Lesson05Screen(
-      {this.repository = const Lesson05Repository(), this.sfx, super.key});
+  const Lesson05Screen({
+    this.repository = const Lesson05Repository(),
+    this.sfx,
+    this.onQuestionCorrect,
+    super.key,
+  });
 
   final Lesson05Repository repository;
   final LessonSfx? sfx;
+  final VoidCallback? onQuestionCorrect;
 
   @override
   State<Lesson05Screen> createState() => _Lesson05ScreenState();
@@ -65,6 +70,7 @@ class _Lesson05ScreenState extends State<Lesson05Screen> {
         return;
       case Lesson05Event.questionCorrect:
         setState(() => _celebration += 1);
+        widget.onQuestionCorrect?.call();
         unawaited(_sfx.play(SfxCue.correct));
         return;
       case Lesson05Event.nextQuestion:
@@ -104,6 +110,7 @@ class _Lesson05ScreenState extends State<Lesson05Screen> {
             total: controller.total,
             mistakes: controller.mistakes,
             reviewMode: controller.isReviewMode,
+            sfx: _sfx,
             onClose: _close,
             onRestart: () {
               controller.restart();

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -10,10 +12,18 @@ import 'package:dope_english/features/vocabulary/vocab_import_models.dart';
 import 'package:dope_english/features/vocabulary/vocab_import_repository.dart';
 import 'package:dope_english/features/vocabulary/vocab_models.dart';
 import 'package:dope_english/features/vocabulary/vocab_repository.dart';
+import 'package:dope_english/features/vocabulary/vocab_review_controller.dart';
 import 'package:dope_english/features/vocabulary/vocab_screen.dart';
 import 'package:dope_english/features/vocabulary/vocab_synonym_repository.dart';
 
 void main() {
+  test('crayon colours are stable by part of speech', () {
+    expect(vocabCrayonColorForPos('noun'), const Color(0xFFF2C94C));
+    expect(vocabCrayonColorForPos('verb'), const Color(0xFF6FCF78));
+    expect(vocabCrayonColorForPos('adjective'), const Color(0xFFA88AE3));
+    expect(vocabCrayonColorForPos('adverb'), const Color(0xFF63A9E8));
+    expect(vocabCrayonColorForPos('pattern'), const Color(0xFFEB86AA));
+  });
   late VocabController controller;
 
   setUp(() async {
@@ -91,6 +101,78 @@ void main() {
     expect(sfx.cues, contains(SfxCue.clickEnglishWords));
   });
 
+  testWidgets('slow meaning lookup shows animated search status',
+      (tester) async {
+    final lookup = _DelayedLookupRepository();
+    final delayedController = VocabController(
+      lookupRepository: lookup,
+      store: _ScreenStore(),
+    );
+    await delayedController.initialize();
+    addTearDown(delayedController.dispose);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: VocabularyScreen(
+            controller: delayedController,
+            audioRepository: const SilentVocabAudioRepository(),
+          ),
+        ),
+      ),
+    );
+
+    unawaited(delayedController.updateQuery('bald'));
+    await tester.pump();
+    expect(find.byKey(const Key('vocab-lookup-loading')), findsOneWidget);
+    expect(find.text('激情搜尋中'), findsOneWidget);
+
+    await tester.pump(const Duration(milliseconds: 350));
+    expect(find.byKey(const Key('vocab-lookup-loading')), findsOneWidget);
+
+    lookup.complete();
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('vocab-lookup-loading')), findsNothing);
+    expect(find.text('adj. 禿頭'), findsOneWidget);
+  });
+
+  testWidgets('training button pulses only while vocabulary is due',
+      (tester) async {
+    await controller.updateQuery('have');
+    controller.toggleSense(controller.lookupSenses.first);
+    await controller.addSelected();
+    await tester.pumpWidget(app());
+    await tester.pump(const Duration(milliseconds: 100));
+
+    final pulseFinder = find.byKey(const Key('vocab-review-button-pulse'));
+    expect(
+      tester.widget<AnimatedScale>(pulseFinder).scale,
+      closeTo(1.16, 0.001),
+    );
+    await tester.pump(const Duration(milliseconds: 900));
+    expect(
+      tester.widget<AnimatedScale>(pulseFinder).scale,
+      closeTo(1, 0.001),
+    );
+    await tester.pump(const Duration(milliseconds: 900));
+    expect(
+      tester.widget<AnimatedScale>(pulseFinder).scale,
+      closeTo(1.16, 0.001),
+    );
+
+    await controller.recordReviewAnswer(
+      controller.items.single,
+      VocabReviewKind.reading,
+      true,
+    );
+    await tester.pump();
+
+    expect(controller.dueCount, 0);
+    expect(
+      tester.widget<AnimatedScale>(pulseFinder).scale,
+      closeTo(1, 0.001),
+    );
+  });
+
   testWidgets('custom keyboard labels never inherit an underline decoration',
       (tester) async {
     await tester.pumpWidget(app());
@@ -131,7 +213,7 @@ void main() {
     await controller.updateQuery('have');
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('vocab-search-focus-overlay')), findsOneWidget);
-    expect(find.text('MEMORY TRACE LOCKED'), findsOneWidget);
+    expect(find.text('搵到喇！'), findsOneWidget);
     final row = find.byKey(ValueKey('vocab-row-${controller.items.single.id}'));
     await tester.ensureVisible(row);
     expect(row, findsOneWidget);
@@ -557,6 +639,30 @@ class _ScreenLookupRepository implements VocabLookupRepository {
       ),
     ];
   }
+}
+
+class _DelayedLookupRepository implements VocabLookupRepository {
+  final Completer<VocabLookupResult> _lookup = Completer();
+
+  void complete() {
+    _lookup.complete(const VocabLookupResult(senses: [
+      VocabSense(
+        id: 'bald-adjective',
+        word: 'bald',
+        display: 'bald',
+        meaning: '禿頭',
+        pos: 'adjective',
+        type: 'word',
+      ),
+    ]));
+  }
+
+  @override
+  Future<VocabLookupResult> lookup(String query) => _lookup.future;
+
+  @override
+  Future<List<VocabExampleSection>> loadExamples(VocabItem item) async =>
+      const [];
 }
 
 class _ScreenSynonymRepository implements VocabSynonymRepository {

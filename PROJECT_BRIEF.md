@@ -1,8 +1,8 @@
-# Project Brief: English Learning App
+# Project Brief: A1 BUDDY English Learning App
 
 ## Product Goal
 
-This project is evolving from a grammar game into a Duolingo-style English learning app for Hong Kong primary students and the tutoring centre.
+A1 BUDDY is evolving from a grammar game into a Duolingo-style English learning app for Hong Kong primary students and the tutoring centre.
 
 The app should feel like a real mobile app, not a scrolling website:
 
@@ -48,13 +48,32 @@ The app should automatically create different quiz modes from saved words:
 - Listening: hear the word and choose / type the answer
 - Speaking: read the word aloud and check pronunciation
 
+Spelling questions give the first English letter and automatically preserve
+fixed separators such as spaces, hyphens, apostrophes, and `...` pattern slots;
+students type letters only. Long phrases must wrap cleanly on compact phones.
+
 This module should eventually support vocab lists by class, topic, lesson, and student.
 
-### 3. Scan Dictionary
+### 3. Grammar Workshop
+
+The third native tab is `研修`. It practises the complete published Battleship
+grammar-topic bank in short rounds while keeping the A1 BUDDY stationery
+UI and teaching behaviour.
+
+- Battleship `grammarBank/public` is the live question source of truth.
+- The app checks the small release manifest whenever Workshop opens and only
+  downloads topics when a new release is published.
+- The last validated release is cached for offline use; a bundled published
+  release is the first-install fallback.
+- Every answered question immediately shows the correct answer and a clear
+  Traditional Chinese/Cantonese-friendly explanation before Next is enabled.
+
+### 4. Scan Dictionary
 
 Students can take a photo of worksheet / textbook text, scan words naturally, and look them up.
 
 This feature is being developed in another app first and will be merged later.
+It no longer occupies the third bottom tab while Grammar Workshop is active.
 
 Long-term behaviour:
 
@@ -72,6 +91,8 @@ The app should gradually become more Duolingo-like:
 - streaks
 - daily goals
 - achievements
+- student display names and persistent avatars
+- friend-ready public profiles that never expose student IDs or class IDs
 - lesson mastery
 - mistake revision queue
 - encouraging sound and celebration effects
@@ -97,6 +118,9 @@ Azure Speech / shared vocab audio:
 - Default Firebase Storage bucket `enguistics-grammar-game.firebasestorage.app` is created in `ASIA-EAST2`.
 - New vocab audio flow: if the word is not in the bundled Battleship-1 audio manifest, the logged-in app calls `ensureVocabAudio`; the function generates Azure TTS MP3 once, saves it under `vocab-audio/v1/`, and later students reuse the shared Firebase audio file.
 - Vocab example audio uses the same callable with `kind: "example"` only when the student taps an English example sentence. It generates Azure TTS once, saves shared MP3 files under `vocab-example-audio/v1/`, records metadata in `vocabExampleAudio`, and the app caches the MP3 in IndexedDB for offline replay.
+- Teacher-role users can force-regenerate a wrong word pronunciation from the Teacher Vocab Console. Each correction gets a new cloud revision and download token. Native playback is local-first: cached/bundled audio plays immediately while revision checks run in the background; My Vocab reconciliation proactively downloads a changed revision for later taps.
+- If TTS regeneration is still wrong, teacher-role users can upload a reviewed MP3 (up to 2 MB) from the same Console. The server validates the MP3 header, replaces the shared word audio, and publishes a new revision through the same native cache-refresh path.
+- Teacher Vocab Console playback must prefer the shared Azure/teacher-uploaded MP3 and persist it in browser Cache Storage; browser system speech is failure fallback only. Console examples lazy-load the same reviewed per-letter example shards used by the native game before requesting cloud generation.
 - Student-facing vocab meaning lookup must stay deterministic and fast: cloud teacher live bank -> bundled teacher bank plus curated local supplement -> reviewed Hong Kong / culture / school supplement. Do not show placeholder meanings, call live Azure / Gemini meaning fallback, or display unreviewed ECDICT / CC-CEDICT reverse entries while students type.
 
 Recommended direction:
@@ -111,6 +135,7 @@ Recommended direction:
 Suggested collections:
 
 - `users/{uid}`
+- `publicProfiles/{uid}` for signed-in social identity (`displayName` and avatar settings only)
 - `studentAccounts/{studentId}` for server-side account lookup only
 - `users/{uid}/grammarProgress/{lessonId}`
 - `users/{uid}/vocabItems/{wordId}`
@@ -118,6 +143,13 @@ Suggested collections:
 - `users/{uid}/achievements/{achievementId}`
 
 Do not write to Firebase on every tap. Prefer saving after a question, round, or meaningful progress event.
+
+### Student Identity
+
+- Students complete a two-step one-time profile setup after authentication: first choose a 2-20 character display name with the local blue Monster welcome animation, then build a fully custom DiceBear Critters avatar in a compact icon-tab / thumbnail editor. The default Critter visibly bobs and blinks at the fastest animation speed.
+- Store `avatarStyle`, `avatarSeed`, `avatarBackground`, `avatarOptions`, and `profileSetupComplete` in `users/{uid}`. `avatarOptions` covers Critters head/top, body, pattern, cheeks, eyes, mouth, and body/accent/ink colours. Generate both Critters and the welcome Monster locally from bundled assets; do not upload avatar images or send student identity to DiceBear at runtime.
+- Mirror only `displayName`, `avatarStyle`, `avatarSeed`, `avatarBackground`, `avatarOptions`, and `updatedAt` to `publicProfiles/{uid}` for the future friend system. Never expose `studentId`, `classId`, PIN data, email, or progress in the public profile.
+- Existing students who have no `profileSetupComplete` flag should receive the setup once after upgrading. Teacher accounts skip student onboarding.
 
 ### Vocabulary Sync Model
 

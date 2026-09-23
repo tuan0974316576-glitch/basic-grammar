@@ -21,6 +21,7 @@ const files = [
   "icon-512-maskable.png",
   "icon-512.png",
   "index.html",
+  "privacy.html",
   "manifest.json",
   "style.css",
   "teacher-vocab.html",
@@ -52,6 +53,7 @@ const directories = [
   "assets",
   "audio"
 ];
+const flutterVocabDir = path.join(rootDir, "flutter_app", "assets", "data", "vocab");
 
 const PRIVATE_REVIEW_ASSET_DIRS = new Set([
   path.join(rootDir, "assets", "offline-dictionary"),
@@ -91,6 +93,14 @@ function buildWeb() {
   directories.forEach((directory) => {
     copyDirectory(path.join(rootDir, directory), path.join(outDir, directory));
   });
+
+  const webExampleDir = path.join(outDir, "assets", "vocab-examples");
+  fs.readdirSync(flutterVocabDir)
+    .filter((file) => /^examples_[a-z0-9_]\.json$/i.test(file))
+    .forEach((file) => copyFile(
+      path.join(flutterVocabDir, file),
+      path.join(webExampleDir, file)
+    ));
 
   console.log(`Built web assets in ${outDir}`);
 }

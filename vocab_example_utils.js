@@ -87,14 +87,45 @@
       .slice(0, 80);
   }
 
+  function normalizeMeaningKey(value) {
+    return normalizeMeaning(value).replace(/[\s/／]+/g, "").toLowerCase();
+  }
+
+  function selectBestExamplePayload(entry = {}, candidates = []) {
+    const rows = Array.isArray(candidates) ? candidates : [];
+    if (!rows.length) return null;
+    const meaningKey = normalizeMeaningKey(entry.meaning);
+    const pos = normalizePos(entry.pos || entry.inferredPos);
+    const type = normalizePos(entry.type);
+    function score(candidate = {}) {
+      const candidateMeaning = normalizeMeaningKey(candidate.meaning);
+      const candidatePos = normalizePos(candidate.pos);
+      const candidateType = normalizePos(candidate.type);
+      let value = 0;
+      if (candidateMeaning && candidateMeaning === meaningKey) value += 8;
+      if (candidateMeaning && meaningKey &&
+          (candidateMeaning.includes(meaningKey) || meaningKey.includes(candidateMeaning))) value += 4;
+      if (candidatePos && candidatePos === pos) value += 3;
+      if (candidateType && candidateType === type) value += 1;
+      if (!candidateMeaning) value += 1;
+      return value;
+    }
+    const ranked = rows
+      .map((candidate) => ({ candidate, score: score(candidate) }))
+      .sort((left, right) => right.score - left.score);
+    return ranked[0]?.score > 0 ? ranked[0].candidate : null;
+  }
+
   return {
     getCloudCacheKey,
     getLocalCacheKey,
     normalizeHints,
     normalizeMeaning,
+    normalizeMeaningKey,
     normalizePos,
     normalizeStorageKey,
     normalizeWord,
+    selectBestExamplePayload,
     stableHash
   };
 });

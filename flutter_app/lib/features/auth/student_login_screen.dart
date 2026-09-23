@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/app_brand.dart';
 import '../../core/app_palette.dart';
 import '../../core/app_sfx.dart';
 import '../../core/widgets/stationery_frame.dart';
@@ -171,7 +172,7 @@ class _BlurredGrammarBackdrop extends StatelessWidget {
             children: [
               const SizedBox(height: 72),
               const Text(
-                'DOPE ENGLISH',
+                appDisplayName,
                 style: TextStyle(
                   color: AppPalette.primaryDark,
                   fontSize: 30,
@@ -339,6 +340,7 @@ class _LoginFields extends StatelessWidget {
                 );
               }),
             ],
+            onChanged: (_) => unawaited(AppSfx.instance.play(SfxCue.type)),
             onSubmitted: (_) => pinFocusNode.requestFocus(),
             decoration: const InputDecoration(
               hintText: '例如 S001',
@@ -375,6 +377,7 @@ class _LoginFields extends StatelessWidget {
               FilteringTextInputFormatter.digitsOnly,
               LengthLimitingTextInputFormatter(8),
             ],
+            onChanged: (_) => unawaited(AppSfx.instance.play(SfxCue.type)),
             onSubmitted: (_) => onSubmit(),
             decoration: const InputDecoration(
               hintText: '4-6 位數字',

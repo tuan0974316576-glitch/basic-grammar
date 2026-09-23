@@ -138,6 +138,18 @@ assert.strictEqual(loadedManual.entries[0].type, "word");
 assert.strictEqual(loadedManual.entries[0].source, "reviewed-teacher-bank");
 assert.deepStrictEqual(loadedManual.entries[0].aliases, ["must"]);
 
+const subsetUpdatesPath = path.join(tmpDir, "teacher_vocab_manual_updates_subset.json");
+fs.writeFileSync(subsetUpdatesPath, JSON.stringify({
+  meta: { lesson: "Subset cleanup" },
+  entries: [
+    { word: "massive", pos: "adj.", type: "word", meaning: "巨大的" },
+    { word: "massive", pos: "adj.", type: "word", meaning: "巨大的 / 大量的" }
+  ]
+}, null, 2));
+const loadedSubset = sync.loadTeacherLiveEntries(subsetUpdatesPath);
+assert.strictEqual(loadedSubset.entries.length, 1);
+assert.strictEqual(loadedSubset.entries[0].meaning, "巨大的 / 大量的");
+
 const idA = sync.makeTeacherLiveEntryId(loadedManual.entries[0]);
 const idB = sync.makeTeacherLiveEntryId({ ...loadedManual.entries[0] });
 assert.strictEqual(idA, idB);

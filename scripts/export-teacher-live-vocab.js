@@ -69,6 +69,7 @@ function parseArgs(argv) {
 }
 
 function normalizeSnapshotEntry(raw = {}) {
+  if (!raw || typeof raw !== "object") return null;
   const entry = TeacherLiveVocab.normalizeEntry(raw, { source: "teacher-live" });
   if (!entry) return null;
   return TeacherLiveVocab.compactEntry({

@@ -38,6 +38,16 @@ assert.strictEqual(teacherLive.normalizeType("ph.", "look up"), "phrase");
 assert.strictEqual(teacherLive.normalizeType("modal v.", "ought to"), "word");
 assert.strictEqual(teacherLive.normalizeType("", "be+pp"), "pattern");
 
+const explicitPhrasePayload = teacherLive.buildStudentReadyPayload({
+  word: "by and large",
+  display: "by and large",
+  meaning: "大致上",
+  pos: "phrase",
+  type: "phrase"
+}, { uid: "teacher-uid", now: 5678 });
+assert.strictEqual(explicitPhrasePayload.pos, "phrase");
+assert.strictEqual(explicitPhrasePayload.type, "phrase");
+
 const compact = teacherLive.compactEntry({
   word: "apple",
   meaning: "蘋果",

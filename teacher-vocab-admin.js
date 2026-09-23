@@ -3,6 +3,10 @@ const LIVE_COLLECTION = "teacherVocabLive";
 const SEARCH_LIMIT = 18;
 const RECENT_LIMIT = 24;
 const THEME_KEY = "teacher_vocab_console_theme_v1";
+const MAX_TEACHER_AUDIO_BYTES = 2 * 1024 * 1024;
+const TEACHER_AUDIO_CACHE = "teacher-vocab-audio-v1";
+const MAX_CACHED_AUDIO_BYTES = 8 * 1024 * 1024;
+const REVIEWED_EXAMPLE_RELEASE = "20260920-pattern-examples";
 const POS_OPTIONS = [
   ["noun", "n."],
   ["verb", "v."],
@@ -27,7 +31,13 @@ const state = {
   bundledEntries: null,
   examplePayloads: new Map(),
   exampleRequests: new Map(),
+  exampleShards: new Map(),
   audioUrls: new Map(),
+  audioObjectUrls: new Map(),
+  audioRequests: new Map(),
+  audioPreloadQueue: [],
+  audioPreloadQueued: new Set(),
+  audioPreloadActive: 0,
   searchTimer: 0
 };
 
@@ -422,10 +432,87 @@ function fallbackSpeak(text = "", kind = "word") {
   return true;
 }
 
+function setTeacherAudioUrl(cacheKey, audioUrl) {
+  const previousObjectUrl = state.audioObjectUrls.get(cacheKey);
+  if (previousObjectUrl) URL.revokeObjectURL(previousObjectUrl);
+  state.audioObjectUrls.delete(cacheKey);
+  state.audioUrls.set(cacheKey, audioUrl);
+}
+
+async function cacheTeacherAudio(cacheKey, audioUrl) {
+  const existing = state.audioObjectUrls.get(cacheKey);
+  if (existing) return existing;
+  if (!("caches" in window) || typeof fetch !== "function") return audioUrl;
+  try {
+    const cache = await window.caches.open(TEACHER_AUDIO_CACHE);
+    let response = await cache.match(audioUrl);
+    if (!response) {
+      response = await fetch(audioUrl, { cache: "force-cache" });
+      if (!response.ok) return audioUrl;
+      await cache.put(audioUrl, response.clone());
+    }
+    const blob = await response.blob();
+    if (!blob.size || blob.size > MAX_CACHED_AUDIO_BYTES) return audioUrl;
+    const objectUrl = URL.createObjectURL(blob);
+    state.audioObjectUrls.set(cacheKey, objectUrl);
+    return objectUrl;
+  } catch (error) {
+    console.warn("Teacher vocab browser audio cache skipped:", error);
+    return audioUrl;
+  }
+}
+
+function prepareTeacherAudio(text = "", kind = "word") {
+  const value = String(text || "").trim();
+  if (!value) return Promise.resolve("");
+  const cacheKey = `${kind}:${value.toLowerCase()}`;
+  const ready = state.audioObjectUrls.get(cacheKey);
+  if (ready) return Promise.resolve(ready);
+  const pending = state.audioRequests.get(cacheKey);
+  if (pending) return pending;
+  const request = (async () => {
+    let audioUrl = state.audioUrls.get(cacheKey);
+    if (!audioUrl) {
+      const callable = getTeacherCallable("ensureVocabAudio");
+      if (!callable) throw new Error("login-required");
+      const result = await callable({ text: value, kind });
+      audioUrl = String(result?.data?.downloadUrl || "");
+      if (!audioUrl) throw new Error("audio-unavailable");
+      state.audioUrls.set(cacheKey, audioUrl);
+    }
+    return cacheTeacherAudio(cacheKey, audioUrl);
+  })().finally(() => state.audioRequests.delete(cacheKey));
+  state.audioRequests.set(cacheKey, request);
+  return request;
+}
+
+function runTeacherAudioPreloadQueue() {
+  while (state.audioPreloadActive < 2 && state.audioPreloadQueue.length) {
+    const item = state.audioPreloadQueue.shift();
+    state.audioPreloadQueued.delete(item.cacheKey);
+    state.audioPreloadActive += 1;
+    prepareTeacherAudio(item.text, item.kind)
+      .catch(() => {})
+      .finally(() => {
+        state.audioPreloadActive -= 1;
+        runTeacherAudioPreloadQueue();
+      });
+  }
+}
+
+function queueTeacherAudioPreload(text = "", kind = "word") {
+  const value = String(text || "").trim();
+  const cacheKey = `${kind}:${value.toLowerCase()}`;
+  if (!value || state.audioObjectUrls.has(cacheKey) || state.audioRequests.has(cacheKey) ||
+      state.audioPreloadQueued.has(cacheKey)) return;
+  state.audioPreloadQueued.add(cacheKey);
+  state.audioPreloadQueue.push({ text: value, kind, cacheKey });
+  window.setTimeout(runTeacherAudioPreloadQueue, 0);
+}
+
 async function playTeacherAudio(text = "", kind = "word", button = null) {
   const value = String(text || "").trim();
   if (!value) return;
-  const cacheKey = `${kind}:${value.toLowerCase()}`;
   const previousText = button?.textContent || "";
   if (button) {
     button.disabled = true;
@@ -433,29 +520,127 @@ async function playTeacherAudio(text = "", kind = "word", button = null) {
   }
 
   try {
-    let audioUrl = state.audioUrls.get(cacheKey);
-    if (audioUrl) {
-      const audio = new Audio(audioUrl);
-      audio.volume = 1;
-      await audio.play();
-    } else {
-      const usedFallback = fallbackSpeak(value, kind);
-      const callable = getTeacherCallable("ensureVocabAudio");
-      if (!callable) throw new Error("login-required");
-      const result = await callable({ text: value, kind });
-      audioUrl = String(result?.data?.downloadUrl || "");
-      if (audioUrl) state.audioUrls.set(cacheKey, audioUrl);
-      if (!usedFallback && audioUrl) {
-        const audio = new Audio(audioUrl);
-        audio.volume = 1;
-        await audio.play();
-      } else if (!usedFallback && !audioUrl) {
-        throw new Error("audio-unavailable");
-      }
-    }
+    const playbackUrl = await prepareTeacherAudio(value, kind);
+    if (!playbackUrl) throw new Error("audio-unavailable");
+    const audio = new Audio(playbackUrl);
+    audio.volume = 1;
+    audio.preload = "auto";
+    await audio.play();
   } catch (error) {
     console.warn("Teacher vocab audio failed:", error);
     fallbackSpeak(value, kind);
+  } finally {
+    if (button) {
+      button.disabled = false;
+      button.textContent = previousText;
+    }
+  }
+}
+
+async function regenerateTeacherAudio(text = "", button = null) {
+  const word = normalizeWord(text);
+  if (!word || state.role !== "teacher") return;
+  if (!window.confirm(`重新生成 ${word} 嘅雲端讀音？學生下次播放會自動取得新版本。`)) return;
+  const previousText = button?.textContent || "";
+  if (button) {
+    button.disabled = true;
+    button.textContent = "生成中...";
+  }
+  setStatus(el.entryStatus, `正在重新生成 ${word} 嘅讀音...`, "loading");
+  try {
+    const callable = getTeacherCallable("ensureVocabAudio");
+    if (!callable) throw new Error("login-required");
+    const result = await callable({ text: word, word, kind: "word", force: true });
+    const data = result?.data || {};
+    const audioUrl = String(data.downloadUrl || "");
+    if (data.status !== "ready" || !audioUrl) throw new Error("audio-unavailable");
+    const cacheKey = `word:${word}`;
+    setTeacherAudioUrl(cacheKey, audioUrl);
+    const audio = new Audio(await cacheTeacherAudio(cacheKey, audioUrl));
+    audio.volume = 1;
+    await audio.play();
+    setStatus(el.entryStatus, `已重新生成 ${word}。雲端已更新，game 會自動換成新讀音。`, "success");
+  } catch (error) {
+    console.warn("Teacher vocab audio regeneration failed:", error);
+    setStatus(el.entryStatus, `重新生成失敗：${error?.message || error}`, "error");
+  } finally {
+    if (button) {
+      button.disabled = false;
+      button.textContent = previousText;
+    }
+  }
+}
+
+function chooseMp3File() {
+  return new Promise((resolve) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".mp3,audio/mpeg,audio/mp3";
+    input.hidden = true;
+    const finish = (file = null) => {
+      input.remove();
+      resolve(file);
+    };
+    input.addEventListener("change", () => finish(input.files?.[0] || null), { once: true });
+    input.addEventListener("cancel", () => finish(), { once: true });
+    document.body.append(input);
+    input.click();
+  });
+}
+
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error || new Error("file-read-failed"));
+    reader.onload = () => {
+      const result = String(reader.result || "");
+      const marker = result.indexOf(",");
+      if (marker < 0) reject(new Error("file-read-failed"));
+      else resolve(result.slice(marker + 1));
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadTeacherAudio(text = "", button = null) {
+  const word = normalizeWord(text);
+  if (!word || state.role !== "teacher") return;
+  const file = await chooseMp3File();
+  if (!file) return;
+  if (!/\.mp3$/i.test(file.name) || file.size < 512 || file.size > MAX_TEACHER_AUDIO_BYTES) {
+    setStatus(el.entryStatus, "請選擇 2 MB 內嘅 MP3 音檔。", "error");
+    return;
+  }
+  if (!window.confirm(`上傳 ${file.name} 做 ${word} 嘅正式讀音？`)) return;
+
+  const previousText = button?.textContent || "";
+  if (button) {
+    button.disabled = true;
+    button.textContent = "上傳中...";
+  }
+  setStatus(el.entryStatus, `正在上傳 ${word} 嘅自訂讀音...`, "loading");
+  try {
+    const callable = getTeacherCallable("uploadVocabAudio");
+    if (!callable) throw new Error("login-required");
+    const audioBase64 = await readFileAsBase64(file);
+    const result = await callable({
+      word,
+      audioBase64,
+      contentType: file.type || "audio/mpeg",
+      fileName: file.name
+    });
+    const data = result?.data || {};
+    const audioUrl = String(data.downloadUrl || "");
+    if (data.status !== "ready" || !audioUrl) throw new Error("audio-unavailable");
+    const cacheKey = `word:${word}`;
+    setTeacherAudioUrl(cacheKey, audioUrl);
+    const audio = new Audio(await cacheTeacherAudio(cacheKey, audioUrl));
+    audio.volume = 1;
+    await audio.play();
+    setStatus(el.entryStatus, `已上傳 ${word} 嘅自訂讀音。雲端同 game revision 已更新。`, "success");
+  } catch (error) {
+    console.warn("Teacher vocab audio upload failed:", error);
+    setStatus(el.entryStatus, `上傳失敗：${error?.message || error}`, "error");
   } finally {
     if (button) {
       button.disabled = false;
@@ -493,6 +678,13 @@ async function loadExamplesForEntry(entry = {}, panel, button = null) {
     return;
   }
 
+  const reviewedPayload = await loadReviewedExamplesForEntry(entry);
+  if (reviewedPayload?.examples?.length) {
+    state.examplePayloads.set(cacheKey, reviewedPayload);
+    renderExamplePanel(panel, reviewedPayload);
+    return;
+  }
+
   const callable = getTeacherCallable("lookupVocabExamples");
   if (!callable) {
     renderExamplePanel(panel, normalizeExamplePayload({ status: "login-required", examples: [] }));
@@ -527,7 +719,9 @@ function renderExamplePanel(panel, payload = {}) {
     message.className = "entry-example-empty";
     message.textContent = payload.status === "login-required"
       ? "登入後可以載入例句。"
-      : "暫時未有例句。";
+      : payload.status === "error" || payload.status === "timeout"
+        ? "例句讀取失敗，請再試。"
+        : "暫時未有例句。";
     panel.append(message);
     return;
   }
@@ -540,11 +734,49 @@ function renderExamplePanel(panel, payload = {}) {
     text.type = "button";
     text.textContent = example.source;
     text.addEventListener("click", () => playTeacherAudio(example.source, "example", text));
+    queueTeacherAudioPreload(example.source, "example");
     const target = document.createElement("div");
     target.className = "entry-example-zh";
     target.textContent = example.target || "";
     row.append(text, target);
     panel.append(row);
+  });
+}
+
+function getExampleShardName(word = "") {
+  const first = normalizeWord(word).charAt(0);
+  if (/[a-z]/.test(first)) return first;
+  if (/[0-9]/.test(first)) return "0";
+  return "_";
+}
+
+async function loadReviewedExampleShard(word = "") {
+  const shard = getExampleShardName(word);
+  if (!state.exampleShards.has(shard)) {
+    const request = fetch(
+      `assets/vocab-examples/examples_${shard}.json?v=${REVIEWED_EXAMPLE_RELEASE}`,
+      { cache: "force-cache" }
+    )
+      .then((response) => response.ok ? response.json() : {})
+      .catch((error) => {
+        console.warn("Reviewed vocab example shard failed:", error);
+        return {};
+      });
+    state.exampleShards.set(shard, request);
+  }
+  return state.exampleShards.get(shard);
+}
+
+async function loadReviewedExamplesForEntry(entry = {}) {
+  const word = normalizeWord(entry.word || entry.display);
+  const shard = await loadReviewedExampleShard(word);
+  const candidates = Array.isArray(shard?.[word]) ? shard[word] : [];
+  const selected = window.VocabExampleUtils?.selectBestExamplePayload?.(entry, candidates);
+  if (!selected) return null;
+  return normalizeExamplePayload({
+    status: "ready",
+    source: "reviewed-game-examples",
+    examples: selected.examples
   });
 }
 
@@ -619,7 +851,26 @@ function makeEntryGroupCard(group = {}, options = {}) {
   playButton.type = "button";
   playButton.textContent = "PLAY";
   playButton.addEventListener("click", () => playTeacherAudio(group.display || group.word, "word", playButton));
+  queueTeacherAudioPreload(group.display || group.word, "word");
   wordLine.append(word, meta, playButton);
+  if (state.role === "teacher") {
+    const regenerateButton = document.createElement("button");
+    regenerateButton.className = "entry-regenerate-button";
+    regenerateButton.type = "button";
+    regenerateButton.textContent = "重新生成讀音";
+    regenerateButton.addEventListener("click", () => (
+      regenerateTeacherAudio(group.display || group.word, regenerateButton)
+    ));
+    const uploadButton = document.createElement("button");
+    uploadButton.className = "entry-upload-button";
+    uploadButton.type = "button";
+    uploadButton.textContent = "上傳 MP3";
+    uploadButton.title = "上傳 2 MB 內嘅 MP3 自訂讀音";
+    uploadButton.addEventListener("click", () => (
+      uploadTeacherAudio(group.display || group.word, uploadButton)
+    ));
+    wordLine.append(regenerateButton, uploadButton);
+  }
 
   const meanings = document.createElement("div");
   meanings.className = "entry-meanings";
@@ -913,7 +1164,7 @@ function readEntryFormEntries() {
     return compactEntry({
       word,
       display: display || word,
-      pos: sense.pos === "phrase" ? "" : sense.pos,
+      pos: sense.pos,
       type,
       meaning: sense.meaning,
       source: "teacher-live",

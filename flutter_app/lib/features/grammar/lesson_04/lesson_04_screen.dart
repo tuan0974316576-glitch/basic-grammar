@@ -4,16 +4,22 @@ import 'package:flutter/material.dart';
 
 import '../../../core/app_palette.dart';
 import '../../../core/app_sfx.dart';
+import '../../../core/widgets/stationery_frame.dart';
 import '../shared/lesson_ui.dart';
 import 'lesson_04_controller.dart';
 import 'lesson_04_repository.dart';
 
 class Lesson04Screen extends StatefulWidget {
-  const Lesson04Screen(
-      {this.repository = const Lesson04Repository(), this.sfx, super.key});
+  const Lesson04Screen({
+    this.repository = const Lesson04Repository(),
+    this.sfx,
+    this.onQuestionCorrect,
+    super.key,
+  });
 
   final Lesson04Repository repository;
   final LessonSfx? sfx;
+  final VoidCallback? onQuestionCorrect;
 
   @override
   State<Lesson04Screen> createState() => _Lesson04ScreenState();
@@ -83,6 +89,7 @@ class _Lesson04ScreenState extends State<Lesson04Screen> {
       case Lesson04Event.questionCorrect:
         _grandCelebration = controller.isLastQuestion;
         setState(() => _celebration += 1);
+        widget.onQuestionCorrect?.call();
         unawaited(
           _sfx.play(
             controller.isLastQuestion
@@ -127,6 +134,7 @@ class _Lesson04ScreenState extends State<Lesson04Screen> {
             total: controller.total,
             mistakes: controller.mistakes,
             reviewMode: controller.isReviewMode,
+            sfx: _sfx,
             onClose: _close,
             onRestart: () {
               controller.restart();
@@ -304,23 +312,26 @@ class _PronounSlot extends StatelessWidget {
             : selected
                 ? AppPalette.primaryDark
                 : AppPalette.primary;
-    return Material(
-      color: wrong
+    return OriginalDashedSurface(
+      backgroundColor: wrong
           ? AppPalette.softDanger
           : correct
               ? AppPalette.softCorrect
               : AppPalette.paper,
-      borderRadius: BorderRadius.circular(13),
+      borderColor: color,
+      strokeWidth: wrong || selected ? 3 : 2,
+      radius: 13,
+      shadowColor: wrong
+          ? const Color(0xFFFFC9C9)
+          : correct
+              ? const Color(0xFFB7E7BF)
+              : const Color(0xFFE9ECEF),
+      shadowDepth: 4,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(13),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(13),
-            border: Border.all(color: color, width: wrong || selected ? 3 : 2),
-          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

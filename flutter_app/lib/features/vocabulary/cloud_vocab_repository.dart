@@ -8,6 +8,25 @@ import 'package:flutter/foundation.dart';
 import 'vocab_models.dart';
 import 'vocab_repository.dart';
 
+@visibleForTesting
+List<String> vocabCloudLookupCandidates(String value) {
+  final word = normalizeVocabWord(value);
+  if (word.isEmpty) return const [];
+  final candidates = <String>{word};
+  if (!word.contains('...')) {
+    candidates.add(word.replaceFirst(
+      RegExp(r'\bfrom\s+to\b'),
+      'from ... to ...',
+    ));
+  }
+  return candidates.where((entry) => entry.isNotEmpty).toList(growable: false);
+}
+
+String _vocabPatternLookupKey(String value) => normalizeVocabWord(value)
+    .replaceAll('...', ' ')
+    .replaceAll(RegExp(r'\s+'), ' ')
+    .trim();
+
 /// Minimal cloud reader so Firestore stays injectable in widget/unit tests.
 abstract interface class TeacherVocabCloudReader {
   Future<List<Map<String, dynamic>>> lookup(String word);
@@ -60,13 +79,15 @@ class FirestoreTeacherVocabReader implements TeacherVocabCloudReader {
       }
     }
 
-    await read(collection.where('word', isEqualTo: normalized));
-    try {
-      await read(collection.where('aliases', arrayContains: normalized));
-    } catch (error) {
-      // A missing aliases index or an old document shape must not hide the
-      // exact word match or the bundled offline bank.
-      debugPrint('Teacher vocab aliases lookup skipped: $error');
+    for (final candidate in vocabCloudLookupCandidates(normalized)) {
+      await read(collection.where('word', isEqualTo: candidate));
+      try {
+        await read(collection.where('aliases', arrayContains: candidate));
+      } catch (error) {
+        // A missing aliases index or an old document shape must not hide the
+        // exact word match or the bundled offline bank.
+        debugPrint('Teacher vocab aliases lookup skipped: $error');
+      }
     }
     return rows.values.toList(growable: false);
   }
@@ -150,13 +171,25 @@ class CloudVocabLookupRepository implements VocabLookupRepository {
     VocabLookupRepository? local,
     TeacherVocabCloudReader? cloud,
     VocabExampleCloudReader? examplesCloud,
+    Duration cloudResultTtl = const Duration(minutes: 1),
+    Duration cloudEmptyTtl = const Duration(seconds: 3),
+    DateTime Function()? now,
   })  : _local = local ?? AssetVocabLookupRepository(),
         _cloud = cloud ?? FirestoreTeacherVocabReader(),
-        _examplesCloud = examplesCloud ?? FirebaseVocabExampleReader();
+        _examplesCloud = examplesCloud ?? FirebaseVocabExampleReader(),
+        _cloudResultTtl = cloudResultTtl,
+        _cloudEmptyTtl = cloudEmptyTtl,
+        _now = now ?? DateTime.now;
 
   final VocabLookupRepository _local;
   final TeacherVocabCloudReader _cloud;
   final VocabExampleCloudReader _examplesCloud;
+  final Duration _cloudResultTtl;
+  final Duration _cloudEmptyTtl;
+  final DateTime Function() _now;
+  final Map<String, _TeacherVocabCacheEntry> _cloudCache = {};
+  // Only coalesce reads that are currently in flight. Completed Futures must
+  // not live forever because teachers can add or edit a word during class.
   final Map<String, Future<List<Map<String, dynamic>>>> _cloudLookups = {};
   final Map<String, Future<VocabExampleCloudResult?>> _exampleLookups = {};
 
@@ -170,7 +203,7 @@ class CloudVocabLookupRepository implements VocabLookupRepository {
     final localFuture = _local.lookup(word);
     final cloudFuture = word.length < 2
         ? Future<List<Map<String, dynamic>>>.value(const [])
-        : (_cloudLookups[word] ??= _readCloud(word));
+        : _readCloudCached(word);
     final results = await Future.wait([localFuture, cloudFuture]);
     final local = results[0] as VocabLookupResult;
     final cloudRows = results[1] as List<Map<String, dynamic>>;
@@ -220,11 +253,42 @@ class CloudVocabLookupRepository implements VocabLookupRepository {
         .catchError((_) => null);
   }
 
+  Future<List<Map<String, dynamic>>> _readCloudCached(String word) {
+    final cached = _cloudCache[word];
+    if (cached != null && _now().isBefore(cached.expiresAt)) {
+      return Future.value(cached.rows);
+    }
+    _cloudCache.remove(word);
+    final inFlight = _cloudLookups[word];
+    if (inFlight != null) return inFlight;
+
+    late final Future<List<Map<String, dynamic>>> request;
+    request = _readCloud(word).whenComplete(() {
+      if (identical(_cloudLookups[word], request)) {
+        _cloudLookups.remove(word);
+      }
+    });
+    _cloudLookups[word] = request;
+    return request;
+  }
+
   Future<List<Map<String, dynamic>>> _readCloud(String word) async {
     try {
-      return await _cloud.lookup(word);
+      final rows = await _cloud.lookup(word);
+      final immutableRows = rows
+          .map((row) => Map<String, dynamic>.unmodifiable(row))
+          .toList(growable: false);
+      _cloudCache[word] = _TeacherVocabCacheEntry(
+        rows: immutableRows,
+        expiresAt: _now().add(
+          immutableRows.isEmpty ? _cloudEmptyTtl : _cloudResultTtl,
+        ),
+      );
+      return immutableRows;
     } catch (error) {
       debugPrint('Teacher vocab cloud lookup failed: $error');
+      // A timeout or offline read is not a real "word not found" result.
+      // Leave it uncached so the next lookup can retry immediately.
       return const [];
     }
   }
@@ -246,10 +310,21 @@ class CloudVocabLookupRepository implements VocabLookupRepository {
         'sourceEntryId': row['sourceEntryId'] ?? row['id'] ?? '',
         'type': row['type'] ?? 'word',
       });
-      if (sense.word == word && sense.meaning.isNotEmpty) {
+      if (_vocabPatternLookupKey(sense.word) == _vocabPatternLookupKey(word) &&
+          sense.meaning.isNotEmpty) {
         byStorageId[sense.storageId] = sense;
       }
     }
-    return byStorageId.values.toList(growable: false);
+    return dedupeVocabSenses(byStorageId.values);
   }
+}
+
+class _TeacherVocabCacheEntry {
+  const _TeacherVocabCacheEntry({
+    required this.rows,
+    required this.expiresAt,
+  });
+
+  final List<Map<String, dynamic>> rows;
+  final DateTime expiresAt;
 }

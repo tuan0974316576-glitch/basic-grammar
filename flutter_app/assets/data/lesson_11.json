@@ -11,7 +11,8 @@
     "acceptedAnswers": [
       "drinks"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 He 是單數，所以 drink 要寫 drinks。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 He 是單數，所以 drink 要寫 drinks。",
+    "baseVerb": "drink"
   },
   {
     "id": "tense002",
@@ -25,7 +26,8 @@
     "acceptedAnswers": [
       "dig"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 Dogs 是眾數，所以動詞用原型 dig。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 Dogs 是眾數，所以動詞用原型 dig。",
+    "baseVerb": "dig"
   },
   {
     "id": "tense003",
@@ -39,7 +41,8 @@
     "acceptedAnswers": [
       "gets"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 always 表示習慣；She 後面的動詞要加 s，get up 變 gets up。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 always 表示習慣；She 後面的動詞要加 s，get up 變 gets up。",
+    "baseVerb": "get"
   },
   {
     "id": "tense004",
@@ -53,7 +56,8 @@
     "acceptedAnswers": [
       "go"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 usually 表示習慣；I 後面的動詞用原型 go。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 usually 表示習慣；I 後面的動詞用原型 go。",
+    "baseVerb": "go"
   },
   {
     "id": "tense005",
@@ -67,7 +71,8 @@
     "acceptedAnswers": [
       "runs"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 sometimes 表示習慣；Tom 是單數名詞，所以 run 要寫 runs。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 sometimes 表示習慣；Tom 是單數名詞，所以 run 要寫 runs。",
+    "baseVerb": "run"
   },
   {
     "id": "tense006",
@@ -81,7 +86,8 @@
     "acceptedAnswers": [
       "shout"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 never 表示習慣；We 後面的動詞用原型 shout。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 never 表示習慣；We 後面的動詞用原型 shout。",
+    "baseVerb": "shout"
   },
   {
     "id": "tense007",
@@ -95,7 +101,8 @@
     "acceptedAnswers": [
       "works"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 This machine 是單數名詞，所以 work 要寫 works。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 This machine 是單數名詞，所以 work 要寫 works。",
+    "baseVerb": "work"
   },
   {
     "id": "tense008",
@@ -109,7 +116,8 @@
     "acceptedAnswers": [
       "play"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 often 表示習慣；They 後面的動詞用原型 play。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 often 表示習慣；They 後面的動詞用原型 play。",
+    "baseVerb": "play"
   },
   {
     "id": "tense009",
@@ -123,7 +131,8 @@
     "acceptedAnswers": [
       "eats"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 seldom 表示習慣；Mary 是單數名詞，所以 eat 要寫 eats。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 seldom 表示習慣；Mary 是單數名詞，所以 eat 要寫 eats。",
+    "baseVerb": "eat"
   },
   {
     "id": "tense010",
@@ -137,7 +146,8 @@
     "acceptedAnswers": [
       "read"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 every day 表示習慣；students 是眾數，所以動詞用原型 read。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 every day 表示習慣；students 是眾數，所以動詞用原型 read。",
+    "baseVerb": "read"
   },
   {
     "id": "tense011",
@@ -151,7 +161,8 @@
     "acceptedAnswers": [
       "like"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 句子沒有說明要用其他時態，所以用現在式；I 後面用 like。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 句子沒有說明要用其他時態，所以用現在式；I 後面用 like。",
+    "baseVerb": "like"
   },
   {
     "id": "tense012",
@@ -165,7 +176,8 @@
     "acceptedAnswers": [
       "knows"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 句子沒有說明要用其他時態，所以用現在式；She 後面 know 要寫 knows。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。 句子沒有說明要用其他時態，所以用現在式；She 後面 know 要寫 knows。",
+    "baseVerb": "know"
   },
   {
     "id": "tense013",
@@ -179,7 +191,8 @@
     "acceptedAnswers": [
       "drank"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 yesterday 是過去時間詞，所以 drink 要轉過去式 drank。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 yesterday 是過去時間詞，所以 drink 要轉過去式 drank。",
+    "baseVerb": "drink"
   },
   {
     "id": "tense014",
@@ -193,7 +206,8 @@
     "acceptedAnswers": [
       "bought"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 last week 是過去時間詞，所以 buy 要轉過去式 bought。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 last week 是過去時間詞，所以 buy 要轉過去式 bought。",
+    "baseVerb": "buy"
   },
   {
     "id": "tense015",
@@ -207,7 +221,8 @@
     "acceptedAnswers": [
       "went"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 ago 表示過去，所以 go 要轉過去式 went。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 ago 表示過去，所以 go 要轉過去式 went。",
+    "baseVerb": "go"
   },
   {
     "id": "tense016",
@@ -221,7 +236,8 @@
     "acceptedAnswers": [
       "stopped"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 新聞 / 報道通常講已發生的事，所以 stop 要轉過去式 stopped。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 新聞 / 報道通常講已發生的事，所以 stop 要轉過去式 stopped。",
+    "baseVerb": "stop"
   },
   {
     "id": "tense017",
@@ -235,7 +251,8 @@
     "acceptedAnswers": [
       "opened"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 故事多用過去式，所以 open 要寫 opened。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 故事多用過去式，所以 open 要寫 opened。",
+    "baseVerb": "open"
   },
   {
     "id": "tense018",
@@ -249,7 +266,8 @@
     "acceptedAnswers": [
       "had"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 wish 這類幻想句子要用過去式，所以 have 要寫 had。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 wish 這類幻想句子要用過去式，所以 have 要寫 had。",
+    "baseVerb": "have"
   },
   {
     "id": "tense019",
@@ -263,7 +281,8 @@
     "acceptedAnswers": [
       "lived"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 when I was small 有過去式 was，所以主句也用過去式 lived。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 when I was small 有過去式 was，所以主句也用過去式 lived。",
+    "baseVerb": "live"
   },
   {
     "id": "tense020",
@@ -277,7 +296,8 @@
     "acceptedAnswers": [
       "broke"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 this morning 在這句是已發生的事，所以 break 要轉過去式 broke。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 this morning 在這句是已發生的事，所以 break 要轉過去式 broke。",
+    "baseVerb": "break"
   },
   {
     "id": "tense021",
@@ -291,7 +311,8 @@
     "acceptedAnswers": [
       "cooked"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 last night 是過去時間詞，所以 cook 要寫 cooked。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 last night 是過去時間詞，所以 cook 要寫 cooked。",
+    "baseVerb": "cook"
   },
   {
     "id": "tense022",
@@ -305,7 +326,8 @@
     "acceptedAnswers": [
       "saw"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 just now 表示剛才，所以 see 要轉過去式 saw。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 just now 表示剛才，所以 see 要轉過去式 saw。",
+    "baseVerb": "see"
   },
   {
     "id": "tense023",
@@ -319,7 +341,8 @@
     "acceptedAnswers": [
       "started"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 ago 表示過去，所以 start 要寫 started。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 ago 表示過去，所以 start 要寫 started。",
+    "baseVerb": "start"
   },
   {
     "id": "tense024",
@@ -333,7 +356,8 @@
     "acceptedAnswers": [
       "wrote"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 last month 是過去時間詞，所以 write 要轉過去式 wrote。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。 last month 是過去時間詞，所以 write 要轉過去式 wrote。",
+    "baseVerb": "write"
   },
   {
     "id": "tense025",
@@ -347,7 +371,8 @@
     "acceptedAnswers": [
       "was sleeping"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 When you called me 是故事中的過去時間，所以用 was + sleeping。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 When you called me 是故事中的過去時間，所以用 was + sleeping。",
+    "baseVerb": "sleep"
   },
   {
     "id": "tense026",
@@ -361,7 +386,8 @@
     "acceptedAnswers": [
       "is doing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 now 表示正在發生；She 配 is，所以寫 is doing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 now 表示正在發生；She 配 is，所以寫 is doing。",
+    "baseVerb": "do"
   },
   {
     "id": "tense027",
@@ -375,7 +401,8 @@
     "acceptedAnswers": [
       "are learning"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。「正在」表示進行式；We 配 are，所以寫 are learning。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。「正在」表示進行式；We 配 are，所以寫 are learning。",
+    "baseVerb": "learn"
   },
   {
     "id": "tense028",
@@ -389,7 +416,8 @@
     "acceptedAnswers": [
       "am leaving"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 已預定好的將來行為可用進行式；I 配 am，所以寫 am leaving。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 已預定好的將來行為可用進行式；I 配 am，所以寫 am leaving。",
+    "baseVerb": "leave"
   },
   {
     "id": "tense029",
@@ -403,7 +431,8 @@
     "acceptedAnswers": [
       "are going"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 已預定好的將來行為可用進行式；They 配 are，所以寫 are going。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 已預定好的將來行為可用進行式；They 配 are，所以寫 are going。",
+    "baseVerb": "go"
   },
   {
     "id": "tense030",
@@ -417,7 +446,8 @@
     "acceptedAnswers": [
       "is playing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 now 表示正在；Tom 是單數，所以用 is playing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 now 表示正在；Tom 是單數，所以用 is playing。",
+    "baseVerb": "play"
   },
   {
     "id": "tense031",
@@ -431,7 +461,8 @@
     "acceptedAnswers": [
       "are singing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。「正在」表示進行式；children 是眾數，所以用 are singing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。「正在」表示進行式；children 是眾數，所以用 are singing。",
+    "baseVerb": "sing"
   },
   {
     "id": "tense032",
@@ -445,7 +476,8 @@
     "acceptedAnswers": [
       "was cooking"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 at seven yesterday 是過去某一刻，所以用 was cooking。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 at seven yesterday 是過去某一刻，所以用 was cooking。",
+    "baseVerb": "cook"
   },
   {
     "id": "tense033",
@@ -459,7 +491,8 @@
     "acceptedAnswers": [
       "were watching"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 just now 是過去時間；You 配 were，所以寫 were watching。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 just now 是過去時間；You 配 were，所以寫 were watching。",
+    "baseVerb": "watch"
   },
   {
     "id": "tense034",
@@ -473,7 +506,8 @@
     "acceptedAnswers": [
       "is running"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。「正在」表示進行式；The dog 是單數，所以用 is running。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。「正在」表示進行式；The dog 是單數，所以用 is running。",
+    "baseVerb": "run"
   },
   {
     "id": "tense035",
@@ -487,7 +521,8 @@
     "acceptedAnswers": [
       "are meeting"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 已預定好的將來安排可用進行式；We 配 are，所以寫 are meeting。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。 已預定好的將來安排可用進行式；We 配 are，所以寫 are meeting。",
+    "baseVerb": "meet"
   },
   {
     "id": "tense036",
@@ -501,7 +536,8 @@
     "acceptedAnswers": [
       "is crying"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。「正在」表示進行式；He 配 is，所以寫 is crying。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。「正在」表示進行式；He 配 is，所以寫 is crying。",
+    "baseVerb": "cry"
   },
   {
     "id": "tense037",
@@ -515,7 +551,8 @@
     "acceptedAnswers": [
       "have submitted"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「交了」但沒有過去時間詞，所以用 have + PP：have submitted。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「交了」但沒有過去時間詞，所以用 have + PP：have submitted。",
+    "baseVerb": "submitt"
   },
   {
     "id": "tense038",
@@ -529,7 +566,8 @@
     "acceptedAnswers": [
       "has known"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「知道了」但沒有過去時間詞，所以用 has + PP：has known。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「知道了」但沒有過去時間詞，所以用 has + PP：has known。",
+    "baseVerb": "know"
   },
   {
     "id": "tense039",
@@ -544,7 +582,8 @@
       "have learnt",
       "have learned"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 recently 是完成式提示，所以用 have + PP：have learnt。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 recently 是完成式提示，所以用 have + PP：have learnt。",
+    "baseVerb": "learn"
   },
   {
     "id": "tense040",
@@ -558,7 +597,8 @@
     "acceptedAnswers": [
       "has finished"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 lately 是完成式提示；He 配 has，所以寫 has finished。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 lately 是完成式提示；He 配 has，所以寫 has finished。",
+    "baseVerb": "finish"
   },
   {
     "id": "tense041",
@@ -572,7 +612,8 @@
     "acceptedAnswers": [
       "been"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 問「有沒有去過」要用 Have you ever been to ...，去過用 been to，不用 gone to。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 問「有沒有去過」要用 Have you ever been to ...，去過用 been to，不用 gone to。",
+    "baseVerb": "be"
   },
   {
     "id": "tense042",
@@ -586,7 +627,8 @@
     "acceptedAnswers": [
       "eaten"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「沒有...過」用 have never + PP，所以 eat 要寫 eaten。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「沒有...過」用 have never + PP，所以 eat 要寫 eaten。",
+    "baseVerb": "eat"
   },
   {
     "id": "tense043",
@@ -600,7 +642,8 @@
     "acceptedAnswers": [
       "seen"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「看過」用 have + PP，所以 see 要寫 seen。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「看過」用 have + PP，所以 see 要寫 seen。",
+    "baseVerb": "see"
   },
   {
     "id": "tense044",
@@ -614,7 +657,8 @@
     "acceptedAnswers": [
       "been"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 去過某地用 has been to，不用 has gone to。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 去過某地用 has been to，不用 has gone to。",
+    "baseVerb": "be"
   },
   {
     "id": "tense045",
@@ -628,7 +672,8 @@
     "acceptedAnswers": [
       "finished"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 問「...未？」用 Have you + PP + yet，所以 finish 要寫 finished。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 問「...未？」用 Have you + PP + yet，所以 finish 要寫 finished。",
+    "baseVerb": "finish"
   },
   {
     "id": "tense046",
@@ -642,7 +687,8 @@
     "acceptedAnswers": [
       "opened"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「還未」用 have not + PP + yet，所以 open 要寫 opened。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「還未」用 have not + PP + yet，所以 open 要寫 opened。",
+    "baseVerb": "open"
   },
   {
     "id": "tense047",
@@ -656,7 +702,8 @@
     "acceptedAnswers": [
       "eaten"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 already 常配完成式；She 配 has，所以 eat 要寫 PP eaten。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 already 常配完成式；She 配 has，所以 eat 要寫 PP eaten。",
+    "baseVerb": "eat"
   },
   {
     "id": "tense048",
@@ -670,7 +717,8 @@
     "acceptedAnswers": [
       "heard"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 just 可表示剛剛完成；hear 的 PP 是 heard。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。 just 可表示剛剛完成；hear 的 PP 是 heard。",
+    "baseVerb": "hear"
   },
   {
     "id": "tense049",
@@ -684,7 +732,8 @@
     "acceptedAnswers": [
       "have lost"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「遺失了」但沒有過去時間詞，重點是現在仍然遺失，所以用 have lost。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「遺失了」但沒有過去時間詞，重點是現在仍然遺失，所以用 have lost。",
+    "baseVerb": "lose"
   },
   {
     "id": "tense050",
@@ -698,7 +747,8 @@
     "acceptedAnswers": [
       "has bought"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「買了」但沒有過去時間詞，所以用 has + PP：has bought。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「買了」但沒有過去時間詞，所以用 has + PP：has bought。",
+    "baseVerb": "buy"
   },
   {
     "id": "tense051",
@@ -712,7 +762,8 @@
     "acceptedAnswers": [
       "have written"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「寫了」但沒有過去時間詞，所以用 have + PP：have written。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「寫了」但沒有過去時間詞，所以用 have + PP：have written。",
+    "baseVerb": "write"
   },
   {
     "id": "tense052",
@@ -727,7 +778,8 @@
       "travelled",
       "traveled"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「從未...過」用 has never + PP；travel 的 PP 可寫 travelled。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。「從未...過」用 has never + PP；travel 的 PP 可寫 travelled。",
+    "baseVerb": "travel"
   },
   {
     "id": "tense053",
@@ -741,7 +793,8 @@
     "acceptedAnswers": [
       "has been crying"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。「一直在哭」表示由較早開始到現在仍持續，所以用 has been crying。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。「一直在哭」表示由較早開始到現在仍持續，所以用 has been crying。",
+    "baseVerb": "cry"
   },
   {
     "id": "tense054",
@@ -755,7 +808,8 @@
     "acceptedAnswers": [
       "have been learning"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 for many years 表示持續到現在，所以用 have been learning。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 for many years 表示持續到現在，所以用 have been learning。",
+    "baseVerb": "learn"
   },
   {
     "id": "tense055",
@@ -769,7 +823,8 @@
     "acceptedAnswers": [
       "has been waiting"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 for twenty minutes 表示動作一直持續，所以用 has been waiting。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 for twenty minutes 表示動作一直持續，所以用 has been waiting。",
+    "baseVerb": "wait"
   },
   {
     "id": "tense056",
@@ -783,7 +838,8 @@
     "acceptedAnswers": [
       "have been studying"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 since this morning 表示由早上到現在，所以用 have been studying。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 since this morning 表示由早上到現在，所以用 have been studying。",
+    "baseVerb": "study"
   },
   {
     "id": "tense057",
@@ -797,7 +853,8 @@
     "acceptedAnswers": [
       "has been playing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 for two hours 表示持續中，所以用 has been playing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 for two hours 表示持續中，所以用 has been playing。",
+    "baseVerb": "play"
   },
   {
     "id": "tense058",
@@ -811,7 +868,8 @@
     "acceptedAnswers": [
       "have been looking"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。「一直在尋找」表示持續的動作，所以用 have been looking。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。「一直在尋找」表示持續的動作，所以用 have been looking。",
+    "baseVerb": "look"
   },
   {
     "id": "tense059",
@@ -825,7 +883,8 @@
     "acceptedAnswers": [
       "has been cooking"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 all afternoon 表示一直持續，所以用 has been cooking。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 all afternoon 表示一直持續，所以用 has been cooking。",
+    "baseVerb": "cook"
   },
   {
     "id": "tense060",
@@ -840,7 +899,8 @@
       "have been practising",
       "have been practicing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 recently 加上「一直在練習」表示持續到現在，所以用 have been practising。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。 recently 加上「一直在練習」表示持續到現在，所以用 have been practising。",
+    "baseVerb": "practise"
   },
   {
     "id": "tense061",
@@ -854,7 +914,8 @@
     "acceptedAnswers": [
       "brushes"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；My brother 是單數，所以 brush 要寫 brushes。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；My brother 是單數，所以 brush 要寫 brushes。",
+    "baseVerb": "brush"
   },
   {
     "id": "tense062",
@@ -868,7 +929,8 @@
     "acceptedAnswers": [
       "sleeps"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；often 表示習慣；The cat 是單數，所以 sleep 要寫 sleeps。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；often 表示習慣；The cat 是單數，所以 sleep 要寫 sleeps。",
+    "baseVerb": "sleep"
   },
   {
     "id": "tense063",
@@ -882,7 +944,8 @@
     "acceptedAnswers": [
       "eat"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；usually 表示習慣；We 後面用原型 eat。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；usually 表示習慣；We 後面用原型 eat。",
+    "baseVerb": "eat"
   },
   {
     "id": "tense064",
@@ -896,7 +959,8 @@
     "acceptedAnswers": [
       "helps"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；sometimes 表示習慣；Jane 是單數，所以 help 要寫 helps。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；sometimes 表示習慣；Jane 是單數，所以 help 要寫 helps。",
+    "baseVerb": "help"
   },
   {
     "id": "tense065",
@@ -910,7 +974,8 @@
     "acceptedAnswers": [
       "watch"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；seldom 表示習慣；parents 是眾數，所以用 watch。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；seldom 表示習慣；parents 是眾數，所以用 watch。",
+    "baseVerb": "watch"
   },
   {
     "id": "tense066",
@@ -924,7 +989,8 @@
     "acceptedAnswers": [
       "forget"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；never 表示習慣；I 後面用原型 forget。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；never 表示習慣；I 後面用原型 forget。",
+    "baseVerb": "forget"
   },
   {
     "id": "tense067",
@@ -938,7 +1004,8 @@
     "acceptedAnswers": [
       "stops"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every morning 表示習慣；This bus 是單數，所以 stop 要寫 stops。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every morning 表示習慣；This bus 是單數，所以 stop 要寫 stops。",
+    "baseVerb": "stop"
   },
   {
     "id": "tense068",
@@ -952,7 +1019,8 @@
     "acceptedAnswers": [
       "fly"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every winter 表示習慣；These birds 是眾數，所以用 fly。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every winter 表示習慣；These birds 是眾數，所以用 fly。",
+    "baseVerb": "fly"
   },
   {
     "id": "tense069",
@@ -966,7 +1034,8 @@
     "acceptedAnswers": [
       "boils"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；這是一般事實，所以用現在式；Water 是不可數名詞，當單數用，所以 boil 要寫 boils。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；這是一般事實，所以用現在式；Water 是不可數名詞，當單數用，所以 boil 要寫 boils。",
+    "baseVerb": "boil"
   },
   {
     "id": "tense070",
@@ -980,7 +1049,8 @@
     "acceptedAnswers": [
       "rises"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示一般事實；The sun 是單數，所以 rise 要寫 rises。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示一般事實；The sun 是單數，所以 rise 要寫 rises。",
+    "baseVerb": "rise"
   },
   {
     "id": "tense071",
@@ -994,7 +1064,8 @@
     "acceptedAnswers": [
       "gives"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；My teacher 是單數，所以 give 要寫 gives。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；My teacher 是單數，所以 give 要寫 gives。",
+    "baseVerb": "give"
   },
   {
     "id": "tense072",
@@ -1008,7 +1079,8 @@
     "acceptedAnswers": [
       "speak"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有說明要用其他時態，所以用現在式；You 後面用 speak。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有說明要用其他時態，所以用現在式；You 後面用 speak。",
+    "baseVerb": "speak"
   },
   {
     "id": "tense073",
@@ -1022,7 +1094,8 @@
     "acceptedAnswers": [
       "play"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；after school 這裡表示習慣；children 是眾數，所以用 play。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；after school 這裡表示習慣；children 是眾數，所以用 play。",
+    "baseVerb": "play"
   },
   {
     "id": "tense074",
@@ -1036,7 +1109,8 @@
     "acceptedAnswers": [
       "listens"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講一般習慣；A good student 是單數，所以 listen 要寫 listens。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講一般習慣；A good student 是單數，所以 listen 要寫 listens。",
+    "baseVerb": "listen"
   },
   {
     "id": "tense075",
@@ -1050,7 +1124,8 @@
     "acceptedAnswers": [
       "opens"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；The shop 是單數，所以 open 要寫 opens。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；The shop 是單數，所以 open 要寫 opens。",
+    "baseVerb": "open"
   },
   {
     "id": "tense076",
@@ -1064,7 +1139,8 @@
     "acceptedAnswers": [
       "closes"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；on Sundays 表示習慣；The library 是單數，所以 close 要寫 closes。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；on Sundays 表示習慣；The library 是單數，所以 close 要寫 closes。",
+    "baseVerb": "close"
   },
   {
     "id": "tense077",
@@ -1078,7 +1154,8 @@
     "acceptedAnswers": [
       "studies"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有過去或進行提示，所以用現在式；sister 是單數，study 要變 studies。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有過去或進行提示，所以用現在式；sister 是單數，study 要變 studies。",
+    "baseVerb": "study"
   },
   {
     "id": "tense078",
@@ -1092,7 +1169,8 @@
     "acceptedAnswers": [
       "drives"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；Dad 是單數，所以 drive 要寫 drives。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；Dad 是單數，所以 drive 要寫 drives。",
+    "baseVerb": "drive"
   },
   {
     "id": "tense079",
@@ -1106,7 +1184,8 @@
     "acceptedAnswers": [
       "visit"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every month 表示習慣；They 後面用 visit。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every month 表示習慣；They 後面用 visit。",
+    "baseVerb": "visit"
   },
   {
     "id": "tense080",
@@ -1120,7 +1199,8 @@
     "acceptedAnswers": [
       "wash"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講日常習慣；I 後面用 wash。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講日常習慣；I 後面用 wash。",
+    "baseVerb": "wash"
   },
   {
     "id": "tense081",
@@ -1134,7 +1214,8 @@
     "acceptedAnswers": [
       "goes"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；usually 表示習慣；Kenny 是單數，所以 go 要寫 goes。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；usually 表示習慣；Kenny 是單數，所以 go 要寫 goes。",
+    "baseVerb": "goe"
   },
   {
     "id": "tense082",
@@ -1148,7 +1229,8 @@
     "acceptedAnswers": [
       "bark"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講一般習性；Dogs 是眾數，所以用 bark。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講一般習性；Dogs 是眾數，所以用 bark。",
+    "baseVerb": "bark"
   },
   {
     "id": "tense083",
@@ -1162,7 +1244,8 @@
     "acceptedAnswers": [
       "cries"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講一般情況；The baby 是單數，cry 要變 cries。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講一般情況；The baby 是單數，cry 要變 cries。",
+    "baseVerb": "cry"
   },
   {
     "id": "tense084",
@@ -1176,7 +1259,8 @@
     "acceptedAnswers": [
       "use"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；people 是眾數，所以用 use。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；people 是眾數，所以用 use。",
+    "baseVerb": "use"
   },
   {
     "id": "tense085",
@@ -1190,7 +1274,8 @@
     "acceptedAnswers": [
       "carries"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；She 後面 carry 要變 carries。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；every day 表示習慣；She 後面 carry 要變 carries。",
+    "baseVerb": "carry"
   },
   {
     "id": "tense086",
@@ -1204,7 +1289,8 @@
     "acceptedAnswers": [
       "need"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有說明要用其他時態，所以用現在式；We 後面用 need。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有說明要用其他時態，所以用現在式；We 後面用 need。",
+    "baseVerb": "need"
   },
   {
     "id": "tense087",
@@ -1218,7 +1304,8 @@
     "acceptedAnswers": [
       "rains"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；often 表示經常發生；It 後面 rain 要寫 rains。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；often 表示經常發生；It 後面 rain 要寫 rains。",
+    "baseVerb": "rain"
   },
   {
     "id": "tense088",
@@ -1232,7 +1319,8 @@
     "acceptedAnswers": [
       "works"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講現在的工作；My uncle 是單數，所以 work 要寫 works。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講現在的工作；My uncle 是單數，所以 work 要寫 works。",
+    "baseVerb": "work"
   },
   {
     "id": "tense089",
@@ -1246,7 +1334,8 @@
     "acceptedAnswers": [
       "starts"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講固定時間表，所以用現在式；Our school 是單數，所以 start 要寫 starts。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講固定時間表，所以用現在式；Our school 是單數，所以 start 要寫 starts。",
+    "baseVerb": "start"
   },
   {
     "id": "tense090",
@@ -1260,7 +1349,8 @@
     "acceptedAnswers": [
       "leaves"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；usually 表示習慣 / 時間表；The train 是單數，所以 leave 要寫 leaves。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；usually 表示習慣 / 時間表；The train 是單數，所以 leave 要寫 leaves。",
+    "baseVerb": "leave"
   },
   {
     "id": "tense091",
@@ -1274,7 +1364,8 @@
     "acceptedAnswers": [
       "know"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有其他時態提示，所以用現在式；I 後面用 know。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有其他時態提示，所以用現在式；I 後面用 know。",
+    "baseVerb": "know"
   },
   {
     "id": "tense092",
@@ -1288,7 +1379,8 @@
     "acceptedAnswers": [
       "understands"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有其他時態提示，所以用現在式；He 後面 understand 要寫 understands。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有其他時態提示，所以用現在式；He 後面 understand 要寫 understands。",
+    "baseVerb": "understand"
   },
   {
     "id": "tense093",
@@ -1302,7 +1394,8 @@
     "acceptedAnswers": [
       "dance"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；on Saturdays 表示習慣；girls 是眾數，所以用 dance。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；on Saturdays 表示習慣；girls 是眾數，所以用 dance。",
+    "baseVerb": "dance"
   },
   {
     "id": "tense094",
@@ -1316,7 +1409,8 @@
     "acceptedAnswers": [
       "costs"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講現在的價錢；This phone 是單數，所以 cost 要寫 costs。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講現在的價錢；This phone 是單數，所以 cost 要寫 costs。",
+    "baseVerb": "cost"
   },
   {
     "id": "tense095",
@@ -1330,7 +1424,8 @@
     "acceptedAnswers": [
       "look"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有說明要用其他時態，所以用現在式；You 後面用 look。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有說明要用其他時態，所以用現在式；You 後面用 look。",
+    "baseVerb": "look"
   },
   {
     "id": "tense096",
@@ -1344,7 +1439,8 @@
     "acceptedAnswers": [
       "has"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講現在擁有；Sam 是單數，所以 have 要寫 has。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講現在擁有；Sam 是單數，所以 have 要寫 has。",
+    "baseVerb": "have"
   },
   {
     "id": "tense097",
@@ -1358,7 +1454,8 @@
     "acceptedAnswers": [
       "enjoy"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有其他時態提示，所以用現在式；We 後面用 enjoy。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有其他時態提示，所以用現在式；We 後面用 enjoy。",
+    "baseVerb": "enjoy"
   },
   {
     "id": "tense098",
@@ -1372,7 +1469,8 @@
     "acceptedAnswers": [
       "teaches"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講現在的工作 / 習慣；Mary 是單數，所以 teach 要寫 teaches。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子講現在的工作 / 習慣；Mary 是單數，所以 teach 要寫 teaches。",
+    "baseVerb": "teach"
   },
   {
     "id": "tense099",
@@ -1386,7 +1484,8 @@
     "acceptedAnswers": [
       "catches"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有說明要用其他時態，所以用現在式；The boy 是單數，所以 catch 要寫 catches。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；句子沒有說明要用其他時態，所以用現在式；The boy 是單數，所以 catch 要寫 catches。",
+    "baseVerb": "catch"
   },
   {
     "id": "tense100",
@@ -1400,7 +1499,8 @@
     "acceptedAnswers": [
       "finish"
     ],
-    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；usually 表示習慣；students 是眾數，所以用 finish。"
+    "explanation": "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s；usually 表示習慣；students 是眾數，所以用 finish。",
+    "baseVerb": "finish"
   },
   {
     "id": "tense101",
@@ -1414,7 +1514,8 @@
     "acceptedAnswers": [
       "ate"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 eat 要轉過去式 ate。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 eat 要轉過去式 ate。",
+    "baseVerb": "eat"
   },
   {
     "id": "tense102",
@@ -1428,7 +1529,8 @@
     "acceptedAnswers": [
       "went"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last Sunday 是過去時間詞，所以 go 要轉過去式 went。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last Sunday 是過去時間詞，所以 go 要轉過去式 went。",
+    "baseVerb": "go"
   },
   {
     "id": "tense103",
@@ -1442,7 +1544,8 @@
     "acceptedAnswers": [
       "saw"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；just now 表示剛才，所以 see 要轉過去式 saw。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；just now 表示剛才，所以 see 要轉過去式 saw。",
+    "baseVerb": "see"
   },
   {
     "id": "tense104",
@@ -1456,7 +1559,8 @@
     "acceptedAnswers": [
       "found"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；two days ago 表示過去，所以 find 要轉過去式 found。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；two days ago 表示過去，所以 find 要轉過去式 found。",
+    "baseVerb": "find"
   },
   {
     "id": "tense105",
@@ -1470,7 +1574,8 @@
     "acceptedAnswers": [
       "took"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 take 要轉過去式 took。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 take 要轉過去式 took。",
+    "baseVerb": "take"
   },
   {
     "id": "tense106",
@@ -1484,7 +1589,8 @@
     "acceptedAnswers": [
       "gave"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 give 要轉過去式 gave。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 give 要轉過去式 gave。",
+    "baseVerb": "give"
   },
   {
     "id": "tense107",
@@ -1498,7 +1604,8 @@
     "acceptedAnswers": [
       "made"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 make 要轉過去式 made。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 make 要轉過去式 made。",
+    "baseVerb": "make"
   },
   {
     "id": "tense108",
@@ -1512,7 +1619,8 @@
     "acceptedAnswers": [
       "wrote"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 write 要轉過去式 wrote。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 write 要轉過去式 wrote。",
+    "baseVerb": "write"
   },
   {
     "id": "tense109",
@@ -1526,7 +1634,8 @@
     "acceptedAnswers": [
       "read"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 read 讀音變過去式，但串法仍然是 read。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 read 讀音變過去式，但串法仍然是 read。",
+    "baseVerb": "read"
   },
   {
     "id": "tense110",
@@ -1540,7 +1649,8 @@
     "acceptedAnswers": [
       "slept"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 sleep 要轉過去式 slept。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 sleep 要轉過去式 slept。",
+    "baseVerb": "sleep"
   },
   {
     "id": "tense111",
@@ -1554,7 +1664,8 @@
     "acceptedAnswers": [
       "ran"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；just now 表示剛才，所以 run 要轉過去式 ran。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；just now 表示剛才，所以 run 要轉過去式 ran。",
+    "baseVerb": "run"
   },
   {
     "id": "tense112",
@@ -1568,7 +1679,8 @@
     "acceptedAnswers": [
       "swam"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 swim 要轉過去式 swam。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 swim 要轉過去式 swam。",
+    "baseVerb": "swim"
   },
   {
     "id": "tense113",
@@ -1582,7 +1694,8 @@
     "acceptedAnswers": [
       "bought"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 buy 要轉過去式 bought。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 buy 要轉過去式 bought。",
+    "baseVerb": "buy"
   },
   {
     "id": "tense114",
@@ -1596,7 +1709,8 @@
     "acceptedAnswers": [
       "caught"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 catch 要轉過去式 caught。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 catch 要轉過去式 caught。",
+    "baseVerb": "catch"
   },
   {
     "id": "tense115",
@@ -1610,7 +1724,8 @@
     "acceptedAnswers": [
       "broke"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；this morning 在這句是已發生的事，所以 break 要轉過去式 broke。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；this morning 在這句是已發生的事，所以 break 要轉過去式 broke。",
+    "baseVerb": "break"
   },
   {
     "id": "tense116",
@@ -1624,7 +1739,8 @@
     "acceptedAnswers": [
       "lost"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 lose 要轉過去式 lost。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 lose 要轉過去式 lost。",
+    "baseVerb": "lose"
   },
   {
     "id": "tense117",
@@ -1638,7 +1754,8 @@
     "acceptedAnswers": [
       "won"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 win 要轉過去式 won。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 win 要轉過去式 won。",
+    "baseVerb": "win"
   },
   {
     "id": "tense118",
@@ -1652,7 +1769,8 @@
     "acceptedAnswers": [
       "began"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；句子講已發生的故事 / 事件，所以 begin 要轉過去式 began。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；句子講已發生的故事 / 事件，所以 begin 要轉過去式 began。",
+    "baseVerb": "begin"
   },
   {
     "id": "tense119",
@@ -1666,7 +1784,8 @@
     "acceptedAnswers": [
       "brought"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 bring 要轉過去式 brought。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 bring 要轉過去式 brought。",
+    "baseVerb": "bring"
   },
   {
     "id": "tense120",
@@ -1680,7 +1799,8 @@
     "acceptedAnswers": [
       "chose"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last time 表示過去，所以 choose 要轉過去式 chose。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last time 表示過去，所以 choose 要轉過去式 chose。",
+    "baseVerb": "choose"
   },
   {
     "id": "tense121",
@@ -1694,7 +1814,8 @@
     "acceptedAnswers": [
       "built"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last year 是過去時間詞，所以 build 要轉過去式 built。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last year 是過去時間詞，所以 build 要轉過去式 built。",
+    "baseVerb": "build"
   },
   {
     "id": "tense122",
@@ -1708,7 +1829,8 @@
     "acceptedAnswers": [
       "cut"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞；cut 的過去式仍然是 cut。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞；cut 的過去式仍然是 cut。",
+    "baseVerb": "cut"
   },
   {
     "id": "tense123",
@@ -1722,7 +1844,8 @@
     "acceptedAnswers": [
       "felt"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；just now 表示剛才，所以 feel 要轉過去式 felt。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；just now 表示剛才，所以 feel 要轉過去式 felt。",
+    "baseVerb": "feel"
   },
   {
     "id": "tense124",
@@ -1736,7 +1859,8 @@
     "acceptedAnswers": [
       "kept"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 keep 要轉過去式 kept。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 keep 要轉過去式 kept。",
+    "baseVerb": "keep"
   },
   {
     "id": "tense125",
@@ -1750,7 +1874,8 @@
     "acceptedAnswers": [
       "met"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 meet 要轉過去式 met。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 meet 要轉過去式 met。",
+    "baseVerb": "meet"
   },
   {
     "id": "tense126",
@@ -1764,7 +1889,8 @@
     "acceptedAnswers": [
       "paid"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 pay 要轉過去式 paid。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 pay 要轉過去式 paid。",
+    "baseVerb": "pay"
   },
   {
     "id": "tense127",
@@ -1778,7 +1904,8 @@
     "acceptedAnswers": [
       "said"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；新聞報道已發生的事，所以 say 要轉過去式 said。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；新聞報道已發生的事，所以 say 要轉過去式 said。",
+    "baseVerb": "say"
   },
   {
     "id": "tense128",
@@ -1792,7 +1919,8 @@
     "acceptedAnswers": [
       "sold"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last month 是過去時間詞，所以 sell 要轉過去式 sold。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last month 是過去時間詞，所以 sell 要轉過去式 sold。",
+    "baseVerb": "sell"
   },
   {
     "id": "tense129",
@@ -1806,7 +1934,8 @@
     "acceptedAnswers": [
       "sent"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 send 要轉過去式 sent。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 send 要轉過去式 sent。",
+    "baseVerb": "send"
   },
   {
     "id": "tense130",
@@ -1820,7 +1949,8 @@
     "acceptedAnswers": [
       "sat"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；just now 表示剛才，所以 sit 要轉過去式 sat。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；just now 表示剛才，所以 sit 要轉過去式 sat。",
+    "baseVerb": "sit"
   },
   {
     "id": "tense131",
@@ -1834,7 +1964,8 @@
     "acceptedAnswers": [
       "told"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 tell 要轉過去式 told。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 tell 要轉過去式 told。",
+    "baseVerb": "tell"
   },
   {
     "id": "tense132",
@@ -1848,7 +1979,8 @@
     "acceptedAnswers": [
       "thought"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；句子講過去的想法，所以 think 要轉過去式 thought。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；句子講過去的想法，所以 think 要轉過去式 thought。",
+    "baseVerb": "think"
   },
   {
     "id": "tense133",
@@ -1862,7 +1994,8 @@
     "acceptedAnswers": [
       "wore"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 wear 要轉過去式 wore。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞，所以 wear 要轉過去式 wore。",
+    "baseVerb": "wear"
   },
   {
     "id": "tense134",
@@ -1876,7 +2009,8 @@
     "acceptedAnswers": [
       "cleaned"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 clean 要寫 cleaned。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last week 是過去時間詞，所以 clean 要寫 cleaned。",
+    "baseVerb": "clean"
   },
   {
     "id": "tense135",
@@ -1890,7 +2024,8 @@
     "acceptedAnswers": [
       "watched"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 watch 要寫 watched。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞，所以 watch 要寫 watched。",
+    "baseVerb": "watch"
   },
   {
     "id": "tense136",
@@ -1904,7 +2039,8 @@
     "acceptedAnswers": [
       "visited"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last year 是過去時間詞，所以 visit 要寫 visited。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last year 是過去時間詞，所以 visit 要寫 visited。",
+    "baseVerb": "visit"
   },
   {
     "id": "tense137",
@@ -1918,7 +2054,8 @@
     "acceptedAnswers": [
       "studied"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞；study 的過去式是 studied。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞；study 的過去式是 studied。",
+    "baseVerb": "study"
   },
   {
     "id": "tense138",
@@ -1932,7 +2069,8 @@
     "acceptedAnswers": [
       "carried"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞；carry 的過去式是 carried。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；yesterday 是過去時間詞；carry 的過去式是 carried。",
+    "baseVerb": "carry"
   },
   {
     "id": "tense139",
@@ -1946,7 +2084,8 @@
     "acceptedAnswers": [
       "cried"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞；cry 的過去式是 cried。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；last night 是過去時間詞；cry 的過去式是 cried。",
+    "baseVerb": "cry"
   },
   {
     "id": "tense140",
@@ -1960,7 +2099,8 @@
     "acceptedAnswers": [
       "stopped"
     ],
-    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；ago 表示過去；stop 的過去式要雙寫 p，寫 stopped。"
+    "explanation": "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式；ago 表示過去；stop 的過去式要雙寫 p，寫 stopped。",
+    "baseVerb": "stop"
   },
   {
     "id": "tense141",
@@ -1974,7 +2114,8 @@
     "acceptedAnswers": [
       "am reading"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；now 表示正在發生；I 配 am，所以寫 am reading。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；now 表示正在發生；I 配 am，所以寫 am reading。",
+    "baseVerb": "read"
   },
   {
     "id": "tense142",
@@ -1988,7 +2129,8 @@
     "acceptedAnswers": [
       "is drawing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；She 配 is，所以寫 is drawing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；She 配 is，所以寫 is drawing。",
+    "baseVerb": "draw"
   },
   {
     "id": "tense143",
@@ -2002,7 +2144,8 @@
     "acceptedAnswers": [
       "are playing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；They 配 are，所以寫 are playing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；They 配 are，所以寫 are playing。",
+    "baseVerb": "play"
   },
   {
     "id": "tense144",
@@ -2016,7 +2159,8 @@
     "acceptedAnswers": [
       "are having"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；now 表示正在發生；We 配 are，所以寫 are having。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；now 表示正在發生；We 配 are，所以寫 are having。",
+    "baseVerb": "have"
   },
   {
     "id": "tense145",
@@ -2030,7 +2174,8 @@
     "acceptedAnswers": [
       "is raining"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在下雨」表示進行式；It 配 is，所以寫 is raining。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在下雨」表示進行式；It 配 is，所以寫 is raining。",
+    "baseVerb": "rain"
   },
   {
     "id": "tense146",
@@ -2044,7 +2189,8 @@
     "acceptedAnswers": [
       "is cooking"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；Mum 是單數，所以用 is cooking。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；Mum 是單數，所以用 is cooking。",
+    "baseVerb": "cook"
   },
   {
     "id": "tense147",
@@ -2058,7 +2204,8 @@
     "acceptedAnswers": [
       "is doing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；Tom 是單數，所以用 is doing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；Tom 是單數，所以用 is doing。",
+    "baseVerb": "do"
   },
   {
     "id": "tense148",
@@ -2072,7 +2219,8 @@
     "acceptedAnswers": [
       "are talking"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；You 配 are，所以寫 are talking。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；You 配 are，所以寫 are talking。",
+    "baseVerb": "talk"
   },
   {
     "id": "tense149",
@@ -2086,7 +2234,8 @@
     "acceptedAnswers": [
       "are running"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；children 是眾數，所以用 are running。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；children 是眾數，所以用 are running。",
+    "baseVerb": "run"
   },
   {
     "id": "tense150",
@@ -2100,7 +2249,8 @@
     "acceptedAnswers": [
       "was showering"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；When the phone rang 是過去某一刻，所以用 was showering。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；When the phone rang 是過去某一刻，所以用 was showering。",
+    "baseVerb": "shower"
   },
   {
     "id": "tense151",
@@ -2114,7 +2264,8 @@
     "acceptedAnswers": [
       "was studying"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；at eight last night 是過去某一刻，所以用 was studying。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；at eight last night 是過去某一刻，所以用 was studying。",
+    "baseVerb": "study"
   },
   {
     "id": "tense152",
@@ -2128,7 +2279,8 @@
     "acceptedAnswers": [
       "were watching"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；at that time 表示過去某一刻；They 配 were，所以寫 were watching。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；at that time 表示過去某一刻；They 配 were，所以寫 were watching。",
+    "baseVerb": "watch"
   },
   {
     "id": "tense153",
@@ -2142,7 +2294,8 @@
     "acceptedAnswers": [
       "were walking"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；when we heard the noise 是過去某一刻，所以用 were walking。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；when we heard the noise 是過去某一刻，所以用 were walking。",
+    "baseVerb": "walk"
   },
   {
     "id": "tense154",
@@ -2156,7 +2309,8 @@
     "acceptedAnswers": [
       "was driving"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；just now 是過去時間；Dad 是單數，所以用 was driving。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；just now 是過去時間；Dad 是單數，所以用 was driving。",
+    "baseVerb": "drive"
   },
   {
     "id": "tense155",
@@ -2170,7 +2324,8 @@
     "acceptedAnswers": [
       "was crying"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；at that time 是過去某一刻；The baby 是單數，所以用 was crying。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；at that time 是過去某一刻；The baby 是單數，所以用 was crying。",
+    "baseVerb": "cry"
   },
   {
     "id": "tense156",
@@ -2184,7 +2339,8 @@
     "acceptedAnswers": [
       "were writing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；just now 是過去時間；students 是眾數，所以用 were writing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；just now 是過去時間；students 是眾數，所以用 were writing。",
+    "baseVerb": "write"
   },
   {
     "id": "tense157",
@@ -2198,7 +2354,8 @@
     "acceptedAnswers": [
       "am meeting"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；I 配 am，所以寫 am meeting。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；I 配 am，所以寫 am meeting。",
+    "baseVerb": "meet"
   },
   {
     "id": "tense158",
@@ -2212,7 +2369,8 @@
     "acceptedAnswers": [
       "are visiting"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；We 配 are，所以寫 are visiting。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；We 配 are，所以寫 are visiting。",
+    "baseVerb": "visit"
   },
   {
     "id": "tense159",
@@ -2226,7 +2384,8 @@
     "acceptedAnswers": [
       "is leaving"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來行為可用進行式；She 配 is，所以寫 is leaving。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來行為可用進行式；She 配 is，所以寫 is leaving。",
+    "baseVerb": "leave"
   },
   {
     "id": "tense160",
@@ -2240,7 +2399,8 @@
     "acceptedAnswers": [
       "are flying"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；They 配 are，所以寫 are flying。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；They 配 are，所以寫 are flying。",
+    "baseVerb": "fly"
   },
   {
     "id": "tense161",
@@ -2254,7 +2414,8 @@
     "acceptedAnswers": [
       "is joining"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來行為可用進行式；Tom 是單數，所以用 is joining。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來行為可用進行式；Tom 是單數，所以用 is joining。",
+    "baseVerb": "join"
   },
   {
     "id": "tense162",
@@ -2268,7 +2429,8 @@
     "acceptedAnswers": [
       "is going"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；Our class 當單數，所以用 is going。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；Our class 當單數，所以用 is going。",
+    "baseVerb": "go"
   },
   {
     "id": "tense163",
@@ -2282,7 +2444,8 @@
     "acceptedAnswers": [
       "am taking"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；I 配 am，所以寫 am taking。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；I 配 am，所以寫 am taking。",
+    "baseVerb": "take"
   },
   {
     "id": "tense164",
@@ -2296,7 +2459,8 @@
     "acceptedAnswers": [
       "are standing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；now 表示正在發生；They 配 are，所以寫 are standing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；now 表示正在發生；They 配 are，所以寫 are standing。",
+    "baseVerb": "stand"
   },
   {
     "id": "tense165",
@@ -2310,7 +2474,8 @@
     "acceptedAnswers": [
       "is listening"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；She 配 is，所以寫 is listening。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；She 配 is，所以寫 is listening。",
+    "baseVerb": "listen"
   },
   {
     "id": "tense166",
@@ -2324,7 +2489,8 @@
     "acceptedAnswers": [
       "are waiting"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；We 配 are，所以寫 are waiting。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；We 配 are，所以寫 are waiting。",
+    "baseVerb": "wait"
   },
   {
     "id": "tense167",
@@ -2338,7 +2504,8 @@
     "acceptedAnswers": [
       "is playing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；The boy 是單數，所以用 is playing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；The boy 是單數，所以用 is playing。",
+    "baseVerb": "play"
   },
   {
     "id": "tense168",
@@ -2352,7 +2519,8 @@
     "acceptedAnswers": [
       "are flying"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；birds 是眾數，所以用 are flying。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；birds 是眾數，所以用 are flying。",
+    "baseVerb": "fly"
   },
   {
     "id": "tense169",
@@ -2366,7 +2534,8 @@
     "acceptedAnswers": [
       "is marking"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；Miss Chan 是單數，所以用 is marking。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；Miss Chan 是單數，所以用 is marking。",
+    "baseVerb": "mark"
   },
   {
     "id": "tense170",
@@ -2380,7 +2549,8 @@
     "acceptedAnswers": [
       "am looking"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；I 配 am，所以寫 am looking。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；I 配 am，所以寫 am looking。",
+    "baseVerb": "look"
   },
   {
     "id": "tense171",
@@ -2394,7 +2564,8 @@
     "acceptedAnswers": [
       "is coming"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；The train 是單數，所以用 is coming。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；The train 是單數，所以用 is coming。",
+    "baseVerb": "come"
   },
   {
     "id": "tense172",
@@ -2408,7 +2579,8 @@
     "acceptedAnswers": [
       "are preparing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；They 配 are，所以寫 are preparing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；「正在」表示進行式；They 配 are，所以寫 are preparing。",
+    "baseVerb": "prepare"
   },
   {
     "id": "tense173",
@@ -2422,7 +2594,8 @@
     "acceptedAnswers": [
       "were singing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；when the teacher came in 是過去某一刻，所以用 were singing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；when the teacher came in 是過去某一刻，所以用 were singing。",
+    "baseVerb": "sing"
   },
   {
     "id": "tense174",
@@ -2436,7 +2609,8 @@
     "acceptedAnswers": [
       "was buying"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；when I saw her 是過去某一刻；Mary 是單數，所以用 was buying。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；when I saw her 是過去某一刻；Mary 是單數，所以用 was buying。",
+    "baseVerb": "buy"
   },
   {
     "id": "tense175",
@@ -2450,7 +2624,8 @@
     "acceptedAnswers": [
       "are having"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；We 配 are，所以寫 are having。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；We 配 are，所以寫 are having。",
+    "baseVerb": "have"
   },
   {
     "id": "tense176",
@@ -2464,7 +2639,8 @@
     "acceptedAnswers": [
       "is seeing"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；He 配 is，所以寫 is seeing。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；He 配 is，所以寫 is seeing。",
+    "baseVerb": "see"
   },
   {
     "id": "tense177",
@@ -2478,7 +2654,8 @@
     "acceptedAnswers": [
       "am taking"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；I 配 am，所以寫 am taking。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；I 配 am，所以寫 am taking。",
+    "baseVerb": "take"
   },
   {
     "id": "tense178",
@@ -2492,7 +2669,8 @@
     "acceptedAnswers": [
       "is starting"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；She 配 is，所以寫 is starting。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；She 配 is，所以寫 is starting。",
+    "baseVerb": "start"
   },
   {
     "id": "tense179",
@@ -2506,7 +2684,8 @@
     "acceptedAnswers": [
       "are moving"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來行為可用進行式；We 配 are，所以寫 are moving。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來行為可用進行式；We 配 are，所以寫 are moving。",
+    "baseVerb": "move"
   },
   {
     "id": "tense180",
@@ -2520,7 +2699,8 @@
     "acceptedAnswers": [
       "are having"
     ],
-    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；They 配 are，所以寫 are having。"
+    "explanation": "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing；已預定好的將來安排可用進行式；They 配 are，所以寫 are having。",
+    "baseVerb": "have"
   },
   {
     "id": "tense181",
@@ -2534,7 +2714,8 @@
     "acceptedAnswers": [
       "have cleaned"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「清潔了」但沒有過去時間詞，所以用 have + PP：have cleaned。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「清潔了」但沒有過去時間詞，所以用 have + PP：have cleaned。",
+    "baseVerb": "clean"
   },
   {
     "id": "tense182",
@@ -2548,7 +2729,8 @@
     "acceptedAnswers": [
       "has broken"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「打破了」但沒有過去時間詞，所以用 has + PP：has broken。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「打破了」但沒有過去時間詞，所以用 has + PP：has broken。",
+    "baseVerb": "break"
   },
   {
     "id": "tense183",
@@ -2562,7 +2744,8 @@
     "acceptedAnswers": [
       "seen"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「看過」用 have + PP，所以 see 要寫 seen。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「看過」用 have + PP，所以 see 要寫 seen。",
+    "baseVerb": "see"
   },
   {
     "id": "tense184",
@@ -2576,7 +2759,8 @@
     "acceptedAnswers": [
       "has eaten"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「吃了」但沒有過去時間詞，所以用 has + PP：has eaten。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「吃了」但沒有過去時間詞，所以用 has + PP：has eaten。",
+    "baseVerb": "eat"
   },
   {
     "id": "tense185",
@@ -2590,7 +2774,8 @@
     "acceptedAnswers": [
       "have finished"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「完成了」但沒有過去時間詞，所以用 have + PP：have finished。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「完成了」但沒有過去時間詞，所以用 have + PP：have finished。",
+    "baseVerb": "finish"
   },
   {
     "id": "tense186",
@@ -2604,7 +2789,8 @@
     "acceptedAnswers": [
       "has read"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「讀了」但沒有過去時間詞，所以用 has + PP；read 的 PP 串法仍然是 read。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「讀了」但沒有過去時間詞，所以用 has + PP；read 的 PP 串法仍然是 read。",
+    "baseVerb": "read"
   },
   {
     "id": "tense187",
@@ -2618,7 +2804,8 @@
     "acceptedAnswers": [
       "have lost"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「遺失了」但沒有過去時間詞，重點是現在仍然遺失，所以用 have lost。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「遺失了」但沒有過去時間詞，重點是現在仍然遺失，所以用 have lost。",
+    "baseVerb": "lose"
   },
   {
     "id": "tense188",
@@ -2632,7 +2819,8 @@
     "acceptedAnswers": [
       "has found"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「找到了」但沒有過去時間詞，所以用 has + PP：has found。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「找到了」但沒有過去時間詞，所以用 has + PP：has found。",
+    "baseVerb": "find"
   },
   {
     "id": "tense189",
@@ -2646,7 +2834,8 @@
     "acceptedAnswers": [
       "have bought"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「買了」但沒有過去時間詞，所以用 have + PP：have bought。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「買了」但沒有過去時間詞，所以用 have + PP：have bought。",
+    "baseVerb": "buy"
   },
   {
     "id": "tense190",
@@ -2660,7 +2849,8 @@
     "acceptedAnswers": [
       "has made"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「做了」但沒有過去時間詞，所以用 has + PP：has made。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「做了」但沒有過去時間詞，所以用 has + PP：has made。",
+    "baseVerb": "make"
   },
   {
     "id": "tense191",
@@ -2674,7 +2864,8 @@
     "acceptedAnswers": [
       "have written"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「寫了」但沒有過去時間詞，所以用 have + PP：have written。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「寫了」但沒有過去時間詞，所以用 have + PP：have written。",
+    "baseVerb": "write"
   },
   {
     "id": "tense192",
@@ -2688,7 +2879,8 @@
     "acceptedAnswers": [
       "has sent"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「寄了」但沒有過去時間詞，所以用 has + PP：has sent。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「寄了」但沒有過去時間詞，所以用 has + PP：has sent。",
+    "baseVerb": "send"
   },
   {
     "id": "tense193",
@@ -2702,7 +2894,8 @@
     "acceptedAnswers": [
       "heard"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「聽過」用 have + PP，所以 hear 要寫 heard。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「聽過」用 have + PP，所以 hear 要寫 heard。",
+    "baseVerb": "hear"
   },
   {
     "id": "tense194",
@@ -2716,7 +2909,8 @@
     "acceptedAnswers": [
       "has taken"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「拍了」但沒有過去時間詞，所以用 has + PP：has taken。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「拍了」但沒有過去時間詞，所以用 has + PP：has taken。",
+    "baseVerb": "take"
   },
   {
     "id": "tense195",
@@ -2730,7 +2924,8 @@
     "acceptedAnswers": [
       "have done"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「做了」但沒有過去時間詞，所以用 have + PP：have done。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「做了」但沒有過去時間詞，所以用 have + PP：have done。",
+    "baseVerb": "do"
   },
   {
     "id": "tense196",
@@ -2744,7 +2939,8 @@
     "acceptedAnswers": [
       "has opened"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「打開了」但沒有過去時間詞，所以用 has + PP：has opened。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「打開了」但沒有過去時間詞，所以用 has + PP：has opened。",
+    "baseVerb": "open"
   },
   {
     "id": "tense197",
@@ -2758,7 +2954,8 @@
     "acceptedAnswers": [
       "visited"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；問「有沒有...過」用 Have you ever + PP，所以 visit 要寫 visited。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；問「有沒有...過」用 Have you ever + PP，所以 visit 要寫 visited。",
+    "baseVerb": "visit"
   },
   {
     "id": "tense198",
@@ -2772,7 +2969,8 @@
     "acceptedAnswers": [
       "won"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「贏過」用 has + PP，所以 win 要寫 won。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「贏過」用 has + PP，所以 win 要寫 won。",
+    "baseVerb": "win"
   },
   {
     "id": "tense199",
@@ -2786,7 +2984,8 @@
     "acceptedAnswers": [
       "met"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「見過」用 have + PP，所以 meet 要寫 met。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「見過」用 have + PP，所以 meet 要寫 met。",
+    "baseVerb": "meet"
   },
   {
     "id": "tense200",
@@ -2800,7 +2999,8 @@
     "acceptedAnswers": [
       "has become"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「變冷了」但沒有過去時間詞，所以用 has + PP：has become。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「變冷了」但沒有過去時間詞，所以用 has + PP：has become。",
+    "baseVerb": "become"
   },
   {
     "id": "tense201",
@@ -2815,7 +3015,8 @@
       "have learnt",
       "have learned"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；recently 是完成式提示，所以用 have + PP：have learnt。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；recently 是完成式提示，所以用 have + PP：have learnt。",
+    "baseVerb": "learn"
   },
   {
     "id": "tense202",
@@ -2829,7 +3030,8 @@
     "acceptedAnswers": [
       "has drawn"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；lately 是完成式提示；He 配 has，所以寫 has drawn。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；lately 是完成式提示；He 配 has，所以寫 has drawn。",
+    "baseVerb": "draw"
   },
   {
     "id": "tense203",
@@ -2843,7 +3045,8 @@
     "acceptedAnswers": [
       "left"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；already 常配完成式；leave 的 PP 是 left。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；already 常配完成式；leave 的 PP 是 left。",
+    "baseVerb": "leave"
   },
   {
     "id": "tense204",
@@ -2857,7 +3060,8 @@
     "acceptedAnswers": [
       "closed"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；just 可表示剛剛完成；close 的 PP 是 closed。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；just 可表示剛剛完成；close 的 PP 是 closed。",
+    "baseVerb": "close"
   },
   {
     "id": "tense205",
@@ -2871,7 +3075,8 @@
     "acceptedAnswers": [
       "chosen"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「還未」用 has not + PP + yet，所以 choose 要寫 chosen。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「還未」用 has not + PP + yet，所以 choose 要寫 chosen。",
+    "baseVerb": "choose"
   },
   {
     "id": "tense206",
@@ -2885,7 +3090,8 @@
     "acceptedAnswers": [
       "eaten"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；問「...未？」用 Have you + PP + yet，所以 eat 要寫 eaten。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；問「...未？」用 Have you + PP + yet，所以 eat 要寫 eaten。",
+    "baseVerb": "eat"
   },
   {
     "id": "tense207",
@@ -2899,7 +3105,8 @@
     "acceptedAnswers": [
       "been"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「去過」用 been to；否定句用 have never + PP。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「去過」用 been to；否定句用 have never + PP。",
+    "baseVerb": "be"
   },
   {
     "id": "tense208",
@@ -2913,7 +3120,8 @@
     "acceptedAnswers": [
       "tried"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「從未...過」用 has never + PP；try 的 PP 是 tried。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「從未...過」用 has never + PP；try 的 PP 是 tried。",
+    "baseVerb": "try"
   },
   {
     "id": "tense209",
@@ -2927,7 +3135,8 @@
     "acceptedAnswers": [
       "have moved"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；recently 是完成式提示，所以用 have + PP：have moved。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；recently 是完成式提示，所以用 have + PP：have moved。",
+    "baseVerb": "move"
   },
   {
     "id": "tense210",
@@ -2941,7 +3150,8 @@
     "acceptedAnswers": [
       "washed"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；already 常配完成式；wash 的 PP 是 washed。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；already 常配完成式；wash 的 PP 是 washed。",
+    "baseVerb": "wash"
   },
   {
     "id": "tense211",
@@ -2955,7 +3165,8 @@
     "acceptedAnswers": [
       "forgotten"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；already 常配完成式；forget 的 PP 是 forgotten。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；already 常配完成式；forget 的 PP 是 forgotten。",
+    "baseVerb": "forget"
   },
   {
     "id": "tense212",
@@ -2969,7 +3180,8 @@
     "acceptedAnswers": [
       "received"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；just 可表示剛剛完成；receive 的 PP 是 received。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；just 可表示剛剛完成；receive 的 PP 是 received。",
+    "baseVerb": "receive"
   },
   {
     "id": "tense213",
@@ -2983,7 +3195,8 @@
     "acceptedAnswers": [
       "has been"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；lately 是完成式提示；He 配 has，所以寫 has been。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；lately 是完成式提示；He 配 has，所以寫 has been。",
+    "baseVerb": "be"
   },
   {
     "id": "tense214",
@@ -2997,7 +3210,8 @@
     "acceptedAnswers": [
       "taken"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「從未...過」用 have never + PP；take 的 PP 是 taken。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「從未...過」用 have never + PP；take 的 PP 是 taken。",
+    "baseVerb": "take"
   },
   {
     "id": "tense215",
@@ -3011,7 +3225,8 @@
     "acceptedAnswers": [
       "been"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；去過某地用 has been to，不用 has gone to。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；去過某地用 has been to，不用 has gone to。",
+    "baseVerb": "be"
   },
   {
     "id": "tense216",
@@ -3025,7 +3240,8 @@
     "acceptedAnswers": [
       "have understood"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「明白了」但沒有過去時間詞，所以用 have + PP：have understood。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「明白了」但沒有過去時間詞，所以用 have + PP：have understood。",
+    "baseVerb": "understand"
   },
   {
     "id": "tense217",
@@ -3039,7 +3255,8 @@
     "acceptedAnswers": [
       "has marked"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「改了」但沒有過去時間詞，所以用 has + PP：has marked。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「改了」但沒有過去時間詞，所以用 has + PP：has marked。",
+    "baseVerb": "mark"
   },
   {
     "id": "tense218",
@@ -3053,7 +3270,8 @@
     "acceptedAnswers": [
       "have finished"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；recently 是完成式提示，所以用 have + PP：have finished。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；recently 是完成式提示，所以用 have + PP：have finished。",
+    "baseVerb": "finish"
   },
   {
     "id": "tense219",
@@ -3067,7 +3285,8 @@
     "acceptedAnswers": [
       "started"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「還未」用 have not + PP + yet，所以 start 要寫 started。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「還未」用 have not + PP + yet，所以 start 要寫 started。",
+    "baseVerb": "start"
   },
   {
     "id": "tense220",
@@ -3081,7 +3300,8 @@
     "acceptedAnswers": [
       "has brought"
     ],
-    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「帶了」但沒有過去時間詞，所以用 has + PP：has brought。"
+    "explanation": "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況；「帶了」但沒有過去時間詞，所以用 has + PP：has brought。",
+    "baseVerb": "bring"
   },
   {
     "id": "tense221",
@@ -3095,7 +3315,8 @@
     "acceptedAnswers": [
       "has been reading"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all morning 表示動作一直持續，所以用 has been reading。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all morning 表示動作一直持續，所以用 has been reading。",
+    "baseVerb": "read"
   },
   {
     "id": "tense222",
@@ -3109,7 +3330,8 @@
     "acceptedAnswers": [
       "have been waiting"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for ten minutes 表示持續到現在，所以用 have been waiting。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for ten minutes 表示持續到現在，所以用 have been waiting。",
+    "baseVerb": "wait"
   },
   {
     "id": "tense223",
@@ -3123,7 +3345,8 @@
     "acceptedAnswers": [
       "has been raining"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since this morning 表示由早上到現在，所以用 has been raining。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since this morning 表示由早上到現在，所以用 has been raining。",
+    "baseVerb": "rain"
   },
   {
     "id": "tense224",
@@ -3137,7 +3360,8 @@
     "acceptedAnswers": [
       "have been playing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for a long time 表示持續中，所以用 have been playing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for a long time 表示持續中，所以用 have been playing。",
+    "baseVerb": "play"
   },
   {
     "id": "tense225",
@@ -3151,7 +3375,8 @@
     "acceptedAnswers": [
       "has been sleeping"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for two hours 表示由過去持續到現在，所以用 has been sleeping。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for two hours 表示由過去持續到現在，所以用 has been sleeping。",
+    "baseVerb": "sleep"
   },
   {
     "id": "tense226",
@@ -3165,7 +3390,8 @@
     "acceptedAnswers": [
       "have been working"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all day 表示一直持續，所以用 have been working。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all day 表示一直持續，所以用 have been working。",
+    "baseVerb": "work"
   },
   {
     "id": "tense227",
@@ -3179,7 +3405,8 @@
     "acceptedAnswers": [
       "has been studying"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since seven o'clock 表示由七點到現在，所以用 has been studying。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since seven o'clock 表示由七點到現在，所以用 has been studying。",
+    "baseVerb": "study"
   },
   {
     "id": "tense228",
@@ -3194,7 +3421,8 @@
       "have been practising",
       "have been practicing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；recently 加上「一直在練」表示持續，所以用 have been practising。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；recently 加上「一直在練」表示持續，所以用 have been practising。",
+    "baseVerb": "practise"
   },
   {
     "id": "tense229",
@@ -3208,7 +3436,8 @@
     "acceptedAnswers": [
       "has been coughing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for three days 表示持續到現在，所以用 has been coughing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for three days 表示持續到現在，所以用 has been coughing。",
+    "baseVerb": "cough"
   },
   {
     "id": "tense230",
@@ -3222,7 +3451,8 @@
     "acceptedAnswers": [
       "have been living"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for many years 表示持續到現在，所以用 have been living。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for many years 表示持續到現在，所以用 have been living。",
+    "baseVerb": "live"
   },
   {
     "id": "tense231",
@@ -3236,7 +3466,8 @@
     "acceptedAnswers": [
       "has been teaching"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for ten years 表示由過去到現在，所以用 has been teaching。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for ten years 表示由過去到現在，所以用 has been teaching。",
+    "baseVerb": "teach"
   },
   {
     "id": "tense232",
@@ -3250,7 +3481,8 @@
     "acceptedAnswers": [
       "have been cleaning"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all afternoon 表示一直持續，所以用 have been cleaning。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all afternoon 表示一直持續，所以用 have been cleaning。",
+    "baseVerb": "clean"
   },
   {
     "id": "tense233",
@@ -3264,7 +3496,8 @@
     "acceptedAnswers": [
       "has been drawing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since school ended 表示由放學到現在，所以用 has been drawing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since school ended 表示由放學到現在，所以用 has been drawing。",
+    "baseVerb": "draw"
   },
   {
     "id": "tense234",
@@ -3278,7 +3511,8 @@
     "acceptedAnswers": [
       "have been discussing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在討論」表示持續的動作，所以用 have been discussing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在討論」表示持續的動作，所以用 have been discussing。",
+    "baseVerb": "discuss"
   },
   {
     "id": "tense235",
@@ -3292,7 +3526,8 @@
     "acceptedAnswers": [
       "has been repairing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all evening 表示一直持續，所以用 has been repairing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all evening 表示一直持續，所以用 has been repairing。",
+    "baseVerb": "repair"
   },
   {
     "id": "tense236",
@@ -3306,7 +3541,8 @@
     "acceptedAnswers": [
       "have been building"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for several months 表示持續中，所以用 have been building。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for several months 表示持續中，所以用 have been building。",
+    "baseVerb": "build"
   },
   {
     "id": "tense237",
@@ -3320,7 +3556,8 @@
     "acceptedAnswers": [
       "has been writing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for two weeks 表示由過去到現在仍在做，所以用 has been writing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for two weeks 表示由過去到現在仍在做，所以用 has been writing。",
+    "baseVerb": "write"
   },
   {
     "id": "tense238",
@@ -3334,7 +3571,8 @@
     "acceptedAnswers": [
       "have been walking"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for half an hour 表示持續到現在，所以用 have been walking。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for half an hour 表示持續到現在，所以用 have been walking。",
+    "baseVerb": "walk"
   },
   {
     "id": "tense239",
@@ -3348,7 +3586,8 @@
     "acceptedAnswers": [
       "has been sitting"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for a long time 表示持續到現在，所以用 has been sitting。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for a long time 表示持續到現在，所以用 has been sitting。",
+    "baseVerb": "sit"
   },
   {
     "id": "tense240",
@@ -3362,7 +3601,8 @@
     "acceptedAnswers": [
       "have been looking"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在找」表示持續的動作，所以用 have been looking。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在找」表示持續的動作，所以用 have been looking。",
+    "baseVerb": "look"
   },
   {
     "id": "tense241",
@@ -3376,7 +3616,8 @@
     "acceptedAnswers": [
       "has been crying"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for a long time 表示持續到現在，所以用 has been crying。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for a long time 表示持續到現在，所以用 has been crying。",
+    "baseVerb": "cry"
   },
   {
     "id": "tense242",
@@ -3390,7 +3631,8 @@
     "acceptedAnswers": [
       "have been learning"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for three years 表示持續到現在，所以用 have been learning。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for three years 表示持續到現在，所以用 have been learning。",
+    "baseVerb": "learn"
   },
   {
     "id": "tense243",
@@ -3404,7 +3646,8 @@
     "acceptedAnswers": [
       "has been doing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for an hour 表示持續中，所以用 has been doing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for an hour 表示持續中，所以用 has been doing。",
+    "baseVerb": "do"
   },
   {
     "id": "tense244",
@@ -3418,7 +3661,8 @@
     "acceptedAnswers": [
       "have been running"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for ten minutes 表示持續到現在，所以用 have been running。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for ten minutes 表示持續到現在，所以用 have been running。",
+    "baseVerb": "run"
   },
   {
     "id": "tense245",
@@ -3432,7 +3676,8 @@
     "acceptedAnswers": [
       "has been cooking"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since five o'clock 表示由五點到現在，所以用 has been cooking。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since five o'clock 表示由五點到現在，所以用 has been cooking。",
+    "baseVerb": "cook"
   },
   {
     "id": "tense246",
@@ -3446,7 +3691,8 @@
     "acceptedAnswers": [
       "have been talking"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for the whole recess 表示持續到現在，所以用 have been talking。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for the whole recess 表示持續到現在，所以用 have been talking。",
+    "baseVerb": "talk"
   },
   {
     "id": "tense247",
@@ -3460,7 +3706,8 @@
     "acceptedAnswers": [
       "has been using"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all day 表示一直持續，所以用 has been using。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all day 表示一直持續，所以用 has been using。",
+    "baseVerb": "use"
   },
   {
     "id": "tense248",
@@ -3474,7 +3721,8 @@
     "acceptedAnswers": [
       "have been watching"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all afternoon 表示一直持續，所以用 have been watching。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；all afternoon 表示一直持續，所以用 have been watching。",
+    "baseVerb": "watch"
   },
   {
     "id": "tense249",
@@ -3488,7 +3736,8 @@
     "acceptedAnswers": [
       "has been growing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；recently 加上持續變化，所以用 has been growing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；recently 加上持續變化，所以用 has been growing。",
+    "baseVerb": "grow"
   },
   {
     "id": "tense250",
@@ -3502,7 +3751,8 @@
     "acceptedAnswers": [
       "have been saving"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for half a year 表示持續到現在，所以用 have been saving。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for half a year 表示持續到現在，所以用 have been saving。",
+    "baseVerb": "save"
   },
   {
     "id": "tense251",
@@ -3516,7 +3766,8 @@
     "acceptedAnswers": [
       "has been planning"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在計劃」表示持續的動作，所以用 has been planning。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在計劃」表示持續的動作，所以用 has been planning。",
+    "baseVerb": "plan"
   },
   {
     "id": "tense252",
@@ -3530,7 +3781,8 @@
     "acceptedAnswers": [
       "have been preparing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since last week 表示由上星期到現在，所以用 have been preparing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since last week 表示由上星期到現在，所以用 have been preparing。",
+    "baseVerb": "prepare"
   },
   {
     "id": "tense253",
@@ -3544,7 +3796,8 @@
     "acceptedAnswers": [
       "has been asking"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在問」表示持續的動作，所以用 has been asking。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在問」表示持續的動作，所以用 has been asking。",
+    "baseVerb": "ask"
   },
   {
     "id": "tense254",
@@ -3558,7 +3811,8 @@
     "acceptedAnswers": [
       "have been helping"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在幫」表示持續的動作，所以用 have been helping。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在幫」表示持續的動作，所以用 have been helping。",
+    "baseVerb": "help"
   },
   {
     "id": "tense255",
@@ -3572,7 +3826,8 @@
     "acceptedAnswers": [
       "has been training"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for three months 表示持續到現在，所以用 has been training。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for three months 表示持續到現在，所以用 has been training。",
+    "baseVerb": "train"
   },
   {
     "id": "tense256",
@@ -3586,7 +3841,8 @@
     "acceptedAnswers": [
       "have been collecting"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for many years 表示持續到現在，所以用 have been collecting。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for many years 表示持續到現在，所以用 have been collecting。",
+    "baseVerb": "collect"
   },
   {
     "id": "tense257",
@@ -3600,7 +3856,8 @@
     "acceptedAnswers": [
       "has been looking after"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；recently 加上「一直在照顧」表示持續，所以用 has been looking after。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；recently 加上「一直在照顧」表示持續，所以用 has been looking after。",
+    "baseVerb": "after"
   },
   {
     "id": "tense258",
@@ -3614,7 +3871,8 @@
     "acceptedAnswers": [
       "have been singing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since lunch 表示由午餐後到現在，所以用 have been singing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；since lunch 表示由午餐後到現在，所以用 have been singing。",
+    "baseVerb": "sing"
   },
   {
     "id": "tense259",
@@ -3628,7 +3886,8 @@
     "acceptedAnswers": [
       "has been washing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在洗」表示持續的動作，所以用 has been washing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；「一直在洗」表示持續的動作，所以用 has been washing。",
+    "baseVerb": "wash"
   },
   {
     "id": "tense260",
@@ -3642,6 +3901,7 @@
     "acceptedAnswers": [
       "have been standing"
     ],
-    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for twenty minutes 表示持續到現在，所以用 have been standing。"
+    "explanation": "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作；for twenty minutes 表示持續到現在，所以用 have been standing。",
+    "baseVerb": "stand"
   }
 ]

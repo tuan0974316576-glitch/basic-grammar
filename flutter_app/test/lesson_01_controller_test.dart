@@ -27,7 +27,9 @@ void main() {
     final verbIndex = controller.currentQuestion.actionVerbTokens.indexOf('吃');
     expect(
         controller.toggleVerbToken(verbIndex), Lesson01Event.selectionChanged);
-    expect(controller.submitVerbTokens(), Lesson01Event.questionCorrect);
+    expect(controller.submitVerbTokens(), Lesson01Event.correctStep);
+    expect(controller.stage, Lesson01Stage.needsBe);
+    expect(controller.answerNeedsBe(false), Lesson01Event.questionCorrect);
     expect(controller.score, 1);
     expect(controller.stage, Lesson01Stage.resolved);
   });

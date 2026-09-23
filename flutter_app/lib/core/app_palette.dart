@@ -15,10 +15,12 @@ abstract final class AppPalette {
   static const secondaryDark = Color(0xFFFFB703);
   static const softSecondary = Color(0xFFFFF8D6);
 
+  static const cross = Color(0xFFF68BA2);
   static const danger = Color(0xFFFF6B6B);
   static const dangerDark = Color(0xFFD94848);
   static const softDanger = Color(0xFFFFE3E3);
 
+  static const tick = Color(0xFF8ED8B8);
   static const correct = Color(0xFF58D868);
   static const correctDark = Color(0xFF2F9E44);
   static const softCorrect = Color(0xFFE8F8EA);

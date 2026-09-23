@@ -10,11 +10,16 @@ import 'lesson_03_controller.dart';
 import 'lesson_03_repository.dart';
 
 class Lesson03Screen extends StatefulWidget {
-  const Lesson03Screen(
-      {this.repository = const Lesson03Repository(), this.sfx, super.key});
+  const Lesson03Screen({
+    this.repository = const Lesson03Repository(),
+    this.sfx,
+    this.onQuestionCorrect,
+    super.key,
+  });
 
   final Lesson03Repository repository;
   final LessonSfx? sfx;
+  final VoidCallback? onQuestionCorrect;
 
   @override
   State<Lesson03Screen> createState() => _Lesson03ScreenState();
@@ -70,6 +75,7 @@ class _Lesson03ScreenState extends State<Lesson03Screen> {
     if (cue != null) unawaited(_sfx.play(cue));
     if (event == Lesson03Event.questionCorrect) {
       setState(() => _celebration += 1);
+      widget.onQuestionCorrect?.call();
     } else if (event == Lesson03Event.completed) {
       setState(() => _celebration += 1);
     }
@@ -103,6 +109,7 @@ class _Lesson03ScreenState extends State<Lesson03Screen> {
             total: controller.total,
             mistakes: controller.mistakes,
             reviewMode: controller.isReviewMode,
+            sfx: _sfx,
             onClose: _close,
             onRestart: () {
               controller.restart();
@@ -145,7 +152,12 @@ class _Lesson03ScreenState extends State<Lesson03Screen> {
                 radius: 18,
                 ringWidth: 3,
                 shadowDepth: 3,
-                padding: const EdgeInsets.fromLTRB(14, 20, 14, 22),
+                padding: EdgeInsets.fromLTRB(
+                  10,
+                  MediaQuery.sizeOf(context).width <= 380 ? 10 : 20,
+                  10,
+                  MediaQuery.sizeOf(context).width <= 380 ? 12 : 22,
+                ),
                 backgroundColor: AppPalette.softCorrect,
                 borderColor: AppPalette.correct,
                 child: _UnderlineTokens(
@@ -269,8 +281,8 @@ class _UnderlineTokensState extends State<_UnderlineTokens> {
     final tokens = widget.controller.currentQuestion.tokens;
     return Wrap(
       alignment: WrapAlignment.center,
-      spacing: 8,
-      runSpacing: 14,
+      spacing: MediaQuery.sizeOf(context).width <= 380 ? 5 : 8,
+      runSpacing: MediaQuery.sizeOf(context).width <= 380 ? 7 : 14,
       children: [
         for (var index = 0; index < tokens.length; index++)
           GestureDetector(
@@ -321,12 +333,17 @@ class _CrayonWord extends StatelessWidget {
           ? null
           : _CrayonUnderlinePainter(color: color, draft: draft),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(2, 2, 2, 8),
+        padding: EdgeInsets.fromLTRB(
+          2,
+          2,
+          2,
+          MediaQuery.sizeOf(context).width <= 380 ? 4 : 8,
+        ),
         child: Text(
           word,
-          style: const TextStyle(
+          style: TextStyle(
             color: AppPalette.ink,
-            fontSize: 21,
+            fontSize: MediaQuery.sizeOf(context).width <= 380 ? 17 : 21,
             height: 1.25,
             fontWeight: FontWeight.w900,
           ),

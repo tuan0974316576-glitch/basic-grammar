@@ -45,5 +45,15 @@ assert.ok(!fs.existsSync(path.join(wwwDir, "assets", "cc-cedict-reverse")));
 });
 assert.ok(appJs.includes("lookupVocabExamples"));
 assert.ok(builtCodeText.includes("lookupVocabExamples"));
+assert.ok(fs.existsSync(path.join(wwwDir, "assets", "vocab-examples", "examples_d.json")));
+assert.ok(fs.existsSync(path.join(wwwDir, "assets", "vocab-examples", "examples_v.json")));
+
+const teacherConsoleHtml = fs.readFileSync(path.join(wwwDir, "teacher-vocab.html"), "utf8");
+const teacherConsoleJs = fs.readFileSync(path.join(wwwDir, "teacher-vocab-admin.js"), "utf8");
+assert.ok(teacherConsoleHtml.includes("vocab_example_utils.js"));
+assert.ok(teacherConsoleHtml.includes("pattern-examples"));
+assert.ok(teacherConsoleJs.includes("pos: sense.pos,"));
+assert.ok(teacherConsoleJs.includes("REVIEWED_EXAMPLE_RELEASE"));
+assert.ok(!teacherConsoleJs.includes('pos: sense.pos === "phrase" ? "" : sense.pos'));
 
 console.log("build_web_bundle tests passed");

@@ -193,8 +193,13 @@ function buildExampleShards() {
 }
 
 async function main() {
-  fs.rmSync(outputDir, { recursive: true, force: true });
   fs.mkdirSync(outputDir, { recursive: true });
+  fs.readdirSync(outputDir)
+    .filter((file) => (
+      /^(?:lookup|examples)_[a-z0-9_]\.json$/i.test(file)
+      || ["headwords.json", "audio_manifest.json", "meta.json"].includes(file)
+    ))
+    .forEach((file) => fs.rmSync(path.join(outputDir, file), { force: true }));
   const lookup = await buildLookupShards();
   const examples = buildExampleShards();
   const audioManifest = readAudioManifest();

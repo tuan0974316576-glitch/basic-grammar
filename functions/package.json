@@ -6,12 +6,16 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "node --check index.js",
+    "lint": "node --check index.js && node --check vocab-import.js && node --check vocab-audio-upload.js && node --check student-profile.js && node --check econ-grading.js && node --check streak-engine.js && node --check notification-engine.js && node test-vocab-audio-upload.js && node test-student-profile.js && node test-streak-engine.js && node test-notification-engine.js && node test-econ-grading.js",
     "seed:students": "node seed-students.js"
   },
   "dependencies": {
+    "@google-cloud/vision": "^5.3.7",
+    "@google/genai": "^2.18.0",
     "firebase-admin": "^12.7.0",
-    "firebase-functions": "^6.3.2"
+    "firebase-functions": "^6.3.2",
+    "microsoft-cognitiveservices-speech-sdk": "^1.51.0",
+    "pdfjs-dist": "^6.2.108"
   },
   "overrides": {
     "uuid": "^11.1.1"

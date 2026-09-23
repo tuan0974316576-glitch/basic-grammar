@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:dope_english/core/app_sfx.dart';
+import 'package:dope_english/core/widgets/stationery_frame.dart';
 import 'package:dope_english/features/grammar/lesson_02/lesson_02_controller.dart';
 import 'package:dope_english/features/grammar/lesson_02/lesson_02_question.dart';
 import 'package:dope_english/features/grammar/lesson_02/lesson_02_screen.dart';
+import 'package:dope_english/features/grammar/shared/lesson_ui.dart';
 
 const _zeroVerbQuestion = Lesson02Question(
   id: 'zero',
@@ -57,6 +59,18 @@ void main() {
     expect(find.byKey(const Key('sentence-correct')), findsOneWidget);
     expect(find.byKey(const Key('sentence-wrong')), findsOneWidget);
     expect(find.text('我很開心。'), findsOneWidget);
+    final correctSurface = find.descendant(
+      of: find.byKey(const Key('sentence-correct')),
+      matching: find.byType(OriginalDashedSurface),
+    );
+    expect(
+      tester.widget<OriginalDashedSurface>(correctSurface).backgroundColor,
+      Colors.white,
+    );
+    expect(
+      tester.widget<OriginalDashedSurface>(correctSurface).strokeWidth,
+      5,
+    );
     expect(tester.takeException(), isNull);
   });
 
@@ -100,6 +114,14 @@ void main() {
     expect(find.textContaining('are 是 be 動詞'), findsOneWidget);
     expect(find.textContaining('are 是多餘的'), findsOneWidget);
     expect(find.byKey(const Key('lesson-02-next')), findsOneWidget);
+    final feedbackPanel = find.descendant(
+      of: find.byType(LessonFeedbackCard),
+      matching: find.byType(OriginalDashedSurface),
+    );
+    expect(
+      tester.widget<OriginalDashedSurface>(feedbackPanel.first).backgroundColor,
+      Colors.white,
+    );
     expect(tester.takeException(), isNull);
   });
 }

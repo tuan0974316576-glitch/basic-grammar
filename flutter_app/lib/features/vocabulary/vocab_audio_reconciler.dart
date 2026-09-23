@@ -30,9 +30,9 @@ class VocabAudioReconcileResult {
 /// Background audio warmer modelled after Battleship's saved-vocab
 /// reconciliation from commit 86eede3d.
 ///
-/// It never plays audio. Existing bundled/downloaded files are skipped, words
-/// are filled before example sentences, and a paused run resumes from the
-/// beginning safely because every item is idempotently checked by hasAudio.
+/// It never plays audio. Existing word files receive a background revision
+/// check, missing files are downloaded, words are handled before examples, and
+/// a paused run resumes safely because each operation is idempotent.
 class VocabAudioReconciler with WidgetsBindingObserver {
   VocabAudioReconciler({
     required this.audio,
@@ -228,7 +228,15 @@ class VocabAudioReconciler with WidgetsBindingObserver {
           reason: 'runtime-paused',
         );
       }
-      if (!await audio.hasAudio(item.word)) {
+      final hasWordAudio = await audio.hasAudio(item.word);
+      if (hasWordAudio) {
+        if (audio is VocabAudioRevisionRefresher) {
+          // A refresh failure must not discard a valid local file or stop the
+          // rest of the offline-capable reconciliation pass.
+          await (audio as VocabAudioRevisionRefresher)
+              .refreshWordAudio(item.word);
+        }
+      } else {
         final wordResult = await audio.ensureAudio(item.word);
         if (!wordResult.ready) {
           _lastResultComplete = false;
