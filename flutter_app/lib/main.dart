@@ -951,7 +951,10 @@ class _AppShellState extends State<AppShell> {
           animation: _streakController,
           builder: (_, __) => StreakPanel(
             streak: _streakController.streak,
-            onClose: () => Navigator.of(modalContext).pop(),
+            onClose: () {
+              unawaited(AppSfx.instance.play(SfxCue.close));
+              Navigator.of(modalContext).pop();
+            },
           ),
         ),
       ),

@@ -295,6 +295,17 @@ class _VocabularyScreenState extends State<VocabularyScreen>
       _scheduleSynonymLink(sourceWord);
       return;
     }
+    if (result == VocabAddResult.alreadySaved) {
+      unawaited(AppSfx.instance.play(SfxCue.step));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('呢個意思已經喺生字簿。'),
+          duration: Duration(milliseconds: 1100),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
     unawaited(AppSfx.instance.play(SfxCue.wrong));
     if (result == VocabAddResult.saveFailed) {
       ScaffoldMessenger.of(context).showSnackBar(

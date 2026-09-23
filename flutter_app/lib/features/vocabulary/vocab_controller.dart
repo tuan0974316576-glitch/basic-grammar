@@ -9,7 +9,7 @@ import 'vocab_repository.dart';
 import 'vocab_review_controller.dart';
 import 'vocab_synonym_repository.dart';
 
-enum VocabAddResult { added, invalid, saveFailed }
+enum VocabAddResult { added, alreadySaved, invalid, saveFailed }
 
 class VocabController extends ChangeNotifier {
   VocabController({
@@ -137,12 +137,27 @@ class VocabController extends ChangeNotifier {
         _items.indexWhere((item) => item.normalizedWord == normalized);
     if (existingIndex >= 0) {
       final existing = _items[existingIndex];
+      final newSenses = senses
+          .where(
+            (sense) => !existing.senses.any(
+              (savedSense) => vocabSenseCovers(savedSense, sense),
+            ),
+          )
+          .toList(growable: false);
+      if (newSenses.isEmpty) {
+        _query = '';
+        _lookupSenses = const [];
+        _suggestions = const [];
+        _selectedSenseIds = const {};
+        notifyListeners();
+        return VocabAddResult.alreadySaved;
+      }
       final byId = <String, VocabSense>{
         for (final sense in existing.senses) sense.storageId: sense,
-        for (final sense in senses) sense.storageId: sense,
+        for (final sense in newSenses) sense.storageId: sense,
       };
       final next = existing.copyWith(
-        word: senses.first.display,
+        word: newSenses.first.display,
         senses: dedupeVocabSenses(byId.values),
         updatedAt: now,
       );

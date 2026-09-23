@@ -67,6 +67,21 @@ void main() {
     expect(controller.items.single.senses, hasLength(2));
   });
 
+  test('saving the same word and meaning reports already saved', () async {
+    await controller.updateQuery('have');
+    controller.toggleSense(controller.lookupSenses.first);
+    expect(await controller.addSelected(), VocabAddResult.added);
+
+    await controller.updateQuery('have');
+    controller.toggleSense(controller.lookupSenses.first);
+    expect(
+      await controller.addSelected(),
+      VocabAddResult.alreadySaved,
+    );
+    expect(controller.items, hasLength(1));
+    expect(controller.items.single.senses, hasLength(1));
+  });
+
   test('a correct retry clears due state after an earlier wrong attempt',
       () async {
     await controller.bulkUpsertImported(const [

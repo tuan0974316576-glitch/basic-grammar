@@ -2,6 +2,20 @@
 
 Last updated: 23 September 2026
 
+## Calendar Close Sound And Duplicate Save Guard (2026-09-23)
+
+- The Streak calendar close sticker now plays the shared `close.mp3` cue
+  before dismissing the panel.
+- Vocabulary save now distinguishes an already saved word/sense from a new
+  sense. Re-saving the same sense is a no-op with a clear `已經喺生字簿` message;
+  a new POS or meaning for the same English word is still merged as a new
+  sense.
+- The current A1 BUDDY `待溫習` counter is not yet a Duolingo-style memory
+  curve. It currently means unseen or not mastered in the current review
+  state. A future SRS pass should add `nextDueAt`, recall probability,
+  half-life, and correct-streak fields, following the existing Battleship
+  scheduler direction.
+
 ## Close Sound And Delete Icon Alignment (2026-09-23)
 
 - The Vocabulary delete button no longer uses a text `×` glyph whose font
