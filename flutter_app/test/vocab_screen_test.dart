@@ -274,7 +274,7 @@ void main() {
       findsOneWidget,
     );
     expect(find.byIcon(Icons.volume_up_rounded), findsNothing);
-    expect(find.text('×'), findsOneWidget);
+    expect(find.byIcon(Icons.close_rounded), findsOneWidget);
   });
 
   testWidgets('the full word row and full white example card are playback tabs',

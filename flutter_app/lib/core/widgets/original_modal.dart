@@ -111,7 +111,7 @@ class _OriginalSettingsModalState extends State<OriginalSettingsModal> {
   Widget build(BuildContext context) {
     final sfx = widget.sfx;
     void close() {
-      if (sfx != null) unawaited(sfx.play(SfxCue.click));
+      if (sfx != null) unawaited(sfx.play(SfxCue.close));
       Navigator.of(context).pop();
     }
 
@@ -750,14 +750,10 @@ class _OriginalModalFrame extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: const Text(
-                        '×',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 34,
-                          height: 1,
-                          fontWeight: FontWeight.w900,
-                        ),
+                      child: const Icon(
+                        Icons.close_rounded,
+                        color: Colors.white,
+                        size: 28,
                       ),
                     ),
                   ),

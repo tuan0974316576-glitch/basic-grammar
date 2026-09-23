@@ -103,6 +103,12 @@ class _VocabImportDialogState extends State<VocabImportDialog> {
     unawaited(AppSfx.instance.play(SfxCue.wrong));
   }
 
+  void _close() {
+    if (_processing) return;
+    unawaited(AppSfx.instance.play(SfxCue.close));
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final overall = _result != null
@@ -145,9 +151,7 @@ class _VocabImportDialogState extends State<VocabImportDialog> {
                       IconButton(
                         key: const Key('vocab-import-close-button'),
                         tooltip: '關閉',
-                        onPressed: _processing
-                            ? null
-                            : () => Navigator.of(context).pop(),
+                        onPressed: _processing ? null : _close,
                         icon: const Icon(Icons.close_rounded),
                       ),
                     ],

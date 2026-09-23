@@ -358,7 +358,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   }
 
   Future<void> _deleteWord(VocabItem item) async {
-    unawaited(AppSfx.instance.play(SfxCue.click));
+    unawaited(AppSfx.instance.play(SfxCue.close));
     await _controller.deleteItem(item.id);
   }
 
@@ -2513,14 +2513,7 @@ class _VocabRowState extends State<_VocabRow> {
             shadowColor: AppPalette.dangerDark,
             shadowDepth: 4,
             semanticLabel: '刪除 ${widget.item.word}',
-            child: const Text(
-              '×',
-              style: TextStyle(
-                fontSize: 24,
-                height: 1,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
+            child: const Icon(Icons.close_rounded, size: 22),
           ),
         ],
       ),

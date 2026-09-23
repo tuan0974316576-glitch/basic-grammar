@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_palette.dart';
+import '../../core/app_sfx.dart';
 import '../../core/widgets/original_modal.dart';
 import '../../core/widgets/stationery_frame.dart';
 import 'vocab_synonym_repository.dart';
@@ -132,6 +133,7 @@ class _VocabSynonymDialogState extends State<VocabSynonymDialog> {
                     onPressed: _saving
                         ? null
                         : () {
+                            AppSfx.instance.play(SfxCue.close);
                             widget.onSkip?.call();
                             Navigator.of(context).pop();
                           },

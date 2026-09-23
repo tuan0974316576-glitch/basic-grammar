@@ -10,6 +10,7 @@ void main() {
     expect(AppSfx.assetPaths.containsKey(SfxCue.complete), isFalse);
     expect(AppSfx.assetPaths[SfxCue.step], 'audio/sfx/step.wav');
     expect(AppSfx.assetPaths[SfxCue.type], 'audio/sfx/type.mp3');
+    expect(AppSfx.assetPaths[SfxCue.close], 'audio/sfx/close.mp3');
     expect(
       AppSfx.assetPaths[SfxCue.clickEnglishWords],
       'audio/sfx/click_english_words.mp3',

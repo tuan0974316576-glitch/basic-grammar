@@ -2,6 +2,17 @@
 
 Last updated: 23 September 2026
 
+## Close Sound And Delete Icon Alignment (2026-09-23)
+
+- The Vocabulary delete button no longer uses a text `×` glyph whose font
+  baseline made the white mark look low. It now uses a fixed-size centred
+  `Icons.close_rounded` icon.
+- Added the shared `SfxCue.close` backed by `assets/audio/sfx/close.mp3`.
+  Vocabulary delete, Settings modal close, note-import close, and synonym
+  dialog close now use this cue.
+- Focused SFX, modal, and Vocabulary tests pass; the new arm64 debug APK was
+  built at `flutter_app/build/app/outputs/flutter-apk/app-arm64-v8a-debug.apk`.
+
 ## Vocabulary Due-State Fix (2026-09-23)
 
 - Vocabulary Training now stores an explicit `reviewMastered` state per saved
