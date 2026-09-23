@@ -1,6 +1,19 @@
 # A1 BUDDY Development Handoff
 
-Last updated: 22 September 2026
+Last updated: 23 September 2026
+
+## Full-Screen Streak Claim Page (2026-09-23)
+
+- Claiming XP after Vocabulary Training now opens a persistent full-screen
+  streak celebration overlay. It uses the A1 BUDDY white-paper / pastel theme:
+  a Cantonese speech bubble, looping fire and monster art, the streak day
+  count, a seven-day strip with today checked, and a `返回詞彙` button.
+- The overlay stays open until the student taps the button. The root streak
+  callback removes the overlay and clears the pending update; it no longer
+  disappears automatically after a short timer.
+- The monthly `StreakPanel` calendar no longer renders the looping fire Lottie
+  in its header. Fire celebration art is reserved for the claim page; the
+  calendar continues to show active and frozen dates only.
 
 ## Vocabulary Success Screen Colour Rotation (2026-09-23)
 

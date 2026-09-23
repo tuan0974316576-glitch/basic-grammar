@@ -104,7 +104,11 @@ void main() {
     );
     await tester.pump(const Duration(milliseconds: 100));
     expect(find.byKey(const Key('streak-celebration-monster')), findsOneWidget);
-    expect(find.text('3 日連續學習！'), findsOneWidget);
+    expect(
+        find.byKey(const Key('streak-celebration-day-count')), findsOneWidget);
+    expect(find.text('日連續學習'), findsOneWidget);
+    expect(find.byKey(const Key('streak-celebration-week')), findsOneWidget);
+    expect(find.byKey(const Key('streak-celebration-done')), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 

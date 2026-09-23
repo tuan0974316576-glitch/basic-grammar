@@ -561,18 +561,21 @@ class _AppShellState extends State<AppShell> {
     _streakOverlayEntry?.remove();
     final overlay = Overlay.of(context, rootOverlay: true);
     final entry = OverlayEntry(
-      builder: (_) => StreakCelebrationOverlay(update: update),
+      builder: (_) => StreakCelebrationOverlay(
+        update: update,
+        onDone: _dismissStreakOverlay,
+      ),
     );
     _streakOverlayEntry = entry;
     overlay.insert(entry);
-    _streakOverlayTimer = Timer(const Duration(milliseconds: 2400), () {
-      if (!mounted) return;
-      if (identical(_streakOverlayEntry, entry)) {
-        entry.remove();
-        _streakOverlayEntry = null;
-      }
-      _streakController.clearLastUpdate();
-    });
+  }
+
+  void _dismissStreakOverlay() {
+    _streakOverlayTimer?.cancel();
+    _streakOverlayTimer = null;
+    _streakOverlayEntry?.remove();
+    _streakOverlayEntry = null;
+    _streakController.clearLastUpdate();
   }
 
   void _recordLearningActivity(String kind, String sourceId, int answerCount) {
