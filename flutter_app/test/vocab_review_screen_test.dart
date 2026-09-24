@@ -34,6 +34,35 @@ void main() {
     );
   });
 
+  test('retry monster and encouragement follow the Hong Kong weekday', () {
+    expect(
+      [
+        for (var weekday = 1; weekday <= 7; weekday++)
+          retryMonsterAssetForWeekday(weekday)
+      ],
+      [
+        'assets/lottie/monsters/three-eye-monster-6-monday.json',
+        'assets/lottie/monsters/three-eye-monster-6-tuesday.json',
+        'assets/lottie/monsters/three-eye-monster-6-wednesday.json',
+        'assets/lottie/monsters/three-eye-monster-6-thursday.json',
+        'assets/lottie/monsters/three-eye-monster-6-friday.json',
+        'assets/lottie/monsters/three-eye-monster-6-saturday.json',
+        'assets/lottie/monsters/three-eye-monster-6-sunday.json',
+      ],
+    );
+    expect(
+      retryEncouragementForWeekday(1, wrongCount: 3),
+      contains('3 題'),
+    );
+    expect(
+      retryEncouragementForToday(
+        wrongCount: 2,
+        now: DateTime.utc(2026, 9, 21, 23),
+      ),
+      contains('2 題'),
+    );
+  });
+
   testWidgets('runs reading, listening, spelling, and completion states',
       (tester) async {
     final audio = _RecordingReviewAudio();
@@ -272,6 +301,42 @@ void main() {
           .text,
       'ac',
     );
+  });
+
+  testWidgets('retry intro shows the talking three-eye monster',
+      (tester) async {
+    final review = VocabReviewController(
+      items: _items(1),
+      random: Random(5),
+      repeatWrongAnswers: true,
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: VocabularyReviewScreen(
+          items: review.questions.map((question) => question.item).toList(),
+          audioRepository: _RecordingReviewAudio(),
+          reviewController: review,
+          sfx: const SilentLessonSfx(),
+        ),
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 100));
+
+    await tester.enterText(
+      find.byKey(const Key('vocab-review-spelling-input')),
+      'wrong',
+    );
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('vocab-review-next')));
+    await tester.pump();
+
+    expect(find.byKey(const Key('vocab-review-retry-intro')), findsOneWidget);
+    expect(find.byKey(const Key('vocab-review-retry-bubble')), findsOneWidget);
+    expect(find.byKey(const Key('vocab-review-retry-monster')), findsOneWidget);
+    expect(find.textContaining('1 題'), findsOneWidget);
+    expect(find.text('繼續溫習'), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 
   test('spelling patterns provide punctuation and spaces automatically', () {

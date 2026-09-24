@@ -3411,7 +3411,10 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
       );
     }
     if (_review.isRetryIntro) {
-      return _ReviewRetryIntro(onContinue: _startRetry);
+      return _ReviewRetryIntro(
+        wrongCount: _review.wrongCount,
+        onContinue: _startRetry,
+      );
     }
     if (question == null) {
       return const Center(child: Text('未有可溫習生字。'));
@@ -3494,8 +3497,12 @@ class _VocabularyReviewScreenState extends State<VocabularyReviewScreen> {
 }
 
 class _ReviewRetryIntro extends StatelessWidget {
-  const _ReviewRetryIntro({required this.onContinue});
+  const _ReviewRetryIntro({
+    required this.wrongCount,
+    required this.onContinue,
+  });
 
+  final int wrongCount;
   final VoidCallback onContinue;
 
   @override
@@ -3507,67 +3514,54 @@ class _ReviewRetryIntro extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          OriginalDashedSurface(
-            backgroundColor: AppPalette.softSecondary,
-            borderColor: AppPalette.secondaryDark,
-            shadowColor: const Color(0xFFFFE7A3),
-            shadowDepth: 6,
-            radius: 26,
-            strokeWidth: 3,
-            padding: const EdgeInsets.fromLTRB(16, 15, 16, 20),
-            child: Column(
-              children: [
-                SizedBox.square(
-                  dimension: 205,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Lottie.asset(
-                          'assets/lottie/monsters/monster-blue.json',
-                          repeat: true,
-                        ),
-                      ),
-                    ],
+          Stack(
+            key: const Key('vocab-review-retry-bubble-stack'),
+            clipBehavior: Clip.none,
+            children: [
+              OriginalDashedSurface(
+                key: const Key('vocab-review-retry-bubble'),
+                backgroundColor: AppPalette.softPrimary,
+                borderColor: AppPalette.primary,
+                shadowColor: const Color(0xFFBDE0E1),
+                shadowDepth: 5,
+                radius: 24,
+                strokeWidth: 3,
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 17),
+                child: Text(
+                  retryEncouragementForToday(wrongCount: wrongCount),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color(0xFF5D4037),
+                    fontSize: 21,
+                    height: 1.3,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
-                const OriginalDashedSurface(
-                  key: Key('vocab-review-retry-bubble'),
-                  backgroundColor: AppPalette.paper,
-                  borderColor: AppPalette.primary,
-                  shadowColor: Color(0xFFBDE0E1),
-                  shadowDepth: 4,
-                  radius: 20,
-                  strokeWidth: 2,
-                  padding: EdgeInsets.fromLTRB(14, 13, 14, 12),
-                  child: Column(
-                    children: [
-                      Text(
-                        '有幾題要再練習，一齊答啱佢哋！',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF5D4037),
-                          fontSize: 21,
-                          height: 1.25,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      SizedBox(height: 6),
-                      Text(
-                        '錯題唔扣分，慢慢答啱就得。',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppPalette.muted,
-                          fontSize: 14,
-                          height: 1.35,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
+              ),
+              Positioned(
+                bottom: -16,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: CustomPaint(
+                    size: const Size(34, 20),
+                    painter: _RetryBubbleTailPainter(),
                   ),
                 ),
-              ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          SizedBox(
+            key: const Key('vocab-review-retry-monster'),
+            height: 285,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Lottie.asset(
+                retryMonsterAssetForToday(),
+                repeat: true,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
           const SizedBox(height: 16),
@@ -3580,6 +3574,28 @@ class _ReviewRetryIntro extends StatelessWidget {
       ),
     );
   }
+}
+
+class _RetryBubbleTailPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final fill = Paint()..color = AppPalette.softPrimary;
+    final stroke = Paint()
+      ..color = AppPalette.primary
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 3
+      ..strokeJoin = StrokeJoin.round;
+    final path = Path()
+      ..moveTo(2, 1)
+      ..lineTo(size.width - 2, 1)
+      ..lineTo(size.width * 0.55, size.height - 1)
+      ..close();
+    canvas.drawPath(path, fill);
+    canvas.drawPath(path, stroke);
+  }
+
+  @override
+  bool shouldRepaint(covariant _RetryBubbleTailPainter oldDelegate) => false;
 }
 
 class _ReviewHeader extends StatelessWidget {
@@ -4622,4 +4638,51 @@ String successMonsterAssetForWeekday(int weekday) {
   ];
   final index = (weekday - 1).clamp(0, weekdays.length - 1).toInt();
   return 'assets/lottie/monsters/cute-monster-${weekdays[index]}.json';
+}
+
+String retryMonsterAssetForToday({DateTime? now}) {
+  final hongKongNow =
+      (now ?? DateTime.now()).toUtc().add(const Duration(hours: 8));
+  return retryMonsterAssetForWeekday(hongKongNow.weekday);
+}
+
+String retryMonsterAssetForWeekday(int weekday) {
+  const weekdays = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday',
+  ];
+  final index = (weekday - 1).clamp(0, weekdays.length - 1).toInt();
+  return 'assets/lottie/monsters/three-eye-monster-6-${weekdays[index]}.json';
+}
+
+String retryEncouragementForToday({int wrongCount = 1, DateTime? now}) {
+  final hongKongNow =
+      (now ?? DateTime.now()).toUtc().add(const Duration(hours: 8));
+  return retryEncouragementForWeekday(
+    hongKongNow.weekday,
+    wrongCount: wrongCount,
+  );
+}
+
+String retryEncouragementForWeekday(
+  int weekday, {
+  int wrongCount = 1,
+}) {
+  final count = wrongCount <= 1 ? '呢 1 題' : '呢 $wrongCount 題';
+  const messages = [
+    '加油！仲有錯題要再練習，一齊答啱佢哋！',
+    '唔緊要！錯題係學習嘅好機會，慢慢答啱就得。',
+    '差少少就完成喇！再試一次，記住啱啱學過嘅字！',
+    '你已經好接近成功！將錯題變成識題！',
+    '小怪物話：再試一次，你一定做到！',
+    '答錯唔扣分！同錯題再見一次，今次一定得！',
+    '最後一小步！答啱晒就可以繼續攞經驗值！',
+  ];
+  final index = (weekday - 1).clamp(0, messages.length - 1).toInt();
+  return '${messages[index]}\n$count要再練習。';
 }

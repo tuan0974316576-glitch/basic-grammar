@@ -2,6 +2,21 @@
 
 Last updated: 23 September 2026
 
+## Talking Monster Retry Screen (2026-09-24)
+
+- The Vocabulary mistake transition now follows the approved talking-character
+  layout: a pastel dashed speech bubble with a pointed tail, a large
+  bottom-aligned `three-eye-monster-6`, and the yellow `繼續溫習` action below.
+- Retry copy rotates through seven Cantonese encouragement messages using the
+  Hong Kong weekday and includes the actual number of wrong questions. It is
+  deterministic for the day, so it does not change while the student is on
+  the page.
+- Seven pre-coloured `three-eye-monster-6` Lottie variants provide red,
+  orange, yellow, green, cyan, blue, and purple weekday colours while
+  preserving the original motion.
+- Focused Lottie/retry tests and the complete 292-test Flutter suite pass; the
+  arm64 debug APK builds successfully.
+
 ## Calendar Close Sound And Duplicate Save Guard (2026-09-23)
 
 - The Streak calendar close sticker now plays the shared `close.mp3` cue

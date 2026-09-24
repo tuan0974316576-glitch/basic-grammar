@@ -94,6 +94,27 @@ void main() {
     }
   });
 
+  test('weekday retry monsters keep one colour variant per day', () async {
+    const names = [
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday',
+    ];
+    for (final name in names) {
+      final data = jsonDecode(
+        await File('assets/lottie/monsters/three-eye-monster-6-$name.json')
+            .readAsString(),
+      ) as Map<String, dynamic>;
+      expect(data['v'], isNotEmpty);
+      expect(data['layers'], isA<List<dynamic>>());
+      expect((data['layers'] as List<dynamic>), isNotEmpty);
+    }
+  });
+
   testWidgets('lesson celebration renders the original confetti Lottie',
       (tester) async {
     await tester.pumpWidget(
