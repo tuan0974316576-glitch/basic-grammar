@@ -1,6 +1,44 @@
 # A1 BUDDY Development Handoff
 
-Last updated: 23 September 2026
+Last updated: 24 September 2026
+
+## Auth Startup Vocabulary Restore (2026-09-25)
+
+- AppShell now uses different keys for auth-restoring and authenticated
+  states. When Firebase/Auth restoration finishes, Flutter creates a fresh
+  authenticated shell and `CloudSyncedVocabStore` instead of reusing the
+  guest SharedPreferences controller from the first frame.
+- This fixes the cold-start case where Vocabulary appears empty until the app
+  is closed and reopened. Existing local/cloud vocab data is preserved.
+
+## Profile Name Welcome Monster (2026-09-24)
+
+- The first step of student onboarding, where the student enters their display
+  name, now uses `yellow-monster-saying-hi.json` from Downloads instead of
+  `monster-blue.json`. The existing layout and looping behavior are unchanged;
+  the Critter-avatar editor and other monster scenes are unaffected.
+- The new 480x480, 90-frame Lottie is bundled under
+  `flutter_app/assets/lottie/monsters/` and covered by the asset validity test.
+
+## Variable Vocabulary Session Size (2026-09-24)
+
+- Vocabulary Training no longer hard-caps every round at ten. It selects only
+  unseen or not-yet-mastered words, and the round contains the pool size up to
+  20 questions. When more than 20 words are due, the current ordering brings
+  unseen / weaker items forward and leaves the rest due for the next round.
+- This follows Battleship's existing 20-question My Vocab Challenge session
+  as a practical upper bound, while making short rounds naturally shorter.
+  Duolingo publicly describes personalized practice/review, but does not
+  publish a universal fixed exercise-count rule across all lesson types.
+- Important distinction: A1 BUDDY `reviewMastered` is still a binary
+  first-pass mastery flag. It is not the Battleship spaced-repetition model;
+  `nextDueAt`, recall probability, half-life, and per-mode progress still need
+  a separate SRS implementation before `待溫習` can mean scheduled due today.
+- Regression tests cover 15 due words producing 15 questions and 25 due words
+  producing a 20-question round that excludes already-mastered words.
+- The complete Flutter suite passes 294 tests and the arm64 debug APK builds
+  at `flutter_app/build/app/outputs/flutter-apk/app-arm64-v8a-debug.apk` with
+  SHA-256 `f04d0e4700b1fa2e23ed650602854ab0bf15dabbe7fdd21797b308c65b7c60b1`.
 
 ## Talking Monster Retry Screen (2026-09-24)
 

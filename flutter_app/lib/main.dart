@@ -182,6 +182,7 @@ class DopeEnglishApp extends StatelessWidget {
                     // visible while it runs; the authenticated/login route
                     // swaps in automatically when the status resolves.
                     StudentAuthStatus.initializing => AppShell(
+                        key: const ValueKey('app-shell-auth-initializing'),
                         vocabAudioRepository: audioRepository,
                         grammarProgressController: grammarProgressController,
                         workshopRepository: workshopRepository,
@@ -207,6 +208,9 @@ class DopeEnglishApp extends StatelessWidget {
                             onComplete: authController!.completeProfile,
                           )
                         : AppShell(
+                            key: ValueKey(
+                              'app-shell-authenticated-${authController!.profile?.studentId ?? 'student'}',
+                            ),
                             authController: authController,
                             vocabAudioRepository: audioRepository,
                             grammarProgressController:
