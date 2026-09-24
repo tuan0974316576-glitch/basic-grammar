@@ -101,6 +101,44 @@ void main() {
     expect(sfx.cues, contains(SfxCue.clickEnglishWords));
   });
 
+  testWidgets('auto read starts at the visible top word and advances',
+      (tester) async {
+    await controller.bulkUpsertImported(const [
+      VocabImportedEntry(
+        word: 'have',
+        display: 'have',
+        senses: [_haveAutoRead],
+      ),
+      VocabImportedEntry(
+        word: 'take',
+        display: 'take',
+        senses: [_takeVerb],
+      ),
+    ]);
+    final expected = controller.items.map((item) => item.word).toList();
+    final audio = _RecordingAudioRepository();
+    await tester.pumpWidget(app(audio: audio));
+    await tester.pump();
+
+    await tester.tap(find.byKey(const Key('vocab-auto-read-button')));
+    await tester.pump();
+    expect(audio.words, [expected.first]);
+    expect(
+      tester
+          .widget<AnimatedScale>(
+            find.byKey(
+                ValueKey('vocab-review-auto-read-scale-${expected.first}')),
+          )
+          .scale,
+      closeTo(1.035, 0.001),
+    );
+
+    await tester.pump(const Duration(milliseconds: 820));
+    expect(audio.words, [expected.first, expected.last]);
+    await tester.tap(find.byKey(const Key('vocab-auto-read-button')));
+    await tester.pump();
+  });
+
   testWidgets('slow meaning lookup shows animated search status',
       (tester) async {
     final lookup = _DelayedLookupRepository();
@@ -593,6 +631,24 @@ const _moonSense = VocabSense(
   display: 'moon',
   meaning: '月亮',
   pos: 'noun',
+  type: 'word',
+);
+
+const _takeVerb = VocabSense(
+  id: 'take-verb-auto-read',
+  word: 'take',
+  display: 'take',
+  meaning: '採取',
+  pos: 'verb',
+  type: 'word',
+);
+
+const _haveAutoRead = VocabSense(
+  id: 'have-auto-read',
+  word: 'have',
+  display: 'have',
+  meaning: '擁有',
+  pos: 'verb',
   type: 'word',
 );
 

@@ -2,6 +2,19 @@
 
 Last updated: 24 September 2026
 
+## Vocabulary Auto-Read Mode (2026-09-25)
+
+- Vocabulary toolbar now has a cute play button immediately to the right of
+  `Chi`. It starts from the highest currently visible row, reads words in
+  displayed order with an 800ms pause between words, auto-scrolls later rows
+  into view, and changes to a stop button while active.
+- The currently spoken row uses A1 BUDDY pastel highlight plus a small
+  `AnimatedScale` enlargement. Sorting, English/Chinese study-mode changes,
+  manual row taps, and leaving the page stop the auto-read queue.
+- The feature reuses the existing `VocabAudioRepository`, so local/bundled or
+  reviewed cloud audio behavior remains unchanged. Focused Vocabulary tests
+  cover start order, highlight scale, and sequential advance.
+
 ## Auth Startup Vocabulary Restore (2026-09-25)
 
 - AppShell now uses different keys for auth-restoring and authenticated

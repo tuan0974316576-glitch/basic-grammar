@@ -74,6 +74,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final GlobalKey _keyboardKey = GlobalKey();
+  final GlobalKey _vocabListKey = GlobalKey();
   final ScrollController _vocabListScrollController = ScrollController();
   final Map<String, GlobalKey> _vocabRowKeys = {};
   bool _keyboardOpen = false;
@@ -85,6 +86,11 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   Timer? _speakingWordTimer;
   Timer? _speakingExampleTimer;
   Timer? _synonymLinkTimer;
+  Timer? _autoReadTimer;
+  bool _autoReading = false;
+  int _autoReadToken = 0;
+  List<VocabItem> _autoReadQueue = const [];
+  int _autoReadIndex = 0;
   _VocabSortMode _sortMode = _VocabSortMode.recent;
   _VocabStudyMode _studyMode = _VocabStudyMode.both;
   List<String> _shuffleOrder = const [];
@@ -268,6 +274,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     _speakingWordTimer?.cancel();
     _speakingExampleTimer?.cancel();
     _synonymLinkTimer?.cancel();
+    _stopAutoRead(updateState: false);
     _focusedSearchTimer?.cancel();
     _vocabListScrollController.dispose();
     _controller.removeListener(_refresh);
@@ -503,6 +510,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   }
 
   Future<void> _speakWord(String word) async {
+    _stopAutoRead();
     unawaited(AppSfx.instance.play(SfxCue.click));
     _speakingWordTimer?.cancel();
     _speakingExampleTimer?.cancel();
@@ -525,6 +533,115 @@ class _VocabularyScreenState extends State<VocabularyScreen>
         ),
       );
     }
+  }
+
+  void _toggleAutoRead() {
+    if (_autoReading) {
+      _stopAutoRead();
+      return;
+    }
+    _startAutoRead();
+  }
+
+  void _startAutoRead() {
+    final items = _orderedItems;
+    if (items.isEmpty) return;
+    final firstVisibleIndex = _firstVisibleVocabIndex(items);
+    if (firstVisibleIndex < 0) return;
+    _autoReadTimer?.cancel();
+    final token = ++_autoReadToken;
+    setState(() {
+      _autoReading = true;
+      _autoReadQueue = items.sublist(firstVisibleIndex);
+      _autoReadIndex = 0;
+    });
+    unawaited(_readAutoWord(token));
+  }
+
+  void _stopAutoRead({bool updateState = true}) {
+    _autoReadTimer?.cancel();
+    _autoReadTimer = null;
+    _autoReadToken += 1;
+    if (!_autoReading && _speakingWord == null) return;
+    if (updateState && mounted) {
+      setState(() {
+        _autoReading = false;
+        _autoReadQueue = const [];
+        _autoReadIndex = 0;
+        _speakingWord = null;
+      });
+    }
+  }
+
+  int _firstVisibleVocabIndex(List<VocabItem> items) {
+    final listContext = _vocabListKey.currentContext;
+    final listRender = listContext?.findRenderObject();
+    if (listRender is RenderBox && listRender.hasSize) {
+      final top = listRender.localToGlobal(Offset.zero).dy;
+      final bottom = top + listRender.size.height;
+      var bestIndex = -1;
+      var bestTop = double.infinity;
+      for (var index = 0; index < items.length; index += 1) {
+        final rowContext = _vocabRowKeys[items[index].id]?.currentContext;
+        final render = rowContext?.findRenderObject();
+        if (render is! RenderBox || !render.hasSize) continue;
+        final rowTop = render.localToGlobal(Offset.zero).dy;
+        final rowBottom = rowTop + render.size.height;
+        if (rowBottom > top && rowTop < bottom && rowTop < bestTop) {
+          bestIndex = index;
+          bestTop = rowTop;
+        }
+      }
+      if (bestIndex >= 0) return bestIndex;
+    }
+    return _vocabListScrollController.hasClients
+        ? (_vocabListScrollController.offset / 112)
+            .floor()
+            .clamp(0, items.length - 1)
+        : 0;
+  }
+
+  Future<void> _readAutoWord(int token) async {
+    if (!mounted || !_autoReading || token != _autoReadToken) return;
+    if (_autoReadIndex >= _autoReadQueue.length) {
+      _stopAutoRead();
+      return;
+    }
+    final item = _autoReadQueue[_autoReadIndex];
+    setState(() => _speakingWord = item.word);
+    _scrollAutoReadWord(item);
+    await _audio.speakWord(item.word);
+    if (!mounted || !_autoReading || token != _autoReadToken) return;
+    _autoReadTimer = Timer(const Duration(milliseconds: 800), () {
+      if (!mounted || token != _autoReadToken) return;
+      _autoReadIndex += 1;
+      unawaited(_readAutoWord(token));
+    });
+  }
+
+  void _scrollAutoReadWord(VocabItem item) {
+    final rowContext = _vocabRowKeys[item.id]?.currentContext;
+    if (rowContext != null) {
+      Scrollable.ensureVisible(
+        rowContext,
+        duration: const Duration(milliseconds: 420),
+        curve: Curves.easeOutCubic,
+        alignment: 0.28,
+      );
+      return;
+    }
+    if (!_vocabListScrollController.hasClients) return;
+    final index =
+        _orderedItems.indexWhere((candidate) => candidate.id == item.id);
+    if (index < 0) return;
+    final target = (index * 112.0)
+        .clamp(0.0, _vocabListScrollController.position.maxScrollExtent)
+        .toDouble();
+    unawaited(_vocabListScrollController.animateTo(
+      target,
+      duration: const Duration(milliseconds: 420),
+      curve: Curves.easeOutCubic,
+    ));
   }
 
   Future<void> _speakExample(String sentence) async {
@@ -609,6 +726,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   }
 
   void _setSortMode(_VocabSortMode mode) {
+    _stopAutoRead();
     if (mode == _sortMode && mode != _VocabSortMode.random) return;
     final ids =
         _controller.items.map((item) => item.id).toList(growable: false);
@@ -627,6 +745,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   }
 
   void _setStudyMode(_VocabStudyMode mode) {
+    _stopAutoRead();
     setState(() {
       _studyMode = _studyMode == mode ? _VocabStudyMode.both : mode;
       _revealedItemIds = const {};
@@ -755,14 +874,17 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                       sortMode: _sortMode,
                       studyMode: _studyMode,
                       shuffleRevision: _shuffleRevision,
+                      autoReading: _autoReading,
                       onSortMode: _setSortMode,
                       onStudyMode: _setStudyMode,
+                      onAutoRead: _toggleAutoRead,
                     ),
                     const SizedBox(height: 4),
                     Expanded(
                       child: _VocabList(
                         controller: _controller,
                         scrollController: _vocabListScrollController,
+                        listKey: _vocabListKey,
                         rowKeys: _vocabRowKeys,
                         focusedItemId: _focusedSearchItemId,
                         items: _orderedItems,
@@ -1807,20 +1929,25 @@ class _VocabLearningToolbar extends StatelessWidget {
     required this.sortMode,
     required this.studyMode,
     required this.shuffleRevision,
+    required this.autoReading,
     required this.onSortMode,
     required this.onStudyMode,
+    required this.onAutoRead,
   });
 
   final _VocabSortMode sortMode;
   final _VocabStudyMode studyMode;
   final int shuffleRevision;
+  final bool autoReading;
   final ValueChanged<_VocabSortMode> onSortMode;
   final ValueChanged<_VocabStudyMode> onStudyMode;
+  final VoidCallback onAutoRead;
 
   @override
   Widget build(BuildContext context) {
     final compact = MediaQuery.sizeOf(context).width <= 720;
-    final size = compact ? 36.0 : 40.0;
+    final size = compact ? 32.0 : 40.0;
+    final gap = compact ? 4.0 : 6.0;
     return SizedBox(
       key: const Key('vocab-learning-toolbar'),
       height: size + 4,
@@ -1841,7 +1968,7 @@ class _VocabLearningToolbar extends StatelessWidget {
               color: AppPalette.primaryDark,
             ),
           ),
-          const SizedBox(width: 6),
+          SizedBox(width: gap),
           _VocabToolButton(
             key: const Key('vocab-sort-alpha-button'),
             tooltip: '按字母排列',
@@ -1856,7 +1983,7 @@ class _VocabLearningToolbar extends StatelessWidget {
               color: AppPalette.primaryDark,
             ),
           ),
-          const SizedBox(width: 6),
+          SizedBox(width: gap),
           _VocabToolButton(
             key: const Key('vocab-sort-shuffle-button'),
             tooltip: '隨機排列',
@@ -1887,7 +2014,7 @@ class _VocabLearningToolbar extends StatelessWidget {
           Container(
             width: 2,
             height: 26,
-            margin: const EdgeInsets.symmetric(horizontal: 9),
+            margin: EdgeInsets.symmetric(horizontal: compact ? 5 : 9),
             decoration: BoxDecoration(
               color: AppPalette.purple.withValues(alpha: 0.45),
               borderRadius: BorderRadius.circular(1),
@@ -1910,7 +2037,7 @@ class _VocabLearningToolbar extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 6),
+          SizedBox(width: gap),
           _VocabToolButton(
             key: const Key('vocab-study-chinese-button'),
             tooltip: '只顯示中文',
@@ -1926,6 +2053,21 @@ class _VocabLearningToolbar extends StatelessWidget {
                 fontSize: 11,
                 fontWeight: FontWeight.w900,
               ),
+            ),
+          ),
+          SizedBox(width: gap),
+          _VocabToolButton(
+            key: const Key('vocab-auto-read-button'),
+            tooltip: autoReading ? '停止自動讀字' : '自動讀字',
+            semanticLabel: autoReading ? '停止自動讀字' : '自動讀字',
+            size: size,
+            active: autoReading,
+            groupColor: AppPalette.softPrimary,
+            onTap: onAutoRead,
+            child: Icon(
+              autoReading ? Icons.stop_rounded : Icons.play_arrow_rounded,
+              size: 25,
+              color: AppPalette.primaryDark,
             ),
           ),
         ],
@@ -1993,6 +2135,7 @@ class _VocabList extends StatelessWidget {
   const _VocabList({
     required this.controller,
     required this.scrollController,
+    required this.listKey,
     required this.rowKeys,
     required this.focusedItemId,
     required this.items,
@@ -2010,6 +2153,7 @@ class _VocabList extends StatelessWidget {
 
   final VocabController controller;
   final ScrollController scrollController;
+  final GlobalKey listKey;
   final Map<String, GlobalKey> rowKeys;
   final String focusedItemId;
   final List<VocabItem> items;
@@ -2094,12 +2238,15 @@ class _VocabList extends StatelessWidget {
     } else {
       children.addAll(items.map(buildRow));
     }
-    return ListView(
+    return KeyedSubtree(
       key: const Key('vocab-list'),
-      controller: scrollController,
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.fromLTRB(5, 2, 5, 10),
-      children: children,
+      child: ListView(
+        key: listKey,
+        controller: scrollController,
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.fromLTRB(5, 2, 5, 10),
+        children: children,
+      ),
     );
   }
 }
@@ -2549,32 +2696,38 @@ class _VocabRowState extends State<_VocabRow> {
         duration: const Duration(milliseconds: 320),
         curve: Curves.easeOutCubic,
         transform: Matrix4.translationValues(0, highlighted ? -2 : 0, 0),
-        child: OriginalDashedSurface(
-          backgroundColor: backgroundColor,
-          borderColor: highlighted ? AppPalette.primary : AppPalette.border,
-          shadowColor: highlighted
-              ? (widget.searchFocused
-                  ? AppPalette.primary.withValues(alpha: 0.42)
-                  : const Color(0xFFBDE0E1))
-              : const Color(0xFFE9ECEF),
-          shadowDepth: widget.searchFocused ? 8 : (highlighted ? 6 : 4),
-          blurRadius: widget.searchFocused ? 12 : (highlighted ? 2 : 0),
-          radius: compact ? 16 : 20,
-          strokeWidth: 3,
-          padding: EdgeInsets.all(compact ? 8 : 12),
-          child: Column(
-            children: [
-              mainRow,
-              if (widget.expanded) ...[
-                const SizedBox(height: 9),
-                _ExamplePanel(
-                  loading: widget.examplesLoading,
-                  sections: widget.exampleSections,
-                  speakingExample: widget.speakingExample,
-                  onSpeakExample: widget.onSpeakExample,
-                ),
+        child: AnimatedScale(
+          key: ValueKey('vocab-review-auto-read-scale-${widget.item.word}'),
+          scale: speaking ? 1.035 : 1,
+          duration: const Duration(milliseconds: 260),
+          curve: Curves.easeOutBack,
+          child: OriginalDashedSurface(
+            backgroundColor: backgroundColor,
+            borderColor: highlighted ? AppPalette.primary : AppPalette.border,
+            shadowColor: highlighted
+                ? (widget.searchFocused
+                    ? AppPalette.primary.withValues(alpha: 0.42)
+                    : const Color(0xFFBDE0E1))
+                : const Color(0xFFE9ECEF),
+            shadowDepth: widget.searchFocused ? 8 : (highlighted ? 6 : 4),
+            blurRadius: widget.searchFocused ? 12 : (highlighted ? 2 : 0),
+            radius: compact ? 16 : 20,
+            strokeWidth: 3,
+            padding: EdgeInsets.all(compact ? 8 : 12),
+            child: Column(
+              children: [
+                mainRow,
+                if (widget.expanded) ...[
+                  const SizedBox(height: 9),
+                  _ExamplePanel(
+                    loading: widget.examplesLoading,
+                    sections: widget.exampleSections,
+                    speakingExample: widget.speakingExample,
+                    onSpeakExample: widget.onSpeakExample,
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
