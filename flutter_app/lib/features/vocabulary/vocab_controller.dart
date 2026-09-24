@@ -47,9 +47,7 @@ class VocabController extends ChangeNotifier {
   String? get expandedItemId => _expandedItemId;
   bool get canAdd =>
       normalizeVocabWord(_query).isNotEmpty && _selectedSenseIds.isNotEmpty;
-  int get dueCount => _items
-      .where((item) => item.totalSeen == 0 || !item.reviewMastered)
-      .length;
+  int get dueCount => _items.where((item) => item.isDueForReview).length;
 
   Future<void> initialize() async {
     if (_store case final CloudSyncedVocabStore cloudStore) {

@@ -75,11 +75,13 @@ class VocabReviewQuestion {
 
 /// Owns the original web vocabulary stage sequence and answer state.
 class VocabReviewController extends ChangeNotifier {
+  static const maxSessionQuestions = 20;
+
   VocabReviewController({
     required List<VocabItem> items,
     Map<String, String> exampleByItemId = const {},
     Random? random,
-    int stageSize = 10,
+    int stageSize = maxSessionQuestions,
     this.repeatWrongAnswers = false,
   }) : _random = random ?? Random() {
     final selected = [...items]..sort((left, right) {
@@ -97,9 +99,12 @@ class VocabReviewController extends ChangeNotifier {
         return left.word.toLowerCase().compareTo(right.word.toLowerCase());
       });
 
-    final limited = selected
-        .where((item) => item.word.trim().isNotEmpty && item.senses.isNotEmpty)
-        .take(max(1, min(stageSize, 10)))
+    final dueItems = selected.where((item) =>
+        item.word.trim().isNotEmpty &&
+        item.senses.isNotEmpty &&
+        item.isDueForReview);
+    final limited = dueItems
+        .take(stageSize.clamp(1, maxSessionQuestions).toInt())
         .toList(growable: true);
     final mcPoolByPos = <String, List<VocabItem>>{};
     for (final item in selected.where(

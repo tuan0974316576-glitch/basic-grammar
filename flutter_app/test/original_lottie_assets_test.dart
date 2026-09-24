@@ -73,6 +73,20 @@ void main() {
     }
   });
 
+  test('the profile name screen welcome monster is a valid Lottie asset',
+      () async {
+    final data = jsonDecode(
+      await File(
+        'assets/lottie/monsters/yellow-monster-saying-hi.json',
+      ).readAsString(),
+    ) as Map<String, dynamic>;
+    expect(data['v'], isNotEmpty);
+    expect(data['w'], 480);
+    expect(data['h'], 480);
+    expect(data['layers'], isA<List<dynamic>>());
+    expect((data['layers'] as List<dynamic>), isNotEmpty);
+  });
+
   test('weekday success monsters keep one colour variant per day', () async {
     const names = [
       'monday',

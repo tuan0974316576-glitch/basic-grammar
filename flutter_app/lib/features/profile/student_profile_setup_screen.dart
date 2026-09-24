@@ -410,7 +410,7 @@ class _StudentProfileSetupScreenState extends State<StudentProfileSetupScreen> {
                 SizedBox(
                   height: monsterHeight,
                   child: Lottie.asset(
-                    'assets/lottie/monsters/monster-blue.json',
+                    'assets/lottie/monsters/yellow-monster-saying-hi.json',
                     key: const Key('profile-welcome-monster'),
                     animate: _animateWelcomeMonster,
                     repeat: true,

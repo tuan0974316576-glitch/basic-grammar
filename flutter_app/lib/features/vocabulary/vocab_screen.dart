@@ -563,9 +563,18 @@ class _VocabularyScreenState extends State<VocabularyScreen>
       return;
     }
     final items = _controller.items;
+    if (_controller.dueCount == 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('生字都答啱喇，暫時冇待溫習生字。')),
+      );
+      return;
+    }
     final exampleByItemId = <String, String>{};
     for (final item in items.where(
-      (item) => item.listeningMastered && item.spellingMastered,
+      (item) =>
+          item.isDueForReview &&
+          item.listeningMastered &&
+          item.spellingMastered,
     )) {
       final sections = await _controller.loadExamplesForAudio(item);
       final example = sections

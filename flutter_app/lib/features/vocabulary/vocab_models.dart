@@ -436,6 +436,7 @@ class VocabItem {
   final bool speakingMastered;
 
   String get normalizedWord => normalizeVocabWord(word);
+  bool get isDueForReview => totalSeen == 0 || !reviewMastered;
 
   VocabItem copyWith({
     String? word,

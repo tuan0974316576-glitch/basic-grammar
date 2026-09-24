@@ -6,6 +6,39 @@ import 'package:dope_english/features/vocabulary/vocab_models.dart';
 import 'package:dope_english/features/vocabulary/vocab_review_controller.dart';
 
 void main() {
+  test('review session matches due vocabulary count up to the session cap', () {
+    final controller = VocabReviewController(items: _items(15));
+    addTearDown(controller.dispose);
+
+    expect(controller.targetTotal, 15);
+    expect(controller.total, 15);
+  });
+
+  test('review session takes at most twenty due words, not mastered words', () {
+    final controller = VocabReviewController(
+      items: [
+        ..._items(25),
+        for (var index = 1; index <= 4; index++)
+          _reviewItem(
+            'mastered-$index',
+            '已掌握',
+            totalSeen: 3,
+            totalCorrect: 3,
+            reviewMastered: true,
+          ),
+      ],
+    );
+    addTearDown(controller.dispose);
+
+    expect(controller.targetTotal, 20);
+    expect(controller.questions, hasLength(20));
+    expect(controller.questions, everyElement(isA<VocabReviewQuestion>()));
+    expect(
+      controller.questions.any((question) => question.item.reviewMastered),
+      isFalse,
+    );
+  });
+
   test('cycles through reading, listening, spelling, and speaking', () {
     final controller = VocabReviewController(
       items: _items(4),
@@ -287,6 +320,8 @@ VocabItem _reviewItem(
   String word,
   String meaning, {
   int totalSeen = 0,
+  int totalCorrect = 0,
+  bool reviewMastered = false,
   List<String> extraMeanings = const [],
 }) {
   return VocabItem(
@@ -306,6 +341,8 @@ VocabItem _reviewItem(
     createdAt: DateTime(2026, 9, 10),
     updatedAt: DateTime(2026, 9, 10),
     totalSeen: totalSeen,
+    totalCorrect: totalCorrect,
+    reviewMastered: reviewMastered,
   );
 }
 
