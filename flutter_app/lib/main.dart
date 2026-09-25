@@ -177,19 +177,13 @@ class DopeEnglishApp extends StatelessWidget {
                 animation: authController!,
                 builder: (context, _) {
                   return switch (authController!.status) {
-                    // Auth restoration (especially an expired device session)
-                    // may need the network. Keep the local vocabulary shell
-                    // visible while it runs; the authenticated/login route
-                    // swaps in automatically when the status resolves.
-                    StudentAuthStatus.initializing => AppShell(
-                        key: const ValueKey('app-shell-auth-initializing'),
-                        vocabAudioRepository: audioRepository,
-                        grammarProgressController: grammarProgressController,
-                        workshopRepository: workshopRepository,
-                        streakController: streakController,
-                        startAtGameHub: showGameHub,
-                        initialEnglishTab: initialEnglishTab,
-                      ),
+                    // Auth restoration can take a moment, especially when a
+                    // device session needs the network. Do not build a guest
+                    // AppShell here: it has a different vocabulary store and
+                    // briefly renders an empty bank before the student shell
+                    // is ready.
+                    StudentAuthStatus.initializing =>
+                      const _AuthStartupScreen(),
                     StudentAuthStatus.authenticated => authController!
                             .needsProfileSetup
                         ? StudentProfileSetupScreen(
@@ -226,6 +220,55 @@ class DopeEnglishApp extends StatelessWidget {
                   };
                 },
               ),
+      ),
+    );
+  }
+}
+
+class _AuthStartupScreen extends StatelessWidget {
+  const _AuthStartupScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: const Key('auth-startup-screen'),
+      backgroundColor: AppPalette.background,
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(28),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'A1 BUDDY',
+                  style: TextStyle(
+                    color: AppPalette.primaryDark,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                const SizedBox(height: 18),
+                const SizedBox.square(
+                  dimension: 28,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 3,
+                    color: AppPalette.primary,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  '正在準備你嘅學習資料...',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: AppPalette.primaryDark,
+                        fontWeight: FontWeight.w800,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

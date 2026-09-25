@@ -30,7 +30,7 @@ Last updated: 25 September 2026
 - Focused scheduler/login tests and the complete Flutter suite pass. The arm64
   debug APK is
   `flutter_app/build/app/outputs/flutter-apk/app-arm64-v8a-debug.apk` with
-  SHA-256 `acdf3960174542863176a1767458397df9825b4dfa737c21e98e7e85f1649733`;
+  SHA-256 `520307c056b34e02a77d670482cc3316ce50f62b5c73f9093986f6aa59525f87`;
   it was installed with `adb install -r -d` on ASUS `S2AIOC447307NGJ` and the
   Flutter activity was launched successfully on 2026-09-25.
 
@@ -53,8 +53,11 @@ Last updated: 25 September 2026
   states. When Firebase/Auth restoration finishes, Flutter creates a fresh
   authenticated shell and `CloudSyncedVocabStore` instead of reusing the
   guest SharedPreferences controller from the first frame.
-- This fixes the cold-start case where Vocabulary appears empty until the app
-  is closed and reopened. Existing local/cloud vocab data is preserved.
+- While Auth is still restoring, the app now shows a stable
+  `auth-startup-screen` instead of building the guest shell. This prevents an
+  empty Vocabulary bank flashing briefly before the authenticated shell loads.
+  Existing local/cloud vocab data is preserved, and a widget regression test
+  ensures the guest empty bank cannot return during Auth startup.
 
 ## Profile Name Welcome Monster (2026-09-24)
 

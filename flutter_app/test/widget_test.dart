@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dope_english/core/app_palette.dart';
 import 'package:dope_english/core/widgets/original_modal.dart';
 import 'package:dope_english/core/widgets/stationery_frame.dart';
+import 'package:dope_english/features/auth/student_auth_controller.dart';
 import 'package:dope_english/features/grammar/original_grammar_home.dart';
 import 'package:dope_english/features/workshop/grammar_workshop_models.dart';
 import 'package:dope_english/features/workshop/grammar_workshop_repository.dart';
@@ -90,6 +91,21 @@ void main() {
     );
     startup.complete();
     await tester.pumpAndSettle();
+  });
+
+  testWidgets(
+      'does not show a guest empty vocabulary shell during auth restore',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      DopeEnglishApp(authController: _InitializingAuthController()),
+    );
+
+    expect(find.byKey(const Key('auth-startup-screen')), findsOneWidget);
+    expect(
+      find.byKey(const Key('original-section-frame-vocabulary')),
+      findsNothing,
+    );
+    expect(find.text('正在準備你嘅學習資料...'), findsOneWidget);
   });
 
   testWidgets('renders the grammar roadmap shell', (WidgetTester tester) async {
@@ -355,6 +371,11 @@ void main() {
     await tester.pumpAndSettle();
     expect(rotation().turns, 0);
   });
+}
+
+class _InitializingAuthController extends StudentAuthController {
+  @override
+  StudentAuthStatus get status => StudentAuthStatus.initializing;
 }
 
 class _FakeWorkshopRepository implements GrammarWorkshopBankRepository {
