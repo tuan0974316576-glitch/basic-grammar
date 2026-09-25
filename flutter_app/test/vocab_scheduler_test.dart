@@ -28,7 +28,16 @@ void main() {
     final correct = applyVocabReviewAnswer(fresh, true, now: anchor);
     final wrong = applyVocabReviewAnswer(fresh, false, now: anchor);
 
-    expect(correct.nextDueAt, anchor.add(const Duration(hours: 6)));
+    final expectedCorrectInterval = Duration(
+      milliseconds:
+          (vocabTargetIntervalDays(correct.halfLifeDays) * vocabSchedulerDayMs)
+              .round(),
+    );
+    expect(correct.nextDueAt, anchor.add(expectedCorrectInterval));
+    expect(
+      vocabRecallProbability(correct, now: correct.nextDueAt),
+      closeTo(vocabSchedulerTargetRecall, 0.001),
+    );
     expect(correct.streakCorrect, 1);
     expect(correct.mastery, closeTo(0.11, 0.001));
     expect(
@@ -36,6 +45,26 @@ void main() {
     expect(wrong.totalIncorrect, 1);
     expect(wrong.streakCorrect, 0);
     expect(wrong.reviewMastered, isFalse);
+  });
+
+  test('target interval is calculated from the half-life', () {
+    const halfLife = 2.0;
+    final interval = vocabTargetIntervalDays(halfLife);
+    final item = _item(
+      totalSeen: 1,
+      totalCorrect: 1,
+      reviewMastered: true,
+      lastSeenAt: anchor,
+      nextDueAt: anchor.add(Duration(
+        milliseconds: (interval * vocabSchedulerDayMs).round(),
+      )),
+      halfLifeDays: halfLife,
+    );
+
+    expect(
+      vocabRecallProbability(item, now: item.nextDueAt),
+      closeTo(vocabSchedulerTargetRecall, 0.001),
+    );
   });
 
   test('due state uses next due time and recall threshold', () {

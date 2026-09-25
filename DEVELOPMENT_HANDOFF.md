@@ -14,20 +14,23 @@ Last updated: 25 September 2026
   local JSON and the Firestore `progress` payload. Review answers update these
   fields through `vocab_scheduler.dart`, and both the `待溫習` badge and review
   question selection use the scheduler's due state.
-- The scheduler follows the reviewed Battleship HLR-style direction: recall is
-  `2 ^ (-elapsedDays / halfLifeDays)`, target recall is `0.6`, half-life is
-  estimated from seen/correct/incorrect/correct-streak/mastery signals, correct
-  answers schedule a longer interval (first `0.25` day, later up to `45` days),
-  and wrong answers return after `0.04` day. This mirrors the existing
-  Battleship implementation; Duolingo does not publish its exact production
-  formula.
+- The scheduler now follows the published Duolingo HLR shape more closely:
+  recall is `2 ^ (-elapsedDays / halfLifeDays)`, and the half-life is estimated
+  from a bias plus answer-history features. The prediction is bounded between
+  15 minutes and nine months, with a local starter-weight fallback until A1
+  BUDDY has enough of its own answer history to train weights.
+- Correct answers schedule the next review at the point where predicted recall
+  reaches `0.6`, rather than applying one fixed multiplier to every word. Wrong
+  answers return after `0.04` day so the existing mistake-revision loop can
+  still bring them back quickly. This mirrors the public research method while
+  keeping the app's student-friendly retry behaviour.
 - Legacy records that were marked mastered before timing fields existed remain
   outside the due queue until a new answer gives them a real schedule. New and
   reviewed records use `nextDueAt` plus the recall threshold normally.
 - Focused scheduler/login tests and the complete Flutter suite pass. The arm64
   debug APK is
   `flutter_app/build/app/outputs/flutter-apk/app-arm64-v8a-debug.apk` with
-  SHA-256 `91e857d58adfb510ec26b51221271c6ea23e1fafbdf56436285420c5e37d4a49`;
+  SHA-256 `acdf3960174542863176a1767458397df9825b4dfa737c21e98e7e85f1649733`;
   it was installed with `adb install -r -d` on ASUS `S2AIOC447307NGJ` and the
   Flutter activity was launched successfully on 2026-09-25.
 

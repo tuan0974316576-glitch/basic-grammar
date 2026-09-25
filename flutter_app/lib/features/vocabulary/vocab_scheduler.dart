@@ -4,9 +4,13 @@ import 'vocab_models.dart';
 
 const vocabSchedulerDayMs = 24 * 60 * 60 * 1000;
 const vocabSchedulerTargetRecall = 0.6;
-const vocabSchedulerMinHalfLifeDays = 0.08;
-const vocabSchedulerMaxHalfLifeDays = 180.0;
+// Duolingo's published HLR implementation bounds memory strength from about
+// 15 minutes to nine months. These are bounds for the prediction, not a
+// promise that every word will wait nine months before review.
+const vocabSchedulerMinHalfLifeDays = 15 / (24 * 60);
+const vocabSchedulerMaxHalfLifeDays = 274.0;
 const vocabSchedulerDefaultHalfLifeDays = 0.5;
+const vocabSchedulerMaxReviewIntervalDays = 180.0;
 
 double _clamp(double value, double min, double max) =>
     value.clamp(min, max).toDouble();
@@ -18,18 +22,46 @@ double estimateVocabHalfLifeDays({
   required int streakCorrect,
   required double mastery,
 }) {
-  // Same HLR-style weighting as Battleship's reviewed vocab scheduler.
+  // This follows Duolingo's public HLR shape: a bias plus history features
+  // predicts a word's half-life. The starter weights are deliberately local
+  // and replaceable once A1 BUDDY has enough of its own answer history to
+  // train them.
   final dotProduct = -1.0 +
       (0.18 * math.log(1 + totalSeen)) +
-      (0.28 * math.log(1 + totalCorrect)) +
-      (-0.42 * math.log(1 + totalIncorrect)) +
-      (0.2 * math.log(1 + streakCorrect)) +
+      (0.28 * math.sqrt(1 + totalCorrect)) +
+      (-0.42 * math.sqrt(1 + totalIncorrect)) +
+      (0.2 * math.sqrt(1 + streakCorrect)) +
       (1.15 * mastery);
   return _clamp(
     math.pow(2, dotProduct).toDouble(),
     vocabSchedulerMinHalfLifeDays,
     vocabSchedulerMaxHalfLifeDays,
   );
+}
+
+/// Number of days until the predicted recall reaches the review target.
+/// Solving `target = 2 ^ (-days / halfLife)` gives this directly instead of
+/// applying a fixed multiplier to every correct answer.
+double vocabTargetIntervalDays(double halfLifeDays) {
+  final halfLife = _clamp(
+    halfLifeDays <= 0 ? vocabSchedulerDefaultHalfLifeDays : halfLifeDays,
+    vocabSchedulerMinHalfLifeDays,
+    vocabSchedulerMaxHalfLifeDays,
+  );
+  final interval =
+      -halfLife * (math.log(vocabSchedulerTargetRecall) / math.ln2);
+  return _clamp(interval, 0.04, vocabSchedulerMaxReviewIntervalDays);
+}
+
+DateTime? vocabPredictedDueAt(VocabItem item) {
+  if (item.nextDueAt != null) return item.nextDueAt;
+  final lastSeen = item.lastSeenAt;
+  if (lastSeen == null || item.totalSeen == 0) return null;
+  return lastSeen.add(Duration(
+    milliseconds:
+        (vocabTargetIntervalDays(item.halfLifeDays) * vocabSchedulerDayMs)
+            .round(),
+  ));
 }
 
 double vocabRecallProbability(VocabItem item, {DateTime? now}) {
@@ -60,12 +92,12 @@ bool isVocabItemDue(VocabItem item, {DateTime? now}) {
 double vocabReviewPriority(VocabItem item, {DateTime? now}) {
   final current = now ?? DateTime.now();
   final recall = vocabRecallProbability(item, now: current);
-  final overdueDays = item.nextDueAt == null
+  final dueAt = vocabPredictedDueAt(item);
+  final overdueDays = dueAt == null
       ? (item.totalSeen == 0 ? 3.0 : 0.5)
       : math.max(
           0,
-          current.difference(item.nextDueAt!).inMilliseconds /
-              vocabSchedulerDayMs,
+          current.difference(dueAt).inMilliseconds / vocabSchedulerDayMs,
         );
   final weakBonus = item.totalIncorrect > item.totalCorrect ? 1.2 : 0.0;
   final newBonus = item.totalSeen == 0 ? 2.0 : 0.0;
@@ -99,9 +131,10 @@ VocabItem applyVocabReviewAnswer(
     streakCorrect: streakCorrect,
     mastery: mastery,
   );
-  final intervalDays = correct
-      ? (totalSeen <= 1 ? 0.25 : _clamp(halfLife * 1.6, 0.25, 45))
-      : 0.04;
+  // Correct answers wait until the predicted recall reaches the target. A
+  // wrong answer remains a short retry so the existing mistake-revision loop
+  // can still bring it back in the same learning session.
+  final intervalDays = correct ? vocabTargetIntervalDays(halfLife) : 0.04;
   final nextDueAt = current.add(Duration(
     milliseconds: (intervalDays * vocabSchedulerDayMs).round(),
   ));
