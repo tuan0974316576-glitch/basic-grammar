@@ -1,6 +1,35 @@
 # A1 BUDDY Development Handoff
 
-Last updated: 24 September 2026
+Last updated: 25 September 2026
+
+## Remembered Student Login And Vocabulary SRS (2026-09-25)
+
+- Successful student login now stores the last student ID and PIN in
+  `flutter_secure_storage`. Logout clears only the Firebase/device session and
+  cached profile, so the next login screen restores both fields and the student
+  can tap `登入` without typing them again. Login still succeeds if the secure
+  storage provider is temporarily unavailable.
+- Vocabulary progress now carries `totalIncorrect`, `streakCorrect`,
+  `mastery`, `lastSeenAt`, `nextDueAt`, `halfLifeDays`, and `lastRecallProb` in
+  local JSON and the Firestore `progress` payload. Review answers update these
+  fields through `vocab_scheduler.dart`, and both the `待溫習` badge and review
+  question selection use the scheduler's due state.
+- The scheduler follows the reviewed Battleship HLR-style direction: recall is
+  `2 ^ (-elapsedDays / halfLifeDays)`, target recall is `0.6`, half-life is
+  estimated from seen/correct/incorrect/correct-streak/mastery signals, correct
+  answers schedule a longer interval (first `0.25` day, later up to `45` days),
+  and wrong answers return after `0.04` day. This mirrors the existing
+  Battleship implementation; Duolingo does not publish its exact production
+  formula.
+- Legacy records that were marked mastered before timing fields existed remain
+  outside the due queue until a new answer gives them a real schedule. New and
+  reviewed records use `nextDueAt` plus the recall threshold normally.
+- Focused scheduler/login tests and the complete Flutter suite pass. The arm64
+  debug APK is
+  `flutter_app/build/app/outputs/flutter-apk/app-arm64-v8a-debug.apk` with
+  SHA-256 `91e857d58adfb510ec26b51221271c6ea23e1fafbdf56436285420c5e37d4a49`;
+  it was installed with `adb install -r -d` on ASUS `S2AIOC447307NGJ` and the
+  Flutter activity was launched successfully on 2026-09-25.
 
 ## Vocabulary Auto-Read Mode (2026-09-25)
 

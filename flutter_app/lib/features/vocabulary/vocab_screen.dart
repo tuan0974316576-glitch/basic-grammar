@@ -20,6 +20,7 @@ import 'vocab_import_repository.dart';
 import 'vocab_models.dart';
 import 'vocab_repository.dart';
 import 'vocab_review_controller.dart';
+import 'vocab_scheduler.dart';
 import 'vocab_speaking_repository.dart';
 import 'vocab_spelling_pattern.dart';
 import 'vocab_synonym_dialog.dart';
@@ -689,7 +690,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     final exampleByItemId = <String, String>{};
     for (final item in items.where(
       (item) =>
-          item.isDueForReview &&
+          isVocabItemDue(item) &&
           item.listeningMastered &&
           item.spellingMastered,
     )) {

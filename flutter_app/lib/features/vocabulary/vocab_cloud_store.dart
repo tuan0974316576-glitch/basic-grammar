@@ -186,7 +186,14 @@ class FirestoreVocabCloudBackend implements VocabCloudBackend {
       'progress': {
         'totalSeen': item.totalSeen,
         'totalCorrect': item.totalCorrect,
+        'totalIncorrect': item.totalIncorrect,
         'reviewMastered': item.reviewMastered,
+        'streakCorrect': item.streakCorrect,
+        'mastery': item.mastery,
+        'lastSeenAt': item.lastSeenAt?.millisecondsSinceEpoch,
+        'nextDueAt': item.nextDueAt?.millisecondsSinceEpoch,
+        'halfLifeDays': item.halfLifeDays,
+        'lastRecallProb': item.lastRecallProb,
         'listeningMastered': item.listeningMastered,
         'spellingMastered': item.spellingMastered,
         'speakingMastered': item.speakingMastered,
@@ -248,6 +255,15 @@ class FirestoreVocabCloudBackend implements VocabCloudBackend {
       totalCorrect: (progress['totalCorrect'] as num?)?.toInt() ??
           (data['totalCorrect'] as num?)?.toInt() ??
           0,
+      totalIncorrect: (progress['totalIncorrect'] as num?)?.toInt() ??
+          (data['totalIncorrect'] as num?)?.toInt() ??
+          (((progress['totalSeen'] as num?)?.toInt() ??
+                      (data['totalSeen'] as num?)?.toInt() ??
+                      0) -
+                  ((progress['totalCorrect'] as num?)?.toInt() ??
+                      (data['totalCorrect'] as num?)?.toInt() ??
+                      0))
+              .clamp(0, 1 << 30),
       reviewMastered: progress.containsKey('reviewMastered')
           ? progress['reviewMastered'] == true
           : (data.containsKey('reviewMastered')
@@ -262,6 +278,24 @@ class FirestoreVocabCloudBackend implements VocabCloudBackend {
                       ((progress['totalSeen'] as num?)?.toInt() ??
                           (data['totalSeen'] as num?)?.toInt() ??
                           0)),
+      streakCorrect: (progress['streakCorrect'] as num?)?.toInt() ??
+          (data['streakCorrect'] as num?)?.toInt() ??
+          0,
+      mastery: (progress['mastery'] as num?)?.toDouble() ??
+          (data['mastery'] as num?)?.toDouble() ??
+          0,
+      lastSeenAt: _optionalDateFrom(
+        progress['lastSeenAt'] ?? data['lastSeenAt'],
+      ),
+      nextDueAt: _optionalDateFrom(
+        progress['nextDueAt'] ?? data['nextDueAt'],
+      ),
+      halfLifeDays: (progress['halfLifeDays'] as num?)?.toDouble() ??
+          (data['halfLifeDays'] as num?)?.toDouble() ??
+          0.5,
+      lastRecallProb: (progress['lastRecallProb'] as num?)?.toDouble() ??
+          (data['lastRecallProb'] as num?)?.toDouble() ??
+          0,
       listeningMastered: progress['listeningMastered'] == true,
       spellingMastered: progress['spellingMastered'] == true,
       speakingMastered: progress['speakingMastered'] == true,
@@ -271,6 +305,13 @@ class FirestoreVocabCloudBackend implements VocabCloudBackend {
   static DateTime _dateFrom(Object? value) {
     final milliseconds = value is num ? value.toInt() : 0;
     return DateTime.fromMillisecondsSinceEpoch(milliseconds);
+  }
+
+  static DateTime? _optionalDateFrom(Object? value) {
+    final milliseconds = value is num ? value.toInt() : 0;
+    return milliseconds <= 0
+        ? null
+        : DateTime.fromMillisecondsSinceEpoch(milliseconds);
   }
 }
 
@@ -643,7 +684,18 @@ class CloudSyncedVocabStore implements VocabStore {
       totalCorrect: left.totalCorrect > right.totalCorrect
           ? left.totalCorrect
           : right.totalCorrect,
+      totalIncorrect: left.totalIncorrect > right.totalIncorrect
+          ? left.totalIncorrect
+          : right.totalIncorrect,
       reviewMastered: newer.reviewMastered,
+      streakCorrect: left.streakCorrect > right.streakCorrect
+          ? left.streakCorrect
+          : right.streakCorrect,
+      mastery: newer.mastery,
+      lastSeenAt: newer.lastSeenAt,
+      nextDueAt: newer.nextDueAt,
+      halfLifeDays: newer.halfLifeDays,
+      lastRecallProb: newer.lastRecallProb,
       listeningMastered: left.listeningMastered || right.listeningMastered,
       spellingMastered: left.spellingMastered || right.spellingMastered,
       speakingMastered: left.speakingMastered || right.speakingMastered,
@@ -683,7 +735,14 @@ class CloudSyncedVocabStore implements VocabStore {
         'updatedAt': item.updatedAt.millisecondsSinceEpoch,
         'totalSeen': item.totalSeen,
         'totalCorrect': item.totalCorrect,
+        'totalIncorrect': item.totalIncorrect,
         'reviewMastered': item.reviewMastered,
+        'streakCorrect': item.streakCorrect,
+        'mastery': item.mastery,
+        'lastSeenAt': item.lastSeenAt?.millisecondsSinceEpoch,
+        'nextDueAt': item.nextDueAt?.millisecondsSinceEpoch,
+        'halfLifeDays': item.halfLifeDays,
+        'lastRecallProb': item.lastRecallProb,
         'listeningMastered': item.listeningMastered,
         'spellingMastered': item.spellingMastered,
         'speakingMastered': item.speakingMastered,

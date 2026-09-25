@@ -363,6 +363,13 @@ class VocabExampleSection {
   final List<VocabExample> examples;
 }
 
+DateTime? _vocabDateFromMillis(Object? value) {
+  final milliseconds = (value as num?)?.toInt() ?? 0;
+  return milliseconds <= 0
+      ? null
+      : DateTime.fromMillisecondsSinceEpoch(milliseconds);
+}
+
 class VocabItem {
   const VocabItem({
     required this.id,
@@ -372,7 +379,14 @@ class VocabItem {
     required this.updatedAt,
     this.totalSeen = 0,
     this.totalCorrect = 0,
+    this.totalIncorrect = 0,
     this.reviewMastered = false,
+    this.streakCorrect = 0,
+    this.mastery = 0,
+    this.lastSeenAt,
+    this.nextDueAt,
+    this.halfLifeDays = 0.5,
+    this.lastRecallProb = 0,
     this.listeningMastered = false,
     this.spellingMastered = false,
     this.speakingMastered = false,
@@ -412,11 +426,21 @@ class VocabItem {
       ),
       totalSeen: (json['totalSeen'] as num?)?.toInt() ?? 0,
       totalCorrect: (json['totalCorrect'] as num?)?.toInt() ?? 0,
+      totalIncorrect: (json['totalIncorrect'] as num?)?.toInt() ??
+          (((json['totalSeen'] as num?)?.toInt() ?? 0) -
+                  ((json['totalCorrect'] as num?)?.toInt() ?? 0))
+              .clamp(0, 1 << 30),
       reviewMastered: json.containsKey('reviewMastered')
           ? json['reviewMastered'] == true
           : ((json['totalSeen'] as num?)?.toInt() ?? 0) > 0 &&
               ((json['totalCorrect'] as num?)?.toInt() ?? 0) >=
                   ((json['totalSeen'] as num?)?.toInt() ?? 0),
+      streakCorrect: (json['streakCorrect'] as num?)?.toInt() ?? 0,
+      mastery: (json['mastery'] as num?)?.toDouble() ?? 0,
+      lastSeenAt: _vocabDateFromMillis(json['lastSeenAt']),
+      nextDueAt: _vocabDateFromMillis(json['nextDueAt']),
+      halfLifeDays: (json['halfLifeDays'] as num?)?.toDouble() ?? 0.5,
+      lastRecallProb: (json['lastRecallProb'] as num?)?.toDouble() ?? 0,
       listeningMastered: json['listeningMastered'] == true,
       spellingMastered: json['spellingMastered'] == true,
       speakingMastered: json['speakingMastered'] == true,
@@ -430,7 +454,14 @@ class VocabItem {
   final DateTime updatedAt;
   final int totalSeen;
   final int totalCorrect;
+  final int totalIncorrect;
   final bool reviewMastered;
+  final int streakCorrect;
+  final double mastery;
+  final DateTime? lastSeenAt;
+  final DateTime? nextDueAt;
+  final double halfLifeDays;
+  final double lastRecallProb;
   final bool listeningMastered;
   final bool spellingMastered;
   final bool speakingMastered;
@@ -444,7 +475,14 @@ class VocabItem {
     DateTime? updatedAt,
     int? totalSeen,
     int? totalCorrect,
+    int? totalIncorrect,
     bool? reviewMastered,
+    int? streakCorrect,
+    double? mastery,
+    DateTime? lastSeenAt,
+    DateTime? nextDueAt,
+    double? halfLifeDays,
+    double? lastRecallProb,
     bool? listeningMastered,
     bool? spellingMastered,
     bool? speakingMastered,
@@ -457,7 +495,14 @@ class VocabItem {
       updatedAt: updatedAt ?? this.updatedAt,
       totalSeen: totalSeen ?? this.totalSeen,
       totalCorrect: totalCorrect ?? this.totalCorrect,
+      totalIncorrect: totalIncorrect ?? this.totalIncorrect,
       reviewMastered: reviewMastered ?? this.reviewMastered,
+      streakCorrect: streakCorrect ?? this.streakCorrect,
+      mastery: mastery ?? this.mastery,
+      lastSeenAt: lastSeenAt ?? this.lastSeenAt,
+      nextDueAt: nextDueAt ?? this.nextDueAt,
+      halfLifeDays: halfLifeDays ?? this.halfLifeDays,
+      lastRecallProb: lastRecallProb ?? this.lastRecallProb,
       listeningMastered: listeningMastered ?? this.listeningMastered,
       spellingMastered: spellingMastered ?? this.spellingMastered,
       speakingMastered: speakingMastered ?? this.speakingMastered,
@@ -472,7 +517,14 @@ class VocabItem {
         'updatedAt': updatedAt.millisecondsSinceEpoch,
         'totalSeen': totalSeen,
         'totalCorrect': totalCorrect,
+        'totalIncorrect': totalIncorrect,
         'reviewMastered': reviewMastered,
+        'streakCorrect': streakCorrect,
+        'mastery': mastery,
+        'lastSeenAt': lastSeenAt?.millisecondsSinceEpoch,
+        'nextDueAt': nextDueAt?.millisecondsSinceEpoch,
+        'halfLifeDays': halfLifeDays,
+        'lastRecallProb': lastRecallProb,
         'listeningMastered': listeningMastered,
         'spellingMastered': spellingMastered,
         'speakingMastered': speakingMastered,

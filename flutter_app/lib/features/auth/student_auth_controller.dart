@@ -108,6 +108,8 @@ class StudentAuthController extends ChangeNotifier {
 
   static const _deviceSessionKey = 'dope_student_device_session_v1';
   static const _profileKey = 'dope_student_profile_v1';
+  static const _rememberedStudentIdKey = 'dope_student_last_id_v1';
+  static const _rememberedPinKey = 'dope_student_last_pin_v1';
 
   final FlutterSecureStorage _secureStorage;
   FirebaseAuth? _auth;
@@ -127,6 +129,21 @@ class StudentAuthController extends ChangeNotifier {
       isAuthenticated &&
       (_profile == null ||
           (_profile!.role != 'teacher' && !_profile!.profileSetupComplete));
+
+  Future<({String studentId, String pin})?> readRememberedLogin() async {
+    try {
+      final studentId = (await _secureStorage.read(
+                key: _rememberedStudentIdKey,
+              ) ??
+              '')
+          .trim();
+      final pin = await _secureStorage.read(key: _rememberedPinKey) ?? '';
+      if (studentId.isEmpty || pin.isEmpty) return null;
+      return (studentId: studentId, pin: pin);
+    } catch (_) {
+      return null;
+    }
+  }
 
   Future<void> initialize() async {
     _status = StudentAuthStatus.initializing;
@@ -196,6 +213,7 @@ class StudentAuthController extends ChangeNotifier {
       );
       _profile = StudentProfile.fromJson(data);
       await _saveProfile(_profile!);
+      await _rememberLogin(normalizedId, pin);
       final rawSession = data['deviceSession'];
       if (rawSession is Map) {
         await _saveDeviceSession({
@@ -383,5 +401,17 @@ class StudentAuthController extends ChangeNotifier {
       key: _deviceSessionKey,
       value: jsonEncode(session),
     );
+  }
+
+  Future<void> _rememberLogin(String studentId, String pin) async {
+    try {
+      await _secureStorage.write(
+        key: _rememberedStudentIdKey,
+        value: studentId,
+      );
+      await _secureStorage.write(key: _rememberedPinKey, value: pin);
+    } catch (_) {
+      // Login remains successful if the platform secure storage is unavailable.
+    }
   }
 }

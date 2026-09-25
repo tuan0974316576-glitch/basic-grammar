@@ -7,6 +7,7 @@ import 'vocab_cloud_store.dart';
 import 'vocab_import_models.dart';
 import 'vocab_repository.dart';
 import 'vocab_review_controller.dart';
+import 'vocab_scheduler.dart';
 import 'vocab_synonym_repository.dart';
 
 enum VocabAddResult { added, alreadySaved, invalid, saveFailed }
@@ -47,7 +48,7 @@ class VocabController extends ChangeNotifier {
   String? get expandedItemId => _expandedItemId;
   bool get canAdd =>
       normalizeVocabWord(_query).isNotEmpty && _selectedSenseIds.isNotEmpty;
-  int get dueCount => _items.where((item) => item.isDueForReview).length;
+  int get dueCount => _items.where(isVocabItemDue).length;
 
   Future<void> initialize() async {
     if (_store case final CloudSyncedVocabStore cloudStore) {
@@ -356,10 +357,10 @@ class VocabController extends ChangeNotifier {
     final previous = _items;
     final current = _items[index];
     _items = [..._items];
-    _items[index] = current.copyWith(
-      totalSeen: current.totalSeen + 1,
-      totalCorrect: current.totalCorrect + (correct ? 1 : 0),
-      reviewMastered: correct,
+    _items[index] = applyVocabReviewAnswer(
+      current,
+      correct,
+    ).copyWith(
       listeningMastered: current.listeningMastered ||
           (correct && kind == VocabReviewKind.listening),
       spellingMastered: current.spellingMastered ||

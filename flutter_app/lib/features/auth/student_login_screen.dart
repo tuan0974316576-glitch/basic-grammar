@@ -29,6 +29,19 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
   void initState() {
     super.initState();
     widget.controller.addListener(_refresh);
+    unawaited(_restoreRememberedLogin());
+  }
+
+  Future<void> _restoreRememberedLogin() async {
+    final remembered = await widget.controller.readRememberedLogin();
+    if (!mounted || remembered == null) return;
+    if (_studentIdController.text.isEmpty) {
+      _studentIdController.text = remembered.studentId;
+    }
+    if (_pinController.text.isEmpty) {
+      _pinController.text = remembered.pin;
+    }
+    setState(() {});
   }
 
   @override

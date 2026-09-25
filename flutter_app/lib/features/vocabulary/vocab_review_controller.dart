@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 
 import 'vocab_models.dart';
+import 'vocab_scheduler.dart';
 
 enum VocabReviewKind {
   reading,
@@ -84,7 +85,14 @@ class VocabReviewController extends ChangeNotifier {
     int stageSize = maxSessionQuestions,
     this.repeatWrongAnswers = false,
   }) : _random = random ?? Random() {
+    final now = DateTime.now();
     final selected = [...items]..sort((left, right) {
+        final leftDue = isVocabItemDue(left, now: now);
+        final rightDue = isVocabItemDue(right, now: now);
+        if (leftDue != rightDue) return leftDue ? -1 : 1;
+        final priority = vocabReviewPriority(right, now: now)
+            .compareTo(vocabReviewPriority(left, now: now));
+        if (priority != 0) return priority;
         final leftUnseen = left.totalSeen == 0;
         final rightUnseen = right.totalSeen == 0;
         if (leftUnseen != rightUnseen) return leftUnseen ? -1 : 1;
@@ -102,7 +110,7 @@ class VocabReviewController extends ChangeNotifier {
     final dueItems = selected.where((item) =>
         item.word.trim().isNotEmpty &&
         item.senses.isNotEmpty &&
-        item.isDueForReview);
+        isVocabItemDue(item, now: now));
     final limited = dueItems
         .take(stageSize.clamp(1, maxSessionQuestions).toInt())
         .toList(growable: true);
