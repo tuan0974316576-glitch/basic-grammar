@@ -612,7 +612,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     _scrollAutoReadWord(item);
     await _audio.speakWord(item.word);
     if (!mounted || !_autoReading || token != _autoReadToken) return;
-    _autoReadTimer = Timer(const Duration(milliseconds: 800), () {
+    _autoReadTimer = Timer(const Duration(seconds: 1), () {
       if (!mounted || token != _autoReadToken) return;
       _autoReadIndex += 1;
       unawaited(_readAutoWord(token));

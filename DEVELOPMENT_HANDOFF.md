@@ -6,7 +6,7 @@ Last updated: 24 September 2026
 
 - Vocabulary toolbar now has a cute play button immediately to the right of
   `Chi`. It starts from the highest currently visible row, reads words in
-  displayed order with an 800ms pause between words, auto-scrolls later rows
+  displayed order with a 1-second pause between words, auto-scrolls later rows
   into view, and changes to a stop button while active.
 - The currently spoken row uses A1 BUDDY pastel highlight plus a small
   `AnimatedScale` enlargement. Sorting, English/Chinese study-mode changes,

@@ -133,7 +133,7 @@ void main() {
       closeTo(1.035, 0.001),
     );
 
-    await tester.pump(const Duration(milliseconds: 820));
+    await tester.pump(const Duration(milliseconds: 1020));
     expect(audio.words, [expected.first, expected.last]);
     await tester.tap(find.byKey(const Key('vocab-auto-read-button')));
     await tester.pump();
