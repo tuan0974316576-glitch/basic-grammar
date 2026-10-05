@@ -59,6 +59,7 @@
     "vocab:examples:review": "node scripts/review-vocab-example-seed.js",
     "vocab:meanings": "node scripts/generate-vocab-meanings.js",
     "vocab:meanings:review": "node scripts/review-vocab-meaning-seed.js",
+    "vocab:images": "node scripts/generate-vocab-images.js",
     "dict:import": "node scripts/import-offline-dictionary.js",
     "dict:import:cedict": "node scripts/import-cc-cedict-reverse.js",
     "cap:sync": "npm run build:web && npx cap sync android",
