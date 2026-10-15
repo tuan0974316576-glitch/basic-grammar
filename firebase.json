@@ -12,6 +12,10 @@
         "destination": "/teacher-vocab.html"
       },
       {
+        "source": "/teacher-vocab-levels",
+        "destination": "/teacher-vocab-levels.html"
+      },
+      {
         "source": "/grammar-admin",
         "destination": "/grammar-admin.html"
       }
