@@ -282,6 +282,14 @@ select:focus {
   box-shadow: 0 0 18px rgba(48, 213, 255, 0.24);
 }
 
+.level-editor-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 .secondary-action {
   color: var(--text);
   border: 1px solid var(--field-border);
