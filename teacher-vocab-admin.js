@@ -21,6 +21,17 @@ const POS_OPTIONS = [
   ["number", "num."]
 ];
 
+const BATTLESHIP_FIREBASE_VERSION = "10.7.1";
+const BATTLESHIP_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyCfo5jxY1zvkRJPuPtZOMYj1V0kT7Te11A",
+  authDomain: "battleship-game-c0909.firebaseapp.com",
+  databaseURL: "https://battleship-game-c0909-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "battleship-game-c0909",
+  storageBucket: "battleship-game-c0909.firebasestorage.app",
+  messagingSenderId: "199612407738",
+  appId: "1:199612407738:web:3ed7840ec14992be7f8783"
+};
+
 const state = {
   firebase: null,
   user: null,
@@ -38,7 +49,19 @@ const state = {
   audioPreloadQueue: [],
   audioPreloadQueued: new Set(),
   audioPreloadActive: 0,
-  searchTimer: 0
+  imageRecords: new Map(),
+  imageRequests: new Map(),
+  searchTimer: 0,
+  levelFirebase: null,
+  levelFirebaseInit: null,
+  levelFirebaseUser: null,
+  levelAuthError: null
+};
+
+window.TeacherVocabConsole = {
+  getState: () => state,
+  ensureLevelAuth: (...args) => ensureLevelAuth(...args),
+  getLevelFirebase: () => state.levelFirebase
 };
 
 const el = {
@@ -170,6 +193,138 @@ function setStatus(node, message = "", type = "") {
   if (!node) return;
   node.className = `status-line${type ? ` ${type}` : ""}`;
   node.textContent = message;
+}
+
+function ensureTeacherImageModal() {
+  let modal = document.querySelector("#teacher-image-modal");
+  if (modal) return modal;
+  modal = document.createElement("div");
+  modal.id = "teacher-image-modal";
+  modal.className = "teacher-image-modal hidden";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.innerHTML = `
+    <div class="teacher-image-modal-backdrop" data-image-modal-close></div>
+    <div class="teacher-image-modal-card">
+      <button class="teacher-image-modal-close" type="button" aria-label="關閉圖片" data-image-modal-close>×</button>
+      <img class="teacher-image-modal-image" alt="">
+      <div class="teacher-image-modal-caption"></div>
+    </div>
+  `;
+  modal.querySelectorAll("[data-image-modal-close]").forEach((node) => {
+    node.addEventListener("click", () => modal.classList.add("hidden"));
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") modal.classList.add("hidden");
+  });
+  document.body.append(modal);
+  return modal;
+}
+
+function openTeacherImage(record = {}, word = "") {
+  const url = String(record.downloadUrl || "").trim();
+  if (!url) return;
+  const modal = ensureTeacherImageModal();
+  const image = modal.querySelector(".teacher-image-modal-image");
+  const caption = modal.querySelector(".teacher-image-modal-caption");
+  if (image) {
+    image.src = url;
+    image.alt = `${word} vocabulary picture`;
+  }
+  setText(caption, word);
+  modal.classList.remove("hidden");
+}
+
+function renderTeacherImage(wrap, record = {}, word = "") {
+  if (!wrap) return;
+  const url = String(record.downloadUrl || "").trim();
+  wrap.querySelector(".entry-image-thumbnail")?.remove();
+  wrap.querySelector(".entry-image-placeholder")?.remove();
+  if (!url) {
+    const placeholder = document.createElement("span");
+    placeholder.className = "entry-image-placeholder";
+    placeholder.textContent = "未有圖片";
+    wrap.prepend(placeholder);
+    return;
+  }
+  const thumbnail = document.createElement("button");
+  thumbnail.className = "entry-image-thumbnail";
+  thumbnail.type = "button";
+  thumbnail.title = "放大圖片";
+  thumbnail.setAttribute("aria-label", `${word} 放大圖片`);
+  const image = document.createElement("img");
+  image.src = url;
+  image.alt = `${word} vocabulary picture`;
+  image.loading = "lazy";
+  thumbnail.append(image);
+  thumbnail.addEventListener("click", () => openTeacherImage(record, word));
+  wrap.prepend(thumbnail);
+}
+
+async function loadTeacherImage(word = "", wrap = null) {
+  const normalized = normalizeWord(word);
+  if (!normalized || !wrap) return;
+  const cached = state.imageRecords.get(normalized);
+  if (cached) {
+    renderTeacherImage(wrap, cached, normalized);
+    return;
+  }
+  const pending = state.imageRequests.get(normalized);
+  if (pending) {
+    renderTeacherImage(wrap, await pending, normalized);
+    return;
+  }
+  const callable = getTeacherCallable("getVocabImage");
+  if (!callable) {
+    renderTeacherImage(wrap, {}, normalized);
+    return;
+  }
+  const request = callable({ word: normalized })
+    .then((result) => {
+      const data = result?.data || {};
+      const record = data.status === "ready" ? data : { status: "missing" };
+      state.imageRecords.set(normalized, record);
+      return record;
+    })
+    .catch((error) => {
+      console.warn("Teacher vocab image lookup failed:", error);
+      const record = { status: "error" };
+      state.imageRecords.set(normalized, record);
+      return record;
+    })
+    .finally(() => state.imageRequests.delete(normalized));
+  state.imageRequests.set(normalized, request);
+  renderTeacherImage(wrap, await request, normalized);
+}
+
+async function regenerateTeacherImage(word = "", button = null, wrap = null) {
+  const normalized = normalizeWord(word);
+  if (!normalized || state.role !== "teacher") return;
+  if (!window.confirm(`重新生成 ${normalized} 嘅圖片？完成後會取代所有學生裝置上嘅共享圖片。`)) return;
+  const previousText = button?.textContent || "";
+  if (button) {
+    button.disabled = true;
+    button.textContent = "更換中...";
+  }
+  setStatus(el.entryStatus, `正在重新生成 ${normalized} 嘅圖片...`, "loading");
+  try {
+    const callable = getTeacherCallable("ensureVocabImage");
+    if (!callable) throw new Error("login-required");
+    const result = await callable({ word: normalized, force: true });
+    const data = result?.data || {};
+    if (data.status !== "ready" || !data.downloadUrl) throw new Error("image-unavailable");
+    state.imageRecords.set(normalized, data);
+    renderTeacherImage(wrap, data, normalized);
+    setStatus(el.entryStatus, `已更換 ${normalized} 嘅圖片。學生裝置會喺背景更新新版本。`, "success");
+  } catch (error) {
+    console.warn("Teacher vocab image regeneration failed:", error);
+    setStatus(el.entryStatus, `圖片更換失敗：${error?.message || error}`, "error");
+  } finally {
+    if (button) {
+      button.disabled = false;
+      button.textContent = previousText;
+    }
+  }
 }
 
 function formatEntryMeaning(entry = {}) {
@@ -404,6 +559,57 @@ function groupEntriesByWord(entries = []) {
 function getTeacherCallable(name) {
   if (!state.firebase?.functions || !state.firebase.modules?.httpsCallable || !state.user) return null;
   return state.firebase.modules.httpsCallable(state.firebase.functions, name);
+}
+
+async function initLevelFirebase() {
+  if (state.levelFirebaseInit) return state.levelFirebaseInit;
+  state.levelFirebaseInit = (async () => {
+    const [firebaseApp, firebaseAuth, firebaseDatabase, firebaseFunctions] = await Promise.all([
+      import(`https://www.gstatic.com/firebasejs/${BATTLESHIP_FIREBASE_VERSION}/firebase-app.js`),
+      import(`https://www.gstatic.com/firebasejs/${BATTLESHIP_FIREBASE_VERSION}/firebase-auth.js`),
+      import(`https://www.gstatic.com/firebasejs/${BATTLESHIP_FIREBASE_VERSION}/firebase-database.js`),
+      import(`https://www.gstatic.com/firebasejs/${BATTLESHIP_FIREBASE_VERSION}/firebase-functions.js`)
+    ]);
+    const existing = firebaseApp.getApps().find((app) => app.name === "battleship-vocab-levels");
+    const app = existing || firebaseApp.initializeApp(BATTLESHIP_FIREBASE_CONFIG, "battleship-vocab-levels");
+    const auth = firebaseAuth.getAuth(app);
+    const db = firebaseDatabase.getDatabase(app);
+    const functions = firebaseFunctions.getFunctions(app, "asia-east2");
+    state.levelFirebase = {
+      auth,
+      db,
+      functions,
+      modules: { ...firebaseAuth, ...firebaseDatabase, ...firebaseFunctions }
+    };
+    firebaseAuth.onAuthStateChanged(auth, (user) => {
+      state.levelFirebaseUser = user;
+      if (user) {
+        state.levelAuthError = null;
+        window.dispatchEvent(new CustomEvent("teacher-vocab:level-auth", { detail: { ready: true } }));
+      }
+    });
+    return state.levelFirebase;
+  })().catch((error) => {
+    state.levelAuthError = error;
+    throw error;
+  });
+  return state.levelFirebaseInit;
+}
+
+async function ensureLevelAuth(studentId = "", pin = "") {
+  const levelFirebase = await initLevelFirebase();
+  if (state.levelFirebaseUser) return state.levelFirebaseUser;
+  if (!studentId || !pin) throw new Error("VS AI Level login is not ready. Please log in again.");
+  const callable = levelFirebase.modules.httpsCallable(levelFirebase.functions, "grammarTeacherLogin");
+  const result = await callable({ studentId, pin });
+  const credential = await levelFirebase.modules.signInWithCustomToken(
+    levelFirebase.auth,
+    result.data?.customToken || result.customToken
+  );
+  state.levelFirebaseUser = credential.user;
+  state.levelAuthError = null;
+  window.dispatchEvent(new CustomEvent("teacher-vocab:level-auth", { detail: { ready: true } }));
+  return credential.user;
 }
 
 function normalizeExamplePayload(payload = {}) {
@@ -871,6 +1077,24 @@ function makeEntryGroupCard(group = {}, options = {}) {
     ));
     wordLine.append(regenerateButton, uploadButton);
   }
+
+  const imageWrap = document.createElement("div");
+  imageWrap.className = "entry-image-wrap";
+  if (state.role === "teacher") {
+    const imageButton = document.createElement("button");
+    imageButton.className = "entry-image-action";
+    imageButton.type = "button";
+    imageButton.textContent = "更改圖片";
+    imageButton.title = "重新生成並取代共享圖片";
+    imageButton.addEventListener("click", () => regenerateTeacherImage(
+      group.display || group.word,
+      imageButton,
+      imageWrap
+    ));
+    imageWrap.append(imageButton);
+  }
+  wordLine.append(imageWrap);
+  void loadTeacherImage(group.display || group.word, imageWrap);
 
   const meanings = document.createElement("div");
   meanings.className = "entry-meanings";
@@ -1421,6 +1645,12 @@ async function initFirebase() {
     state.user = user;
     if (user) {
       await refreshRole(user);
+      if (state.role === "teacher") {
+        await initLevelFirebase().catch((error) => {
+          state.levelAuthError = error;
+          console.warn("VS AI Level Firebase init failed:", error);
+        });
+      }
       setStatus(el.loginStatus, "已登入。", "success");
       await startLiveListener();
     } else {
@@ -1461,7 +1691,14 @@ async function login(event) {
     if (state.role !== "teacher") {
       setStatus(el.loginStatus, "呢個帳號不是老師帳號，只可以讀取，不能修改。", "error");
     } else {
-      setStatus(el.loginStatus, "登入成功。", "success");
+      try {
+        await ensureLevelAuth(studentId, pin);
+        setStatus(el.loginStatus, "登入成功。", "success");
+      } catch (levelError) {
+        state.levelAuthError = levelError;
+        console.warn("VS AI Level auth preparation failed:", levelError);
+        setStatus(el.loginStatus, "登入成功；VS AI Level 編輯器稍後再試。", "success");
+      }
     }
     if (el.loginPin) el.loginPin.value = "";
   } catch (error) {

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Teacher Vocab Console</title>
   <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="teacher-vocab-admin.css?v=20260920-audio-upload">
+  <link rel="stylesheet" href="teacher-vocab-admin.css?v=20261016-image-console-level-editor">
 </head>
 <body>
   <main class="teacher-console-shell">
@@ -48,12 +48,30 @@
     <section id="workspace" class="workspace hidden" aria-label="Teacher vocab workspace">
       <header class="workspace-header console-panel">
         <div class="account-tools">
-          <a class="primary-action level-editor-link" href="/teacher-vocab-levels">Edit VS AI LEVEL</a>
+          <button id="level-editor-button" class="primary-action level-editor-link" type="button">Edit VS AI LEVEL</button>
           <div id="teacher-online-badge" class="teacher-online-badge">TEACHER ONLINE</div>
           <div id="account-label" class="account-label">--</div>
           <button id="refresh-button" class="secondary-action" type="button">Refresh</button>
         </div>
       </header>
+
+      <section id="level-editor-panel" class="console-panel level-editor-panel hidden" aria-label="VS AI vocabulary level editor">
+        <div class="panel-heading">
+          <div>
+            <div class="eyebrow">Battleship VS AI</div>
+            <h3>Edit VS AI Level</h3>
+          </div>
+          <button id="level-editor-close" class="secondary-action" type="button">Close</button>
+        </div>
+        <div class="level-editor-notice">先揀 Level，再揀 Stage；每個 Stage 顯示 25 個字。改字後會即時重新排列 stages。</div>
+        <div class="level-editor-picker">
+          <label>LEVEL<select id="level-editor-level" aria-label="Select level"><option value="L1">LEVEL 1</option><option value="L2">LEVEL 2</option><option value="L3">LEVEL 3</option><option value="L4">LEVEL 4</option><option value="L5">LEVEL 5</option><option value="L5_STAR">LEVEL 5*</option></select></label>
+          <label>STAGE<select id="level-editor-stage" aria-label="Select stage"></select></label>
+          <div id="level-editor-summary" class="level-editor-summary">0 words</div>
+        </div>
+        <div id="level-editor-status" class="status-line" role="status"></div>
+        <div id="level-editor-list" class="level-editor-list"></div>
+      </section>
 
       <div class="workspace-grid">
         <section class="console-panel results-panel">
@@ -113,6 +131,9 @@
   <script src="cc_cedict_supplement.js"></script>
   <script src="vocab_lookup.js"></script>
   <script src="vocab_example_utils.js?v=20260920-console-parity"></script>
-  <script src="teacher-vocab-admin.js?v=20260920-pattern-examples" type="module"></script>
+  <script src="teacher-vocab-level-contract.js?v=20261016-inline-level-editor"></script>
+  <script src="teacher-vocab-level-data.js?v=20261016-inline-level-editor"></script>
+  <script src="teacher-vocab-admin.js?v=20261016-image-console-level-editor" type="module"></script>
+  <script src="teacher-vocab-inline-levels.js?v=20261016-inline-level-editor" type="module"></script>
 </body>
 </html>
